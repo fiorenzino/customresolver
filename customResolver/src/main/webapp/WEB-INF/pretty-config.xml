@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces-xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.com/prettyfaces-xsd http://ocpsoft.com/xml/ns/prettyfaces/pretty-1.0.xsd">
+	<url-mapping id="index">
+		<pattern>/index</pattern>
+		<view-id>/index.jsf </view-id>
+	</url-mapping>
+	<url-mapping id="dbPage">
+		<pattern>/dbPage</pattern>
+		<view-id>/dbPage.jsf </view-id>
+	</url-mapping>
+	<url-mapping id="pages">
+		<pattern>/pages/#{pagesHandler.page}</pattern>
+		<query-param name="page">#{pagesHandler.page}</query-param>
+		<view-id>/page.jsf </view-id>
+	</url-mapping>
+</pretty-config>
