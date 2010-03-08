@@ -54,7 +54,14 @@ public class DBURLConnection extends URLConnection {
 			System.out.println("form: " + this.form);
 			// this.currentPage = pagesHandler.findPage(this.form);
 			// this.content = this.currentPage.getContent();
-			content = "<html><body>ciao</body></html>";
+			content = "<ui:composition "
+					+ " xmlns=\"http://www.w3.org/1999/xhtml\" "
+					+ " xmlns:ui=\"http://java.sun.com/jsf/facelets\" "
+					+ " xmlns:c=\"http://java.sun.com/jstl/core\" "
+					+ " xmlns:f=\"http://java.sun.com/jsf/core\" "
+					+ " xmlns:h=\"http://java.sun.com/jsf/html\"> "
+					+ " <h:outputText value=\"#{bookFactory.text2}\" />"
+					+ " </ui:composition>";
 
 			this.connected = true;
 		}
