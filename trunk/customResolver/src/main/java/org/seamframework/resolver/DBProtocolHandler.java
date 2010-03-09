@@ -5,10 +5,18 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
 
+import weld.view.PagesHandler;
+
 public class DBProtocolHandler extends URLStreamHandler {
 
-  @Override
-  protected URLConnection openConnection(URL u) throws IOException {
-	return new DBURLConnection(u);
-  }
+	PagesHandler pagesHandler;
+
+	public DBProtocolHandler(PagesHandler pagesHandler) {
+		this.pagesHandler = pagesHandler;
+	}
+
+	@Override
+	protected URLConnection openConnection(URL u) throws IOException {
+		return new DBURLConnection(u, pagesHandler);
+	}
 }

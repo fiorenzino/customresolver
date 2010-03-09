@@ -5,20 +5,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import org.apache.commons.io.IOUtils;
 
 import weld.model.Page;
 import weld.view.PagesHandler;
 
-@Named
-@RequestScoped
 public class DBURLConnection extends URLConnection {
 
-	@Inject
 	PagesHandler pagesHandler;
 
 	private String form;
@@ -26,6 +19,10 @@ public class DBURLConnection extends URLConnection {
 	private Page currentPage;
 
 	public DBURLConnection(URL u) {
+		super(u);
+	}
+
+	public DBURLConnection(URL u, PagesHandler pagesHandler) {
 		super(u);
 	}
 
@@ -52,16 +49,21 @@ public class DBURLConnection extends URLConnection {
 			this.form = url.getFile().substring(url.getFile().indexOf("/") + 1);
 			// System.out.println("pd: " + pd);
 			System.out.println("form: " + this.form);
-			// this.currentPage = pagesHandler.findPage(this.form);
-			// this.content = this.currentPage.getContent();
-			content = "<ui:composition "
-					+ " xmlns=\"http://www.w3.org/1999/xhtml\" "
-					+ " xmlns:ui=\"http://java.sun.com/jsf/facelets\" "
-					+ " xmlns:c=\"http://java.sun.com/jstl/core\" "
-					+ " xmlns:f=\"http://java.sun.com/jsf/core\" "
-					+ " xmlns:h=\"http://java.sun.com/jsf/html\"> "
-					+ " <h:outputText value=\"#{bookFactory.text2}\" />"
-					+ " </ui:composition>";
+			try {
+				this.currentPage = pagesHandler.findPage(this.form);
+				System.out.println("PH: " + this.currentPage.getTitle());
+				this.content = this.currentPage.getContent();
+			} catch (Exception e) {
+				e.printStackTrace();
+				content = "<ui:composition "
+						+ " xmlns=\"http://www.w3.org/1999/xhtml\" "
+						+ " xmlns:ui=\"http://java.sun.com/jsf/facelets\" "
+						+ " xmlns:c=\"http://java.sun.com/jstl/core\" "
+						+ " xmlns:f=\"http://java.sun.com/jsf/core\" "
+						+ " xmlns:h=\"http://java.sun.com/jsf/html\"> "
+						+ " <h:outputText value=\"#{bookFactory.text2}\" />"
+						+ " </ui:composition>";
+			}
 
 			this.connected = true;
 		}
