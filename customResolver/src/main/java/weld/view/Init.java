@@ -25,6 +25,7 @@ public class Init implements Serializable {
 	@PersistenceContext(unitName = "foo")
 	EntityManager em;
 
+	@Produces
 	@RequestScoped
 	@PageManager
 	public PagesHandler retrievePH() {
