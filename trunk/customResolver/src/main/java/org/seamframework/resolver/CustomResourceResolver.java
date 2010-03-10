@@ -5,6 +5,8 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
+import org.seamframework.tx.PageManager;
+
 import weld.view.PagesHandler;
 
 import com.sun.faces.facelets.impl.DefaultResourceResolver;
@@ -12,6 +14,7 @@ import com.sun.faces.facelets.impl.DefaultResourceResolver;
 public class CustomResourceResolver extends DefaultResourceResolver {
 
 	@Inject
+	@PageManager
 	PagesHandler pagesHandler;
 
 	URL resourceUrl = null;
