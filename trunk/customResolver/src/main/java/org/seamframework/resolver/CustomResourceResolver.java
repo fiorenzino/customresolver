@@ -3,7 +3,9 @@ package org.seamframework.resolver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.seamframework.tx.PageManager;
 
@@ -11,6 +13,8 @@ import weld.view.PagesHandler;
 
 import com.sun.faces.facelets.impl.DefaultResourceResolver;
 
+@Named
+@RequestScoped
 public class CustomResourceResolver extends DefaultResourceResolver {
 
 	@Inject
