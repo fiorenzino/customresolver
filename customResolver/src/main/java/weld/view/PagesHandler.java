@@ -22,44 +22,37 @@ public class PagesHandler implements Serializable {
 	EntityManager em;
 
 	PagesHandler() {
-
+		System.out.println("NUOVO");
 	}
 
 	@SuppressWarnings( { "unchecked" })
 	@Transactional
+	public void createPage(String title, String description, String content) {
+		System.out.println("CREO PAGINA: " + title);
+		Page page = new Page();
+		page.setTitle(title);
+		page.setDescription(description);
+		page.setId(PagesUtils.createPageId(page.getTitle()));
+		page.setContent(content);
+		em.persist(page);
+		System.out.println("ID: " + page.getId());
+	}
+
 	public void createPages() {
 		System.out.println("CREO PAGINE");
-		Page page = new Page();
-		page.setTitle("Chi Siamo");
-		page.setDescription("Chi siamo e cosa facciamo");
-		page.setId(PagesUtils.createPageId(page.getTitle()));
-		page.setContent("<br/>ciao siamo solo noi!<br/> ");
-		em.persist(page);
-		System.out.println("ID: " + page.getId());
 
-		page = new Page();
-		page.setTitle("Home Page");
-		page.setDescription("benvenuti");
-		page.setId(PagesUtils.createPageId(page.getTitle()));
-		page.setContent("<br/>ciao benvenuti!<br/> ");
-		em.persist(page);
-		System.out.println("ID: " + page.getId());
+		createPage("Chi Siamo", "Chi siamo e cosa facciamo",
+				"<br/>ciao siamo solo noi!<br/> ");
 
-		page = new Page();
-		page.setTitle("Dove Siamo");
-		page.setDescription("i nostri uffici");
-		page.setId(PagesUtils.createPageId(page.getTitle()));
-		page.setContent("<br/>ciao siamo ovunque!<br/> ");
-		em.persist(page);
-		System.out.println("ID: " + page.getId());
+		createPage("Home Page", "benvenuti", "<br/>ciao benvenuti!<br/> ");
 
-		page = new Page();
-		page.setTitle("Cosa Facciamo");
-		page.setDescription("la ns attivita'");
-		page.setId(PagesUtils.createPageId(page.getTitle()));
-		page.setContent("<br/>non facciamo un cazzo!<br/> ");
-		em.persist(page);
-		System.out.println("ID: " + page.getId());
+		createPage("Dove Siamo", "i nostri uffici",
+				"<br/>ciao siamo ovunque!<br/> ");
+
+		createPage("Cosa Facciamo", "la ns attivita'",
+				"<br/>non facciamo un cazzo!<br/> ");
+
+		System.out.println("FATTO");
 	}
 
 	@SuppressWarnings( { "unchecked" })

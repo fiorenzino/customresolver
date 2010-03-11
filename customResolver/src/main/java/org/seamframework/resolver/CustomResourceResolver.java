@@ -3,37 +3,19 @@ package org.seamframework.resolver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.seamframework.tx.PageManager;
-
-import weld.view.PagesHandler;
-
 import com.sun.faces.facelets.impl.DefaultResourceResolver;
 
-@Named
-@RequestScoped
 public class CustomResourceResolver extends DefaultResourceResolver {
-
-	@Inject
-	@PageManager
-	PagesHandler pagesHandler;
 
 	URL resourceUrl = null;
 
 	public CustomResourceResolver() {
+
 		System.out.println("creo custom resolver");
 	}
 
 	@Override
 	public URL resolveUrl(String resource) {
-		try {
-			System.out.println("TEST PAGEHANDLER: " + pagesHandler.getPage());
-		} catch (Exception e) {
-			System.out.println("TEST PAGEHANDLER NULLO");
-		}
 
 		resourceUrl = super.resolveUrl(resource);
 		System.out.println("url: " + resourceUrl);
@@ -44,7 +26,7 @@ public class CustomResourceResolver extends DefaultResourceResolver {
 				try {
 					// Use real factory... hmm...should I? Don't think I do.
 					resourceUrl = new URL(null, resource,
-							new DBStreamHandlerFactory(pagesHandler)
+							new DBStreamHandlerFactory()
 									.createURLStreamHandler("db"));
 				} catch (MalformedURLException e) {
 					// TODO Fix exceptionhandling

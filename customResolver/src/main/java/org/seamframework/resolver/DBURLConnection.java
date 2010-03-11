@@ -9,20 +9,15 @@ import org.apache.commons.io.IOUtils;
 
 import weld.model.Page;
 import weld.view.PagesHandler;
+import weld.view.utils.JSFUtils;
 
 public class DBURLConnection extends URLConnection {
-
-	PagesHandler pagesHandler;
 
 	private String form;
 	private String content = null;
 	private Page currentPage;
 
 	public DBURLConnection(URL u) {
-		super(u);
-	}
-
-	public DBURLConnection(URL u, PagesHandler pagesHandler) {
 		super(u);
 	}
 
@@ -50,11 +45,22 @@ public class DBURLConnection extends URLConnection {
 			// System.out.println("pd: " + pd);
 			System.out.println("form: " + this.form);
 			try {
-				this.currentPage = pagesHandler.findPage(this.form);
-				System.out.println("PH: " + this.currentPage.getTitle());
+				this.currentPage = JSFUtils.getPageHandler()
+						.findPage(this.form);
+				System.out.println("PH1: " + this.currentPage.getTitle());
 				this.content = this.currentPage.getContent();
 			} catch (Exception e) {
-				e.printStackTrace();
+				// e.printStackTrace();
+				System.out.println(" DBUTL EXC 1");
+			}
+			try {
+				PagesHandler ph = (PagesHandler) JSFUtils
+						.getManagedBean("pageHandler");
+				this.currentPage = ph.findPage(this.form);
+				System.out.println("PH2: " + this.currentPage.getTitle());
+			} catch (Exception e) {
+				// e.printStackTrace();
+				System.out.println(" DBUTL EXC 2");
 				content = "<ui:composition "
 						+ " xmlns=\"http://www.w3.org/1999/xhtml\" "
 						+ " xmlns:ui=\"http://java.sun.com/jsf/facelets\" "
