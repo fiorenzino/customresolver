@@ -1,22 +1,15 @@
 package org.seamframework.resolver;
 
-import java.net.*;
-
-import weld.view.PagesHandler;
+import java.net.URLStreamHandler;
+import java.net.URLStreamHandlerFactory;
 
 //TODO Not fully a factory yet, change this 
 public class DBStreamHandlerFactory implements URLStreamHandlerFactory {
 
-	PagesHandler pagesHandler;
-
-	public DBStreamHandlerFactory(PagesHandler pagesHandler) {
-		this.pagesHandler = pagesHandler;
-	}
-
 	public URLStreamHandler createURLStreamHandler(String protocol) {
 
 		if (protocol.equalsIgnoreCase("db")) {
-			return new DBProtocolHandler(pagesHandler);
+			return new DBProtocolHandler();
 		} else {
 			return null;
 		}
