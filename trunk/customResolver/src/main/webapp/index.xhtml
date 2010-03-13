@@ -17,6 +17,8 @@
 			<p>Author</p>
 			<h:inputText value="#{bookFactory.book.author}" />
 		</h:panelGrid>
+		<h:commandButton action="#{bookFactory.saveBook}" value="Write it!" />
+		<br />
 		<table>
 			<ui:fragment rendered="#{not empty bookFactory.books}">
 				<th><h:outputText value="#{bookFactory.text2}" /></th>
@@ -28,10 +30,10 @@
 				</ui:repeat>
 			</ui:fragment>
 		</table>
-		<h:commandButton action="#{bookFactory.saveBook}" value="Write it!" />
+
 		<br />
-		<br />
-		<h:commandButton action="#{pagesHandler.createPages}" value="crea pagine" />
+		<h:commandButton action="#{pagesHandler.createPages}"
+			value="crea pagine" />
 	</h:form>
 </h:body>
 </html>
