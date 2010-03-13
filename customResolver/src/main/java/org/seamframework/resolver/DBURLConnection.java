@@ -27,8 +27,8 @@ public class DBURLConnection extends URLConnection {
 
 		if (!connected)
 			connect();
-		if (content != null) {
-			return IOUtils.toInputStream(content);
+		if (this.content != null) {
+			return IOUtils.toInputStream(this.content);
 		} else {
 			return null;
 		}
