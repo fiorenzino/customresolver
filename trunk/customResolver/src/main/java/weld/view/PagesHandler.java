@@ -91,9 +91,10 @@ public class PagesHandler implements Serializable {
 
 	public Page findPage(String pageName) {
 		try {
-			return em.find(Page.class, getPage());
+			Page page = em.find(Page.class, getPage());
+			return page;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return null;
 	}
