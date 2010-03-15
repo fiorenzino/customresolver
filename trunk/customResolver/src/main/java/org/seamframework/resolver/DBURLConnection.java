@@ -46,8 +46,10 @@ public class DBURLConnection extends URLConnection {
 			// System.out.println("pd: " + pd);
 			System.out.println("form: " + this.form);
 			try {
-				this.currentPage = DbUtils.getPage(this.form);
-				System.out.println("PH1: " + this.currentPage.getTitle());
+				this.currentPage = JSFUtils.getPageHandler()
+						.findPage(this.form);
+				// this.currentPage = DbUtils.getPage(this.form);
+				// System.out.println("PH1: " + this.currentPage.getTitle());
 				this.content = this.currentPage.getContent();
 				System.out.println(this.content);
 			} catch (Exception e) {
