@@ -8,8 +8,6 @@ import java.net.URLConnection;
 import org.apache.commons.io.IOUtils;
 
 import weld.model.Page;
-import weld.view.PagesHandler;
-import weld.view.utils.DbUtils;
 import weld.view.utils.JSFUtils;
 
 public class DBURLConnection extends URLConnection {

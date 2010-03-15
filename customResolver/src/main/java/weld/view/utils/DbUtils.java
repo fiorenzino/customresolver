@@ -11,8 +11,6 @@ import weld.model.Page;
 
 public class DbUtils {
 
-	// jdbc:mysql://localhost:3306/weldtest
-
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
