@@ -25,37 +25,21 @@ public class JSFUtils {
 
 		PagesHandler pagesHandler = null;
 		try {
-	
-			
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
 			BeanManager beanManager = (BeanManager) envCtx
 					.lookup("BeanManager");
-
 
 			Bean phBean = (Bean) beanManager.getBeans(PagesHandler.class)
 					.iterator().next();
 			CreationalContext cc = beanManager.createCreationalContext(phBean);
 			pagesHandler = (PagesHandler) beanManager.getReference(phBean,
 					PagesHandler.class, cc);
-			Page page2 = pagesHandler.findPage("chi-siamo");
-			if (page2 != null) {
-				System.out.println(page2.getContent());
-			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return pagesHandler;
-	}
-
-	public static Object getManagedBean(String name) {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		if (fc == null) {
-			System.out.println("Faces Context Application null");
-		}
-		return fc.getApplication().getELResolver().getValue(fc.getELContext(),
-				null, name);
 	}
 }
