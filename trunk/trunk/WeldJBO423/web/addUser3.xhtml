@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h1>Hello World!</h1>
+
+		<h:form id="bv">
+			<h2>Validator in ejb</h2>
+			<p>Vediamo se va.</p>
+			<table>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="nome"
+						value="nome:" /></th>
+					<td><h:outputText id="nome"
+						value="#{conversationHandler.utente.nome}" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="cognome"
+						value="cognome:" /></th>
+					<td><h:outputText id="cognome"
+						value="#{conversationHandler.utente.cognome}" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="city"
+						value="Citta':" /></th>
+					<td><h:outputText id="city"
+						value="#{conversationHandler.utente.city}" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="provincia"
+						value="Provincia:" /></th>
+					<td><h:outputText id="provincia"
+						value="#{conversationHandler.utente.provincia}" /></td>
+				</tr>
+				<tr>
+					<th style="text-align: right;"><h:outputLabel for="eta"
+						value="Eta:" /></th>
+					<td><h:outputText id="eta"
+						value="#{conversationHandler.utente.eta}" /></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
