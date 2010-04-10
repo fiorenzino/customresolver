@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity
+//@Entity
 public class TemplateImpl implements Serializable {
 
 	private Long id;

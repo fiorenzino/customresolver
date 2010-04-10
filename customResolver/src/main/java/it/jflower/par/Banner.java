@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Banner implements Serializable {
 	
 	private Long id;

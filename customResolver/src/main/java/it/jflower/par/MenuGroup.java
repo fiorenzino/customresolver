@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
-@Entity
+//@Entity
 public class MenuGroup implements Serializable {
 
 	private Long id;
