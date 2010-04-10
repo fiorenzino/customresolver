@@ -1,6 +1,8 @@
 package weld.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -16,13 +18,38 @@ import weld.view.utils.PagesUtils;
 @SessionScoped
 public class PagesHandler implements Serializable {
 
-	private String page = "index";
-	private Page currentPage;
 	@Inject
 	EntityManager em;
 
+	private String page = "index";
+
+	private Page currentPage;
+	private List<Page> allpages;
+
 	PagesHandler() {
 		System.out.println("NUOVO");
+	}
+
+	public String creaPagina() {
+		this.currentPage = new Page();
+		return "/crea-pagina";
+	}
+
+	@SuppressWarnings( { "unchecked" })
+	@Transactional
+	public String salvaPagina() {
+		try {
+			this.currentPage.setId(PagesUtils.createPageId(currentPage
+					.getTitle()));
+			em.persist(this.currentPage);
+			System.out.println("ciao");
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		return "/index?redirect=true";
+
 	}
 
 	@SuppressWarnings( { "unchecked" })
@@ -97,6 +124,27 @@ public class PagesHandler implements Serializable {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@SuppressWarnings( { "unchecked" })
+	@Transactional
+	public List<Page> getAllpages() {
+		System.out.println("get all pages");
+
+		this.allpages = new ArrayList<Page>();
+		try {
+			this.allpages = em
+					.createQuery("select p from Page p order by p.id")
+					.getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return this.allpages;
+	}
+
+	public void setAllpages(List<Page> allpages) {
+		this.allpages = allpages;
 	}
 
 }

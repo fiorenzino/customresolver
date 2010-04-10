@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity
+//@Entity
 public class Page implements Serializable {
 
 	private String id;
