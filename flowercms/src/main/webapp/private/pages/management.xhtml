@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<title>crea nuova pagina web</title>
+</h:head>
+<h:body>
+
+	<h:form id="prova">
+		<h:outputLabel id="labelName" for="name" value="Nome:" />
+		<h:inputText id="name" value="#{pagesHandler.page.nome}" />
+		<br />
+		<h:outputLabel id="labelTitle" for="title" value="Titolo:" />
+		<h:inputText id="title" value="#{pagesHandler.page.title}" />
+		<br />
+		<h:outputLabel id="templateLabel" value="Template:" for="template" />
+		<h:selectOneMenu id="template"
+			value="#{pagesHandler.page.template.template.id}">
+			<f:selectItems value="#{templateHandler.templateItems}" />
+			<p:ajax actionListener="#{propertiesHandler.cambioFila}"
+				update="tempId" event="change" />
+		</h:selectOneMenu>
+		<br />
+
+		<p:panel id="tempId" header="gestione template">
+
+			<h:outputLabel id="labelContent" for="header" value="header:" />
+			<h:inputTextarea id="header"
+				value="#{pagesHandler.currentPage.content}" />
+			<h:outputText value="People behind PrimeFaces are ..." />
+		</p:panel>
+		<h:commandButton action="#{pagesHandler.salvaPagina}"
+			value="salva pagina" immediate="false" />
+	</h:form>
+</h:body>
+</html>

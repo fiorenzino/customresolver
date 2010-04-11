@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>flowercms</title>
+</h:head>
+<h:body>
+	<h1>Gestione Templates</h1>
+	<h:form>
+		<ui:repeat value="#{templatesHandler.allTemplates}" var="template">
+			<h:outputText id="nome" value="#{template.nome}" />
+			<br />
+		</ui:repeat>
+
+		<br />
+		<h:commandLink id="creaTemplate" action="#{templatesHandler.add}"
+			value="Crea Template" />
+	</h:form>
+</h:body>
+</html>
