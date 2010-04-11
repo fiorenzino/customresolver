@@ -5,10 +5,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Weld and JPA Portable Extension Demo</title>
+	<title>Gestione Dinamica Pagine web</title>
 </h:head>
 <h:body>
-	<h1>#{bookFactory.text1}</h1>
+	<h1>Tutte le pagine</h1>
 	<h:form>
 		<ui:repeat value="#{pagesHandler.allpages}" var="page">
 			<h:outputText id="nome" value="#{page.title}" />
