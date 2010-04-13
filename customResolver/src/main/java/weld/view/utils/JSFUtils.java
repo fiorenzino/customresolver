@@ -32,7 +32,7 @@ public class JSFUtils {
 		return pagesHandler;
 	}
 
-	public static <T> T getPageHandler(T pagesHandler) {
+	public static <T> T getHandler(T pagesHandler) {
 
 		// PagesHandler pagesHandler = null;
 		try {
