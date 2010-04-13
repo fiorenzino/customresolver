@@ -26,7 +26,7 @@ public class PagesHandler implements Serializable {
 	private Page currentPage;
 	private List<Page> allpages;
 
-	PagesHandler() {
+	public PagesHandler() {
 		System.out.println("NUOVO");
 	}
 
