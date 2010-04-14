@@ -11,14 +11,14 @@
 	<h1>Tutte le pagine</h1>
 	<h:form>
 		<ui:repeat value="#{pagesHandler.allpages}" var="page">
-			<h:outputText id="nome" value="#{page.title}" />
+			<h:outputText id="nome" value="( #{page.id} )" />
 			<h:outputLink value="/pages/#{page.id}" target="_blank">#{page.title}</h:outputLink>
 			<br />
 		</ui:repeat>
 
 		<br />
 		<h:commandButton action="#{pagesHandler.createPages}"
-			value="crea pagine" />
+			value="crea pagine (inizializza sistema)" />
 
 		<br />
 		<br />
