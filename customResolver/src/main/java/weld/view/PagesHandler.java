@@ -20,6 +20,7 @@ public class PagesHandler implements Serializable {
 
 	@Inject
 	EntityManager em;
+	private boolean editMode;
 
 	private String page = "index";
 
@@ -30,17 +31,43 @@ public class PagesHandler implements Serializable {
 		System.out.println("NUOVO");
 	}
 
+	public String getData() {
+		return "" + System.currentTimeMillis();
+	}
+
 	public String creaPagina() {
 		this.currentPage = new Page();
-		return "/crea-pagina";
+		setEditMode(false);
+		return "/crea-pagina?redirect=true";
+	}
+
+	public String modPage(String id) {
+		this.currentPage = findPage(id);
+		setEditMode(true);
+		return "/crea-pagina?redirect=true";
+	}
+
+	@SuppressWarnings( { "unchecked" })
+	@Transactional
+	public String updatePagina() {
+		try {
+			em.merge(this.currentPage);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		return "/index?redirect=true";
+
 	}
 
 	@SuppressWarnings( { "unchecked" })
 	@Transactional
 	public String salvaPagina() {
 		try {
-			this.currentPage.setId(PagesUtils.createPageId(currentPage
-					.getTitle()));
+			String idTitle = PagesUtils.createPageId(currentPage.getTitle());
+			String idFinal = testId(idTitle);
+			this.currentPage.setId(idFinal);
 			em.persist(this.currentPage);
 			System.out.println("ciao");
 		} catch (Exception e) {
@@ -116,9 +143,10 @@ public class PagesHandler implements Serializable {
 		this.currentPage = currentPage;
 	}
 
+	@Transactional
 	public Page findPage(String pageName) {
 		try {
-			Page page = em.find(Page.class, getPage());
+			Page page = em.find(Page.class, pageName);
 			return page;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,6 +173,36 @@ public class PagesHandler implements Serializable {
 
 	public void setAllpages(List<Page> allpages) {
 		this.allpages = allpages;
+	}
+
+	public String testId(String id) {
+		String idFinal = id;
+		boolean trovato = false;
+		int i = 0;
+		while (!trovato) {
+			System.out.println("id final: " + idFinal);
+			Page pageFind = findPage(idFinal);
+			System.out.println("trovato_ " + pageFind);
+			if (pageFind != null) {
+				i++;
+				idFinal = id + "-" + i;
+			} else {
+				trovato = true;
+				return idFinal;
+
+			}
+
+		}
+
+		return "";
+	}
+
+	public boolean isEditMode() {
+		return editMode;
+	}
+
+	public void setEditMode(boolean editMode) {
+		this.editMode = editMode;
 	}
 
 }

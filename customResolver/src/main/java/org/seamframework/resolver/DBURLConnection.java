@@ -39,13 +39,14 @@ public class DBURLConnection extends URLConnection {
 
 	public synchronized void connect() throws IOException {
 		if (!connected) {
-			this.form = url.getFile().substring(url.getFile().indexOf("/") + 1);
+			this.form = url.getFile().substring(
+					url.getFile().lastIndexOf("/") + 1);
 			System.out.println("form: " + this.form);
 			try {
 				this.currentPage = JSFUtils.getHandler(new PagesHandler())
 						.findPage(this.form);
 				this.content = this.currentPage.getContent();
-				System.out.println(this.content);
+				// System.out.println(this.content);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(" DBUTL EXC 1");
