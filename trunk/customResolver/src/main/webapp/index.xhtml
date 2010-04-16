@@ -14,6 +14,8 @@
 			<h:outputText id="nome" value="( #{page.id} )" />
 			<h:outputLink value="/pages/#{page.id}" target="_blank">#{page.title}</h:outputLink>
 			<br />
+			<h:commandLink action="#{pagesHandler.modPage(page.id)}"
+				value="modifica" />
 		</ui:repeat>
 
 		<br />
