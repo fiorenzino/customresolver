@@ -125,11 +125,6 @@
 			<version>2.0.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>2.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.9</version>
@@ -160,19 +155,14 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.0.3-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>el-impl</artifactId>
-			<scope>runtime</scope>
-			<!-- FIXME this version should be in the Weld API BOM -->
-			<version>2.1.2-b04</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.el</groupId>
-					<artifactId>el-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		<!--
+			<dependency> <groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId> <scope>provided</scope>
+
+			<version>2.1.2-b04</version> <exclusions> <exclusion>
+			<groupId>javax.el</groupId> <artifactId>el-api</artifactId>
+			</exclusion> </exclusions> </dependency>
+		-->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -195,7 +185,6 @@
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>el-impl</artifactId>
 			<version>2.1.2-b04</version>
-			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
