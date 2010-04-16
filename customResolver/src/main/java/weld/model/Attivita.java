@@ -1,6 +1,7 @@
 package weld.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,12 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Attivita implements Serializable {
 
 	private Long id;
-	private String foto;
+	private Date data;
+	private String autore;
 	private CategoriaAttivita categoria;
 	private String indirizzo;
 	private String city;
@@ -24,6 +27,7 @@ public class Attivita implements Serializable {
 	private String email;
 	private String sitoInternet;
 	private String descrizione;
+	private Immagine immagine;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,14 +37,6 @@ public class Attivita implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	@ManyToOne
@@ -124,6 +120,31 @@ public class Attivita implements Serializable {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getAutore() {
+		return autore;
+	}
+
+	public void setAutore(String autore) {
+		this.autore = autore;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	@OneToOne
+	public Immagine getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(Immagine immagine) {
+		this.immagine = immagine;
 	}
 
 }
