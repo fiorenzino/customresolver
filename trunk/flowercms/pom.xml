@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.simplecms</groupId>
-	<artifactId>simplecms</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>it.flowercms</groupId>
+	<artifactId>flowercms</artifactId>
+	<version>0.0.1</version>
 	<packaging>war</packaging>
 	<build>
-		<finalName>simplecms</finalName>
+		<finalName>flowercms</finalName>
 		<plugins>
 			<!-- Compiler plugin enforces Java 1.6 -->
 			<plugin>
