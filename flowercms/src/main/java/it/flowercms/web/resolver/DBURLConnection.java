@@ -45,7 +45,7 @@ public class DBURLConnection extends URLConnection {
 			System.out.println("form: " + this.form);
 			try {
 				this.currentPage = JSFUtils.getPageHandler(new PageSession())
-						.findPage(this.form);
+						.find(this.form);
 				TemplateUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
 				System.out.println(this.content);
