@@ -7,6 +7,6 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class AttivitaHandler implements Serializable {
+public class PubblicazioniHandler implements Serializable {
 
 }
