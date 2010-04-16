@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 @Named
 @ApplicationScoped
-public class Init implements Serializable {
+public class InitHandler implements Serializable {
 
 	@Produces
 	@ApplicationScoped
