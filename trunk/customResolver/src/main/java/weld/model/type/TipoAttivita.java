@@ -1,4 +1,4 @@
-package weld.model;
+package weld.model.type;
 
 import java.io.Serializable;
 

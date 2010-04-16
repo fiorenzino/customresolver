@@ -1,4 +1,4 @@
-package weld.model;
+package weld.model.attachment;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Immagine implements Serializable {
+public class Documento implements Serializable {
 
 	private Long id;
 	private String nome;

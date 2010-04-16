@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import weld.model.type.TipoPubblicazione;
+
 public class Pubblicazione implements Serializable {
 
 	private Long id;
