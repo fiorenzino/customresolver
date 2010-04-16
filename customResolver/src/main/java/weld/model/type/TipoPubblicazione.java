@@ -1,18 +1,19 @@
-package weld.model;
+package weld.model.type;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Documento implements Serializable {
+public class TipoPubblicazione implements Serializable {
+
+	// qualunque, Ordinanze Polizia Municipale, Licenze Commerciali
+	// Pubblicazioni di matrimonio, Determine dirigenziali, Concorsi
+	// Bandi ,Delibere di consiglio , Delibere di giunta
 
 	private Long id;
 	private String nome;
-	private String descrizione;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +33,4 @@ public class Documento implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
 }

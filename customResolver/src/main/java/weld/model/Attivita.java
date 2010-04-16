@@ -11,6 +11,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import weld.model.attachment.Immagine;
+import weld.model.type.CategoriaAttivita;
+
 @Entity
 public class Attivita implements Serializable {
 
