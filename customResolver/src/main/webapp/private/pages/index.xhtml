@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Gestione Dinamica Pagine web</title>
+</h:head>
+<h:body>
+	<h1>Tutte le pagine</h1>
+	<h:form>
+		<ui:repeat value="#{pagesHandler.allpages}" var="page">
+			<h:outputText id="nome" value="( #{page.id} )" />
+			<h:outputLink value="/pages/#{page.id}" target="_blank">#{page.title}</h:outputLink>
+			 - 
+			<h:commandLink action="#{pagesHandler.modPage(page.id)}"
+				value="modifica" />
+			<br />
+		</ui:repeat>
+
+		<br />
+		<h:commandButton action="#{pagesHandler.createPages}"
+			value="crea pagine (inizializza sistema)" />
+
+		<br />
+		<br />
+		<h:commandLink id="creaPagina" action="#{pagesHandler.creaPagina}"
+			value="Crea nuova Pagina" />
+	</h:form>
+</h:body>
+</html>
