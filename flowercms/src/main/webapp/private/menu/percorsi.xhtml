@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+	<ui:define name="title">
+		<h:outputText value="Lista Pagine" />
+	</ui:define>
+	<ui:define name="content">
+		<style>
+.col1 {
+	width: 35%;
+}
+
+.col2 {
+	width: 65%;
+}
+</style>
+
+		<h:form>
+
+			<p:panel header="Crea nuovo percorso">
+				<center><h:panelGrid columns="2">
+					<h:outputLabel for="nome" value="Nome(*):" />
+					<h:inputText required="true" value="#{menuHandler.element.nome}" />
+					<h:outputLabel for="percorso" value="Percorso(*):" />
+					<h:inputText id="percorso" required="true"
+						value="#{menuHandler.element.percorso}" />
+				</h:panelGrid> <br />
+				<br />
+				<h:panelGrid columns="2">
+					<h:commandButton value="Aggiungi" action="#{menuHandler.save}" />
+					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+				</h:panelGrid></center>
+
+			</p:panel>
+			<br />
+			<br />
+
+			<p:panel header="Gestisci associazioni" rendered="#{menuHandler.gruppi}">
+
+				<center><h:panelGrid columns="2" columnClasses="col1,col2">
+
+					<p:tree value="#{menuHandler.modelTree}" dynamic="true" var="node"
+						cache="false" nodeSelectListener="#{menuHandler.onNodeSelect}"
+						update="pickList">
+
+						<p:treeNode>
+							<h:outputText value="#{node.percorso}" />
+						</p:treeNode>
+
+						<p:treeNode type="document" styleClass="documentStyle">
+							<h:outputText value="#{node.nome}" styleClass="nodeContent" />
+						</p:treeNode>
+
+					</p:tree>
+
+					<p:outputPanel id="pickList">
+						<h:panelGrid columns="2">
+							<h:outputLabel value="Nome selezione:" for="nomeSel" />
+							<h:outputText id="nomeSel"
+								value="#{menuHandler.selectedDocument.data.nome}" />
+							<h:outputLabel value="Percorso selezione:" for="percorsoSel" />
+							<h:outputText id="percorsoSel"
+								value="#{menuHandler.selectedDocument.data.percorso}" />
+						</h:panelGrid>
+
+						<p:pickList value="#{menuHandler.dualListModel}" var="item" converter="baseConverter"
+							itemLabel="#{item.nome}" itemValue="#{item}" rendered="#{not empty menuHandler.selectedDocument}">
+							<f:facet name="add">
+								<p:graphicImage value="/images/picklist/add.png" alt="aggiungi" />
+							</f:facet>
+							<f:facet name="addAll">
+								<p:graphicImage value="/images/picklist/addall.png"
+									alt="aggiungi tutti" />
+							</f:facet>
+							<f:facet name="remove">
+								<p:graphicImage value="/images/picklist/remove.png"
+									alt="rimuovi" />
+							</f:facet>
+							<f:facet name="removeAll">
+								<p:graphicImage value="/images/picklist/removeall.png"
+									alt="rimuovi tutti" />
+							</f:facet>
+						</p:pickList>
+					</p:outputPanel>
+
+				</h:panelGrid> <br />
+				<br />
+				<h:panelGrid columns="2">
+					<h:commandButton value="Conferma" action="#{menuHandler.confirmItems}" />
+					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+				</h:panelGrid></center>
+			</p:panel>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
