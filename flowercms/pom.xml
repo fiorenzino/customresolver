@@ -76,14 +76,12 @@
 			<version>1.6.1</version> </dependency>
 		-->
 		<dependency>
-			<groupId>commons-collections
-            </groupId>
+			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-logging
-            </groupId>
+			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
@@ -191,9 +189,23 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>2.0.0</version>
+			<version>2.0.1-SNAPSHOT</version>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<repositories>
