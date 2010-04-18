@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<ui:repeat value="#{pagesHandler.allpages}" var="page">
+				<h:outputText id="nome" value="( #{page.id} )" />
+				<h:outputLink value="/pages/#{page.id}" target="_blank">#{page.title}</h:outputLink>
+			 - 
+			<h:commandLink action="#{pagesHandler.modPage(page.id)}" value="[m]" />
+				<br />
+			</ui:repeat>
+
+			<br />
+			<h:commandButton action="#{pagesHandler.createPages}"
+				value="crea pagine (inizializza sistema)" />
+
+			<br />
+			<br />
+			<h:commandLink id="creaPagina" action="#{pagesHandler.creaPagina}"
+				value="Crea nuova Pagina" />
+		</h:form>
+	</ui:define>
+</ui:composition>
