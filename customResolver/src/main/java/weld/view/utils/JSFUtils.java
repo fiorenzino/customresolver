@@ -9,30 +9,23 @@ import javax.naming.InitialContext;
 import weld.view.PagesHandler;
 
 public class JSFUtils {
-
-	public static PagesHandler getPageHandler() {
-
-		PagesHandler pagesHandler = null;
-		try {
-			Context initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			BeanManager beanManager = (BeanManager) envCtx
-					.lookup("BeanManager");
-
-			Bean phBean = (Bean) beanManager.getBeans(PagesHandler.class)
-					.iterator().next();
-			CreationalContext cc = beanManager.createCreationalContext(phBean);
-			pagesHandler = (PagesHandler) beanManager.getReference(phBean,
-					PagesHandler.class, cc);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return pagesHandler;
-	}
-
-	public static <T> T getHandler(T pagesHandler) {
+	/*
+	 * public static PagesHandler getPageHandler() {
+	 * 
+	 * PagesHandler pagesHandler = null; try { Context initCtx = new
+	 * InitialContext(); Context envCtx = (Context)
+	 * initCtx.lookup("java:comp/env"); BeanManager beanManager = (BeanManager)
+	 * envCtx .lookup("BeanManager");
+	 * 
+	 * Bean phBean = (Bean) beanManager.getBeans(PagesHandler.class)
+	 * .iterator().next(); CreationalContext cc =
+	 * beanManager.createCreationalContext(phBean); pagesHandler =
+	 * (PagesHandler) beanManager.getReference(phBean, PagesHandler.class, cc);
+	 * 
+	 * } catch (Exception e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } return pagesHandler; }
+	 */
+	public static <T> T getHandler(T handler) {
 
 		// PagesHandler pagesHandler = null;
 		try {
@@ -41,16 +34,16 @@ public class JSFUtils {
 			BeanManager beanManager = (BeanManager) envCtx
 					.lookup("BeanManager");
 
-			Bean phBean = (Bean) beanManager.getBeans(PagesHandler.class)
+			Bean phBean = (Bean) beanManager.getBeans(handler.getClass())
 					.iterator().next();
 			CreationalContext cc = beanManager.createCreationalContext(phBean);
-			pagesHandler = (T) beanManager.getReference(phBean, pagesHandler
-					.getClass(), cc);
-			return pagesHandler;
+			handler = (T) beanManager.getReference(phBean, handler.getClass(),
+					cc);
+			return handler;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return pagesHandler;
+		return handler;
 	}
 }

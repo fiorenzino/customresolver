@@ -8,7 +8,7 @@ import java.net.URLConnection;
 import org.apache.commons.io.IOUtils;
 
 import weld.model.Page;
-import weld.view.PagesHandler;
+import weld.session.PagesSession;
 import weld.view.utils.JSFUtils;
 
 public class DBURLConnection extends URLConnection {
@@ -43,10 +43,9 @@ public class DBURLConnection extends URLConnection {
 					url.getFile().lastIndexOf("/") + 1);
 			System.out.println("form: " + this.form);
 			try {
-				this.currentPage = JSFUtils.getHandler(new PagesHandler())
-						.findPage(this.form);
+				this.currentPage = JSFUtils.getHandler(new PagesSession())
+						.find(this.form);
 				this.content = this.currentPage.getContent();
-				// System.out.println(this.content);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(" DBUTL EXC 1");
