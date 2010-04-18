@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -18,7 +19,7 @@ public class TemplateImpl implements Serializable {
 
 	private Long id;
 	boolean attivo = true;
-	
+
 	private String header;
 	private String footer;
 	private String col1;
@@ -26,7 +27,7 @@ public class TemplateImpl implements Serializable {
 	private String col3;
 	private Page page;
 	private Template template;
-	
+
 	// ------------------------------------------------------------------------
 
 	public TemplateImpl() {
@@ -53,6 +54,7 @@ public class TemplateImpl implements Serializable {
 		this.template = template;
 	}
 
+	@Lob
 	public String getHeader() {
 		return header;
 	}
@@ -61,6 +63,7 @@ public class TemplateImpl implements Serializable {
 		this.header = header;
 	}
 
+	@Lob
 	public String getFooter() {
 		return footer;
 	}
@@ -69,6 +72,7 @@ public class TemplateImpl implements Serializable {
 		this.footer = footer;
 	}
 
+	@Lob
 	public String getCol1() {
 		return col1;
 	}
@@ -77,6 +81,7 @@ public class TemplateImpl implements Serializable {
 		this.col1 = col1;
 	}
 
+	@Lob
 	public String getCol2() {
 		return col2;
 	}
@@ -85,6 +90,7 @@ public class TemplateImpl implements Serializable {
 		this.col2 = col2;
 	}
 
+	@Lob
 	public String getCol3() {
 		return col3;
 	}
@@ -97,6 +103,7 @@ public class TemplateImpl implements Serializable {
 	public Page getPage() {
 		return page;
 	}
+
 	public void setPage(Page page) {
 		this.page = page;
 	}
@@ -113,20 +120,20 @@ public class TemplateImpl implements Serializable {
 
 	@Override
 	public String toString() {
-		return ( this.id != null ) ? this.id.toString() : super.toString();
+		return (this.id != null) ? this.id.toString() : super.toString();
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		if ( ! ( o instanceof TemplateImpl ) )
+		if (!(o instanceof TemplateImpl))
 			return false;
-		TemplateImpl t = (TemplateImpl)o;
+		TemplateImpl t = (TemplateImpl) o;
 		return t.getId() == null ? false : t.getId().equals(this.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
+		return (this.id != null) ? this.id.hashCode() : super.hashCode();
 	}
 
 }
