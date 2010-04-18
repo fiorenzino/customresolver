@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<link href="#{request.contextPath}/css/basic.css" rel="stylesheet"
+	type="text/css" />
+</head>
+
+<body>
+
+<p:growl id="growl" showDetail="true" />
+<center><p:panel style="width: 95%;">
+
+
+	<ui:insert name="menu">
+		<ui:include src="menu.xhtml" />
+	</ui:insert>
+
+
+
+	<p:panel style="width: 100%; text-align: left;">
+		<h:outputText value="Breadcrumps will be placed here..." />
+		<p:ajaxStatus>
+			<f:facet name="start">
+				<h:graphicImage value="/images/ajax_process.gif" />
+			</f:facet>
+		</p:ajaxStatus>
+		<br />
+
+
+		<p:panel style="width: 100%; text-align: center;">
+			<ui:insert name="content">
+				<ui:include src="content.xhtml" />
+			</ui:insert>
+		</p:panel>
+
+	</p:panel>
+
+</p:panel></center>
+</body>
+</html>
