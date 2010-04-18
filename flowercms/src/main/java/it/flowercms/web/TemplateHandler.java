@@ -4,17 +4,19 @@ import it.flowercms.par.Template;
 import it.flowercms.par.base.Ricerca;
 import it.flowercms.session.TemplateSession;
 import it.flowercms.session.base.SuperSession;
-import it.flowercms.web.model.LocalDataModel;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
+import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
@@ -24,10 +26,12 @@ public class TemplateHandler implements Serializable {
 
 	// --------------------------------------------------------
 
-	public static String BACK = "/private/amministrazione.xhtml";
-	public static String VIEW = "/private/modelli/scheda-modello.xhtml";
-	public static String LIST = "/private/modelli/lista-modelli.xhtml";
-	public static String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml";
+	private static String FACES_REDIRECT = "?faces-redirect=true";
+
+	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
+	public static String VIEW = "/private/modelli/scheda-modello.xhtml"+FACES_REDIRECT;
+	public static String LIST = "/private/modelli/lista-modelli.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml"+FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
@@ -94,15 +98,20 @@ public class TemplateHandler implements Serializable {
 	public DataModel<Template> getModel() {
 		if (model == null)
 			refreshModel();
+		System.out.println( model.getWrappedData());
 		return model;
 	}
 
+	public List<Template> getList() {
+		return session.getAllList();
+	}
 	public void setModel(DataModel<Template> model) {
 		this.model = model;
 	}
 
 	protected void refreshModel() {
-		setModel(new LocalDataModel<Template>(pageSize, ricerca, getSession()));
+//		setModel(new LocalDataModel<Template>(pageSize, ricerca, getSession()));
+		setModel( new ListDataModel<Template>( session.getAllList() ));
 	}
 
 	/**
@@ -169,17 +178,9 @@ public class TemplateHandler implements Serializable {
 		return this.backPage;
 	}
 
-	public String viewPage() {
-		return null;
-	}
-
-	public String listPage() {
-		return null;
-	}
-
-	public String editPage() {
-		return null;
-	}
+	public String viewPage() { return VIEW; }
+	public String listPage() { return LIST; }
+	public String editPage() { return NEW_OR_EDIT; }
 
 	// -----------------------------------------------------
 
@@ -232,6 +233,7 @@ public class TemplateHandler implements Serializable {
 
 	// -----------------------------------------------------
 
+	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
@@ -243,6 +245,7 @@ public class TemplateHandler implements Serializable {
 		return viewPage();
 	}
 
+	@Transactional
 	public String update() {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
@@ -255,6 +258,7 @@ public class TemplateHandler implements Serializable {
 		return viewPage();
 	}
 
+	@Transactional
 	public String delete() {
 		// operazione su db
 		getSession().delete(getId(element));
