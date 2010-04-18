@@ -3,6 +3,7 @@ package it.flowercms.par;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -40,6 +41,7 @@ public class Template implements Serializable {
 	// ------------------------------------------------------------------------
 
 	@Id
+	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
@@ -145,22 +147,22 @@ public class Template implements Serializable {
 
 	// ------------------------------------------------------------------------
 
-	@Override
-	public String toString() {
-		return ( this.nome != null ) ? this.nome : super.toString();
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if ( ! ( o instanceof Page ) )
-			return false;
-		Page p = (Page)o;
-		return p.getId() == null ? false : p.getId().equals(this.id);
-	}
-
-	@Override
-	public int hashCode() {
-		return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
-	}
+//	@Override
+//	public String toString() {
+//		return ( this.nome != null ) ? this.nome : super.toString();
+//	}
+//	
+//	@Override
+//	public boolean equals(Object o) {
+//		if ( ! ( o instanceof Page ) )
+//			return false;
+//		Page p = (Page)o;
+//		return p.getId() == null ? false : p.getId().equals(this.id);
+//	}
+//
+//	@Override
+//	public int hashCode() {
+//		return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
+//	}
 
 }
