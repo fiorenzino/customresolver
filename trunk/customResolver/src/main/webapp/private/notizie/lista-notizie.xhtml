@@ -11,33 +11,30 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:dataTable var="pagina" value="#{notizieHandler}">
+			<p:dataTable var="notizia" value="#{notizieHandler.all}">
 				<p:column>
 					<f:facet name="header">id</f:facet>
-					<h:outputText value="#{pagina.id}" />
+					<h:outputText value="#{notizia.id}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">titolo</f:facet>
-					<h:outputText value="#{pagina.title}" />
+					<h:outputText value="#{notizia.titolo}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">operazioni</f:facet>
-					<h:outputLink value="/pages/#{pagina.id}" target="_blank">[v]</h:outputLink>
-					- <h:commandLink action="#{pagesHandler.modPage(pagina.id)}"
-						value="[m]" />
+					<h:commandLink
+						action="#{notizieHandler.detailNotizia(notizia.id)}" value="[v]" />
+					- <h:commandLink
+						action="#{notizieHandler.modNotizia(notizia.id)}" value="[m]" />
 				</p:column>
 			</p:dataTable>
 			<br />
 			<br />
-			<h:commandButton action="#{pagesHandler.createPages}"
-				value="crea pagine (inizializza sistema)" />
 
-			<br />
-			<br />
-			<h:commandLink id="creaPagina" action="#{pagesHandler.creaPagina}"
-				value="Crea nuova Pagina" />
+			<h:commandLink id="creaNotizia"
+				action="#{notizieHandler.addNotizia}" value="Crea nuova Notizia" />
 		</h:form>
 	</ui:define>
 </ui:composition>

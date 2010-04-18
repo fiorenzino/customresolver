@@ -11,7 +11,15 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
+			<h:outputLabel for="titolo" value="Titolo" />
+			<h:outputText id="titolo" value="#{notizieHandler.notizia.titolo}" />
+			<br />
 
+			<h:outputLabel for="descrizione" value="Descrizione:" />
+			<h:outputText id="descrizione"
+				value="#{notizieHandler.notizia.descrizione}" width="640px"
+				height="320px"></h:outputText>
+			<br />
 		</h:form>
 
 	</ui:define>
