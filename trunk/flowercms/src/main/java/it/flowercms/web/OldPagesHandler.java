@@ -16,7 +16,7 @@ import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
-public class PagesHandler implements Serializable {
+public class OldPagesHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class PagesHandler implements Serializable {
 
 	private List<Page> allpages;
 
-	public PagesHandler() {
+	public OldPagesHandler() {
 		System.out.println("PagesHandler");
 	}
 
@@ -83,7 +83,7 @@ public class PagesHandler implements Serializable {
 	public void setAllpages(List<Page> allpages) {
 		this.allpages = allpages;
 	}
-	
+
 	@Transactional
 	public void createPage(String title, String description, String content) {
 		System.out.println("CREO PAGINA: " + title);
@@ -111,6 +111,5 @@ public class PagesHandler implements Serializable {
 
 		System.out.println("FATTO");
 	}
-
 
 }

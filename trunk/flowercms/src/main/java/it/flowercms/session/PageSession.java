@@ -7,6 +7,7 @@ import it.flowercms.web.utils.PageUtils;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ import javax.persistence.EntityManager;
 import org.seamframework.tx.Transactional;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class PageSession
 extends SuperSession<Page>
 implements Serializable {
