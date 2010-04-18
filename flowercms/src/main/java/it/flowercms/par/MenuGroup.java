@@ -3,15 +3,31 @@ package it.flowercms.par;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 public class MenuGroup implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
+	boolean attivo = true;
+
+	// ------------------------------------------------------------------------
+
 	private String nome;
 	private List<MenuItem> lista;
+
+	// ------------------------------------------------------------------------
+
+	public MenuGroup() {
+	}
+
+	// ------------------------------------------------------------------------
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +47,21 @@ public class MenuGroup implements Serializable {
 		this.nome = nome;
 	}
 
+	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	public List<MenuItem> getLista() {
 		return lista;
 	}
 
 	public void setLista(List<MenuItem> lista) {
 		this.lista = lista;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 
 }
