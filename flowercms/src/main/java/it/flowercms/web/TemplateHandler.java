@@ -8,6 +8,7 @@ import it.flowercms.web.model.LocalDataModel;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.inject.Inject;
@@ -17,8 +18,7 @@ import org.apache.log4j.Logger;
 
 @Named
 @SessionScoped
-public class TemplateHandler
-implements Serializable {
+public class TemplateHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
-	
+
 	// ------------------------------------------------
 
 	protected Logger logger = Logger.getLogger(getClass());
@@ -55,37 +55,42 @@ implements Serializable {
 	private String backPage = null;
 
 	// ------------------------------------------------
-	
+
 	/**
-	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore protetto
-	 * da parte delle sottoclassi
+	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore
+	 * protetto da parte delle sottoclassi
 	 */
-	protected TemplateHandler(Class<Template> clazz) {
-		super();
-		ricerca = new Ricerca<Template>(clazz);
-		gatherCriteria();
+	public TemplateHandler() {
+
 	}
 
 	// ------------------------------------------------
 
 	/**
-	 * Metodo da implementare per assicurare che i criteri di ricerca
-	 * contengano sempre tutti i vincoli desiderati (es: identità utente, selezioni esterne, ecc...)
+	 * Metodo da implementare per assicurare che i criteri di ricerca contengano
+	 * sempre tutti i vincoli desiderati (es: identità utente, selezioni
+	 * esterne, ecc...)
 	 */
-	protected void gatherCriteria() { 
-	} 
-	
+	@PostConstruct
+	protected void gatherCriteria() {
+		ricerca = new Ricerca<Template>(Template.class);
+	}
+
 	/**
 	 * Metodo per ottenere l'id di ricerca
 	 */
-	protected Object getId(Template t) { return t.getId(); }
+	protected Object getId(Template t) {
+		return t.getId();
+	}
 
-	protected SuperSession<Template> getSession() { return session; }
-	
+	protected SuperSession<Template> getSession() {
+		return session;
+	}
+
 	public Ricerca<Template> getRicerca() {
 		return this.ricerca;
 	}
-	
+
 	public DataModel<Template> getModel() {
 		if (model == null)
 			refreshModel();
@@ -97,12 +102,13 @@ implements Serializable {
 	}
 
 	protected void refreshModel() {
-		setModel( new LocalDataModel<Template>(pageSize, ricerca, getSession()) );
+		setModel(new LocalDataModel<Template>(pageSize, ricerca, getSession()));
 	}
 
 	/**
-	 * Metodo di navigazione per resettare lo stato interno e tornare alla pagina 
-	 * dell'elenco generale
+	 * Metodo di navigazione per resettare lo stato interno e tornare alla
+	 * pagina dell'elenco generale
+	 * 
 	 * @return
 	 */
 	public String reset() {
@@ -155,25 +161,38 @@ implements Serializable {
 
 	// -----------------------------------------------------
 
-	public void backPage(String backPage) { this.backPage = backPage; }
-	public String backPage() { return this.backPage; }
+	public void backPage(String backPage) {
+		this.backPage = backPage;
+	}
 
-	public String viewPage() { return null; }
-	public String listPage() { return null; }
-	public String editPage() { return null; }
-	
+	public String backPage() {
+		return this.backPage;
+	}
+
+	public String viewPage() {
+		return null;
+	}
+
+	public String listPage() {
+		return null;
+	}
+
+	public String editPage() {
+		return null;
+	}
+
 	// -----------------------------------------------------
 
 	/**
-	 * action che carica il modello dei dati, se inizialmente vuoto,
-	 * tenendo conto dei vari criteri esterni
+	 * action che carica il modello dei dati, se inizialmente vuoto, tenendo
+	 * conto dei vari criteri esterni
 	 */
 	public String loadModel() {
 		gatherCriteria();
 		refreshModel();
 		return listPage();
 	}
-	
+
 	// -----------------------------------------------------
 
 	public String addElement() {
@@ -181,19 +200,20 @@ implements Serializable {
 		// n.d.
 		// settaggi nel super handler
 		try {
-			this.element = (Template) ricerca.getOggetto().getClass().newInstance();
+			this.element = (Template) ricerca.getOggetto().getClass()
+					.newInstance();
 		} catch (Exception e) {
-//			logger.error(e.getMessage());
+			// logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 		// vista di destinazione
 		return editPage();
 	}
-	
+
 	public String viewElement() {
 		// fetch dei dati
 		Template t = (Template) getModel().getRowData();
-		t = getSession().fetch( getId(t) );
+		t = getSession().fetch(getId(t));
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -203,7 +223,7 @@ implements Serializable {
 	public String modElement() {
 		// fetch dei dati;
 		Template t = (Template) getModel().getRowData();
-		t = getSession().fetch( getId(t) );
+		t = getSession().fetch(getId(t));
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -211,10 +231,10 @@ implements Serializable {
 	}
 
 	// -----------------------------------------------------
-	
+
 	public String save() {
 		// recupero e preelaborazioni dati in input
-			// nelle sottoclassi!! ovverride!
+		// nelle sottoclassi!! ovverride!
 		// salvataggio
 		element = getSession().persist(element);
 		// refresh locale
@@ -225,23 +245,23 @@ implements Serializable {
 
 	public String update() {
 		// recupero dati in input
-			// nelle sottoclassi!! ovverride!
+		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		getSession().update( element );
+		getSession().update(element);
 		// refresh locale
-		element = getSession().fetch( getId(element) );
+		element = getSession().fetch(getId(element));
 		refreshModel();
 		// vista di destinzione
 		return viewPage();
 	}
-	
+
 	public String delete() {
 		// operazione su db
-		getSession().delete( getId(element) );
+		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();
 		// refresh super handler e altre dipendenze
-		element = null ;
+		element = null;
 		// visat di destinazione
 		return listPage();
 	}
@@ -250,16 +270,16 @@ implements Serializable {
 
 	public String modCurrent() {
 		// fetch dei dati
-		element = getSession().fetch( getId(element) );
+		element = getSession().fetch(getId(element));
 		// vista di arrivo
 		return editPage();
 	}
-	
+
 	public String viewCurrent() {
 		// fetch dei dati
-		element = getSession().fetch( getId(element) );
+		element = getSession().fetch(getId(element));
 		// vista di arrivo
 		return viewPage();
 	}
-	
+
 }
