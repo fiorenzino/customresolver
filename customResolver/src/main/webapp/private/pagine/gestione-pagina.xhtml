@@ -14,19 +14,18 @@
 
 
 			<h:outputLabel id="labelName" for="name" value="Nome pagina:" />
-			<h:inputText id="name" value="#{pagesHandler.currentPage.title}" />
+			<h:inputText id="name" value="#{pagesHandler.page.title}" />
 			<br />
 
 			<h:outputLabel id="labelDescr" for="descr"
 				value="Descrizione pagina:" />
-			<h:inputText id="descr"
-				value="#{pagesHandler.currentPage.description}" />
+			<h:inputText id="descr" value="#{pagesHandler.page.description}" />
 			<br />
 
 			<h:outputLabel id="labelContent" for="content"
 				value="content pagina:" />
 			<h:inputTextarea id="content" cols="20" rows="20"
-				value="#{pagesHandler.currentPage.content}" />
+				value="#{pagesHandler.page.content}" />
 			<br />
 
 			<h:commandButton action="#{pagesHandler.salvaPagina}"
@@ -36,6 +35,11 @@
 			<h:commandButton action="#{pagesHandler.updatePagina}"
 				value="salva pagina" immediate="false"
 				rendered="#{pagesHandler.editMode}" />
+
+			<h:commandButton action="#{pagesHandler.deletePagina}"
+				value="elimina pagina" rendered="#{pagesHandler.editMode}"
+				immediate="true"
+				onclick="if (!confirm('Vuoi davvero eliminare questa pagina?')) return false" />
 		</h:form>
 
 	</ui:define>

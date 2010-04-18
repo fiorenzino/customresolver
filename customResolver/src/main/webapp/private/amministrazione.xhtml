@@ -11,13 +11,48 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
+			<p:panel header="Gestione Pagine">
+				<h:commandLink action="/private/pagine/lista-pagine.jsf"
+					value="lista pagine" />
+				<br />
+				<h:commandLink action="#{pagesHandler.creaPagina}"
+					value="Crea nuova Pagina" />
+			</p:panel>
 
+			<p:panel header="Gestione Notizie">
+				<h:commandLink action="/private/notizie/lista-notizie.jsf"
+					value="lista notizie" />
+				<br />
+				<h:commandLink action="#{notizieHandler.addNotizia}"
+					value="Crea nuova Notizia" />
+			</p:panel>
 
+			<p:panel header="Gestione Attivita'">
+				<h:commandLink action="/private/attivita/lista-attivita.jsf"
+					value="lista attivita'" />
+				<br />
+				<h:commandLink action="/private/attivita/gestione-tipi-attivita.jsf"
+					value="Gestione Tipi attivita'" />
+				<br />
+				<h:commandLink
+					action="/private/attivita/gestione-categoria-attivita.jsf"
+					value="Gestione Categorie attivita'" />
+				<br />
+				<h:commandLink action="#{attivitaHandler.addAttivita}"
+					value="Crea nuova Attivita" />
+			</p:panel>
 
-			<p:panel header="Gestione dei contenuti"
-				style="width: 300px; height: 100px;">
-
-
+			<p:panel header="Gestione Pubblicazioni">
+				<h:commandLink
+					action="/private/pubblicazioni/lista-pubblicazioni.jsf"
+					value="lista attivita'" />
+				<br />
+				<h:commandLink
+					action="/private/pubblicazioni/gestione-tipi-pubblicazione.jsf"
+					value="Gestione Tipi pubblicazione" />
+				<br />
+				<h:commandLink action="#{attivitaHandler.addAttivita}"
+					value="Crea nuova Pubblicazione" />
 			</p:panel>
 
 

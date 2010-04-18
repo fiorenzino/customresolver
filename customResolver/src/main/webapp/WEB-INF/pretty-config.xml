@@ -11,8 +11,8 @@
 		<view-id>/dbPage.jsf </view-id>
 	</url-mapping>
 	<url-mapping id="pages">
-		<pattern>/pages/*/#{pagesHandler.page}</pattern>
-		<query-param name="page">#{pagesHandler.page}</query-param>
+		<pattern>/pages/*/#{pagesHandler.pageId}</pattern>
+		<query-param name="page">#{pagesHandler.pageId}</query-param>
 		<view-id>/page.jsf </view-id>
 	</url-mapping>
 </pretty-config>

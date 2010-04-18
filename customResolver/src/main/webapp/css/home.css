@@ -1,572 +1,2762 @@
-/*HOME*/
+/*HOME*/ /* **Home Page - Il Gruppo** */
+div.contHpGruppoLeft {
+	float: left;
+	width: 37%;
+	margin: 5% 0 5% 0
+}
 
-/* **Home Page - Il Gruppo** */
-div.contHpGruppoLeft{float:left; width:37%; margin:5% 0 5% 0}
-div.contHpGruppoLeftInt{height:auto !important; height:309px; min-height:309px}
-div.contHpGruppoLeftInt div{text-align:center; padding-top:266px; font-size:1.2em}
-div.contHpGruppoLeftInt div a{color:#000; font-weight:bold}
+div.contHpGruppoLeftInt {
+	height: auto !important;
+	height: 309px;
+	min-height: 309px
+}
 
-div.contHpGruppoRight{height:auto !important; height:309px; min-height:309px; margin:5% 0 5% 38%}
-div.contHpGruppoRight div.Box2Left{float:left; width:49%; height:auto !important; height:309px; min-height:309px}
-div.contHpGruppoRight div.Box2LeftTop{height:auto !important; height:150px; min-height:150px; margin-bottom:6px}
-div.contHpGruppoRight div.Box2LeftBot{height:auto !important; height:150px; min-height:150px;  margin-bottom:10px}
-div.contHpGruppoRight div.Box2Right{margin-left:50%; height:auto !important; height:309px; min-height:309px}
+div.contHpGruppoLeftInt div {
+	text-align: center;
+	padding-top: 266px;
+	font-size: 1.2em
+}
 
-div.cbox2IcoSx{height:auto !important; height:150px; min-height:150px; margin:0}
-div.cbox2IcoDx{padding-left:37%;  height:auto !important; height:150px; min-height:150px; margin:0; background:url('../images/gruppo-bgRight.gif') bottom right no-repeat}
+div.contHpGruppoLeftInt div a {
+	color: #000;
+	font-weight: bold
+}
 
-div.contHpGruppoRight div.titolo{height:auto !important; height:60px; min-height:60px}
-div.contHpGruppoLeft h4, div.contHpGruppoRight h4{font-size:1.4em; padding:18px .7em 0 0;  margin:0}
-div.contHpGruppoLeft a, div.contHpGruppoRight a{color:#0a84cd}
-div.contHpGruppoLeft p, div.contHpGruppoRight p{padding:1.5em .7em .3em 0; margin:0}
+div.contHpGruppoRight {
+	height: auto !important;
+	height: 309px;
+	min-height: 309px;
+	margin: 5% 0 5% 38%
+}
+
+div.contHpGruppoRight div.Box2Left {
+	float: left;
+	width: 49%;
+	height: auto !important;
+	height: 309px;
+	min-height: 309px
+}
+
+div.contHpGruppoRight div.Box2LeftTop {
+	height: auto !important;
+	height: 150px;
+	min-height: 150px;
+	margin-bottom: 6px
+}
+
+div.contHpGruppoRight div.Box2LeftBot {
+	height: auto !important;
+	height: 150px;
+	min-height: 150px;
+	margin-bottom: 10px
+}
+
+div.contHpGruppoRight div.Box2Right {
+	margin-left: 50%;
+	height: auto !important;
+	height: 309px;
+	min-height: 309px
+}
+
+div.cbox2IcoSx {
+	height: auto !important;
+	height: 150px;
+	min-height: 150px;
+	margin: 0
+}
+
+div.cbox2IcoDx {
+	padding-left: 37%;
+	height: auto !important;
+	height: 150px;
+	min-height: 150px;
+	margin: 0;
+	background: url('../images/gruppo-bgRight.gif') bottom right no-repeat
+}
+
+div.contHpGruppoRight div.titolo {
+	height: auto !important;
+	height: 60px;
+	min-height: 60px
+}
+
+div.contHpGruppoLeft h4,div.contHpGruppoRight h4 {
+	font-size: 1.4em;
+	padding: 18px .7em 0 0;
+	margin: 0
+}
+
+div.contHpGruppoLeft a,div.contHpGruppoRight a {
+	color: #0a84cd
+}
+
+div.contHpGruppoLeft p,div.contHpGruppoRight p {
+	padding: 1.5em .7em .3em 0;
+	margin: 0
+}
 
 /* **Sub Home Page Sinistra** */
-div.contHpRFILeft {float:left; width:37%; margin:12px 0 5px 0}
+div.contHpRFILeft {
+	float: left;
+	width: 37%;
+	margin: 12px 0 5px 0
+}
 
 /* **Sub Home Page - Interno Colonna Sinistra Img** */
-div.contSubHpImgLeft{height:auto !important; height:414px; min-height:414px}
-div.contSubHpImgLeft div.R1{height:331px; padding:0; margin:0}
-div.contSubHpImgLeft div.R1Mappa{height:321px; text-align:center; padding:10px 0 0 0; margin:0}
-div.contSubHpImgLeft div.R1Mappa img{border:none}
+div.contSubHpImgLeft {
+	height: auto !important;
+	height: 414px;
+	min-height: 414px
+}
+
+div.contSubHpImgLeft div.R1 {
+	height: 331px;
+	padding: 0;
+	margin: 0
+}
+
+div.contSubHpImgLeft div.R1Mappa {
+	height: 321px;
+	text-align: center;
+	padding: 10px 0 0 0;
+	margin: 0
+}
+
+div.contSubHpImgLeft div.R1Mappa img {
+	border: none
+}
 
 /* **Sub Home Page - METROPARK** */
-div.contSubHpMpkImgLeft{height:auto !important; height:468px; min-height:468px}
-div.contSubHpMpkImgLeft div.R1{height:auto !important; height:385px; min-height:385px; padding:0; margin:0}
-div.contSubHpMpkImgLeft div.R1Mappa{height:auto !important; height:375px; min-height:375px; text-align:center; padding:10px 0 0 0; margin:0}
-div.contSubHpMpkImgLeft div.R1Mappa img{border:none; margin-top:20px}
+div.contSubHpMpkImgLeft {
+	height: auto !important;
+	height: 468px;
+	min-height: 468px
+}
+
+div.contSubHpMpkImgLeft div.R1 {
+	height: auto !important;
+	height: 385px;
+	min-height: 385px;
+	padding: 0;
+	margin: 0
+}
+
+div.contSubHpMpkImgLeft div.R1Mappa {
+	height: auto !important;
+	height: 375px;
+	min-height: 375px;
+	text-align: center;
+	padding: 10px 0 0 0;
+	margin: 0
+}
+
+div.contSubHpMpkImgLeft div.R1Mappa img {
+	border: none;
+	margin-top: 20px
+}
+
 /*box ricerca*/
-div.ricercaMpk{padding:8px 2px 4px 4px; height:auto !important; min-height:20px}
-div.ricercaMpk label{float:left; color:#0a84cd; font-weight:bold; font-size:1em; margin:4px 6px 0 2%}
-div.ricercaMpk input.campoR{ width:120px; height:18px; padding:3px 3px 0 12px; border:0; font-size:1em; background:url('../images/bg_camporicercaMpk.gif') top left no-repeat}
-div.ricercaMpk .buttonCerca{margin:0 0 0 6px; width:56px; height:20px; border:0;}
+div.ricercaMpk {
+	padding: 8px 2px 4px 4px;
+	height: auto !important;
+	min-height: 20px
+}
+
+div.ricercaMpk label {
+	float: left;
+	color: #0a84cd;
+	font-weight: bold;
+	font-size: 1em;
+	margin: 4px 6px 0 2%
+}
+
+div.ricercaMpk input.campoR {
+	width: 120px;
+	height: 18px;
+	padding: 3px 3px 0 12px;
+	border: 0;
+	font-size: 1em;
+	background: url('../images/bg_camporicercaMpk.gif') top left no-repeat
+}
+
+div.ricercaMpk .buttonCerca {
+	margin: 0 0 0 6px;
+	width: 56px;
+	height: 20px;
+	border: 0;
+}
 
 /*Eliminare queste 8 righe se viene scelta la versione titolo editabile*/
-div.contSubHpImgLeft div.R2Ferservizi{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Ferservizi.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2Italferr{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Italferr.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2Centostazioni{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Centostazioni.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2Cargo{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Cargo.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2RFI{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_RFI.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2inStazione{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_inStazione.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2Grandistazioni{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Grandistazioni.gif') top left no-repeat}
-div.contSubHpImgLeft div.R2LcN{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_LcN.gif') top left no-repeat}
+div.contSubHpImgLeft div.R2Ferservizi {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Ferservizi.gif') top left
+		no-repeat
+}
+
+div.contSubHpImgLeft div.R2Italferr {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Italferr.gif') top left
+		no-repeat
+}
+
+div.contSubHpImgLeft div.R2Centostazioni {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Centostazioni.gif') top left
+		no-repeat
+}
+
+div.contSubHpImgLeft div.R2Cargo {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Cargo.gif') top left no-repeat
+}
+
+div.contSubHpImgLeft div.R2RFI {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_RFI.gif') top left no-repeat
+}
+
+div.contSubHpImgLeft div.R2inStazione {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_inStazione.gif') top left
+		no-repeat
+}
+
+div.contSubHpImgLeft div.R2Grandistazioni {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Grandistazioni.gif') top left
+		no-repeat
+}
+
+div.contSubHpImgLeft div.R2LcN {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_LcN.gif') top left no-repeat
+}
 
 /*titolo Bg Verde*/
-div.contSubHpImgLeft div.R2Verde,
-div.contSubHpMpkImgLeft div.R2Verde{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Verde.gif') top left no-repeat}
+div.contSubHpImgLeft div.R2Verde,div.contSubHpMpkImgLeft div.R2Verde {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Verde.gif') top left no-repeat
+}
 
 /*titolo Bg Rosso*/
-div.contSubHpImgLeft div.R2Rosso{height:36px; padding:0; margin:0 10px; background:url('../images/bg_ImgCol_tit_Rosso.gif') top left no-repeat}
+div.contSubHpImgLeft div.R2Rosso {
+	height: 36px;
+	padding: 0;
+	margin: 0 10px;
+	background: url('../images/bg_ImgCol_tit_Rosso.gif') top left no-repeat
+}
 
-div.contSubHpImgLeft div.R2DxVerde,
-div.contSubHpMpkImgLeft div.R2DxVerde{height:36px; background:url('../images/bg_ImgCol_verde_tr.gif') top right no-repeat}
-div.contSubHpImgLeft div.R2TopVerdeTxt,
-div.contSubHpMpkImgLeft div.R2TopVerdeTxt{float:left; width:236; padding:10px 0 0 24px; font-size:1.8em; font-weight:bold; color:#FFF}
-div.contSubHpImgLeft div.R2TopVerde,
-div.contSubHpMpkImgLeft div.R2TopVerde{height:36px; margin:0 24px 0 230px; background:#006362 url('../images/bg_ImgCol_verde_top.gif') repeat-x}
-div.contSubHpImgLeft div.R3SxVerde,
-div.contSubHpMpkImgLeft div.R3SxVerde{height:38px; padding:0; margin:0 9px; background:#006362 url('../images/bg_ImgCol_blv.gif') bottom left no-repeat; border-left:1px solid #FFF}
-div.contSubHpImgLeft div.R3DxVerde,
-div.contSubHpMpkImgLeft div.R3DxVerde{color:#FFF; font-weight:bold; height:35px; padding:3px 25px 0 25px; font-size:1em; background:url('../images/bg_ImgCol_brv.gif') bottom right no-repeat; border-right:1px solid #FFF}
-div.contSubHpImgLeft div.R3DxVerde a,
-div.contSubHpMpkImgLeft div.R3DxVerde a{color:#FFF; background:#006362}
-div.contSubHpImgLeft div.R2DxRosso{height:36px; background:url('../images/bg_ImgCol_rosso_tr.gif') top right no-repeat}
-div.contSubHpImgLeft div.R2TopRossoTxt{float:left; width:236; padding:6px 0 0 20px; font-size:1.8em; font-weight:bold; color:#FFF}
-div.contSubHpImgLeft div.R2TopRosso{height:36px; margin:0 24px 0 230px; background:#0a84cd url('../images/bg_ImgCol_rosso_top.gif') repeat-x}
-div.contSubHpImgLeft div.R3SxRosso{height:38px; padding:0; margin:0 9px; background:#0a84cd url('../images/bg_ImgCol_blr.gif') bottom left no-repeat; border-left:1px solid #FFF}
-div.contSubHpImgLeft div.R3DxRosso{color:#FFF; font-weight:bold; height:35px; padding:3px 25px 0 20px; font-size:1em; background:url('../images/bg_ImgCol_brr.gif') bottom right no-repeat; border-right:1px solid #FFF}
-div.contSubHpImgLeft div.R3DxRosso a{color:#FFF; background:#0a84cd}
- 
+div.contSubHpImgLeft div.R2DxVerde,div.contSubHpMpkImgLeft div.R2DxVerde
+	{
+	height: 36px;
+	background: url('../images/bg_ImgCol_verde_tr.gif') top right no-repeat
+}
+
+div.contSubHpImgLeft div.R2TopVerdeTxt,div.contSubHpMpkImgLeft div.R2TopVerdeTxt
+	{
+	float: left;
+	width: 236;
+	padding: 10px 0 0 24px;
+	font-size: 1.8em;
+	font-weight: bold;
+	color: #FFF
+}
+
+div.contSubHpImgLeft div.R2TopVerde,div.contSubHpMpkImgLeft div.R2TopVerde
+	{
+	height: 36px;
+	margin: 0 24px 0 230px;
+	background: #006362 url('../images/bg_ImgCol_verde_top.gif') repeat-x
+}
+
+div.contSubHpImgLeft div.R3SxVerde,div.contSubHpMpkImgLeft div.R3SxVerde
+	{
+	height: 38px;
+	padding: 0;
+	margin: 0 9px;
+	background: #006362 url('../images/bg_ImgCol_blv.gif') bottom left
+		no-repeat;
+	border-left: 1px solid #FFF
+}
+
+div.contSubHpImgLeft div.R3DxVerde,div.contSubHpMpkImgLeft div.R3DxVerde
+	{
+	color: #FFF;
+	font-weight: bold;
+	height: 35px;
+	padding: 3px 25px 0 25px;
+	font-size: 1em;
+	background: url('../images/bg_ImgCol_brv.gif') bottom right no-repeat;
+	border-right: 1px solid #FFF
+}
+
+div.contSubHpImgLeft div.R3DxVerde a,div.contSubHpMpkImgLeft div.R3DxVerde a
+	{
+	color: #FFF;
+	background: #006362
+}
+
+div.contSubHpImgLeft div.R2DxRosso {
+	height: 36px;
+	background: url('../images/bg_ImgCol_rosso_tr.gif') top right no-repeat
+}
+
+div.contSubHpImgLeft div.R2TopRossoTxt {
+	float: left;
+	width: 236;
+	padding: 6px 0 0 20px;
+	font-size: 1.8em;
+	font-weight: bold;
+	color: #FFF
+}
+
+div.contSubHpImgLeft div.R2TopRosso {
+	height: 36px;
+	margin: 0 24px 0 230px;
+	background: #0a84cd url('../images/bg_ImgCol_rosso_top.gif') repeat-x
+}
+
+div.contSubHpImgLeft div.R3SxRosso {
+	height: 38px;
+	padding: 0;
+	margin: 0 9px;
+	background: #0a84cd url('../images/bg_ImgCol_blr.gif') bottom left
+		no-repeat;
+	border-left: 1px solid #FFF
+}
+
+div.contSubHpImgLeft div.R3DxRosso {
+	color: #FFF;
+	font-weight: bold;
+	height: 35px;
+	padding: 3px 25px 0 20px;
+	font-size: 1em;
+	background: url('../images/bg_ImgCol_brr.gif') bottom right no-repeat;
+	border-right: 1px solid #FFF
+}
+
+div.contSubHpImgLeft div.R3DxRosso a {
+	color: #FFF;
+	background: #0a84cd
+}
+
 /* **Sub Home Page Destra** */
-div.contHpRFIRight{height:auto !important; height:414px; min-height:414px; margin:12px 0 5px 38%}
-div.contHpRFIRight div.Box2Left{float:left; width:49%; height:auto !important; height:414px; min-height:414px}
-div.contHpRFIRight div.Box2LeftTop{height:auto !important; height:280px; min-height:280px; margin-bottom:6px}
-div.contHpRFIRight div.Box2LeftTop2{height:auto !important; height:140px; min-height:140px; margin-bottom:6px}
-div.contHpRFIRight div.Box2LeftBot{height:auto !important; height:126px; min-height:126px;  margin-bottom:8px}
-div.contHpRFIRight div.Box2Right{margin-left:50%; height:auto !important; height:418px; min-height:418px}
-div.ContBoxCurva{margin:0 10px; padding:10px 0}
-div.ContBoxCurva div.TopTitolo{height:25px; margin:0px; padding-left:20px; background:#F5F4F6 url('../images/bg_box_curva1.gif') top right no-repeat}
-div.ContBoxCurva div.TopTitolo2{height:29px; margin:0px; padding-left:20px; background:#F5F4F6 url('../images/bg_box_curva1.gif') top right no-repeat}
-div.ContBoxCurva div.TopTitolo3{height:auto !important; min-height:14px; height:14px; margin:0px; padding:10px 0 0 12px; background:#F5F4F6}
-div.ContBoxCurva div.BotImgTesto{padding:6px 12px 10px 12px; margin:0; background:#F5F4F6; height:auto !important; height:62px; min-height:62px}
-div.ContBoxCurva div.BotImgTesto2{margin:0; background:#F5F4F6; height:auto !important; height:116px; min-height:120px;} /*Add Fercredit*/
-div.ContBoxCurva div.BotImgTesto2 div.contInner{height:auto !important; min-height:14px; height:14px; margin:0px; padding:10px 0 6px 12px;} /*Add Fercredit*/
-div.ContBoxCurva div.TopTitolo .titoloredboldmed a,
-div.ContBoxCurva div.TopTitolo3 .titoloredboldmed a {color:#0a84cd}
-div.contHpRFIBot{margin:5px 0 10px 38%}
+div.contHpRFIRight {
+	height: auto !important;
+	height: 414px;
+	min-height: 414px;
+	margin: 12px 0 5px 38%
+}
+
+div.contHpRFIRight div.Box2Left {
+	float: left;
+	width: 49%;
+	height: auto !important;
+	height: 414px;
+	min-height: 414px
+}
+
+div.contHpRFIRight div.Box2LeftTop {
+	height: auto !important;
+	height: 280px;
+	min-height: 280px;
+	margin-bottom: 6px
+}
+
+div.contHpRFIRight div.Box2LeftTop2 {
+	height: auto !important;
+	height: 140px;
+	min-height: 140px;
+	margin-bottom: 6px
+}
+
+div.contHpRFIRight div.Box2LeftBot {
+	height: auto !important;
+	height: 126px;
+	min-height: 126px;
+	margin-bottom: 8px
+}
+
+div.contHpRFIRight div.Box2Right {
+	margin-left: 50%;
+	height: auto !important;
+	height: 418px;
+	min-height: 418px
+}
+
+div.ContBoxCurva {
+	margin: 0 10px;
+	padding: 10px 0
+}
+
+div.ContBoxCurva div.TopTitolo {
+	height: 25px;
+	margin: 0px;
+	padding-left: 20px;
+	background: #F5F4F6 url('../images/bg_box_curva1.gif') top right
+		no-repeat
+}
+
+div.ContBoxCurva div.TopTitolo2 {
+	height: 29px;
+	margin: 0px;
+	padding-left: 20px;
+	background: #F5F4F6 url('../images/bg_box_curva1.gif') top right
+		no-repeat
+}
+
+div.ContBoxCurva div.TopTitolo3 {
+	height: auto !important;
+	min-height: 14px;
+	height: 14px;
+	margin: 0px;
+	padding: 10px 0 0 12px;
+	background: #F5F4F6
+}
+
+div.ContBoxCurva div.BotImgTesto {
+	padding: 6px 12px 10px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 62px;
+	min-height: 62px
+}
+
+div.ContBoxCurva div.BotImgTesto2 {
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 116px;
+	min-height: 120px;
+}  /*Add Fercredit*/
+div.ContBoxCurva div.BotImgTesto2 div.contInner {
+	height: auto !important;
+	min-height: 14px;
+	height: 14px;
+	margin: 0px;
+	padding: 10px 0 6px 12px;
+}  /*Add Fercredit*/
+div.ContBoxCurva div.TopTitolo .titoloredboldmed a,div.ContBoxCurva div.TopTitolo3 .titoloredboldmed a
+	{
+	color: #0a84cd
+}
+
+div.contHpRFIBot {
+	margin: 5px 0 10px 38%
+}
 
 /*Box LabelVerde - Italferr / Ferservizi / Centostazioni / Cargo */
-div.LabelVerde{background:url('../images/bg_box_labelVerde.gif') top right no-repeat}
-div.ContBoxLabelVerde{margin:0; padding:10px; padding-top:5px; background:url('../images/bg_rb_tl.gif') top left no-repeat}
-div.ContBoxLabelVerde div.TopTitolo{color:#FFF; height:28px; margin:0px; padding-left:13px}
-div.ContBoxLabelVerde div.TopTitolo .titolowhiteboldmed a{color:#FFF}
-div.ContBoxLabelVerde div.BotImgTesto{padding:6px 12px 10px 12px; margin:0; background:#F5F4F6; height:auto !important; height:62px; min-height:62px}
+div.LabelVerde {
+	background: url('../images/bg_box_labelVerde.gif') top right no-repeat
+}
+
+div.ContBoxLabelVerde {
+	margin: 0;
+	padding: 10px;
+	padding-top: 5px;
+	background: url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+div.ContBoxLabelVerde div.TopTitolo {
+	color: #FFF;
+	height: 28px;
+	margin: 0px;
+	padding-left: 13px
+}
+
+div.ContBoxLabelVerde div.TopTitolo .titolowhiteboldmed a {
+	color: #FFF
+}
+
+div.ContBoxLabelVerde div.BotImgTesto {
+	padding: 6px 12px 10px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 62px;
+	min-height: 62px
+}
 
 /*Box LabelRosso - Terminali Italia */
-div.LabelRosso{background:url('../images/bg_box_labelRosso.gif') top right no-repeat}
-div.ContBoxLabelRosso{margin:0; padding:10px; padding-top:5px; background:url('../images/bg_rb_tl.gif') top left no-repeat}
-div.ContBoxLabelRosso div.TopTitolo{color:#FFF; height:28px; margin:0px; padding-left:13px}
-div.ContBoxLabelRosso div.TopTitolo .titolowhiteboldmed a{color:#FFF}
-div.ContBoxLabelRosso div.BotImgTesto{padding:6px 12px 10px 12px; margin:0; background:#F5F4F6; height:auto !important; height:62px; min-height:62px}
+div.LabelRosso {
+	background: url('../images/bg_box_labelRosso.gif') top right no-repeat
+}
+
+div.ContBoxLabelRosso {
+	margin: 0;
+	padding: 10px;
+	padding-top: 5px;
+	background: url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+div.ContBoxLabelRosso div.TopTitolo {
+	color: #FFF;
+	height: 28px;
+	margin: 0px;
+	padding-left: 13px
+}
+
+div.ContBoxLabelRosso div.TopTitolo .titolowhiteboldmed a {
+	color: #FFF
+}
+
+div.ContBoxLabelRosso div.BotImgTesto {
+	padding: 6px 12px 10px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 62px;
+	min-height: 62px
+}
 
 /*Box Icona - Italferr / Ferservizi / Cargo*/
-div.cbox3IcoSx{height:auto !important; height:124px; min-height:126px; margin:0}
-div.cbox3IcoDx{padding-left:37%; height:auto !important; height:124px; min-height:126px; margin:0; background:url('../images/gruppo-bgRight.gif') bottom right no-repeat}
-div.cbox3IcoDx div.titolo{height:auto !important; height:60px; min-height:60px}
-div.cbox3IcoDx div.titolo h4{font-size:1.4em; padding:14px .7em 0 0;  margin:0}
-div.cbox3IcoDx a{color:#0a84cd}
-div.cbox3IcoDx p{padding:.3em .7em .3em 0; margin:0}
+div.cbox3IcoSx {
+	height: auto !important;
+	height: 124px;
+	min-height: 126px;
+	margin: 0
+}
+
+div.cbox3IcoDx {
+	padding-left: 37%;
+	height: auto !important;
+	height: 124px;
+	min-height: 126px;
+	margin: 0;
+	background: url('../images/gruppo-bgRight.gif') bottom right no-repeat
+}
+
+div.cbox3IcoDx div.titolo {
+	height: auto !important;
+	height: 60px;
+	min-height: 60px
+}
+
+div.cbox3IcoDx div.titolo h4 {
+	font-size: 1.4em;
+	padding: 14px .7em 0 0;
+	margin: 0
+}
+
+div.cbox3IcoDx a {
+	color: #0a84cd
+}
+
+div.cbox3IcoDx p {
+	padding: .3em .7em .3em 0;
+	margin: 0
+}
+
 /*Altezza Box Icona Ferservizi*/
-div.minH137{height:auto !important; height:137px; min-height:137px}
+div.minH137 {
+	height: auto !important;
+	height: 137px;
+	min-height: 137px
+}
 
 /*Box Label Area Riservata - Cargo*/
-div.LabelAR{background:url('../images/bg_box_labelAR.gif') top right no-repeat}
-div.ContBoxLabelAR{margin:0; padding:10px; padding-top:5px; background:url('../images/bg_rb_tl.gif') top left no-repeat}
-div.ContBoxLabelAR div.TopTitolo{color:#FFF; height:25px; margin:0px; padding-left:13px}
-div.ContBoxLabelAR div.BotForm{padding:0 12px 10px 0; margin:0; background:#F5F4F6; height:auto !important; height:62px; min-height:62px}
-div.ContBoxLabelAR div.BotForm #AreaRiservata div input{width:60%; height:14px; font-weight:bold; font-size:1em; margin:.2em 0 0 0; padding:0; text-indent:.2em}
-div.ContBoxLabelAR div.BotForm #AreaRiservata div input.but_Entra{width:35px; height:15px; border:none}
-div.ContBoxLabelAR div.BotForm div.R1{padding:0 0 0 12px; margin-top:-16px}
-div.ContBoxLabelAR div.BotForm div.R2{padding:0 0 0 12px; margin:0px}
+div.LabelAR {
+	background: url('../images/bg_box_labelAR.gif') top right no-repeat
+}
+
+div.ContBoxLabelAR {
+	margin: 0;
+	padding: 10px;
+	padding-top: 5px;
+	background: url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+div.ContBoxLabelAR div.TopTitolo {
+	color: #FFF;
+	height: 25px;
+	margin: 0px;
+	padding-left: 13px
+}
+
+div.ContBoxLabelAR div.BotForm {
+	padding: 0 12px 10px 0;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 62px;
+	min-height: 62px
+}
+
+div.ContBoxLabelAR div.BotForm #AreaRiservata div input {
+	width: 60%;
+	height: 14px;
+	font-weight: bold;
+	font-size: 1em;
+	margin: .2em 0 0 0;
+	padding: 0;
+	text-indent: .2em
+}
+
+div.ContBoxLabelAR div.BotForm #AreaRiservata div input.but_Entra {
+	width: 35px;
+	height: 15px;
+	border: none
+}
+
+div.ContBoxLabelAR div.BotForm div.R1 {
+	padding: 0 0 0 12px;
+	margin-top: -16px
+}
+
+div.ContBoxLabelAR div.BotForm div.R2 {
+	padding: 0 0 0 12px;
+	margin: 0px
+}
 
 /*Box ViaggiaTreno - Cargo*/
-div.ContBoxCurva div.BoxViaggiatreno{height:auto !important; height:104px; min-height:104px; background:url('../images/bg_box_Cargo_ViaggiaTreno.gif') left top no-repeat}
-div.ContBoxCurva div.BoxViaggiatreno div{height:auto !important; height:94px; min-height:94px; text-align:right; padding:10px 14px 0 0; background:url('../images/bg_box_societ.gif') right top repeat-y}
-div.ContBoxCurva div.BoxViaggiatreno div p{padding:1.5em 1.2em 0 0}
-div.ContBoxCurva div.BoxViaggiatreno div img.arrowDx{position:relative; top:18px; left:9px; border:none}
+div.ContBoxCurva div.BoxViaggiatreno {
+	height: auto !important;
+	height: 104px;
+	min-height: 104px;
+	background: url('../images/bg_box_Cargo_ViaggiaTreno.gif') left top
+		no-repeat
+}
+
+div.ContBoxCurva div.BoxViaggiatreno div {
+	height: auto !important;
+	height: 94px;
+	min-height: 94px;
+	text-align: right;
+	padding: 10px 14px 0 0;
+	background: url('../images/bg_box_societ.gif') right top repeat-y
+}
+
+div.ContBoxCurva div.BoxViaggiatreno div p {
+	padding: 1.5em 1.2em 0 0
+}
+
+div.ContBoxCurva div.BoxViaggiatreno div img.arrowDx {
+	position: relative;
+	top: 18px;
+	left: 9px;
+	border: none
+}
 
 /*box fs news*/
-div.ContBoxCurva3{margin:0 6px; padding:6px 0}
+div.ContBoxCurva3 {
+	margin: 0 6px;
+	padding: 6px 0
+}
 
 /* **Home Page - FS** */
-div.contentHpR1 {padding:.5em 0; height:auto !important; height:335px; min-height:340px}
-div.contentHpR1Left{float:left; width:50%; height:auto !important; height:335px; min-height:340px; background:#F5F5F7}
-div.contentHpR1Right{margin-left:50.6%; height:auto !important; height:335px; min-height:340px; background:#F5F5F7}
-div.contentHpR1Left div.rbtopl,
-div.contentHpR1Right div.rbtopl{color:#FFF;	height:auto !important; height:25px; min-height:25px; background:#006261 url('../images/bg_rb_tl.gif') top left no-repeat}
-div.contentHpR1Left div.rbtopr,
-div.contentHpR1Right div.rbtopr{height:auto !important;	height:25px; min-height:25px; background:url('../images/bg_rb_tr_img.gif') top right no-repeat}
-div.contentHpR1Left  div.rbtopr h3,
-div.contentHpR1Right  div.rbtopr h3{color:#FFF; font-size:1.3em; padding:4px 0 0 14px; margin:0}
-div.contentHpR1Left div.rbtopr h3 a,
-div.contentHpR1Right  div.rbtopr h3 a{color:#FFF}/*Aggiunta BC*/
-div.contentHpR1Left div.rbbotl,
-div.contentHpR1Right div.rbbotl,
-div.contentHpR2Left div.rbbotl,
-div.contentHpR2Right div.rbbotl{height:7px; background:url('../images/bg_rb_bl.gif') bottom left no-repeat}
-div.contentHpR1Left div.rbbotr,
-div.contentHpR1Right div.rbbotr,
-div.contentHpR2Left div.rbbotr,
-div.contentHpR2Right div.rbbotr{height:7px; background:url('../images/bg_rb_br.gif') bottom right no-repeat}
-div.contentHpR1IntTop{background:#F5F5F7; margin-top:4px; padding:0 10px 0 8px; height:auto !important; height:216px; min-height:216px; overflow:hidden}
-div.contentHpR1Left div.contentHpR1IntTopLeft{float:left; width:65%; height:auto !important; height:216px; min-height:216px}
-div.contentHpR1Left div.contentHpR1IntTopRight{margin-left:65.6%; height:auto !important; height:216px; min-height:216px}
-div.contentHpR1Right div.contentHpR1IntTopLeft{float:left; width:60%; height:auto !important; height:200px; min-height:200px}
-div.contentHpR1Right div.contentHpR1IntTopRight{margin-left:60.6%; height:auto !important; height:200px; min-height:200px}
-div.contentHpR1IntBot{background:#F5F5F7; padding:4px 10px 0 8px; height:auto !important; height:90px; min-height:95px}
-div.contentHpR2{padding:.5em 0; height:auto !important; height:140px; min-height:140px}
-div.contentHpR2Left{float:left; width:50%; height:auto !important; height:140px; min-height:140px; background:#FFF}
-div.contentHpR2Right{margin-left:50.6%; height:auto !important; height:140px; min-height:140px; background:#FFF}
-div.contentHpR2Left div.rbtopl,
-div.contentHpR2Right div.rbtopl{height:auto !important; height:133px; min-height:133px; background:url('../images/bg_rb_tl.gif') top left no-repeat}
-div.contentHpR2Left div.rbtopr,
-div.contentHpR2Right div.rbtopr{height:auto !important;	height:133px; min-height:133px; background:url('../images/bg_rb_tr.gif') top right no-repeat}
-div.contentHpR2 div.txt{padding:1em .5em .5em 1em; font-size:1.1em; color:#FFF}
-div.contentHpR2 div.txt h3{font-size:1.2em; padding:0; margin:0}
-div.contentHpR2 div.txt p{ padding:0; margin:0}
-div.contentHpR2 div.txt a{color:#FFF}
-div.contentHpR2 div.txt a:hover{color:#FFF}
-div.contentHpR2Left1{float:left; width:67%; height:auto !important; height:140px; min-height:140px}
-div.contentHpR2Left1Sx{float:left; width:50%; height:auto !important; height:140px; min-height:140px}
-div.contentHpR2Left1Dx{margin-left:50.8%; background:#E9E7EA; height:140px}
-div.contentHpR2Left2{margin-left:67.5%; height:auto !important; height:140px; min-height:140px}
-div.contentHpR2Left2Int{height:auto !important;  height:110px; min-height:110px}
-div.contentHpR2Left2 img{float:right; border:0; margin:10px 5px 0 0}
-div.contentHpR2Left2 p{padding:0 0 0 10px; line-height:1em}
-div.contentHpR2RightSx{float:left; width:64%; height:auto !important; height:140px; min-height:140px}
-div.contentHpR2RightSx div.r1{height:96px; padding-top:10px; text-align:center; font-size:1.2em; font-weight:bold}
-div.contentHpR2RightSx div.r2{text-align:right; font-weight:bold; padding:12px 20px 0 0}
-div.contentHpR2RightDx{margin-left:64.5%; height:auto !important;  height:140px;  min-height:140px}
-div.contentHpR2RightDx img{float:right; border:none; margin:120px 6px 0 0}
-div.contentHpR2RightSxV2{float:left; width:36%; height:auto !important; height:140px;  min-height:140px}
-div.contentHpR2RightSxV2 div.r1{height:106px}
-div.contentHpR2RightSxV2 div.r2{text-align:right; font-weight:bold; padding:12px 20px 0 0}
-div.contentHpR2RightDxV2{margin-left:36.5%; height:auto !important;  height:140px;  min-height:140px}
-div.contentHpR2RightDxV2 img{float:right; border:none; margin:120px 6px 0 0}
-div.CurvaBanner{background:transparent url('../images/bg_bot_banner.gif') bottom right no-repeat}
-div.contentHpR2Left1Sx img.arrowBanner,
-div.contentHpR2Left1Dx img.arrowBanner,
-div.contentHpR2Left2 img.arrowBanner,
-div.contentHpR2RightSx img.arrowBanner,
-div.contentHpR2RightSxV2 img.arrowBanner,
-div.contentHpR2RightDxV2 img.arrowBanner{float:right; border:none; margin:122px 6px 0 0}
+div.contentHpR1 {
+	padding: .5em 0;
+	height: auto !important;
+	height: 335px;
+	min-height: 340px
+}
+
+div.contentHpR1Left {
+	float: left;
+	width: 50%;
+	height: auto !important;
+	height: 335px;
+	min-height: 340px;
+	background: #F5F5F7
+}
+
+div.contentHpR1Right {
+	margin-left: 50.6%;
+	height: auto !important;
+	height: 335px;
+	min-height: 340px;
+	background: #F5F5F7
+}
+
+div.contentHpR1Left div.rbtopl,div.contentHpR1Right div.rbtopl {
+	color: #FFF;
+	height: auto !important;
+	height: 25px;
+	min-height: 25px;
+	background: #006261 url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+div.contentHpR1Left div.rbtopr,div.contentHpR1Right div.rbtopr {
+	height: auto !important;
+	height: 25px;
+	min-height: 25px;
+	background: url('../images/bg_rb_tr_img.gif') top right no-repeat
+}
+
+div.contentHpR1Left  div.rbtopr h3,div.contentHpR1Right  div.rbtopr h3 {
+	color: #FFF;
+	font-size: 1.3em;
+	padding: 4px 0 0 14px;
+	margin: 0
+}
+
+div.contentHpR1Left div.rbtopr h3 a,div.contentHpR1Right  div.rbtopr h3 a
+	{
+	color: #FFF
+}  /*Aggiunta BC*/
+div.contentHpR1Left div.rbbotl,div.contentHpR1Right div.rbbotl,div.contentHpR2Left div.rbbotl,div.contentHpR2Right div.rbbotl
+	{
+	height: 7px;
+	background: url('../images/bg_rb_bl.gif') bottom left no-repeat
+}
+
+div.contentHpR1Left div.rbbotr,div.contentHpR1Right div.rbbotr,div.contentHpR2Left div.rbbotr,div.contentHpR2Right div.rbbotr
+	{
+	height: 7px;
+	background: url('../images/bg_rb_br.gif') bottom right no-repeat
+}
+
+div.contentHpR1IntTop {
+	background: #F5F5F7;
+	margin-top: 4px;
+	padding: 0 10px 0 8px;
+	height: auto !important;
+	height: 216px;
+	min-height: 216px;
+	overflow: hidden
+}
+
+div.contentHpR1Left div.contentHpR1IntTopLeft {
+	float: left;
+	width: 65%;
+	height: auto !important;
+	height: 216px;
+	min-height: 216px
+}
+
+div.contentHpR1Left div.contentHpR1IntTopRight {
+	margin-left: 65.6%;
+	height: auto !important;
+	height: 216px;
+	min-height: 216px
+}
+
+div.contentHpR1Right div.contentHpR1IntTopLeft {
+	float: left;
+	width: 60%;
+	height: auto !important;
+	height: 200px;
+	min-height: 200px
+}
+
+div.contentHpR1Right div.contentHpR1IntTopRight {
+	margin-left: 60.6%;
+	height: auto !important;
+	height: 200px;
+	min-height: 200px
+}
+
+div.contentHpR1IntBot {
+	background: #F5F5F7;
+	padding: 4px 10px 0 8px;
+	height: auto !important;
+	height: 90px;
+	min-height: 95px
+}
+
+div.contentHpR2 {
+	padding: .5em 0;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2Left {
+	float: left;
+	width: 50%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px;
+	background: #FFF
+}
+
+div.contentHpR2Right {
+	margin-left: 50.6%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px;
+	background: #FFF
+}
+
+div.contentHpR2Left div.rbtopl,div.contentHpR2Right div.rbtopl {
+	height: auto !important;
+	height: 133px;
+	min-height: 133px;
+	background: url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+div.contentHpR2Left div.rbtopr,div.contentHpR2Right div.rbtopr {
+	height: auto !important;
+	height: 133px;
+	min-height: 133px;
+	background: url('../images/bg_rb_tr.gif') top right no-repeat
+}
+
+div.contentHpR2 div.txt {
+	padding: 1em .5em .5em 1em;
+	font-size: 1.1em;
+	color: #FFF
+}
+
+div.contentHpR2 div.txt h3 {
+	font-size: 1.2em;
+	padding: 0;
+	margin: 0
+}
+
+div.contentHpR2 div.txt p {
+	padding: 0;
+	margin: 0
+}
+
+div.contentHpR2 div.txt a {
+	color: #FFF
+}
+
+div.contentHpR2 div.txt a:hover {
+	color: #FFF
+}
+
+div.contentHpR2Left1 {
+	float: left;
+	width: 67%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2Left1Sx {
+	float: left;
+	width: 50%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2Left1Dx {
+	margin-left: 50.8%;
+	background: #E9E7EA;
+	height: 140px
+}
+
+div.contentHpR2Left2 {
+	margin-left: 67.5%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2Left2Int {
+	height: auto !important;
+	height: 110px;
+	min-height: 110px
+}
+
+div.contentHpR2Left2 img {
+	float: right;
+	border: 0;
+	margin: 10px 5px 0 0
+}
+
+div.contentHpR2Left2 p {
+	padding: 0 0 0 10px;
+	line-height: 1em
+}
+
+div.contentHpR2RightSx {
+	float: left;
+	width: 64%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2RightSx div.r1 {
+	height: 96px;
+	padding-top: 10px;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold
+}
+
+div.contentHpR2RightSx div.r2 {
+	text-align: right;
+	font-weight: bold;
+	padding: 12px 20px 0 0
+}
+
+div.contentHpR2RightDx {
+	margin-left: 64.5%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2RightDx img {
+	float: right;
+	border: none;
+	margin: 120px 6px 0 0
+}
+
+div.contentHpR2RightSxV2 {
+	float: left;
+	width: 36%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2RightSxV2 div.r1 {
+	height: 106px
+}
+
+div.contentHpR2RightSxV2 div.r2 {
+	text-align: right;
+	font-weight: bold;
+	padding: 12px 20px 0 0
+}
+
+div.contentHpR2RightDxV2 {
+	margin-left: 36.5%;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px
+}
+
+div.contentHpR2RightDxV2 img {
+	float: right;
+	border: none;
+	margin: 120px 6px 0 0
+}
+
+div.CurvaBanner {
+	background: transparent url('../images/bg_bot_banner.gif') bottom right
+		no-repeat
+}
+
+div.contentHpR2Left1Sx img.arrowBanner,div.contentHpR2Left1Dx img.arrowBanner,div.contentHpR2Left2 img.arrowBanner,div.contentHpR2RightSx img.arrowBanner,div.contentHpR2RightSxV2 img.arrowBanner,div.contentHpR2RightDxV2 img.arrowBanner
+	{
+	float: right;
+	border: none;
+	margin: 122px 6px 0 0
+}
 
 /*Header Flash HP-FS*/
-div.boxFlash img{border:none; margin:0}
-div.noScript img{border:none; margin:0}
-#headerHPFlash{background:url('../images/bg_header.gif') bottom left repeat-x; height:auto !important; padding:0; margin:0;	min-height:145px; height:145px; font-size:.7em}
-#headerHPFlash div.headerTop{padding:12px 25px 0 25px}
-#headerHPFlash div.headerTop div.headerRightNav img{float:right; border:none; padding:0 0 0 20px; margin-top:-2px}
-#headerHPFlash div.headerTop div.headerRightNav{margin-left:37%}
-#headerHPFlash div.ricerca{float:right; margin-top:-2px}
-#headerHPFlash div.ricerca p{padding:0; margin:0}
-#headerHPFlash div.headerRightNavLeft{float:right; margin-right:10px; white-space:nowrap}
-#headerHPFlash div.headerBottom{padding:0; margin:0; height:auto !important; min-height:122px; height:122px}
-#headerHPFlash div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:122px; text-align:right}
-#headerHPFlash div.headerBottomRight img{margin-top:20px}
-#headerHPFlash div.headerBottomLeft{padding:0; margin:0 0 0 26.8%; height:122px; background:url('../images/bg_header_dx.gif') bottom right repeat-x}
-#headerHPFlash div.headerBottomLeftIn {padding:0; margin:0; height:122px; background:url('../images/bg_header_Flash.jpg') bottom left no-repeat}
-#headerHPFlash div.headerBottomLeftIn div.r1{height:60px; text-align:right; padding:0; margin:0}
-#headerHPFlash div.headerBottomLeftIn div.r2{padding:6px 0 0 0; height:auto !important; height: 42px; min-height:42px; color:#FFF; font-weight:bold; font-size:1.5em; text-align:center}
-#headerHPFlash div.headerBottomLeftIn div.r2 a,
-#headerHPFlash div.headerBottomLeftIn div.r2 a:hover{color:#FFF; text-decoration:none}
-#headerHPFlash div.headerBottomLeftIn div.r1 img {border:none; margin:0; vertical-align:bottom}
-#headerHPFlash div.headerBottomLeftIn div.r2 span {background:#0a84cd;}
+div.boxFlash img {
+	border: none;
+	margin: 0
+}
+
+div.noScript img {
+	border: none;
+	margin: 0
+}
+
+#headerHPFlash {
+	background: url('../images/bg_header.gif') bottom left repeat-x;
+	height: auto !important;
+	padding: 0;
+	margin: 0;
+	min-height: 145px;
+	height: 145px;
+	font-size: .7em
+}
+
+#headerHPFlash div.headerTop {
+	padding: 12px 25px 0 25px
+}
+
+#headerHPFlash div.headerTop div.headerRightNav img {
+	float: right;
+	border: none;
+	padding: 0 0 0 20px;
+	margin-top: -2px
+}
+
+#headerHPFlash div.headerTop div.headerRightNav {
+	margin-left: 37%
+}
+
+#headerHPFlash div.ricerca {
+	float: right;
+	margin-top: -2px
+}
+
+#headerHPFlash div.ricerca p {
+	padding: 0;
+	margin: 0
+}
+
+#headerHPFlash div.headerRightNavLeft {
+	float: right;
+	margin-right: 10px;
+	white-space: nowrap
+}
+
+#headerHPFlash div.headerBottom {
+	padding: 0;
+	margin: 0;
+	height: auto !important;
+	min-height: 122px;
+	height: 122px
+}
+
+#headerHPFlash div.headerBottomRight {
+	float: left;
+	padding: 0;
+	margin: 0;
+	width: 25.6%;
+	height: 122px;
+	text-align: right
+}
+
+#headerHPFlash div.headerBottomRight img {
+	margin-top: 20px
+}
+
+#headerHPFlash div.headerBottomLeft {
+	padding: 0;
+	margin: 0 0 0 26.8%;
+	height: 122px;
+	background: url('../images/bg_header_dx.gif') bottom right repeat-x
+}
+
+#headerHPFlash div.headerBottomLeftIn {
+	padding: 0;
+	margin: 0;
+	height: 122px;
+	background: url('../images/bg_header_Flash.jpg') bottom left no-repeat
+}
+
+#headerHPFlash div.headerBottomLeftIn div.r1 {
+	height: 60px;
+	text-align: right;
+	padding: 0;
+	margin: 0
+}
+
+#headerHPFlash div.headerBottomLeftIn div.r2 {
+	padding: 6px 0 0 0;
+	height: auto !important;
+	height: 42px;
+	min-height: 42px;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center
+}
+
+#headerHPFlash div.headerBottomLeftIn div.r2 a,#headerHPFlash div.headerBottomLeftIn div.r2 a:hover
+	{
+	color: #FFF;
+	text-decoration: none
+}
+
+#headerHPFlash div.headerBottomLeftIn div.r1 img {
+	border: none;
+	margin: 0;
+	vertical-align: bottom
+}
+
+#headerHPFlash div.headerBottomLeftIn div.r2 span {
+	background: #0a84cd;
+}
 
 /*Box Flash HP-FS*/
-div.boxFlash{margin:0; padding:0}
-div.boxFlash div.top{width:7px; float:left}
-div.boxFlash div.bot{margin-left:7px}
-div.boxFlash div.bot div.c1{width:7px; float:right}
-div.boxFlash div.bot div.c2{text-align:right; margin-right:7px; margin-top:0px !important; margin-top:7px;/*il margine in alto di 7px per la corretta visualiz. su IE6*/}
-		
+div.boxFlash {
+	margin: 0;
+	padding: 0
+}
+
+div.boxFlash div.top {
+	width: 7px;
+	float: left
+}
+
+div.boxFlash div.bot {
+	margin-left: 7px
+}
+
+div.boxFlash div.bot div.c1 {
+	width: 7px;
+	float: right
+}
+
+div.boxFlash div.bot div.c2 {
+	text-align: right;
+	margin-right: 7px;
+	margin-top: 0px !important;
+	margin-top: 7px;
+	/*il margine in alto di 7px per la corretta visualiz. su IE6*/
+}
+
 /*Box Alta Velocita' Flash HP-FS*/
-div.contentHpR2RightSx div.r1Flash{height:20px; padding:7px 5px 0px 5px; 10px; text-align:center; font-size:1.1em; font-weight:bold}
-div.contentHpR2RightSx div.r1Flash div{background:#FFF; height:20px; padding-top:2px}
-div.contentHpR2RightSx div.rFlash{height:84px; padding:0 5px}
-div.contentHpR2RightSx div.rFlash div{height:84px; text-align:center}
-div.contentHpR2RightSx div.r2Flash{font-size:1.1em; text-align:right; font-weight:bold; padding:3px 20px 0 0; background:#E9E7EA}
+div.contentHpR2RightSx div.r1Flash {
+	height: 20px;
+	padding: 7px 5px 0px 5px; 10 px;
+	text-align: center;
+	font-size: 1.1em;
+	font-weight: bold
+}
+
+div.contentHpR2RightSx div.r1Flash div {
+	background: #FFF;
+	height: 20px;
+	padding-top: 2px
+}
+
+div.contentHpR2RightSx div.rFlash {
+	height: 84px;
+	padding: 0 5px
+}
+
+div.contentHpR2RightSx div.rFlash div {
+	height: 84px;
+	text-align: center
+}
+
+div.contentHpR2RightSx div.r2Flash {
+	font-size: 1.1em;
+	text-align: right;
+	font-weight: bold;
+	padding: 3px 20px 0 0;
+	background: #E9E7EA
+}
 
 /* **Home Page - TRENITALIA** */
-#content div.HpTrenContLeft{float:left; width:69%; margin:15px 0 10px 0; padding:0; height:auto !important; height:220px; min-height:220px}
-#content div.HpTrenContRight{margin:15px 0 10px 69.8%; padding:0 0 10px 0; height:auto !important; height:220px; min-height:220px}
-#content div.HpTrenContRightBoxInt{margin-bottom:5px; font-size:1.1em}
-#content div.HpTrenContRightBoxInt p{padding-top:6px}
+#content div.HpTrenContLeft {
+	float: left;
+	width: 69%;
+	margin: 15px 0 10px 0;
+	padding: 0;
+	height: auto !important;
+	height: 220px;
+	min-height: 220px
+}
+
+#content div.HpTrenContRight {
+	margin: 15px 0 10px 69.8%;
+	padding: 0 0 10px 0;
+	height: auto !important;
+	height: 220px;
+	min-height: 220px
+}
+
+#content div.HpTrenContRightBoxInt {
+	margin-bottom: 5px;
+	font-size: 1.1em
+}
+
+#content div.HpTrenContRightBoxInt p {
+	padding-top: 6px
+}
 
 /*Pagina con 4 Box*/
-div.BoxInt4{height:auto !important; height:85px; min-height:90px; padding:1em 0 0 1em}
+div.BoxInt4 {
+	height: auto !important;
+	height: 85px;
+	min-height: 90px;
+	padding: 1em 0 0 1em
+}
 
 /*Pagina con 3 Box*/
-div.BoxInt3{height:auto !important; height:124px; min-height:127px; padding:1em 0 0 1em}
+div.BoxInt3 {
+	height: auto !important;
+	height: 124px;
+	min-height: 127px;
+	padding: 1em 0 0 1em
+}
 
 /*Pagina con 3 Box*/
-div.BoxInt2{height:auto !important; height:203px; min-height:203px; padding:1em 0 0 1em}
+div.BoxInt2 {
+	height: auto !important;
+	height: 203px;
+	min-height: 203px;
+	padding: 1em 0 0 1em
+}
 
 /*Pagina con 1 Box*/
-div.BoxInt1{height:auto !important; height:438px; min-height:430px; padding:1em 0 0 1em}
+div.BoxInt1 {
+	height: auto !important;
+	height: 438px;
+	min-height: 430px;
+	padding: 1em 0 0 1em
+}
 
 /*Angoli Bianchi*/
-div.rbtopl{background:url('../images/bg_rb_tl.gif') top left no-repeat}
-div.rbtopr{background:url('../images/bg_rb_tr.gif') top right no-repeat}
-div.rbbotl{background:url('../images/bg_rb_bl.gif') bottom left no-repeat; height:6px}
-div.rbbotr{background:url('../images/bg_rb_br.gif') bottom right no-repeat; height:6px}
+div.rbtopl {
+	background: url('../images/bg_rb_tl.gif') top left no-repeat
+}
 
-div.HpTrenContLeft div.Box{background:#F5F5F7; margin:0 0 10px 0}
-div.HpTrenContLeft div.Box div.rbtopl{color:#FFF; height:auto !important; height:25px; min-height:25px; background:#006261 url('../images/bg_rb_tl.gif') top left no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr{height:auto !important; height:25px; min-height:25px; background:url('../images/bg_rb_tr_img.gif') top right no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr h3{color:#FFF; font-size:1.3em; padding:4px 0 0 14px; margin:0}
-div.HpTrenContLeft div.Box div.rbtopr h3 a{color:#FFF}/*Aggiunta BC*/
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab{font-size:1.3em; font-weight:bold; padding:0 0 0 0; height:29px; margin:0; background:url('../images/bg_linkBox4ImgOff1.gif') bottom left repeat-x}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.on{float:left; padding:4px 14px 0 14px; height:25px; text-align:center;  background:url('../images/bg_linkBox4ImgOn.gif') bottom right no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.off{float:left; text-align:center; padding:4px 10px}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.linea{float:left; font-weight:normal; padding-top:2px}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a,
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a:hover{color:#FFF}
+div.rbtopr {
+	background: url('../images/bg_rb_tr.gif') top right no-repeat
+}
 
-div.HpTrenContLeft div.Box div.rbbotl{height:4px; background:url('../images/bg_rb_bl.gif') bottom left no-repeat}
-div.HpTrenContLeft div.Box div.rbbotr{height:4px; background:url('../images/bg_rb_br.gif') bottom right no-repeat}
-div.HpTrenContLeft div.HpTrenContLeftBoxInt{background:#F5F5F7; margin-top:4px; padding:0 10px 0 8px; height:auto !important; height:230px; min-height:216px; overflow:hidden}
-div.HpTrenContLeft div.HpTrenContLeftBoxIntSx{float:left; width:49%; height:auto !important; height:216px; min-height:216px}
-div.HpTrenContLeft div.HpTrenContLeftBoxIntDx{margin:8px 0 0 49.3%; height:auto !important; height:216px; min-height:216px}
+div.rbbotl {
+	background: url('../images/bg_rb_bl.gif') bottom left no-repeat;
+	height: 6px
+}
 
-div.BoxIntDxBannerSx{float:left; width:49%}
-div.BoxIntDxBannerDx{margin:0 0 0 50.2%}
+div.rbbotr {
+	background: url('../images/bg_rb_br.gif') bottom right no-repeat;
+	height: 6px
+}
 
-div.HpTrenContLeft div.Box div.Box4Img{background:#F5F5F7; padding:0 0 0 3%; height:auto !important; height:150px; min-height:150px; overflow:hidden}
-div.HpTrenContLeft div.Box div.Box4Img div{float:left; width:123px; height:auto !important; height:140px; min-height:140px; margin:14px 0 0 0}
-div.HpTrenContLeft div.Box div.Box4Img div.riga{width:5.5%; background:url('../images/bg_dx_box4img.gif') top center no-repeat}
-div.HpTrenContLeft div.Box div.Box4Img div.ultimaImg{background-image:none}
-div.HpTrenContLeft div.Box div.Box4Img div img{border:1px solid #C5C5C5; padding:1px}
-div.HpTrenContLeft div.Box div.Box4Img div a:hover{color:#000}
-div.HpTrenContLeft div.Box div.Box4Img div span{color:#016062; font-weight:bold}
-div.HpTrenContLeft div.Box div.Box4Img div p{width:86%}
-div.contEntra{padding:25px 0 20px 8px}
+div.HpTrenContLeft div.Box {
+	background: #F5F5F7;
+	margin: 0 0 10px 0
+}
+
+div.HpTrenContLeft div.Box div.rbtopl {
+	color: #FFF;
+	height: auto !important;
+	height: 25px;
+	min-height: 25px;
+	background: #006261 url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+div.HpTrenContLeft div.Box div.rbtopr {
+	height: auto !important;
+	height: 25px;
+	min-height: 25px;
+	background: url('../images/bg_rb_tr_img.gif') top right no-repeat
+}
+
+div.HpTrenContLeft div.Box div.rbtopr h3 {
+	color: #FFF;
+	font-size: 1.3em;
+	padding: 4px 0 0 14px;
+	margin: 0
+}
+
+div.HpTrenContLeft div.Box div.rbtopr h3 a {
+	color: #FFF
+}  /*Aggiunta BC*/
+div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab {
+	font-size: 1.3em;
+	font-weight: bold;
+	padding: 0 0 0 0;
+	height: 29px;
+	margin: 0;
+	background: url('../images/bg_linkBox4ImgOff1.gif') bottom left repeat-x
+}
+
+div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.on {
+	float: left;
+	padding: 4px 14px 0 14px;
+	height: 25px;
+	text-align: center;
+	background: url('../images/bg_linkBox4ImgOn.gif') bottom right no-repeat
+}
+
+div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.off {
+	float: left;
+	text-align: center;
+	padding: 4px 10px
+}
+
+div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.linea {
+	float: left;
+	font-weight: normal;
+	padding-top: 2px
+}
+
+div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a,div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a:hover
+	{
+	color: #FFF
+}
+
+div.HpTrenContLeft div.Box div.rbbotl {
+	height: 4px;
+	background: url('../images/bg_rb_bl.gif') bottom left no-repeat
+}
+
+div.HpTrenContLeft div.Box div.rbbotr {
+	height: 4px;
+	background: url('../images/bg_rb_br.gif') bottom right no-repeat
+}
+
+div.HpTrenContLeft div.HpTrenContLeftBoxInt {
+	background: #F5F5F7;
+	margin-top: 4px;
+	padding: 0 10px 0 8px;
+	height: auto !important;
+	height: 230px;
+	min-height: 216px;
+	overflow: hidden
+}
+
+div.HpTrenContLeft div.HpTrenContLeftBoxIntSx {
+	float: left;
+	width: 49%;
+	height: auto !important;
+	height: 216px;
+	min-height: 216px
+}
+
+div.HpTrenContLeft div.HpTrenContLeftBoxIntDx {
+	margin: 8px 0 0 49.3%;
+	height: auto !important;
+	height: 216px;
+	min-height: 216px
+}
+
+div.BoxIntDxBannerSx {
+	float: left;
+	width: 49%
+}
+
+div.BoxIntDxBannerDx {
+	margin: 0 0 0 50.2%
+}
+
+div.HpTrenContLeft div.Box div.Box4Img {
+	background: #F5F5F7;
+	padding: 0 0 0 3%;
+	height: auto !important;
+	height: 150px;
+	min-height: 150px;
+	overflow: hidden
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div {
+	float: left;
+	width: 123px;
+	height: auto !important;
+	height: 140px;
+	min-height: 140px;
+	margin: 14px 0 0 0
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div.riga {
+	width: 5.5%;
+	background: url('../images/bg_dx_box4img.gif') top center no-repeat
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div.ultimaImg {
+	background-image: none
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div img {
+	border: 1px solid #C5C5C5;
+	padding: 1px
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div a:hover {
+	color: #000
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div span {
+	color: #016062;
+	font-weight: bold
+}
+
+div.HpTrenContLeft div.Box div.Box4Img div p {
+	width: 86%
+}
+
+div.contEntra {
+	padding: 25px 0 20px 8px
+}
 
 /*Box Banner Trenitalia*/
-div.boxBanner{height:auto !important; height:200px; min-height:200px}
-div.boxBanner p{color:#FFF; padding:0 .5em; padding-top:126px; font-weight:bold; font-size:1.2em; line-height:1.1em}
-div.boxBanner a{color:#FFF}
-div.boxBanner a:hover{color:#FFF}
+div.boxBanner {
+	height: auto !important;
+	height: 200px;
+	min-height: 200px
+}
+
+div.boxBanner p {
+	color: #FFF;
+	padding: 0 .5em;
+	padding-top: 126px;
+	font-weight: bold;
+	font-size: 1.2em;
+	line-height: 1.1em
+}
+
+div.boxBanner a {
+	color: #FFF
+}
+
+div.boxBanner a:hover {
+	color: #FFF
+}
 
 /* **Home Page - FSNews** */
-#content div.FSNewsLeft{float:left; width:20%; margin:15px 0 10px 0; padding:0; position:relative; left:0}
-#content div.FSNewsLeftInt{margin-right:6px; padding:0}
-#content div.FSNewsRight{margin:15px 0 0 0; padding:0 0 10px 0; width:80%; float:left; position:relative;	left:0}
-#content div.FSNewsRight div.FSNewsLeftCol{width:60%; float:left; margin:0; padding:0}
-#content div.FSNewsRight div.FSNewsLeftColSx{float:left; width:52%}
-#content div.FSNewsRight div.FSNewsLeftColDx{margin:0 0 0 53%}
-#content div.FSNewsRight div.FSNewsRightCol{margin:0 0 0 60%; padding:0 0 0 6px}
+#content div.FSNewsLeft {
+	float: left;
+	width: 20%;
+	margin: 15px 0 10px 0;
+	padding: 0;
+	position: relative;
+	left: 0
+}
+
+#content div.FSNewsLeftInt {
+	margin-right: 6px;
+	padding: 0
+}
+
+#content div.FSNewsRight {
+	margin: 15px 0 0 0;
+	padding: 0 0 10px 0;
+	width: 80%;
+	float: left;
+	position: relative;
+	left: 0
+}
+
+#content div.FSNewsRight div.FSNewsLeftCol {
+	width: 60%;
+	float: left;
+	margin: 0;
+	padding: 0
+}
+
+#content div.FSNewsRight div.FSNewsLeftColSx {
+	float: left;
+	width: 52%
+}
+
+#content div.FSNewsRight div.FSNewsLeftColDx {
+	margin: 0 0 0 53%
+}
+
+#content div.FSNewsRight div.FSNewsRightCol {
+	margin: 0 0 0 60%;
+	padding: 0 0 0 6px
+}
 
 /*Box spalla sinistra - HP FSNews*/
-div.ContBoxRedTitle{padding:0; margin:0}
-div.ContBoxRedTitle img{border:none}
-div.ContBoxRedTitle div.BoxRedTitleTop{background:#0a84cd url('../images/bg_boxRightFSNews2.jpg') top right no-repeat}
-div.ContBoxRedTitle div.BoxRedTitleTop div.titolo{height:auto !important; height:25px; min-height:25px}
-div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3{color:#FFF; font-size:1.3em; font-weight:bold; padding:6px 0 0 8px; margin:0}
-div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3 a{color:#FFF;}
-div.ContBoxRedTitle div.BoxRedTitleBot{background-color:#E9E7EA; padding:0 0 6px 0; margin:0}
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt{padding:10px 10px 4px 10px; overflow:hidden!important;}
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt h4{color:#0a84cd; padding:0; margin:0; font-size:1.1em;}
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink{color:#0a84cd; font-weight: bold; padding-left:15px; background:url('../images/freccia_puntatore.gif') 2px left no-repeat}
-html>/**/body div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink{color:#0a84cd; background:url('../images/freccia_puntatore.gif') left center no-repeat} /* FireFox*/
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt img{border:1px solid #C5C5C5; padding:1px; margin:.3em 0 .1em 0;}
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt img.alignL{float:left; margin:0 6px 0 0}
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt span{color:#0a84cd; font-size:1.1em; font-weight:bold}
-div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrow{text-align:right; padding:0 10px 4px; 0}
-div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrowRed{padding:6px 10px 0 0;  font-weight:bold; height:25px; background:url('../images/bg_boxRightFSNews_link.gif') top right repeat-x}
-div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrowRed p{padding-right:15px; text-align:right; background:url('../images/freccia_puntatore_red.gif') center right no-repeat}
-div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrowRed p a{color:#0a84cd; display:block}
-div.RowBot{border-bottom:1px solid #D7D7D7}
+div.ContBoxRedTitle {
+	padding: 0;
+	margin: 0
+}
+
+div.ContBoxRedTitle img {
+	border: none
+}
+
+div.ContBoxRedTitle div.BoxRedTitleTop {
+	background: #0a84cd url('../images/bg_boxRightFSNews2.jpg') top right
+		no-repeat
+}
+
+div.ContBoxRedTitle div.BoxRedTitleTop div.titolo {
+	height: auto !important;
+	height: 25px;
+	min-height: 25px
+}
+
+div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3 {
+	color: #FFF;
+	font-size: 1.3em;
+	font-weight: bold;
+	padding: 6px 0 0 8px;
+	margin: 0
+}
+
+div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3 a {
+	color: #FFF;
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot {
+	background-color: #E9E7EA;
+	padding: 0 0 6px 0;
+	margin: 0
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt {
+	padding: 10px 10px 4px 10px;
+	overflow: hidden !important;
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt h4 {
+	color: #0a84cd;
+	padding: 0;
+	margin: 0;
+	font-size: 1.1em;
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink {
+	color: #0a84cd;
+	font-weight: bold;
+	padding-left: 15px;
+	background: url('../images/freccia_puntatore.gif') 2px left no-repeat
+}
+
+html> /**/ body div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink
+	{
+	color: #0a84cd;
+	background: url('../images/freccia_puntatore.gif') left center no-repeat
+}  /* FireFox*/
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt img {
+	border: 1px solid #C5C5C5;
+	padding: 1px;
+	margin: .3em 0 .1em 0;
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt img.alignL {
+	float: left;
+	margin: 0 6px 0 0
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt span {
+	color: #0a84cd;
+	font-size: 1.1em;
+	font-weight: bold
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrow {
+	text-align: right;
+	padding: 0 10px 4px;
+	0
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrowRed {
+	padding: 6px 10px 0 0;
+	font-weight: bold;
+	height: 25px;
+	background: url('../images/bg_boxRightFSNews_link.gif') top right
+		repeat-x
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrowRed p {
+	padding-right: 15px;
+	text-align: right;
+	background: url('../images/freccia_puntatore_red.gif') center right
+		no-repeat
+}
+
+div.ContBoxRedTitle div.BoxRedTitleBot div.RightArrowRed p a {
+	color: #0a84cd;
+	display: block
+}
+
+div.RowBot {
+	border-bottom: 1px solid #D7D7D7
+}
 
 /*Box News in Evidenza*/
-div.BoxNewsEv{background:#E6E5E7}
-div.BoxNewsEv a{color:#0a84cd}
-div.BoxNewsEv div.rowtit h3{padding:.8em .8em .6em .8em; font-weight:bold; font-size:1.2em; color:#0a84cd; margin:0px}
-div.BoxNewsEv div.rowimg{background:#C9C8CA; text-align:center; padding-top:3px; border:0;}
-div.BoxNewsEv div.rowtxt{padding:.6em .8em .8em .8em;}
-div.BoxNewsEv div.rowtxt a{color:#000}
-div.BoxNewsEv div.rowtxt a:hover{color:#0a84cd}
+div.BoxNewsEv {
+	background: #E6E5E7
+}
+
+div.BoxNewsEv a {
+	color: #0a84cd
+}
+
+div.BoxNewsEv div.rowtit h3 {
+	padding: .8em .8em .6em .8em;
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #0a84cd;
+	margin: 0px
+}
+
+div.BoxNewsEv div.rowimg {
+	background: #C9C8CA;
+	text-align: center;
+	padding-top: 3px;
+	border: 0;
+}
+
+div.BoxNewsEv div.rowtxt {
+	padding: .6em .8em .8em .8em;
+}
+
+div.BoxNewsEv div.rowtxt a {
+	color: #000
+}
+
+div.BoxNewsEv div.rowtxt a:hover {
+	color: #0a84cd
+}
 
 /*Box Foto della Settimana - HP FSNews*/
-div.boxFotoSet{padding:0; margin:0; height:auto !important; min-height:109px; height:90px; background:#F7F6F8 url('../images/bg_botFotoSet.gif') left bottom repeat-x}
-div.boxFotoSet div.boxFotoSetTop{text-align:center; padding:4px 0}
-div.boxFotoSet div.boxFotoSetBot{height:auto !important; min-height:20px; padding-left:10px; font-weight:bold}
-div.boxFotoSet div.boxFotoSetBot div{padding-top:3px}
-div.boxFotoSet div.boxFotoSetBot div p{font-weight:normal; line-height:1em}
+div.boxFotoSet {
+	padding: 0;
+	margin: 0;
+	height: auto !important;
+	min-height: 109px;
+	height: 90px;
+	background: #F7F6F8 url('../images/bg_botFotoSet.gif') left bottom
+		repeat-x
+}
+
+div.boxFotoSet div.boxFotoSetTop {
+	text-align: center;
+	padding: 4px 0
+}
+
+div.boxFotoSet div.boxFotoSetBot {
+	height: auto !important;
+	min-height: 20px;
+	padding-left: 10px;
+	font-weight: bold
+}
+
+div.boxFotoSet div.boxFotoSetBot div {
+	padding-top: 3px
+}
+
+div.boxFotoSet div.boxFotoSetBot div p {
+	font-weight: normal;
+	line-height: 1em
+}
 
 /*Box Area Riservata*/
-.BoxIntAR{font-size:1.1em; color:#000; margin-top:8px; height:auto !important; height:90px; min-height:90px; background:#FFF url('../images/bg_box_gradientTop.gif') top left repeat-x}
-.BoxIntAR div.titolo{height:30px; background:url('../images/Icona_AR.gif') right center no-repeat}
-.BoxIntAR h4{color:#0a84cd; font-size:1em; padding:8px; margin:0}
-.BoxIntAR h4 a{color:#0a84cd}/*Aggiunta BC.*/
-.BoxIntAR span{font-size:.9em; padding-left:12px}
+.BoxIntAR {
+	font-size: 1.1em;
+	color: #000;
+	margin-top: 8px;
+	height: auto !important;
+	height: 90px;
+	min-height: 90px;
+	background: #FFF url('../images/bg_box_gradientTop.gif') top left
+		repeat-x
+}
+
+.BoxIntAR div.titolo {
+	height: 30px;
+	background: url('../images/Icona_AR.gif') right center no-repeat
+}
+
+.BoxIntAR h4 {
+	color: #0a84cd;
+	font-size: 1em;
+	padding: 8px;
+	margin: 0
+}
+
+.BoxIntAR h4 a {
+	color: #0a84cd
+}  /*Aggiunta BC.*/
+.BoxIntAR span {
+	font-size: .9em;
+	padding-left: 12px
+}
 
 /*Trenitalia*/
-div.HpTrenContLeftBoxIntDx .BoxIntAR{margin-top:0;  min-height:200px}
-div.HpTrenContLeftBoxIntDx .BoxIntAR div.BoxInttopl{min-height:200px}
+div.HpTrenContLeftBoxIntDx .BoxIntAR {
+	margin-top: 0;
+	min-height: 200px
+}
+
+div.HpTrenContLeftBoxIntDx .BoxIntAR div.BoxInttopl {
+	min-height: 200px
+}
 
 /*Box Servizio Clienti*/
-.BoxIntSC{font-size:1.1em; color:#000; margin-top:8px; height:auto !important; height:80px; min-height:80px}
-.BoxIntSC h4{color:#0a84cd; font-size:1em; padding:8px; margin:0}
-.BoxIntSC ul{font-size:.9em; padding:0 0 4px 12px; margin:0; list-style-type:none}
+.BoxIntSC {
+	font-size: 1.1em;
+	color: #000;
+	margin-top: 8px;
+	height: auto !important;
+	height: 80px;
+	min-height: 80px
+}
 
-/*Box Società Immagine RFI*/
-.BoxSociet{font-size:1.1em; color:#000;	margin-top:8px; background:#E9E7EA url('../images/bg_box_societ.gif') top right repeat-y}
-.BoxIntSociet{padding:8px; padding-right:0; height:auto !important; height:185px; min-height:190px}
-.BoxIntSocietImg{height:auto !important; height:190px;/*IE 6*/ min-height:190px; background:#FFF}
-.BoxIntSocietImgDx{height:auto !important; height:190px;/*IE 6*/ min-height:190px; background:url('../images/bg_box_societ.gif') top right repeat-y}
-.BoxIntSocietImgDx img{float:right; margin:100px 5px 0 0; border:none}
-.BoxIntSocietImgDx div{color:#000; padding:153px 0 2px 0; margin-right:22px; text-align:center}
+.BoxIntSC h4 {
+	color: #0a84cd;
+	font-size: 1em;
+	padding: 8px;
+	margin: 0
+}
+
+.BoxIntSC ul {
+	font-size: .9em;
+	padding: 0 0 4px 12px;
+	margin: 0;
+	list-style-type: none
+}
+
+/*Box Societï¿½ Immagine RFI*/
+.BoxSociet {
+	font-size: 1.1em;
+	color: #000;
+	margin-top: 8px;
+	background: #E9E7EA url('../images/bg_box_societ.gif') top right
+		repeat-y
+}
+
+.BoxIntSociet {
+	padding: 8px;
+	padding-right: 0;
+	height: auto !important;
+	height: 185px;
+	min-height: 190px
+}
+
+.BoxIntSocietImg {
+	height: auto !important;
+	height: 190px; /*IE 6*/
+	min-height: 190px;
+	background: #FFF
+}
+
+.BoxIntSocietImgDx {
+	height: auto !important;
+	height: 190px; /*IE 6*/
+	min-height: 190px;
+	background: url('../images/bg_box_societ.gif') top right repeat-y
+}
+
+.BoxIntSocietImgDx img {
+	float: right;
+	margin: 100px 5px 0 0;
+	border: none
+}
+
+.BoxIntSocietImgDx div {
+	color: #000;
+	padding: 153px 0 2px 0;
+	margin-right: 22px;
+	text-align: center
+}
 
 /*Box Bandi e Gare*/
-.BoxIntBeG{font-size:1.1em; color:#000; margin-top:8px; height:auto !important; height:90px; min-height:90px;	background:#FFF url('../images/bg_box_gradientTop.gif') top left repeat-x}
-.BoxIntBeG div.titolo{height:30px; background:url(' ../images/Icona_BeG.gif') right center no-repeat}
-.BoxIntBeG h4{color:#0a84cd; font-size:1em; padding:8px; margin:0}
-.BoxIntBeG p{font-size:.9em; color:#000; padding:8px 8px 4px 8px}
-.BoxIntBeG div.btEntra{text-align:right}
-.BoxIntBeG div.btEntra img{padding:0 8px 2px 0; border:none}
+.BoxIntBeG {
+	font-size: 1.1em;
+	color: #000;
+	margin-top: 8px;
+	height: auto !important;
+	height: 90px;
+	min-height: 90px;
+	background: #FFF url('../images/bg_box_gradientTop.gif') top left
+		repeat-x
+}
+
+.BoxIntBeG div.titolo {
+	height: 30px;
+	background: url(' ../images/Icona_BeG.gif') right center no-repeat
+}
+
+.BoxIntBeG h4 {
+	color: #0a84cd;
+	font-size: 1em;
+	padding: 8px;
+	margin: 0
+}
+
+.BoxIntBeG p {
+	font-size: .9em;
+	color: #000;
+	padding: 8px 8px 4px 8px
+}
+
+.BoxIntBeG div.btEntra {
+	text-align: right
+}
+
+.BoxIntBeG div.btEntra img {
+	padding: 0 8px 2px 0;
+	border: none
+}
 
 /*Box Per i Fornitori*/
-.BoxIntxFor{font-size:1.1em;	color:#000; margin:8px 0 0 0; height:auto !important; height:70px; min-height:80px}
-.BoxIntxFor h4{color:#0a84cd; font-size:1em; padding:8px; margin:0; width:55%}
-.BoxIntxFor p{color:#000; padding:0 0 0 8px; width:55%}
-.BoxIntxFor div.arrowsLinkBlack{margin:0 2px 0 0; text-align:right}
-.BoxIntxFor div.arrowsLinkBlack img{border:none}
+.BoxIntxFor {
+	font-size: 1.1em;
+	color: #000;
+	margin: 8px 0 0 0;
+	height: auto !important;
+	height: 70px;
+	min-height: 80px
+}
+
+.BoxIntxFor h4 {
+	color: #0a84cd;
+	font-size: 1em;
+	padding: 8px;
+	margin: 0;
+	width: 55%
+}
+
+.BoxIntxFor p {
+	color: #000;
+	padding: 0 0 0 8px;
+	width: 55%
+}
+
+.BoxIntxFor div.arrowsLinkBlack {
+	margin: 0 2px 0 0;
+	text-align: right
+}
+
+.BoxIntxFor div.arrowsLinkBlack img {
+	border: none
+}
 
 /*Box Icone*/
-.BoxIntIcone{font-size:1em; color:#000; height:auto !important;	height:70px; min-height:70px; background:#FFF}
-.BoxIntIconeLeft{float:left; width:46%; margin:0 10px 0 14px; padding:6px 0 4px 0; height:auto !important; height:65px; min-height:65px}
-.BoxIntIconeRight{margin:0 14px 0 50.8%; padding:6px 0 4px 0; height:auto !important; height:65px; min-height:65px}
-.BoxIntIconeLeft div {border-right:2px solid #E5E5E7;  height:auto !important; height:40px; min-height:40px}
-.BoxIntIconeRight div{height:auto !important; height:40px; min-height:40px}
-.BoxIntIcone img{float:left; margin-right:8px}
-.BoxIntIcone span{color:#000; font-weight:bold; padding:0; margin:0}
-.BoxIntIcone p{color:#000; padding:0; margin:0}
+.BoxIntIcone {
+	font-size: 1em;
+	color: #000;
+	height: auto !important;
+	height: 70px;
+	min-height: 70px;
+	background: #FFF
+}
+
+.BoxIntIconeLeft {
+	float: left;
+	width: 46%;
+	margin: 0 10px 0 14px;
+	padding: 6px 0 4px 0;
+	height: auto !important;
+	height: 65px;
+	min-height: 65px
+}
+
+.BoxIntIconeRight {
+	margin: 0 14px 0 50.8%;
+	padding: 6px 0 4px 0;
+	height: auto !important;
+	height: 65px;
+	min-height: 65px
+}
+
+.BoxIntIconeLeft div {
+	border-right: 2px solid #E5E5E7;
+	height: auto !important;
+	height: 40px;
+	min-height: 40px
+}
+
+.BoxIntIconeRight div {
+	height: auto !important;
+	height: 40px;
+	min-height: 40px
+}
+
+.BoxIntIcone img {
+	float: left;
+	margin-right: 8px
+}
+
+.BoxIntIcone span {
+	color: #000;
+	font-weight: bold;
+	padding: 0;
+	margin: 0
+}
+
+.BoxIntIcone p {
+	color: #000;
+	padding: 0;
+	margin: 0
+}
 
 /*BOX INFOMOBILITA' HP FS*/
-.BoxInfomob{margin:0; padding:0; height:auto !important; height:130px; min-height:130px}
-.BoxInfomob h2{color:#0a84cd; font-size:1.1em; padding:5px 0 0 11px; margin:0}
-.BoxInfomob p{padding:10px 0 0 11px; font-weight:bold}
-.BoxInfomob a{color:#0a84cd}
-.BoxInfomob div.r1{height:46px}
-.BoxInfomob div.r2 ul{list-style-type:none; padding:5px 0 0 10px; margin:0; font-weight:bold; line-height:1.2em}
-.BoxInfomob div.r2 a{color:#000}
+.BoxInfomob {
+	margin: 0;
+	padding: 0;
+	height: auto !important;
+	height: 130px;
+	min-height: 130px
+}
+
+.BoxInfomob h2 {
+	color: #0a84cd;
+	font-size: 1.1em;
+	padding: 5px 0 0 11px;
+	margin: 0
+}
+
+.BoxInfomob p {
+	padding: 10px 0 0 11px;
+	font-weight: bold
+}
+
+.BoxInfomob a {
+	color: #0a84cd
+}
+
+.BoxInfomob div.r1 {
+	height: 46px
+}
+
+.BoxInfomob div.r2 ul {
+	list-style-type: none;
+	padding: 5px 0 0 10px;
+	margin: 0;
+	font-weight: bold;
+	line-height: 1.2em
+}
+
+.BoxInfomob div.r2 a {
+	color: #000
+}
 
 /*BOX INFOMOBILITA' HP FSNews*/
-.BoxInfomobFsNews{background:#EDECED url('../images/bg_box_infomob-fsnews.gif') top right no-repeat; margin:0; padding:0; height:auto !important; height:160px; min-height:160px}
-.BoxInfomobFsNews h2{color:#0a84cd; font-size:1.2em; padding:5px 0 0 11px; margin:0}
-.BoxInfomobFsNews a{color:#0a84cd}
-.BoxInfomobFsNews div.r1{margin:0; padding:0}
-.BoxInfomobFsNews div.r1Left{float:left; width:57%; margin:0; padding:0}
-.BoxInfomobFsNews div.r1Left p{padding:28px 0 0 11px; font-weight:bold}
-.BoxInfomobFsNews div.r1Right{margin:0 0 0 58%;  padding:0; text-align:right}
-.BoxInfomobFsNews div.r1Right img {border:none}
-.BoxInfomobFsNews div.r2{height:30px}
-.BoxInfomobFsNews div.r3 ul{list-style-type:none; padding:5px 0 0 10px; margin:0; font-weight:bold; line-height:1.3em}
-.BoxInfomobFsNews div.r3 a{color:#000}
+.BoxInfomobFsNews {
+	background: #EDECED url('../images/bg_box_infomob-fsnews.gif') top right
+		no-repeat;
+	margin: 0;
+	padding: 0;
+	height: auto !important;
+	height: 160px;
+	min-height: 160px
+}
+
+.BoxInfomobFsNews h2 {
+	color: #0a84cd;
+	font-size: 1.2em;
+	padding: 5px 0 0 11px;
+	margin: 0
+}
+
+.BoxInfomobFsNews a {
+	color: #0a84cd
+}
+
+.BoxInfomobFsNews div.r1 {
+	margin: 0;
+	padding: 0
+}
+
+.BoxInfomobFsNews div.r1Left {
+	float: left;
+	width: 57%;
+	margin: 0;
+	padding: 0
+}
+
+.BoxInfomobFsNews div.r1Left p {
+	padding: 28px 0 0 11px;
+	font-weight: bold
+}
+
+.BoxInfomobFsNews div.r1Right {
+	margin: 0 0 0 58%;
+	padding: 0;
+	text-align: right
+}
+
+.BoxInfomobFsNews div.r1Right img {
+	border: none
+}
+
+.BoxInfomobFsNews div.r2 {
+	height: 30px
+}
+
+.BoxInfomobFsNews div.r3 ul {
+	list-style-type: none;
+	padding: 5px 0 0 10px;
+	margin: 0;
+	font-weight: bold;
+	line-height: 1.3em
+}
+
+.BoxInfomobFsNews div.r3 a {
+	color: #000
+}
 
 /*Box Alta Velocita' - FSNews*/
-div.boxAV div.r1{height:70px; padding:7px 0 0 15%; font-size:1em; font-weight:bold; line-height:1em}
-div.boxAV div.r2{text-align:right; font-weight:bold; padding:12px 22px 0 0}
+div.boxAV div.r1 {
+	height: 70px;
+	padding: 7px 0 0 15%;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1em
+}
+
+div.boxAV div.r2 {
+	text-align: right;
+	font-weight: bold;
+	padding: 12px 22px 0 0
+}
 
 /*Button Gray + Icona (HP-RFI)*/
-.menuButtonGray{height:auto !important; height:230px; min-height:230px; padding:0; padding-bottom:5px; background:#F4F5F6; border-top:1px solid #F4F5F6;/*importante*/}
-.menuButtonGrayShort{height:auto !important; height:95px; min-height:95px; padding:0; padding-bottom:5px; background:#F4F5F6; border-top:1px solid #F4F5F6;/*importante*/} /*Add Metropark*/
-.roundButtonGray{height:auto !important; height:42px; min-height:42px; background:#E3E0E5 url('../images/bg_button_gray.gif') top left repeat-x; margin:5px 0}
-.firstRoundButton{margin-top:0}
-.firstRoundButton2{margin-top:6px}
-.roundButtonGray div.LineL {background:url('../images/bg_button_gray_line.gif') top left repeat-y}
-.roundButtonGray div.LineR {background:url('../images/bg_button_gray_line.gif') top right repeat-y}
-.roundButtonGray div.LineB {background:url('../images/bg_button_gray_line.gif') bottom left repeat-x}
-.roundButtonGray div.roundTR{background:url('../images/bg_button_gray_tl.gif') top left no-repeat}
-.roundButtonGray div.roundTL{background:url('../images/bg_button_gray_tr.gif') top right no-repeat}
-.roundButtonGray div.roundBL{background:url('../images/bg_button_gray_bl.gif') bottom left no-repeat; height:auto !important; height:42px; min-height:42px}
-.roundButtonGray div.roundBR{background:url('../images/bg_button_gray_br.gif') bottom right no-repeat; height:auto !important; height:42px; min-height:42px}
-.roundButtonGray div.roundCont{font-size:1em; padding:0; margin:0}
-.roundButtonGray div.roundCont img{float:left; margin:4px 10px 0 10px}
-.roundButtonGray div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:14px 0 0 0; background:url('../images/freccia_puntatore.gif') bottom right no-repeat}
-.roundButtonGray div.roundCont a{display:block; text-decoration:none; font-weight:bold}
-.roundButtonGray div.roundCont a:hover{text-decoration:underline}
+.menuButtonGray {
+	height: auto !important;
+	height: 230px;
+	min-height: 230px;
+	padding: 0;
+	padding-bottom: 5px;
+	background: #F4F5F6;
+	border-top: 1px solid #F4F5F6; /*importante*/
+}
+
+.menuButtonGrayShort {
+	height: auto !important;
+	height: 95px;
+	min-height: 95px;
+	padding: 0;
+	padding-bottom: 5px;
+	background: #F4F5F6;
+	border-top: 1px solid #F4F5F6; /*importante*/
+}  /*Add Metropark*/
+.roundButtonGray {
+	height: auto !important;
+	height: 42px;
+	min-height: 42px;
+	background: #E3E0E5 url('../images/bg_button_gray.gif') top left
+		repeat-x;
+	margin: 5px 0
+}
+
+.firstRoundButton {
+	margin-top: 0
+}
+
+.firstRoundButton2 {
+	margin-top: 6px
+}
+
+.roundButtonGray div.LineL {
+	background: url('../images/bg_button_gray_line.gif') top left repeat-y
+}
+
+.roundButtonGray div.LineR {
+	background: url('../images/bg_button_gray_line.gif') top right repeat-y
+}
+
+.roundButtonGray div.LineB {
+	background: url('../images/bg_button_gray_line.gif') bottom left
+		repeat-x
+}
+
+.roundButtonGray div.roundTR {
+	background: url('../images/bg_button_gray_tl.gif') top left no-repeat
+}
+
+.roundButtonGray div.roundTL {
+	background: url('../images/bg_button_gray_tr.gif') top right no-repeat
+}
+
+.roundButtonGray div.roundBL {
+	background: url('../images/bg_button_gray_bl.gif') bottom left no-repeat
+		;
+	height: auto !important;
+	height: 42px;
+	min-height: 42px
+}
+
+.roundButtonGray div.roundBR {
+	background: url('../images/bg_button_gray_br.gif') bottom right
+		no-repeat;
+	height: auto !important;
+	height: 42px;
+	min-height: 42px
+}
+
+.roundButtonGray div.roundCont {
+	font-size: 1em;
+	padding: 0;
+	margin: 0
+}
+
+.roundButtonGray div.roundCont img {
+	float: left;
+	margin: 4px 10px 0 10px
+}
+
+.roundButtonGray div.roundCont p {
+	line-height: 1em;
+	margin: 0 12px 0 0;
+	padding: 14px 0 0 0;
+	background: url('../images/freccia_puntatore.gif') bottom right
+		no-repeat
+}
+
+.roundButtonGray div.roundCont a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold
+}
+
+.roundButtonGray div.roundCont a:hover {
+	text-decoration: underline
+}
 
 /*HP Lavora con noi*/
-.roundButtonGray div.roundCont2{font-size:1em; padding:0; margin:0; height:auto !important; height:48px; min-height:48px}
-.roundButtonGray div.roundCont2 img{float:left; margin:7px 10px 0 10px}
-.roundButtonGray div.roundCont2 p{line-height:1em; margin:0 12px 0 0; padding:18px 0 0 0; background:url('../images/freccia_puntatore.gif') bottom right no-repeat}
-.roundButtonGray div.roundCont2 a{display:block; text-decoration:none; font-weight:bold}
-.roundButtonGray div.roundCont2 a:hover{text-decoration:underline}
+.roundButtonGray div.roundCont2 {
+	font-size: 1em;
+	padding: 0;
+	margin: 0;
+	height: auto !important;
+	height: 48px;
+	min-height: 48px
+}
+
+.roundButtonGray div.roundCont2 img {
+	float: left;
+	margin: 7px 10px 0 10px
+}
+
+.roundButtonGray div.roundCont2 p {
+	line-height: 1em;
+	margin: 0 12px 0 0;
+	padding: 18px 0 0 0;
+	background: url('../images/freccia_puntatore.gif') bottom right
+		no-repeat
+}
+
+.roundButtonGray div.roundCont2 a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold
+}
+
+.roundButtonGray div.roundCont2 a:hover {
+	text-decoration: underline
+}
 
 /* Button Gray + Icona - HP Fercredit */
-.roundButtonGray div.roundCont3{height:auto !important; height:38px; min-height:38px; font-size:1em; padding:4px 5px 0 0; margin:0}
-.roundButtonGray div.roundCont3 div.Cont3{height:auto !important; height:38px; min-height:38px; background:url('../images/freccia_puntatore.gif') center right no-repeat}
-.roundButtonGray div.roundCont3 div.Cont3Sx{float:left; width:34px; margin:0 0 0 4px; padding:0}
-.roundButtonGray div.roundCont3 div.Cont3Dx{margin:0 14px 0 42px; padding:12px 0 4px 0; line-height:1em; height:auto !important; height:1em; min-height:1em; }
-.roundButtonGray div.roundCont3 div.Cont3Dx a{display:block; text-decoration:none; font-weight:bold}
-.roundButtonGray div.roundCont3 div.Cont3Dx a:hover{text-decoration:underline}
+.roundButtonGray div.roundCont3 {
+	height: auto !important;
+	height: 38px;
+	min-height: 38px;
+	font-size: 1em;
+	padding: 4px 5px 0 0;
+	margin: 0
+}
 
+.roundButtonGray div.roundCont3 div.Cont3 {
+	height: auto !important;
+	height: 38px;
+	min-height: 38px;
+	background: url('../images/freccia_puntatore.gif') center right
+		no-repeat
+}
+
+.roundButtonGray div.roundCont3 div.Cont3Sx {
+	float: left;
+	width: 34px;
+	margin: 0 0 0 4px;
+	padding: 0
+}
+
+.roundButtonGray div.roundCont3 div.Cont3Dx {
+	margin: 0 14px 0 42px;
+	padding: 12px 0 4px 0;
+	line-height: 1em;
+	height: auto !important;
+	height: 1em;
+	min-height: 1em;
+}
+
+.roundButtonGray div.roundCont3 div.Cont3Dx a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold
+}
+
+.roundButtonGray div.roundCont3 div.Cont3Dx a:hover {
+	text-decoration: underline
+}
 
 /*HP FSNews*/
-.menuButtonGrayFSNews{height:auto !important; height:40px; min-height:40px; padding:0;	padding-top:5px;	background:#F5F4F6; border-top:1px solid #F4F5F6;/*importante*/}
-.roundButtonGrayFSNews{height:auto !important; height:24px; min-height:24px; background:#E3E0E5 url('../images/bg_button_gray.gif') top left repeat-x; margin:1px 0}
-.firstRoundButton{margin-top:0}
-.roundButtonGrayFSNews div.LineL {background:url('../images/bg_button_gray_line.gif') top left repeat-y}
-.roundButtonGrayFSNews div.LineR {background:url('../images/bg_button_gray_line.gif') top right repeat-y}
-.roundButtonGrayFSNews div.LineB {background:url('../images/bg_button_gray_line.gif') bottom left repeat-x}
-.roundButtonGrayFSNews div.roundTR{background:url('../images/bg_button_gray_tl.gif') top left no-repeat}
-.roundButtonGrayFSNews div.roundTL{background:url('../images/bg_button_gray_tr.gif') top right no-repeat}
-.roundButtonGrayFSNews div.roundBL{background:url('../images/bg_button_gray_bl.gif') bottom left no-repeat; height:auto !important; height:24px; min-height:24px}
-.roundButtonGrayFSNews div.roundBR{background:url('../images/bg_button_gray_br.gif') bottom right no-repeat; height:auto !important; height:24px; min-height:24px}
-.roundButtonGrayFSNews div.roundCont{font-size:1em; padding:0; margin:0}
-.roundButtonGrayFSNews div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:5px 0 0 12px; background:url('../images/freccia_puntatore.gif') bottom right no-repeat}
-.roundButtonGrayFSNews div.roundCont a{display:block; text-decoration:none; font-weight:bold}
-.roundButtonGrayFSNews div.roundCont a:hover{text-decoration:underline}
+.menuButtonGrayFSNews {
+	height: auto !important;
+	height: 40px;
+	min-height: 40px;
+	padding: 0;
+	padding-top: 5px;
+	background: #F5F4F6;
+	border-top: 1px solid #F4F5F6; /*importante*/
+}
 
+.roundButtonGrayFSNews {
+	height: auto !important;
+	height: 24px;
+	min-height: 24px;
+	background: #E3E0E5 url('../images/bg_button_gray.gif') top left
+		repeat-x;
+	margin: 1px 0
+}
+
+.firstRoundButton {
+	margin-top: 0
+}
+
+.roundButtonGrayFSNews div.LineL {
+	background: url('../images/bg_button_gray_line.gif') top left repeat-y
+}
+
+.roundButtonGrayFSNews div.LineR {
+	background: url('../images/bg_button_gray_line.gif') top right repeat-y
+}
+
+.roundButtonGrayFSNews div.LineB {
+	background: url('../images/bg_button_gray_line.gif') bottom left
+		repeat-x
+}
+
+.roundButtonGrayFSNews div.roundTR {
+	background: url('../images/bg_button_gray_tl.gif') top left no-repeat
+}
+
+.roundButtonGrayFSNews div.roundTL {
+	background: url('../images/bg_button_gray_tr.gif') top right no-repeat
+}
+
+.roundButtonGrayFSNews div.roundBL {
+	background: url('../images/bg_button_gray_bl.gif') bottom left no-repeat
+		;
+	height: auto !important;
+	height: 24px;
+	min-height: 24px
+}
+
+.roundButtonGrayFSNews div.roundBR {
+	background: url('../images/bg_button_gray_br.gif') bottom right
+		no-repeat;
+	height: auto !important;
+	height: 24px;
+	min-height: 24px
+}
+
+.roundButtonGrayFSNews div.roundCont {
+	font-size: 1em;
+	padding: 0;
+	margin: 0
+}
+
+.roundButtonGrayFSNews div.roundCont p {
+	line-height: 1em;
+	margin: 0 12px 0 0;
+	padding: 5px 0 0 12px;
+	background: url('../images/freccia_puntatore.gif') bottom right
+		no-repeat
+}
+
+.roundButtonGrayFSNews div.roundCont a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold
+}
+
+.roundButtonGrayFSNews div.roundCont a:hover {
+	text-decoration: underline
+}
 
 /*Button Curve (HP-RFI)*/
-.menuButtonCurve{height:auto !important; height:42px; min-height:42px; padding:4px 0; margin:0}
-.roundButtonCurve{float:left; height:auto !important; height:38px; min-height:38px; width:32.7%; margin:0; background:#ECEBED url('../images/bg_button_curve.gif') top right no-repeat}
-.firstButtonCurve{margin-right:6px}
-.lastButtonCurve{float:right}
-.roundButtonCurve div.roundTR{background:url('../images/bg_rb_tl.gif') top left no-repeat}
-.roundButtonCurve div.roundTL{background:url('../images/bg_rb_tr.gif') top right no-repeat}
-.roundButtonCurve div.roundBL{background:url('../images/bg_rb_bl.gif') bottom left no-repeat; height:auto !important; height:38px; min-height:38px}
-.roundButtonCurve div.roundBR{background:url('../images/bg_rb_br.gif') bottom right no-repeat; height:auto !important; height:38px; min-height:38px}
-.roundButtonCurve div.roundCont{font-size:1em; height:auto !important; height:38px; min-height:38px; padding:0; margin:0}
-.roundButtonCurve div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:12px 0 0 12px; background:url('../images/freccia_puntatore.gif') bottom right no-repeat}
-.roundButtonCurve div.roundCont a{display:block; text-decoration:none; font-weight:bold}
-.roundButtonCurve div.roundCont a:hover, .roundButton a:active{text-decoration:underline}
+.menuButtonCurve {
+	height: auto !important;
+	height: 42px;
+	min-height: 42px;
+	padding: 4px 0;
+	margin: 0
+}
+
+.roundButtonCurve {
+	float: left;
+	height: auto !important;
+	height: 38px;
+	min-height: 38px;
+	width: 32.7%;
+	margin: 0;
+	background: #ECEBED url('../images/bg_button_curve.gif') top right
+		no-repeat
+}
+
+.firstButtonCurve {
+	margin-right: 6px
+}
+
+.lastButtonCurve {
+	float: right
+}
+
+.roundButtonCurve div.roundTR {
+	background: url('../images/bg_rb_tl.gif') top left no-repeat
+}
+
+.roundButtonCurve div.roundTL {
+	background: url('../images/bg_rb_tr.gif') top right no-repeat
+}
+
+.roundButtonCurve div.roundBL {
+	background: url('../images/bg_rb_bl.gif') bottom left no-repeat;
+	height: auto !important;
+	height: 38px;
+	min-height: 38px
+}
+
+.roundButtonCurve div.roundBR {
+	background: url('../images/bg_rb_br.gif') bottom right no-repeat;
+	height: auto !important;
+	height: 38px;
+	min-height: 38px
+}
+
+.roundButtonCurve div.roundCont {
+	font-size: 1em;
+	height: auto !important;
+	height: 38px;
+	min-height: 38px;
+	padding: 0;
+	margin: 0
+}
+
+.roundButtonCurve div.roundCont p {
+	line-height: 1em;
+	margin: 0 12px 0 0;
+	padding: 12px 0 0 12px;
+	background: url('../images/freccia_puntatore.gif') bottom right
+		no-repeat
+}
+
+.roundButtonCurve div.roundCont a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold
+}
+
+.roundButtonCurve div.roundCont a:hover,.roundButton a:active {
+	text-decoration: underline
+}
 
 /*Box News - RFI / Lavora con noi / FSNews*/
-div#BoxNewsUp{padding:6px 12px 10px 12px; margin:0; background:#F5F4F6; height:auto !important;  height:202px; min-height:202px}
-div#BoxNewsUp2{padding:3px 12px; margin:0; background:#F5F4F6; height:auto !important;  height:70px; min-height:70px}
-div#BoxNewsUp2 div.contBoxNews{margin:.5em 0; padding-bottom:5px}	/*Add Fercredit*/
-div#BoxNews{padding:6px 0; margin:0}
-div#BoxNews p{color:#0a84cd; font-weight:bold; padding:5px 0; margin:0; text-align:justify; line-height:1.1em}
-div#BoxNews p a{font-weight:normal}
-div#BoxNewsDown{background:#E6E5E7; padding:2px 12px 0 12px; margin:0; height:auto !important; height:20px;  min-height:20px}
-div#RSS{float:left; padding-right:15px; margin:0; font-size:.9em}
-div#RSS img{float:left; margin-right:2px; padding:0}
-div#allNews{padding:0; margin:0}
-div#allNews div.r2{float:right; padding:2px 0 0 8px; background:url('../images/arrowLink.gif') left center no-repeat}
-div#allNews a{font-weight:bold; color:#0a84cd}
+div#BoxNewsUp {
+	padding: 6px 12px 10px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 202px;
+	min-height: 202px
+}
+
+div#BoxNewsUp2 {
+	padding: 3px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 70px;
+	min-height: 70px
+}
+
+div#BoxNewsUp2 div.contBoxNews {
+	margin: .5em 0;
+	padding-bottom: 5px
+}  /*Add Fercredit*/
+div#BoxNews {
+	padding: 6px 0;
+	margin: 0
+}
+
+div#BoxNews p {
+	color: #0a84cd;
+	font-weight: bold;
+	padding: 5px 0;
+	margin: 0;
+	text-align: justify;
+	line-height: 1.1em
+}
+
+div#BoxNews p a {
+	font-weight: normal
+}
+
+div#BoxNewsDown {
+	background: #E6E5E7;
+	padding: 2px 12px 0 12px;
+	margin: 0;
+	height: auto !important;
+	height: 20px;
+	min-height: 20px
+}
+
+div#RSS {
+	float: left;
+	padding-right: 15px;
+	margin: 0;
+	font-size: .9em
+}
+
+div#RSS img {
+	float: left;
+	margin-right: 2px;
+	padding: 0
+}
+
+div#allNews {
+	padding: 0;
+	margin: 0
+}
+
+div#allNews div.r2 {
+	float: right;
+	padding: 2px 0 0 8px;
+	background: url('../images/arrowLink.gif') left center no-repeat
+}
+
+div#allNews a {
+	font-weight: bold;
+	color: #0a84cd
+}
 
 /*Box News - HP In Stazione*/
-div#BoxNewsImg{padding:3px 4px 3px 12px; margin:0; background:#F5F4F6; height:auto !important;  height:234px; min-height:233px}
-div.BoxNewsImgInt{height:auto !important; height:58px; min-height:58px}
-div.BoxNewsImgInt p{color:#0a84cd; font-weight:bold; padding:0px 1em 0px 0; margin:0; text-align:left; line-height:1em; background:url('../images/freccia_puntatore.gif') center right no-repeat}
-div.BoxNewsImgInt p a{font-weight:normal; display:block}
+div#BoxNewsImg {
+	padding: 3px 4px 3px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 234px;
+	min-height: 233px
+}
+
+div.BoxNewsImgInt {
+	height: auto !important;
+	height: 58px;
+	min-height: 58px
+}
+
+div.BoxNewsImgInt p {
+	color: #0a84cd;
+	font-weight: bold;
+	padding: 0px 1em 0px 0;
+	margin: 0;
+	text-align: left;
+	line-height: 1em;
+	background: url('../images/freccia_puntatore.gif') center right
+		no-repeat
+}
+
+div.BoxNewsImgInt p a {
+	font-weight: normal;
+	display: block
+}
 
 /*Box News - HP FSNews*/
-div.TopTitFSNews{height:32px; margin:0px; padding-left:20px; background:#F5F4F6 url('../images/bg_box_curva2.gif') top right no-repeat}
-div.TopTitFSNews h4{margin-top:7px}
-div.BoxFSNewsUp{padding:6px 12px; margin:0; background:#F5F4F6; height:auto !important;  height:134px; min-height:134px}
-div.BoxFSNews{padding:6px 0; margin:0}
-div.BoxFSNews p{color:#0a84cd; font-weight:bold; padding:5px 0; margin:0; text-align:justify; line-height:1.1em}
-div.BoxFSNews p a{font-weight:normal}
-div.BoxFSNewsCenter{padding:6px 0}
-div.FSNewsLeftCol div.ContBoxCurva a.arrowLink{color:#0a84cd; font-weight: bold; padding-left:15px; background:url('../images/freccia_puntatore.gif') 2px left no-repeat}
-html>/**/body div.FSNewsLeftCol div.ContBoxCurva a.arrowLink{color:#0a84cd; background:url('../images/freccia_puntatore.gif') left center no-repeat} /* FireFox*/
+div.TopTitFSNews {
+	height: 32px;
+	margin: 0px;
+	padding-left: 20px;
+	background: #F5F4F6 url('../images/bg_box_curva2.gif') top right
+		no-repeat
+}
 
-/*spalletta a destra */
-div.BoxFSNewsCenterLeft{float:right; width:144px; background:#E6E5E7; margin:0;  height:auto !important; height:60px; min-height:60px}
-div.BoxFSNewsCenterLeft div.titolo{padding:12px 8px 4px 8px}
-div.BoxFSNewsCenterLeft div.titolo img{border:1px solid #C5C5C5; padding:1px; margin:.3em 0 .1em 0;}
-div.BoxFSNewsCenterLeft div.testo{padding:6px 8px 2px 8px; background:#F5F4F6}
-div.BoxFSNewsCenterLeft div.rbbotl{background-color:#F5F4F6}
-div.BoxFSNewsCenterRight{margin:0 144px 0 0; padding:6px 0}
-div.BoxFSNewsCenterRight div.FSNewsImgInt {padding-right:12px}
-html>/**/body div.BoxFSNewsCenterRight div.FSNewsImgInt{overflow:hidden;}/* FireFox*/
+div.TopTitFSNews h4 {
+	margin-top: 7px
+}
 
-/*spalletta a sinistra */
-div.BoxFSNewsCenterSpSx{float:left; width:144px; background:#E6E5E7; margin:0;  height:auto !important; height:60px; min-height:60px}
-div.BoxFSNewsCenterSpSx div.titolo{padding:12px 8px 4px 8px}
-div.BoxFSNewsCenterSpSx div.titolo img{border:1px solid #C5C5C5; padding:1px; margin:.3em 0 .1em 0;}
-div.BoxFSNewsCenterSpSx div.testo{padding:6px 8px 2px 8px; background:#F5F4F6}
-div.BoxFSNewsCenterSpSx div.rbbotl{background-color:#F5F4F6}
-div.BoxFSNewsCenterDx{ margin:0 0 0 144px; padding:6px 12px 6px 0;}
-div.BoxFSNewsCenterDx div.FSNewsImgInt{height:auto !important; height:40px; min-height:40px; border-top:1px solid #E1E1E1; padding:6px 0 4px 7px;}
-html>/**/body div.BoxFSNewsCenterDx div.FSNewsImgInt{overflow:hidden;}/* FireFox*/
-div.BoxFSNewsCenterDx div.firstNews{border-top:0px}
+div.BoxFSNewsUp {
+	padding: 6px 12px;
+	margin: 0;
+	background: #F5F4F6;
+	height: auto !important;
+	height: 134px;
+	min-height: 134px
+}
 
-div.BoxFSNewsCenter2{padding:6px 12px}
-div.BoxFSNewsDown{padding:6px 12px}
-div.FSNewsImgInt{height:auto !important; height:40px; min-height:40px; border-top:1px solid #E1E1E1; padding:6px 0 4px 0}
-div.firstNews{border-top:0px}
+div.BoxFSNews {
+	padding: 6px 0;
+	margin: 0
+}
+
+div.BoxFSNews p {
+	color: #0a84cd;
+	font-weight: bold;
+	padding: 5px 0;
+	margin: 0;
+	text-align: justify;
+	line-height: 1.1em
+}
+
+div.BoxFSNews p a {
+	font-weight: normal
+}
+
+div.BoxFSNewsCenter {
+	padding: 6px 0
+}
+
+div.FSNewsLeftCol div.ContBoxCurva a.arrowLink {
+	color: #0a84cd;
+	font-weight: bold;
+	padding-left: 15px;
+	background: url('../images/freccia_puntatore.gif') 2px left no-repeat
+}
+
+html> /**/ body div.FSNewsLeftCol div.ContBoxCurva a.arrowLink {
+	color: #0a84cd;
+	background: url('../images/freccia_puntatore.gif') left center no-repeat
+}  /* FireFox*/ /*spalletta a destra */
+div.BoxFSNewsCenterLeft {
+	float: right;
+	width: 144px;
+	background: #E6E5E7;
+	margin: 0;
+	height: auto !important;
+	height: 60px;
+	min-height: 60px
+}
+
+div.BoxFSNewsCenterLeft div.titolo {
+	padding: 12px 8px 4px 8px
+}
+
+div.BoxFSNewsCenterLeft div.titolo img {
+	border: 1px solid #C5C5C5;
+	padding: 1px;
+	margin: .3em 0 .1em 0;
+}
+
+div.BoxFSNewsCenterLeft div.testo {
+	padding: 6px 8px 2px 8px;
+	background: #F5F4F6
+}
+
+div.BoxFSNewsCenterLeft div.rbbotl {
+	background-color: #F5F4F6
+}
+
+div.BoxFSNewsCenterRight {
+	margin: 0 144px 0 0;
+	padding: 6px 0
+}
+
+div.BoxFSNewsCenterRight div.FSNewsImgInt {
+	padding-right: 12px
+}
+
+html> /**/ body div.BoxFSNewsCenterRight div.FSNewsImgInt {
+	overflow: hidden;
+}  /* FireFox*/ /*spalletta a sinistra */
+div.BoxFSNewsCenterSpSx {
+	float: left;
+	width: 144px;
+	background: #E6E5E7;
+	margin: 0;
+	height: auto !important;
+	height: 60px;
+	min-height: 60px
+}
+
+div.BoxFSNewsCenterSpSx div.titolo {
+	padding: 12px 8px 4px 8px
+}
+
+div.BoxFSNewsCenterSpSx div.titolo img {
+	border: 1px solid #C5C5C5;
+	padding: 1px;
+	margin: .3em 0 .1em 0;
+}
+
+div.BoxFSNewsCenterSpSx div.testo {
+	padding: 6px 8px 2px 8px;
+	background: #F5F4F6
+}
+
+div.BoxFSNewsCenterSpSx div.rbbotl {
+	background-color: #F5F4F6
+}
+
+div.BoxFSNewsCenterDx {
+	margin: 0 0 0 144px;
+	padding: 6px 12px 6px 0;
+}
+
+div.BoxFSNewsCenterDx div.FSNewsImgInt {
+	height: auto !important;
+	height: 40px;
+	min-height: 40px;
+	border-top: 1px solid #E1E1E1;
+	padding: 6px 0 4px 7px;
+}
+
+html> /**/ body div.BoxFSNewsCenterDx div.FSNewsImgInt {
+	overflow: hidden;
+}  /* FireFox*/
+div.BoxFSNewsCenterDx div.firstNews {
+	border-top: 0px
+}
+
+div.BoxFSNewsCenter2 {
+	padding: 6px 12px
+}
+
+div.BoxFSNewsDown {
+	padding: 6px 12px
+}
+
+div.FSNewsImgInt {
+	height: auto !important;
+	height: 40px;
+	min-height: 40px;
+	border-top: 1px solid #E1E1E1;
+	padding: 6px 0 4px 0
+}
+
+div.firstNews {
+	border-top: 0px
+}
 
 /* **Home Page - Bandi e Gare - Trenitalia** */
-body.bodyHPBandi{background:#195E59 url('../images/bg_hpBandi.jpg') top left no-repeat}
-div#containerHPBandi{position:absolute; top:0; left:0; width:100%;	margin:0; padding:0}
-body>div#containerHPBandi{height:auto}
-div#headerHPBandi{margin:0; padding:0; width:100%}
-body>div#containerHPBandi>div#headerHPBandi{display:table}
-div#logoHPBandi{height:72px;	margin:0; padding:0; float:left}
-div#logoHPBandi img{margin-left:0px; display:block}
-div#bannerHPBandi{padding:0; margin:0; height:338px}
-div#bannerHPBandi img{border:0}
+body.bodyHPBandi {
+	background: #195E59 url('../images/bg_hpBandi.jpg') top left no-repeat
+}
+
+div#containerHPBandi {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0
+}
+
+body>div#containerHPBandi {
+	height: auto
+}
+
+div#headerHPBandi {
+	margin: 0;
+	padding: 0;
+	width: 100%
+}
+
+body>div#containerHPBandi>div#headerHPBandi {
+	display: table
+}
+
+div#logoHPBandi {
+	height: 72px;
+	margin: 0;
+	padding: 0;
+	float: left
+}
+
+div#logoHPBandi img {
+	margin-left: 0px;
+	display: block
+}
+
+div#bannerHPBandi {
+	padding: 0;
+	margin: 0;
+	height: 338px
+}
+
+div#bannerHPBandi img {
+	border: 0
+}
 
 /*Home Page WebInfoPoint*/
-div.contHpWPIRight{height:auto !important; height:216px; min-height:216px; margin:12px 0 5px 66%}
-div.contHpWPIRight div#BoxNews{height:auto !important; height:130px; min-height:130px}
-div.contHpWPILeft {float:left; width:65%; margin:12px 0 5px 0}
-div.contHpWPILeftTop, div.contHpWPILeftTop div{height:auto !important; height:80px; min-height:80px;}
-div.contHpWPILeftBot{margin-top:6px}
-div.contBgImg{margin:10px 10px 7px 10px; padding:0; text-align:center}
-html>/**/body div.contBgImg{margin:0px 10px; padding:10px 0px 7px 0px}/* FireFox*/
-div.contBgImg img{border:none; padding:0; margin:0}
-div.contHpWPILeftBot div.ContBotRight{margin:0 0 0 43%}
-div.contHpWPILeftBot div.ContBotRightInt{height:auto !important; height:197px; min-height:197px; margin-bottom:6px}
-div.contHpWPILeftBot div.ContBotRight div.BotImgTesto{padding:6px 12px; height:auto !important; height:197px; min-height:197px}
-div.contHpWPILeftBot div.ContBotLeft{float:left; width:42%}
-div.contHpWPILeftBot div.ContBotLeft div.ContBotLeftInt{height:auto !important; height:102px; min-height:102px; margin-bottom:6px}
-div.contHpWPILeftBot div.ContBotLeft div.ContBotLeftInt div.ContBoxCurva{height:auto !important; height:102px; min-height:102px}
-div.contHpWPILeftBot div.ContBotLeft div.TopTitolo, div.contHpWPILeftBot div.ContBotRight div.TopTitolo{height:22px; margin:0px; padding-left:10px; background:#FFF; background-image:none}
-div.contHpWPILeftBot div.ContBotLeft div.BotImgTesto{padding:6px 12px; height:auto !important; height:68px; min-height:68px}
-div.contHpWPILeftBot div.ContBotLeft div.ImgCenter, div.contHpWPILeftBot div.ContBotRight div.ImgCenter{text-align:center; border:none; padding-top:5px}
+div.contHpWPIRight {
+	height: auto !important;
+	height: 216px;
+	min-height: 216px;
+	margin: 12px 0 5px 66%
+}
+
+div.contHpWPIRight div#BoxNews {
+	height: auto !important;
+	height: 130px;
+	min-height: 130px
+}
+
+div.contHpWPILeft {
+	float: left;
+	width: 65%;
+	margin: 12px 0 5px 0
+}
+
+div.contHpWPILeftTop,div.contHpWPILeftTop div {
+	height: auto !important;
+	height: 80px;
+	min-height: 80px;
+}
+
+div.contHpWPILeftBot {
+	margin-top: 6px
+}
+
+div.contBgImg {
+	margin: 10px 10px 7px 10px;
+	padding: 0;
+	text-align: center
+}
+
+html> /**/ body div.contBgImg {
+	margin: 0px 10px;
+	padding: 10px 0px 7px 0px
+}  /* FireFox*/
+div.contBgImg img {
+	border: none;
+	padding: 0;
+	margin: 0
+}
+
+div.contHpWPILeftBot div.ContBotRight {
+	margin: 0 0 0 43%
+}
+
+div.contHpWPILeftBot div.ContBotRightInt {
+	height: auto !important;
+	height: 197px;
+	min-height: 197px;
+	margin-bottom: 6px
+}
+
+div.contHpWPILeftBot div.ContBotRight div.BotImgTesto {
+	padding: 6px 12px;
+	height: auto !important;
+	height: 197px;
+	min-height: 197px
+}
+
+div.contHpWPILeftBot div.ContBotLeft {
+	float: left;
+	width: 42%
+}
+
+div.contHpWPILeftBot div.ContBotLeft div.ContBotLeftInt {
+	height: auto !important;
+	height: 102px;
+	min-height: 102px;
+	margin-bottom: 6px
+}
+
+div.contHpWPILeftBot div.ContBotLeft div.ContBotLeftInt div.ContBoxCurva
+	{
+	height: auto !important;
+	height: 102px;
+	min-height: 102px
+}
+
+div.contHpWPILeftBot div.ContBotLeft div.TopTitolo,div.contHpWPILeftBot div.ContBotRight div.TopTitolo
+	{
+	height: 22px;
+	margin: 0px;
+	padding-left: 10px;
+	background: #FFF;
+	background-image: none
+}
+
+div.contHpWPILeftBot div.ContBotLeft div.BotImgTesto {
+	padding: 6px 12px;
+	height: auto !important;
+	height: 68px;
+	min-height: 68px
+}
+
+div.contHpWPILeftBot div.ContBotLeft div.ImgCenter,div.contHpWPILeftBot div.ContBotRight div.ImgCenter
+	{
+	text-align: center;
+	border: none;
+	padding-top: 5px
+}
