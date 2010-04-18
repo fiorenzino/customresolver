@@ -19,7 +19,7 @@ import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
-public class TemplateHandler implements Serializable {
+public class MenuHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -63,7 +63,7 @@ public class TemplateHandler implements Serializable {
 	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore
 	 * protetto da parte delle sottoclassi
 	 */
-	public TemplateHandler() {
+	public MenuHandler() {
 
 	}
 

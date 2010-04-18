@@ -7,17 +7,18 @@ import it.flowercms.par.base.Ricerca;
 import it.flowercms.session.PageSession;
 import it.flowercms.session.TemplateSession;
 import it.flowercms.session.base.SuperSession;
-import it.flowercms.web.model.LocalDataModel;
 
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
+import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
@@ -27,10 +28,12 @@ public class PageHandler implements Serializable {
 
 	// --------------------------------------------------------
 
-	public static String BACK = "/private/amministrazione.xhtml";
-	public static String VIEW = "/private/pagine/scheda-pagina.xhtml";
-	public static String LIST = "/private/pagine/lista-pagine.xhtml";
-	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml";
+	private static String FACES_REDIRECT = "?faces-redirect=true";
+	
+	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
+	public static String VIEW = "/private/pagine/scheda-pagina.xhtml"+FACES_REDIRECT;
+	public static String LIST = "/private/pagine/lista-pagine.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml"+FACES_REDIRECT;
 
 	// ------------------------------------------------
 
@@ -58,7 +61,7 @@ public class PageHandler implements Serializable {
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
 
-	private String backPage = null;
+	private String backPage = BACK;
 
 	// ------------------------------------------------
 
@@ -109,7 +112,8 @@ public class PageHandler implements Serializable {
 	}
 
 	protected void refreshModel() {
-		setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
+//		setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
+		setModel( new ListDataModel<Page>( session.getAllList() ));
 	}
 
 	/**
@@ -207,13 +211,8 @@ public class PageHandler implements Serializable {
 		Page p = new Page();
 		p.setTemplate(new TemplateImpl());
 		p.getTemplate().setTemplate(new Template());
-		// settaggi nel super handler
-		try {
-			this.element = (Page) ricerca.getOggetto().getClass().newInstance();
-		} catch (Exception e) {
-			// logger.error(e.getMessage());
-			e.printStackTrace();
-		}
+		// settaggi 
+		this.element = p;
 		// vista di destinazione
 		return editPage();
 	}
@@ -240,6 +239,7 @@ public class PageHandler implements Serializable {
 
 	// -----------------------------------------------------
 
+	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
 		Page p = new Page();
@@ -255,6 +255,7 @@ public class PageHandler implements Serializable {
 		return viewPage();
 	}
 
+	@Transactional
 	public String update() {
 		// recupero dati in input
 		Page p = new Page();
@@ -271,6 +272,7 @@ public class PageHandler implements Serializable {
 		return viewPage();
 	}
 
+	@Transactional
 	public String delete() {
 		// operazione su db
 		getSession().delete(getId(element));
@@ -298,5 +300,34 @@ public class PageHandler implements Serializable {
 		// vista di arrivo
 		return viewPage();
 	}
+	
+	// -----------------------------------------------------
 
+	
+//	public List<Page> getList() {
+//		return session.getAllList();
+//	}
+
+	public String viewElement(Object id) {
+//		for (Page t : session.getAllList() ) {
+//			if ( t.getId().equals(id) ) {
+//				this.element = t;
+//				break;
+//			}
+//		}
+		this.element = session.fetch(id);
+		return viewPage();
+	}
+
+	public String modElement(Object id) {
+//		for (Page t : session.getAllList() ) {
+//			if ( t.getId().equals(id) ) {
+//				this.element = t;
+//				break;
+//			}
+//		}
+		this.element = session.fetch(id);
+		return editPage();
+	}
+	
 }
