@@ -13,10 +13,7 @@
 		<h:form id="central">
 			<p:panel header="Lista modelli">
 				<p:dataTable var="t"
-					value="#{templateHandler.model.wrappedData} ">
-					<p:column>
-						<h:outputText value="#{rowIndex+1} " />
-					</p:column>
+					value="#{templateHandler.list} ">
 					<p:column>
 						<f:facet name="header">
 							Nome
