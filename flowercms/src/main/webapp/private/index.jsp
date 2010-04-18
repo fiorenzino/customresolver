@@ -1,1 +1,1 @@
-<jsp:forward page="index.jsf"></jsp:forward>
+<jsp:forward page="amministrazione.jsf"></jsp:forward>
