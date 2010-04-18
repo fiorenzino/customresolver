@@ -90,4 +90,8 @@ public class Pubblicazione implements Serializable {
 	public void setDocumenti(List<Documento> documenti) {
 		this.documenti = documenti;
 	}
+
+	public void addDocumento(Documento documento) {
+		getDocumenti().add(documento);
+	}
 }
