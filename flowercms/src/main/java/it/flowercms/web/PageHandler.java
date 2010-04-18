@@ -1,7 +1,10 @@
 package it.flowercms.web;
 
+import it.flowercms.par.Page;
 import it.flowercms.par.Template;
+import it.flowercms.par.TemplateImpl;
 import it.flowercms.par.base.Ricerca;
+import it.flowercms.session.PageSession;
 import it.flowercms.session.TemplateSession;
 import it.flowercms.session.base.SuperSession;
 import it.flowercms.web.model.LocalDataModel;
@@ -17,7 +20,7 @@ import org.apache.log4j.Logger;
 
 @Named
 @SessionScoped
-public class TemplateHandler
+public class PageHandler
 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,27 +28,30 @@ implements Serializable {
 	// --------------------------------------------------------
 
 	public static String BACK = "/private/amministrazione.xhtml";
-	public static String VIEW = "/private/modelli/scheda-modello.xhtml";
-	public static String LIST = "/private/modelli/lista-modelli.xhtml";
-	public static String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml";
+	public static String VIEW = "/private/pagine/scheda-pagina.xhtml";
+	public static String LIST = "/private/pagine/lista-pagine.xhtml";
+	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml";
 
-	// --------------------------------------------------------
-
-	@Inject
-	TemplateSession session;
-
-	@Inject
-	PropertiesHandler propertiesHandler;
-	
 	// ------------------------------------------------
 
 	protected Logger logger = Logger.getLogger(getClass());
 
-	// ------------------------------------------------
+	// --------------------------------------------------------
 
-	private Ricerca<Template> ricerca;
-	private Template element;
-	private DataModel<Template> model;
+	@Inject
+	PageSession session;
+
+	@Inject
+	PropertiesHandler propertiesHandler;
+
+	@Inject
+	TemplateSession templateSession;
+	
+	// --------------------------------------------------------
+
+	private Ricerca<Page> ricerca;
+	private Page element;
+	private DataModel<Page> model;
 
 	private int rowCount;
 	private int pageSize = 10;
@@ -60,9 +66,9 @@ implements Serializable {
 	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore protetto
 	 * da parte delle sottoclassi
 	 */
-	protected TemplateHandler(Class<Template> clazz) {
+	protected PageHandler(Class<Page> clazz) {
 		super();
-		ricerca = new Ricerca<Template>(clazz);
+		ricerca = new Ricerca<Page>(clazz);
 		gatherCriteria();
 	}
 
@@ -72,32 +78,34 @@ implements Serializable {
 	 * Metodo da implementare per assicurare che i criteri di ricerca
 	 * contengano sempre tutti i vincoli desiderati (es: identità utente, selezioni esterne, ecc...)
 	 */
-	protected void gatherCriteria() { 
-	} 
+	protected void gatherCriteria() {
+		ricerca.getOggetto().setTemplate( new TemplateImpl() );
+		ricerca.getOggetto().getTemplate().setTemplate( new Template() );
+	}
 	
 	/**
 	 * Metodo per ottenere l'id di ricerca
 	 */
-	protected Object getId(Template t) { return t.getId(); }
+	protected Object getId(Page t) { return t.getId(); }
 
-	protected SuperSession<Template> getSession() { return session; }
+	protected SuperSession<Page> getSession() { return session; }
 	
-	public Ricerca<Template> getRicerca() {
+	public Ricerca<Page> getRicerca() {
 		return this.ricerca;
 	}
 	
-	public DataModel<Template> getModel() {
+	public DataModel<Page> getModel() {
 		if (model == null)
 			refreshModel();
 		return model;
 	}
 
-	public void setModel(DataModel<Template> model) {
+	public void setModel(DataModel<Page> model) {
 		this.model = model;
 	}
 
 	protected void refreshModel() {
-		setModel( new LocalDataModel<Template>(pageSize, ricerca, getSession()) );
+		setModel( new LocalDataModel<Page>(pageSize, ricerca, getSession()) );
 	}
 
 	/**
@@ -113,11 +121,11 @@ implements Serializable {
 
 	// -----------------------------------------------------
 
-	public Template getElement() {
+	public Page getElement() {
 		return element;
 	}
 
-	public void setElement(Template element) {
+	public void setElement(Page element) {
 		this.element = element;
 	}
 
@@ -156,11 +164,11 @@ implements Serializable {
 	// -----------------------------------------------------
 
 	public void backPage(String backPage) { this.backPage = backPage; }
-	public String backPage() { return this.backPage; }
+	public String backPage() { return this.backPage == null ? BACK : this.backPage; }
 
-	public String viewPage() { return null; }
-	public String listPage() { return null; }
-	public String editPage() { return null; }
+	public String viewPage() { return VIEW; }
+	public String listPage() { return LIST; }
+	public String editPage() { return NEW_OR_EDIT; }
 	
 	// -----------------------------------------------------
 
@@ -178,10 +186,12 @@ implements Serializable {
 
 	public String addElement() {
 		// impostazioni locali
-		// n.d.
+		Page p = new Page();
+		p.setTemplate( new TemplateImpl() );
+		p.getTemplate().setTemplate( new Template() );
 		// settaggi nel super handler
 		try {
-			this.element = (Template) ricerca.getOggetto().getClass().newInstance();
+			this.element = (Page) ricerca.getOggetto().getClass().newInstance();
 		} catch (Exception e) {
 //			logger.error(e.getMessage());
 			e.printStackTrace();
@@ -192,7 +202,7 @@ implements Serializable {
 	
 	public String viewElement() {
 		// fetch dei dati
-		Template t = (Template) getModel().getRowData();
+		Page t = (Page) getModel().getRowData();
 		t = getSession().fetch( getId(t) );
 		// settaggi nel super handler
 		this.element = t;
@@ -202,7 +212,7 @@ implements Serializable {
 
 	public String modElement() {
 		// fetch dei dati;
-		Template t = (Template) getModel().getRowData();
+		Page t = (Page) getModel().getRowData();
 		t = getSession().fetch( getId(t) );
 		// settaggi nel super handler
 		this.element = t;
@@ -214,23 +224,31 @@ implements Serializable {
 	
 	public String save() {
 		// recupero e preelaborazioni dati in input
-			// nelle sottoclassi!! ovverride!
+		Page p = new Page();
+		p.setTemplate( new TemplateImpl() );
+		p.getTemplate().setTemplate( new Template() );
 		// salvataggio
 		element = getSession().persist(element);
 		// refresh locale
 		refreshModel();
+		// altre dipendenze
+		propertiesHandler.setPageItems(null);
 		// vista di destinazione
 		return viewPage();
 	}
 
 	public String update() {
 		// recupero dati in input
-			// nelle sottoclassi!! ovverride!
+		Page p = new Page();
+		p.setTemplate( new TemplateImpl() );
+		p.getTemplate().setTemplate( new Template() );
 		// salvataggio
 		getSession().update( element );
 		// refresh locale
 		element = getSession().fetch( getId(element) );
 		refreshModel();
+		// altre dipendenze
+		propertiesHandler.setPageItems(null);
 		// vista di destinzione
 		return viewPage();
 	}
@@ -240,8 +258,9 @@ implements Serializable {
 		getSession().delete( getId(element) );
 		// refresh locale
 		refreshModel();
-		// refresh super handler e altre dipendenze
 		element = null ;
+		// altre dipendenze
+		propertiesHandler.setPageItems(null);
 		// visat di destinazione
 		return listPage();
 	}
