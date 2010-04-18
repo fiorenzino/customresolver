@@ -1,11 +1,18 @@
 package it.flowercms.web;
 
-import it.flowercms.par.Template;
+import it.flowercms.par.MenuGroup;
+import it.flowercms.par.MenuItem;
+import it.flowercms.par.Page;
 import it.flowercms.par.base.Ricerca;
-import it.flowercms.session.TemplateSession;
+import it.flowercms.session.MenuSession;
+import it.flowercms.session.PageSession;
 import it.flowercms.session.base.SuperSession;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -15,6 +22,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
+import org.primefaces.event.NodeSelectEvent;
+import org.primefaces.model.DualListModel;
+import org.primefaces.model.TreeNode;
 import org.seamframework.tx.Transactional;
 
 @Named
@@ -27,15 +37,20 @@ public class MenuHandler implements Serializable {
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 
-	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-	public static String VIEW = "/private/modelli/scheda-modello.xhtml"+FACES_REDIRECT;
-	public static String LIST = "/private/modelli/lista-modelli.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml"+FACES_REDIRECT;
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String VIEW = "/private/menu/percorsi.xhtml" + FACES_REDIRECT;
+	public static String LIST = "/private/menu/percorsi.xhtml" + FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/menu/percorsi.xhtml"
+			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
 	@Inject
-	TemplateSession session;
+	MenuSession session;
+
+	@Inject
+	PageSession pageSession;
 
 	@Inject
 	PropertiesHandler propertiesHandler;
@@ -46,9 +61,9 @@ public class MenuHandler implements Serializable {
 
 	// ------------------------------------------------
 
-	private Ricerca<Template> ricerca;
-	private Template element;
-	private DataModel<Template> model;
+	private Ricerca<MenuGroup> ricerca;
+	private MenuGroup element;
+	private DataModel<MenuGroup> model;
 
 	private int rowCount;
 	private int pageSize = 10;
@@ -56,6 +71,11 @@ public class MenuHandler implements Serializable {
 	private int scrollerPage = 1;
 
 	private String backPage = BACK;
+
+	private TreeNode root;
+	private TreeNode selectedDocument;
+	private DualListModel<MenuItem> dualListModel;
+	private List<Page> pages;
 
 	// ------------------------------------------------
 
@@ -76,37 +96,39 @@ public class MenuHandler implements Serializable {
 	 */
 	@PostConstruct
 	protected void gatherCriteria() {
-		ricerca = new Ricerca<Template>(Template.class);
+		ricerca = new Ricerca<MenuGroup>(MenuGroup.class);
 	}
 
 	/**
 	 * Metodo per ottenere l'id di ricerca
 	 */
-	protected Object getId(Template t) {
+	protected Object getId(MenuGroup t) {
 		return t.getId();
 	}
 
-	protected SuperSession<Template> getSession() {
+	protected SuperSession<MenuGroup> getSession() {
 		return session;
 	}
 
-	public Ricerca<Template> getRicerca() {
+	public Ricerca<MenuGroup> getRicerca() {
 		return this.ricerca;
 	}
 
-	public DataModel<Template> getModel() {
+	public DataModel<MenuGroup> getModel() {
 		if (model == null)
 			refreshModel();
 		return model;
 	}
 
-	public void setModel(DataModel<Template> model) {
+	public void setModel(DataModel<MenuGroup> model) {
 		this.model = model;
 	}
 
 	protected void refreshModel() {
-//		setModel(new LocalDataModel<Template>(pageSize, ricerca, getSession()));
-		setModel( new ListDataModel<Template>( session.getAllList() ));
+		// setModel(new LocalDataModel<Template>(pageSize, ricerca,
+		// getSession()));
+		setModel(new ListDataModel<MenuGroup>(session.getAllList()));
+		this.pages = pageSession.getAllList();
 	}
 
 	/**
@@ -118,16 +140,18 @@ public class MenuHandler implements Serializable {
 	public String reset() {
 		this.element = null;
 		this.model = null;
-		return listPage();
+		return backPage();
 	}
 
 	// -----------------------------------------------------
 
-	public Template getElement() {
+	public MenuGroup getElement() {
+		if (element == null)
+			element = new MenuGroup();
 		return element;
 	}
 
-	public void setElement(Template element) {
+	public void setElement(MenuGroup element) {
 		this.element = element;
 	}
 
@@ -173,9 +197,17 @@ public class MenuHandler implements Serializable {
 		return this.backPage;
 	}
 
-	public String viewPage() { return VIEW; }
-	public String listPage() { return LIST; }
-	public String editPage() { return NEW_OR_EDIT; }
+	public String viewPage() {
+		return VIEW;
+	}
+
+	public String listPage() {
+		return LIST;
+	}
+
+	public String editPage() {
+		return NEW_OR_EDIT;
+	}
 
 	// -----------------------------------------------------
 
@@ -193,35 +225,27 @@ public class MenuHandler implements Serializable {
 
 	public String addElement() {
 		// impostazioni locali
+		MenuGroup m = new MenuGroup();
+		m.setLista(new ArrayList<MenuItem>());
 		// n.d.
 		// settaggi nel super handler
-		try {
-			this.element = (Template) ricerca.getOggetto().getClass()
-					.newInstance();
-		} catch (Exception e) {
-			// logger.error(e.getMessage());
-			e.printStackTrace();
-		}
+		this.element = m;
 		// vista di destinazione
 		return editPage();
 	}
 
 	public String viewElement() {
 		// fetch dei dati
-		Template t = (Template) getModel().getRowData();
-		t = getSession().fetch(getId(t));
-		// settaggi nel super handler
-		this.element = t;
+		this.element = (MenuGroup) getModel().getRowData();
+		this.element = getSession().fetch(getId(this.element));
 		// vista di destinazione
 		return viewPage();
 	}
 
 	public String modElement() {
 		// fetch dei dati;
-		Template t = (Template) getModel().getRowData();
-		t = getSession().fetch(getId(t));
-		// settaggi nel super handler
-		this.element = t;
+		this.element = (MenuGroup) getModel().getRowData();
+		this.element = getSession().fetch(getId(this.element));
 		// vista di destinazione
 		return editPage();
 	}
@@ -237,8 +261,7 @@ public class MenuHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		// altre dipendenze
-		propertiesHandler.setTemplateItems(null);
-		propertiesHandler.setTemplateItems(null);
+		// n.d.
 		// vista di destinazione
 		return viewPage();
 	}
@@ -253,7 +276,7 @@ public class MenuHandler implements Serializable {
 		element = getSession().fetch(getId(element));
 		refreshModel();
 		// altre dipendenze
-		propertiesHandler.setTemplateItems(null);
+		// n.d.
 		// vista di destinzione
 		return viewPage();
 	}
@@ -266,7 +289,7 @@ public class MenuHandler implements Serializable {
 		refreshModel();
 		element = null;
 		// altre dipendenze
-		propertiesHandler.setTemplateItems(null);
+		// n.d.
 		// visat di destinazione
 		return listPage();
 	}
@@ -287,33 +310,134 @@ public class MenuHandler implements Serializable {
 		return viewPage();
 	}
 
-	
 	// ----------------------------------------------------
-	
-//	public List<Template> getList() {
-//		return session.getAllList();
-//	}
+
+	// public List<Template> getList() {
+	// return session.getAllList();
+	// }
 
 	public String viewElement(Object id) {
-//		for (Template t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
+		// for (Template t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
 		this.element = session.fetch(id);
 		return viewPage();
 	}
 
 	public String modElement(Object id) {
-//		for (Template t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
+		// for (Template t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
 		this.element = session.fetch(id);
 		return editPage();
 	}
 
+	// -----------------------------------------------------------------
+
+	@SuppressWarnings("unchecked")
+	public TreeNode getModelTree() {
+
+		root = new TreeNode("root", null);
+
+		for (MenuGroup mg : (List<MenuGroup>) getModel().getWrappedData()) {
+			TreeNode mgn = new TreeNode(mg, root);
+			if (mg.getLista() != null) {
+				for (MenuItem mi : mg.getLista()) {
+					@SuppressWarnings("unused")
+					TreeNode min = new TreeNode("document", mi, mgn);
+				}
+			}
+		}
+
+		return root;
+	}
+
+	public TreeNode getSelectedDocument() {
+		return selectedDocument;
+	}
+
+	public void setSelectedDocument(TreeNode selectedDocument) {
+		this.selectedDocument = selectedDocument;
+	}
+
+	public void onNodeSelect(NodeSelectEvent event) {
+		TreeNode selected = event.getTreeNode();
+		if (! "document".equals(selected.getType())) {
+			selectedDocument = selected;
+			MenuGroup menuGroup = ((MenuGroup) selected.getData());
+			Map<String, MenuItem> groupItems = new HashMap<String, MenuItem>();
+			if (menuGroup.getLista() != null) {
+				for (MenuItem item : menuGroup.getLista()) {
+					groupItems.put(item.getPagina().getId(), item);
+				}
+			}
+			List<MenuItem> source = new ArrayList<MenuItem>();
+			List<MenuItem> target = new ArrayList<MenuItem>();
+			for (Page page : this.pages) {
+				if (groupItems.get(page.getId()) != null) {
+					target.add(groupItems.get(page.getId()));
+				} else {
+					source.add(new MenuItem(page, menuGroup));
+				}
+			}
+			dualListModel = new DualListModel<MenuItem>(source, target);
+			logger.debug("Selected:" + selectedDocument.getData());
+		}
+	}
+
+	public DualListModel<MenuItem> getDualListModel() {
+		if ( dualListModel == null )
+			dualListModel = new DualListModel<MenuItem>();
+		return dualListModel;
+	}
+
+	public void setDualListModel(DualListModel<MenuItem> dualListModel) {
+		this.dualListModel = dualListModel;
+	}
+
+	public String confirmItems() {
+		// confermo quelli già presenti
+		MenuGroup menuGroup = (MenuGroup) selectedDocument.getData();
+		if ( menuGroup.getLista() == null ) {
+			menuGroup.setLista( new ArrayList<MenuItem>() );
+		}
+		for (MenuItem giaPresente : menuGroup.getLista()) {
+			boolean mantenuto = false;
+			for (MenuItem scelto : dualListModel.getTarget()) {
+				if (giaPresente.getId().equals(scelto.getId()))
+					mantenuto = true;
+				break;
+			}
+			giaPresente.setAttivo(mantenuto);
+		}
+		// aggiungo i nuovi
+		List<MenuItem> nuovi = new ArrayList<MenuItem>();
+		for (MenuItem scelto : dualListModel.getTarget()) {
+			boolean aggiunto = true;
+			for (MenuItem giaPresente : menuGroup.getLista()) {
+				if (giaPresente.getId().equals(scelto.getId()))
+					aggiunto = true;
+				break;
+			}
+			if (aggiunto)
+				nuovi.add(scelto);
+		}
+		for (MenuItem nuovo : nuovi) {
+			menuGroup.getLista().add(nuovo);
+		}
+		session.update(menuGroup);
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public boolean isGruppi() {
+		return ((List<MenuGroup>) getModel().getWrappedData()).size() > 0 ? true
+				: false;
+	}
 }
