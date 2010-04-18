@@ -2,8 +2,14 @@ package it.flowercms.web.utils;
 
 import it.flowercms.par.Page;
 
-public class TemplateUtils {
+public class PageUtils {
 
+	public static String createPageId(String title) {
+		title = title.replaceAll("[^a-zA-Z0-9\\s]", "")
+				.replaceAll("[\\s]", "-");
+		return title.toLowerCase();
+	}
+	
 	public static Page generateContent(Page page) {
 		StringBuffer contentBuffer = new StringBuffer();
 		if ((page.getTemplate().getHeader() != null)
@@ -52,4 +58,5 @@ public class TemplateUtils {
 		page.setContent(contentBuffer.toString());
 		return page;
 	}
+	
 }
