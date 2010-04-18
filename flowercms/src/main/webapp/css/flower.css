@@ -1,0 +1,47 @@
+body {
+	font-family: arial, verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+
+.controlButton {
+	margin: 5px;
+}
+
+.signImageUploadForm ul {
+	list-style-type: none;
+	/*Remove all spacings from the list items*/
+	padding: 0;
+	margin: 0;
+	height: auto;
+}
+
+.signImageUploadForm ul li {
+	padding: 3px;
+	margin: 0;
+	display: inline;
+}
+
+.signImageUploadForm textarea[type="textarea"],input[type="text"],input[type="password"],select
+	{
+	width: 120px;
+}
+
+.rich-message-marker img {
+	padding-right: 7px;
+}
+
+.col {
+	text-align: center;
+}
+
+.no_link {
+	color: white;
+}
+
+.messages {
+	color: #0f19d6;
+	font-weight: bold;
+	text-decoration: underline;
+}
