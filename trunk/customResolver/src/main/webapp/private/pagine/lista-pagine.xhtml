@@ -11,14 +11,25 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<ui:repeat value="#{pagesHandler.allpages}" var="page">
-				<h:outputText id="nome" value="( #{page.id} )" />
-				<h:outputLink value="/pages/#{page.id}" target="_blank">#{page.title}</h:outputLink>
-			 - 
-			<h:commandLink action="#{pagesHandler.modPage(page.id)}" value="[m]" />
-				<br />
-			</ui:repeat>
+			<p:dataTable var="pagina" value="#{pagesHandler.all}">
+				<p:column>
+					<f:facet name="header">id</f:facet>
+					<h:outputText value="#{pagina.id}" />
+				</p:column>
 
+				<p:column>
+					<f:facet name="header">titolo</f:facet>
+					<h:outputText value="#{pagina.title}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">operazioni</f:facet>
+					<h:outputLink value="/pages/#{pagina.id}" target="_blank">[v]</h:outputLink>
+					- <h:commandLink action="#{pagesHandler.modPage(pagina.id)}"
+						value="[m]" />
+				</p:column>
+			</p:dataTable>
+			<br />
 			<br />
 			<h:commandButton action="#{pagesHandler.createPages}"
 				value="crea pagine (inizializza sistema)" />

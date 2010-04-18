@@ -65,63 +65,10 @@
 	<div class="menuIntBotLeft">
 	<div class="menuIntBotRight">
 	<h3 class="hidden">Menu principale</h3>
-	<ul id="menu_a_2livelli" title="Menu' di primo livello">
-		<li class="M5cellaprima"><a href="index.html" title=""
-			accesskey="1">Home</a></li>
 
-		<li class="M5cellaunica"><a href="comune.html" title=""
-			accesskey="2">Amministrazione</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">utenti</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">permessi</a></li>
-		</ul>
-		</li>
-		<li class="M5cellaunica"><a href="comune.html" title=""
-			accesskey="3">Pagine</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">lista</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">nuova</a></li>
-		</ul>
-
-		</li>
-		<li class="M5cellaunica"><a href="turismo.html" title=""
-			accesskey="4">Templates</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">lista</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">nuova</a></li>
-		</ul>
-		</li>
-		<li class="M5cellaunica"><a href="cultura.html" title=""
-			accesskey="5">Menu</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">lista</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">nuova</a></li>
-		</ul>
-
-		</li>
-		<li class="M5cellaunica"><a href="cultura.html" title=""
-			accesskey="6">Albo Pretorio</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">lista</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">nuova</a></li>
-		</ul>
-		</li>
-		<li class="M5cellaunica"><a href="cultura.html" title=""
-			accesskey="7">Notizie</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">lista</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">nuova</a></li>
-		</ul>
-
-		</li>
-		<li class="M5cellaultima"><a href="cultura.html" title=""
-			accesskey="8">Strutture</a>
-		<ul>
-			<li><a href="comune.html" title="" accesskey="2">lista</a></li>
-			<li><a href="turismo.html" title="" accesskey="3">nuova</a></li>
-		</ul>
-		</li>
-	</ul>
+	<ui:insert name="menu-alto">
+		<ui:include src="menu-alto.xhtml" />
+	</ui:insert>
 
 	<p class="hidden">[ <a href="#top">Torna all'inizio della
 	pagina</a> ]</p>
@@ -164,43 +111,9 @@
 	</div>
 	</div>
 	</div>
-	<div class="BoxRedTitleBot">
-
-
-	<div class="txt">
-	<h4><a href="index.html" title="" class="arrowLink ">Home</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="index.html" title="" class="arrowLink ">Amministrazione</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="index.html" title="" class="arrowLink ">Pagine</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="#" title="" class="arrowLink ">Templates</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="#" title="" class="arrowLink ">Menu</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="#" title="" class="arrowLink ">Albo Pretorio</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="#" title="" class="arrowLink ">Notizie</a></h4>
-	</div>
-	<div class="RowBot"></div>
-	<div class="txt">
-	<h4><a href="#" title="" class="arrowLink ">Strutture</a></h4>
-	</div>
-	<div class="RowBot"></div>
-
-	</div>
+	<div class="BoxRedTitleBot"><ui:insert name="menu-dx">
+		<ui:include src="menu-sx.xhtml" />
+	</ui:insert></div>
 	</div>
 	</div>
 	</div>
