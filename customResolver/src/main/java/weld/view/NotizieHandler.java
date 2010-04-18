@@ -35,7 +35,7 @@ public class NotizieHandler implements Serializable {
 		return "/private/notizie/lista-notizie?redirect=true";
 	}
 
-	public String modNotizia(Long id) {
+	public String modNotizia(String id) {
 		this.notizia = notizieSession.find(id);
 		return "/private/notizie/gestione-notizia?redirect=true";
 	}
@@ -45,7 +45,7 @@ public class NotizieHandler implements Serializable {
 		return "/private/notizie/scheda-notizia?redirect=true";
 	}
 
-	public String detailNotizia(Long id) {
+	public String detailNotizia(String id) {
 		this.notizia = notizieSession.find(id);
 		return "/private/notizie/scheda-notizia?redirect=true";
 	}

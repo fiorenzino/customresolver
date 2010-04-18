@@ -1,6 +1,7 @@
 package weld.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import weld.model.Galleria;
+import weld.model.attachment.Immagine;
 import weld.session.GallerieSession;
 
 @Named
@@ -25,7 +27,17 @@ public class GallerieHandler implements Serializable {
 		return "/private/notizie/gestione-galleria?redirect=true";
 	}
 
+	public void addFoto() {
+		this.galleria.addImmagine(new Immagine());
+	}
+
 	public String saveGalleria() {
+		List<Immagine> immagini = new ArrayList<Immagine>();
+		for (Immagine immagine : this.galleria.getImmagini()) {
+			if (immagine.getUploadedData() != null)
+				immagini.add(immagine);
+		}
+		this.galleria.setImmagini(immagini);
 		gallerieSession.persist(this.galleria);
 		return "/private/notizie/scheda-galleria?redirect=true";
 	}

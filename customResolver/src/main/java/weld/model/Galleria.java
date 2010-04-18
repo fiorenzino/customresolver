@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import weld.model.attachment.Immagine;
 
@@ -32,6 +34,7 @@ public class Galleria implements Serializable {
 		this.titolo = titolo;
 	}
 
+	@Lob
 	public String getDescrizione() {
 		return descrizione;
 	}
@@ -40,6 +43,7 @@ public class Galleria implements Serializable {
 		this.descrizione = descrizione;
 	}
 
+	@OneToMany
 	public List<Immagine> getImmagini() {
 		if (this.immagini == null)
 			this.immagini = new ArrayList<Immagine>();

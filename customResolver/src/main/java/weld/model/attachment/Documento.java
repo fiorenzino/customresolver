@@ -80,4 +80,5 @@ public class Documento implements Serializable {
 	public void setUploadedData(UploadedFile uploadedData) {
 		this.uploadedData = uploadedData;
 	}
+
 }
