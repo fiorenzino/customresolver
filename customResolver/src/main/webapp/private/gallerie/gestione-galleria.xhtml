@@ -12,35 +12,30 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputLabel for="titolo" value="Titolo" />
-			<h:inputText id="titolo" value="#{notizieHandler.notizia.titolo}" />
+			<h:inputText id="titolo" value="#{gallerieHandler.galleria.titolo}" />
 			<br />
 
-			<h:outputLabel for="autore" value="Autore:" />
-			<h:inputText id="autore" value="#{notizieHandler.notizia.autore}" />
+			<h:outputLabel for="descrizione" value="Descrizione:" />
+			<p:editor id="descrizione"
+				value="#{gallerieHandler.galleria.descrizione}" width="640px"
+				height="320px"></p:editor>
 			<br />
 
-			<h:outputLabel for="anteprima" value="Anteprima:" />
-			<h:inputTextarea id="anteprima" cols="20" rows="20"
-				value="#{notizieHandler.notizia.anteprima}" />
-			<br />
 
-			<h:outputLabel for="contenuto" value="Contenuto:" />
-			<p:editor id="contenuto" value="#{notizieHandler.notizia.contenuto}"
-				width="640px" height="320px"></p:editor>
-			<br />
 
-			<h:commandButton action="#{notizieHandler.saveNotizia}"
-				value="crea notizia" immediate="false"
-				rendered="#{not notizieHandler.editMode}" />
 
-			<h:commandButton action="#{notizieHandler.updateNotizia}"
-				value="salva notizia" immediate="false"
-				rendered="#{notizieHandler.editMode}" />
+			<h:commandButton action="#{gallerieHandler.saveGalleria}"
+				value="crea galleria" immediate="false"
+				rendered="#{not gallerieHandler.editMode}" />
 
-			<h:commandButton action="#{notizieHandler.deleteNotizia}"
-				value="elimina pagina" rendered="#{pagesHandler.editMode}"
+			<h:commandButton action="#{gallerieHandler.updateGalleria}"
+				value="salva galleria" immediate="false"
+				rendered="#{gallerieHandler.editMode}" />
+
+			<h:commandButton action="#{gallerieHandler.deleteGalleria}"
+				value="elimina galleria" rendered="#{gallerieHandler.editMode}"
 				immediate="true"
-				onclick="if (!confirm('Vuoi davvero eliminare questa notizia?')) return false" />
+				onclick="if (!confirm('Vuoi davvero eliminare questa galleria?')) return false" />
 		</h:form>
 
 	</ui:define>

@@ -27,6 +27,14 @@
 					value="Crea nuova Notizia" />
 			</p:panel>
 
+			<p:panel header="Gestione Gallerie">
+				<h:commandLink action="/private/gallerie/lista-gallerie.jsf"
+					value="lista notizie" />
+				<br />
+				<h:commandLink action="#{gallerieHandler.addGalleria}"
+					value="Crea nuova Galleria" />
+			</p:panel>
+
 			<p:panel header="Gestione Attivita'">
 				<h:commandLink action="/private/attivita/lista-attivita.jsf"
 					value="lista attivita'" />
