@@ -3,7 +3,7 @@ package it.flowercms.web.resolver;
 import it.flowercms.par.Page;
 import it.flowercms.session.PageSession;
 import it.flowercms.web.utils.JSFUtils;
-import it.flowercms.web.utils.TemplateUtils;
+import it.flowercms.web.utils.PageUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,9 +44,8 @@ public class DBURLConnection extends URLConnection {
 			this.form = url.getFile().substring(url.getFile().indexOf("/") + 1);
 			System.out.println("form: " + this.form);
 			try {
-				this.currentPage = JSFUtils.getPageHandler(new PageSession())
-						.find(this.form);
-				TemplateUtils.generateContent(this.currentPage);
+				this.currentPage = JSFUtils.getBean(PageSession.class).find(this.form);
+				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
 				System.out.println(this.content);
 			} catch (Exception e) {
