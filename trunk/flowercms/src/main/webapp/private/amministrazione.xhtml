@@ -1,21 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-
-<ui:composition template="/WEB-INF/layout/t.xhtml">
-
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
 
 	<ui:define name="title">
 		<h:outputText value="Amministrazione del portale" />
 	</ui:define>
-
-
-
 	<ui:define name="content">
 		<h:form>
 			<center><br />
@@ -23,7 +16,8 @@
 
 			<h:panelGrid columns="3" style=" width : 618px;">
 
-				<p:panel header="Gestione dei contenuti" style="width: 300px; height: 100px;">
+				<p:panel header="Gestione dei contenuti"
+					style="width: 300px; height: 100px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/images/section.gif" style="border: none;" />
@@ -43,7 +37,6 @@
 
 			</h:panelGrid> <br />
 			<br />
-
 			</center>
 		</h:form>
 		<div style="clear: both;"></div>
@@ -51,5 +44,3 @@
 	</ui:define>
 
 </ui:composition>
-
-</html>
