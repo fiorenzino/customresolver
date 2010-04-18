@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Template implements Serializable {
@@ -23,18 +24,18 @@ public class Template implements Serializable {
 
 	private String footer_start;
 	private String footer_stop;
-	
+
 	private String col1_start;
 	private String col1_stop;
-	
+
 	private String col2_start;
 	private String col2_stop;
-	
+
 	private String col3_start;
 	private String col3_stop;
 
 	// ------------------------------------------------------------------------
-	
+
 	public Template() {
 	}
 
@@ -58,6 +59,7 @@ public class Template implements Serializable {
 		this.nome = nome;
 	}
 
+	@Lob
 	public String getHeader_start() {
 		return header_start;
 	}
@@ -66,6 +68,7 @@ public class Template implements Serializable {
 		header_start = headerStart;
 	}
 
+	@Lob
 	public String getHeader_stop() {
 		return header_stop;
 	}
@@ -74,6 +77,7 @@ public class Template implements Serializable {
 		header_stop = headerStop;
 	}
 
+	@Lob
 	public String getFooter_start() {
 		return footer_start;
 	}
@@ -82,6 +86,7 @@ public class Template implements Serializable {
 		footer_start = footerStart;
 	}
 
+	@Lob
 	public String getFooter_stop() {
 		return footer_stop;
 	}
@@ -90,6 +95,7 @@ public class Template implements Serializable {
 		footer_stop = footerStop;
 	}
 
+	@Lob
 	public String getCol1_start() {
 		return col1_start;
 	}
@@ -98,6 +104,7 @@ public class Template implements Serializable {
 		col1_start = col1Start;
 	}
 
+	@Lob
 	public String getCol1_stop() {
 		return col1_stop;
 	}
@@ -106,6 +113,7 @@ public class Template implements Serializable {
 		col1_stop = col1Stop;
 	}
 
+	@Lob
 	public String getCol2_start() {
 		return col2_start;
 	}
@@ -114,6 +122,7 @@ public class Template implements Serializable {
 		col2_start = col2Start;
 	}
 
+	@Lob
 	public String getCol2_stop() {
 		return col2_stop;
 	}
@@ -122,6 +131,7 @@ public class Template implements Serializable {
 		col2_stop = col2Stop;
 	}
 
+	@Lob
 	public String getCol3_start() {
 		return col3_start;
 	}
@@ -130,6 +140,7 @@ public class Template implements Serializable {
 		col3_start = col3Start;
 	}
 
+	@Lob
 	public String getCol3_stop() {
 		return col3_stop;
 	}
@@ -137,32 +148,33 @@ public class Template implements Serializable {
 	public void setCol3_stop(String col3Stop) {
 		col3_stop = col3Stop;
 	}
-	
+
 	public boolean getAttivo() {
 		return this.attivo;
 	}
+
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
 	}
 
 	// ------------------------------------------------------------------------
 
-//	@Override
-//	public String toString() {
-//		return ( this.nome != null ) ? this.nome : super.toString();
-//	}
-//	
-//	@Override
-//	public boolean equals(Object o) {
-//		if ( ! ( o instanceof Page ) )
-//			return false;
-//		Page p = (Page)o;
-//		return p.getId() == null ? false : p.getId().equals(this.id);
-//	}
-//
-//	@Override
-//	public int hashCode() {
-//		return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
-//	}
+	// @Override
+	// public String toString() {
+	// return ( this.nome != null ) ? this.nome : super.toString();
+	// }
+	//	
+	// @Override
+	// public boolean equals(Object o) {
+	// if ( ! ( o instanceof Page ) )
+	// return false;
+	// Page p = (Page)o;
+	// return p.getId() == null ? false : p.getId().equals(this.id);
+	// }
+	//
+	// @Override
+	// public int hashCode() {
+	// return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
+	// }
 
 }
