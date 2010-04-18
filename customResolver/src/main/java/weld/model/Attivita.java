@@ -17,7 +17,7 @@ import weld.model.type.CategoriaAttivita;
 @Entity
 public class Attivita implements Serializable {
 
-	private Long id;
+	private String id;
 	private Date data;
 	private String autore;
 	private CategoriaAttivita categoria;
@@ -33,12 +33,11 @@ public class Attivita implements Serializable {
 	private Immagine immagine;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
