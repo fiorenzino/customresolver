@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import weld.model.attachment.Documento;
 import weld.model.type.TipoPubblicazione;
@@ -81,6 +82,7 @@ public class Pubblicazione implements Serializable {
 		this.dataPubblicazione = dataPubblicazione;
 	}
 
+	@OneToMany
 	public List<Documento> getDocumenti() {
 		if (this.documenti == null)
 			this.documenti = new ArrayList<Documento>();

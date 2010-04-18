@@ -90,7 +90,7 @@ public class Attivita implements Serializable {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-
+	@Lob
 	public String getOrariEchiusura() {
 		return orariEchiusura;
 	}

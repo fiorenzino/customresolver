@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import weld.model.attachment.Documento;
 import weld.model.attachment.Immagine;
@@ -38,6 +40,7 @@ public class Notizia implements Serializable {
 		this.titolo = titolo;
 	}
 
+	@Lob
 	public String getAnteprima() {
 		return anteprima;
 	}
@@ -46,6 +49,7 @@ public class Notizia implements Serializable {
 		this.anteprima = anteprima;
 	}
 
+	@Lob
 	public String getContenuto() {
 		return contenuto;
 	}
@@ -62,6 +66,7 @@ public class Notizia implements Serializable {
 		this.autore = autore;
 	}
 
+	@OneToMany
 	public List<Documento> getDocumenti() {
 		if (this.documenti == null)
 			this.documenti = new ArrayList<Documento>();
