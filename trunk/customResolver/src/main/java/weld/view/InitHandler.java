@@ -14,7 +14,7 @@ public class InitHandler implements Serializable {
 
 	@Produces
 	@ApplicationScoped
-	@PersistenceContext(unitName = "foo")
+	@PersistenceContext(unitName = "customresolver")
 	EntityManager em;
 
 }

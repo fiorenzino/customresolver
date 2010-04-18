@@ -7,11 +7,9 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-
-import org.seamframework.tx.Transactional;
 
 import weld.model.Page;
+import weld.session.PagesSession;
 import weld.view.utils.PagesUtils;
 
 @Named
@@ -19,13 +17,13 @@ import weld.view.utils.PagesUtils;
 public class PagesHandler implements Serializable {
 
 	@Inject
-	EntityManager em;
+	PagesSession pagesSession;
 	private boolean editMode;
 
-	private String page = "index";
+	private Page page;
+	private List<Page> all;
 
-	private Page currentPage;
-	private List<Page> allpages;
+	private String pageId;
 
 	public PagesHandler() {
 		System.out.println("NUOVO");
@@ -36,51 +34,46 @@ public class PagesHandler implements Serializable {
 	}
 
 	public String creaPagina() {
-		this.currentPage = new Page();
+		this.page = new Page();
 		setEditMode(false);
-		return "/crea-pagina?redirect=true";
+		return "/private/pagine/gestione-pagina?redirect=true";
 	}
 
 	public String modPage(String id) {
-		this.currentPage = findPage(id);
+		this.page = pagesSession.find(id);
 		setEditMode(true);
-		return "/crea-pagina?redirect=true";
+		return "/private/pagine/gestione-pagina?redirect=true";
 	}
 
-	@SuppressWarnings( { "unchecked" })
-	@Transactional
 	public String updatePagina() {
-		try {
-			em.merge(this.currentPage);
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		}
-		return "/index?redirect=true";
+		pagesSession.update(this.page);
+		this.all = null;
+		return "/private/pagine/lista-pagine?redirect=true";
 
 	}
 
-	@SuppressWarnings( { "unchecked" })
-	@Transactional
+	public String deletePagina() {
+		pagesSession.delete(this.page.getId());
+		this.all = null;
+		return "/private/pagine/lista-pagine?redirect=true";
+	}
+
 	public String salvaPagina() {
 		try {
-			String idTitle = PagesUtils.createPageId(currentPage.getTitle());
+			String idTitle = PagesUtils.createPageId(page.getTitle());
 			String idFinal = testId(idTitle);
-			this.currentPage.setId(idFinal);
-			em.persist(this.currentPage);
-			System.out.println("ciao");
+			this.page.setId(idFinal);
+			pagesSession.persist(this.page);
+			this.all = null;
 		} catch (Exception e) {
 
 			e.printStackTrace();
 
 		}
-		return "/index?redirect=true";
+		return "/private/pagine/lista-pagine?redirect=true";
 
 	}
 
-	@SuppressWarnings( { "unchecked" })
-	@Transactional
 	public void createPage(String title, String description, String content) {
 		System.out.println("CREO PAGINA: " + title);
 		Page page = new Page();
@@ -88,7 +81,7 @@ public class PagesHandler implements Serializable {
 		page.setDescription(description);
 		page.setId(PagesUtils.createPageId(page.getTitle()));
 		page.setContent(content);
-		em.persist(page);
+		pagesSession.persist(page);
 		System.out.println("ID: " + page.getId());
 	}
 
@@ -105,74 +98,23 @@ public class PagesHandler implements Serializable {
 
 		createPage("Cosa Facciamo", "la ns attivita'",
 				"<br/>non facciamo un cazzo!<br/> ");
-
 		System.out.println("FATTO");
 	}
 
-	@SuppressWarnings( { "unchecked" })
-	@Transactional
-	public void findPage() {
-		try {
-			this.currentPage = em.find(Page.class, getPage());
-
-		} catch (Exception e) {
-			e.printStackTrace();
+	public List<Page> getAll() {
+		if (this.all == null) {
+			this.all = new ArrayList<Page>();
+			try {
+				this.all = pagesSession.getAll();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		if (this.currentPage == null)
-			this.currentPage = em.find(Page.class, PagesUtils
-					.createPageId("Home Page"));
-
+		return this.all;
 	}
 
-	public String getPage() {
-		return page;
-	}
-
-	public void setPage(String page) {
-		this.currentPage = null;
-		this.page = page;
-	}
-
-	public Page getCurrentPage() {
-		if (this.currentPage == null)
-			findPage();
-		return currentPage;
-	}
-
-	public void setCurrentPage(Page currentPage) {
-		this.currentPage = currentPage;
-	}
-
-	@Transactional
-	public Page findPage(String pageName) {
-		try {
-			Page page = em.find(Page.class, pageName);
-			return page;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@SuppressWarnings( { "unchecked" })
-	@Transactional
-	public List<Page> getAllpages() {
-		System.out.println("get all pages");
-
-		this.allpages = new ArrayList<Page>();
-		try {
-			this.allpages = em
-					.createQuery("select p from Page p order by p.id")
-					.getResultList();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return this.allpages;
-	}
-
-	public void setAllpages(List<Page> allpages) {
-		this.allpages = allpages;
+	public void setAll(List<Page> all) {
+		this.all = all;
 	}
 
 	public String testId(String id) {
@@ -181,7 +123,7 @@ public class PagesHandler implements Serializable {
 		int i = 0;
 		while (!trovato) {
 			System.out.println("id final: " + idFinal);
-			Page pageFind = findPage(idFinal);
+			Page pageFind = pagesSession.find(idFinal);
 			System.out.println("trovato_ " + pageFind);
 			if (pageFind != null) {
 				i++;
@@ -203,6 +145,22 @@ public class PagesHandler implements Serializable {
 
 	public void setEditMode(boolean editMode) {
 		this.editMode = editMode;
+	}
+
+	public String getPageId() {
+		return pageId;
+	}
+
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
+	}
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
 	}
 
 }

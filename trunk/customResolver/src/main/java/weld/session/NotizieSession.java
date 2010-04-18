@@ -42,7 +42,7 @@ public class NotizieSession implements Serializable {
 	}
 
 	@Transactional
-	public Notizia find(String id) {
+	public Notizia find(Long id) {
 		try {
 			Notizia notizia = em.find(Notizia.class, id);
 			return notizia;
@@ -53,7 +53,7 @@ public class NotizieSession implements Serializable {
 	}
 
 	@Transactional
-	public void delete(String id) {
+	public void delete(Long id) {
 		try {
 			Notizia notizia = em.find(Notizia.class, id);
 			em.remove(notizia);
