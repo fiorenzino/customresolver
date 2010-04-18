@@ -8,18 +8,36 @@ import javax.persistence.Id;
 @Entity
 public class Template implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
+	// ------------------------------------------------------------------------
+
 	private Long id;
+	boolean attivo = true;
+
 	private String nome;
+
 	private String header_start;
 	private String header_stop;
+
 	private String footer_start;
 	private String footer_stop;
+	
 	private String col1_start;
 	private String col1_stop;
+	
 	private String col2_start;
 	private String col2_stop;
+	
 	private String col3_start;
 	private String col3_stop;
+
+	// ------------------------------------------------------------------------
+	
+	public Template() {
+	}
+
+	// ------------------------------------------------------------------------
 
 	@Id
 	public Long getId() {
@@ -117,4 +135,32 @@ public class Template implements Serializable {
 	public void setCol3_stop(String col3Stop) {
 		col3_stop = col3Stop;
 	}
+	
+	public boolean getAttivo() {
+		return this.attivo;
+	}
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
+
+	// ------------------------------------------------------------------------
+
+	@Override
+	public String toString() {
+		return ( this.nome != null ) ? this.nome : super.toString();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if ( ! ( o instanceof Page ) )
+			return false;
+		Page p = (Page)o;
+		return p.getId() == null ? false : p.getId().equals(this.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
+	}
+
 }
