@@ -14,21 +14,55 @@
 			<center><br />
 			<br />
 
-			<h:panelGrid columns="3" style=" width : 618px;">
+			<h:panelGrid columns="3" >
 
-				<p:panel header="Gestione dei contenuti"
-					style="width: 300px; height: 100px;">
+				<p:panel header="Gestione dei modelli"
+					style="width: 300px;">
+					<h:panelGrid columns="2">
+						<h:panelGroup style="vertical-align:middle;">
+							<h:graphicImage value="/images/section.gif" style="border: none;" />
+						</h:panelGroup>
+						<h:panelGroup style="vertical-align:middle;">
+							<h:commandLink action="#{templateHandler.loadModel}">
+								<h:outputText value="Lista dei modelli disponibili" />
+							</h:commandLink>
+							<br/>
+							<h:commandLink action="#{templateHandler.addElement}">
+								<h:outputText value="Aggiungi un nuovo modello" />
+							</h:commandLink>
+						</h:panelGroup>
+					</h:panelGrid>
+					<br />
+				</p:panel>
+
+				<p:panel header="Gestione delle pagine"
+					style="width: 300px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/images/section.gif" style="border: none;" />
 						</h:panelGroup>
 						<h:panelGroup style="vertical-align:middle;">
 							<h:commandLink action="#{pageHandler.loadModel}">
-								<h:outputText value="Pagine" />
+								<h:outputText value="Lista delle pagine disponibili" />
 							</h:commandLink>
-							 - 
-							<h:commandLink action="#{templateHandler.loadModel}">
-								<h:outputText value="Modelli" />
+							<br/>
+							<h:commandLink action="#{pageHandler.addElement}">
+								<h:outputText value="Aggiungi una nuova pagina" />
+							</h:commandLink>
+						</h:panelGroup>
+					</h:panelGrid>
+					<br />
+				</p:panel>
+
+				<p:panel header="Gestione della struttura del sito"
+					style="width: 300px;">
+					<h:panelGrid columns="2">
+						<h:panelGroup style="vertical-align:middle;">
+							<h:graphicImage value="/images/section.gif" style="border: none;" />
+						</h:panelGroup>
+						<h:panelGroup style="vertical-align:middle;">
+							<h:commandLink action="#{menuHandler.loadModel}">
+								<h:outputText value="Associa pagine e percorsi" />
 							</h:commandLink>
 						</h:panelGroup>
 					</h:panelGrid>

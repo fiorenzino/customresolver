@@ -10,11 +10,11 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
 			<style>
-			.col1 { witdh: 35%; text-align: left; }
-			.col2 { witdh: 65%; text-align: left; }
+			.col1 { width: 35%; text-align: left; }
+			.col2 { width: 65%; text-align: left; }
 			</style>
+		<h:form><center>
 
 			<p:panel header="Gestione Modello">
 
@@ -95,7 +95,7 @@
 			<br />
 			<br />
 
-			<center><h:panelGrid columns="4">
+			<h:panelGrid columns="4">
 				<h:commandButton action="#{templateHandler.save}" value="Salva"
 					rendered="#{empty templateHandler.element.id}" />
 				<h:commandButton action="#{templateHandler.update}"

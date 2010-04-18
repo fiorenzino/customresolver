@@ -11,11 +11,12 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
-			<style>
-			.col1 { witdh: 35%; text-align: left; }
-			.col2 { witdh: 65%; text-align: left; }
-			</style>
+		<style>
+		.col1 { width: 35%; text-align: left; }
+		.col2 { width: 65%; text-align: left; }
+		</style>
+		<h:form><center>
+		
 
 			<p:panel header="Scheda Modello">
 				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
@@ -116,7 +117,7 @@
 			<br />
 			<br />
 
-			<center><h:panelGrid columns="2">
+			<h:panelGrid columns="2">
 
 				<h:commandButton action="#{templateHandler.modCurrent}"
 					value="Modifica" immediate="false" />

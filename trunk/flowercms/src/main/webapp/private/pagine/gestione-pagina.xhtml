@@ -1,31 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/layout/t.xhtml">
 
-<ui:composition template="/WEB-INF/layout/t.xhtml">
 	<ui:define name="title">
-		<h:outputText value="Gestione Ambiente" />
+		<h:outputText value="Gestione Pagina" />
 	</ui:define>
+
 	<ui:define name="content">
-		<h:form id="formBlocchi">
-			<rich:panel id="schdeConvId" style="width: 95%;">
-				<f:facet name="header">Gestione Ambiente</f:facet>
-				<h:panelGrid columns="2">
+		<style>
+		.col1 { width: 35%; text-align: left; }
+		.col2 { width: 65%; text-align: left; }
+		</style>
+		<h:form>
 
-					<h:outputLabel id="codiceLabel" value="Codice(*):" for="codice" />
-					<h:inputText id="codice"
-						value="#{ambientiHandler.element.codice}" required="true"
-						style="width: 100%;" />
+			<p:panel header="Gestione Pagina">
 
-					<h:outputLabel id="descrizioneLabel" value="Descrizione:"
-						for="descrizione" />
-					<h:inputTextarea id="descrizione"
-						value="#{ambientiHandler.element.descrizione}"
+				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
+
+					<h:outputLabel value="Titolo(*):" for="titolo" />
+					<h:inputText required="true" id="titolo" value="#{pageHandler.element.title}" style="width: 100%;" />
+					<h:outputLabel value="Descrizione:" for="descrizione" />
+					<h:inputText  id="descrizione" value="#{pageHandler.element.description}"
 						style="width: 100%;" />
+						
+					<h:outputLabel value="Modello(*):" for="template" />
+					<h:selectOneMenu value="#{pageHandler.element.template.template.id}" required="true">
+						<f:selectItems value="#{propertiesHandler.templateItems}"/>
+					</h:selectOneMenu>
+
+					<h:outputText value="&lt;hr/&gt;" escape="false" />
+					<h:outputText />
+
+					<h:outputLabel value="Intestazione:" for="header"
+					/>
+					<h:inputTextarea id="header"
+						value="#{pageHandler.element.template.header}"
+						style="color: black; width: 100%;" escape="false"
+					/>
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+					/>
+					<h:outputText />
+
+					<h:outputLabel value="Colonna 1:" for="col1"
+					/>
+					<h:inputTextarea id="col1"
+						value="#{pageHandler.element.template.col1}"
+						style="color: black; width: 100%;" escape="false"
+					/>
+
+					<h:outputLabel value="Colonna 2:" for="col2"
+					/>
+					<h:inputTextarea id="col2"
+						value="#{pageHandler.element.template.col2}"
+						style="color: black; width: 100%;" escape="false"
+					/>
+
+					<h:outputLabel value="Colonna 3:" for="col3"
+					/>
+					<h:inputTextarea id="col3"
+						value="#{pageHandler.element.template.col3}"
+						style="color: black; width: 100%;" escape="false"
+					/>
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+					/>
+					<h:outputText />
+
+					<h:outputLabel value="Pie' di pagina:" for="footer"
+					/>
+					<h:inputTextarea id="footer"
+						value="#{pageHandler.element.template.footer}"
+						style="color: black; width: 100%;" escape="false"
+					/>
 
 				</h:panelGrid>
 				<br />
@@ -33,27 +83,23 @@
 				<br />
 				<br />
 
-			</rich:panel>
-			<rich:spacer width="100%" height="20" />
+			</p:panel>
 
-			<h:panelGrid columns="4">
-				<h:commandButton id="save"
-					action="#{ambientiHandler.saveElement}" value="Salva"
-					rendered="#{not ambientiHandler.editMode}" />
-				<h:commandButton id="update"
-					action="#{ambientiHandler.updateElement}"
+			<br />
+			<br />
+
+			<center><h:panelGrid columns="4">
+				<h:commandButton action="#{pageHandler.save}" value="Salva"
+					rendered="#{empty pageHandler.element.id}" />
+				<h:commandButton action="#{pageHandler.update}"
 					value="Salva le modifiche"
-					rendered="#{ambientiHandler.editMode}" />
-				<h:commandButton id="del"
-					action="#{ambientiHandler.deleteElement}" value="Elimina"
-					immediate="true" rendered="#{ambientiHandler.editMode}" />
-				<h:commandButton id="reset" action="#{ambientiHandler.reset}"
+					rendered="#{not empty pageHandler.element.id}" />
+				<h:commandButton action="#{pageHandler.delete}" value="Elimina"
+					immediate="true" rendered="#{not empty pageHandler.element.id}" />
+				<h:commandButton id="reset" action="#{pageHandler.reset}"
 					value="Annulla" immediate="true" />
-			</h:panelGrid>
-		</h:form>
-		<h:messages />
+			</h:panelGrid></center>
 
+		</h:form>
 	</ui:define>
 </ui:composition>
-
-</html>
