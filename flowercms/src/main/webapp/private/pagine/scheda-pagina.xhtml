@@ -1,55 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
 
-<ui:composition template="/WEB-INF/layout/t.xhtml">
 	<ui:define name="title">
-		<h:outputText value="Scheda Ambiente" />
+		<h:outputText value="Scheda Pagina" />
 	</ui:define>
+
 	<ui:define name="content">
-		<rich:panel id="schdeConvId" style="width: 95%;">
-			<f:facet name="header">Scheda Ambiente</f:facet>
-			<h:panelGrid columns="2">
+			<style>
+			.col1 { width: 35%; text-align: left; }
+			.col2 { width: 65%; text-align: left; }
+			</style>
+		<h:form><center>
 
-				<h:outputLabel id="codiceLabel" value="Codice:" for="codice" />
-				<h:outputText id="codice"
-					value="#{ambientiHandler.element.codice}" 
-					style="width: 100%;" />
+			<p:panel header="Scheda Pagina">
+				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
 
-				<h:outputLabel id="descrizioneLabel" value="Descrizione:"
-					for="descrizione" />
-				<h:inputTextarea disabled="true" id="descrizione"
-					value="#{ambientiHandler.element.descrizione}"
-					style="width: 100%;" />
+					<h:outputLabel value="Titolo:" for="titolo" />
+					<h:outputText id="titolo" value="#{pageHandler.element.title}"
+						style="width: 100%;" />
+					<h:outputLabel value="Descrizione:" for="descrizione" />
+					<h:outputText id="descrizione" value="#{pageHandler.element.description}"
+						style="width: 100%;" />
 
-			</h:panelGrid>
-			<br />
-			
-		</rich:panel>
-		<rich:spacer width="100%" height="20" />
+					<h:outputLabel value="Modello:" for="template" />
+					<h:outputText id="template" value="#{pageHandler.element.template.template.nome}"/>
 
-		<h:form id="central">
-			<rich:panel id="schdeConvId3" style="width: 95%;">
+					<h:outputText value="&lt;hr/&gt;" escape="false" />
+					<h:outputText />
 
-				<h:panelGrid columns="2">
+					<h:outputLabel value="Intestazione:" for="header"
+						rendered="#{not empty pageHandler.element.template.header}" />
+					<h:inputTextarea disabled="true" id="header"
+						value="#{pageHandler.element.template.header}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty pageHandler.element.template.header}" />
 
-					<h:commandButton id="modBlocco"
-						action="#{ambientiHandler.modCurrent}"
-						value="Modifica" immediate="false" />
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+						rendered="#{not empty pageHandler.element.template.header}" />
+					<h:outputText />
 
-					<h:commandButton id="reset" action="#{ambientiHandler.reset}"
-						value="Indietro" immediate="true" />
+					<h:outputLabel value="Colonna 1:" for="col1"
+						rendered="#{not empty pageHandler.element.template.col1}" />
+					<h:inputTextarea disabled="true" id="col1"
+						value="#{pageHandler.element.template.col1}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty pageHandler.element.template.col1}" />
 
+					<h:outputLabel value="Colonna 2:" for="col2"
+						rendered="#{not empty pageHandler.element.template.col2}" />
+					<h:inputTextarea disabled="true" id="col2"
+						value="#{pageHandler.element.template.col2}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty pageHandler.element.template.col2}" />
+
+					<h:outputLabel value="Colonna 3:" for="col3"
+						rendered="#{not empty pageHandler.element.template.col3}" />
+					<h:inputTextarea disabled="true" id="col3"
+						value="#{pageHandler.element.template.col3}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty pageHandler.element.template.col3}" />
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+						rendered="#{not empty pageHandler.element.template.col3 and not empty pageHandler.element.template.col2 and not empty pageHandler.element.template.col1}" />
+					<h:outputText />
+
+					<h:outputLabel value="Pie' di pagina:" for="footer"
+						rendered="#{not empty pageHandler.element.template.footer}" />
+					<h:inputTextarea disabled="true" id="footer"
+						value="#{pageHandler.element.template.footer}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty pageHandler.element.template.footer}" />
 
 				</h:panelGrid>
+				<br />
 
-			</rich:panel>
+			</p:panel>
+
+			<br />
+			<br />
+
+			<h:panelGrid columns="2">
+
+				<h:commandButton action="#{pageHandler.modCurrent}"
+					value="Modifica" immediate="false" />
+
+				<h:commandButton id="reset" action="#{pageHandler.reset}"
+					value="Indietro" immediate="true" />
+
+			</h:panelGrid></center>
+
 		</h:form>
 	</ui:define>
 </ui:composition>
-
-</html>
