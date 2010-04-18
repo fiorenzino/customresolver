@@ -12,6 +12,8 @@ import javax.persistence.PersistenceContext;
 @ApplicationScoped
 public class Init implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	@Produces
 	@ApplicationScoped
 	@PersistenceContext(unitName = "foo")
