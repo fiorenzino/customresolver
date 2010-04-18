@@ -12,8 +12,8 @@
 	<ui:define name="content">
 		<h:form id="central">
 			<p:panel header="Lista modelli">
-				<p:dataTable var="template" rowIndexVar="rowIndex"
-					value="#{templateHandler.model} ">
+				<p:dataTable var="t"
+					value="#{templateHandler.model.wrappedData} ">
 					<p:column>
 						<h:outputText value="#{rowIndex+1} " />
 					</p:column>
@@ -21,7 +21,7 @@
 						<f:facet name="header">
 							Nome
 						</f:facet>
-						<h:outputText value="#{template.nome} " />
+						<h:outputText value="#{t.id} " />
 					</p:column>
 				</p:dataTable>
 			</p:panel>
