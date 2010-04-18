@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
+@Entity
 public class MenuGroup implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +23,10 @@ public class MenuGroup implements Serializable {
 	// ------------------------------------------------------------------------
 
 	private String nome;
+	private String percorso;
+
 	private List<MenuItem> lista;
+	private List<MenuItem> tutti;
 
 	// ------------------------------------------------------------------------
 
@@ -62,6 +68,22 @@ public class MenuGroup implements Serializable {
 
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
+	}
+
+	public String getPercorso() {
+		return percorso;
+	}
+
+	public void setPercorso(String percorso) {
+		this.percorso = percorso;
+	}
+
+	@Transient
+	public List<MenuItem> getTutti() {
+		return tutti;
+	}
+	public void setTutti(List<MenuItem> tutti) {
+		this.tutti = tutti;
 	}
 
 }
