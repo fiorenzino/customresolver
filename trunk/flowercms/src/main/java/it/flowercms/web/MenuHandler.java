@@ -429,6 +429,7 @@ public class MenuHandler implements Serializable {
 				nuovi.add(scelto);
 		}
 		for (MenuItem nuovo : nuovi) {
+			nuovo.setGruppo(menuGroup);
 			menuGroup.getLista().add(nuovo);
 		}
 		session.update(menuGroup);
