@@ -66,7 +66,7 @@
 								value="#{menuHandler.selectedDocument.data.percorso}" />
 						</h:panelGrid>
 
-						<p:pickList value="#{menuHandler.dualListModel}" var="item" converter="baseConverter"
+						<p:pickList value="#{menuHandler.dualListModel}" var="item" converter="#{menuItemConverter}"
 							itemLabel="#{item.nome}" itemValue="#{item}" rendered="#{not empty menuHandler.selectedDocument}">
 							<f:facet name="add">
 								<p:graphicImage value="/images/picklist/add.png" alt="aggiungi" />
