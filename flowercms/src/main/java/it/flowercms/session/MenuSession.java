@@ -1,6 +1,7 @@
 package it.flowercms.session;
 
 import it.flowercms.par.MenuGroup;
+import it.flowercms.par.MenuItem;
 import it.flowercms.session.base.SuperSession;
 
 import java.io.Serializable;
@@ -39,6 +40,10 @@ implements Serializable {
 	@Override
 	public void setEm(EntityManager em) {
 		this.em = em;
+	}
+
+	public MenuItem findItem(Long id) {
+		return getEm().find(MenuItem.class, id);
 	}
 
 }
