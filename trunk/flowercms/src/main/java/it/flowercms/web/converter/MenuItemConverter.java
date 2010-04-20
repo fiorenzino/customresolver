@@ -32,9 +32,9 @@ implements Converter {
 	public Object getAsObject(FacesContext facesContextImpl, UIComponent pickList, String menuItemAsString) {
 		if ( menuItemAsString == null || menuItemAsString.equals("") ) return null;
 //		return ObjectUtils.deserialize(menuItemAsString);
-		if ( menuItemAsString.indexOf("mID") > 0 )
+		if ( menuItemAsString.indexOf("mID") >= 0 )
 			return menuSession.findItem( Long.parseLong( menuItemAsString.substring( menuItemAsString.indexOf("mID")+3) ) );
-		else if ( menuItemAsString.indexOf("pID") > 0 ) {
+		else if ( menuItemAsString.indexOf("pID") >= 0 ) {
 			return new MenuItem( pageSession.find( menuItemAsString.substring( menuItemAsString.indexOf("pID")+3 ) ), null );
 		}
 		else {
