@@ -18,9 +18,9 @@
 }
 </style>
 
-		<h:form>
 
-			<p:panel header="Crea nuovo percorso">
+		<p:panel header="Crea nuovo percorso">
+			<h:form>
 				<center><h:panelGrid columns="2">
 					<h:outputLabel for="nome" value="Nome(*):" />
 					<h:inputText required="true" value="#{menuHandler.element.nome}" />
@@ -33,13 +33,15 @@
 					<h:commandButton value="Aggiungi" action="#{menuHandler.save}" />
 					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
 				</h:panelGrid></center>
+			</h:form>
 
-			</p:panel>
-			<br />
-			<br />
+		</p:panel>
+		<br />
+		<br />
 
-			<p:panel header="Gestisci associazioni" rendered="#{menuHandler.gruppi}">
-
+		<p:panel header="Gestisci associazioni"
+			rendered="#{menuHandler.gruppi}">
+			<h:form>
 				<center><h:panelGrid columns="2" columnClasses="col1,col2">
 
 					<p:tree value="#{menuHandler.modelTree}" dynamic="true" var="node"
@@ -66,8 +68,10 @@
 								value="#{menuHandler.selectedDocument.data.percorso}" />
 						</h:panelGrid>
 
-						<p:pickList value="#{menuHandler.dualListModel}" var="item" converter="#{menuItemConverter}"
-							itemLabel="#{item.nome}" itemValue="#{item}" rendered="#{not empty menuHandler.selectedDocument}">
+						<p:pickList value="#{menuHandler.dualListModel}" var="item"
+							converter="#{menuItemConverter}" itemLabel="#{item.nome}"
+							itemValue="#{item}"
+							rendered="#{not empty menuHandler.selectedDocument}">
 							<f:facet name="add">
 								<p:graphicImage value="/images/picklist/add.png" alt="aggiungi" />
 							</f:facet>
@@ -89,12 +93,14 @@
 				</h:panelGrid> <br />
 				<br />
 				<h:panelGrid columns="2">
-					<h:commandButton value="Conferma" action="#{menuHandler.confirmItems}" />
+					<h:commandButton value="Conferma"
+						action="#{menuHandler.confirmItems}" />
 					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
 				</h:panelGrid></center>
-			</p:panel>
+
+			</h:form>
+		</p:panel>
 
 
-		</h:form>
 	</ui:define>
 </ui:composition>
