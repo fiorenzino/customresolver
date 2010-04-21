@@ -6,6 +6,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +14,7 @@ import javax.inject.Named;
 import com.ocpsoft.pretty.PrettyContext;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class UrlParsingBean implements Serializable {
 
 	@Inject

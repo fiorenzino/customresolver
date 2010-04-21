@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +13,7 @@ import weld.session.PagesSession;
 import weld.view.utils.PagesUtils;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class PagesHandler implements Serializable {
 
 	@Inject
