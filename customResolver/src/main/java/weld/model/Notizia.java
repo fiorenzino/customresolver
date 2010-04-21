@@ -80,7 +80,7 @@ public class Notizia implements Serializable {
 	public void addDocumento(Documento documento) {
 		getDocumenti().add(documento);
 	}
-
+	@OneToMany
 	public List<Immagine> getImmagini() {
 		if (this.immagini == null)
 			this.immagini = new ArrayList<Immagine>();
