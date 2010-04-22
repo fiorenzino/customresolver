@@ -29,7 +29,7 @@ public class MenuItem implements Serializable {
 	}
 	public MenuItem(Page pagina, MenuGroup gruppo){
 		this.pagina = pagina;
-		this.nome = pagina.getId();
+		this.nome = pagina.getTitle();
 		this.gruppo = gruppo;
 	}
 
