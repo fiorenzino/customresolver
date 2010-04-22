@@ -10,11 +10,31 @@
 	<ui:define name="content">
 		<style>
 .col1 {
-	width: 35%;
+	width: 350px;
+	background-color: white;
+	vertical-align: top;
+	border: 1px solid gray;
 }
 
 .col2 {
-	width: 65%;
+	width: 750px;
+	background-color: white;
+	vertical-align: top;
+	border: 1px solid gray;
+}
+
+.pf-picklist-source,.pf-picklist-target {
+	width: 400px;
+	height: 150px;
+}
+
+.label {
+	width: 370px;
+	text-align: center;
+}
+
+.separator {
+	width: 80px;
 }
 </style>
 
@@ -23,13 +43,12 @@
 			<h:form>
 				<center><h:panelGrid columns="2">
 					<h:outputLabel for="nome" value="Nome(*):" />
-					<h:inputText required="true" value="#{menuHandler.element.nome}" />
-					<h:outputLabel for="percorso" value="Percorso(*):" />
-					<h:inputText id="percorso" required="true"
-						value="#{menuHandler.element.percorso}" />
-				</h:panelGrid> <br />
-				<br />
-				<h:panelGrid columns="2">
+					<h:inputText required="true" value="#{menuHandler.element.nome}"
+						style="width: 500px;" />
+					<h:outputLabel for="nome" value="Percorso(*):" />
+					<h:inputText required="true"
+						value="#{menuHandler.element.percorso}" style="width: 500px;" />
+				</h:panelGrid> <h:panelGrid columns="2">
 					<h:commandButton value="Aggiungi" action="#{menuHandler.save}" />
 					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
 				</h:panelGrid></center>
@@ -46,56 +65,94 @@
 
 					<p:tree value="#{menuHandler.modelTree}" dynamic="true" var="node"
 						cache="false" nodeSelectListener="#{menuHandler.onNodeSelect}"
-						update="pickList">
+						update="rightPanel">
 
-						<p:treeNode>
-							<h:outputText value="#{node.percorso}" />
+						<p:treeNode type="menuGroup">
+							<h:outputText value="#{node.percorso}" title="Percorso: #{node.nome}" />
 						</p:treeNode>
 
-						<p:treeNode type="document" styleClass="documentStyle">
-							<h:outputText value="#{node.nome}" styleClass="nodeContent" />
+						<p:treeNode type="menuItem" styleClass="documentStyle">
+							<h:outputText value="#{node.nome}" title="Pagina: #{node.pagina.title}"
+								styleClass="nodeContent" />
 						</p:treeNode>
 
 					</p:tree>
 
-					<p:outputPanel id="pickList">
-						<h:panelGrid columns="2">
-							<h:outputLabel value="Nome selezione:" for="nomeSel" />
-							<h:outputText id="nomeSel"
-								value="#{menuHandler.selectedDocument.data.nome}" />
-							<h:outputLabel value="Percorso selezione:" for="percorsoSel" />
-							<h:outputText id="percorsoSel"
-								value="#{menuHandler.selectedDocument.data.percorso}" />
-						</h:panelGrid>
+					<h:panelGroup id="rightPanel">
 
-						<p:pickList value="#{menuHandler.dualListModel}" var="item"
-							converter="#{menuItemConverter}" itemLabel="#{item.nome}"
-							itemValue="#{item}"
-							rendered="#{not empty menuHandler.selectedDocument}">
-							<f:facet name="add">
-								<p:graphicImage value="/images/picklist/add.png" alt="aggiungi" />
-							</f:facet>
-							<f:facet name="addAll">
-								<p:graphicImage value="/images/picklist/addall.png"
-									alt="aggiungi tutti" />
-							</f:facet>
-							<f:facet name="remove">
-								<p:graphicImage value="/images/picklist/remove.png"
-									alt="rimuovi" />
-							</f:facet>
-							<f:facet name="removeAll">
-								<p:graphicImage value="/images/picklist/removeall.png"
-									alt="rimuovi tutti" />
-							</f:facet>
-						</p:pickList>
-					</p:outputPanel>
+						<p:outputPanel id="pannelloPickList"
+							rendered="#{not empty menuHandler.selectedGroup}">
 
-				</h:panelGrid> <br />
-				<br />
-				<h:panelGrid columns="2">
-					<h:commandButton value="Conferma"
-						action="#{menuHandler.confirmItems}" />
-					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+							<center><h:panelGrid columns="3"
+								columnClasses="label,separator">
+								<h:outputText value="Pagine disponibili" />
+								<h:outputText value="" />
+								<h:panelGroup>
+									<h:outputText value="Percorso: " />
+									<h:inputText value="#{menuHandler.selectedGroup.data.nome}"
+										style="width: 300px;" />
+								</h:panelGroup>
+							</h:panelGrid> <p:pickList value="#{menuHandler.dualListModel}" var="item"
+								converter="#{menuItemConverter}" itemLabel="#{item.nome}"
+								itemValue="#{item}">
+							</p:pickList><br/> <h:panelGrid columns="3">
+								<h:commandButton value="Conferma"
+									action="#{menuHandler.confirmPages}" />
+								<h:commandButton value="Elimina"
+									action="#{menuHandler.deleteGroup}" />
+								<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+							</h:panelGrid></center>
+						</p:outputPanel>
+
+						<p:outputPanel id="associations"
+							rendered="#{not empty menuHandler.itemList}">
+
+							<center>
+							<p:dataTable value="#{menuHandler.itemList}" var="menuItem">
+								<p:column styleClass="label">
+									<f:facet name="header">
+										<h:outputText value="Titolo pagina" />
+									</f:facet>
+									<h:outputText value="#{menuItem.pagina.title}" />
+								</p:column>
+								<p:column styleClass="label">
+									<f:facet name="header">
+										<h:outputText value="Nome collegamento" />
+									</f:facet>
+									<h:inputText value="#{menuItem.nome}" style="width: 100%;"/>
+								</p:column>
+							</p:dataTable>
+							<br/>
+							<h:panelGrid columns="2">
+								<h:commandButton value="Conferma"
+									action="#{menuHandler.confirmNames}" />
+								<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+							</h:panelGrid></center>
+
+						</p:outputPanel>
+
+						<p:outputPanel id="singlePage"
+							rendered="#{not empty menuHandler.selectedItem}">
+
+							<center>
+							<h:panelGrid columns="2">
+								<h:outputLabel value="Titolo pagina:" for="pageTitle" />
+								<h:outputText value="#{menuHandler.selectedItem.data.pagina.title}" id="pageTitle"/>
+
+								<h:outputLabel value="Nome collegamento" for="itemName"/>
+								<h:inputText value="#{menuHandler.selectedItem.data.nome}" style="width: 100%;" id="itemName"/>
+							</h:panelGrid>
+							<br/>
+							<h:panelGrid columns="2">
+								<h:commandButton value="Conferma"
+									action="#{menuHandler.updateItem}" />
+								<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+							</h:panelGrid></center>
+
+						</p:outputPanel>
+
+					</h:panelGroup>
+
 				</h:panelGrid></center>
 
 			</h:form>

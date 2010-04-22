@@ -73,9 +73,13 @@ public class MenuHandler implements Serializable {
 	private String backPage = BACK;
 
 	private TreeNode root;
-	private TreeNode selectedDocument;
+	private TreeNode selectedGroup;
 	private DualListModel<MenuItem> dualListModel;
 	private List<Page> pages;
+
+	private TreeNode selectedItem;
+
+	private List<MenuItem> itemList;
 
 	// ------------------------------------------------
 
@@ -346,11 +350,11 @@ public class MenuHandler implements Serializable {
 		root = new TreeNode("root", null);
 
 		for (MenuGroup mg : (List<MenuGroup>) getModel().getWrappedData()) {
-			TreeNode mgn = new TreeNode(mg, root);
+			TreeNode mgn = new TreeNode("menuGroup", mg, root);
 			if (mg.getLista() != null) {
 				for (MenuItem mi : mg.getLista()) {
 					@SuppressWarnings("unused")
-					TreeNode min = new TreeNode("document", mi, mgn);
+					TreeNode min = new TreeNode("menuItem", mi, mgn);
 				}
 			}
 		}
@@ -358,18 +362,40 @@ public class MenuHandler implements Serializable {
 		return root;
 	}
 
-	public TreeNode getSelectedDocument() {
-		return selectedDocument;
+	public TreeNode getSelectedGroup() {
+		return selectedGroup;
 	}
 
-	public void setSelectedDocument(TreeNode selectedDocument) {
-		this.selectedDocument = selectedDocument;
+	public void setSelectedGroup(TreeNode selectedGroup) {
+		this.selectedGroup = selectedGroup;
+		this.selectedItem = null;
+		this.itemList = null;
+	}
+
+	public TreeNode getSelectedItem() {
+		return selectedItem;
+	}
+
+	public void setSelectedItem(TreeNode selectedItem) {
+		this.selectedItem = selectedItem;
+		this.selectedGroup = null;
+		this.itemList = null;
+	}
+
+	public List<MenuItem> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(List<MenuItem> itemList) {
+		this.itemList = itemList;
+		this.selectedGroup = null;
+		this.selectedItem = null;
 	}
 
 	public void onNodeSelect(NodeSelectEvent event) {
 		TreeNode selected = event.getTreeNode();
-		if (! "document".equals(selected.getType())) {
-			selectedDocument = selected;
+		if ("menuGroup".equals(selected.getType())) {
+			setSelectedGroup(selected);
 			MenuGroup menuGroup = ((MenuGroup) selected.getData());
 			Map<String, MenuItem> groupItems = new HashMap<String, MenuItem>();
 			if (menuGroup.getLista() != null) {
@@ -387,12 +413,18 @@ public class MenuHandler implements Serializable {
 				}
 			}
 			dualListModel = new DualListModel<MenuItem>(source, target);
-			logger.debug("Selected:" + selectedDocument.getData());
+			logger.debug("Selected:" + selectedGroup.getData());
+		}
+		else if ( "menuItem".equals(selected.getType())) {
+			setSelectedItem(selected);
+			@SuppressWarnings("unused")
+			MenuItem menuItem = ((MenuItem) selected.getData());
+			logger.debug("Selected:" + selectedItem.getData());
 		}
 	}
 
 	public DualListModel<MenuItem> getDualListModel() {
-		if ( dualListModel == null )
+		if (dualListModel == null)
 			dualListModel = new DualListModel<MenuItem>();
 		return dualListModel;
 	}
@@ -401,11 +433,20 @@ public class MenuHandler implements Serializable {
 		this.dualListModel = dualListModel;
 	}
 
-	public String confirmItems() {
+	@Transactional
+	public String deleteGroup() {
+		session.delete( ((MenuGroup)this.selectedGroup.getData()).getId() );
+		this.selectedGroup = null;
+		refreshModel();
+		return null;
+	}
+	
+	@Transactional
+	public String confirmPages() {
 		// confermo quelli già presenti
-		MenuGroup menuGroup = (MenuGroup) selectedDocument.getData();
-		if ( menuGroup.getLista() == null ) {
-			menuGroup.setLista( new ArrayList<MenuItem>() );
+		MenuGroup menuGroup = (MenuGroup) selectedGroup.getData();
+		if (menuGroup.getLista() == null) {
+			menuGroup.setLista(new ArrayList<MenuItem>());
 		}
 		for (MenuItem giaPresente : menuGroup.getLista()) {
 			boolean mantenuto = false;
@@ -429,15 +470,18 @@ public class MenuHandler implements Serializable {
 				nuovi.add(scelto);
 		}
 		List<MenuItem> nuovaLista = new ArrayList<MenuItem>();
-		for (MenuItem mantenutoOrimosso : menuGroup.getLista() ) {
+		for (MenuItem mantenutoOrimosso : menuGroup.getLista()) {
 			nuovaLista.add(mantenutoOrimosso);
 		}
 		for (MenuItem nuovo : nuovi) {
 			nuovo.setGruppo(menuGroup);
 			nuovaLista.add(nuovo);
 		}
-		menuGroup.setLista( nuovaLista );
+		menuGroup.setLista(nuovaLista);
 		session.update(menuGroup);
+		
+		setItemList(nuovaLista);
+		
 		return null;
 	}
 
@@ -446,4 +490,21 @@ public class MenuHandler implements Serializable {
 		return ((List<MenuGroup>) getModel().getWrappedData()).size() > 0 ? true
 				: false;
 	}
+
+	@Transactional
+	public String confirmNames() {
+		for ( MenuItem mi : itemList ) {
+			session.updateItem(mi);
+		}
+		setItemList(null);
+		return null;
+	}
+
+	@Transactional
+	public String updateItem() {
+		session.updateItem( (MenuItem)this.selectedItem.getData() );
+//		setSelectedItem(null);
+		return null;
+	}
+
 }
