@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Lista Files Statici" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form enctype="multipart/form-data">
+			<h:selectOneMenu value="#{fileHandler.fileType}">
+				<f:selectItems value="#{fileHandler.fileTypeItems}" />
+			</h:selectOneMenu>
+			<p:commandButton action="#{fileHandler.caricaFiles}"
+				update="filesList" value="Carica Files" />
+
+			<br />
+			<p:dataTable id="filesList" var="file" value="#{fileHandler.files}">
+
+				<p:column>
+					<f:facet name="header">nome</f:facet>
+					<h:outputText value="#{file}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">operazioni</f:facet>
+					<h:outputLink value="/img/#{file}" target="_blank">[v]</h:outputLink>
+					<h:outputLink value="/js/#{file}" target="_blank">[v]</h:outputLink>
+					<h:outputLink value="/swf/#{file}" target="_blank">[v]</h:outputLink>
+					<h:outputLink value="/css/#{file}" target="_blank">[v]</h:outputLink>
+					- <h:commandLink action="#{filesHandler.modFile(file)}" value="[m]" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+			<p:panel id="prev" header="Lista Files">
+				<ui:repeat var="newFile" value="#{fileHandler.daCaricare}"
+					varStatus="ind">
+					<t:inputFileUpload label="carica " required="false" accept="*"
+						value="#{newFile.uploadedData}" />
+					<br />
+				</ui:repeat>
+				<br />
+				<p:commandButton action="#{fileHandler.addSingleFile}" update="prev"
+					value="Aggiungi" />
+			</p:panel>
+			<br />
+			<h:commandButton action="#{fileHandler.addNewFiles}"
+				value="carica tutti i files" />
+		</h:form>
+	</ui:define>
+</ui:composition>
