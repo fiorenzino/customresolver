@@ -18,6 +18,7 @@ import weld.model.type.CategoriaAttivita;
 public class Attivita implements Serializable {
 
 	private String id;
+	private String nome;
 	private Date data;
 	private String autore;
 	private CategoriaAttivita categoria;
@@ -147,6 +148,14 @@ public class Attivita implements Serializable {
 
 	public void setImmagine(Immagine immagine) {
 		this.immagine = immagine;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
