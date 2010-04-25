@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -32,12 +31,6 @@ public class UrlParsingBean implements Serializable {
 		List<String> categoryChain = new ArrayList<String>();
 		String pageId = uri.substring(uri.lastIndexOf("/") + 1);
 		String[] str = uri.split("/");
-		// while (uri.length() > 0) {
-		// int index = uri.indexOf('/');
-		// String value = uri.substring(0, index);
-		// categoryChain.add(URLDecoder.decode(value, "UTF-8"));
-		// uri = uri.substring(index);
-		// }
 		for (String string : str) {
 			System.out.println("bb: " + URLDecoder.decode(string, "UTF-8"));
 		}

@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import weld.model.Notizia;
 import weld.session.NotizieSession;
+import weld.view.utils.PagesUtils;
 
 @Named
 @SessionScoped
@@ -26,6 +27,7 @@ public class NotizieHandler implements Serializable {
 	}
 
 	public String saveNotizia() {
+		this.notizia.setId(PagesUtils.createPageId(this.notizia.getTitolo()));
 		notizieSession.persist(this.notizia);
 		return "/private/notizie/scheda-notizia?redirect=true";
 	}
@@ -67,6 +69,8 @@ public class NotizieHandler implements Serializable {
 	}
 
 	public List<Notizia> getAll() {
+		if (this.all == null)
+			this.all = notizieSession.getAll();
 		return all;
 	}
 
