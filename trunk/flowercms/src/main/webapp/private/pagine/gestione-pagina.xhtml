@@ -20,14 +20,18 @@
 
 				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
 
-					<h:outputLabel value="Titolo(*):" for="titolo" />
-					<h:inputText required="true" id="titolo" value="#{pageHandler.element.title}" style="width: 100%;" />
+					<h:outputLabel value="Titolo(*):" for="titoloW" rendered="#{empty pageHandler.element.title}"/>
+					<h:inputText required="true" id="titoloW" value="#{pageHandler.element.title}" style="width: 100%;" rendered="#{empty pageHandler.element.title}"/>
+					
+					<h:outputLabel value="Titolo:" for="titoloR" rendered="#{not empty pageHandler.element.title}"/>
+					<h:inputText disabled="true" id="titoloR" value="#{pageHandler.element.title}" style="width: 100%;" rendered="#{not empty pageHandler.element.title}"/>
+
 					<h:outputLabel value="Descrizione:" for="descrizione" />
 					<h:inputText  id="descrizione" value="#{pageHandler.element.description}"
 						style="width: 100%;" />
 						
 					<h:outputLabel value="Modello(*):" for="template" />
-					<h:selectOneMenu value="#{pageHandler.element.template.template.id}" required="true">
+					<h:selectOneMenu id="template" value="#{pageHandler.element.template.template.id}" required="true" style="width: 100%">
 						<f:selectItems value="#{propertiesHandler.templateItems}"/>
 					</h:selectOneMenu>
 

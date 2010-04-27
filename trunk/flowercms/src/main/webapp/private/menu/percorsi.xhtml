@@ -142,6 +142,9 @@
 								<h:outputLabel value="Nome collegamento" for="itemName"/>
 								<h:inputText value="#{menuHandler.selectedItem.data.nome}" style="width: 100%;" id="itemName"/>
 							</h:panelGrid>
+							<h:panelGrid columns="1" width="100%">
+								<h:outputLink target="_blank" value="#{request.contextPath}/pages/#{}">
+							</h:panelGrid>
 							<br/>
 							<h:panelGrid columns="2">
 								<h:commandButton value="Conferma"
