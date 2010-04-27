@@ -47,6 +47,7 @@
 		<copy overwrite="false" todir="${deploy.dir}/${ant.project.name}">
 			<fileset dir="${basedir}/src/main/webapp">
 				<include name="**/*.xhtml" />
+				<include name="**/*.xml" />
 				<include name="**/*.jsp" />
 				<include name="**/*.js" />
 				<include name="**/*.gif" />
