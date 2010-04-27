@@ -74,14 +74,14 @@ public abstract class SuperSession<T> {
 		}
 	}
 
-	public boolean update(T object) {
+	public T update(T object) {
 		try {
 			object = preUpdate(object);
 			getEm().merge(object);
-			return true;
+			return object;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 

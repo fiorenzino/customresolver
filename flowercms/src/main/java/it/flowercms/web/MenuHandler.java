@@ -147,6 +147,11 @@ public class MenuHandler implements Serializable {
 		return backPage();
 	}
 
+	public boolean getClear() {
+		reset();
+		return true;
+	}
+
 	// -----------------------------------------------------
 
 	public MenuGroup getElement() {

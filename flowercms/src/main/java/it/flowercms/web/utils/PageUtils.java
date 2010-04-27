@@ -4,6 +4,8 @@ import it.flowercms.par.Page;
 
 public class PageUtils {
 
+	private static final String prologo = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
+	
 	public static String createPageId(String title) {
 		title = title.replaceAll("[^a-zA-Z0-9\\s]", "")
 				.replaceAll("[\\s]", "-");
@@ -11,7 +13,7 @@ public class PageUtils {
 	}
 	
 	public static Page generateContent(Page page) {
-		StringBuffer contentBuffer = new StringBuffer();
+		StringBuffer contentBuffer = new StringBuffer(prologo);
 		if ((page.getTemplate().getHeader() != null)
 				&& (!"".equals(page.getTemplate().getHeader()))) {
 			contentBuffer.append(page.getTemplate().getTemplate()

@@ -121,6 +121,11 @@ public class TemplateHandler implements Serializable {
 		return listPage();
 	}
 
+	public boolean getClear() {
+		reset();
+		return true;
+	}
+
 	// -----------------------------------------------------
 
 	public Template getElement() {

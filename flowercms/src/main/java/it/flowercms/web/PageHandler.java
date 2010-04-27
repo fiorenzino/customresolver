@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -192,6 +194,11 @@ public class PageHandler implements Serializable {
 		return NEW_OR_EDIT;
 	}
 
+	public boolean getClear() {
+		reset();
+		return true;
+	}
+
 	// -----------------------------------------------------
 
 	/**
@@ -217,34 +224,12 @@ public class PageHandler implements Serializable {
 		return editPage();
 	}
 
-	public String viewElement() {
-		// fetch dei dati
-		Page t = (Page) getModel().getRowData();
-		t = getSession().fetch(getId(t));
-		// settaggi nel super handler
-		this.element = t;
-		// vista di destinazione
-		return viewPage();
-	}
-
-	public String modElement() {
-		// fetch dei dati;
-		Page t = (Page) getModel().getRowData();
-		t = getSession().fetch(getId(t));
-		// settaggi nel super handler
-		this.element = t;
-		// vista di destinazione
-		return editPage();
-	}
-
 	// -----------------------------------------------------
 
 	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
-		Page p = new Page();
-		p.setTemplate(new TemplateImpl());
-		p.getTemplate().setTemplate(new Template());
+		element.getTemplate().setTemplate( templateSession.find( element.getTemplate().getTemplate().getId() ) );
 		// salvataggio
 		element = getSession().persist(element);
 		// refresh locale
@@ -258,18 +243,26 @@ public class PageHandler implements Serializable {
 	@Transactional
 	public String update() {
 		// recupero dati in input
-		Page p = new Page();
-		p.setTemplate(new TemplateImpl());
-		p.getTemplate().setTemplate(new Template());
+		element.getTemplate().setTemplate( templateSession.find( element.getTemplate().getTemplate().getId() ) );
 		// salvataggio
 		getSession().update(element);
 		// refresh locale
-		element = getSession().fetch(getId(element));
-		refreshModel();
-		// altre dipendenze
-		propertiesHandler.setPageItems(null);
-		// vista di destinzione
-		return viewPage();
+		Page result = getSession().fetch(getId(element));
+		if ( result != null ) {
+			refreshModel();
+			// altre dipendenze
+			propertiesHandler.setPageItems(null);
+			// vista di destinzione
+			return viewPage();
+		}
+		else {
+			// messaggio di errore
+			FacesContext.getCurrentInstance().addMessage(
+					"titolo",
+					new FacesMessage("Attenzione: titolo di pagina non valido o gia' utilizzato!"));
+			// vista di destinzione
+			return null;
+		}
 	}
 
 	@Transactional
