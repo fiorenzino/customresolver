@@ -41,16 +41,16 @@ public class DBURLConnection extends URLConnection {
 	public synchronized void connect() throws IOException {
 		if (!connected) {
 
-			this.form = url.getFile().substring(url.getFile().indexOf("/") + 1);
+			this.form = url.getFile().substring(url.getFile().indexOf("/") + 1, url.getFile().lastIndexOf("?") );
 			System.out.println("form: " + this.form);
 			try {
 				this.currentPage = JSFUtils.getBean(PageSession.class).find(this.form);
 				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
-				System.out.println(this.content);
+//				System.out.println(this.content);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println(" DBUTL EXC 1");
+//				System.out.println(" DBUTL EXC 1");
 			}
 			this.connected = true;
 		}

@@ -39,8 +39,8 @@ public class JSFUtils {
 			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	public static int count(Collection collection) {

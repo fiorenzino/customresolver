@@ -114,9 +114,9 @@ implements Serializable {
 
 	@Override
 	@Transactional
-	public Page persist(Page page) {
+	protected Page prePersist(Page page) {
 		page.setId(PageUtils.createPageId(page.getTitle()));
-		return super.persist(page);
+		return page;
 	}
 
 }
