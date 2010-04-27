@@ -22,7 +22,7 @@ public class UrlParsingBean implements Serializable {
 	BreadCrumpsHandler breadCrumpsHandler;
 
 	public UrlParsingBean() {
-		// TODO Auto-generated constructor stub
+		System.out.println("OK UrlParsingBean");
 	}
 
 	public String parseComplexUrl() throws UnsupportedEncodingException {

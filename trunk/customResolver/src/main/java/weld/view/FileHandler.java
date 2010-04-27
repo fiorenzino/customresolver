@@ -5,8 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+
+import org.primefaces.event.FileUploadEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import weld.model.attachment.UploadObject;
 import weld.view.utils.FileUtils;
@@ -23,6 +29,8 @@ public class FileHandler implements Serializable {
 
 	private String fileContent;
 
+	private Logger logger = LoggerFactory.getLogger(FileHandler.class);
+
 	// 0 css
 	// 1 img
 	// 2 swf
@@ -30,6 +38,25 @@ public class FileHandler implements Serializable {
 	private int fileType;
 
 	private SelectItem[] fileTypeItems = new SelectItem[] {};
+
+	public void handleFileUpload(FileUploadEvent event) {
+		// InputStream stream =
+		// this.getClass().getResourceAsStream("barcalogo.jpg");
+
+		logger.info("Uploaded: {}", event.getFile().getFileName());
+		logger.info("Uploaded: {}", event.getFile().getContentType());
+		logger.info("Uploaded: {}", event.getFile().getSize());
+		UploadObject obj = new UploadObject();
+		obj.setFile(event.getFile());
+		obj.setData(event.getFile().getContents());
+		obj.setFilename(event.getFile().getFileName());
+		obj.setType(event.getFile().getContentType());
+		getDaCaricare().add(obj);
+		FacesMessage msg = new FacesMessage("Succesful", event.getFile()
+				.getFileName()
+				+ " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public int getFileType() {
 		return fileType;

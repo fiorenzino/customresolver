@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.primefaces.model.UploadedFile;
 
 @Entity
 public class Documento implements Serializable {
