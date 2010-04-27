@@ -1,15 +1,33 @@
 package weld.model.attachment;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
-import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.UploadedFile;
 
 public class UploadObject implements Serializable {
 
 	private String filename;
 	private byte[] data;
 	private String type;
-	private UploadedFile uploadedData;
+	private UploadedFile file;
+	private DefaultStreamedContent stream;
+
+	public DefaultStreamedContent getStream() {
+		InputStream stream;
+		try {
+			stream = getFile().getInputstream();
+			return new DefaultStreamedContent(stream, "image/jpeg");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 
 	public String getFilename() {
 		return filename;
@@ -35,11 +53,12 @@ public class UploadObject implements Serializable {
 		this.type = type;
 	}
 
-	public UploadedFile getUploadedData() {
-		return uploadedData;
+	public UploadedFile getFile() {
+		return file;
 	}
 
-	public void setUploadedData(UploadedFile uploadedData) {
-		this.uploadedData = uploadedData;
+	public void setFile(UploadedFile file) {
+		this.file = file;
 	}
+
 }

@@ -1,92 +1,92 @@
 <h:form xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
-	<ul id="menu_a_2livelli" title="Menu' di primo livello">
-		<li class="M5cellaprima"><a href="#{request.contextPath}/" title="" accesskey="1">Home</a></li>
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/" title=""
+	<ul id="menu_a_2livelli" title="Menu' di primo livello">
+		<li class="M5cellaprima"><a href="/" title="" accesskey="1">Home</a></li>
+
+		<li class="M5cellaunica"><a href="/private/" title=""
 			accesskey="2">Amministrazione</a>
 		<ul>
 			<li><a href="comune.html" title="" accesskey="2">utenti</a></li>
 			<li><a href="turismo.html" title="" accesskey="3">permessi</a></li>
 		</ul>
 		</li>
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/pagine/" title=""
+		<li class="M5cellaunica"><a href="/private/pagine/" title=""
 			accesskey="3">Pagine</a>
 		<ul>
-			<li><h:commandLink action="#{request.contextPath}/private/pagine/lista-pagine.jsf"
+			<li><h:commandLink action="/private/pagine/lista-pagine.jsf"
 				value="lista" /></li>
 			<li><h:commandLink action="#{pagesHandler.creaPagina}"
 				value="nuova" /></li>
 		</ul>
 
 		</li>
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/pagine/" title=""
+		<li class="M5cellaunica"><a href="/private/pagine/" title=""
 			accesskey="4">Templates</a>
 		<ul>
-			<li><h:commandLink action="#{request.contextPath}/private/pagine/lista-pagine.jsf"
+			<li><h:commandLink action="/private/pagine/lista-pagine.jsf"
 				value="lista" /></li>
 			<li><h:commandLink action="#{pagesHandler.creaPagina}"
 				value="nuova" /></li>
 		</ul>
 		</li>
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/pagine/" title=""
+		<li class="M5cellaunica"><a href="/private/pagine/" title=""
 			accesskey="5">Menu</a>
 		<ul>
-			<li><h:commandLink action="#{request.contextPath}/private/pagine/lista-pagine.jsf"
+			<li><h:commandLink action="/private/pagine/lista-pagine.jsf"
 				value="lista" /></li>
 			<li><h:commandLink action="#{pagesHandler.creaPagina}"
 				value="nuova" /></li>
 		</ul>
 
 		</li>
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/pubblicazioni/"
+		<li class="M5cellaunica"><a href="/private/pubblicazioni/"
 			title="" accesskey="6">Albo Pretorio</a>
 		<ul>
 			<li><h:commandLink
-				action="#{request.contextPath}/private/pubblicazioni/lista-pubblicazioni.jsf"
+				action="/private/pubblicazioni/lista-pubblicazioni.jsf"
 				value="lista" /></li>
 			<li><h:commandLink
 				action="#{pubblicazioniHandler.addPubblicazione}" value="nuova" /></li>
 			<li><h:commandLink
-				action="#{request.contextPath}/private/pubblicazioni/gestione-tipi-pubblicazione.jsf"
+				action="/private/pubblicazioni/gestione-tipi-pubblicazione.jsf"
 				value="tipi" /></li>
 		</ul>
 		</li>
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/notizie/" title=""
+		<li class="M5cellaunica"><a href="/private/notizie/" title=""
 			accesskey="7">Notizie</a>
 		<ul>
-			<li><h:commandLink action="#{request.contextPath}/private/notizie/lista-notizie.jsf"
+			<li><h:commandLink action="/private/notizie/lista-notizie.jsf"
 				value="lista" /></li>
 			<li><h:commandLink action="#{notizieHandler.addNotizia}"
 				value="nuova" /></li>
 		</ul>
 
 		</li>
-		<li class="M5cellaunica"><a href="#{request.contextPath}/private/gallerie/" title=""
+		<li class="M5cellaunica"><a href="/private/gallerie/" title=""
 			accesskey="7">Gallerie</a>
 		<ul>
-			<li><h:commandLink action="#{request.contextPath}/private/gallerie/lista-gallerie.jsf"
+			<li><h:commandLink action="/private/gallerie/lista-gallerie.jsf"
 				value="lista" /></li>
 			<li><h:commandLink action="#{gallerieHandler.addGalleria}"
 				value="nuova" /></li>
 		</ul>
 
 		</li>
-		<li class="M5cellaultima"><a href="#{request.contextPath}/private/attivita/" title=""
+		<li class="M5cellaultima"><a href="/private/attivita/" title=""
 			accesskey="8">Attivita'</a>
 		<ul>
-			<li><h:commandLink action="#{request.contextPath}/private/attivita/lista-attivita.jsf"
+			<li><h:commandLink action="/private/attivita/lista-attivita.jsf"
 				value="lista" /></li>
 			<li><h:commandLink action="#{attivitaHandler.addAttivita}"
 				value="nuova" /></li>
 			<li><h:commandLink
-				action="#{request.contextPath}/private/attivita/gestione-tipi-attivita.jsf" value="tipi" /></li>
+				action="/private/attivita/gestione-tipi-attivita.jsf" value="tipi" /></li>
 			<li><h:commandLink
-				action="#{request.contextPath}/private/attivita/gestione-categorie-attivita.jsf"
+				action="/private/attivita/gestione-categorie-attivita.jsf"
 				value="categorie" /></li>
 		</ul>
 		</li>

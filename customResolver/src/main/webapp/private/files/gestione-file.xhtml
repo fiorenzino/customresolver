@@ -11,6 +11,25 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
+			<p:growl />
+
+			<p:fileUpload fileUploadListener="#{fileHandler.handleFileUpload}"
+				multiple="true" label="Scegli" allowTypes="*.jpg;*.png;*.gif;"
+				description="Images" update="filesList" />
+			<br />
+			<br />
+			<p:dataTable id="filesList" var="file"
+				value="#{fileHandler.daCaricare}">
+
+				<p:column>
+					<f:facet name="header">nome</f:facet>
+					<h:outputText value="#{file.filename}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">img</f:facet>
+					<p:graphicImage value="#{file.stream}" />
+				</p:column>
+			</p:dataTable>
 
 		</h:form>
 
