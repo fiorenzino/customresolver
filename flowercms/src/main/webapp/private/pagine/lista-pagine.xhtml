@@ -31,6 +31,10 @@
 						<center><h:commandLink value="vedi"
 							action="#{pageHandler.viewElement(p.id)}" /> - <h:commandLink
 							value="modifica" action="#{pageHandler.modElement(p.id)}" />
+							- <h:outputLink
+							target="_blank" value="#{request.contextPath}/pagine/#{p.id}" >
+							<h:outputText value="anteprima"/>
+							</h:outputLink>
 						</center>
 					</p:column>
 				</p:dataTable>

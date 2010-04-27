@@ -16,7 +16,7 @@
 
 			<h:panelGrid columns="3" >
 
-				<p:panel header="Gestione dei modelli"
+				<p:panel header="Gestione dei modelli" rendered="#{templateHandler.clear}"
 					style="width: 300px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
@@ -35,7 +35,7 @@
 					<br />
 				</p:panel>
 
-				<p:panel header="Gestione delle pagine"
+				<p:panel header="Gestione delle pagine" rendered="#{pageHandler.clear}"
 					style="width: 300px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
@@ -55,7 +55,7 @@
 				</p:panel>
 
 				<p:panel header="Gestione della struttura del sito"
-					style="width: 300px;">
+					style="width: 300px;" rendered="#{menuHandler.clear}">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/images/section.gif" style="border: none;" />

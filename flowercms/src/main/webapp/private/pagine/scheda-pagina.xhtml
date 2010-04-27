@@ -66,7 +66,7 @@
 						rendered="#{not empty pageHandler.element.template.col3}" />
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
-						rendered="#{not empty pageHandler.element.template.col3 and not empty pageHandler.element.template.col2 and not empty pageHandler.element.template.col1}" />
+						rendered="#{not empty pageHandler.element.template.col3 or not empty pageHandler.element.template.col2 or not empty pageHandler.element.template.col1}" />
 					<h:outputText />
 
 					<h:outputLabel value="Pie' di pagina:" for="footer"
