@@ -52,6 +52,8 @@ public class FileHandler implements Serializable {
 		obj.setFilename(event.getFile().getFileName());
 		obj.setType(event.getFile().getContentType());
 		getDaCaricare().add(obj);
+		FileUtils.createImage("img", event.getFile().getFileName(), event
+				.getFile().getContents());
 		FacesMessage msg = new FacesMessage("Succesful", event.getFile()
 				.getFileName()
 				+ " is uploaded.");
@@ -72,27 +74,6 @@ public class FileHandler implements Serializable {
 
 	public void addSingleFile() {
 		getDaCaricare().add(new UploadObject());
-	}
-
-	public String addNewFiles() {
-		switch (fileType) {
-		case 0:
-
-			break;
-		case 1:
-
-			break;
-		case 2:
-
-			break;
-		case 3:
-
-			break;
-
-		default:
-			break;
-		}
-		return "";
 	}
 
 	public List<UploadObject> getDaCaricare() {
@@ -133,6 +114,7 @@ public class FileHandler implements Serializable {
 			this.files = new ArrayList<String>();
 			break;
 		}
+		System.out.println("dim files: " + this.files.size());
 	}
 
 	public SelectItem[] getFileTypeItems() {
@@ -164,7 +146,6 @@ public class FileHandler implements Serializable {
 
 	public String modFile(String fileName) {
 		this.fileContent = FileUtils.getFileContent(fileName);
-
 		return "";
 	}
 

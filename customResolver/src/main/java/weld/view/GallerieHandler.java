@@ -1,16 +1,20 @@
 package weld.view;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 
 import weld.model.Galleria;
 import weld.model.attachment.Immagine;
 import weld.session.GallerieSession;
+import weld.view.utils.PagesUtils;
 
 @Named
 @SessionScoped
@@ -24,7 +28,7 @@ public class GallerieHandler implements Serializable {
 
 	public String addGalleria() {
 		this.galleria = new Galleria();
-		return "/private/notizie/gestione-galleria?redirect=true";
+		return "/private/gallerie/gestione-galleria?redirect=true";
 	}
 
 	public void addFoto() {
@@ -38,28 +42,29 @@ public class GallerieHandler implements Serializable {
 				immagini.add(immagine);
 		}
 		this.galleria.setImmagini(immagini);
+		this.galleria.setId(PagesUtils.createPageId(this.galleria.getTitolo()));
 		gallerieSession.persist(this.galleria);
-		return "/private/notizie/scheda-galleria?redirect=true";
+		return "/private/gallerie/scheda-galleria?redirect=true";
 	}
 
 	public String deleteGalleria() {
 		gallerieSession.delete(this.galleria.getId());
-		return "/private/notizie/lista-notizie?redirect=true";
+		return "/private/gallerie/lista-notizie?redirect=true";
 	}
 
 	public String modGalleria(String id) {
 		this.galleria = gallerieSession.find(id);
-		return "/private/notizie/gestione-galleria?redirect=true";
+		return "/private/gallerie/gestione-galleria?redirect=true";
 	}
 
 	public String updateGalleria() {
 		this.galleria = gallerieSession.update(this.galleria);
-		return "/private/notizie/scheda-galleria?redirect=true";
+		return "/private/gallerie/scheda-galleria?redirect=true";
 	}
 
 	public String detailGalleria(String id) {
 		this.galleria = gallerieSession.find(id);
-		return "/private/notizie/scheda-galleria?redirect=true";
+		return "/private/gallerie/scheda-galleria?redirect=true";
 	}
 
 	public Galleria getGalleria() {
@@ -79,6 +84,8 @@ public class GallerieHandler implements Serializable {
 	}
 
 	public List<Galleria> getAll() {
+		if (this.all == null)
+			this.all = gallerieSession.getAll();
 		return all;
 	}
 
