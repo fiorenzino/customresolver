@@ -15,10 +15,11 @@
 			<h:outputText id="titolo" value="#{gallerieHandler.galleria.titolo}" />
 			<br />
 
-			<h:outputLabel for="descrizione" value="Descrizione:" />
+			<h:outputText value="Descrizione:" />
+			<br />
 			<h:outputText id="descrizione"
-				value="#{gallerieHandler.galleria.descrizione}" width="640px"
-				height="320px"></h:outputText>
+				value="#{gallerieHandler.galleria.descrizione}" height="320px"
+				escape="false" />
 			<br />
 		</h:form>
 

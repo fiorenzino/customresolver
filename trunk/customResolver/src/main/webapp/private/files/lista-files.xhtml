@@ -16,41 +16,31 @@
 				<f:selectItems value="#{fileHandler.fileTypeItems}" />
 			</h:selectOneMenu>
 			<p:commandButton action="#{fileHandler.caricaFiles}"
-				update="filesList" value="Carica Files" />
+				update="filesList" value="Visualizza Files" />
 
 			<br />
-			<p:dataTable id="filesList" var="file" value="#{fileHandler.files}">
+			<p:panel header="Lista Files" id="filesList">
+				<p:dataTable var="nomeFile" value="#{fileHandler.files}">
+					<p:column>
+						<f:facet name="header">nome</f:facet>
+						<h:outputText value="#{nomeFile}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">nome</f:facet>
-					<h:outputText value="#{file}" />
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">operazioni</f:facet>
-					<h:outputLink value="/img/#{file}" target="_blank">[v]</h:outputLink>
-					<h:outputLink value="/js/#{file}" target="_blank">[v]</h:outputLink>
-					<h:outputLink value="/swf/#{file}" target="_blank">[v]</h:outputLink>
-					<h:outputLink value="/css/#{file}" target="_blank">[v]</h:outputLink>
-					- <h:commandLink action="#{filesHandler.modFile(file)}" value="[m]" />
-				</p:column>
-			</p:dataTable>
-			<br />
-			<br />
-			<p:panel id="prev" header="Lista Files">
-				<ui:repeat var="newFile" value="#{fileHandler.daCaricare}"
-					varStatus="ind">
-					<t:inputFileUpload label="carica " required="false" accept="*"
-						value="#{newFile.uploadedData}" />
-					<br />
-				</ui:repeat>
-				<br />
-				<p:commandButton action="#{fileHandler.addSingleFile}" update="prev"
-					value="Aggiungi" />
+					<p:column>
+						<f:facet name="header">operazioni</f:facet>
+						<h:outputLink value="/img/#{nomeFile}" target="_blank">[v]</h:outputLink>
+						<h:outputLink value="/js/#{nomeFile}" target="_blank">[v]</h:outputLink>
+						<h:outputLink value="/swf/#{nomeFile}" target="_blank">[v]</h:outputLink>
+						<h:outputLink value="/css/#{nomeFile}" target="_blank">[v]</h:outputLink>
+					- <h:commandLink action="#{fileHandler.modFile(nomeFile)}"
+							value="[m]" />
+					</p:column>
+				</p:dataTable>
 			</p:panel>
 			<br />
-			<h:commandButton action="#{fileHandler.addNewFiles}"
-				value="carica tutti i files" />
+			<br />
+			<h:commandLink action="/private/files/gestione-file.jsf"
+				value="carica file" />
 		</h:form>
 	</ui:define>
 </ui:composition>

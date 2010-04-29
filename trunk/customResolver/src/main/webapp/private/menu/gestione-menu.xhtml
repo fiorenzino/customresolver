@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+
+			<h:outputLabel id="labelName" for="name" value="Nome pagina:" />
+			<h:inputText id="name" value="#{pagesHandler.page.title}" />
+			<br />
+
+			<h:outputLabel id="labelDescr" for="descr"
+				value="Descrizione pagina:" />
+			<h:inputText id="descr" value="#{pagesHandler.page.description}" />
+			<br />
+
+			<h:outputLabel id="labelContent" for="content"
+				value="content pagina:" />
+			<h:inputTextarea id="content" cols="20" rows="20"
+				value="#{pagesHandler.page.content}" />
+			<br />
+
+			<h:commandButton action="#{pagesHandler.salvaPagina}"
+				value="crea pagina" immediate="false"
+				rendered="#{not pagesHandler.editMode}" />
+
+			<h:commandButton action="#{pagesHandler.updatePagina}"
+				value="salva pagina" immediate="false"
+				rendered="#{pagesHandler.editMode}" />
+
+			<h:commandButton action="#{pagesHandler.deletePagina}"
+				value="elimina pagina" rendered="#{pagesHandler.editMode}"
+				immediate="true"
+				onclick="if (!confirm('Vuoi davvero eliminare questa pagina?')) return false" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>

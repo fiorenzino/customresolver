@@ -22,6 +22,7 @@ public class NotizieHandler implements Serializable {
 	private List<Notizia> all;
 
 	public String addNotizia() {
+		this.editMode = false;
 		this.notizia = new Notizia();
 		return "/private/notizie/gestione-notizia?redirect=true";
 	}
@@ -29,21 +30,25 @@ public class NotizieHandler implements Serializable {
 	public String saveNotizia() {
 		this.notizia.setId(PagesUtils.createPageId(this.notizia.getTitolo()));
 		notizieSession.persist(this.notizia);
+		this.all = null;
 		return "/private/notizie/scheda-notizia?redirect=true";
 	}
 
 	public String deleteNotizia() {
 		notizieSession.delete(this.notizia.getId());
+		this.all = null;
 		return "/private/notizie/lista-notizie?redirect=true";
 	}
 
 	public String modNotizia(String id) {
+		this.editMode = true;
 		this.notizia = notizieSession.find(id);
 		return "/private/notizie/gestione-notizia?redirect=true";
 	}
 
 	public String updateNotizia() {
 		this.notizia = notizieSession.update(this.notizia);
+		this.all = null;
 		return "/private/notizie/scheda-notizia?redirect=true";
 	}
 
