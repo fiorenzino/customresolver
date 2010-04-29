@@ -44,21 +44,25 @@ public class GallerieHandler implements Serializable {
 		this.galleria.setImmagini(immagini);
 		this.galleria.setId(PagesUtils.createPageId(this.galleria.getTitolo()));
 		gallerieSession.persist(this.galleria);
+		this.all = null;
 		return "/private/gallerie/scheda-galleria?redirect=true";
 	}
 
 	public String deleteGalleria() {
 		gallerieSession.delete(this.galleria.getId());
+		this.all = null;
 		return "/private/gallerie/lista-notizie?redirect=true";
 	}
 
 	public String modGalleria(String id) {
+		this.editMode = true;
 		this.galleria = gallerieSession.find(id);
 		return "/private/gallerie/gestione-galleria?redirect=true";
 	}
 
 	public String updateGalleria() {
 		this.galleria = gallerieSession.update(this.galleria);
+		this.all = null;
 		return "/private/gallerie/scheda-galleria?redirect=true";
 	}
 

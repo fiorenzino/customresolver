@@ -12,16 +12,19 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputLabel for="titolo" value="Titolo" />
-			<h:inputText id="titolo" value="#{notizieHandler.notizia.titolo}" />
+			<h:inputText id="titolo" value="#{notizieHandler.notizia.titolo}"
+				style=" width : 409px;" />
 			<br />
 
 			<h:outputLabel for="autore" value="Autore:" />
-			<h:inputText id="autore" value="#{notizieHandler.notizia.autore}" />
+			<h:inputText id="autore" value="#{notizieHandler.notizia.autore}"
+				style=" width : 395px;" />
 			<br />
 
 			<h:outputLabel for="anteprima" value="Anteprima:" />
 			<h:inputTextarea id="anteprima" cols="20" rows="20"
-				value="#{notizieHandler.notizia.anteprima}" />
+				value="#{notizieHandler.notizia.anteprima}"
+				style=" height : 166px; width : 372px;" />
 			<br />
 
 			<h:outputLabel for="contenuto" value="Contenuto:" />
@@ -30,11 +33,11 @@
 			<br />
 
 			<h:commandButton action="#{notizieHandler.saveNotizia}"
-				value="crea notizia" immediate="false"
+				value="salva notizia" immediate="false"
 				rendered="#{not notizieHandler.editMode}" />
 
 			<h:commandButton action="#{notizieHandler.updateNotizia}"
-				value="salva notizia" immediate="false"
+				value="aggiorna notizia" immediate="false"
 				rendered="#{notizieHandler.editMode}" />
 
 			<h:commandButton action="#{notizieHandler.deleteNotizia}"

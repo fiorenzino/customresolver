@@ -19,6 +19,14 @@
 					value="Crea nuova Pagina" />
 			</p:panel>
 
+			<p:panel header="Gestione Files">
+				<h:commandLink action="/private/files/lista-files.jsf"
+					value="lista files" />
+				<br />
+				<h:commandLink action="/private/files/gestione-file.jsf"
+					value="creazione file" />
+			</p:panel>
+
 			<p:panel header="Gestione Notizie">
 				<h:commandLink action="/private/notizie/lista-notizie.jsf"
 					value="lista notizie" />
@@ -29,7 +37,7 @@
 
 			<p:panel header="Gestione Gallerie">
 				<h:commandLink action="/private/gallerie/lista-gallerie.jsf"
-					value="lista notizie" />
+					value="lista gallerie" />
 				<br />
 				<h:commandLink action="#{gallerieHandler.addGalleria}"
 					value="Crea nuova Galleria" />
