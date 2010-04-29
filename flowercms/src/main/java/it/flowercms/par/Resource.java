@@ -58,6 +58,15 @@ public class Resource implements Serializable {
 		this.bytes = bytes;
 	}
 
+	@Transient
+	public String getTesto() {
+		return new String(bytes);
+	}
+
+	public void setTesto(String testo) {
+		this.bytes = testo.getBytes();
+	}
+
 	// ------------------------------------------------------------------------
 
 	@Override

@@ -2,9 +2,9 @@ package it.flowercms.session;
 
 import it.flowercms.par.Resource;
 import it.flowercms.par.base.Ricerca;
-import it.flowercms.web.utils.PageUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,18 +21,21 @@ public class ResourceSession
 implements Serializable {
 
 	private Logger logger = Logger.getLogger(getClass());
+	private static Logger staticLogger = Logger.getLogger(ResourceSession.class);
 	
 	private static final long serialVersionUID = 1L;
 
-	private String base = null;
-	{ 
-		base = getClass().getClassLoader().getResource("risorse").getPath();
-		System.out.println(base);
+	private static String base = null;
+	
+	static { 
+		base = ResourceSession.class.getClassLoader().getResource("META-INF").getPath();
+		base = base.substring(0,base.indexOf("WEB-INF"))+"risorse"+File.separator;
+		staticLogger.info("Saving resources to: " + base);
 	}
 
 	public Resource persist(Resource object) {
 		try {
-			File f = new File(base+File.separator+object.getTipo()+File.separator+PageUtils.createPageId(object.getNome()));
+			File f = new File(base+object.getTipo()+File.separator+object.getNome().replaceAll(" ", "_"));
 			if ( f.exists() || f.isDirectory() )
 				throw new Exception("file could not be written!");
 			FileOutputStream fos = new FileOutputStream(f);
@@ -63,15 +66,40 @@ implements Serializable {
 			return null;
 		}
 	}
+	
+	public Resource fetch(String tipo, String id) {
+		try {
+			File f = new File(base+File.separator+tipo+File.separator+id);
+			if ( f.exists() && ! f.isDirectory() ) {
+				Resource r = new Resource();
+				r.setId(id);
+				r.setNome(id);
+				r.setTipo(tipo);
+				FileInputStream fis = new FileInputStream(f);
+				byte[] bytes = new byte[(int)f.length()];
+				for ( int i = 0 ; i < bytes.length ; i++ ) {
+					fis.read(bytes);
+				}
+				r.setBytes(bytes);
+				return r;
+			}
+			else {
+				return null;
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return null;
+		}
+	}
 
 	public Resource update(Resource object) {
 		try {
-			File f = new File(base+File.separator+object.getTipo()+File.separator+PageUtils.createPageId(object.getNome()));
+			File f = new File(base+File.separator+object.getTipo()+File.separator+object.getId());
 			if ( f.exists() && f.isDirectory() )
 				throw new Exception("file could not be written!");
 			if ( f.exists() ) 
 				f.delete();
-			f = new File(base+File.separator+object.getTipo()+File.separator+PageUtils.createPageId(object.getNome()));
+			f = new File(base+File.separator+object.getTipo()+File.separator+object.getId());
 			FileOutputStream fos = new FileOutputStream(f);
 			fos.write(object.getBytes());
 			fos.close();
@@ -84,7 +112,7 @@ implements Serializable {
 
 	public void delete(Resource object) {
 		try {
-			File f = new File(base+File.separator+object.getTipo()+File.separator+object.getId());
+			File f = new File(base+object.getTipo()+File.separator+object.getId());
 			if ( f.exists() && f.isDirectory() )
 				throw new Exception("file could not be written!");
 			if ( f.exists() ) 
