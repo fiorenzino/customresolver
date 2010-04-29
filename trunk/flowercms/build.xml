@@ -44,8 +44,9 @@
 	</target>
 
 	<target name="update">
-		<copy overwrite="false" todir="${deploy.dir}/${ant.project.name}">
+		<copy overwrite="false" todir="${deploy.dir}/${ant.project.name}" includeemptydirs="true">
 			<fileset dir="${basedir}/src/main/webapp">
+				<include name="risorse/*" />
 				<include name="**/*.xhtml" />
 				<include name="**/*.xml" />
 				<include name="**/*.jsp" />

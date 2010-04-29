@@ -4,4 +4,4 @@
 <%
 String img = "img";
 %>
-<jsp:forward page="/img/${resourceHandler.element.id}"></jsp:forward>
+<jsp:forward page="/risorse/img/${resourceHandler.element.id}"></jsp:forward>
