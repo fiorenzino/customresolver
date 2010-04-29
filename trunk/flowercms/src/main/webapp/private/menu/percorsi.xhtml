@@ -142,11 +142,11 @@
 								<h:outputLabel value="Nome collegamento" for="itemName"/>
 								<h:inputText value="#{menuHandler.selectedItem.data.nome}" style="width: 100%;" id="itemName"/>
 							</h:panelGrid>
-							<h:panelGrid columns="1" width="100%">
-								<h:outputLink target="_blank" value="#{request.contextPath}/pages/#{}">
-							</h:panelGrid>
 							<br/>
-							<h:panelGrid columns="2">
+							<h:panelGrid columns="3">
+								<h:outputLink target="_blank" value="#{request.contextPath}/pagine/#{menuHandler.selectedItem.data.pagina.id}">
+									<h:outputText value="anteprima"></h:outputText>
+								</h:outputLink>
 								<h:commandButton value="Conferma"
 									action="#{menuHandler.updateItem}" />
 								<h:commandButton value="Indietro" action="#{menuHandler.reset}" />

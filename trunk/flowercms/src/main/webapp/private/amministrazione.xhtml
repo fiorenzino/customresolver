@@ -14,7 +14,7 @@
 			<center><br />
 			<br />
 
-			<h:panelGrid columns="3" >
+			<h:panelGrid columns="2" >
 
 				<p:panel header="Gestione dei modelli" rendered="#{templateHandler.clear}"
 					style="width: 300px;">
@@ -63,6 +63,25 @@
 						<h:panelGroup style="vertical-align:middle;">
 							<h:commandLink action="#{menuHandler.loadModel}">
 								<h:outputText value="Associa pagine e percorsi" />
+							</h:commandLink>
+						</h:panelGroup>
+					</h:panelGrid>
+					<br />
+				</p:panel>
+
+				<p:panel header="Gestione delle risorse statiche" rendered="#{resourceHandler.clear}"
+					style="width: 300px;">
+					<h:panelGrid columns="2">
+						<h:panelGroup style="vertical-align:middle;">
+							<h:graphicImage value="/images/section.gif" style="border: none;" />
+						</h:panelGroup>
+						<h:panelGroup style="vertical-align:middle;">
+							<h:commandLink action="#{resourceHandler.loadModel}">
+								<h:outputText value="Lista delle risorse" />
+							</h:commandLink>
+							<br/>
+							<h:commandLink action="#{resourceHandler.addElement}">
+								<h:outputText value="Carica una nuova risorsa" />
 							</h:commandLink>
 						</h:panelGroup>
 					</h:panelGrid>
