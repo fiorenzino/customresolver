@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Gestione Risorsa" />
+	</ui:define>
+
+	<ui:define name="content">
+		<style>
+.col1 {
+	width: 35%;
+	text-align: left;
+}
+
+.col2 {
+	width: 65%;
+	text-align: left;
+}
+</style>
+
+		<p:panel header="Caricamento Risorse">
+
+			<h:form enctype="multipart/form-data" prependId="false">
+				<center><p:fileUpload id="nome"
+					fileUploadListener="#{resourceHandler.handleFileUpload}"
+					rendered="#{empty resourceHandler.element.id}" multiple="false"
+					allowTypes="*.jpg;*.png;*.gif;*.jpeg;*.swf;*.css;*.js"
+					update="resourceList,commands" /> <br />
+				<p:outputPanel id="resourceList" style="width: 100%;">
+					<br/>
+					<p:dataTable var="filename" rowIndexVar="row"
+						value="#{resourceHandler.uploadedResources}"
+						rendered="#{not empty resourceHandler.uploadedResources}">
+						<p:column>
+							<f:facet name="header">file caricati</f:facet>
+							<h:outputText value="#{resourceHandler.getResourceFilename(row)}" />
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel></center>
+			</h:form>
+			<br />
+			<br />
+
+		</p:panel>
+
+		<br />
+		<br />
+		<h:form id="commands">
+			<center><h:panelGrid columns="2"
+				rendered="#{not empty resourceHandler.uploadedResources}">
+				<h:outputLabel value="Tipologia di risorse:" for="tipo" />
+				<h:selectOneMenu id="tipo" value="#{resourceHandler.element.tipo}"
+					style="width: 100%;">
+					<f:selectItems value="#{propertiesHandler.risorseItems}" />
+				</h:selectOneMenu>
+			</h:panelGrid> <br />
+			<h:panelGrid columns="4">
+				<h:commandButton action="#{resourceHandler.save}" value="Salva"
+					rendered="#{empty resourceHandler.element.id and not empty resourceHandler.uploadedResources}" />
+				<h:commandButton id="reset" action="#{resourceHandler.reset}"
+					value="Annulla" immediate="true" />
+			</h:panelGrid></center>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
