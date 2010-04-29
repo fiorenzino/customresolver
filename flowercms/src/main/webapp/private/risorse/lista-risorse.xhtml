@@ -20,7 +20,7 @@
 				</h:panelGrid>
 			
 				<p:dataTable rowIndexVar="rowIndex" var="r" rows="#{resourceHandler.pageSize}" 
-					value="#{resourceHandler.model}" lazy="false" >
+					value="#{resourceHandler.model}" lazy="true" >
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
@@ -31,9 +31,9 @@
 						<h:outputText value="#{r.nome}" />
 					</p:column>
 					<p:column width="200">
-						<center><h:commandLink value="vedi"
-							action="#{resourceHandler.viewElement(p.tipo,p.id)}" /> - <h:commandLink
-							value="modifica" action="#{resourceHandler.modElement(p.tipo,p.id)}" />
+						<center><h:commandLink value="modifica"
+							action="#{resourceHandler.modElement(r.tipo,r.id)}" /> - <h:commandLink
+							value="elimina" action="#{resourceHandler.delElement(r.tipo,r.id)}" />
 						</center>
 					</p:column>
 				</p:dataTable>
