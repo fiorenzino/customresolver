@@ -5,16 +5,15 @@ import it.flowercms.par.base.Ricerca;
 import it.flowercms.session.ResourceSession;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
@@ -33,9 +32,10 @@ public class ResourceHandler implements Serializable {
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 	
 	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-	public static String VIEW = "/private/risorse/scheda-risorsa.xhtml"+FACES_REDIRECT;
+//	public static String VIEW = "/private/risorse/scheda-risorsa.xhtml"+FACES_REDIRECT;
 	public static String LIST = "/private/risorse/lista-risorse.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/risorse/gestione-risorsa.xhtml"+FACES_REDIRECT;
+	public static String EDIT = "/private/risorse/gestione-risorsa.xhtml"+FACES_REDIRECT;
+	public static String UPLOAD = "/private/risorse/carica-risorse.xhtml"+FACES_REDIRECT;
 
 	// ------------------------------------------------
 
@@ -61,6 +61,8 @@ public class ResourceHandler implements Serializable {
 	private int scrollerPage = 1;
 
 	private String backPage = BACK;
+
+	private List<Resource> uploadedResources = null;
 
 	// ------------------------------------------------
 
@@ -125,10 +127,18 @@ public class ResourceHandler implements Serializable {
 	public String reset() {
 		this.element = null;
 		this.model = null;
+		this.uploadedResources = null;
 		return listPage();
 	}
 
 	// -----------------------------------------------------
+
+	public List<Resource> getUploadedResources() {
+		return uploadedResources;
+	}
+	public String getResourceFilename(int index) {
+		return uploadedResources.get(index).getNome();
+	}
 
 	public Resource getElement() {
 		return element;
@@ -180,16 +190,16 @@ public class ResourceHandler implements Serializable {
 		return this.backPage == null ? BACK : this.backPage;
 	}
 
-	public String viewPage() {
-		return VIEW;
-	}
+//	public String viewPage() {
+//		return VIEW;
+//	}
 
 	public String listPage() {
 		return LIST;
 	}
 
 	public String editPage() {
-		return NEW_OR_EDIT;
+		return EDIT;
 	}
 
 	public boolean getClear() {
@@ -213,30 +223,29 @@ public class ResourceHandler implements Serializable {
 
 	public String addElement() {
 		// impostazioni locali
-		Resource r = new Resource();
-		// settaggi 
-		this.element = r;
+		this.uploadedResources = new ArrayList<Resource>();
+		this.element = new Resource();
 		// vista di destinazione
-		return editPage();
+		return UPLOAD;
 	}
 
 	// -----------------------------------------------------
 
 	@Transactional
 	public String save() {
-		// recupero e preelaborazioni dati in input
-		if ( element.getTipo().equals("img") ) {
-			((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getParameter("file");
+		for ( Resource resource : uploadedResources ) {
+			if ( resource.getTipo() == null )
+				resource.setTipo( this.element.getTipo() );
+			// recupero e preelaborazioni dati in input
+			// salvataggio
+			session.persist(resource);
 		}
-		// TODO
-		// salvataggio
-		element = session.persist(element);
 		// refresh locale
 		refreshModel();
 		// altre dipendenze
 		//
 		// vista di destinazione
-		return viewPage();
+		return listPage();
 	}
 
 	@Transactional
@@ -250,7 +259,7 @@ public class ResourceHandler implements Serializable {
 		// altre dipendenze
 		//
 		// vista di destinzione
-		return viewPage();
+		return listPage();
 	}
 
 	@Transactional
@@ -275,13 +284,13 @@ public class ResourceHandler implements Serializable {
 		return editPage();
 	}
 
-	public String viewCurrent() {
-		// fetch dei dati
-		//
-		// vista di arrivo
-		return viewPage();
-	}
-	
+//	public String viewCurrent() {
+//		// fetch dei dati
+//		//
+//		// vista di arrivo
+//		return viewPage();
+//	}
+//	
 	// -----------------------------------------------------
 
 	
@@ -289,15 +298,13 @@ public class ResourceHandler implements Serializable {
 //		return session.getAllList();
 //	}
 
-	public String viewElement(String tipo, String id) {
-//		for (Page t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
-		this.element = session.find(tipo,id);
-		return viewPage();
+	public String delElement(String tipo, String id) {
+		Resource resource = new Resource();
+		resource.setId(id);
+		resource.setNome(id);
+		resource.setTipo(tipo);
+		session.delete(resource);
+		return this.reset();
 	}
 
 	public String modElement(String tipo, String id) {
@@ -307,7 +314,7 @@ public class ResourceHandler implements Serializable {
 //				break;
 //			}
 //		}
-		this.element = session.find(tipo,id);
+		this.element = session.fetch(tipo,id);
 		return editPage();
 	}
 
@@ -316,8 +323,12 @@ public class ResourceHandler implements Serializable {
 		String filename = file.getFileName();
 		if ( filename.contains("\\") )
 			filename = filename.substring(filename.lastIndexOf("\\")+1);
-		this.element.setNome( filename );
-		this.element.setBytes( file.getContents() );
+		Resource resource = new Resource();
+		resource.setNome( filename );
+		resource.setTipo(this.element.getTipo());
+		resource.setBytes( file.getContents() );
+		uploadedResources.add(resource);
 	}
 
+	
 }
