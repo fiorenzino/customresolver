@@ -83,4 +83,12 @@ public class PropertiesHandler implements Serializable {
 		return null;
 	}
 
+	public SelectItem[] getRisorseItems() {
+		return new SelectItem[] {
+			new SelectItem("img","immagini"),	
+			new SelectItem("js","funzioni javascript"),	
+			new SelectItem("css","fogli di stile"),	
+		};
+	}
+
 }
