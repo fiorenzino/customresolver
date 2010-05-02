@@ -10,7 +10,26 @@
 		<h:outputText value="Amministrazione del portale" />
 	</ui:define>
 	<ui:define name="content">
-		<h:form>
+		<h:form prependId="false">
+
+			<h:outputLabel for="tipo" value="Tipo Attivita'" />
+			<h:selectOneMenu value="#{categorieHandler.categoriaAttivita.tipoAttivita.id}">
+				<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
+			</h:selectOneMenu>
+			<br />
+			<h:outputLabel for="categoria" value="Categoria Attivita'" />
+			<h:inputText id="categoria"
+				value="#{categorieHandler.categoriaAttivita.categoria}"
+				required="true" />
+			<br />
+
+			<h:commandButton action="#{categorieHandler.saveCategoriaAttivita}"
+				value="salva categoria" immediate="false"
+				rendered="#{not categorieHandler.editMode}" />
+
+			<h:commandButton action="#{categorieHandler.updateCategoriaAttivita}"
+				value="aggiorna categoria" immediate="false"
+				rendered="#{categorieHandler.editMode}" />
 
 		</h:form>
 

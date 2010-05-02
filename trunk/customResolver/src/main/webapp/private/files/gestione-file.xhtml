@@ -14,8 +14,8 @@
 			<p:growl />
 
 			<p:fileUpload fileUploadListener="#{fileHandler.handleFileUpload}"
-				multiple="true" label="Scegli" allowTypes="*.jpg;*.png;*.gif;"
-				description="Images" update="filesList" />
+				multiple="true" label="Scegli" allowTypes="*"
+				description="Scegli #{fileHandler.fileName}" update="filesList" />
 			<br />
 			<br />
 			<p:dataTable id="filesList" var="file"
@@ -25,9 +25,19 @@
 					<f:facet name="header">nome</f:facet>
 					<h:outputText value="#{file.filename}" />
 				</p:column>
+				
 				<p:column>
-					<f:facet name="header">img</f:facet>
-					<h:graphicImage value="/img/#{file.filename}" />
+					<f:facet name="header">operazione</f:facet>
+					<h:graphicImage value="/img/#{file.filename}"
+						rendered="#{fileHandler.fileType == 1}"
+						width="#{fileHandler.proportionalWidth(file.filename,50,50)}"
+						height="#{fileHandler.proportionalHeight(file.filename,50,50)}" />
+					<h:outputLink value="/js/#{file.filename}" target="_blank"
+						rendered="#{fileHandler.fileType == 3}">[v]</h:outputLink>
+					<h:outputLink value="/swf/#{file.filename}" target="_blank"
+						rendered="#{fileHandler.fileType == 2}">[v]</h:outputLink>
+					<h:outputLink value="/css/#{file.filename}" target="_blank"
+						rendered="#{fileHandler.fileType == 0}">[v]</h:outputLink>
 				</p:column>
 			</p:dataTable>
 

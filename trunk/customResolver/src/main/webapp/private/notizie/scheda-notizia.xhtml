@@ -15,10 +15,21 @@
 			<h:outputText id="titolo" value="#{notizieHandler.notizia.titolo}" />
 			<br />
 
-			<h:outputLabel for="descrizione" value="Descrizione:" />
-			<h:outputText id="descrizione"
-				value="#{notizieHandler.notizia.descrizione}" width="640px"
-				height="320px"></h:outputText>
+			<h:outputLabel for="autore" value="Autore:" />
+			<h:outputText id="autore" value="#{notizieHandler.notizia.autore}"
+				width="640px" height="320px"></h:outputText>
+			<br />
+
+			<h:outputLabel for="anteprima" value="Anteprima:" />
+			<br />
+			<h:outputText id="anteprima"
+				value="#{notizieHandler.notizia.anteprima}" />
+			<br />
+
+			<h:outputLabel for="contenuto" value="Contenuto:" />
+			<br />
+			<h:outputText id="contenuto"
+				value="#{notizieHandler.notizia.contenuto}" />
 			<br />
 		</h:form>
 
