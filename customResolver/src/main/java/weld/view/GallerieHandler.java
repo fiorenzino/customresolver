@@ -22,12 +22,19 @@ public class GallerieHandler implements Serializable {
 
 	@Inject
 	GallerieSession gallerieSession;
+
+	@Inject
+	FileHandler fileHandler;
+
 	private Galleria galleria;
 	private boolean editMode;
 	private List<Galleria> all;
 
 	public String addGalleria() {
+		fileHandler.setFileType(1);
+		fileHandler.caricaFiles();
 		this.galleria = new Galleria();
+
 		return "/private/gallerie/gestione-galleria?redirect=true";
 	}
 

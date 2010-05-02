@@ -1,5 +1,6 @@
 package weld.view;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import weld.model.attachment.UploadObject;
 import weld.view.utils.FileUtils;
+import weld.view.utils.ImageUtils;
 
 @Named
 @SessionScoped
@@ -37,7 +39,7 @@ public class FileHandler implements Serializable {
 	// 3 js
 	private int fileType;
 
-	private SelectItem[] fileTypeItems = new SelectItem[] {};
+	
 
 	public void handleFileUpload(FileUploadEvent event) {
 		// InputStream stream =
@@ -52,12 +54,53 @@ public class FileHandler implements Serializable {
 		obj.setFilename(event.getFile().getFileName());
 		obj.setType(event.getFile().getContentType());
 		getDaCaricare().add(obj);
-		FileUtils.createImage("img", event.getFile().getFileName(), event
-				.getFile().getContents());
+		switch (fileType) {
+		case 0:
+			FileUtils.createFile("css", event.getFile().getFileName(), event
+					.getFile().getContents());
+		case 1:
+			FileUtils.createImage("img", event.getFile().getFileName(), event
+					.getFile().getContents());
+		case 2:
+			FileUtils.createFile("swf", event.getFile().getFileName(), event
+					.getFile().getContents());
+		case 3:
+			FileUtils.createFile("js", event.getFile().getFileName(), event
+					.getFile().getContents());
+		}
+		;
 		FacesMessage msg = new FacesMessage("Succesful", event.getFile()
 				.getFileName()
 				+ " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		setFileType(1);
+		caricaFiles();
+	}
+
+	// 0 css
+	// 1 img
+	// 2 swf
+	// 3 js
+
+	public String getTypeString() {
+		switch (fileType) {
+		case 0:
+			return "css";
+		case 1:
+			return "immagine";
+		case 2:
+			return "flash";
+		case 3:
+			return "javascript";
+		default:
+			return "cosa??";
+		}
+	}
+
+	public String caricaFile(int type) {
+		setFileType(type);
+		this.daCaricare = null;
+		return "/private/files/gestione-file.xhtml";
 	}
 
 	public int getFileType() {
@@ -88,7 +131,7 @@ public class FileHandler implements Serializable {
 
 	public List<String> getFiles() {
 		if (this.files == null)
-			this.files = new ArrayList<String>();
+			caricaFiles();
 		return files;
 	}
 
@@ -117,16 +160,7 @@ public class FileHandler implements Serializable {
 		System.out.println("dim files: " + this.files.size());
 	}
 
-	public SelectItem[] getFileTypeItems() {
-		if (fileTypeItems == null || fileTypeItems.length == 0) {
-			fileTypeItems = new SelectItem[4];
-			fileTypeItems[0] = new SelectItem(0, "css");
-			fileTypeItems[1] = new SelectItem(1, "img");
-			fileTypeItems[2] = new SelectItem(2, "flash");
-			fileTypeItems[3] = new SelectItem(3, "javascript");
-		}
-		return fileTypeItems;
-	}
+	
 
 	public String getFileName() {
 		return fileName;
@@ -149,4 +183,13 @@ public class FileHandler implements Serializable {
 		return "";
 	}
 
+	public Integer proportionalHeight(String url, int maxWidth, int maxHeight) {
+		return ImageUtils.getImageHeightProportional("img" + File.separator
+				+ url, maxWidth, maxHeight);
+	}
+
+	public Integer proportionalWidth(String url, int maxWidth, int maxHeight) {
+		return ImageUtils.getImageWidthProportional("img" + File.separator
+				+ url, maxWidth, maxHeight);
+	}
 }
