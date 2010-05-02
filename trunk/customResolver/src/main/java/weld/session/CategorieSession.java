@@ -11,7 +11,8 @@ import javax.persistence.EntityManager;
 
 import org.seamframework.tx.Transactional;
 
-import weld.model.Attivita;
+import weld.model.type.CategoriaAttivita;
+import weld.model.type.TipoAttivita;
 
 @Named
 @SessionScoped
@@ -21,30 +22,51 @@ public class CategorieSession implements Serializable {
 	EntityManager em;
 
 	@Transactional
-	public Attivita update(Attivita attivita) {
+	public CategoriaAttivita update(CategoriaAttivita categoriaAttivita) {
 		try {
-			em.merge(attivita);
+			em.merge(categoriaAttivita);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return attivita;
+		return categoriaAttivita;
 	}
 
 	@Transactional
-	public Attivita persist(Attivita Attivita) {
+	public TipoAttivita update(TipoAttivita tipoAttivita) {
 		try {
-			em.persist(Attivita);
+			em.merge(tipoAttivita);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Attivita;
+		return tipoAttivita;
 	}
 
 	@Transactional
-	public Attivita find(String id) {
+	public CategoriaAttivita persist(CategoriaAttivita categoriaAttivita) {
 		try {
-			Attivita Attivita = em.find(Attivita.class, id);
-			return Attivita;
+			em.persist(categoriaAttivita);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return categoriaAttivita;
+	}
+
+	@Transactional
+	public TipoAttivita persist(TipoAttivita tipoAttivita) {
+		try {
+			em.persist(tipoAttivita);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tipoAttivita;
+	}
+
+	@Transactional
+	public CategoriaAttivita findCategoriaAttivita(Long id) {
+		try {
+			CategoriaAttivita categoriaAttivita = em.find(
+					CategoriaAttivita.class, id);
+			return categoriaAttivita;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,21 +74,75 @@ public class CategorieSession implements Serializable {
 	}
 
 	@Transactional
-	public void delete(String id) {
+	public TipoAttivita findTipoAttivita(Long id) {
 		try {
-			Attivita Attivita = em.find(Attivita.class, id);
-			em.remove(Attivita);
+			TipoAttivita tipoAttivita = em.find(TipoAttivita.class, id);
+			return tipoAttivita;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Transactional
+	public void deleteCategoriaAttivita(Long id) {
+		try {
+			CategoriaAttivita categoriaAttivita = em.find(
+					CategoriaAttivita.class, id);
+			em.remove(categoriaAttivita);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Transactional
-	public List<Attivita> getAll() {
-
-		List<Attivita> all = new ArrayList<Attivita>();
+	public void deleteTipoAttivita(Long id) {
 		try {
-			all = em.createQuery("select p from Attivita p order by p.id")
+			TipoAttivita tipoAttivita = em.find(TipoAttivita.class, id);
+			em.remove(tipoAttivita);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Transactional
+	public List<CategoriaAttivita> getAllCategoriaAttivita() {
+
+		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
+		try {
+			all = em.createQuery(
+					"select p from CategoriaAttivita p order by p.id")
+					.getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return all;
+	}
+
+	@Transactional
+	public List<CategoriaAttivita> getAllCategoriaAttivitaByTipo(
+			TipoAttivita tipoAttivita) {
+
+		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
+		try {
+			all = em
+					.createQuery(
+							"select p from CategoriaAttivita p where p.tipoAttivita.id = :TIPO order by p.id")
+					.setParameter("TIPO", tipoAttivita.getId()).getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return all;
+	}
+
+	@Transactional
+	public List<TipoAttivita> getAllTipoAttivita() {
+
+		List<TipoAttivita> all = new ArrayList<TipoAttivita>();
+		try {
+			all = em.createQuery("select p from TipoAttivita p order by p.id")
 					.getResultList();
 
 		} catch (Exception e) {

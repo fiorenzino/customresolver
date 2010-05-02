@@ -3,11 +3,11 @@ package weld.model.type;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
 
 @Entity
 public class CategoriaAttivita implements Serializable {
@@ -28,8 +28,10 @@ public class CategoriaAttivita implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	public TipoAttivita getTipoAttivita() {
+		if (tipoAttivita == null)
+			tipoAttivita = new TipoAttivita();
 		return tipoAttivita;
 	}
 
