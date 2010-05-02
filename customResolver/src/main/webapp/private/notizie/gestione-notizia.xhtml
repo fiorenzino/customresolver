@@ -13,12 +13,12 @@
 		<h:form>
 			<h:outputLabel for="titolo" value="Titolo" />
 			<h:inputText id="titolo" value="#{notizieHandler.notizia.titolo}"
-				style=" width : 409px;" />
+				style=" width : 409px;" required="true" />
 			<br />
 
 			<h:outputLabel for="autore" value="Autore:" />
 			<h:inputText id="autore" value="#{notizieHandler.notizia.autore}"
-				style=" width : 395px;" />
+				style=" width : 395px;" required="true" />
 			<br />
 
 			<h:outputLabel for="anteprima" value="Anteprima:" />
@@ -29,7 +29,7 @@
 
 			<h:outputLabel for="contenuto" value="Contenuto:" />
 			<p:editor id="contenuto" value="#{notizieHandler.notizia.contenuto}"
-				width="640px" height="320px"></p:editor>
+				width="640px" height="320px" required="true"></p:editor>
 			<br />
 
 			<h:commandButton action="#{notizieHandler.saveNotizia}"

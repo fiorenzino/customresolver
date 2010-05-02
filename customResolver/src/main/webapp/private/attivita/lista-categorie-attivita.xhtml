@@ -11,42 +11,35 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:dataTable var="attivita" value="#{attivitaHandler.all}">
+			<p:dataTable var="categoria" value="#{categorieHandler.allCategorie}">
 				<p:column>
 					<f:facet name="header">id</f:facet>
-					<h:outputText value="#{attivita.id}" />
+					<h:outputText value="#{categoria.id}" />
 				</p:column>
 
 				<p:column>
-					<f:facet name="header">nome</f:facet>
-					<h:outputText value="#{attivita.nome}" />
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">indirizzo</f:facet>
-					<h:outputText value="#{attivita.indirizzo}" />
+					<f:facet name="header">tipo</f:facet>
+					<h:outputText value="#{categoria.tipoAttivita.tipo}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">categoria</f:facet>
-					<h:outputText value="#{attivita.categoria.categoria}" />
+					<h:outputText value="#{categoria.categoria}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">operazioni</f:facet>
 					<h:commandLink
-						action="#{attivitaHandler.detailAttivita(attivita.id)}"
-						value="[v]" />
-					- 
-					<h:commandLink action="#{attivitaHandler.modAttivita(attivita.id)}"
+						action="#{categorieHandler.modCategoriaAttivita(categoria.id)}"
 						value="[m]" />
 				</p:column>
 			</p:dataTable>
 			<br />
 			<br />
 
-			<h:commandLink id="creaAttivita"
-				action="#{attivitaHandler.addAttivita}" value="Crea nuova Attivita" />
+			<h:commandLink id="creaCategoria"
+				action="#{categorieHandler.addCategoriaAttivita}"
+				value="Crea nuova Categoria" />
 		</h:form>
 	</ui:define>
 </ui:composition>

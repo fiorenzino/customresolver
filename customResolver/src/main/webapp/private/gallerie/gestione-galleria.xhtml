@@ -10,6 +10,8 @@
 		<h:outputText value="Amministrazione del portale" />
 	</ui:define>
 	<ui:define name="content">
+		<script type="text/javascript"
+			src="#{request.contextPath}/js/it_editor.js"></script>
 		<script type="text/javascript">
          //<![CDATA[
 function addImageBrowser() {
@@ -23,7 +25,7 @@ function addImageBrowser() {
             //Do the normal thing here..
         } else {
             //They don't have a selected image, open the image browser window
-            win = window.open('#{request.contextPath}/private/gallerie/images.html', 'IMAGE_BROWSER',
+            win = window.open('#{request.contextPath}/private/gallerie/images.jsf', 'IMAGE_BROWSER',
                 'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0');
             if (!win) {
                 //Catch the popup blocker
@@ -42,13 +44,14 @@ function addImageBrowser() {
       </script>
 		<h:form prependId="false">
 			<h:outputLabel for="titolo" value="Titolo" />
-			<h:inputText id="titolo" value="#{gallerieHandler.galleria.titolo}" />
+			<h:inputText id="titolo" value="#{gallerieHandler.galleria.titolo}"
+				required="true" />
 			<br />
 
 			<h:outputLabel for="descrizione" value="Descrizione:" />
 			<p:editor id="descrizione"
 				value="#{gallerieHandler.galleria.descrizione}" width="640px"
-				height="320px" widgetVar="myEditor" />
+				height="320px" widgetVar="myEditor" language="it" />
 			<br />
 
 
