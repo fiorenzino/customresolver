@@ -10,7 +10,64 @@
 		<h:outputText value="Amministrazione del portale" />
 	</ui:define>
 	<ui:define name="content">
-		<h:form>
+		<h:form prependId="false">
+
+			<br />
+			<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Attivita'" />
+			<h:outputText id="tipo"
+				value="#{attivitaHandler.attivita.categoria.tipoAttivita.tipo}" />
+			<br />
+			<h:outputLabel id="categoriaLabel" for="categoria"
+				value="Categoria Attivita'" />
+			<h:outputText id="categoria"
+				value="#{attivitaHandler.attivita.categoria.categoria}" />
+			<br />
+
+			<h:outputLabel for="nome" value="Nome Attivita'" />
+			<h:outputText id="nome" value="#{attivitaHandler.attivita.nome}" />
+			<br />
+			<h:outputLabel for="indirizzo" value="Indirizzo:" />
+			<h:outputText id="indirizzo"
+				value="#{attivitaHandler.attivita.indirizzo}" />
+			<br />
+
+			<h:outputLabel for="city" value="Citta':" />
+			<h:outputText id="city" value="#{attivitaHandler.attivita.city}" />
+			<br />
+
+			<h:outputLabel for="provincia" value="Provincia:" />
+			<h:outputText id="provincia"
+				value="#{attivitaHandler.attivita.provincia}" />
+			<br />
+
+			<h:outputLabel for="telefono" value="telefono:" />
+			<h:outputText id="telefono"
+				value="#{attivitaHandler.attivita.telefono}" />
+			<br />
+
+			<h:outputLabel for="fax" value="fax:" />
+			<h:outputText id="fax" value="#{attivitaHandler.attivita.fax}" />
+			<br />
+
+			<h:outputLabel for="orariEchiusura" value="orari e chiusura:" />
+			<h:outputText id="orariEchiusura"
+				value="#{attivitaHandler.attivita.orariEchiusura}" />
+			<br />
+
+			<h:outputLabel for="email" value="email:" />
+			<h:outputText id="email" value="#{attivitaHandler.attivita.email}" />
+			<br />
+
+			<h:outputLabel for="sitoInternet" value="sito Internet:" />
+			<h:outputText id="sitoInternet"
+				value="#{attivitaHandler.attivita.sitoInternet}" />
+			<br />
+
+
+			<h:outputLabel for="descrizione" value="descrizione:" />
+			<h:outputText id="descrizione"
+				value="#{attivitaHandler.attivita.descrizione}" />
+			<br />
 
 		</h:form>
 

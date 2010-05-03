@@ -12,7 +12,56 @@
 	<ui:define name="content">
 		<h:form>
 
-		</h:form>
+			<p:dataTable var="pubblicazione" value="#{pubblicazioniHandler.all}">
+				<p:column>
+					<f:facet name="header">id</f:facet>
+					<h:outputText value="#{pubblicazione.id}" />
+				</p:column>
 
+				<p:column>
+					<f:facet name="header">tipo</f:facet>
+					<h:outputText value="#{pubblicazione.tipoPubblicazione.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">data Pubblicazione</f:facet>
+					<h:outputText value="#{pubblicazione.dataPubblicazione}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">valido dal</f:facet>
+					<h:outputText value="#{pubblicazione.dal}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">valido al</f:facet>
+					<h:outputText value="#{pubblicazione.al}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">oggetto</f:facet>
+					<h:outputText value="#{pubblicazione.oggetto}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">operazioni</f:facet>
+					<h:commandLink
+						action="#{pubblicazioniHandler.detailPubblicazione(pubblicazione.id)}"
+						value="[v]" />
+						- 
+					<h:commandLink
+						action="#{pubblicazioniHandler.modPubblicazione(pubblicazione.id)}"
+						value="[m]" />
+
+
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+
+			<h:commandLink id="creaPubb"
+				action="#{pubblicazioniHandler.addPubblicazione}"
+				value="Crea nuova Pubblicazione" />
+		</h:form>
 	</ui:define>
 </ui:composition>

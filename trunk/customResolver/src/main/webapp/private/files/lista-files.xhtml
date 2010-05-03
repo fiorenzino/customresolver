@@ -12,7 +12,7 @@
 	<ui:define name="content">
 		<h:form enctype="multipart/form-data">
 			<h:selectOneMenu value="#{fileHandler.fileType}">
-				<f:selectItems value="#{fileHandler.fileTypeItems}" />
+				<f:selectItems value="#{propertiesHandler.fileTypeItems}" />
 			</h:selectOneMenu>
 			<h:commandButton action="#{fileHandler.caricaFiles}"
 				value="Visualizza Files" />

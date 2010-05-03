@@ -11,10 +11,11 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-
+			<p:messages id="messages" />
 
 			<h:outputLabel id="labelName" for="name" value="Nome pagina:" />
-			<h:inputText id="name" value="#{pagesHandler.page.title}" />
+			<h:inputText id="name" value="#{pagesHandler.page.title}"
+				required="true" />
 			<br />
 
 			<h:outputLabel id="labelDescr" for="descr"
@@ -24,8 +25,8 @@
 
 			<h:outputLabel id="labelContent" for="content"
 				value="content pagina:" />
-			<h:inputTextarea id="content" cols="20" rows="20"
-				value="#{pagesHandler.page.content}" />
+			<h:inputTextarea id="content" cols="60" rows="20"
+				value="#{pagesHandler.page.content}" required="true" />
 			<br />
 
 			<h:commandButton action="#{pagesHandler.salvaPagina}"
