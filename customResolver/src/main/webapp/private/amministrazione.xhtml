@@ -64,7 +64,7 @@
 			<p:panel header="Gestione Tipi Attivita'"
 				style="width:200px; float:left;">
 				<h:commandLink action="/private/attivita/lista-tipi-attivita.jsf"
-					value="lista attivita'" />
+					value="lista tipi attivita'" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addTipoAttivita}"
 					value="Crea nuovo Tipo" />
@@ -74,14 +74,20 @@
 				style="width:200px; float:left;">
 				<h:commandLink
 					action="/private/pubblicazioni/lista-pubblicazioni.jsf"
-					value="lista attivita'" />
+					value="lista pubblicazioni" />
 				<br />
-				<h:commandLink
-					action="/private/pubblicazioni/gestione-tipi-pubblicazione.jsf"
-					value="Gestione Tipi pubblicazione" />
-				<br />
-				<h:commandLink action="#{attivitaHandler.addAttivita}"
+				<h:commandLink action="#{pubblicazioniHandler.addPubblicazione}"
 					value="Crea nuova Pubblicazione" />
+			</p:panel>
+
+			<p:panel header="Gestione Tipi Pubblicazioni"
+				style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/pubblicazioni/lista-tipi-pubblicazione.jsf"
+					value="lista tipi pubblicazioni" />
+				<br />
+				<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
+					value="Crea nuovo Tipo Pubblicazione" />
 			</p:panel>
 
 

@@ -10,7 +10,19 @@
 		<h:outputText value="Amministrazione del portale" />
 	</ui:define>
 	<ui:define name="content">
-		<h:form>
+		<h:form prependId="false">
+			<h:outputLabel for="nome" value="Tipo Pubblicazione" />
+			<h:inputText id="nome"
+				value="#{categorieHandler.tipoPubblicazione.nome}" required="true" />
+			<br />
+
+			<h:commandButton action="#{categorieHandler.saveTipoPubblicazione}"
+				value="salva tipo" immediate="false"
+				rendered="#{not categorieHandler.editMode}" />
+
+			<h:commandButton action="#{categorieHandler.updateTipoPubblicazione}"
+				value="aggiorna tipo" immediate="false"
+				rendered="#{categorieHandler.editMode}" />
 
 		</h:form>
 
