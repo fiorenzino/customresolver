@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import weld.model.Galleria;
 import weld.model.Notizia;
 import weld.session.NotizieSession;
 import weld.view.utils.PagesUtils;
@@ -28,7 +29,10 @@ public class NotizieHandler implements Serializable {
 	}
 
 	public String saveNotizia() {
-		this.notizia.setId(PagesUtils.createPageId(this.notizia.getTitolo()));
+		String idTitle = PagesUtils.createPageId(this.notizia.getTitolo());
+		String idFinal = testId(idTitle);
+		this.notizia.setId(idFinal);
+
 		notizieSession.persist(this.notizia);
 		this.all = null;
 		return "/private/notizie/scheda-notizia?redirect=true";
@@ -81,5 +85,27 @@ public class NotizieHandler implements Serializable {
 
 	public void setAll(List<Notizia> all) {
 		this.all = all;
+	}
+
+	public String testId(String id) {
+		String idFinal = id;
+		boolean trovato = false;
+		int i = 0;
+		while (!trovato) {
+			System.out.println("id final: " + idFinal);
+			Notizia notiziaFind = notizieSession.find(idFinal);
+			System.out.println("trovato_ " + notiziaFind);
+			if (notiziaFind != null) {
+				i++;
+				idFinal = id + "-" + i;
+			} else {
+				trovato = true;
+				return idFinal;
+
+			}
+
+		}
+
+		return "";
 	}
 }

@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import weld.model.type.CategoriaAttivita;
 import weld.model.type.TipoAttivita;
+import weld.model.type.TipoPubblicazione;
 import weld.session.CategorieSession;
 
 @Named
@@ -23,7 +24,9 @@ public class CategorieHandler implements Serializable {
 
 	private List<CategoriaAttivita> allCategorie;
 	private List<TipoAttivita> allTipi;
+	private List<TipoPubblicazione> allTipiPubblicazioni;
 	private TipoAttivita tipoAttivita;
+	private TipoPubblicazione tipoPubblicazione;
 	private CategoriaAttivita categoriaAttivita;
 	private boolean editMode;
 
@@ -38,7 +41,7 @@ public class CategorieHandler implements Serializable {
 				.findTipoAttivita(this.categoriaAttivita.getTipoAttivita()
 						.getId());
 		categoriaAttivita.setTipoAttivita(tipo);
-		categorieSession.persist(categoriaAttivita);
+		categorieSession.persistCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
 		return "/private/attivita/lista-categorie-attivita.xhtml";
 	}
@@ -50,13 +53,36 @@ public class CategorieHandler implements Serializable {
 	}
 
 	public String updateCategoriaAttivita() {
-		TipoAttivita tipo = categorieSession
-				.findTipoAttivita(this.categoriaAttivita.getTipoAttivita()
-						.getId());
-		categoriaAttivita.setTipoAttivita(tipo);
-		categorieSession.update(categoriaAttivita);
+		System.out.println("ATT TIPO:"
+				+ this.categoriaAttivita.getTipoAttivita().getId());
+
+		categorieSession.updateCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
 		return "/private/attivita/lista-categorie-attivita.xhtml";
+	}
+
+	public String addTipoPubblicazione() {
+		setEditMode(false);
+		this.tipoPubblicazione = new TipoPubblicazione();
+		return "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml";
+	}
+
+	public String saveTipoPubblicazione() {
+		categorieSession.persistTipoPubblicazione(tipoPubblicazione);
+		aggTipiPubblicazioni();
+		return "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml";
+	}
+
+	public String modTipoPubblicazione(Long id) {
+		setEditMode(true);
+		this.tipoPubblicazione = categorieSession.findTipoPubblicazione(id);
+		return "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml";
+	}
+
+	public String updateTipoPubblicazione() {
+		categorieSession.updateTipoPubblicazione(tipoPubblicazione);
+		aggTipiPubblicazioni();
+		return "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml";
 	}
 
 	public String addTipoAttivita() {
@@ -65,7 +91,7 @@ public class CategorieHandler implements Serializable {
 	}
 
 	public String saveTipoAttivita() {
-		categorieSession.persist(tipoAttivita);
+		categorieSession.persistTipoAttivita(tipoAttivita);
 		aggTipi();
 		return "/private/attivita/lista-tipi-attivita.xhtml";
 	}
@@ -76,7 +102,7 @@ public class CategorieHandler implements Serializable {
 	}
 
 	public String updateTipoAttivita() {
-		categorieSession.update(tipoAttivita);
+		categorieSession.updateTipoAttivita(tipoAttivita);
 		aggTipi();
 		return "/private/attivita/lista-tipi-attivita.xhtml";
 	}
@@ -123,6 +149,22 @@ public class CategorieHandler implements Serializable {
 		return allTipi;
 	}
 
+	public void setAllTipiPubblicazioni(
+			List<TipoPubblicazione> allTipiPubblicazioni) {
+		this.allTipiPubblicazioni = allTipiPubblicazioni;
+	}
+
+	public void aggTipiPubblicazioni() {
+		this.allTipiPubblicazioni = categorieSession.getAllTipoPubblicazione();
+		propertiesHandler.resetTipiPubblicazioniItems();
+	}
+
+	public List<TipoPubblicazione> getAllTipiPubblicazioni() {
+		if (allTipiPubblicazioni == null)
+			aggTipiPubblicazioni();
+		return allTipiPubblicazioni;
+	}
+
 	public void setAllTipi(List<TipoAttivita> allTipi) {
 		this.allTipi = allTipi;
 	}
@@ -133,5 +175,13 @@ public class CategorieHandler implements Serializable {
 
 	public void setEditMode(boolean editMode) {
 		this.editMode = editMode;
+	}
+
+	public TipoPubblicazione getTipoPubblicazione() {
+		return tipoPubblicazione;
+	}
+
+	public void setTipoPubblicazione(TipoPubblicazione tipoPubblicazione) {
+		this.tipoPubblicazione = tipoPubblicazione;
 	}
 }

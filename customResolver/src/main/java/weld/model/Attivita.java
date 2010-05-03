@@ -3,9 +3,9 @@ package weld.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -44,6 +44,8 @@ public class Attivita implements Serializable {
 
 	@ManyToOne
 	public CategoriaAttivita getCategoria() {
+		if (this.categoria == null)
+			this.categoria = new CategoriaAttivita();
 		return categoria;
 	}
 
@@ -91,6 +93,7 @@ public class Attivita implements Serializable {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
+
 	@Lob
 	public String getOrariEchiusura() {
 		return orariEchiusura;
@@ -141,7 +144,7 @@ public class Attivita implements Serializable {
 		this.data = data;
 	}
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Immagine getImmagine() {
 		return immagine;
 	}
