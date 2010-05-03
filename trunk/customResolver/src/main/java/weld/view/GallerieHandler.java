@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
 
+import weld.model.Attivita;
 import weld.model.Galleria;
 import weld.model.attachment.Immagine;
 import weld.session.GallerieSession;
@@ -49,7 +50,11 @@ public class GallerieHandler implements Serializable {
 				immagini.add(immagine);
 		}
 		this.galleria.setImmagini(immagini);
-		this.galleria.setId(PagesUtils.createPageId(this.galleria.getTitolo()));
+
+		String idTitle = PagesUtils.createPageId(this.galleria.getTitolo());
+		String idFinal = testId(idTitle);
+		this.galleria.setId(idFinal);
+
 		gallerieSession.persist(this.galleria);
 		this.all = null;
 		return "/private/gallerie/scheda-galleria?redirect=true";
@@ -102,5 +107,27 @@ public class GallerieHandler implements Serializable {
 
 	public void setAll(List<Galleria> all) {
 		this.all = all;
+	}
+
+	public String testId(String id) {
+		String idFinal = id;
+		boolean trovato = false;
+		int i = 0;
+		while (!trovato) {
+			System.out.println("id final: " + idFinal);
+			Galleria galleriaFind = gallerieSession.find(idFinal);
+			System.out.println("trovato_ " + galleriaFind);
+			if (galleriaFind != null) {
+				i++;
+				idFinal = id + "-" + i;
+			} else {
+				trovato = true;
+				return idFinal;
+
+			}
+
+		}
+
+		return "";
 	}
 }

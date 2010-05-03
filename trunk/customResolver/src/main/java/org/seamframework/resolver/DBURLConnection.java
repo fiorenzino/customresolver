@@ -45,7 +45,8 @@ public class DBURLConnection extends URLConnection {
 			try {
 				this.currentPage = JSFUtils.getHandler(new PagesSession())
 						.find(this.form);
-				this.content = this.currentPage.getContent();
+				if (this.currentPage != null)
+					this.content = this.currentPage.getContent();
 			} catch (Exception e) {
 				e.printStackTrace();
 				// System.out.println(" DBUTL EXC 1");

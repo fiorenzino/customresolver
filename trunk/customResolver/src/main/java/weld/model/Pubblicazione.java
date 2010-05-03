@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import weld.model.attachment.Documento;
 import weld.model.type.TipoPubblicazione;
 
+@Entity
 public class Pubblicazione implements Serializable {
 
 	private Long id;
@@ -34,7 +37,10 @@ public class Pubblicazione implements Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne
 	public TipoPubblicazione getTipoPubblicazione() {
+		if (tipoPubblicazione == null)
+			tipoPubblicazione = new TipoPubblicazione();
 		return tipoPubblicazione;
 	}
 

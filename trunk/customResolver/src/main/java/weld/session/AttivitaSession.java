@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import org.seamframework.tx.Transactional;
 
 import weld.model.Attivita;
+import weld.model.type.CategoriaAttivita;
 
 @Named
 @SessionScoped
@@ -23,6 +24,9 @@ public class AttivitaSession implements Serializable {
 	@Transactional
 	public Attivita update(Attivita attivita) {
 		try {
+			CategoriaAttivita cat = em.find(CategoriaAttivita.class, attivita
+					.getCategoria().getId());
+			attivita.setCategoria(cat);
 			em.merge(attivita);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,20 +35,23 @@ public class AttivitaSession implements Serializable {
 	}
 
 	@Transactional
-	public Attivita persist(Attivita Attivita) {
+	public Attivita persist(Attivita attivita) {
 		try {
-			em.persist(Attivita);
+			CategoriaAttivita cat = em.find(CategoriaAttivita.class, attivita
+					.getCategoria().getId());
+			attivita.setCategoria(cat);
+			em.persist(attivita);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Attivita;
+		return attivita;
 	}
 
 	@Transactional
 	public Attivita find(String id) {
 		try {
-			Attivita Attivita = em.find(Attivita.class, id);
-			return Attivita;
+			Attivita attivita = em.find(Attivita.class, id);
+			return attivita;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,8 +61,8 @@ public class AttivitaSession implements Serializable {
 	@Transactional
 	public void delete(String id) {
 		try {
-			Attivita Attivita = em.find(Attivita.class, id);
-			em.remove(Attivita);
+			Attivita attivita = em.find(Attivita.class, id);
+			em.remove(attivita);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

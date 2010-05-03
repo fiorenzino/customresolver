@@ -1,10 +1,14 @@
 package weld.view.utils;
 
+import java.security.Principal;
+
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
+import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 
 import weld.view.PagesHandler;
 
@@ -45,5 +49,21 @@ public class JSFUtils {
 			e.printStackTrace();
 		}
 		return handler;
+	}
+
+	public static String getUserName() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest req = (HttpServletRequest) context
+				.getExternalContext().getRequest();
+		String rem = req.getRemoteUser();
+		// System.out.println("******************************");
+		// System.out.println("REM USER: " + rem);
+		Principal pr = req.getUserPrincipal();
+		// System.out.println("PRINC USER: " + pr.getName());
+		// System.out.println("******************************");
+
+		if (pr == null)
+			return "colonnella";
+		return pr.getName();
 	}
 }

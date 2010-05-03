@@ -55,11 +55,11 @@ public class Immagine implements Serializable {
 		this.filename = filename;
 	}
 
+	@Transient
 	public byte[] getData() {
 		return data;
 	}
 
-	@Transient
 	public void setData(byte[] data) {
 		this.data = data;
 	}
