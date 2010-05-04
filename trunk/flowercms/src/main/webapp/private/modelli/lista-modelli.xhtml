@@ -24,6 +24,13 @@
 						</f:facet>
 						<h:outputText value="#{t.nome}" />
 					</p:column>
+					<p:column width="50">
+						<f:facet name="header">
+							statico
+						</f:facet>
+						<h:outputText value="SI" rendered="#{t.statico}" />
+						<h:outputText value="NO" rendered="#{not t.statico}" />
+					</p:column>
 					<p:column width="200">
 					<center>
 						<h:commandLink value="vedi"

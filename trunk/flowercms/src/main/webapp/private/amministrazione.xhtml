@@ -17,7 +17,7 @@
 			<h:panelGrid columns="2" >
 
 				<p:panel header="Gestione dei modelli" rendered="#{templateHandler.clear}"
-					style="width: 300px;">
+					style="width: 400px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/icons/section.gif" style="border: none;" />
@@ -36,7 +36,7 @@
 				</p:panel>
 
 				<p:panel header="Gestione delle pagine" rendered="#{pageHandler.clear}"
-					style="width: 300px;">
+					style="width: 400px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/icons/section.gif" style="border: none;" />
@@ -46,8 +46,12 @@
 								<h:outputText value="Lista delle pagine disponibili" />
 							</h:commandLink>
 							<br/>
-							<h:commandLink action="#{pageHandler.addElement}">
-								<h:outputText value="Aggiungi una nuova pagina" />
+							<h:commandLink action="#{pageHandler.addPaginaStatica}">
+								<h:outputText value="Aggiungi una pagina con contenuto statico" />
+							</h:commandLink>
+							<br/>
+							<h:commandLink action="#{pageHandler.addPaginaDinamica}">
+								<h:outputText value="Aggiungi una pagina con contenuto dinamico" />
 							</h:commandLink>
 						</h:panelGroup>
 					</h:panelGrid>
@@ -55,7 +59,7 @@
 				</p:panel>
 
 				<p:panel header="Gestione della struttura del sito"
-					style="width: 300px;" rendered="#{menuHandler.clear}">
+					style="width: 400px;" rendered="#{menuHandler.clear}">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/icons/section.gif" style="border: none;" />
@@ -70,7 +74,7 @@
 				</p:panel>
 
 				<p:panel header="Gestione delle risorse statiche" rendered="#{resourceHandler.clear}"
-					style="width: 300px;">
+					style="width: 400px;">
 					<h:panelGrid columns="2">
 						<h:panelGroup style="vertical-align:middle;">
 							<h:graphicImage value="/icons/section.gif" style="border: none;" />

@@ -11,81 +11,229 @@
 
 	<ui:define name="content">
 		<style>
-		.col1 { width: 35%; text-align: left; }
-		.col2 { width: 65%; text-align: left; }
-		</style>
+.col1 {
+	width: 35%;
+	text-align: left;
+}
+
+.col2 {
+	width: 65%;
+	text-align: left;
+}
+</style>
+
 		<h:form>
 
 			<p:panel header="Gestione Pagina">
 
-				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
+				<h:panelGrid columns="2" style="width: 95%"
+					columnClasses="col1,col2">
 
-					<h:outputLabel value="Titolo(*):" for="titoloW" rendered="#{empty pageHandler.element.title}"/>
-					<h:inputText required="true" id="titoloW" value="#{pageHandler.element.title}" style="width: 100%;" rendered="#{empty pageHandler.element.title}"/>
-					
-					<h:outputLabel value="Titolo:" for="titoloR" rendered="#{not empty pageHandler.element.title}"/>
-					<h:inputText disabled="true" id="titoloR" value="#{pageHandler.element.title}" style="width: 100%;" rendered="#{not empty pageHandler.element.title}"/>
+					<h:outputLabel value="Titolo(*):" for="titoloW"
+						rendered="#{empty pageHandler.element.title}" />
+					<h:inputText required="true" id="titoloW"
+						value="#{pageHandler.element.title}" style="width: 100%;"
+						rendered="#{empty pageHandler.element.title}" />
+
+					<h:outputLabel value="Titolo:" for="titoloR"
+						rendered="#{not empty pageHandler.element.title}" />
+					<h:inputText disabled="true" id="titoloR"
+						value="#{pageHandler.element.title}" style="width: 100%;"
+						rendered="#{not empty pageHandler.element.title}" />
 
 					<h:outputLabel value="Descrizione:" for="descrizione" />
-					<h:inputText  id="descrizione" value="#{pageHandler.element.description}"
-						style="width: 100%;" />
-						
+					<h:inputText id="descrizione"
+						value="#{pageHandler.element.description}" style="width: 100%;" />
+
 					<h:outputLabel value="Modello(*):" for="template" />
-					<h:selectOneMenu id="template" value="#{pageHandler.element.template.template.id}" required="true" style="width: 100%">
-						<f:selectItems value="#{propertiesHandler.templateItems}"/>
-					</h:selectOneMenu>
+					<h:panelGroup id="template">
+						<h:selectOneMenu
+							rendered="#{pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.template.id}"
+							required="true" style="width: 100%">
+							<f:selectItems value="#{propertiesHandler.templateStaticiItems}" />
+							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
+								update="campi" event="change" process="@this" />
+						</h:selectOneMenu>
+						<h:selectOneMenu
+							rendered="#{not pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.template.id}"
+							required="true" style="width: 100%">
+							<f:selectItems value="#{propertiesHandler.templateDinamiciItems}" />
+							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
+								update="campi" event="change" process="@this" />
+						</h:selectOneMenu>
+					</h:panelGroup>
 
-					<h:outputText value="&lt;hr/&gt;" escape="false" />
-					<h:outputText />
-
-					<h:outputLabel value="Intestazione:" for="header"
-					/>
-					<h:inputTextarea id="header"
-						value="#{pageHandler.element.template.header}"
-						style="color: black; width: 100%;" escape="false"
-					/>
-
-					<h:outputText value="&lt;hr/&gt;" escape="false"
-					/>
-					<h:outputText />
-
-					<h:outputLabel value="Colonna 1:" for="col1"
-					/>
-					<h:inputTextarea id="col1"
-						value="#{pageHandler.element.template.col1}"
-						style="color: black; width: 100%;" escape="false"
-					/>
-
-					<h:outputLabel value="Colonna 2:" for="col2"
-					/>
-					<h:inputTextarea id="col2"
-						value="#{pageHandler.element.template.col2}"
-						style="color: black; width: 100%;" escape="false"
-					/>
-
-					<h:outputLabel value="Colonna 3:" for="col3"
-					/>
-					<h:inputTextarea id="col3"
-						value="#{pageHandler.element.template.col3}"
-						style="color: black; width: 100%;" escape="false"
-					/>
-
-					<h:outputText value="&lt;hr/&gt;" escape="false"
-					/>
-					<h:outputText />
-
-					<h:outputLabel value="Pie' di pagina:" for="footer"
-					/>
-					<h:inputTextarea id="footer"
-						value="#{pageHandler.element.template.footer}"
-						style="color: black; width: 100%;" escape="false"
-					/>
+					<h:outputText value="&lt;hr/&gt;"
+						escape="false" />
+					<h:outputText/>
 
 				</h:panelGrid>
-				<br />
-				<h:outputText value="(*) sono campi obbligatori!" />
-				<br />
-				<br />
+
+				<h:panelGroup id="campi">
+
+<script type="text/javascript">
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "paste",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontsizeselect,|,pastetext,pasteword,|,undo,redo,cleanup",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		editor_selector : "advancedTextAreaH"
+	});
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "paste",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontsizeselect,|,pastetext,pasteword,|,undo,redo,cleanup",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		editor_selector : "advancedTextAreaC1"
+	});
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "paste",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontsizeselect,|,pastetext,pasteword,|,undo,redo,cleanup",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		editor_selector : "advancedTextAreaC2"
+	});
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "paste",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontsizeselect,|,pastetext,pasteword,|,undo,redo,cleanup",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		editor_selector : "advancedTextAreaC3"
+	});
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "paste",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontsizeselect,|,pastetext,pasteword,|,undo,redo,cleanup",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		editor_selector : "advancedTextAreaF"
+	});
+</script>
+
+				<h:panelGrid columns="2" style="width: 95%"
+					columnClasses="col1,col2" >
+
+					<h:outputLabel value="Intestazione:"
+						rendered="#{not empty pageHandler.element.template.template.header_stop}"
+						for="header" />
+					<h:panelGroup
+						rendered="#{not empty pageHandler.element.template.template.header_stop}"
+						id="header">
+						<h:inputTextarea
+							rendered="#{not empty pageHandler.element.template.template.header_stop and not pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.header}"
+							style="color: black; width: 100%;" escape="false" />
+						<h:inputTextarea
+							name="advancedTextAreaH" class="advancedTextAreaH"
+							rendered="#{not empty pageHandler.element.template.template.header_stop and pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.header}"
+							style="color: black; width: 100%;" escape="false" />
+					</h:panelGroup>
+
+					<h:outputText value="&lt;hr/&gt;"
+						rendered="#{not empty pageHandler.element.template.template.header_stop}"
+						escape="false" />
+					<h:outputText
+						rendered="#{not empty pageHandler.element.template.template.header_stop}" />
+
+					<h:outputLabel value="Colonna 1:"
+						rendered="#{not empty pageHandler.element.template.template.col1_stop}"
+						for="col1" />
+					<h:panelGroup id="col1"
+						rendered="#{not empty pageHandler.element.template.template.col1_stop}">
+						<h:inputTextarea
+							rendered="#{not empty pageHandler.element.template.template.col1_stop and not pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.col1}"
+							style="color: black; width: 100%;" escape="false" />
+						<h:inputTextarea
+							name="advancedTextAreaC1" class="advancedTextAreaC1"
+							rendered="#{not empty pageHandler.element.template.template.col1_stop and pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.col1}"
+							style="color: black; width: 100%;" escape="false" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Colonna 2:"
+						rendered="#{not empty pageHandler.element.template.template.col2_stop}"
+						for="col2" />
+					<h:panelGroup id="col2"
+						rendered="#{not empty pageHandler.element.template.template.col2_stop}">
+						<h:inputTextarea
+							rendered="#{not empty pageHandler.element.template.template.col2_stop and not pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.col2}"
+							style="color: black; width: 100%;" escape="false" />
+						<h:inputTextarea
+							name="advancedTextAreaC2" class="advancedTextAreaC2"
+							rendered="#{not empty pageHandler.element.template.template.col2_stop and pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.col2}"
+							style="color: black; width: 100%;" escape="false" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Colonna 3:"
+						rendered="#{not empty pageHandler.element.template.template.col3_stop}"
+						for="col3" />
+					<h:panelGroup id="col3"
+						rendered="#{not empty pageHandler.element.template.template.col3_stop}">
+						<h:inputTextarea
+							rendered="#{not empty pageHandler.element.template.template.col3_stop and not pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.col3}"
+							style="color: black; width: 100%;" escape="false" />
+						<h:inputTextarea
+							name="advancedTextAreaC3" class="advancedTextAreaC3"
+							rendered="#{not empty pageHandler.element.template.template.col3_stop and pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.col3}"
+							style="color: black; width: 100%;" escape="false" />
+					</h:panelGroup>
+
+					<h:outputText value="&lt;hr/&gt;"
+						rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}"
+						escape="false" />
+					<h:outputText
+						rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}" />
+
+					<h:outputLabel value="Pie' di pagina:"
+						rendered="#{not empty pageHandler.element.template.template.footer_stop}"
+						for="footer" />
+					<h:panelGroup id="footer"
+						rendered="#{not empty pageHandler.element.template.template.footer_stop}">
+						<h:inputTextarea
+							rendered="#{not empty pageHandler.element.template.template.footer_stop and not pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.footer}"
+							style="color: black; width: 100%;" escape="false" />
+						<h:inputTextarea
+							name="advancedTextAreaF" class="advancedTextAreaF"
+							rendered="#{not empty pageHandler.element.template.template.footer_stop and pageHandler.element.template.template.statico}"
+							value="#{pageHandler.element.template.footer}"
+							style="color: black; width: 100%;" escape="false" />
+					</h:panelGroup>
+
+				</h:panelGrid>
+				
+			</h:panelGroup>
+			<br />
+			<h:outputText value="(*) sono campi obbligatori!" />
+			<br />
+			<br />
 
 			</p:panel>
 
