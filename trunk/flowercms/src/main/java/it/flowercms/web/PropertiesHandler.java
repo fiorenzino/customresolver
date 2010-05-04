@@ -45,6 +45,22 @@ public class PropertiesHandler implements Serializable {
 
 	// ==============================================================================
 
+	public SelectItem[] getTemplateStaticiItems() {
+		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
+		ricerca.getOggetto().setSearchStatico(true);
+		return 
+		JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
+				"nessun template per pagine statiche disponibile", "seleziona template per pagine statiche...");
+	}
+
+	public SelectItem[] getTemplateDinamiciItems() {
+		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
+		ricerca.getOggetto().setSearchStatico(false);
+		return 
+		JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
+				"nessun template per pagine dinamiche disponibile", "seleziona template per pagine dinamiche...");
+	}
+
 	public SelectItem[] getTemplateItems() {
 		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
 		return checkItems(ricerca, templateSession, "id", "nome",

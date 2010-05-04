@@ -1,14 +1,18 @@
 package it.flowercms.session;
 
 import it.flowercms.par.Template;
+import it.flowercms.par.base.Ricerca;
 import it.flowercms.session.base.SuperSession;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 @Named
 @SessionScoped
@@ -109,4 +113,47 @@ implements Serializable {
 		this.em = em;
 	}
 	
+	/**
+	 * criteri di default, comuni a tutti, ma specializzabili da ogni EJB
+	 * tramite overriding
+	 */
+	@Override
+	protected Query getRestrictions(Ricerca<Template> ricerca, String orderBy,
+			boolean count) {
+		
+		if ( ricerca == null || ricerca.getOggetto() == null )
+			return super.getRestrictions(ricerca, orderBy, count);
+
+		Map<String,Object> params = new HashMap<String, Object>();
+		
+		String alias = "t";
+		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
+				count));
+		sb.append(" where ").append(alias).append(".attivo = :attivo");
+		params.put("attivo", true);
+		
+		String separator = " and ";
+
+		if (ricerca.getOggetto().getSearchStatico() != null) {
+			sb.append(separator).append(alias).append(".statico = :statico ");
+			params.put("statico", ricerca.getOggetto().getSearchStatico());
+		}
+		
+		if (!count) {
+			sb.append(" order by ").append(alias).append(".").append(orderBy);
+		} else {
+			logger.info("order by null");
+		}
+		
+		logger.info(sb.toString());
+		
+		Query q = getEm().createQuery(sb.toString());
+		
+		for ( String param : params.keySet() ) {
+			q.setParameter(param, params.get(param));
+		}
+
+		return q;
+	}
+
 }

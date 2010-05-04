@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -213,6 +214,18 @@ public class PageHandler implements Serializable {
 
 	// -----------------------------------------------------
 
+	public String addPaginaStatica() {
+		String rv = addElement();
+		this.element.getTemplate().getTemplate().setStatico(true);
+		return rv;
+	}
+
+	public String addPaginaDinamica() {
+		String rv = addElement();
+		this.element.getTemplate().getTemplate().setStatico(false);
+		return rv;
+	}
+
 	public String addElement() {
 		// impostazioni locali
 		Page p = new Page();
@@ -321,6 +334,10 @@ public class PageHandler implements Serializable {
 //		}
 		this.element = session.fetch(id);
 		return editPage();
+	}
+
+	public void cambioTemplate(ActionEvent event) {
+		this.element.getTemplate().setTemplate( templateSession.find(this.element.getTemplate().getTemplate().getId()));
 	}
 	
 }
