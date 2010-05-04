@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Transient;
 
 @Entity
 public class Template implements Serializable {
@@ -33,6 +34,10 @@ public class Template implements Serializable {
 
 	private String col3_start;
 	private String col3_stop;
+
+	private boolean statico = true;
+
+	private Boolean searchStatico = true;
 
 	// ------------------------------------------------------------------------
 
@@ -155,6 +160,23 @@ public class Template implements Serializable {
 
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
+	}
+
+	public boolean getStatico() {
+		return this.statico;
+	}
+
+	public void setStatico(boolean s) {
+		this.statico = s;
+	}
+
+	@Transient
+	public Boolean getSearchStatico() {
+		return searchStatico;
+	}
+
+	public void setSearchStatico(Boolean searchStatico) {
+		this.searchStatico = searchStatico;
 	}
 
 	// ------------------------------------------------------------------------
