@@ -31,7 +31,11 @@
 					<h:inputTextarea id="headerStart"
 						value="#{templateHandler.element.header_start}"
 						style="color: black; width: 100%;" escape="false" />
-					<h:outputLabel value="Intestazione (chiusura):" for="headerStop" />
+					<h:panelGroup >
+						<h:outputLabel value="Intestazione (chiusura):" for="headerStop" />
+						<br/>
+						<h:outputText style="font-size: small;" value="(lasciare vuoto per non rendere modificabile il contenuto dell'intestazione all'interno delle singole pagine)"/>
+					</h:panelGroup>
 					<h:inputTextarea id="headerStop"
 						value="#{templateHandler.element.header_stop}"
 						style="color: black; width: 100%;" escape="false" />
@@ -43,7 +47,11 @@
 					<h:inputTextarea id="col1Start"
 						value="#{templateHandler.element.col1_start}"
 						style="color: black; width: 100%;" escape="false" />
-					<h:outputLabel value="Colonna 1 (chiusura):" for="col1Stop" />
+					<h:panelGroup>
+						<h:outputLabel value="Colonna 1 (chiusura):" for="col1Stop" />
+						<br/>
+						<h:outputText style="font-size: small;" value="(lasciare vuoto per non rendere modificabile il contenuto della colonna di sinistra all'interno delle singole pagine)"/>
+					</h:panelGroup>
 					<h:inputTextarea id="col1Stop"
 						value="#{templateHandler.element.col1_stop}"
 						style="color: black; width: 100%;" escape="false" />
@@ -55,7 +63,11 @@
 					<h:inputTextarea id="col2Start"
 						value="#{templateHandler.element.col2_start}"
 						style="color: black; width: 100%;" escape="false" />
-					<h:outputLabel value="Colonna 2 (chiusura):" for="col1Stop" />
+					<h:panelGroup>
+						<h:outputLabel value="Colonna 2 (chiusura):" for="col1Stop" />
+						<br/>
+						<h:outputText style="font-size: small;" value="(lasciare vuoto per non rendere modificabile il contenuto della colonna centrale all'interno delle singole pagine)"/>
+					</h:panelGroup>
 					<h:inputTextarea id="col2Stop"
 						value="#{templateHandler.element.col2_stop}"
 						style="color: black; width: 100%;" escape="false" />
@@ -67,7 +79,11 @@
 					<h:inputTextarea id="col3Start"
 						value="#{templateHandler.element.col3_start}"
 						style="color: black; width: 100%;" escape="false" />
-					<h:outputLabel value="Colonna 3 (chiusura):" for="col3Stop" />
+					<h:panelGroup>
+						<h:outputLabel value="Colonna 3 (chiusura):" for="col3Stop" />
+						<br/>
+						<h:outputText style="font-size: small;" value="(lasciare vuoto per non rendere modificabile il contenuto della colonna di destra all'interno delle singole pagine)"/>
+					</h:panelGroup>
 					<h:inputTextarea id="col3Stop"
 						value="#{templateHandler.element.col3_stop}"
 						style="color: black; width: 100%;" escape="false" />
@@ -79,10 +95,20 @@
 					<h:inputTextarea id="footerStart"
 						value="#{templateHandler.element.footer_start}"
 						style="color: black; width: 100%;" escape="false" />
-					<h:outputLabel value="Pie' di pagina (chiusura):" for="footerStop" />
+					<h:panelGroup>
+						<h:outputLabel value="Pie' di pagina (chiusura):" for="footerStop" />
+						<br/>
+						<h:outputText style="font-size: small;" value="(lasciare vuoto per non rendere modificabile il contenuto del pie' di pagina all'interno delle singole pagine)"/>
+					</h:panelGroup>
 					<h:inputTextarea id="footerStop"
 						value="#{templateHandler.element.footer_stop}"
 						style="color: black; width: 100%;" escape="false" />
+
+					<h:outputText value="&lt;hr/&gt;" escape="false" />
+					<h:outputText />
+
+					<h:outputLabel value="Utilizza editor avanzato per le pagine di questo template:" for="statico" />
+					<h:selectBooleanCheckbox id="statico" value="#{templateHandler.element.statico}"/>
 
 				</h:panelGrid>
 				<br />

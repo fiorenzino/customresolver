@@ -25,6 +25,12 @@
 					<h:outputText id="nome" value="#{templateHandler.element.nome}"
 						style="width: 100%;" />
 
+					<h:outputLabel value="Statico:" for="statico" />
+					<h:panelGroup id="statico">
+						<h:outputText value="SI" rendered="#{templateHandler.element.statico}"/>
+						<h:outputText value="NO" rendered="#{not templateHandler.element.statico}"/>
+					</h:panelGroup>
+
 					<h:outputText value="&lt;hr/&gt;" escape="false" />
 					<h:outputText />
 
@@ -42,7 +48,7 @@
 						rendered="#{not empty templateHandler.element.header_stop}" />
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
-						rendered="#{not empty templateHandler.element.header_start and not empty templateHandler.element.header_stop}" />
+						rendered="#{not empty templateHandler.element.header_start or not empty templateHandler.element.header_stop}" />
 					<h:outputText />
 
 					<h:outputLabel value="Colonna 1 (apertura):" for="col1Start"
@@ -59,7 +65,7 @@
 						rendered="#{not empty templateHandler.element.col1_stop}" />
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
-						rendered="#{not empty templateHandler.element.col1_start and not empty templateHandler.element.col1_stop}" />
+						rendered="#{not empty templateHandler.element.col1_start or not empty templateHandler.element.col1_stop}" />
 					<h:outputText />
 
 					<h:outputLabel value="Colonna 2 (apertura):" for="col1Start"
@@ -76,7 +82,7 @@
 						rendered="#{not empty templateHandler.element.col2_stop}" />
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
-						rendered="#{not empty templateHandler.element.col2_start and not empty templateHandler.element.col2_stop}" />
+						rendered="#{not empty templateHandler.element.col2_start or not empty templateHandler.element.col2_stop}" />
 					<h:outputText />
 
 					<h:outputLabel value="Colonna 3 (apertura):" for="col3Start"
@@ -90,10 +96,10 @@
 					<h:inputTextarea disabled="true" id="col3Stop"
 						value="#{templateHandler.element.col3_stop}"
 						style="color: black; width: 100%;" escape="false"
-						rendered="#{not empty templateHandler.element.col1_stop}" />
+						rendered="#{not empty templateHandler.element.col3_stop}" />
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
-						rendered="#{not empty templateHandler.element.col3_start and not empty templateHandler.element.col3_stop}" />
+						rendered="#{not empty templateHandler.element.col3_start or not empty templateHandler.element.col3_stop}" />
 					<h:outputText />
 
 					<h:outputLabel value="Pie' di pagina (apertura):" for="footerStart"
