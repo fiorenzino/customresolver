@@ -12,6 +12,9 @@
 			<property name="hibernate.connection.password" value="weldtest" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/weldtest" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.jdbc.batch_size" value="0" />
+			<property name="hibernate.jdbc.use_scrollable_resultsets"
+				value="false" />
 		</properties>
 	</persistence-unit>
 </persistence>
