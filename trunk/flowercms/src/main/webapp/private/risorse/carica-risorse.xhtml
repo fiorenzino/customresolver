@@ -27,7 +27,7 @@
 			<h:form enctype="multipart/form-data" prependId="false">
 				<center><p:fileUpload id="nome"
 					fileUploadListener="#{resourceHandler.handleFileUpload}"
-					rendered="#{empty resourceHandler.element.id}" multiple="false"
+					rendered="#{empty resourceHandler.element.id}" multiple="true"
 					allowTypes="*.jpg;*.png;*.gif;*.jpeg;*.swf;*.css;*.js"
 					update="resourceList,commands" /> <br />
 				<p:outputPanel id="resourceList" style="width: 100%;">
