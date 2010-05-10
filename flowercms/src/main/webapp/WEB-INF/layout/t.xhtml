@@ -4,7 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:flw="http://flowercms/taglib">
 <h:head>
 	<link href="#{request.contextPath}/styles/flower.css" rel="stylesheet"
 		type="text/css" />
@@ -25,7 +26,6 @@
 
 
 		<p:panel style="width: 100%; text-align: left;">
-			<h:outputText value="Breadcrumps will be placed here..." />
 			<p:ajaxStatus rendered="false">
 				<f:facet name="start">
 					<h:graphicImage value="/icons/ajax_process.gif" />
@@ -34,10 +34,13 @@
 					<h:outputText value=""/>
 				</f:facet>
 			</p:ajaxStatus>
+			<flw:breadcrumbs/>
+			<br />
 			<br />
 
 
 			<p:panel style="width: 100%; text-align: center;">
+				
 				<ui:insert name="content">
 					<ui:include src="content.xhtml" />
 				</ui:insert>
