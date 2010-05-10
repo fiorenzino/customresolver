@@ -6,6 +6,7 @@ import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 
 
 import it.flowercms.par.base.Ricerca;
@@ -15,6 +16,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.apache.log4j.Logger;
@@ -88,6 +90,28 @@ public class JSFUtils {
 			}
 		}
 		return selectItems;
+	}
+
+	public static String breadcrumbs() {
+		HttpServletRequest hsr = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		String url = hsr.getRequestURL().toString();
+		url = url.substring("http://".length());
+		if ( url.indexOf("/") >= 0 )
+			url = url.substring(url.indexOf("/")+1);
+		String[] crumbs = url.split("/");
+
+		String base = "/";
+		StringBuffer sb = new StringBuffer();
+		for ( int i = 0 ; i < crumbs.length ; i++ ) {
+			base += crumbs[i];
+			String label = i == 0 ? "home" : crumbs[i];
+			if ( label.contains(".") ) {
+				label = label.substring(0,label.indexOf("."));
+			}
+			sb.append("<a href=\""+base+"\" title=\""+crumbs[i]+"\">"+label+"</a> ");
+			base += "/";
+		}
+		return sb.toString();
 	}
 
 }
