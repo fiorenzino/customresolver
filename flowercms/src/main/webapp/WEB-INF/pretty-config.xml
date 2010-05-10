@@ -2,10 +2,16 @@
 <pretty-config xmlns="http://ocpsoft.com/prettyfaces-xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://ocpsoft.com/prettyfaces-xsd http://ocpsoft.com/xml/ns/prettyfaces/pretty-1.0.xsd">
+
+	<!--
+		<url-mapping id="managedUrl"> <pattern>/pagine/.* </pattern>
+		<view-id>#{urlHandler.viewId}</view-id> </url-mapping>
+	-->
+
 	<url-mapping id="pagine">
 		<pattern>/pagine/#{dbPageHandler.page.id}</pattern>
 		<query-param name="page">#{dbPageHandler.page.id}</query-param>
 		<view-id>/database-page.jsf</view-id>
-		
 	</url-mapping>
+
 </pretty-config>
