@@ -29,7 +29,9 @@ implements Serializable {
 	
 	static { 
 		base = ResourceSession.class.getClassLoader().getResource("META-INF").getPath();
-		base = base.substring(0,base.indexOf("WEB-INF"))+"risorse"+File.separator;
+		base = base.substring(0,base.indexOf("WEB-INF"))
+		+"risorse"+File.separator
+		;
 		staticLogger.info("Saving resources to: " + base);
 	}
 
