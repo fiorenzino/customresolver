@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:dataTable var="attivita" value="#{attivitaHandler.all}">
+				<p:column>
+					<f:facet name="header">id</f:facet>
+					<h:outputText value="#{attivita.id}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">nome</f:facet>
+					<h:outputText value="#{attivita.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">indirizzo</f:facet>
+					<h:outputText value="#{attivita.indirizzo}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">categoria</f:facet>
+					<h:outputText value="#{attivita.categoria.categoria}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">operazioni</f:facet>
+					<h:commandLink
+						action="#{attivitaHandler.detailAttivita(attivita.id)}"
+						value="[v]" />
+					- 
+					<h:commandLink action="#{attivitaHandler.modAttivita(attivita.id)}"
+						value="[m]" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+
+			<h:commandLink id="creaAttivita"
+				action="#{attivitaHandler.addAttivita}" value="Crea nuova Attivita" />
+		</h:form>
+	</ui:define>
+</ui:composition>

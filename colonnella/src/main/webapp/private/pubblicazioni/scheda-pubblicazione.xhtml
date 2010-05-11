@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages id="messages" />
+
+			<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Pubblicazione" />
+			<h:outputText id="tipo"
+				value="#{pubblicazioniHandler.pubblicazione.tipoPubblicazione.nome}" />
+			<br />
+
+			<h:outputLabel for="nome" value="Oggetto:" />
+			<h:outputText id="nome"
+				value="#{pubblicazioniHandler.pubblicazione.oggetto}" />
+			<br />
+			<h:outputLabel for="dataDal" value="Data dal:" />
+			<h:outputText id="dataDal"
+				value="#{pubblicazioniHandler.pubblicazione.dal}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<br />
+
+			<h:outputLabel for="dataAl" value="Data al:" />
+			<h:outputText id="dataAl"
+				value="#{pubblicazioniHandler.pubblicazione.al}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<br />
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

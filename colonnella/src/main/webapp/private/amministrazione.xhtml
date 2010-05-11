@@ -1,0 +1,166 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<p:panel header="Gestione Modelli di Pagina"
+				rendered="#{templateHandler.clear}"
+				style="width: 200px; float:left;">
+				<h:commandLink action="#{templateHandler.loadModel}">
+					<h:outputText value="Lista dei modelli disponibili" />
+				</h:commandLink>
+				<br />
+				<br />
+				<h:commandLink action="#{templateHandler.addElement}">
+					<h:outputText value="Aggiungi un nuovo modello" />
+				</h:commandLink>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+			</p:panel>
+
+			<p:panel header="Gestione Pagine" style="width:200px; float:left;"
+				rendered="#{pageHandler.clear}">
+				<h:commandLink action="#{pageHandler.loadModel}">
+					<h:outputText value="Lista delle pagine disponibili" />
+				</h:commandLink>
+				<br />
+				<br />
+				<h:commandLink action="#{pageHandler.addPaginaStatica}">
+					<h:outputText value="Aggiungi una pagina con contenuto statico" />
+				</h:commandLink>
+				<br />
+				<br />
+				<h:commandLink action="#{pageHandler.addPaginaDinamica}">
+					<h:outputText value="Aggiungi una pagina con contenuto dinamico" />
+				</h:commandLink>
+				<br />
+				<br />
+				<br />
+			</p:panel>
+
+			<p:panel header="Gestione Menu" style="width: 200px; float: left;"
+				rendered="#{menuHandler.clear}">
+				<h:commandLink action="#{menuHandler.loadModel}">
+					<h:outputText value="Associa pagine e percorsi" />
+				</h:commandLink>
+				<br />
+				<br />
+				<h:commandLink action="#{menuHandler.addElement}">
+					<h:outputText value="Aggiungi un nuovo menu" />
+				</h:commandLink>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+			</p:panel>
+
+			<p:panel
+				header="Gestione Risorse Statiche (immagini, javascript, flash, stili)"
+				rendered="#{resourceHandler.clear}"
+				style="width: 200px; float: left;">
+				<h:commandLink action="#{resourceHandler.loadModel}">
+					<h:outputText value="Lista delle risorse" />
+				</h:commandLink>
+				<br />
+				<h:commandLink action="#{resourceHandler.addElement}">
+					<h:outputText value="Carica nuove risorse" />
+				</h:commandLink>
+			</p:panel>
+
+			<p:panel header="Gestione Files" style="width:200px; float:left; margin-top: 5px;">
+				<h:commandLink action="/private/files/lista-files.jsf"
+					value="lista files" />
+				<br />
+				<h:commandLink action="/private/files/gestione-file.jsf"
+					value="creazione file" />
+			</p:panel>
+
+			<div style="width: 600px; height: 40px; clear: both;"></div>
+
+			<p:panel header="Gestione Notizie" style="width:200px; float:left;">
+				<h:commandLink action="/private/notizie/lista-notizie.jsf"
+					value="lista notizie" />
+				<br />
+				<h:commandLink action="#{notizieHandler.addNotizia}"
+					value="Crea nuova Notizia" />
+			</p:panel>
+
+			<p:panel header="Gestione Gallerie" style="width:200px; float:left;">
+				<h:commandLink action="/private/gallerie/lista-gallerie.jsf"
+					value="lista gallerie" />
+				<br />
+				<h:commandLink action="#{gallerieHandler.addGalleria}"
+					value="Crea nuova Galleria" />
+			</p:panel>
+
+			<p:panel header="Gestione Attivita'" style="width:200px; float:left;">
+				<h:commandLink action="/private/attivita/lista-attivita.jsf"
+					value="lista attivita'" />
+				<br />
+				<h:commandLink action="#{attivitaHandler.addAttivita}"
+					value="Crea nuova Attivita" />
+			</p:panel>
+
+			<p:panel header="Gestione Categorie Attivita'"
+				style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/attivita/lista-categorie-attivita.jsf"
+					value="lista categorie" />
+				<br />
+				<h:commandLink action="#{categorieHandler.addCategoriaAttivita}"
+					value="Crea nuova Categoria" />
+			</p:panel>
+
+			<p:panel header="Gestione Tipi Attivita'"
+				style="width:200px; float:left;">
+				<h:commandLink action="/private/attivita/lista-tipi-attivita.jsf"
+					value="lista tipi attivita'" />
+				<br />
+				<h:commandLink action="#{categorieHandler.addTipoAttivita}"
+					value="Crea nuovo Tipo" />
+			</p:panel>
+
+			<p:panel header="Gestione Pubblicazioni"
+				style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/pubblicazioni/lista-pubblicazioni.jsf"
+					value="lista pubblicazioni" />
+				<br />
+				<h:commandLink action="#{pubblicazioniHandler.addPubblicazione}"
+					value="Crea nuova Pubblicazione" />
+			</p:panel>
+
+			<p:panel header="Gestione Tipi Pubblicazioni"
+				style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/pubblicazioni/lista-tipi-pubblicazione.jsf"
+					value="lista tipi pubblicazioni" />
+				<br />
+				<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
+					value="Crea nuovo Tipo Pubblicazione" />
+			</p:panel>
+
+
+		</h:form>
+		<div style="clear: both;"></div>
+
+	</ui:define>
+
+</ui:composition>
