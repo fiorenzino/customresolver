@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:dataTable var="galleria" value="#{gallerieHandler.all}">
+				<p:column>
+					<f:facet name="header">id</f:facet>
+					<h:outputText value="#{galleria.id}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">titolo</f:facet>
+					<h:outputText value="#{galleria.titolo}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">operazioni</f:facet>
+					<h:commandLink
+						action="#{gallerieHandler.detailGalleria(galleria.id)}"
+						value="[v]" />
+					- <h:commandLink
+						action="#{gallerieHandler.modGalleria(galleria.id)}" value="[m]" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+
+			<h:commandLink id="creaGalleria"
+				action="#{gallerieHandler.addGalleria}" value="Crea nuova Galleria" />
+		</h:form>
+	</ui:define>
+</ui:composition>
