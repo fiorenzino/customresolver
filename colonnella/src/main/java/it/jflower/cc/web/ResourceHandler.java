@@ -1,9 +1,11 @@
 package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
+import it.jflower.base.utils.ImageUtils;
 import it.jflower.cc.par.Resource;
 import it.jflower.cc.session.ResourceSession;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -328,6 +330,22 @@ public class ResourceHandler implements Serializable {
 		resource.setTipo( filename.endsWith("css") ? "css" : filename.endsWith("js") ? "js" : filename.endsWith("swf") ? "swf" : "img" );
 		resource.setBytes( file.getContents() );
 		uploadedResources.add(resource);
+	}
+
+	public List<Resource> getImgList() {
+		Ricerca<Resource> ricerca = new Ricerca<Resource>(Resource.class);
+		ricerca.getOggetto().setTipo("img");
+		return session.getList(ricerca,0,0);
+	}
+
+	public Integer proportionalHeight(String url, int maxWidth, int maxHeight) {
+		return ImageUtils.getImageHeightProportional("img" + File.separator
+				+ url, maxWidth, maxHeight);
+	}
+
+	public Integer proportionalWidth(String url, int maxWidth, int maxHeight) {
+		return ImageUtils.getImageWidthProportional("img" + File.separator
+				+ url, maxWidth, maxHeight);
 	}
 
 	
