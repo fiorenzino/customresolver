@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:corejsf="http://corejsf.com"
 	template="/WEB-INF/layout/popup.xhtml">
 
 	<ui:define name="title">
@@ -15,14 +16,15 @@
 				header="Scegli una immagine con un click!" id="images"
 				style="width: 450px;height: 450px;">
 
-				<ui:repeat var="nomeFile" value="#{fileHandler.files}">
-					<p><img src="#{request.contextPath}/img/#{nomeFile}"
-						width="#{fileHandler.proportionalWidth(nomeFile,100,100)}"
-						height="#{fileHandler.proportionalHeight(nomeFile,100,100)}"
+				<ui:repeat var="imgResource" value="#{resourceHandler.imgList}" id="immagini">
+					<p><img src="#{request.contextPath}/img/#{imgResource.nome}"
+						width="#{resourceHandler.proportionalWidth(imgResource.nome,100,100)}"
+						height="#{resourceHandler.proportionalHeight(imgResource.nome,100,100)}"
 						style="border: 1px;" /></p>
 				</ui:repeat>
+		      <corejsf:pager for="immagini" showpages="20"
+		         selectedStyleClass="currentPage"/>
 				<div style="clear: both;"></div>
-				
 			</p:panel></div>
 		</h:form>
 	</ui:define>
