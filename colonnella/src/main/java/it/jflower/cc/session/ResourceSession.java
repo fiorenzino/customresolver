@@ -142,7 +142,9 @@ implements Serializable {
 			List<String> files = getFiles(ricerca.getOggetto().getTipo());
 			if ( startRow > files.size() )
 				return result;
-			int max = startRow+pageSize;
+			int max = files.size();
+			if ( pageSize > 0 )
+				max = startRow+pageSize;
 			if ( max > files.size() ) {
 				max = files.size();
 			}
