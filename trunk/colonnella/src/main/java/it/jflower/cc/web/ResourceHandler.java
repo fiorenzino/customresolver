@@ -136,8 +136,8 @@ public class ResourceHandler implements Serializable {
 	public List<Resource> getUploadedResources() {
 		return uploadedResources;
 	}
-	public String getResourceFilename(int index) {
-		return uploadedResources.get(index).getNome();
+	public Resource getResource(int index) {
+		return uploadedResources.get(index);
 	}
 
 	public Resource getElement() {
@@ -325,7 +325,7 @@ public class ResourceHandler implements Serializable {
 			filename = filename.substring(filename.lastIndexOf("\\")+1);
 		Resource resource = new Resource();
 		resource.setNome( filename );
-		resource.setTipo(this.element.getTipo());
+		resource.setTipo( filename.endsWith("css") ? "css" : filename.endsWith("js") ? "js" : filename.endsWith("swf") ? "swf" : "img" );
 		resource.setBytes( file.getContents() );
 		uploadedResources.add(resource);
 	}
