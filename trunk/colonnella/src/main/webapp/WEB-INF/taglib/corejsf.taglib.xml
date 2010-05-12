@@ -9,7 +9,7 @@
       <tag-name>pager</tag-name>
       <component>
          <component-type>javax.faces.Command</component-type>
-         <renderer-type>com.corejsf.Pager</renderer-type>
+         <renderer-type>it.jflower.base.web.renderer.UIRepeatPager</renderer-type>
       </component>
    </tag>
 </facelet-taglib>
