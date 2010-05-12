@@ -1,1 +1,1 @@
-<jsp:forward page="/private/menu/gestisci-menu.jsf"></jsp:forward>
+<jsp:forward page="/private/menu/percorsi.jsf"></jsp:forward>
