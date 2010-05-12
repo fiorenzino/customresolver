@@ -63,6 +63,11 @@ public class Resource implements Serializable {
 		return new String(bytes);
 	}
 
+	@Transient
+	public int getSize() {
+		return bytes == null ? 0 : bytes.length;
+	}
+
 	public void setTesto(String testo) {
 		this.bytes = testo.getBytes();
 	}
