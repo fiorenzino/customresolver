@@ -39,9 +39,9 @@ public class MenuHandler implements Serializable {
 
 	public static String BACK = "/private/amministrazione.xhtml"
 			+ FACES_REDIRECT;
-	public static String VIEW = "/private/menu/gestisci-menu.xhtml" + FACES_REDIRECT;
-	public static String LIST = "/private/menu/gestisci-menu.xhtml" + FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/menu/crea-menu.xhtml"
+	public static String VIEW = "/private/menu/percorsi.xhtml" + FACES_REDIRECT;
+	public static String LIST = "/private/menu/percorsi.xhtml" + FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/menu/percorsi.xhtml"
 			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
@@ -358,8 +358,10 @@ public class MenuHandler implements Serializable {
 			TreeNode mgn = new TreeNode("menuGroup", mg, root);
 			if (mg.getLista() != null) {
 				for (MenuItem mi : mg.getLista()) {
-					@SuppressWarnings("unused")
-					TreeNode min = new TreeNode("menuItem", mi, mgn);
+					if ( mi.isAttivo() ) {
+						@SuppressWarnings("unused")
+						TreeNode min = new TreeNode("menuItem", mi, mgn);
+					}
 				}
 			}
 		}
@@ -405,7 +407,9 @@ public class MenuHandler implements Serializable {
 			Map<String, MenuItem> groupItems = new HashMap<String, MenuItem>();
 			if (menuGroup.getLista() != null) {
 				for (MenuItem item : menuGroup.getLista()) {
-					groupItems.put(item.getPagina().getId(), item);
+					if ( item.isAttivo() ) {
+						groupItems.put(item.getPagina().getId(), item);
+					}
 				}
 			}
 			List<MenuItem> source = new ArrayList<MenuItem>();
@@ -485,7 +489,14 @@ public class MenuHandler implements Serializable {
 		menuGroup.setLista(nuovaLista);
 		session.update(menuGroup);
 		
-		setItemList(nuovaLista);
+		List<MenuItem> listaAttivi = new ArrayList<MenuItem>();
+		for ( MenuItem i : nuovaLista ) {
+			if ( i.isAttivo() )
+				listaAttivi.add(i);
+		}
+		
+		setItemList(listaAttivi);
+		refreshModel();
 		
 		return null;
 	}
