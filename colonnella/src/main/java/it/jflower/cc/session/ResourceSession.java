@@ -1,6 +1,7 @@
 package it.jflower.cc.session;
 
 import it.jflower.base.par.Ricerca;
+import it.jflower.base.utils.FileUtils;
 import it.jflower.cc.par.Resource;
 
 import java.io.File;
@@ -30,19 +31,23 @@ implements Serializable {
 	static { 
 		base = ResourceSession.class.getClassLoader().getResource("META-INF").getPath();
 		base = base.substring(0,base.indexOf("WEB-INF"))
-		+"risorse"+File.separator
+//		+"risorse"+File.separator
 		;
 		staticLogger.info("Saving resources to: " + base);
 	}
 
 	public Resource persist(Resource object) {
 		try {
-			File f = new File(base+object.getTipo()+File.separator+object.getNome().replaceAll(" ", "_"));
-			if ( f.exists() || f.isDirectory() )
-				throw new Exception("file could not be written!");
-			FileOutputStream fos = new FileOutputStream(f);
-			fos.write(object.getBytes());
-			fos.close();
+//			File f = new File(base+object.getTipo()+File.separator+object.getNome().replaceAll(" ", "_"));
+//			if ( f.exists() || f.isDirectory() )
+//				throw new Exception("file could not be written!");
+//			FileOutputStream fos = new FileOutputStream(f);
+//			fos.write(object.getBytes());
+//			fos.close();
+			if ( "img".equals(object.getTipo()) )
+				FileUtils.createImage(object.getTipo(), object.getId(), object.getBytes());
+			else
+				FileUtils.createFile(object.getTipo(), object.getId(), object.getBytes());
 			return object;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -131,20 +136,21 @@ implements Serializable {
 	public List<Resource> getList(Ricerca<Resource> ricerca, int startRow, int pageSize) {
 		List<Resource> result = new ArrayList<Resource>();
 		try {
-			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
-			if ( ! f.exists() || ! f.isDirectory() )
-				throw new Exception("directory could not be read!");
-			String[] files = f.list();
-			if ( startRow > files.length )
+//			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
+//			if ( ! f.exists() || ! f.isDirectory() )
+//				throw new Exception("directory could not be read!");
+			List<String> files = getFiles(ricerca.getOggetto().getTipo());
+			if ( startRow > files.size() )
 				return result;
 			int max = startRow+pageSize;
-			if ( max > files.length ) {
-				max = files.length;
+			if ( max > files.size() ) {
+				max = files.size();
 			}
 			for ( int i = startRow ; i < max ; i++ ) {
 				Resource r = new Resource();
 				r.setTipo(ricerca.getOggetto().getTipo());
-				r.setId( files[i].substring( files[i].lastIndexOf("/")+1 ) );
+//				r.setId( files[i].substring( files[i].lastIndexOf("/")+1 ) );
+				r.setId( files.get(i) );
 				r.setNome( r.getId() );
 				result.add(r);
 			}
@@ -156,14 +162,29 @@ implements Serializable {
 
 	public int getListSize(Ricerca<Resource> ricerca) {
 		try {
-			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
-			if ( ! f.exists() || ! f.isDirectory() )
-				throw new Exception("directory could not be read!");
-			return f.list().length;
+//			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
+//			if ( ! f.exists() || ! f.isDirectory() )
+//				throw new Exception("directory could not be read!");
+//			return f.list().length;
+			return getFiles(ricerca.getOggetto().getTipo()).size();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return 0;
 		}
 	}	
 
+	
+	private List<String> getFiles(String tipo) {
+		if ( tipo.equals("img") ) 
+			return FileUtils.getImgFiles();
+		else if ( tipo.equals("js") ) 
+			return FileUtils.getJsFiles();
+		if ( tipo.equals("swf") ) 
+			return FileUtils.getFlashFiles();
+		if ( tipo.equals("css") ) 
+			return FileUtils.getCssFiles();
+		else
+			return new ArrayList<String>();
+	}
+	
 }
