@@ -105,9 +105,12 @@ public class JSFUtils {
 			String label = i == 0 ? "home" : crumbs[i];
 			if ( label.contains(".") ) {
 				label = label.substring(0,label.indexOf("."));
+				sb.append("<b>"+label+"</b>");
 			}
-			sb.append("<a href=\""+base+"\" title=\""+crumbs[i]+"\">"+label+"</a> ");
-			sb.append("<span class=\"freccia\">&gt;</span> ");
+			else {
+				sb.append("<a href=\""+base+"\" title=\""+crumbs[i]+"\">"+label+"</a> ");
+				sb.append("<span class=\"freccia\">&gt;</span> ");
+			}
 			base += "/";
 		}
 		return sb.toString();
