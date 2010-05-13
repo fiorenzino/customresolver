@@ -10,10 +10,10 @@ import javax.naming.NamingException;
 
 public class LocalDataModel<T> extends PagedListDataModel<T> {
 
-	private Ricerca<T> ricerca;
-	private SuperSession<T> ejb;
-	private List<DataProcessor<T>> processors = new ArrayList<DataProcessor<T>>();
-
+	protected Ricerca<T> ricerca;
+	protected SuperSession<T> ejb;
+	protected List<DataProcessor<T>> processors = new ArrayList<DataProcessor<T>>();
+	
 	public LocalDataModel(int pageSize, Ricerca<T> ricerca, SuperSession<T> ejb) {
 		super(pageSize);
 		this.ricerca = ricerca;
@@ -29,7 +29,7 @@ public class LocalDataModel<T> extends PagedListDataModel<T> {
 		return null;
 	}
 
-	private DataPage<T> getDataPage(int startRow, int pageSize)
+	protected DataPage<T> getDataPage(int startRow, int pageSize)
 			throws NamingException {
 		List<T> data = ejb.getList(ricerca, startRow, pageSize);
 		// --- aggiunta per permettere elaborazioni personalizzate sul dm prima di mostrarlo nella view ----

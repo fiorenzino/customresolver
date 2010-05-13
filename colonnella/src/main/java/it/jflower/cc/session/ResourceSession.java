@@ -1,6 +1,7 @@
 package it.jflower.cc.session;
 
 import it.jflower.base.par.Ricerca;
+import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
 import it.jflower.cc.par.Resource;
 
@@ -13,15 +14,16 @@ import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
 @Named
 @SessionScoped
 public class ResourceSession
+extends SuperSession<Resource>
 implements Serializable {
 
-	private Logger logger = Logger.getLogger(getClass());
 	private static Logger staticLogger = Logger.getLogger(ResourceSession.class);
 	
 	private static final long serialVersionUID = 1L;
@@ -50,7 +52,7 @@ implements Serializable {
 				FileUtils.createFile(object.getTipo(), object.getId(), object.getBytes());
 			return object;
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -69,7 +71,7 @@ implements Serializable {
 				return null;
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -94,7 +96,7 @@ implements Serializable {
 				return null;
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -112,7 +114,7 @@ implements Serializable {
 			fos.close();
 			return object;
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -126,7 +128,7 @@ implements Serializable {
 				f.delete();
 			return;
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 			return;
 		}
 	}
@@ -157,7 +159,7 @@ implements Serializable {
 				result.add(r);
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 		}
 		return result;
 	}
@@ -170,7 +172,7 @@ implements Serializable {
 //			return f.list().length;
 			return getFiles(ricerca.getOggetto().getTipo()).size();
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			staticLogger.error(e.getMessage(), e);
 			return 0;
 		}
 	}	
@@ -188,5 +190,30 @@ implements Serializable {
 		else
 			return new ArrayList<String>();
 	}
-	
+
+	@Override
+	public EntityManager getEm() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Class<Resource> getEntityType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected String getOrderBy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setEm(EntityManager em) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
+
