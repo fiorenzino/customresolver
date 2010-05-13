@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.utils.ImageUtils;
+import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.cc.par.Resource;
 import it.jflower.cc.session.ResourceSession;
 
@@ -32,12 +33,17 @@ public class ResourceHandler implements Serializable {
 	// --------------------------------------------------------
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
-	
-	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-//	public static String VIEW = "/private/risorse/scheda-risorsa.xhtml"+FACES_REDIRECT;
-	public static String LIST = "/private/risorse/lista-risorse.xhtml"+FACES_REDIRECT;
-	public static String EDIT = "/private/risorse/gestione-risorsa.xhtml"+FACES_REDIRECT;
-	public static String UPLOAD = "/private/risorse/carica-risorse.xhtml"+FACES_REDIRECT;
+
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	// public static String VIEW =
+	// "/private/risorse/scheda-risorsa.xhtml"+FACES_REDIRECT;
+	public static String LIST = "/private/risorse/lista-risorse.xhtml"
+			+ FACES_REDIRECT;
+	public static String EDIT = "/private/risorse/gestione-risorsa.xhtml"
+			+ FACES_REDIRECT;
+	public static String UPLOAD = "/private/risorse/carica-risorse.xhtml"
+			+ FACES_REDIRECT;
 
 	// ------------------------------------------------
 
@@ -85,7 +91,8 @@ public class ResourceHandler implements Serializable {
 	@PostConstruct
 	protected void gatherCriteria() {
 		ricerca = new Ricerca<Resource>(Resource.class);
-		ricerca.getOggetto().setTipo( propertiesHandler.getRisorseItems()[0].getValue().toString() );
+		ricerca.getOggetto().setTipo(
+				propertiesHandler.getRisorseItems()[0].getValue().toString());
 	}
 
 	public Ricerca<Resource> getRicerca() {
@@ -105,19 +112,19 @@ public class ResourceHandler implements Serializable {
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
 		boolean lazy = false;
-//		setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
-		if ( ! lazy )
-			setModel( new ListDataModel<Resource>( session.getList(ricerca, 0, pageSize) ));
+		// setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
+		if (!lazy)
+			setModel(new ListDataModel<Resource>(session.getList(ricerca, 0,
+					pageSize)));
 		else
-		setModel( 
-				new LazyDataModel<Resource>( session.getListSize(ricerca) ) {
-					private static final long serialVersionUID = 1L;
-					@Override
-					public List<Resource> fetchLazyData(int first, int pageSize) {
-						return session.getList(ricerca, first, pageSize);
-					}
+			setModel(new LazyDataModel<Resource>(session.getListSize(ricerca)) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public List<Resource> fetchLazyData(int first, int pageSize) {
+					return session.getList(ricerca, first, pageSize);
 				}
-		);
+			});
 	}
 
 	/**
@@ -138,6 +145,7 @@ public class ResourceHandler implements Serializable {
 	public List<Resource> getUploadedResources() {
 		return uploadedResources;
 	}
+
 	public Resource getResource(int index) {
 		return uploadedResources.get(index);
 	}
@@ -192,9 +200,9 @@ public class ResourceHandler implements Serializable {
 		return this.backPage == null ? BACK : this.backPage;
 	}
 
-//	public String viewPage() {
-//		return VIEW;
-//	}
+	// public String viewPage() {
+	// return VIEW;
+	// }
 
 	public String listPage() {
 		return LIST;
@@ -235,9 +243,9 @@ public class ResourceHandler implements Serializable {
 
 	@Transactional
 	public String save() {
-		for ( Resource resource : uploadedResources ) {
-			if ( resource.getTipo() == null )
-				resource.setTipo( this.element.getTipo() );
+		for (Resource resource : uploadedResources) {
+			if (resource.getTipo() == null)
+				resource.setTipo(this.element.getTipo());
 			// recupero e preelaborazioni dati in input
 			// salvataggio
 			session.persist(resource);
@@ -286,19 +294,18 @@ public class ResourceHandler implements Serializable {
 		return editPage();
 	}
 
-//	public String viewCurrent() {
-//		// fetch dei dati
-//		//
-//		// vista di arrivo
-//		return viewPage();
-//	}
-//	
+	// public String viewCurrent() {
+	// // fetch dei dati
+	// //
+	// // vista di arrivo
+	// return viewPage();
+	// }
+	//	
 	// -----------------------------------------------------
 
-	
-//	public List<Page> getList() {
-//		return session.getAllList();
-//	}
+	// public List<Page> getList() {
+	// return session.getAllList();
+	// }
 
 	public String delElement(String tipo, String id) {
 		Resource resource = new Resource();
@@ -310,33 +317,44 @@ public class ResourceHandler implements Serializable {
 	}
 
 	public String modElement(String tipo, String id) {
-//		for (Page t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
-		this.element = session.fetch(tipo,id);
+		// for (Page t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
+		this.element = session.fetch(tipo, id);
 		return editPage();
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
 		UploadedFile file = event.getFile();
 		String filename = file.getFileName();
-		if ( filename.contains("\\") )
-			filename = filename.substring(filename.lastIndexOf("\\")+1);
+		if (filename.contains("\\"))
+			filename = filename.substring(filename.lastIndexOf("\\") + 1);
 		Resource resource = new Resource();
-		resource.setNome( filename );
-		resource.setTipo( filename.endsWith("css") ? "css" : filename.endsWith("js") ? "js" : filename.endsWith("swf") ? "swf" : "img" );
-		resource.setBytes( file.getContents() );
+		resource.setNome(filename);
+		resource.setTipo(filename.endsWith("css") ? "css" : filename
+				.endsWith("js") ? "js" : filename.endsWith("swf") ? "swf"
+				: "img");
+		resource.setBytes(file.getContents());
 		uploadedResources.add(resource);
 	}
 
-	public List<Resource> getImgList() {
-		Ricerca<Resource> ricerca = new Ricerca<Resource>(Resource.class);
-		ricerca.getOggetto().setTipo("img");
-		return session.getList(ricerca,0,0);
+	private LocalDataModel<Resource> imgModel;
+
+	public LocalDataModel<Resource> getImgModel() {
+		if (imgModel == null) {
+			Ricerca<Resource> ricerca = new Ricerca<Resource>(Resource.class);
+			ricerca.getOggetto().setTipo("img");
+			imgModel = new LocalDataModel<Resource>(9, ricerca, session);
+		}
+		return imgModel;
 	}
+	public void setImgModel(LocalDataModel<Resource> object) {
+		this.imgModel = object;
+	}
+
 
 	public Integer proportionalHeight(String url, int maxWidth, int maxHeight) {
 		return ImageUtils.getImageHeightProportional("img" + File.separator
@@ -348,5 +366,4 @@ public class ResourceHandler implements Serializable {
 				+ url, maxWidth, maxHeight);
 	}
 
-	
 }
