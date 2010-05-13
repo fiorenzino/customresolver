@@ -12,18 +12,20 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form prependId="false">
+			<div style="bottom: 10px;">
+		      <corejsf:pager uiRepeatId="immagini" showpages="5"
+		         selectedStyleClass="currentPage" model="#{resourceHandler.imgModel}"/>
+	         </div>
 			<div id="doc" class="yui-t7"><p:panel
 				header="Scegli una immagine con un click!" id="images"
 				style="width: 450px;height: 450px;">
 
-				<ui:repeat var="imgResource" value="#{resourceHandler.imgList}" id="immagini">
+				<ui:repeat var="imgResource" id="immagini">
 					<p><img src="#{request.contextPath}/img/#{imgResource.nome}"
 						width="#{resourceHandler.proportionalWidth(imgResource.nome,100,100)}"
 						height="#{resourceHandler.proportionalHeight(imgResource.nome,100,100)}"
 						style="border: 1px;" /></p>
 				</ui:repeat>
-		      <corejsf:pager for="immagini" showpages="20"
-		         selectedStyleClass="currentPage"/>
 				<div style="clear: both;"></div>
 			</p:panel></div>
 		</h:form>
