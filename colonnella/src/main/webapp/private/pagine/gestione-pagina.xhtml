@@ -211,9 +211,9 @@ function addImageBrowser() {
 			<center><h:panelGrid columns="3">
 				<h:commandLink value="anteprima testo completo"
 					action="#{pageHandler.anteprimaTestuale}" target="_blank" />
-				<h:outputText value=" - " />
+				<h:outputText value=" - " rendered="false"/>
 				<h:commandLink value="anteprima risultato finale"
-					action="#{pageHandler.anteprimaRisultato}" target="_blank" />
+					action="#{pageHandler.anteprimaRisultato}" target="_blank" rendered="false"/>
 			</h:panelGrid> <br />
 			<h:panelGrid columns="4">
 				<h:commandButton action="#{pageHandler.save}" value="Salva"
