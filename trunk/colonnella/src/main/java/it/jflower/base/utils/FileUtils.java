@@ -1,7 +1,5 @@
 package it.jflower.base.utils;
 
-import it.jflower.cc.par.Page;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
