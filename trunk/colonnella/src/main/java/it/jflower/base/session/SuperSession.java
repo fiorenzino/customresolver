@@ -10,25 +10,27 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
+import org.seamframework.tx.Transactional;
 
 @SuppressWarnings("unchecked")
 public abstract class SuperSession<T> {
 
 	abstract public EntityManager getEm();
+
 	abstract public void setEm(EntityManager em);
 
 	// --- Logger -------------------------------
-	
+
 	protected Logger logger = Logger.getLogger(getClass().getName());
 
 	// --- Mandatory logic --------------------------------
-	
+
 	protected abstract String getOrderBy();
 
 	protected abstract Class<T> getEntityType();
 
 	// --- CRUD --------------
-
+	@Transactional
 	public T persist(T object) {
 		try {
 			object = prePersist(object);
@@ -43,6 +45,7 @@ public abstract class SuperSession<T> {
 
 	/**
 	 * Override this if needed
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -50,6 +53,7 @@ public abstract class SuperSession<T> {
 		return object;
 	}
 
+	@Transactional
 	public T find(Object key) {
 		try {
 			return getEm().find(getEntityType(), key);
@@ -59,6 +63,7 @@ public abstract class SuperSession<T> {
 		}
 	}
 
+	@Transactional
 	public T fetch(Object key) {
 		try {
 			T found = getEm().find(getEntityType(), key);
@@ -74,6 +79,7 @@ public abstract class SuperSession<T> {
 		}
 	}
 
+	@Transactional
 	public T update(T object) {
 		try {
 			object = preUpdate(object);
@@ -87,6 +93,7 @@ public abstract class SuperSession<T> {
 
 	/**
 	 * Override this if needed
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -94,6 +101,7 @@ public abstract class SuperSession<T> {
 		return object;
 	}
 
+	@Transactional
 	public void delete(Object key) {
 		try {
 			T obj = getEm().find(getEntityType(), key);
@@ -114,7 +122,7 @@ public abstract class SuperSession<T> {
 	}
 
 	// --- LIST ------------------------------------------
-
+	@Transactional
 	public List<T> getAllList() {
 		List<T> result = new ArrayList<T>();
 		try {
@@ -129,6 +137,7 @@ public abstract class SuperSession<T> {
 		return result;
 	}
 
+	@Transactional
 	public List<T> getList(Ricerca<T> ricerca, int startRow, int pageSize) {
 		List<T> result = new ArrayList<T>();
 		try {
@@ -150,6 +159,7 @@ public abstract class SuperSession<T> {
 		return result;
 	}
 
+	@Transactional
 	public int getListSize(Ricerca<T> ricerca) {
 		Long result = new Long(0);
 		try {
@@ -164,6 +174,7 @@ public abstract class SuperSession<T> {
 		return 0;
 	}
 
+	@Transactional
 	public List<T> getList(int startRow, int pageSize, Query res) {
 		List<T> result = new ArrayList<T>();
 		try {
@@ -219,10 +230,11 @@ public abstract class SuperSession<T> {
 	/**
 	 * sperimentale: fetch via reflection, che esclude gli oggetti non attivi
 	 * ...attualmente sembra che la fetch funzioni a me (Pisi) e non a Fiore.
-	 * ...il filtraggio attivi/passivi, in ogni caso, non funziona: 
-	 * provare a creare una seconda lista 'detached' e riassegnarla
+	 * ...il filtraggio attivi/passivi, in ogni caso, non funziona: provare a
+	 * creare una seconda lista 'detached' e riassegnarla
 	 * 
 	 */
+	@Transactional
 	private void fetchChildren(Object object) throws Exception {
 		if (object == null)
 			return;
@@ -230,8 +242,8 @@ public abstract class SuperSession<T> {
 		Class objectClass = object.getClass();
 		Field[] objectFields = objectClass.getDeclaredFields();
 		for (Field objectField : objectFields) {
-//			System.out.println(objectClass.getSimpleName() + "."
-//					+ objectField.getName());
+			// System.out.println(objectClass.getSimpleName() + "."
+			// + objectField.getName());
 			objectField.setAccessible(true);
 
 			if (objectField.getType().isAssignableFrom(List.class)) {
@@ -294,9 +306,9 @@ public abstract class SuperSession<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// puo' darsi che anziché nullo dia eccezione se il campo non c'è
-			// ... ora non ricordo esattamente quale comportamento bisogna attendere
+			// ... ora non ricordo esattamente quale comportamento bisogna
+			// attendere
 			return null;
 		}
 	}
 }
-
