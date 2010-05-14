@@ -97,124 +97,125 @@ function addImageBrowser() {
 						</h:selectOneMenu>
 					</h:panelGroup>
 
-					<h:outputText value="&lt;hr/&gt;"
-						escape="false" />
-					<h:outputText/>
+					<h:outputText value="&lt;hr/&gt;" escape="false" />
+					<h:outputText />
 
 				</h:panelGrid>
 
 				<h:panelGroup id="campi">
 
-				<h:panelGrid columns="2" style="width: 95%"
-					columnClasses="col1,col2" >
+					<h:panelGrid columns="2" style="width: 95%"
+						columnClasses="col1,col2">
 
-					<h:outputLabel value="Intestazione:"
-						rendered="#{not empty pageHandler.element.template.template.header_stop}"
-						for="header" />
-					<h:panelGroup
-						rendered="#{not empty pageHandler.element.template.template.header_stop}"
-						id="header">
-						<h:inputTextarea
-							rendered="#{not empty pageHandler.element.template.template.header_stop and not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.header}"
-							style="color: black; width: 100%;" escape="false" />
-					<p:editor id="advancedTextAreaH"
-							rendered="#{not empty pageHandler.element.template.template.header_stop and pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.header}"
-							width="100%"
-						height="320px" widgetVar="myEditor" language="it" />
-					</h:panelGroup>
+						<h:outputLabel value="Intestazione:"
+							rendered="#{not empty pageHandler.element.template.template.header_stop}"
+							for="header" />
+						<h:panelGroup
+							rendered="#{not empty pageHandler.element.template.template.header_stop}"
+							id="header">
+							<h:inputTextarea
+								rendered="#{not empty pageHandler.element.template.template.header_stop and not pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.header}"
+								style="color: black; width: 100%;" escape="false" />
+							<p:editor id="advancedTextAreaH"
+								rendered="#{not empty pageHandler.element.template.template.header_stop and pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.header}" width="100%"
+								height="320px" widgetVar="myEditor" language="it" />
+						</h:panelGroup>
 
-					<h:outputText value="&lt;hr/&gt;"
-						rendered="#{not empty pageHandler.element.template.template.header_stop}"
-						escape="false" />
-					<h:outputText
-						rendered="#{not empty pageHandler.element.template.template.header_stop}" />
+						<h:outputText value="&lt;hr/&gt;"
+							rendered="#{not empty pageHandler.element.template.template.header_stop}"
+							escape="false" />
+						<h:outputText
+							rendered="#{not empty pageHandler.element.template.template.header_stop}" />
 
-					<h:outputLabel value="Colonna 1:"
-						rendered="#{not empty pageHandler.element.template.template.col1_stop}"
-						for="col1" />
-					<h:panelGroup id="col1"
-						rendered="#{not empty pageHandler.element.template.template.col1_stop}">
-						<h:inputTextarea
-							rendered="#{not empty pageHandler.element.template.template.col1_stop and not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.col1}"
-							style="color: black; width: 100%;" escape="false" />
-						<h:inputTextarea
-							name="advancedTextAreaC1" class="advancedTextAreaC1"
-							rendered="#{not empty pageHandler.element.template.template.col1_stop and pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.col1}"
-							style="color: black; width: 100%;" escape="false" />
-					</h:panelGroup>
+						<h:outputLabel value="Colonna 1:"
+							rendered="#{not empty pageHandler.element.template.template.col1_stop}"
+							for="col1" />
+						<h:panelGroup id="col1"
+							rendered="#{not empty pageHandler.element.template.template.col1_stop}">
+							<h:inputTextarea
+								rendered="#{not empty pageHandler.element.template.template.col1_stop and not pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.col1}"
+								style="color: black; width: 100%;" escape="false" />
+							<p:editor id="advancedTextAreaC1"
+								rendered="#{not empty pageHandler.element.template.template.col1_stop and pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.col1}" width="100%"
+								height="320px" widgetVar="myEditor" language="it" />
+						</h:panelGroup>
 
-					<h:outputLabel value="Colonna 2:"
-						rendered="#{not empty pageHandler.element.template.template.col2_stop}"
-						for="col2" />
-					<h:panelGroup id="col2"
-						rendered="#{not empty pageHandler.element.template.template.col2_stop}">
-						<h:inputTextarea
-							rendered="#{not empty pageHandler.element.template.template.col2_stop and not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.col2}"
-							style="color: black; width: 100%;" escape="false" />
-						<h:inputTextarea
-							name="advancedTextAreaC2" class="advancedTextAreaC2"
-							rendered="#{not empty pageHandler.element.template.template.col2_stop and pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.col2}"
-							style="color: black; width: 100%;" escape="false" />
-					</h:panelGroup>
+						<h:outputLabel value="Colonna 2:"
+							rendered="#{not empty pageHandler.element.template.template.col2_stop}"
+							for="col2" />
+						<h:panelGroup id="col2"
+							rendered="#{not empty pageHandler.element.template.template.col2_stop}">
+							<h:inputTextarea
+								rendered="#{not empty pageHandler.element.template.template.col2_stop and not pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.col2}"
+								style="color: black; width: 100%;" escape="false" />
+							<p:editor id="advancedTextAreaC2"
+								rendered="#{not empty pageHandler.element.template.template.col2_stop and pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.col2}" width="100%"
+								height="320px" widgetVar="myEditor" language="it" />
+						</h:panelGroup>
 
-					<h:outputLabel value="Colonna 3:"
-						rendered="#{not empty pageHandler.element.template.template.col3_stop}"
-						for="col3" />
-					<h:panelGroup id="col3"
-						rendered="#{not empty pageHandler.element.template.template.col3_stop}">
-						<h:inputTextarea
-							rendered="#{not empty pageHandler.element.template.template.col3_stop and not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.col3}"
-							style="color: black; width: 100%;" escape="false" />
-						<h:inputTextarea
-							name="advancedTextAreaC3" class="advancedTextAreaC3"
-							rendered="#{not empty pageHandler.element.template.template.col3_stop and pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.col3}"
-							style="color: black; width: 100%;" escape="false" />
-					</h:panelGroup>
+						<h:outputLabel value="Colonna 3:"
+							rendered="#{not empty pageHandler.element.template.template.col3_stop}"
+							for="col3" />
+						<h:panelGroup id="col3"
+							rendered="#{not empty pageHandler.element.template.template.col3_stop}">
+							<h:inputTextarea
+								rendered="#{not empty pageHandler.element.template.template.col3_stop and not pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.col3}" width="100%"
+								style="color: black; width: 100%;" escape="false" />
+							<p:editor id="advancedTextAreaC3"
+								rendered="#{not empty pageHandler.element.template.template.col3_stop and pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.col3}"
+								height="320px" widgetVar="myEditor" language="it" />
+						</h:panelGroup>
 
-					<h:outputText value="&lt;hr/&gt;"
-						rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}"
-						escape="false" />
-					<h:outputText
-						rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}" />
+						<h:outputText value="&lt;hr/&gt;"
+							rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}"
+							escape="false" />
+						<h:outputText
+							rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}" />
 
-					<h:outputLabel value="Pie' di pagina:"
-						rendered="#{not empty pageHandler.element.template.template.footer_stop}"
-						for="footer" />
-					<h:panelGroup id="footer"
-						rendered="#{not empty pageHandler.element.template.template.footer_stop}">
-						<h:inputTextarea
-							rendered="#{not empty pageHandler.element.template.template.footer_stop and not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.footer}"
-							style="color: black; width: 100%;" escape="false" />
-						<h:inputTextarea
-							name="advancedTextAreaF" class="advancedTextAreaF"
-							rendered="#{not empty pageHandler.element.template.template.footer_stop and pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.footer}"
-							style="color: black; width: 100%;" escape="false" />
-					</h:panelGroup>
+						<h:outputLabel value="Pie' di pagina:"
+							rendered="#{not empty pageHandler.element.template.template.footer_stop}"
+							for="footer" />
+						<h:panelGroup id="footer"
+							rendered="#{not empty pageHandler.element.template.template.footer_stop}">
+							<h:inputTextarea
+								rendered="#{not empty pageHandler.element.template.template.footer_stop and not pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.footer}"
+								style="color: black; width: 100%;" escape="false" />
+							<p:editor id="advancedTextAreaF"
+								rendered="#{not empty pageHandler.element.template.template.footer_stop and pageHandler.element.template.template.statico}"
+								value="#{pageHandler.element.template.footer}" width="100%"
+								height="320px" widgetVar="myEditor" language="it" />
+						</h:panelGroup>
 
-				</h:panelGrid>
-				
-			</h:panelGroup>
-			<br />
-			<h:outputText value="(*) sono campi obbligatori!" />
-			<br />
-			<br />
+					</h:panelGrid>
+
+				</h:panelGroup>
+				<br />
+				<h:outputText value="(*) sono campi obbligatori!" />
+				<br />
+				<br />
 
 			</p:panel>
 
 			<br />
 			<br />
 
-			<center><h:panelGrid columns="4">
+			<center><h:panelGrid columns="3">
+				<h:commandLink value="anteprima testo completo"
+					action="#{pageHandler.anteprimaTestuale}" target="_blank" />
+				<h:outputText value=" - " />
+				<h:commandLink value="anteprima risultato finale"
+					action="#{pageHandler.anteprimaRisultato}" target="_blank" />
+			</h:panelGrid> <br />
+			<h:panelGrid columns="4">
 				<h:commandButton action="#{pageHandler.save}" value="Salva"
 					rendered="#{empty pageHandler.element.id}" />
 				<h:commandButton action="#{pageHandler.update}"
