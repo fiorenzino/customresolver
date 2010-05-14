@@ -94,6 +94,14 @@
 
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
+			<p:panel header="Gestione Tipi Informazione" style="width:200px; float:left;">
+				<h:commandLink action="#{tipoInformazioniHandler.loadModel}"
+					value="lista tipi informazione" />
+				<br />
+				<h:commandLink action="#{tipoInformazioniHandler.addElement}"
+					value="Crea nuovo Tipo informazione" />
+			</p:panel>
+
 			<p:panel header="Gestione Notizie" style="width:200px; float:left;">
 				<h:commandLink action="/private/notizie/lista-notizie.jsf"
 					value="lista notizie" />
