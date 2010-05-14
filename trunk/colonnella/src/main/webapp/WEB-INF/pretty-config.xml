@@ -8,23 +8,21 @@
 		<view-id>/index.jsf </view-id>
 	</url-mapping>
 
-	<!-- 
-	<url-mapping id="dbPage">
-		<pattern>/dbPage</pattern>
-		<view-id>/dbPage.jsf </view-id>
-	</url-mapping>
-	 -->
+	<!--
+		<url-mapping id="dbPage"> <pattern>/dbPage</pattern>
+		<view-id>/dbPage.jsf </view-id> </url-mapping>
+	-->
 	<url-mapping id="pagine">
 		<pattern>/pagine/*/#{dbPageHandler.page.id}</pattern>
 		<query-param name="pageId">#{dbPageHandler.page.id}</query-param>
 		<view-id>/page.jsf </view-id>
 	</url-mapping>
 
-	<!-- 
+
 	<url-mapping id="dynamicUrl">
 		<pattern> /bc/.* </pattern>
 		<view-id> #{urlParsingBean.parseComplexUrl} </view-id>
 	</url-mapping>
-	 -->
+
 
 </pretty-config>
