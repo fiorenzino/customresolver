@@ -12,7 +12,7 @@
 
 	<context-param>
 		<param-name>facelets.LIBRARIES</param-name>
-		<param-value>/WEB-INF/taglib/jflower.taglib.xml</param-value>
+		<param-value>/WEB-INF/taglib/jflower/jflower.taglib.xml;/WEB-INF/taglib/cc/cc.taglib.xml</param-value>
 	</context-param>
 
 	<servlet>
