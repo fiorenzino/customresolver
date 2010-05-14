@@ -72,6 +72,11 @@ public class PageUtils {
 	 * @return
 	 */
 	public static Page generateContent(Page page) {
+		page.setContent( createContent(page) );
+		return page;
+	}
+
+	public static String createContent(Page page) {
 
 		Template t = page.getTemplate().getTemplate();
 		TemplateImpl i = page.getTemplate();
@@ -106,9 +111,8 @@ public class PageUtils {
 			b.append( i.getFooter() );
 			b.append(t.getFooter_stop() );
 		}
-
-		page.setContent(b.toString());
-		return page;
+		
+		return b.toString();
 	}
-	
+
 }

@@ -2,9 +2,11 @@ package it.jflower.cc.par;
 
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.attachment.Immagine;
+import it.jflower.cc.par.type.TipoInformazione;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,10 +20,13 @@ public class Notizia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String id;
+	private boolean attivo = true;
 	private String titolo;
 	private String anteprima;
 	private String contenuto;
 	private String autore;
+	private Date data;
+	private TipoInformazione tipo;
 	private List<Documento> documenti;
 	private List<Immagine> immagini;
 
@@ -96,4 +101,29 @@ public class Notizia implements Serializable {
 	public void addImmagine(Immagine immagine) {
 		getImmagini().add(immagine);
 	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public TipoInformazione getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoInformazione tipo) {
+		this.tipo = tipo;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
+
 }
