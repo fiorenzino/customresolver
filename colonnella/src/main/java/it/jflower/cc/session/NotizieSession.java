@@ -5,6 +5,7 @@ import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,4 +88,10 @@ implements Serializable {
 		return q;
 	}
 
+	@Override
+	protected Notizia prePersist(Notizia n) {
+		if ( n.getData() == null )
+			n.setData(new Date());
+		return n;
+	}
 }
