@@ -57,7 +57,9 @@ public class CategorieHandler implements Serializable {
 	public String updateCategoriaAttivita() {
 		System.out.println("ATT TIPO:"
 				+ this.categoriaAttivita.getTipoAttivita().getId());
-
+		TipoAttivita tipo = categorieSession.findTipoAttivita(categoriaAttivita
+				.getTipoAttivita().getId());
+		categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.updateCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
 		return "/private/attivita/lista-categorie-attivita.xhtml";

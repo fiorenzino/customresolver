@@ -28,10 +28,6 @@ public class CategorieSession implements Serializable {
 	@Transactional
 	public void updateCategoriaAttivita(CategoriaAttivita categoriaAttivita) {
 		try {
-			TipoAttivita tipo = findTipoAttivita(categoriaAttivita
-					.getTipoAttivita().getId());
-			System.out.println("tipo: " + tipo.getId());
-			categoriaAttivita.setTipoAttivita(tipo);
 			em.merge(categoriaAttivita);
 		} catch (Exception e) {
 			e.printStackTrace();
