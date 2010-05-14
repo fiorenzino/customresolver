@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://colonnella/taglib"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Pagina per fare prove" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<cc:ultimeNotizie/>
+
+		</h:form>
+		<div style="clear: both;"></div>
+
+	</ui:define>
+
+</ui:composition>
