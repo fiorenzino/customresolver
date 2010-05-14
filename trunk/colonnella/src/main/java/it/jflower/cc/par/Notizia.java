@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -110,6 +111,7 @@ public class Notizia implements Serializable {
 		this.data = data;
 	}
 
+	@ManyToOne
 	public TipoInformazione getTipo() {
 		return tipo;
 	}
