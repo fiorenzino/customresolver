@@ -5,7 +5,7 @@
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:cc="http://colonnella/taglib"
-	xmlns:flw="http://flowercms/taglib">
+	xmlns:flw="http://jflower/taglib">
 	
 	<!-- 
 	parametri opzionali: selectedStyleClass, selectedClass, label, width, showpages, pagesize, tipo
@@ -30,7 +30,7 @@
 		<c:set var="width" value="200px"/>
 	</c:if>
 	
-	
+	<h:outputText value="ultime notizie..." />	
 
 	<flw:uiRepeatPaged id="ultimeNotizie" showpages="#{showpages}" label="#{label}"
 		selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
