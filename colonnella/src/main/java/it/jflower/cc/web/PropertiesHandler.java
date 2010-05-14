@@ -7,10 +7,12 @@ import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Template;
 import it.jflower.cc.par.type.CategoriaAttivita;
 import it.jflower.cc.par.type.TipoAttivita;
+import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.session.PageSession;
 import it.jflower.cc.session.TemplateSession;
+import it.jflower.cc.session.TipoInformazioniSession;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -43,6 +45,9 @@ public class PropertiesHandler implements Serializable {
 
 	@Inject
 	private PageSession pageSession;
+
+	@Inject
+	private TipoInformazioniSession tipoInformazioniSession;
 
 	private SelectItem[] fileTypeItems = new SelectItem[] {};
 	private SelectItem[] categorieAttivitaItems = new SelectItem[] {};
@@ -209,6 +214,17 @@ public class PropertiesHandler implements Serializable {
 		this.items.put(Template.class, templateItems);
 	}
 
+	public SelectItem[] getTipoInformazioneItems() {
+		Ricerca<TipoInformazione> ricerca = new Ricerca<TipoInformazione>(TipoInformazione.class);
+		return checkItems(ricerca, tipoInformazioniSession, "id", "nome",
+				"nessun tipo disponibile", "seleziona tipo...");
+	}
+
+	public void setTipoInformazioneItems(SelectItem[] tipiItems) {
+		this.items.put(TipoInformazione.class, tipiItems);
+	}
+
+	
 	public SelectItem[] getPageItems() {
 		Ricerca<Page> ricerca = new Ricerca<Page>(Page.class);
 		return checkItems(ricerca, pageSession, "id", "title",
@@ -246,5 +262,4 @@ public class PropertiesHandler implements Serializable {
 		};
 	}
 
-	
 }
