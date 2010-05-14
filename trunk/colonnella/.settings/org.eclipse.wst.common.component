@@ -3,6 +3,9 @@
     <wb-module deploy-name="colonnella">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/persistence.context.extension/persistence.context.extension">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/w1/target/classes"/>
         <property name="context-root" value="colonnella"/>
     </wb-module>
