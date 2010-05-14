@@ -15,8 +15,21 @@
 	<namespace>http://jflower/taglib</namespace>
 
 	<tag>
+		<tag-name>pager</tag-name>
+		<component>
+			<component-type>javax.faces.Command</component-type>
+			<renderer-type>uiRepeatPager</renderer-type>
+		</component>
+	</tag>
+
+	<tag>
 		<tag-name>breadcrumbs</tag-name>
 		<source>breadcrumbs.xhtml</source>
+	</tag>
+
+	<tag>
+		<tag-name>uiRepeatPaged</tag-name>
+		<source>uiRepeatPaged.xhtml</source>
 	</tag>
 
 	<function>
