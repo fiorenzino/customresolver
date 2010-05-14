@@ -7,7 +7,9 @@ import it.jflower.cc.par.Template;
 import it.jflower.cc.par.TemplateImpl;
 import it.jflower.cc.session.PageSession;
 import it.jflower.cc.session.TemplateSession;
+import it.jflower.cc.utils.PageUtils;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +21,9 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.seamframework.tx.Transactional;
@@ -339,5 +344,14 @@ public class PageHandler implements Serializable {
 	public void cambioTemplate(ActionEvent event) {
 		this.element.getTemplate().setTemplate( templateSession.find(this.element.getTemplate().getTemplate().getId()));
 	}
-	
+
+	public String anteprimaTestuale() {
+		PageUtils.generateContent(getElement());
+		return "/private/pagine/anteprima-testuale.xhtml"+FACES_REDIRECT;
+	}
+	public String anteprimaRisultato() {
+		PageUtils.generateContent(getElement());
+		// TODO
+		return null;
+	}
 }

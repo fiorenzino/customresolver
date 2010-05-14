@@ -1,6 +1,9 @@
 package it.jflower.cc.web;
 
+import it.jflower.base.par.Ricerca;
+import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.cc.par.Notizia;
+import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NotizieSession;
 import it.jflower.cc.utils.PageUtils;
 
@@ -19,6 +22,7 @@ public class NotizieHandler implements Serializable {
 
 	@Inject
 	NotizieSession notizieSession;
+
 	private Notizia notizia;
 	private boolean editMode;
 	private List<Notizia> all;
@@ -80,7 +84,7 @@ public class NotizieHandler implements Serializable {
 
 	public List<Notizia> getAll() {
 		if (this.all == null)
-			this.all = notizieSession.getAll();
+			this.all = notizieSession.getAllList();
 		return all;
 	}
 
@@ -109,4 +113,21 @@ public class NotizieHandler implements Serializable {
 
 		return "";
 	}
+
+	// -----------------------------------------------------------
+
+	private LocalDataModel<Notizia> model;
+	private String tipo;
+	private Integer pageSize;
+	
+	public LocalDataModel<Notizia> ultimeNotizie(String tipo, int pageSize) {
+		if ( model == null || this.tipo == null || this.pageSize == null || ! this.tipo.equals(tipo) || this.pageSize != pageSize ) {
+			Ricerca<Notizia> ricerca = new Ricerca<Notizia>(Notizia.class);
+			ricerca.getOggetto().setTipo( new TipoInformazione() );
+			ricerca.getOggetto().getTipo().setNome( tipo );
+			model = new LocalDataModel<Notizia>(pageSize, ricerca, notizieSession);
+		}
+		return model;
+	}
+
 }
