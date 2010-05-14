@@ -3,6 +3,7 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
+import it.jflower.cc.par.type.TipoInformazione;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -92,6 +93,8 @@ implements Serializable {
 	protected Notizia prePersist(Notizia n) {
 		if ( n.getData() == null )
 			n.setData(new Date());
+		if ( n.getTipo() != null && n.getTipo().getId() != null )
+			n.setTipo( getEm().find(TipoInformazione.class, n.getTipo().getId()));
 		return n;
 	}
 }

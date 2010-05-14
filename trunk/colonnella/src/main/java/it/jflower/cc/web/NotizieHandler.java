@@ -14,6 +14,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.seamframework.tx.Transactional;
+
 @Named
 @SessionScoped
 public class NotizieHandler implements Serializable {
@@ -30,19 +32,21 @@ public class NotizieHandler implements Serializable {
 	public String addNotizia() {
 		this.editMode = false;
 		this.notizia = new Notizia();
+		this.notizia.setTipo( new TipoInformazione() );
 		return "/private/notizie/gestione-notizia?redirect=true";
 	}
 
+	@Transactional
 	public String saveNotizia() {
 		String idTitle = PageUtils.createPageId(this.notizia.getTitolo());
 		String idFinal = testId(idTitle);
 		this.notizia.setId(idFinal);
-
 		notizieSession.persist(this.notizia);
 		this.all = null;
 		return "/private/notizie/scheda-notizia?redirect=true";
 	}
 
+	@Transactional
 	public String deleteNotizia() {
 		notizieSession.delete(this.notizia.getId());
 		this.all = null;
@@ -55,6 +59,7 @@ public class NotizieHandler implements Serializable {
 		return "/private/notizie/gestione-notizia?redirect=true";
 	}
 
+	@Transactional
 	public String updateNotizia() {
 		this.notizia = notizieSession.update(this.notizia);
 		this.all = null;

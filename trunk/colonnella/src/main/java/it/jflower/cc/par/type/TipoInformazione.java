@@ -17,6 +17,7 @@ public class TipoInformazione implements Serializable {
 	// Bandi ,Delibere di consiglio , Delibere di giunta
 
 	private Long id;
+	private boolean attivo = true;
 	private String nome;
 
 	@Id
@@ -37,4 +38,13 @@ public class TipoInformazione implements Serializable {
 		this.nome = nome;
 	}
 
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
+
+	
 }
