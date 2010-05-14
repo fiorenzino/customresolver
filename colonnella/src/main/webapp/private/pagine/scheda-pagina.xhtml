@@ -11,24 +11,32 @@
 	</ui:define>
 
 	<ui:define name="content">
-			<style>
-			.col1 { width: 35%; text-align: left; }
-			.col2 { width: 65%; text-align: left; }
-			</style>
-		<h:form><center>
+		<style>
+.col1 {
+	width: 35%;
+	text-align: left;
+}
 
-			<p:panel header="Scheda Pagina">
-				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
+.col2 {
+	width: 65%;
+	text-align: left;
+}
+</style>
+		<h:form>
+			<center><p:panel header="Scheda Pagina">
+				<h:panelGrid columns="2" style="width: 95%"
+					columnClasses="col1,col2">
 
 					<h:outputLabel value="Titolo:" for="titolo" />
 					<h:outputText id="titolo" value="#{pageHandler.element.title}"
 						style="width: 100%;" />
 					<h:outputLabel value="Descrizione:" for="descrizione" />
-					<h:outputText id="descrizione" value="#{pageHandler.element.description}"
-						style="width: 100%;" />
+					<h:outputText id="descrizione"
+						value="#{pageHandler.element.description}" style="width: 100%;" />
 
 					<h:outputLabel value="Modello:" for="template" />
-					<h:outputText id="template" value="#{pageHandler.element.template.template.nome}"/>
+					<h:outputText id="template"
+						value="#{pageHandler.element.template.template.nome}" />
 
 					<h:outputText value="&lt;hr/&gt;" escape="false" />
 					<h:outputText />
@@ -42,7 +50,7 @@
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
 						rendered="#{not empty pageHandler.element.template.header}" />
-					<h:outputText 
+					<h:outputText
 						rendered="#{not empty pageHandler.element.template.header}" />
 
 					<h:outputLabel value="Colonna 1:" for="col1"
@@ -68,7 +76,7 @@
 
 					<h:outputText value="&lt;hr/&gt;" escape="false"
 						rendered="#{not empty pageHandler.element.template.col3 or not empty pageHandler.element.template.col2 or not empty pageHandler.element.template.col1}" />
-					<h:outputText 
+					<h:outputText
 						rendered="#{not empty pageHandler.element.template.col3 or not empty pageHandler.element.template.col2 or not empty pageHandler.element.template.col1}" />
 
 					<h:outputLabel value="Pie' di pagina:" for="footer"
@@ -81,15 +89,20 @@
 				</h:panelGrid>
 				<br />
 
-			</p:panel>
+			</p:panel> <br />
+			<br />
 
-			<br />
-			<br />
+			<h:panelGrid columns="1">
+				<h:outputLink target="_blank"
+					value="#{request.contextPath}/pagine/#{pageHandler.element.id}">
+					<h:outputText value="anteprima" />
+				</h:outputLink>
+			</h:panelGrid> <br />
 
 			<h:panelGrid columns="2">
 
-				<h:commandButton action="#{pageHandler.modCurrent}"
-					value="Modifica" immediate="false" />
+				<h:commandButton action="#{pageHandler.modCurrent}" value="Modifica"
+					immediate="false" />
 
 				<h:commandButton id="reset" action="#{pageHandler.reset}"
 					value="Indietro" immediate="true" />
