@@ -86,6 +86,7 @@ public class AttivitaHandler implements Serializable {
 		if (this.immagine.getData() != null)
 			this.attivita.setImmagine(getImmagine());
 		this.attivita = attivitaSession.persist(this.attivita);
+		this.all = null;
 		return VIEW;
 	}
 
@@ -102,6 +103,7 @@ public class AttivitaHandler implements Serializable {
 
 	public String deleteAttivita(String id) {
 		attivitaSession.delete(id);
+		this.all = null;
 		return LIST;
 	}
 
@@ -112,6 +114,7 @@ public class AttivitaHandler implements Serializable {
 		if (this.immagine.getData() != null)
 			this.attivita.setImmagine(getImmagine());
 		attivitaSession.update(this.attivita);
+		this.all = null;
 		return VIEW;
 	}
 
