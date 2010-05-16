@@ -2,10 +2,17 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.cc.par.Modulo;
+import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.par.type.TipoModulo;
+import it.jflower.cc.session.ModuliSession;
 import it.jflower.cc.session.TipoInformazioniSession;
+import it.jflower.cc.session.TipoModuloSession;
+import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -15,11 +22,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
-public class TipoInformazioniHandler implements Serializable {
+public class ModuliHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,30 +35,34 @@ public class TipoInformazioniHandler implements Serializable {
 
 	public static String BACK = "/private/amministrazione.xhtml"
 			+ FACES_REDIRECT;
-	public static String VIEW = "/private/tipi-informazione/scheda-tipo-informazione.xhtml"
+	public static String VIEW = "/private/moduli/scheda-modulo.xhtml"
 			+ FACES_REDIRECT;
-	public static String LIST = "/private/tipi-informazione/lista-tipi-informazione.xhtml"
+	public static String LIST = "/private/moduli/lista-moduli.xhtml"
 			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/tipi-informazione/gestione-tipo-informazione.xhtml"
+	public static String NEW_OR_EDIT = "/private/moduli/gestione-modulo.xhtml"
 			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
 	@Inject
-	TipoInformazioniSession session;
+	ModuliSession session;
 
 	@Inject
 	PropertiesHandler propertiesHandler;
 
+	@Inject
+	TipoModuloSession tipoModuloSession;
+
+	private int idTipo;
 	// ------------------------------------------------
 
 	protected Logger logger = Logger.getLogger(getClass());
 
 	// ------------------------------------------------
 
-	private Ricerca<TipoInformazione> ricerca;
-	private TipoInformazione element;
-	private DataModel<TipoInformazione> model;
+	private Ricerca<Modulo> ricerca;
+	private Modulo element;
+	private DataModel<Modulo> model;
 
 	private int rowCount;
 	private int pageSize = 10;
@@ -67,7 +77,7 @@ public class TipoInformazioniHandler implements Serializable {
 	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore
 	 * protetto da parte delle sottoclassi
 	 */
-	public TipoInformazioniHandler() {
+	public ModuliHandler() {
 
 	}
 
@@ -80,38 +90,38 @@ public class TipoInformazioniHandler implements Serializable {
 	 */
 	@PostConstruct
 	protected void gatherCriteria() {
-		ricerca = new Ricerca<TipoInformazione>(TipoInformazione.class);
+		ricerca = new Ricerca<Modulo>(Modulo.class);
 	}
 
 	/**
 	 * Metodo per ottenere l'id di ricerca
 	 */
-	protected Object getId(TipoInformazione t) {
+	protected Object getId(Modulo t) {
 		return t.getId();
 	}
 
-	protected SuperSession<TipoInformazione> getSession() {
+	protected SuperSession<Modulo> getSession() {
 		return session;
 	}
 
-	public Ricerca<TipoInformazione> getRicerca() {
+	public Ricerca<Modulo> getRicerca() {
 		return this.ricerca;
 	}
 
-	public DataModel<TipoInformazione> getModel() {
+	public DataModel<Modulo> getModel() {
 		if (model == null)
 			refreshModel();
 		return model;
 	}
 
-	public void setModel(DataModel<TipoInformazione> model) {
+	public void setModel(DataModel<Modulo> model) {
 		this.model = model;
 	}
 
 	protected void refreshModel() {
 		// setModel(new LocalDataModel<TipoInformazione>(pageSize, ricerca,
 		// getSession()));
-		setModel(new ListDataModel<TipoInformazione>(session.getAllList()));
+		setModel(new ListDataModel<Modulo>(session.getAllList()));
 	}
 
 	/**
@@ -133,11 +143,11 @@ public class TipoInformazioniHandler implements Serializable {
 
 	// -----------------------------------------------------
 
-	public TipoInformazione getElement() {
+	public Modulo getElement() {
 		return element;
 	}
 
-	public void setElement(TipoInformazione element) {
+	public void setElement(Modulo element) {
 		this.element = element;
 	}
 
@@ -214,8 +224,9 @@ public class TipoInformazioniHandler implements Serializable {
 		// n.d.
 		// settaggi nel super handler
 		try {
-			this.element = (TipoInformazione) ricerca.getOggetto().getClass()
+			this.element = (Modulo) ricerca.getOggetto().getClass()
 					.newInstance();
+			this.idTipo = 0;
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
 			e.printStackTrace();
@@ -226,7 +237,7 @@ public class TipoInformazioniHandler implements Serializable {
 
 	public String viewElement() {
 		// fetch dei dati
-		TipoInformazione t = (TipoInformazione) getModel().getRowData();
+		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
 		// settaggi nel super handler
 		this.element = t;
@@ -236,8 +247,10 @@ public class TipoInformazioniHandler implements Serializable {
 
 	public String modElement() {
 		// fetch dei dati;
-		TipoInformazione t = (TipoInformazione) getModel().getRowData();
+
+		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
+		this.idTipo = t.getTipo().getId().intValue();
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -250,6 +263,13 @@ public class TipoInformazioniHandler implements Serializable {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		String idTitle = PageUtils.createPageId(this.element.getNome());
+		String idFinal = testId(idTitle);
+		this.element.setId(idFinal);
+		this.element.setData(new Date());
+		TipoModulo tipo = tipoModuloSession.find(new Long(idTipo));
+		if (tipo != null)
+			element.setTipo(tipo);
 		element = getSession().persist(element);
 		// refresh locale
 		refreshModel();
@@ -264,6 +284,10 @@ public class TipoInformazioniHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		TipoModulo tipo = tipoModuloSession.find(new Long(idTipo));
+		if (tipo != null)
+			element.setTipo(tipo);
+		element = getSession().persist(element);
 		getSession().update(element);
 		// refresh locale
 		element = getSession().fetch(getId(element));
@@ -330,4 +354,31 @@ public class TipoInformazioniHandler implements Serializable {
 		return editPage();
 	}
 
+	public int getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
+	}
+
+	public String testId(String id) {
+		String idFinal = id;
+		boolean trovato = false;
+		int i = 0;
+		while (!trovato) {
+			System.out.println("id final: " + idFinal);
+			Modulo moduloFind = session.find(idFinal);
+			System.out.println("trovato_ " + moduloFind);
+			if (moduloFind != null) {
+				i++;
+				idFinal = id + "-" + i;
+			} else {
+				trovato = true;
+				return idFinal;
+			}
+		}
+
+		return "";
+	}
 }

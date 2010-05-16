@@ -8,11 +8,13 @@ import it.jflower.cc.par.Template;
 import it.jflower.cc.par.type.CategoriaAttivita;
 import it.jflower.cc.par.type.TipoAttivita;
 import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.session.PageSession;
 import it.jflower.cc.session.TemplateSession;
 import it.jflower.cc.session.TipoInformazioniSession;
+import it.jflower.cc.session.TipoModuloSession;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -49,10 +51,14 @@ public class PropertiesHandler implements Serializable {
 	@Inject
 	private TipoInformazioniSession tipoInformazioniSession;
 
+	@Inject
+	private TipoModuloSession tipoModuloSession;
+
 	private SelectItem[] fileTypeItems = new SelectItem[] {};
 	private SelectItem[] categorieAttivitaItems = new SelectItem[] {};
 	private SelectItem[] tipiAttivitaItems = new SelectItem[] {};
 	private SelectItem[] tipiPubblicazioneItems = new SelectItem[] {};
+	private SelectItem[] tipiModuloItems = new SelectItem[] {};
 
 	public PropertiesHandler() {
 		super();
@@ -164,6 +170,25 @@ public class PropertiesHandler implements Serializable {
 		return tipiPubblicazioneItems;
 	}
 
+	public SelectItem[] getTipiModuloItems() {
+		if (tipiModuloItems.length == 0) {
+			tipiModuloItems = new SelectItem[1];
+			tipiModuloItems[0] = new SelectItem(null, "nessun tipo");
+			List<TipoModulo> tipi = tipoModuloSession.getAllList();
+			if (tipi != null && tipi.size() > 0) {
+				tipiModuloItems = new SelectItem[tipi.size() + 1];
+				tipiModuloItems[0] = new SelectItem(null, "tipo");
+				int i = 1;
+				for (TipoModulo c : tipi) {
+					tipiModuloItems[i] = new SelectItem(c.getId(), c.getNome());
+					i++;
+
+				}
+			}
+		}
+		return tipiPubblicazioneItems;
+	}
+
 	public void resetTipiAttivitaItems() {
 		tipiAttivitaItems = new SelectItem[] {};
 	}
@@ -172,14 +197,14 @@ public class PropertiesHandler implements Serializable {
 		tipiPubblicazioneItems = new SelectItem[] {};
 	}
 
-	
 	// ==============================================================================
 	// ==============================================================================
 	// ==============================================================================
 	// ==============================================================================
 	// ==============================================================================
-	
-	// from FLOWERCMS ===============================================================
+
+	// from FLOWERCMS
+	// ===============================================================
 
 	// ==============================================================================
 	// ==============================================================================
@@ -191,17 +216,17 @@ public class PropertiesHandler implements Serializable {
 	public SelectItem[] getTemplateStaticiItems() {
 		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
 		ricerca.getOggetto().setSearchStatico(true);
-		return 
-		JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
-				"nessun template per pagine statiche disponibile", "seleziona template per pagine statiche...");
+		return JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
+				"nessun template per pagine statiche disponibile",
+				"seleziona template per pagine statiche...");
 	}
 
 	public SelectItem[] getTemplateDinamiciItems() {
 		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
 		ricerca.getOggetto().setSearchStatico(false);
-		return 
-		JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
-				"nessun template per pagine dinamiche disponibile", "seleziona template per pagine dinamiche...");
+		return JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
+				"nessun template per pagine dinamiche disponibile",
+				"seleziona template per pagine dinamiche...");
 	}
 
 	public SelectItem[] getTemplateItems() {
@@ -215,7 +240,8 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getTipoInformazioneItems() {
-		Ricerca<TipoInformazione> ricerca = new Ricerca<TipoInformazione>(TipoInformazione.class);
+		Ricerca<TipoInformazione> ricerca = new Ricerca<TipoInformazione>(
+				TipoInformazione.class);
 		return checkItems(ricerca, tipoInformazioniSession, "id", "nome",
 				"nessun tipo disponibile", "seleziona tipo...");
 	}
@@ -224,7 +250,6 @@ public class PropertiesHandler implements Serializable {
 		this.items.put(TipoInformazione.class, tipiItems);
 	}
 
-	
 	public SelectItem[] getPageItems() {
 		Ricerca<Page> ricerca = new Ricerca<Page>(Page.class);
 		return checkItems(ricerca, pageSession, "id", "title",
@@ -236,11 +261,13 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	private SelectItem[] checkItems(Ricerca ricerca, SuperSession ejb, String idField,
-			String valueField, String emptyMessage, String labelMessage) {
+	private SelectItem[] checkItems(Ricerca ricerca, SuperSession ejb,
+			String idField, String valueField, String emptyMessage,
+			String labelMessage) {
 		Class clazz = ricerca.getOggetto().getClass();
-		if ( items.get(clazz) == null || items.get(clazz).length == 0 ) {
-			items.put( clazz, JSFUtils.setupItems(ricerca, ejb, idField, valueField, emptyMessage, labelMessage) );
+		if (items.get(clazz) == null || items.get(clazz).length == 0) {
+			items.put(clazz, JSFUtils.setupItems(ricerca, ejb, idField,
+					valueField, emptyMessage, labelMessage));
 		}
 		return items.get(clazz);
 	}
@@ -254,12 +281,10 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getRisorseItems() {
-		return new SelectItem[] {
-			new SelectItem("img","immagini"),	
-			new SelectItem("js","funzioni javascript"),	
-			new SelectItem("css","fogli di stile"),	
-			new SelectItem("swf","contenuti flash"),	
-		};
+		return new SelectItem[] { new SelectItem("img", "immagini"),
+				new SelectItem("js", "funzioni javascript"),
+				new SelectItem("css", "fogli di stile"),
+				new SelectItem("swf", "contenuti flash"), };
 	}
 
 }

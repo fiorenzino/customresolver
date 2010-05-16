@@ -3,7 +3,9 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.TipoInformazioniSession;
+import it.jflower.cc.session.TipoModuloSession;
 
 import java.io.Serializable;
 
@@ -15,11 +17,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
-public class TipoInformazioniHandler implements Serializable {
+public class TipiModuloHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,17 +30,17 @@ public class TipoInformazioniHandler implements Serializable {
 
 	public static String BACK = "/private/amministrazione.xhtml"
 			+ FACES_REDIRECT;
-	public static String VIEW = "/private/tipi-informazione/scheda-tipo-informazione.xhtml"
+	public static String VIEW = "/private/tipi-modulo/scheda-tipo-modulo.xhtml"
 			+ FACES_REDIRECT;
-	public static String LIST = "/private/tipi-informazione/lista-tipi-informazione.xhtml"
+	public static String LIST = "/private/tipi-modulo/lista-tipi-modulo.xhtml"
 			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/tipi-informazione/gestione-tipo-informazione.xhtml"
+	public static String NEW_OR_EDIT = "/private/tipi-modulo/gestione-tipo-modulo.xhtml"
 			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
 	@Inject
-	TipoInformazioniSession session;
+	TipoModuloSession session;
 
 	@Inject
 	PropertiesHandler propertiesHandler;
@@ -50,9 +51,9 @@ public class TipoInformazioniHandler implements Serializable {
 
 	// ------------------------------------------------
 
-	private Ricerca<TipoInformazione> ricerca;
-	private TipoInformazione element;
-	private DataModel<TipoInformazione> model;
+	private Ricerca<TipoModulo> ricerca;
+	private TipoModulo element;
+	private DataModel<TipoModulo> model;
 
 	private int rowCount;
 	private int pageSize = 10;
@@ -67,7 +68,7 @@ public class TipoInformazioniHandler implements Serializable {
 	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore
 	 * protetto da parte delle sottoclassi
 	 */
-	public TipoInformazioniHandler() {
+	public TipiModuloHandler() {
 
 	}
 
@@ -80,38 +81,38 @@ public class TipoInformazioniHandler implements Serializable {
 	 */
 	@PostConstruct
 	protected void gatherCriteria() {
-		ricerca = new Ricerca<TipoInformazione>(TipoInformazione.class);
+		ricerca = new Ricerca<TipoModulo>(TipoModulo.class);
 	}
 
 	/**
 	 * Metodo per ottenere l'id di ricerca
 	 */
-	protected Object getId(TipoInformazione t) {
+	protected Object getId(TipoModulo t) {
 		return t.getId();
 	}
 
-	protected SuperSession<TipoInformazione> getSession() {
+	protected SuperSession<TipoModulo> getSession() {
 		return session;
 	}
 
-	public Ricerca<TipoInformazione> getRicerca() {
+	public Ricerca<TipoModulo> getRicerca() {
 		return this.ricerca;
 	}
 
-	public DataModel<TipoInformazione> getModel() {
+	public DataModel<TipoModulo> getModel() {
 		if (model == null)
 			refreshModel();
 		return model;
 	}
 
-	public void setModel(DataModel<TipoInformazione> model) {
+	public void setModel(DataModel<TipoModulo> model) {
 		this.model = model;
 	}
 
 	protected void refreshModel() {
 		// setModel(new LocalDataModel<TipoInformazione>(pageSize, ricerca,
 		// getSession()));
-		setModel(new ListDataModel<TipoInformazione>(session.getAllList()));
+		setModel(new ListDataModel<TipoModulo>(session.getAllList()));
 	}
 
 	/**
@@ -133,11 +134,11 @@ public class TipoInformazioniHandler implements Serializable {
 
 	// -----------------------------------------------------
 
-	public TipoInformazione getElement() {
+	public TipoModulo getElement() {
 		return element;
 	}
 
-	public void setElement(TipoInformazione element) {
+	public void setElement(TipoModulo element) {
 		this.element = element;
 	}
 
@@ -214,7 +215,7 @@ public class TipoInformazioniHandler implements Serializable {
 		// n.d.
 		// settaggi nel super handler
 		try {
-			this.element = (TipoInformazione) ricerca.getOggetto().getClass()
+			this.element = (TipoModulo) ricerca.getOggetto().getClass()
 					.newInstance();
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
@@ -226,7 +227,7 @@ public class TipoInformazioniHandler implements Serializable {
 
 	public String viewElement() {
 		// fetch dei dati
-		TipoInformazione t = (TipoInformazione) getModel().getRowData();
+		TipoModulo t = (TipoModulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
 		// settaggi nel super handler
 		this.element = t;
@@ -236,7 +237,7 @@ public class TipoInformazioniHandler implements Serializable {
 
 	public String modElement() {
 		// fetch dei dati;
-		TipoInformazione t = (TipoInformazione) getModel().getRowData();
+		TipoModulo t = (TipoModulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
 		// settaggi nel super handler
 		this.element = t;
