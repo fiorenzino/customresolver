@@ -29,6 +29,7 @@ public class FileUtils {
 				DirectoryFileFilter.INSTANCE);
 		FilenameFilter fileFilter = new AndFileFilter(filesFilter, notDirectory);
 		String[] resultFiles = rootDir.list(fileFilter);
+		Arrays.sort(resultFiles);
 		if (resultFiles.length > 0) {
 			return Arrays.asList(resultFiles);
 		}
@@ -90,8 +91,7 @@ public class FileUtils {
 		int i = 0;
 		while (!trovato) {
 			System.out.println("finalName: " + finalName);
-			File file = new File(getRealPath() + folder + File.separator
-					+ finalName);
+			File file = new File(folder + File.separator + finalName);
 			System.out.println("trovato_ " + finalName);
 			if (file != null && file.exists()) {
 				i++;
@@ -101,7 +101,7 @@ public class FileUtils {
 				return finalName;
 			}
 		}
-		return getRealPath() + folder + File.separator + finalName;
+		return folder + File.separator + finalName;
 	}
 
 	public static String getRealPath() {
