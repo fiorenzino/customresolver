@@ -66,3 +66,33 @@ ul#menu_a_2livelli li li {
 	width: 65%;
 	text-align: left;
 }
+
+.m_col1 {
+	width: 350px;
+	background-color: white;
+	vertical-align: top;
+	border: 1px solid gray;
+}
+
+.m_col2 {
+	width: 750px;
+	background-color: white;
+	vertical-align: top;
+	border: 1px solid gray;
+}
+
+.pf-picklist-source,.pf-picklist-target {
+	width: 300px;
+	height: 150px;
+}
+
+.m_label {
+	width: 250px;
+	text-align: left;
+}
+
+.m_separator {
+	width: 10px;
+}
+
+
