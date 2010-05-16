@@ -113,7 +113,7 @@ public class AttivitaHandler implements Serializable {
 		if (cat == null)
 			return NEW_OR_EDIT;
 		this.attivita.setCategoria(cat);
-		if (this.immagine.getData() != null)
+		if (getImmagine().getData() != null)
 			this.attivita.setImmagine(getImmagine());
 		attivitaSession.update(this.attivita);
 		this.all = null;
