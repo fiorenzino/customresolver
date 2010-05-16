@@ -111,7 +111,7 @@ public class ResourceHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		boolean lazy = false;
+		boolean lazy = true;
 		// setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
 		if (!lazy)
 			setModel(new ListDataModel<Resource>(session.getList(ricerca, 0,
