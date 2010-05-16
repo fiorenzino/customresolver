@@ -27,6 +27,21 @@ public class AttivitaHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	// --------------------------------------------------------
+
+	private static String FACES_REDIRECT = "?faces-redirect=true";
+
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String VIEW = "/private/attivita/scheda-attivita.xhtml"
+			+ FACES_REDIRECT;
+	public static String LIST = "/private/notizie/lista-notizie.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/attivita/gestione-attivita.xhtml"
+			+ FACES_REDIRECT;
+
+	// --------------------------------------------------------
+
 	@Inject
 	AttivitaSession attivitaSession;
 
@@ -54,7 +69,7 @@ public class AttivitaHandler implements Serializable {
 		this.immagine = null;
 		this.attivita = new Attivita();
 		this.editMode = false;
-		return "/private/attivita/gestione-attivita.xhtml";
+		return NEW_OR_EDIT;
 	}
 
 	public String saveAttivita() {
@@ -71,7 +86,7 @@ public class AttivitaHandler implements Serializable {
 		if (this.immagine.getData() != null)
 			this.attivita.setImmagine(getImmagine());
 		this.attivita = attivitaSession.persist(this.attivita);
-		return "/private/attivita/scheda-attivita.xhtml";
+		return VIEW;
 	}
 
 	public String modAttivita(String id) {
@@ -82,7 +97,12 @@ public class AttivitaHandler implements Serializable {
 				.intValue();
 		propertiesHandler.cambioTipoDirect(this.tipoId);
 		this.editMode = true;
-		return "/private/attivita/gestione-attivita.xhtml";
+		return NEW_OR_EDIT;
+	}
+
+	public String deleteAttivita(String id) {
+		attivitaSession.delete(id);
+		return LIST;
 	}
 
 	public String updateAttivita() {
@@ -92,12 +112,12 @@ public class AttivitaHandler implements Serializable {
 		if (this.immagine.getData() != null)
 			this.attivita.setImmagine(getImmagine());
 		attivitaSession.update(this.attivita);
-		return "/private/attivita/scheda-attivita.xhtml";
+		return VIEW;
 	}
 
 	public String detailAttivita(String id) {
 		this.attivita = attivitaSession.find(id);
-		return "/private/attivita/scheda-attivita.xhtml";
+		return VIEW;
 	}
 
 	public Attivita getAttivita() {

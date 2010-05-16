@@ -21,6 +21,17 @@ import org.seamframework.tx.Transactional;
 public class NotizieHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	// --------------------------------------------------------
+
+	private static String FACES_REDIRECT = "?faces-redirect=true";
+
+	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
+	public static String VIEW = "/private/notizie/scheda-notizia.xhtml"+FACES_REDIRECT;
+	public static String LIST = "/private/notizie/lista-notizie.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/notizie/gestione-notizia.xhtml"+FACES_REDIRECT;
+
+	// --------------------------------------------------------
 
 	@Inject
 	NotizieSession notizieSession;
@@ -33,7 +44,7 @@ public class NotizieHandler implements Serializable {
 		this.editMode = false;
 		this.notizia = new Notizia();
 		this.notizia.setTipo( new TipoInformazione() );
-		return "/private/notizie/gestione-notizia?redirect=true";
+		return NEW_OR_EDIT;
 	}
 
 	@Transactional
@@ -43,32 +54,32 @@ public class NotizieHandler implements Serializable {
 		this.notizia.setId(idFinal);
 		notizieSession.persist(this.notizia);
 		this.all = null;
-		return "/private/notizie/scheda-notizia?redirect=true";
+		return VIEW;
 	}
 
 	@Transactional
 	public String deleteNotizia() {
 		notizieSession.delete(this.notizia.getId());
 		this.all = null;
-		return "/private/notizie/lista-notizie?redirect=true";
+		return LIST;
 	}
 
 	public String modNotizia(String id) {
 		this.editMode = true;
 		this.notizia = notizieSession.find(id);
-		return "/private/notizie/gestione-notizia?redirect=true";
+		return NEW_OR_EDIT;
 	}
 
 	@Transactional
 	public String updateNotizia() {
 		this.notizia = notizieSession.update(this.notizia);
 		this.all = null;
-		return "/private/notizie/scheda-notizia?redirect=true";
+		return VIEW;
 	}
 
 	public String detailNotizia(String id) {
 		this.notizia = notizieSession.find(id);
-		return "/private/notizie/scheda-notizia?redirect=true";
+		return VIEW;
 	}
 
 	public Notizia getNotizia() {
