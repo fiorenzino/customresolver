@@ -98,7 +98,7 @@ public class FileUtils {
 				finalName = nome + "_" + i + "." + est;
 			} else {
 				trovato = true;
-				return finalName;
+				return folder + File.separator + finalName;
 			}
 		}
 		return folder + File.separator + finalName;
