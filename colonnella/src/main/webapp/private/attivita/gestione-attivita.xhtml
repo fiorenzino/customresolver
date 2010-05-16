@@ -27,51 +27,51 @@
 					
 					<h:outputLabel id="categoriaLabel" for="categoria"
 						value="Categoria Attivita'" />
-					<h:selectOneMenu id="categoria" value="#{attivitaHandler.catId}">
+					<h:selectOneMenu id="categoria" value="#{attivitaHandler.catId}" style="width: 100%;">
 						<f:selectItems value="#{propertiesHandler.categorieByTipoItems}" />
 					</h:selectOneMenu>
 					
 
 					<h:outputLabel for="nome" value="Nome Attivita'" />
 					<h:inputText id="nome" value="#{attivitaHandler.attivita.nome}"
-						required="true" />
+						required="true" style="width: 100%;"/>
 					
 					<h:outputLabel for="indirizzo" value="Indirizzo:" />
 					<h:inputTextarea id="indirizzo" cols="20" rows="5"
 						value="#{attivitaHandler.attivita.indirizzo}"
-						style=" height : 166px; width : 372px;" />
+						style=" height : 166px; width : 100%;" />
 					
 
 					<h:outputLabel for="city" value="Citta':" />
-					<h:inputText id="city" value="#{attivitaHandler.attivita.city}" />
+					<h:inputText id="city" value="#{attivitaHandler.attivita.city}" style="width: 100%;"/>
 					
 
 					<h:outputLabel for="provincia" value="Provincia:" />
 					<h:inputText id="provincia"
-						value="#{attivitaHandler.attivita.provincia}" />
+						value="#{attivitaHandler.attivita.provincia}" style="width: 100%;"/>
 					
 
 					<h:outputLabel for="telefono" value="telefono:" />
 					<h:inputText id="telefono"
-						value="#{attivitaHandler.attivita.telefono}" />
+						value="#{attivitaHandler.attivita.telefono}" style="width: 100%;"/>
 					
 
 					<h:outputLabel for="fax" value="fax:" />
-					<h:inputText id="fax" value="#{attivitaHandler.attivita.fax}" />
+					<h:inputText id="fax" value="#{attivitaHandler.attivita.fax}" style="width: 100%;"/>
 					
 
 					<h:outputLabel for="orariEchiusura" value="orari e chiusura:" />
 					<h:inputTextarea id="orariEchiusura" cols="20" rows="5"
 						value="#{attivitaHandler.attivita.orariEchiusura}"
-						style=" height : 166px; width : 372px;" />
+						style=" height : 166px; width : 100%;" />
 					
 
 					<h:outputLabel for="email" value="email:" />
-					<h:inputText id="email" value="#{attivitaHandler.attivita.email}" />
+					<h:inputText id="email" value="#{attivitaHandler.attivita.email}" style="width: 100%;"/>
 					
 
 					<h:outputLabel for="sitoInternet" value="sito Internet:" />
-					<h:inputText id="sitoInternet"
+					<h:inputText id="sitoInternet" style="width: 100%;"
 						value="#{attivitaHandler.attivita.sitoInternet}" />
 					
 
@@ -79,7 +79,7 @@
 					<h:outputLabel for="descrizione" value="descrizione:" />
 					<h:inputTextarea id="descrizione" cols="20" rows="10"
 						value="#{attivitaHandler.attivita.descrizione}"
-						style=" height : 166px; width : 372px;" />
+						style=" height : 166px; width : 100%;" />
 					
 					<p:fileUpload
 						fileUploadListener="#{attivitaHandler.handleFileUpload}"

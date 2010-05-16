@@ -8,36 +8,6 @@
 		<h:outputText value="Lista Pagine" />
 	</ui:define>
 	<ui:define name="content">
-		<style>
-.col1 {
-	width: 350px;
-	background-color: white;
-	vertical-align: top;
-	border: 1px solid gray;
-}
-
-.col2 {
-	width: 750px;
-	background-color: white;
-	vertical-align: top;
-	border: 1px solid gray;
-}
-
-.pf-picklist-source,.pf-picklist-target {
-	width: 300px;
-	height: 150px;
-}
-
-.label {
-	width: 250px;
-	text-align: left;
-}
-
-.separator {
-	width: 10px;
-}
-</style>
-
 
 		<p:panel header="Crea nuovo percorso">
 			<h:form>
@@ -60,7 +30,7 @@
 		<p:panel header="Gestisci associazioni"
 			style="display: #{menuHandler.gruppi ? 'block' : 'none'};">
 
-			<center><h:panelGrid columns="2" columnClasses="col1,col2">
+			<center><h:panelGrid columns="2" columnClasses="m_col1,m_col2">
 
 				<h:panelGroup id="leftPanel">
 					<h:form>
@@ -96,7 +66,7 @@
 								<h:outputText
 									value="&lt;b&gt;#{menuHandler.selectedGroup.data.percorso}&lt;/b&gt;"
 									escape="false" />
-							</h:panelGrid> <h:panelGrid columns="3" columnClasses="label,separator">
+							</h:panelGrid> <h:panelGrid columns="3" columnClasses="m_label,m_separator">
 
 								<h:outputText value="Pagine disponibili" />
 								<h:outputText value="" />

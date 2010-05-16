@@ -12,7 +12,7 @@
 	<ui:define name="content">
 		<h:form>
 			<center><p:panel header="Lista Attivita'">
-				<p:dataTable var="attivita" value="#{attivitaHandler.all}" rowIndexVar="rowIndex">
+				<p:dataTable var="attivita" value="#{attivitaHandler.model.wrappedData}" rowIndexVar="rowIndex">
 					<p:column width="50">
 						<f:facet name="header">num</f:facet>
 						<h:outputText value="#{rowIndex+1}" />
