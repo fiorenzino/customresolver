@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<p:dataTable var="modulo" value="#{moduliHandler.all}">
+				<p:column>
+					<f:facet name="header">id</f:facet>
+					<h:outputText value="#{modulo.id}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">tipo</f:facet>
+					<h:outputText value="#{modulo.tipo.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">data Pubblicazione</f:facet>
+					<h:outputText value="#{modulo.dataPubblicazione}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">oggetto</f:facet>
+					<h:outputText value="#{modulo.oggetto}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">operazioni</f:facet>
+					<h:commandLink action="#{moduliHandler.viewElement(modulo.id)}"
+						value="[v]" />
+						- 
+					<h:commandLink action="#{moduliHandler.modElement(modulo.id)}"
+						value="[m]" />
+
+
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+
+			<h:commandLink id="creaPubb"
+				action="#{pubblicazioniHandler.addElement}"
+				value="Crea nuovo Modulo" />
+		</h:form>
+	</ui:define>
+</ui:composition>

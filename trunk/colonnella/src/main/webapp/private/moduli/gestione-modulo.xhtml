@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages id="messages" />
+			<center><p:panel header="Gestione Modulo">
+
+				<h:panelGrid columns="2" style="width: 95%">
+					<h:outputLabel id="tipoLabel" for="tipo" value="Modulo" />
+					<h:selectOneMenu id="tipo" value="#{moduliHandler.idTipo}">
+						<f:selectItems value="#{propertiesHandler.tipiModuloItems}" />
+					</h:selectOneMenu>
+
+
+					<h:outputLabel for="nome" value="Oggetto:" />
+					<h:inputTextarea id="nome" cols="20" rows="5"
+						value="#{moduliHandler.modulo.oggetto}"
+						style=" height : 166px; width : 372px;" />
+
+
+					<p:fileUpload
+						fileUploadListener="#{moduliHandler.handleFileUpload}"
+						multiple="true" label="Scegli File Pdf" allowTypes="*"
+						description="Scegli File Pdf" />
+					<br />
+				</h:panelGrid>
+				<br />
+			</p:panel> <br />
+			<br />
+			<h:panelGrid columns="4">
+
+				<h:commandButton action="#{moduliHandler.saveModulo}"
+					value="salva modulo" immediate="false"
+					rendered="#{not moduliHandler.editMode}" />
+
+				<h:commandButton action="#{moduliHandler.updateModulo}"
+					value="aggiorna modulo" immediate="false"
+					rendered="#{moduliHandler.editMode}" />
+
+				<h:commandButton action="#{moduliHandler.deleteModulo}"
+					value="elimina modulo" rendered="#{moduliHandler.editMode}"
+					immediate="true"
+					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
+			</h:panelGrid></center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

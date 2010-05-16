@@ -20,22 +20,22 @@
 						value="#{pubblicazioniHandler.pubblicazione.tipoPubblicazione.id}">
 						<f:selectItems value="#{propertiesHandler.tipiPubblicazioneItems}" />
 					</h:selectOneMenu>
-					<br />
+
 
 					<h:outputLabel for="nome" value="Oggetto:" />
 					<h:inputTextarea id="nome" cols="20" rows="5"
 						value="#{pubblicazioniHandler.pubblicazione.oggetto}"
 						style=" height : 166px; width : 372px;" />
-					<br />
+
 					<h:outputLabel for="dataDal" value="Data dal:" />
 					<p:calendar id="dataDal"
 						value="#{pubblicazioniHandler.pubblicazione.dal}" />
-					<br />
+
 
 					<h:outputLabel for="dataAl" value="Data al:" />
 					<p:calendar id="dataAl"
 						value="#{pubblicazioniHandler.pubblicazione.al}" />
-					<br />
+
 
 
 					<p:fileUpload

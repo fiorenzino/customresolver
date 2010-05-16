@@ -4,19 +4,17 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	 template="/WEB-INF/layout/t.xhtml">
+	template="/WEB-INF/layout/t.xhtml">
 	<ui:define name="title">
 		<h:outputText value="Lista Tipi Informazione" />
 	</ui:define>
 	<ui:define name="content">
-		<h:form id="central"><center>
-			<p:panel header="Lista Tipi Informazione">
+		<h:form id="central">
+			<center><p:panel header="Lista Tipi Informazione">
 				<p:dataTable rowIndexVar="rowIndex" var="t"
 					value="#{tipoInformazioniHandler.model.wrappedData}">
 					<p:column width="50">
-						<center>
-						<h:outputText value="#{rowIndex+1} " />
-						</center>
+						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
 					<p:column width="400">
 						<f:facet name="header">
@@ -25,25 +23,18 @@
 						<h:outputText value="#{t.nome}" />
 					</p:column>
 					<p:column width="200">
-					<center>
-						<h:commandLink value="vedi"
-							action="#{tipoInformazioniHandler.viewElement(t.id)}" /> 
-						 - 
-						 <h:commandLink value="modifica"
-							action="#{tipoInformazioniHandler.modElement(t.id)}" />
-					</center>
+						<center><h:commandLink value="modifica"
+							action="#{tipoInformazioniHandler.modElement(t.id)}" /></center>
 					</p:column>
 				</p:dataTable>
-			</p:panel>
-			
-			<br/>
-			<br/>
+			</p:panel> <br />
+			<br />
 
 			<h:panelGrid columns="2">
 				<h:commandButton action="#{tipoInformazioniHandler.addElement}"
 					value="Aggiungi" />
 				<h:commandButton action="#{tipoInformazioniHandler.backPage}"
-					value="Indietro" rendered="false"/>
+					value="Indietro" rendered="false" />
 			</h:panelGrid></center>
 
 		</h:form>
