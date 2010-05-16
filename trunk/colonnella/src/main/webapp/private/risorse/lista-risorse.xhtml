@@ -10,17 +10,19 @@
 	<ui:define name="content">
 		<h:form id="central">
 			<center><p:panel header="Lista Risorse">
-			
-				<h:panelGrid columns="3" >
-					<h:outputLabel for="tipo" value="Tipo di risorsa:"/>
-					<h:selectOneMenu id="tipo" value="#{resourceHandler.ricerca.oggetto.tipo}">
-						<f:selectItems value="#{propertiesHandler.risorseItems}"/>
+
+				<h:panelGrid columns="3">
+					<h:outputLabel for="tipo" value="Tipo di risorsa:" />
+					<h:selectOneMenu id="tipo"
+						value="#{resourceHandler.ricerca.oggetto.tipo}">
+						<f:selectItems value="#{propertiesHandler.risorseItems}" />
 					</h:selectOneMenu>
-					<h:commandButton action="#{resourceHandler.reset}" value="Cerca"/>
+					<h:commandButton action="#{resourceHandler.reset}" value="Cerca" />
 				</h:panelGrid>
-			
-				<p:dataTable rowIndexVar="rowIndex" var="r" rows="#{resourceHandler.pageSize}" 
-					value="#{resourceHandler.model}" lazy="true" >
+
+				<p:dataTable rowIndexVar="rowIndex" var="r"
+					rows="#{resourceHandler.pageSize}" value="#{resourceHandler.model}"
+					paginator="true" dynamic="true">
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
@@ -33,15 +35,17 @@
 					<p:column width="200">
 						<center><h:commandLink value="modifica"
 							action="#{resourceHandler.modElement(r.tipo,r.id)}" /> - <h:commandLink
-							value="elimina" action="#{resourceHandler.delElement(r.tipo,r.id)}" />
-						</center>
+							value="elimina"
+							action="#{resourceHandler.delElement(r.tipo,r.id)}" /></center>
 					</p:column>
 				</p:dataTable>
 			</p:panel> <br />
 			<br />
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{resourceHandler.addElement}" value="Aggiungi" />
-				<h:commandButton action="#{resourceHandler.backPage}" value="Indietro" rendered="false"/>
+				<h:commandButton action="#{resourceHandler.addElement}"
+					value="Aggiungi" />
+				<h:commandButton action="#{resourceHandler.backPage}"
+					value="Indietro" rendered="false" />
 			</h:panelGrid></center>
 		</h:form>
 
