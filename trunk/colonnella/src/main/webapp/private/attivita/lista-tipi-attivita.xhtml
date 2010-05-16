@@ -12,6 +12,7 @@
 	<ui:define name="content">
 		<h:form>
 			<center><p:panel header="Lista Tipi Attivita'">
+
 				<p:dataTable var="tipo" value="#{categorieHandler.allTipi}">
 					<p:column width="50">
 						<f:facet name="header">id</f:facet>
@@ -25,10 +26,9 @@
 
 					<p:column width="200">
 						<f:facet name="header">operazioni</f:facet>
-						<center>
-						<h:commandLink
-							action="#{categorieHandler.modTipoAttivita(tipo.id)}" value="modifica" />
-						</center>
+						<center><h:commandLink
+							action="#{categorieHandler.modTipoAttivita(tipo.id)}"
+							value="modifica" /></center>
 					</p:column>
 				</p:dataTable>
 			</p:panel> <br />
@@ -36,8 +36,7 @@
 
 			<h:panelGrid columns="1">
 				<h:commandButton id="creaTipo"
-					action="#{categorieHandler.addTipoAttivita}"
-					value="Aggiungi" />
+					action="#{categorieHandler.addTipoAttivita}" value="Aggiungi" />
 			</h:panelGrid></center>
 		</h:form>
 	</ui:define>

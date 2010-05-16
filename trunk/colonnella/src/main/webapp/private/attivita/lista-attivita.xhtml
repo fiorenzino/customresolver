@@ -12,7 +12,37 @@
 	<ui:define name="content">
 		<h:form>
 			<center><p:panel header="Lista Attivita'">
-				<p:dataTable var="attivita" value="#{attivitaHandler.model.wrappedData}" rowIndexVar="rowIndex">
+
+				<h:panelGrid columns="2" style="width: 95%">
+
+					<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Attivita'" />
+					<h:panelGroup>
+						<h:selectOneMenu id="tipo"
+							value="#{attivitaHandler.ricerca.oggetto.categoria.tipoAttivita.id}"
+							style="width: 100%;">
+							<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
+							<p:ajax actionListener="#{propertiesHandler.cambioTipoRicerca}"
+								update="categoria" event="change" process="@this" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+					<h:outputLabel id="categoriaLabel" for="categoria"
+						value="Categoria Attivita'" />
+					<h:selectOneMenu id="categoria"
+						value="#{attivitaHandler.ricerca.oggetto.categoria.id}"
+						style="width: 100%;">
+						<f:selectItems value="#{propertiesHandler.categorieByTipoItems}" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+				<br />
+				<h:commandButton value="cerca" action="#{attivitaHandler.cerca}" />
+				<br />
+				<br />
+
+				<p:dataTable var="attivita" value="#{attivitaHandler.model}"
+					rowIndexVar="rowIndex" paginator="true" dynamic="true" lazy="true"
+					rows="#{attivitaHandler.pageSize}">
 					<p:column width="50">
 						<f:facet name="header">num</f:facet>
 						<h:outputText value="#{rowIndex+1}" />
@@ -24,11 +54,16 @@
 					</p:column>
 
 					<p:column width="200">
+						<f:facet name="header">tipo</f:facet>
+						<h:outputText value="#{attivita.categoria.tipoAttivita.tipo}" />
+					</p:column>
+
+					<p:column width="200">
 						<f:facet name="header">categoria</f:facet>
 						<h:outputText value="#{attivita.categoria.categoria}" />
 					</p:column>
 
-					<p:column width="200">
+					<p:column width="100">
 						<f:facet name="header">operazioni</f:facet>
 						<center><h:commandLink
 							action="#{attivitaHandler.detailAttivita(attivita.id)}"
