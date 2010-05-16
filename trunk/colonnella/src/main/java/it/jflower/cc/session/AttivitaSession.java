@@ -1,87 +1,56 @@
 package it.jflower.cc.session;
 
+import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Attivita;
 import it.jflower.cc.par.type.CategoriaAttivita;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import org.seamframework.tx.Transactional;
-
 @Named
 @SessionScoped
-public class AttivitaSession implements Serializable {
+public class AttivitaSession 
+extends SuperSession<Attivita> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	EntityManager em;
 
-	@Transactional
-	public Attivita update(Attivita attivita) {
-		try {
-			CategoriaAttivita cat = em.find(CategoriaAttivita.class, attivita
-					.getCategoria().getId());
-			attivita.setCategoria(cat);
-			em.merge(attivita);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return attivita;
+	@Override
+	public EntityManager getEm() {
+		return em;
+	}
+	@Override
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
 
-	@Transactional
-	public Attivita persist(Attivita attivita) {
-		try {
-			CategoriaAttivita cat = em.find(CategoriaAttivita.class, attivita
-					.getCategoria().getId());
-			attivita.setCategoria(cat);
-			em.persist(attivita);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return attivita;
+
+	@Override
+	protected Class<Attivita> getEntityType() {
+		return Attivita.class;
 	}
 
-	@Transactional
-	public Attivita find(String id) {
-		try {
-			Attivita attivita = em.find(Attivita.class, id);
-			return attivita;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	@Override
+	protected String getOrderBy() {
+		return "nome";
 	}
 
-	@Transactional
-	public void delete(String id) {
-		try {
-			Attivita attivita = em.find(Attivita.class, id);
-			em.remove(attivita);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	@Override
+	protected Attivita prePersist(Attivita a) {
+		a.setCategoria( getEm().find(CategoriaAttivita.class, a.getCategoria().getId() ));
+		return a;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public List<Attivita> getAll() {
-
-		List<Attivita> all = new ArrayList<Attivita>();
-		try {
-			all = em.createQuery("select p from Attivita p order by p.id")
-					.getResultList();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return all;
+	@Override
+	protected Attivita preUpdate(Attivita a) {
+		a.setCategoria( getEm().find(CategoriaAttivita.class, a.getCategoria().getId() ));
+		return a;
 	}
+
 }

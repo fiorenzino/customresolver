@@ -9,7 +9,6 @@ import it.jflower.cc.session.PageSession;
 import it.jflower.cc.session.TemplateSession;
 import it.jflower.cc.utils.PageUtils;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -21,9 +20,6 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.seamframework.tx.Transactional;

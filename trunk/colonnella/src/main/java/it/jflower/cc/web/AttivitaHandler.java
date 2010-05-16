@@ -1,19 +1,25 @@
 package it.jflower.cc.web;
 
+import it.jflower.base.par.Ricerca;
+import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
 import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.Attivita;
+import it.jflower.cc.par.Page;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.CategoriaAttivita;
+import it.jflower.cc.par.type.TipoAttivita;
 import it.jflower.cc.session.AttivitaSession;
 import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -28,6 +34,9 @@ public class AttivitaHandler implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// --------------------------------------------------------
+
+	// ------------------------------------------------
+
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 
@@ -47,54 +56,105 @@ public class AttivitaHandler implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
+
 	@Inject
 	CategorieSession categorieSession;
 
 	private Logger logger = LoggerFactory.getLogger(AttivitaHandler.class);
 
+	private Ricerca<Attivita> ricerca;
 	private boolean editMode;
-	private Attivita attivita;
-	private List<Attivita> all;
+	private Attivita element;
+	private DataModel<Attivita> model;
 	private int tipoId;
 	private int catId;
 	private Immagine immagine;
 
+	private int rowCount;
+	private int pageSize = 10;
+	private int rowsPerPage = 10;
+	private int scrollerPage = 1;
+
+	private String backPage = BACK;
+
 	public AttivitaHandler() {
-		// TODO Auto-generated constructor stub
 	}
+
+	/**
+	 * Metodo da implementare per assicurare che i criteri di ricerca contengano
+	 * sempre tutti i vincoli desiderati (es: identità utente, selezioni
+	 * esterne, ecc...)
+	 */
+	@PostConstruct
+	protected void gatherCriteria() {
+		ricerca = new Ricerca<Attivita>(Attivita.class);
+		ricerca.getOggetto().setCategoria( new CategoriaAttivita());
+		ricerca.getOggetto().getCategoria().setTipoAttivita( new TipoAttivita() );
+	}
+
+	/**
+	 * Metodo per ottenere l'id di ricerca
+	 */
+	protected Object getId(Page t) {
+		return t.getId();
+	}
+
+	protected SuperSession<Attivita> getSession() {
+		return attivitaSession;
+	}
+
+	public Ricerca<Attivita> getRicerca() {
+		return this.ricerca;
+	}
+
+	public DataModel<Attivita> getModel() {
+		if (model == null)
+			refreshModel();
+		return model;
+	}
+
+	public void setModel(DataModel<Attivita> model) {
+		this.model = model;
+	}
+
+	protected void refreshModel() {
+//		setModel(new LocalDataModel<Attivita>(pageSize, ricerca, getSession()));
+		setModel( new ListDataModel<Attivita>( attivitaSession.getAllList() ));
+	}
+
 
 	public String addAttivita() {
 		this.tipoId = 0;
 		this.catId = 0;
 		this.immagine = null;
-		this.attivita = new Attivita();
+		this.element = new Attivita();
+		this.element.setCategoria( new CategoriaAttivita() );
+		this.element.getCategoria().setTipoAttivita( new TipoAttivita() );
 		this.editMode = false;
 		return NEW_OR_EDIT;
 	}
 
 	public String saveAttivita() {
-
-		String idTitle = PageUtils.createPageId(this.attivita.getNome());
+		String idTitle = PageUtils.createPageId(this.element.getNome());
 		String idFinal = testId(idTitle);
-		this.attivita.setId(idFinal);
-
-		this.attivita.setData(new Date());
-		this.attivita.setAutore(JSFUtils.getUserName());
+		this.element.setId(idFinal);
+		this.element.setData(new Date());
+		this.element.setAutore(JSFUtils.getUserName());
 		CategoriaAttivita cat = categorieSession
 				.findCategoriaAttivita(new Long(catId));
-		this.attivita.setCategoria(cat);
+		this.element.setCategoria(cat);
 		if (this.immagine.getData() != null)
-			this.attivita.setImmagine(getImmagine());
-		this.attivita = attivitaSession.persist(this.attivita);
-		this.all = null;
+			this.element.setImmagine(getImmagine());
+		this.element = attivitaSession.persist(this.element);
+		this.model = null;
 		return VIEW;
 	}
 
 	public String modAttivita(String id) {
-		this.attivita = attivitaSession.find(id);
+		this.element = attivitaSession.find(id);
 		this.immagine = null;
-		this.catId = this.attivita.getCategoria().getId().intValue();
-		this.tipoId = this.attivita.getCategoria().getTipoAttivita().getId()
+		this.catId = this.element.getCategoria().getId().intValue();
+		this.tipoId = this.element.getCategoria().getTipoAttivita().getId()
 				.intValue();
 		propertiesHandler.cambioTipoDirect(this.tipoId);
 		this.editMode = true;
@@ -103,7 +163,7 @@ public class AttivitaHandler implements Serializable {
 
 	public String deleteAttivita(String id) {
 		attivitaSession.delete(id);
-		this.all = null;
+		this.model = null;
 		return LIST;
 	}
 
@@ -112,25 +172,25 @@ public class AttivitaHandler implements Serializable {
 				.findCategoriaAttivita(new Long(getCatId()));
 		if (cat == null)
 			return NEW_OR_EDIT;
-		this.attivita.setCategoria(cat);
+		this.element.setCategoria(cat);
 		if (getImmagine().getData() != null)
-			this.attivita.setImmagine(getImmagine());
-		attivitaSession.update(this.attivita);
-		this.all = null;
+			this.element.setImmagine(getImmagine());
+		attivitaSession.update(this.element);
+		this.model = null;
 		return VIEW;
 	}
 
 	public String detailAttivita(String id) {
-		this.attivita = attivitaSession.find(id);
+		this.element = attivitaSession.find(id);
 		return VIEW;
 	}
 
 	public Attivita getAttivita() {
-		return attivita;
+		return element;
 	}
 
 	public void setAttivita(Attivita attivita) {
-		this.attivita = attivita;
+		this.element = attivita;
 	}
 
 	public boolean isEditMode() {
@@ -141,15 +201,88 @@ public class AttivitaHandler implements Serializable {
 		this.editMode = editMode;
 	}
 
-	public List<Attivita> getAll() {
-		if (all == null)
-			this.all = attivitaSession.getAll();
-		return all;
+	// -----------------------------------------------------
+
+	public Attivita getElement() {
+		return element;
 	}
 
-	public void setAll(List<Attivita> all) {
-		this.all = all;
+	public void setElement(Attivita element) {
+		this.element = element;
 	}
+
+	public int getRowCount() {
+		return rowCount;
+	}
+
+	public void setRowCount(int rowCount) {
+		this.rowCount = rowCount;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getRowsPerPage() {
+		return rowsPerPage;
+	}
+
+	public void setRowsPerPage(int rowsPerPage) {
+		this.rowsPerPage = rowsPerPage;
+	}
+
+	public int getScrollerPage() {
+		return scrollerPage;
+	}
+
+	public void setScrollerPage(int scrollerPage) {
+		this.scrollerPage = scrollerPage;
+	}
+
+	// -----------------------------------------------------
+
+	public void backPage(String backPage) {
+		this.backPage = backPage;
+	}
+
+	public String backPage() {
+		return this.backPage == null ? BACK : this.backPage;
+	}
+
+	public String viewPage() {
+		return VIEW;
+	}
+
+	public String listPage() {
+		return LIST;
+	}
+
+	public String editPage() {
+		return NEW_OR_EDIT;
+	}
+
+	public boolean getClear() {
+		reset();
+		return true;
+	}
+
+	// -----------------------------------------------------
+
+	/**
+	 * action che carica il modello dei dati, se inizialmente vuoto, tenendo
+	 * conto dei vari criteri esterni
+	 */
+	public String loadModel() {
+		gatherCriteria();
+		refreshModel();
+		return listPage();
+	}
+
+	// -----------------------------------------------------
 
 	public int getTipoId() {
 
@@ -213,4 +346,11 @@ public class AttivitaHandler implements Serializable {
 	public void setImmagine(Immagine immagine) {
 		this.immagine = immagine;
 	}
+
+	public String reset() {
+		this.element = null;
+		this.model = null;
+		return listPage();
+	}
+
 }
