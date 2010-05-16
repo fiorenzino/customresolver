@@ -18,93 +18,110 @@
 
 					<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Attivita'" />
 					<h:panelGroup>
-						<h:selectOneMenu id="tipo" value="#{attivitaHandler.tipoId}" style="width: 100%;">
+						<h:selectOneMenu id="tipo" value="#{attivitaHandler.tipoId}"
+							style="width: 100%;">
 							<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
 							<p:ajax actionListener="#{propertiesHandler.cambioTipo}"
 								update="categoria messages" event="change" process="@this" />
 						</h:selectOneMenu>
 					</h:panelGroup>
-					
+
 					<h:outputLabel id="categoriaLabel" for="categoria"
 						value="Categoria Attivita'" />
-					<h:selectOneMenu id="categoria" value="#{attivitaHandler.catId}" style="width: 100%;">
+					<h:selectOneMenu id="categoria" value="#{attivitaHandler.catId}"
+						style="width: 100%;">
 						<f:selectItems value="#{propertiesHandler.categorieByTipoItems}" />
 					</h:selectOneMenu>
-					
+
 
 					<h:outputLabel for="nome" value="Nome Attivita'" />
 					<h:inputText id="nome" value="#{attivitaHandler.attivita.nome}"
-						required="true" style="width: 100%;"/>
-					
+						required="true" style="width: 100%;" />
+
 					<h:outputLabel for="indirizzo" value="Indirizzo:" />
 					<h:inputTextarea id="indirizzo" cols="20" rows="5"
 						value="#{attivitaHandler.attivita.indirizzo}"
 						style=" height : 166px; width : 100%;" />
-					
+
 
 					<h:outputLabel for="city" value="Citta':" />
-					<h:inputText id="city" value="#{attivitaHandler.attivita.city}" style="width: 100%;"/>
-					
+					<h:inputText id="city" value="#{attivitaHandler.attivita.city}"
+						style="width: 100%;" />
+
 
 					<h:outputLabel for="provincia" value="Provincia:" />
 					<h:inputText id="provincia"
-						value="#{attivitaHandler.attivita.provincia}" style="width: 100%;"/>
-					
+						value="#{attivitaHandler.attivita.provincia}" style="width: 100%;" />
+
 
 					<h:outputLabel for="telefono" value="telefono:" />
 					<h:inputText id="telefono"
-						value="#{attivitaHandler.attivita.telefono}" style="width: 100%;"/>
-					
+						value="#{attivitaHandler.attivita.telefono}" style="width: 100%;" />
+
 
 					<h:outputLabel for="fax" value="fax:" />
-					<h:inputText id="fax" value="#{attivitaHandler.attivita.fax}" style="width: 100%;"/>
-					
+					<h:inputText id="fax" value="#{attivitaHandler.attivita.fax}"
+						style="width: 100%;" />
+
 
 					<h:outputLabel for="orariEchiusura" value="orari e chiusura:" />
 					<h:inputTextarea id="orariEchiusura" cols="20" rows="5"
 						value="#{attivitaHandler.attivita.orariEchiusura}"
 						style=" height : 166px; width : 100%;" />
-					
+
 
 					<h:outputLabel for="email" value="email:" />
-					<h:inputText id="email" value="#{attivitaHandler.attivita.email}" style="width: 100%;"/>
-					
+					<h:inputText id="email" value="#{attivitaHandler.attivita.email}"
+						style="width: 100%;" />
+
 
 					<h:outputLabel for="sitoInternet" value="sito Internet:" />
 					<h:inputText id="sitoInternet" style="width: 100%;"
 						value="#{attivitaHandler.attivita.sitoInternet}" />
-					
+
 
 
 					<h:outputLabel for="descrizione" value="descrizione:" />
 					<h:inputTextarea id="descrizione" cols="20" rows="10"
 						value="#{attivitaHandler.attivita.descrizione}"
 						style=" height : 166px; width : 100%;" />
-					
+
+					<h:outputText value="" />
 					<p:fileUpload
 						fileUploadListener="#{attivitaHandler.handleFileUpload}"
 						multiple="false" label="Scegli Immagine" allowTypes="*"
-						description="Scegli Immagine" update="immagine"/>
-					<h:graphicImage alt="immagine rappresentativa" id="immagine"
-						width="200"
-						title="immagine rappresentativa"
-						value="/img/#{attivitaHandler.attivita.immagine.filename}" />
-					
+						description="Scegli Immagine" update="immagine" />
+					<h:outputText value="" />
+					<h:panelGroup id="immagine">
+						<h:graphicImage alt="immagine rappresentativa" width="200"
+							title="immagine rappresentativa"
+							value="/img/#{attivitaHandler.attivita.immagine.filename}"
+							rendered="#{not empty attivitaHandler.attivita.immagine.filename}" />
+						<br />
+						<h:commandLink action="#{attivitaHandler.discardImage}"
+							value="elimina immagine"
+							rendered="#{not empty attivitaHandler.attivita.immagine.filename}" />
+					</h:panelGroup>
+
+
 				</h:panelGrid>
 				<br />
 			</p:panel> <br />
 			<br />
 			<h:panelGrid columns="4">
 				<h:commandButton action="#{attivitaHandler.saveAttivita}"
-					value="salva attivita" immediate="false"
+					value="Salva" immediate="false"
 					rendered="#{not attivitaHandler.editMode}" />
 				<h:commandButton action="#{attivitaHandler.updateAttivita}"
-					value="aggiorna attivita" immediate="false"
+					value="Salva le modifiche" immediate="false"
 					rendered="#{attivitaHandler.editMode}" />
-				<h:commandButton action="#{attivitaHandler.deleteAttivita}"
-					value="elimina attivita" immediate="false"
+				<h:commandButton
+					action="#{attivitaHandler.deleteAttivita(attivitaHandler.attivita.id)}"
+					value="Elimina" immediate="false"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false"
 					rendered="#{attivitaHandler.editMode}" />
+				<h:commandButton action="#{attivitaHandler.reset}" value="Annulla"
+					immediate="false" />
 			</h:panelGrid></center>
 		</h:form>
 
