@@ -5,6 +5,7 @@ import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NotizieSession;
+import it.jflower.cc.session.TipoInformazioniSession;
 import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
@@ -38,6 +39,11 @@ public class NotizieHandler implements Serializable {
 	@Inject
 	NotizieSession notizieSession;
 
+	@Inject
+	TipoInformazioniSession tipoInformazioniSession;
+
+	private int idTipo;
+
 	private Notizia notizia;
 	private boolean editMode;
 	private List<Notizia> all;
@@ -45,7 +51,7 @@ public class NotizieHandler implements Serializable {
 	public String addNotizia() {
 		this.editMode = false;
 		this.notizia = new Notizia();
-		this.notizia.setTipo(new TipoInformazione());
+		this.idTipo = 0;
 		return NEW_OR_EDIT;
 	}
 
@@ -53,6 +59,9 @@ public class NotizieHandler implements Serializable {
 		String idTitle = PageUtils.createPageId(this.notizia.getTitolo());
 		String idFinal = testId(idTitle);
 		this.notizia.setId(idFinal);
+		TipoInformazione tipo = tipoInformazioniSession.find(new Long(idTipo));
+		if (tipo != null)
+			this.notizia.setTipo(tipo);
 		notizieSession.persist(this.notizia);
 		this.all = null;
 		return VIEW;
@@ -67,10 +76,15 @@ public class NotizieHandler implements Serializable {
 	public String modNotizia(String id) {
 		this.editMode = true;
 		this.notizia = notizieSession.find(id);
+		if (this.notizia.getTipo() != null)
+			this.idTipo = this.notizia.getTipo().getId().intValue();
 		return NEW_OR_EDIT;
 	}
 
 	public String updateNotizia() {
+		TipoInformazione tipo = tipoInformazioniSession.find(new Long(idTipo));
+		if (tipo != null)
+			this.notizia.setTipo(tipo);
 		this.notizia = notizieSession.update(this.notizia);
 		this.all = null;
 		return VIEW;
@@ -145,6 +159,14 @@ public class NotizieHandler implements Serializable {
 					notizieSession);
 		}
 		return model;
+	}
+
+	public int getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
 	}
 
 }
