@@ -31,12 +31,14 @@ public class EntityTransactionInterceptor implements Serializable {
 	@AroundInvoke
 	public Object aroundInvoke(InvocationContext ic) throws Exception {
 		logger.debug("Entity tx interceptor running...");
-		boolean toManage = !em.getTransaction().isActive();
+		boolean toManage = (em != null && em.isOpen() && !em.getTransaction()
+				.isActive());
 		if (toManage) {
 			em.getTransaction().begin();
 			logger.debug("...tx has begun...");
 		}
-		boolean isActive = em.getTransaction().isActive();
+		boolean isActive = (em != null && em.isOpen() && em.getTransaction()
+				.isActive());
 		try {
 			Object result = ic.proceed();
 			isActive = em.getTransaction().isActive();
@@ -53,5 +55,4 @@ public class EntityTransactionInterceptor implements Serializable {
 			throw e;
 		}
 	}
-
 }

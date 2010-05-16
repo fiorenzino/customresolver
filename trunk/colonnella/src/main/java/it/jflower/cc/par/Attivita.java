@@ -34,6 +34,7 @@ public class Attivita implements Serializable {
 	private String sitoInternet;
 	private String descrizione;
 	private Immagine immagine;
+	private boolean attivo = true;
 
 	@Id
 	public String getId() {
@@ -161,6 +162,14 @@ public class Attivita implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 
 }

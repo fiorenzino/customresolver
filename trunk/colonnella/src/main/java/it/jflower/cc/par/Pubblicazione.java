@@ -28,6 +28,7 @@ public class Pubblicazione implements Serializable {
 	private Date dal;
 	private Date al;
 	private List<Documento> documenti;
+	private boolean attivo = true;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -103,5 +104,13 @@ public class Pubblicazione implements Serializable {
 
 	public void addDocumento(Documento documento) {
 		getDocumenti().add(documento);
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 }

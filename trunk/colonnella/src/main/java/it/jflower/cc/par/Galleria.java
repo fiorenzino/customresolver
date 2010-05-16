@@ -20,6 +20,7 @@ public class Galleria implements Serializable {
 	private String titolo;
 	private String descrizione;
 	private List<Immagine> immagini;
+	private boolean attivo = true;
 
 	@Id
 	public String getId() {
@@ -60,5 +61,13 @@ public class Galleria implements Serializable {
 
 	public void addImmagine(Immagine immagine) {
 		getImmagini().add(immagine);
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 }

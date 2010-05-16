@@ -19,6 +19,7 @@ public class CategoriaAttivita implements Serializable {
 	private Long id;
 	private TipoAttivita tipoAttivita;
 	private String categoria;
+	private boolean attivo = true;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,5 +48,13 @@ public class CategoriaAttivita implements Serializable {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 }

@@ -14,6 +14,7 @@ public class TipoAttivita implements Serializable {
 
 	private Long id;
 	private String tipo;
+	private boolean attivo = true;
 
 	// attività turistiche
 	// attività di pubblica utilità
@@ -34,5 +35,13 @@ public class TipoAttivita implements Serializable {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 }
