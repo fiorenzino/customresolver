@@ -88,6 +88,7 @@ public class Notizia implements Serializable {
 	public void addDocumento(Documento documento) {
 		getDocumenti().add(documento);
 	}
+
 	@OneToMany
 	public List<Immagine> getImmagini() {
 		if (this.immagini == null)
@@ -113,6 +114,8 @@ public class Notizia implements Serializable {
 
 	@ManyToOne
 	public TipoInformazione getTipo() {
+		if (tipo == null)
+			this.tipo = new TipoInformazione();
 		return tipo;
 	}
 
