@@ -84,7 +84,11 @@
 					<p:fileUpload
 						fileUploadListener="#{attivitaHandler.handleFileUpload}"
 						multiple="false" label="Scegli Immagine" allowTypes="*"
-						description="Scegli Immagine" />
+						description="Scegli Immagine" update="immagine"/>
+					<h:graphicImage alt="immagine rappresentativa" id="immagine"
+						width="200"
+						title="immagine rappresentativa"
+						value="/img/#{attivitaHandler.attivita.immagine.filename}" />
 					
 				</h:panelGrid>
 				<br />
