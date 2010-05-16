@@ -13,93 +13,55 @@
 		<h:form>
 
 			<p:panel header="Gestione Modelli di Pagina"
-				rendered="#{templateHandler.clear}"
-				style="width: 200px; float:left;">
-				<h:commandLink action="#{templateHandler.loadModel}">
-					<h:outputText value="Lista dei modelli disponibili" />
-				</h:commandLink>
+				rendered="#{templateHandler.clear}" style=" float:left;">
+				<h:commandLink action="#{templateHandler.loadModel}"
+					value="lista dei modelli disponibili" />
 				<br />
-				<br />
-				<h:commandLink action="#{templateHandler.addElement}">
-					<h:outputText value="Aggiungi un nuovo modello" />
-				</h:commandLink>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
+				<h:commandLink action="#{templateHandler.addElement}"
+					value="aggiungi nuovo" />
 			</p:panel>
 
 			<p:panel header="Gestione Pagine" style="width:200px; float:left;"
 				rendered="#{pageHandler.clear}">
-				<h:commandLink action="#{pageHandler.loadModel}">
-					<h:outputText value="Lista delle pagine disponibili" />
-				</h:commandLink>
+				<h:commandLink action="#{pageHandler.loadModel}"
+					value="lista delle pagine disponibili" />
 				<br />
+				<h:commandLink action="#{pageHandler.addPaginaStatica}"
+					value="aggiungi nuova statica" />
 				<br />
-				<h:commandLink action="#{pageHandler.addPaginaStatica}">
-					<h:outputText value="Aggiungi una pagina con contenuto statico" />
-				</h:commandLink>
-				<br />
-				<br />
-				<h:commandLink action="#{pageHandler.addPaginaDinamica}">
-					<h:outputText value="Aggiungi una pagina con contenuto dinamico" />
-				</h:commandLink>
-				<br />
-				<br />
-				<br />
+				<h:commandLink action="#{pageHandler.addPaginaDinamica}"
+					value="aggiungi nuova dinamica" />
 			</p:panel>
 
 			<p:panel header="Gestione Menu" style="width: 200px; float: left;"
 				rendered="#{menuHandler.clear}">
-				<h:commandLink action="#{menuHandler.loadModel}">
-					<h:outputText value="Associa pagine e percorsi" />
-				</h:commandLink>
+				<h:commandLink action="#{menuHandler.loadModel}"
+					value="Associa pagine e percorsi" />
 				<br />
-				<br />
-				<h:commandLink action="#{menuHandler.addElement}">
-					<h:outputText value="Aggiungi un nuovo menu" />
-				</h:commandLink>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
+				<h:commandLink action="#{menuHandler.addElement}"
+					value="aggiungi nuovo" />
 			</p:panel>
 
-			<p:panel
-				header="Gestione Risorse Statiche (immagini, javascript, flash, stili)"
+			<p:panel header="Gestione Risorse Statiche (img,js,swf,css)"
 				rendered="#{resourceHandler.clear}"
 				style="width: 200px; float: left;">
-				<h:commandLink action="#{resourceHandler.loadModel}">
-					<h:outputText value="Lista delle risorse" />
-				</h:commandLink>
-				<br />
-				<h:commandLink action="#{resourceHandler.addElement}">
-					<h:outputText value="Carica nuove risorse" />
-				</h:commandLink>
-			</p:panel>
+				<h:commandLink action="#{resourceHandler.loadModel}"
+					value="lista delle risorse" />
 
-			<p:panel header="Gestione Files" style="width:200px; float:left; margin-top: 5px;">
-				<h:commandLink action="/private/files/lista-files.jsf"
-					value="lista files" />
 				<br />
-				<h:commandLink action="/private/files/gestione-file.jsf"
-					value="creazione file" />
+				<h:commandLink action="#{resourceHandler.addElement}"
+					value="aggiungi nuovo" />
 			</p:panel>
 
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
-			<p:panel header="Gestione Tipi Informazione" style="width:200px; float:left;">
+			<p:panel header="Gestione Tipi Informazione"
+				style="width:200px; float:left;">
 				<h:commandLink action="#{tipoInformazioniHandler.loadModel}"
 					value="lista tipi informazione" />
 				<br />
 				<h:commandLink action="#{tipoInformazioniHandler.addElement}"
-					value="Crea nuovo Tipo informazione" />
+					value="aggiungi nuovo" />
 			</p:panel>
 
 			<p:panel header="Gestione Notizie" style="width:200px; float:left;">
@@ -107,7 +69,7 @@
 					value="lista notizie" />
 				<br />
 				<h:commandLink action="#{notizieHandler.addNotizia}"
-					value="Crea nuova Notizia" />
+					value="aggiungi nuova" />
 			</p:panel>
 
 			<p:panel header="Gestione Gallerie" style="width:200px; float:left;">
@@ -115,15 +77,26 @@
 					value="lista gallerie" />
 				<br />
 				<h:commandLink action="#{gallerieHandler.addGalleria}"
-					value="Crea nuova Galleria" />
+					value="aggiungi nuova" />
 			</p:panel>
+
+			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Attivita'" style="width:200px; float:left;">
 				<h:commandLink action="/private/attivita/lista-attivita.jsf"
 					value="lista attivita'" />
 				<br />
 				<h:commandLink action="#{attivitaHandler.addAttivita}"
-					value="Crea nuova Attivita" />
+					value="aggiungi nuova" />
+			</p:panel>
+
+			<p:panel header="Gestione Tipi Attivita'"
+				style="width:200px; float:left;">
+				<h:commandLink action="/private/attivita/lista-tipi-attivita.jsf"
+					value="lista tipi attivita'" />
+				<br />
+				<h:commandLink action="#{categorieHandler.addTipoAttivita}"
+					value="aggiungi nuovo" />
 			</p:panel>
 
 			<p:panel header="Gestione Categorie Attivita'"
@@ -133,17 +106,12 @@
 					value="lista categorie" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addCategoriaAttivita}"
-					value="Crea nuova Categoria" />
+					value="aggiungi nuova" />
 			</p:panel>
 
-			<p:panel header="Gestione Tipi Attivita'"
-				style="width:200px; float:left;">
-				<h:commandLink action="/private/attivita/lista-tipi-attivita.jsf"
-					value="lista tipi attivita'" />
-				<br />
-				<h:commandLink action="#{categorieHandler.addTipoAttivita}"
-					value="Crea nuovo Tipo" />
-			</p:panel>
+
+
+			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Pubblicazioni"
 				style="width:200px; float:left;">
@@ -152,7 +120,7 @@
 					value="lista pubblicazioni" />
 				<br />
 				<h:commandLink action="#{pubblicazioniHandler.addPubblicazione}"
-					value="Crea nuova Pubblicazione" />
+					value="aggiungi nuova" />
 			</p:panel>
 
 			<p:panel header="Gestione Tipi Pubblicazioni"
@@ -162,12 +130,12 @@
 					value="lista tipi pubblicazioni" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
-					value="Crea nuovo Tipo Pubblicazione" />
+					value="aggiungi nuova" />
 			</p:panel>
 
 
 		</h:form>
-		<div style="clear: both;"></div>
+		<div style="width: 600px; height: 40px; clear: both;"></div>
 
 	</ui:define>
 
