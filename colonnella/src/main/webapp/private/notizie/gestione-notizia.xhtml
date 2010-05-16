@@ -56,7 +56,7 @@ function addImageBrowser() {
 
 					<h:outputLabel value="Tipo informazione(*):" for="tipo" />
 					<h:selectOneMenu id="tipo"
-						value="#{notizieHandler.notizia.tipo.id}" required="true">
+						value="#{notizieHandler.idTipo}" required="true">
 						<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
 					</h:selectOneMenu>
 
