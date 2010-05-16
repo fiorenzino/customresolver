@@ -65,7 +65,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Notizie" style="width:200px; float:left;">
-				<h:commandLink action="/private/notizie/lista-notizie.jsf"
+				<h:commandLink action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
 					value="lista notizie" />
 				<br />
 				<h:commandLink action="#{notizieHandler.addNotizia}"
@@ -73,7 +73,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Gallerie" style="width:200px; float:left;">
-				<h:commandLink action="/private/gallerie/lista-gallerie.jsf"
+				<h:commandLink action="/private/gallerie/lista-gallerie.jsf?faces-redirect=true"
 					value="lista gallerie" />
 				<br />
 				<h:commandLink action="#{gallerieHandler.addGalleria}"
@@ -83,7 +83,7 @@
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Attivita'" style="width:200px; float:left;">
-				<h:commandLink action="/private/attivita/lista-attivita.jsf"
+				<h:commandLink action="/private/attivita/lista-attivita.jsf?faces-redirect=true"
 					value="lista attivita'" />
 				<br />
 				<h:commandLink action="#{attivitaHandler.addAttivita}"
@@ -92,7 +92,7 @@
 
 			<p:panel header="Gestione Tipi Attivita'"
 				style="width:200px; float:left;">
-				<h:commandLink action="/private/attivita/lista-tipi-attivita.jsf"
+				<h:commandLink action="/private/attivita/lista-tipi-attivita.jsf?faces-redirect=true"
 					value="lista tipi attivita'" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addTipoAttivita}"
@@ -102,7 +102,7 @@
 			<p:panel header="Gestione Categorie Attivita'"
 				style="width:200px; float:left;">
 				<h:commandLink
-					action="/private/attivita/lista-categorie-attivita.jsf"
+					action="/private/attivita/lista-categorie-attivita.jsf?faces-redirect=true"
 					value="lista categorie" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addCategoriaAttivita}"
@@ -116,7 +116,7 @@
 			<p:panel header="Gestione Pubblicazioni"
 				style="width:200px; float:left;">
 				<h:commandLink
-					action="/private/pubblicazioni/lista-pubblicazioni.jsf"
+					action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
 					value="lista pubblicazioni" />
 				<br />
 				<h:commandLink action="#{pubblicazioniHandler.addPubblicazione}"
@@ -126,7 +126,7 @@
 			<p:panel header="Gestione Tipi Pubblicazioni"
 				style="width:200px; float:left;">
 				<h:commandLink
-					action="/private/pubblicazioni/lista-tipi-pubblicazione.jsf"
+					action="/private/pubblicazioni/lista-tipi-pubblicazione.jsf?faces-redirect=true"
 					value="lista tipi pubblicazioni" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
