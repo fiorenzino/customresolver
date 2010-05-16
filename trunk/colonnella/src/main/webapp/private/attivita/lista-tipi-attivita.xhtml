@@ -7,33 +7,38 @@
 	template="/WEB-INF/layout/t.xhtml">
 
 	<ui:define name="title">
-		<h:outputText value="Amministrazione del portale" />
+		<h:outputText value="Lista Tipi Attivita'" />
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:dataTable var="tipo" value="#{categorieHandler.allTipi}">
-				<p:column>
-					<f:facet name="header">id</f:facet>
-					<h:outputText value="#{tipo.id}" />
-				</p:column>
+			<center><p:panel header="Lista Tipi Attivita'">
+				<p:dataTable var="tipo" value="#{categorieHandler.allTipi}">
+					<p:column width="50">
+						<f:facet name="header">id</f:facet>
+						<h:outputText value="#{tipo.id}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">tipo</f:facet>
-					<h:outputText value="#{tipo.tipo}" />
-				</p:column>
+					<p:column width="400">
+						<f:facet name="header">tipo</f:facet>
+						<h:outputText value="#{tipo.tipo}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">operazioni</f:facet>
-					<h:commandLink
-						action="#{categorieHandler.modTipoAttivita(tipo.id)}"
-						value="[m]" />
-				</p:column>
-			</p:dataTable>
+					<p:column width="200">
+						<f:facet name="header">operazioni</f:facet>
+						<center>
+						<h:commandLink
+							action="#{categorieHandler.modTipoAttivita(tipo.id)}" value="modifica" />
+						</center>
+					</p:column>
+				</p:dataTable>
+			</p:panel> <br />
 			<br />
-			<br />
 
-			<h:commandLink id="creaTipo"
-				action="#{categorieHandler.addTipoAttivita}" value="Crea nuovo Tipo" />
+			<h:panelGrid columns="1">
+				<h:commandButton id="creaTipo"
+					action="#{categorieHandler.addTipoAttivita}"
+					value="Aggiungi" />
+			</h:panelGrid></center>
 		</h:form>
 	</ui:define>
 </ui:composition>

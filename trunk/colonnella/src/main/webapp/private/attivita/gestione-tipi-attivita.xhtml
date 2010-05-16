@@ -16,7 +16,7 @@
 				<h:panelGrid columns="2" style="width: 95%">
 					<h:outputLabel for="titolo" value="Tipo Attivita'" />
 					<h:inputText id="titolo"
-						value="#{categorieHandler.tipoAttivita.tipo}" required="true" />
+						value="#{categorieHandler.tipoAttivita.tipo}" required="true" style="width: 80%;"/>
 
 				</h:panelGrid>
 
@@ -24,13 +24,13 @@
 			<br />
 			<h:panelGrid columns="4">
 				<h:commandButton action="#{categorieHandler.saveTipoAttivita}"
-					value="salva tipo" immediate="false"
+					value="Salva" immediate="false"
 					rendered="#{not categorieHandler.editMode}" />
 				<h:commandButton action="#{categorieHandler.updateTipoAttivita}"
-					value="aggiorna tipo" immediate="false"
+					value="Salva le modifiche tipo" immediate="false"
 					rendered="#{categorieHandler.editMode}" />
 				<h:commandButton action="#{categorieHandler.deleteTipoAttivita}"
-					value="elimina tipo" immediate="false"
+					value="Elimina" immediate="false"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false"
 					rendered="#{categorieHandler.editMode}" />
 			</h:panelGrid></center>
