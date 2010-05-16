@@ -16,6 +16,23 @@ import javax.inject.Named;
 @SessionScoped
 public class CategorieHandler implements Serializable {
 
+	// --------------------------------------------------------
+
+	private static String FACES_REDIRECT = "?faces-redirect=true";
+	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
+	
+	public static String LIST_CAT = "/private/attivita/lista-categorie-attivita.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT_CAT = "/private/attivita/gestione-categorie-attivita.xhtml"+FACES_REDIRECT;
+
+	public static String LIST_TIP_PUB = "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT_TIP_PUB = "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml"+FACES_REDIRECT;
+	
+	public static String LIST_TIP_ATT = "/private/attivita/lista-tipi-attivita.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT_TIP_ATT = "/private/attivita/gestione-tipi-attivita.xhtml"+FACES_REDIRECT;
+	
+	// --------------------------------------------------------
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -35,7 +52,7 @@ public class CategorieHandler implements Serializable {
 	public String addCategoriaAttivita() {
 		setEditMode(false);
 		this.categoriaAttivita = new CategoriaAttivita();
-		return "/private/attivita/gestione-categorie-attivita.xhtml";
+		return NEW_OR_EDIT_CAT;
 	}
 
 	public String saveCategoriaAttivita() {
@@ -45,13 +62,13 @@ public class CategorieHandler implements Serializable {
 		categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.persistCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
-		return "/private/attivita/lista-categorie-attivita.xhtml";
+		return LIST_CAT;
 	}
 
 	public String modCategoriaAttivita(Long id) {
 		setEditMode(true);
 		this.categoriaAttivita = categorieSession.findCategoriaAttivita(id);
-		return "/private/attivita/gestione-categorie-attivita.xhtml";
+		return NEW_OR_EDIT_CAT;
 	}
 
 	public String updateCategoriaAttivita() {
@@ -62,53 +79,72 @@ public class CategorieHandler implements Serializable {
 		categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.updateCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
-		return "/private/attivita/lista-categorie-attivita.xhtml";
+		return LIST_CAT;
+	}
+
+	public String deleteCategoriaAttivita() {
+		categorieSession.deleteCategoriaAttivita(categoriaAttivita.getId());
+		aggCategorie();
+		return LIST_CAT;
 	}
 
 	public String addTipoPubblicazione() {
 		setEditMode(false);
 		this.tipoPubblicazione = new TipoPubblicazione();
-		return "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml";
+		return NEW_OR_EDIT_TIP_PUB;
 	}
 
 	public String saveTipoPubblicazione() {
 		categorieSession.persistTipoPubblicazione(tipoPubblicazione);
 		aggTipiPubblicazioni();
-		return "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml";
+		return LIST_TIP_PUB;
 	}
 
 	public String modTipoPubblicazione(Long id) {
 		setEditMode(true);
 		this.tipoPubblicazione = categorieSession.findTipoPubblicazione(id);
-		return "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml";
+		return NEW_OR_EDIT_TIP_PUB;
 	}
 
 	public String updateTipoPubblicazione() {
 		categorieSession.updateTipoPubblicazione(tipoPubblicazione);
 		aggTipiPubblicazioni();
-		return "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml";
+		return LIST_TIP_PUB;
+	}
+
+	public String deleteTipoPubblicazione() {
+		categorieSession.deleteTipoPubblicazione(tipoPubblicazione.getId());
+		aggTipiPubblicazioni();
+		return LIST_TIP_PUB;
 	}
 
 	public String addTipoAttivita() {
 		this.tipoAttivita = new TipoAttivita();
-		return "/private/attivita/gestione-tipi-attivita.xhtml";
+		return NEW_OR_EDIT_TIP_ATT;
 	}
 
 	public String saveTipoAttivita() {
 		categorieSession.persistTipoAttivita(tipoAttivita);
 		aggTipi();
-		return "/private/attivita/lista-tipi-attivita.xhtml";
+		return LIST_TIP_ATT;
 	}
 
 	public String modTipoAttivita(Long id) {
+		this.setEditMode(true);
 		this.tipoAttivita = categorieSession.findTipoAttivita(id);
-		return "/private/attivita/gestione-tipi-attivita.xhtml";
+		return NEW_OR_EDIT_TIP_ATT;
 	}
 
 	public String updateTipoAttivita() {
 		categorieSession.updateTipoAttivita(tipoAttivita);
 		aggTipi();
-		return "/private/attivita/lista-tipi-attivita.xhtml";
+		return LIST_TIP_ATT;
+	}
+
+	public String deleteTipoAttivita() {
+		categorieSession.deleteTipoAttivita(tipoAttivita.getId());
+		aggTipi();
+		return LIST_TIP_ATT;
 	}
 
 	public TipoAttivita getTipoAttivita() {

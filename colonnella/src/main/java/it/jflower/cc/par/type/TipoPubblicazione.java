@@ -18,6 +18,7 @@ public class TipoPubblicazione implements Serializable {
 
 	private Long id;
 	private String nome;
+	private boolean attivo = true;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +36,14 @@ public class TipoPubblicazione implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 
 }

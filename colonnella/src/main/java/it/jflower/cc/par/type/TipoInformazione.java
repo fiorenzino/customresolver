@@ -12,9 +12,7 @@ public class TipoInformazione implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	// qualunque, Ordinanze Polizia Municipale, Licenze Commerciali
-	// Pubblicazioni di matrimonio, Determine dirigenziali, Concorsi
-	// Bandi ,Delibere di consiglio , Delibere di giunta
+	// es. per news: turismo/comune/modulistica...
 
 	private Long id;
 	private boolean attivo = true;
