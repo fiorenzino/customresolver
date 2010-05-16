@@ -11,19 +11,34 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form prependId="false">
-			<h:outputLabel for="nome" value="Tipo Pubblicazione" />
-			<h:inputText id="nome"
-				value="#{categorieHandler.tipoPubblicazione.nome}" required="true" />
+			<center><p:panel header="Gestione Tipo Pubblicazione">
+
+				<h:panelGrid columns="2" style="width: 95%">
+					<h:outputLabel for="nome" value="Tipo Pubblicazione" />
+					<h:inputText id="nome"
+						value="#{categorieHandler.tipoPubblicazione.nome}" required="true" />
+					<br />
+				</h:panelGrid>
+				<br />
+			</p:panel> <br />
 			<br />
+			<h:panelGrid columns="4">
 
-			<h:commandButton action="#{categorieHandler.saveTipoPubblicazione}"
-				value="salva tipo" immediate="false"
-				rendered="#{not categorieHandler.editMode}" />
+				<h:commandButton action="#{categorieHandler.saveTipoPubblicazione}"
+					value="salva tipo" immediate="false"
+					rendered="#{not categorieHandler.editMode}" />
 
-			<h:commandButton action="#{categorieHandler.updateTipoPubblicazione}"
-				value="aggiorna tipo" immediate="false"
-				rendered="#{categorieHandler.editMode}" />
+				<h:commandButton
+					action="#{categorieHandler.updateTipoPubblicazione}"
+					value="aggiorna tipo" immediate="false"
+					rendered="#{categorieHandler.editMode}" />
 
+				<h:commandButton
+					action="#{categorieHandler.deleteTipoPubblicazione}"
+					value="elimina tipo" immediate="false"
+					rendered="#{categorieHandler.editMode}"
+					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
+			</h:panelGrid></center>
 		</h:form>
 
 	</ui:define>

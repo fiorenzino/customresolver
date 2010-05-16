@@ -56,3 +56,13 @@ ul#menu_a_2livelli li li {
 	border-bottom: 1px solid #369;
 	width: 130px;
 }
+
+.col1 {
+	width: 35%;
+	text-align: left;
+}
+
+.col2 {
+	width: 65%;
+	text-align: left;
+}
