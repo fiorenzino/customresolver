@@ -19,20 +19,26 @@ public class CategorieHandler implements Serializable {
 	// --------------------------------------------------------
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
-	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-	
-	public static String LIST_CAT = "/private/attivita/lista-categorie-attivita.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT_CAT = "/private/attivita/gestione-categorie-attivita.xhtml"+FACES_REDIRECT;
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
 
-	public static String LIST_TIP_PUB = "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT_TIP_PUB = "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml"+FACES_REDIRECT;
-	
-	public static String LIST_TIP_ATT = "/private/attivita/lista-tipi-attivita.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT_TIP_ATT = "/private/attivita/gestione-tipi-attivita.xhtml"+FACES_REDIRECT;
-	
+	public static String LIST_CAT = "/private/attivita/lista-categorie-attivita.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT_CAT = "/private/attivita/gestione-categorie-attivita.xhtml"
+			+ FACES_REDIRECT;
+
+	public static String LIST_TIP_PUB = "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT_TIP_PUB = "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml"
+			+ FACES_REDIRECT;
+
+	public static String LIST_TIP_ATT = "/private/attivita/lista-tipi-attivita.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT_TIP_ATT = "/private/attivita/gestione-tipi-attivita.xhtml"
+			+ FACES_REDIRECT;
+
 	// --------------------------------------------------------
-	
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -49,16 +55,20 @@ public class CategorieHandler implements Serializable {
 	private CategoriaAttivita categoriaAttivita;
 	private boolean editMode;
 
+	private int idTipo;
+
 	public String addCategoriaAttivita() {
+		this.idTipo = 0;
 		setEditMode(false);
 		this.categoriaAttivita = new CategoriaAttivita();
 		return NEW_OR_EDIT_CAT;
 	}
 
 	public String saveCategoriaAttivita() {
-		TipoAttivita tipo = categorieSession
-				.findTipoAttivita(this.categoriaAttivita.getTipoAttivita()
-						.getId());
+		TipoAttivita tipo = categorieSession.findTipoAttivita(new Long(
+				getIdTipo()));
+		if (tipo != null)
+			this.categoriaAttivita.setTipoAttivita(tipo);
 		categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.persistCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
@@ -68,15 +78,18 @@ public class CategorieHandler implements Serializable {
 	public String modCategoriaAttivita(Long id) {
 		setEditMode(true);
 		this.categoriaAttivita = categorieSession.findCategoriaAttivita(id);
+		this.idTipo = this.categoriaAttivita.getTipoAttivita().getId()
+				.intValue();
 		return NEW_OR_EDIT_CAT;
 	}
 
 	public String updateCategoriaAttivita() {
 		System.out.println("ATT TIPO:"
 				+ this.categoriaAttivita.getTipoAttivita().getId());
-		TipoAttivita tipo = categorieSession.findTipoAttivita(categoriaAttivita
-				.getTipoAttivita().getId());
-		categoriaAttivita.setTipoAttivita(tipo);
+		TipoAttivita tipo = categorieSession.findTipoAttivita(new Long(
+				getIdTipo()));
+		if (tipo != null)
+			this.categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.updateCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
 		return LIST_CAT;
@@ -223,5 +236,13 @@ public class CategorieHandler implements Serializable {
 
 	public void setTipoPubblicazione(TipoPubblicazione tipoPubblicazione) {
 		this.tipoPubblicazione = tipoPubblicazione;
+	}
+
+	public int getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
 	}
 }
