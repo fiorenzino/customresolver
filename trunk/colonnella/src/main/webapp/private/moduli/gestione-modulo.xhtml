@@ -20,16 +20,20 @@
 						<f:selectItems value="#{propertiesHandler.tipiModuloItems}" />
 					</h:selectOneMenu>
 
+					<h:outputLabel for="nome" value="Nome" />
+					<h:inputText id="nome" value="#{moduliHandler.element.nome}"
+						required="true" style="width: 100%;" />
 
-					<h:outputLabel for="nome" value="Oggetto:" />
-					<h:inputTextarea id="nome" cols="20" rows="5"
-						value="#{moduliHandler.modulo.oggetto}"
+
+					<h:outputLabel for="oggetto" value="Oggetto:" />
+					<h:inputTextarea id="oggetto" cols="20" rows="5"
+						value="#{moduliHandler.element.oggetto}"
 						style=" height : 166px; width : 372px;" />
 
 
 					<p:fileUpload
 						fileUploadListener="#{moduliHandler.handleFileUpload}"
-						multiple="true" label="Scegli File Pdf" allowTypes="*"
+						multiple="false" label="Scegli File Pdf" allowTypes="*"
 						description="Scegli File Pdf" />
 					<br />
 				</h:panelGrid>
@@ -37,19 +41,19 @@
 			</p:panel> <br />
 			<br />
 			<h:panelGrid columns="4">
+				<h:commandButton action="#{moduliHandler.save}" value="Salva"
+					rendered="#{empty moduliHandler.element.id}" />
 
-				<h:commandButton action="#{moduliHandler.saveModulo}"
-					value="salva modulo" immediate="false"
-					rendered="#{not moduliHandler.editMode}" />
+				<h:commandButton action="#{moduliHandler.update}"
+					value="Salva le modifiche"
+					rendered="#{not empty moduliHandler.element.id}" />
 
-				<h:commandButton action="#{moduliHandler.updateModulo}"
-					value="aggiorna modulo" immediate="false"
-					rendered="#{moduliHandler.editMode}" />
-
-				<h:commandButton action="#{moduliHandler.deleteModulo}"
-					value="elimina modulo" rendered="#{moduliHandler.editMode}"
-					immediate="true"
+				<h:commandButton action="#{moduliHandler.delete}" value="Elimina"
+					immediate="true" rendered="#{not empty moduliHandler.element.id}"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
+
+				<h:commandButton id="reset" action="#{moduliHandler.reset}"
+					value="Annulla" immediate="true" />
 			</h:panelGrid></center>
 		</h:form>
 
