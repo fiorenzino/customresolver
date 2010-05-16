@@ -22,7 +22,7 @@
 
 				<p:dataTable rowIndexVar="rowIndex" var="r"
 					rows="#{resourceHandler.pageSize}" value="#{resourceHandler.model}"
-					paginator="true" dynamic="true">
+					paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
