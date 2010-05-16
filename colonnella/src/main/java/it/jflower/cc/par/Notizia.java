@@ -114,8 +114,6 @@ public class Notizia implements Serializable {
 
 	@ManyToOne
 	public TipoInformazione getTipo() {
-		if (tipo == null)
-			this.tipo = new TipoInformazione();
 		return tipo;
 	}
 
