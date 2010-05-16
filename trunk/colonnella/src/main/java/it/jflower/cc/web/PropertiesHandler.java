@@ -103,6 +103,11 @@ public class PropertiesHandler implements Serializable {
 		cambioTipoDirect(tipo);
 	}
 
+	public void cambioTipoRicerca(ActionEvent event) {
+		Long tipo = attivitaHandler.getRicerca().getOggetto().getCategoria().getTipoAttivita().getId();
+		cambioTipoDirect(tipo.intValue());
+	}
+
 	public void cambioTipoDirect(int tipo) {
 		System.out.println("getCategorieByTipoItems: Tipo: " + tipo);
 		List<CategoriaAttivita> categorie = categorieSession

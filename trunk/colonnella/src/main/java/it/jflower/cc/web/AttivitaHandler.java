@@ -6,15 +6,18 @@ import it.jflower.base.utils.FileUtils;
 import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.Attivita;
 import it.jflower.cc.par.Page;
+import it.jflower.cc.par.Resource;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.CategoriaAttivita;
 import it.jflower.cc.par.type.TipoAttivita;
 import it.jflower.cc.session.AttivitaSession;
 import it.jflower.cc.session.CategorieSession;
+import it.jflower.cc.session.ResourceSession;
 import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -24,6 +27,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.LazyDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +48,7 @@ public class AttivitaHandler implements Serializable {
 			+ FACES_REDIRECT;
 	public static String VIEW = "/private/attivita/scheda-attivita.xhtml"
 			+ FACES_REDIRECT;
-	public static String LIST = "/private/notizie/lista-notizie.xhtml"
+	public static String LIST = "/private/attivita/lista-attivita.xhtml"
 			+ FACES_REDIRECT;
 	public static String NEW_OR_EDIT = "/private/attivita/gestione-attivita.xhtml"
 			+ FACES_REDIRECT;
@@ -60,6 +64,9 @@ public class AttivitaHandler implements Serializable {
 	@Inject
 	CategorieSession categorieSession;
 
+	@Inject
+	ResourceSession resourceSession;
+
 	private Logger logger = LoggerFactory.getLogger(AttivitaHandler.class);
 
 	private Ricerca<Attivita> ricerca;
@@ -71,7 +78,7 @@ public class AttivitaHandler implements Serializable {
 	private Immagine immagine;
 
 	private int rowCount;
-	private int pageSize = 10;
+	private int pageSize = 2;
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
 
@@ -116,10 +123,27 @@ public class AttivitaHandler implements Serializable {
 	public void setModel(DataModel<Attivita> model) {
 		this.model = model;
 	}
+	
+	public String cerca() {
+		refreshModel();
+		return listPage();
+	}
 
+	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
 //		setModel(new LocalDataModel<Attivita>(pageSize, ricerca, getSession()));
-		setModel( new ListDataModel<Attivita>( attivitaSession.getAllList() ));
+		boolean lazy = true;
+		if (!lazy)
+			setModel( new ListDataModel<Attivita>( attivitaSession.getAllList() ));
+		else
+			setModel(new LazyDataModel<Attivita>(attivitaSession.getListSize(ricerca)) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public List<Attivita> fetchLazyData(int first, int pageSize) {
+					return attivitaSession.getList(ricerca, first, pageSize);
+				}
+			});
 	}
 
 
@@ -143,7 +167,7 @@ public class AttivitaHandler implements Serializable {
 		CategoriaAttivita cat = categorieSession
 				.findCategoriaAttivita(new Long(catId));
 		this.element.setCategoria(cat);
-		if (this.immagine.getData() != null)
+		if (this.immagine != null && this.immagine.getData() != null)
 			this.element.setImmagine(getImmagine());
 		this.element = attivitaSession.persist(this.element);
 		this.model = null;
@@ -157,6 +181,10 @@ public class AttivitaHandler implements Serializable {
 		this.tipoId = this.element.getCategoria().getTipoAttivita().getId()
 				.intValue();
 		propertiesHandler.cambioTipoDirect(this.tipoId);
+		this.immagine = new Immagine();
+		if ( this.element.getImmagine() != null ) {
+			this.immagine.setFilename( this.element.getImmagine().getFilename() );
+		}
 		this.editMode = true;
 		return NEW_OR_EDIT;
 	}
@@ -334,7 +362,8 @@ public class AttivitaHandler implements Serializable {
 		getImmagine().setType(event.getFile().getContentType());
 		FileUtils.createImage("img", event.getFile().getFileName(), event
 				.getFile().getContents());
-
+		this.element.setImmagine( new Immagine() );
+		this.element.getImmagine().setFilename( getImmagine().getFilename() );
 	}
 
 	public Immagine getImmagine() {
@@ -351,6 +380,22 @@ public class AttivitaHandler implements Serializable {
 		this.element = null;
 		this.model = null;
 		return listPage();
+	}
+
+	public String discardImage() {
+		if ( this.element.getImmagine() != null && this.element.getImmagine().getFilename() != null ) {
+			Resource r = this.resourceSession.find("img",this.element.getImmagine().getFilename());
+			if ( r != null ) 
+				resourceSession.delete(r);
+		}
+		if ( this.getImmagine() != null && this.getImmagine().getFilename() != null ) {
+			Resource r = this.resourceSession.find("img",this.getImmagine().getFilename());
+			if ( r != null ) 
+				resourceSession.delete(r);
+		}
+		this.element.setImmagine( new Immagine() );
+		this.immagine = new Immagine();
+		return null;
 	}
 
 }
