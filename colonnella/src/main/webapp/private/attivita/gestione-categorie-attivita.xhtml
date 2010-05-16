@@ -15,11 +15,13 @@
 
 				<h:panelGrid columns="2" style="width: 95%">
 					<h:outputLabel for="tipo" value="Tipo Attivita'" />
-					<h:selectOneMenu
-						value="#{categorieHandler.categoriaAttivita.tipoAttivita.id}">
-						<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
-					</h:selectOneMenu>
-					<br />
+					<h:panelGroup>
+						<h:selectOneMenu
+							value="#{categorieHandler.categoriaAttivita.tipoAttivita.id}">
+							<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+					
 					<h:outputLabel for="categoria" value="Categoria Attivita'" />
 					<h:inputText id="categoria"
 						value="#{categorieHandler.categoriaAttivita.categoria}"
