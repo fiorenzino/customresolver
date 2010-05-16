@@ -2,12 +2,11 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.FileUtils;
 import it.jflower.cc.par.Modulo;
-import it.jflower.cc.par.Notizia;
-import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.ModuliSession;
-import it.jflower.cc.session.TipoInformazioniSession;
 import it.jflower.cc.session.TipoModuloSession;
 import it.jflower.cc.utils.PageUtils;
 
@@ -22,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
+import org.primefaces.event.FileUploadEvent;
 
 @Named
 @SessionScoped
@@ -52,6 +52,8 @@ public class ModuliHandler implements Serializable {
 
 	@Inject
 	TipoModuloSession tipoModuloSession;
+
+	private Documento documento;
 
 	private int idTipo;
 	// ------------------------------------------------
@@ -263,6 +265,8 @@ public class ModuliHandler implements Serializable {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		if (getDocumento().getData() != null)
+			this.element.setDocumento(getDocumento());
 		String idTitle = PageUtils.createPageId(this.element.getNome());
 		String idFinal = testId(idTitle);
 		this.element.setId(idFinal);
@@ -273,9 +277,7 @@ public class ModuliHandler implements Serializable {
 		element = getSession().persist(element);
 		// refresh locale
 		refreshModel();
-		// altre dipendenze
-		propertiesHandler.setTipoInformazioneItems(null);
-		propertiesHandler.setTipoInformazioneItems(null);
+
 		// vista di destinazione
 		return viewPage();
 	}
@@ -284,6 +286,8 @@ public class ModuliHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		if (getDocumento().getData() != null)
+			this.element.setDocumento(getDocumento());
 		TipoModulo tipo = tipoModuloSession.find(new Long(idTipo));
 		if (tipo != null)
 			element.setTipo(tipo);
@@ -292,8 +296,6 @@ public class ModuliHandler implements Serializable {
 		// refresh locale
 		element = getSession().fetch(getId(element));
 		refreshModel();
-		// altre dipendenze
-		propertiesHandler.setTipoInformazioneItems(null);
 		// vista di destinzione
 		return viewPage();
 	}
@@ -304,8 +306,7 @@ public class ModuliHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		element = null;
-		// altre dipendenze
-		propertiesHandler.setTipoInformazioneItems(null);
+
 		// visat di destinazione
 		return listPage();
 	}
@@ -380,5 +381,29 @@ public class ModuliHandler implements Serializable {
 		}
 
 		return "";
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+		logger.info("Uploaded: {} " + event.getFile().getFileName());
+		logger.info("Uploaded: {}" + event.getFile().getContentType());
+		logger.info("Uploaded: {}" + event.getFile().getSize());
+
+		getDocumento().setUploadedData(event.getFile());
+		getDocumento().setData(event.getFile().getContents());
+		getDocumento().setFilename(event.getFile().getFileName());
+		getDocumento().setType(event.getFile().getContentType());
+		FileUtils.createFile("docs", event.getFile().getFileName(), event
+				.getFile().getContents());
+
+	}
+
+	public Documento getDocumento() {
+		if (this.documento == null)
+			this.documento = new Documento();
+		return documento;
+	}
+
+	public void setDocumento(Documento documento) {
+		this.documento = documento;
 	}
 }

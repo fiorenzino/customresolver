@@ -2,9 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
-import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.par.type.TipoModulo;
-import it.jflower.cc.session.TipoInformazioniSession;
 import it.jflower.cc.session.TipoModuloSession;
 
 import java.io.Serializable;
@@ -34,7 +32,7 @@ public class TipiModuloHandler implements Serializable {
 			+ FACES_REDIRECT;
 	public static String LIST = "/private/tipi-modulo/lista-tipi-modulo.xhtml"
 			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/tipi-modulo/gestione-tipo-modulo.xhtml"
+	public static String NEW_OR_EDIT = "/private/tipi-modulo/gestione-tipi-modulo.xhtml"
 			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
@@ -256,9 +254,8 @@ public class TipiModuloHandler implements Serializable {
 		refreshModel();
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
-		propertiesHandler.setTipoInformazioneItems(null);
 		// vista di destinazione
-		return viewPage();
+		return LIST;
 	}
 
 	public String update() {
@@ -272,7 +269,7 @@ public class TipiModuloHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
 		// vista di destinzione
-		return viewPage();
+		return LIST;
 	}
 
 	public String delete() {
@@ -284,7 +281,7 @@ public class TipiModuloHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
 		// visat di destinazione
-		return listPage();
+		return LIST;
 	}
 
 	// -----------------------------------------------------

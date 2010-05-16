@@ -186,7 +186,7 @@ public class PropertiesHandler implements Serializable {
 				}
 			}
 		}
-		return tipiPubblicazioneItems;
+		return tipiModuloItems;
 	}
 
 	public void resetTipiAttivitaItems() {
@@ -285,6 +285,10 @@ public class PropertiesHandler implements Serializable {
 				new SelectItem("js", "funzioni javascript"),
 				new SelectItem("css", "fogli di stile"),
 				new SelectItem("swf", "contenuti flash"), };
+	}
+
+	public void setTipiModuloItems(SelectItem[] tipiModuloItems) {
+		this.tipiModuloItems = tipiModuloItems;
 	}
 
 }

@@ -255,7 +255,6 @@ public class TipoInformazioniHandler implements Serializable {
 		refreshModel();
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
-		propertiesHandler.setTipoInformazioneItems(null);
 		// vista di destinazione
 		return viewPage();
 	}
