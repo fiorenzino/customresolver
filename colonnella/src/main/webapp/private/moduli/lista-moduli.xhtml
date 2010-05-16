@@ -12,7 +12,7 @@
 	<ui:define name="content">
 		<h:form>
 
-			<p:dataTable var="modulo" value="#{moduliHandler.all}">
+			<p:dataTable var="modulo" value="#{moduloHandler.model.wrappedData}">
 				<p:column>
 					<f:facet name="header">id</f:facet>
 					<h:outputText value="#{modulo.id}" />
@@ -25,7 +25,7 @@
 
 				<p:column>
 					<f:facet name="header">data Pubblicazione</f:facet>
-					<h:outputText value="#{modulo.dataPubblicazione}" />
+					<h:outputText value="#{modulo.data}" />
 				</p:column>
 
 				<p:column>
@@ -48,7 +48,7 @@
 			<br />
 
 			<h:commandLink id="creaPubb"
-				action="#{pubblicazioniHandler.addElement}"
+				action="#{moduliHandler.addElement}"
 				value="Crea nuovo Modulo" />
 		</h:form>
 	</ui:define>

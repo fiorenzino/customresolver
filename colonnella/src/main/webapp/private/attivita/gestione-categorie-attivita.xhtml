@@ -17,11 +17,11 @@
 					<h:outputLabel for="tipo" value="Tipo Attivita'" />
 					<h:panelGroup>
 						<h:selectOneMenu style="width: 60%;"
-							value="#{categorieHandler.categoriaAttivita.tipoAttivita.id}">
+							value="#{categorieHandler.idTipo}">
 							<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
 						</h:selectOneMenu>
 					</h:panelGroup>
-					
+
 					<h:outputLabel for="categoria" value="Categoria Attivita'" />
 					<h:inputText id="categoria" style="width: 60%;"
 						value="#{categorieHandler.categoriaAttivita.categoria}"
