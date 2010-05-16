@@ -109,7 +109,9 @@ public class AttivitaHandler implements Serializable {
 
 	public String updateAttivita() {
 		CategoriaAttivita cat = categorieSession
-				.findCategoriaAttivita(new Long(catId));
+				.findCategoriaAttivita(new Long(getCatId()));
+		if (cat == null)
+			return NEW_OR_EDIT;
 		this.attivita.setCategoria(cat);
 		if (this.immagine.getData() != null)
 			this.attivita.setImmagine(getImmagine());
