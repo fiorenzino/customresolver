@@ -35,6 +35,18 @@
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
 			<br />
+			<p:dataTable var="doc"
+				value="#{pubblicazioniHandler.pubblicazione.documenti}">
+				<p:column>
+					<f:facet name="header">nome</f:facet>
+					<h:outputText value="#{doc.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">vedi</f:facet>
+					<h:outputLink value="/colonnella/docs/#{doc.nome}" />
+				</p:column>
+			</p:dataTable>
 
 
 		</h:form>
