@@ -43,7 +43,7 @@ public class PubblicazioniHandler implements Serializable {
 	public String savePubblicazione() {
 		this.pubblicazione.setDataPubblicazione(new Date());
 		this.pubblicazione.setDocumenti(getDocumenti());
-		pubblicazioniSession.persist(this.pubblicazione);
+		this.pubblicazione = pubblicazioniSession.persist(this.pubblicazione);
 		return "/private/pubblicazioni/scheda-pubblicazione.xhtml";
 	}
 
@@ -62,7 +62,7 @@ public class PubblicazioniHandler implements Serializable {
 
 	public String updatePubblicazione() {
 		this.pubblicazione.setDocumenti(getDocumenti());
-		pubblicazioniSession.update(this.pubblicazione);
+		this.pubblicazione = pubblicazioniSession.update(this.pubblicazione);
 		return "/private/pubblicazioni/scheda-pubblicazione.xhtml";
 	}
 
