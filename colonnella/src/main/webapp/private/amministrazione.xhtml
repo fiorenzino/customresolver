@@ -13,19 +13,16 @@
 		<h:form>
 
 			<p:panel header="Gestione Modelli di Pagina"
-				rendered="#{templateHandler.clear}" style="width: 200px; float:left;">
-				<div style="height: 50px;">
+				rendered="#{templateHandler.clear}" style=" float:left;">
 				<h:commandLink action="#{templateHandler.loadModel}"
 					value="lista dei modelli disponibili" />
 				<br />
 				<h:commandLink action="#{templateHandler.addElement}"
 					value="aggiungi nuovo" />
-				</div>
 			</p:panel>
 
-			<p:panel header="Gestione Pagine" style="width: 200px; float:left;"
+			<p:panel header="Gestione Pagine" style="width:200px; float:left;"
 				rendered="#{pageHandler.clear}">
-				<div style="height: 50px;">
 				<h:commandLink action="#{pageHandler.loadModel}"
 					value="lista delle pagine disponibili" />
 				<br />
@@ -34,31 +31,26 @@
 				<br />
 				<h:commandLink action="#{pageHandler.addPaginaDinamica}"
 					value="aggiungi nuova dinamica" />
-				</div>
 			</p:panel>
 
 			<p:panel header="Gestione Menu" style="width: 200px; float: left;"
 				rendered="#{menuHandler.clear}">
-				<div style="height: 50px;">
 				<h:commandLink action="#{menuHandler.loadModel}"
-					value="associa pagine e percorsi" />
+					value="Associa pagine e percorsi" />
 				<br />
 				<h:commandLink action="#{menuHandler.addElement}"
 					value="aggiungi nuovo" />
-					</div>
 			</p:panel>
 
 			<p:panel header="Gestione Risorse Statiche (img,js,swf,css)"
 				rendered="#{resourceHandler.clear}"
 				style="width: 200px; float: left;">
-				<div style="height: 27px;">
 				<h:commandLink action="#{resourceHandler.loadModel}"
 					value="lista delle risorse" />
 
 				<br />
 				<h:commandLink action="#{resourceHandler.addElement}"
 					value="aggiungi nuovo" />
-					</div>
 			</p:panel>
 
 			<div style="width: 600px; height: 40px; clear: both;"></div>
@@ -121,7 +113,7 @@
 
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
-			<p:panel header="Gestione Pubblicazioni"
+			<p:panel header="Gestione Albo Pretorio"
 				style="width:200px; float:left;">
 				<h:commandLink
 					action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
