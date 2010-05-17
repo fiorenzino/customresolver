@@ -60,6 +60,8 @@ public class PropertiesHandler implements Serializable {
 	private SelectItem[] tipiPubblicazioneItems = new SelectItem[] {};
 	private SelectItem[] tipiModuloItems = new SelectItem[] {};
 
+	private SelectItem[] staticoDinamicoItems = new SelectItem[] {};
+
 	public PropertiesHandler() {
 		super();
 		reset();
@@ -74,6 +76,16 @@ public class PropertiesHandler implements Serializable {
 			fileTypeItems[3] = new SelectItem(3, "javascript");
 		}
 		return fileTypeItems;
+	}
+
+	public SelectItem[] getStaticoDinamicoItems() {
+		if (staticoDinamicoItems  == null || staticoDinamicoItems.length == 0) {
+			staticoDinamicoItems = new SelectItem[3];
+			staticoDinamicoItems[0] = new SelectItem(null, "qualsiasi");
+			staticoDinamicoItems[1] = new SelectItem(true, "statico");
+			staticoDinamicoItems[2] = new SelectItem(false, "dinamico");
+		}
+		return staticoDinamicoItems;
 	}
 
 	public SelectItem[] getCategorieAttivitaItems() {

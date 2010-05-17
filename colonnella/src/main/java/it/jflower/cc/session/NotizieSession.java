@@ -71,6 +71,10 @@ implements Serializable {
 			sb.append(separator).append(alias).append(".tipo.nome = :nomeTipo ");
 			params.put("nomeTipo", ricerca.getOggetto().getTipo().getNome());
 		}
+		if (ricerca.getOggetto().getTipo() != null && ricerca.getOggetto().getTipo().getId() != null ) {
+			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
+			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
+		}
 		
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);

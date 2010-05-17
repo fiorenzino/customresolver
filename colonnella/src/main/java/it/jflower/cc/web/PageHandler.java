@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Template;
 import it.jflower.cc.par.TemplateImpl;
@@ -17,7 +18,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -115,9 +115,10 @@ public class PageHandler implements Serializable {
 		this.model = model;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
 //		setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
-		setModel( new ListDataModel<Page>( session.getAllList() ));
+		setModel( new LocalLazyDataModel<Page>( ricerca, session ));
 	}
 
 	/**
@@ -199,6 +200,11 @@ public class PageHandler implements Serializable {
 	public boolean getClear() {
 		reset();
 		return true;
+	}
+	
+	public String cerca() {
+		refreshModel();
+		return null;
 	}
 
 	// -----------------------------------------------------

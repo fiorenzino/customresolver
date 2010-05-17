@@ -46,10 +46,13 @@ implements Serializable {
 //			FileOutputStream fos = new FileOutputStream(f);
 //			fos.write(object.getBytes());
 //			fos.close();
+			String filename = null;
 			if ( "img".equals(object.getTipo()) )
-				FileUtils.createImage(object.getTipo(), object.getId(), object.getBytes());
+				filename = FileUtils.createImage_(object.getTipo(), object.getId(), object.getBytes());
 			else
-				FileUtils.createFile(object.getTipo(), object.getId(), object.getBytes());
+				filename = FileUtils.createFile_(object.getTipo(), object.getId(), object.getBytes());
+			object.setNome(filename);
+			object.setId(object.getTipo()+File.separator+object.getNome());
 			return object;
 		} catch (Exception e) {
 			staticLogger.error(e.getMessage(), e);

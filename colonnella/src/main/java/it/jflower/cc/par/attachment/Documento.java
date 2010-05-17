@@ -16,6 +16,7 @@ public class Documento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	private boolean attivo = true;
 	private String nome;
 	private String descrizione;
 	private String filename;
@@ -82,5 +83,14 @@ public class Documento implements Serializable {
 	public void setUploadedData(UploadedFile uploadedData) {
 		this.uploadedData = uploadedData;
 	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
+
 
 }

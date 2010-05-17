@@ -57,16 +57,16 @@ public class FileHandler implements Serializable {
 		getDaCaricare().add(obj);
 		switch (fileType) {
 		case 0:
-			FileUtils.createFile("css", event.getFile().getFileName(), event
+			FileUtils.createFile_("css", event.getFile().getFileName(), event
 					.getFile().getContents());
 		case 1:
-			FileUtils.createImage("img", event.getFile().getFileName(), event
+			FileUtils.createImage_("img", event.getFile().getFileName(), event
 					.getFile().getContents());
 		case 2:
-			FileUtils.createFile("swf", event.getFile().getFileName(), event
+			FileUtils.createFile_("swf", event.getFile().getFileName(), event
 					.getFile().getContents());
 		case 3:
-			FileUtils.createFile("js", event.getFile().getFileName(), event
+			FileUtils.createFile_("js", event.getFile().getFileName(), event
 					.getFile().getContents());
 		}
 		;
