@@ -79,7 +79,7 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getStaticoDinamicoItems() {
-		if (staticoDinamicoItems  == null || staticoDinamicoItems.length == 0) {
+		if (staticoDinamicoItems == null || staticoDinamicoItems.length == 0) {
 			staticoDinamicoItems = new SelectItem[3];
 			staticoDinamicoItems[0] = new SelectItem(null, "qualsiasi");
 			staticoDinamicoItems[1] = new SelectItem(true, "statico");
@@ -116,8 +116,15 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public void cambioTipoRicerca(ActionEvent event) {
-		Long tipo = attivitaHandler.getRicerca().getOggetto().getCategoria().getTipoAttivita().getId();
-		cambioTipoDirect(tipo.intValue());
+		Long tipo = attivitaHandler.getRicerca().getOggetto().getCategoria()
+				.getTipoAttivita().getId();
+		if (tipo != null)
+			cambioTipoDirect(tipo.intValue());
+		else {
+
+			categorieAttivitaItems = new SelectItem[1];
+			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
+		}
 	}
 
 	public void cambioTipoDirect(int tipo) {
@@ -134,11 +141,18 @@ public class PropertiesHandler implements Serializable {
 				i++;
 
 			}
+		} else {
+			categorieAttivitaItems = new SelectItem[1];
+			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
 		}
 
 	}
 
 	public SelectItem[] getCategorieByTipoItems() {
+		if (categorieAttivitaItems.length == 0) {
+			categorieAttivitaItems = new SelectItem[1];
+			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
+		}
 		return categorieAttivitaItems;
 	}
 
