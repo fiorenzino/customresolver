@@ -12,7 +12,8 @@
 		<h:form id="central"><center>
 			<p:panel header="Lista Tipi Modulo">
 				<p:dataTable rowIndexVar="rowIndex" var="t"
-					value="#{tipiModuloHandler.model.wrappedData}">
+					rows="#{tipiModuloHandler.pageSize}" paginator="true" dynamic="true" lazy="true"
+					value="#{tipiModuloHandler.model}">
 					<p:column width="50">
 						<center>
 						<h:outputText value="#{rowIndex+1} " />
@@ -26,6 +27,9 @@
 					</p:column>
 
 					<p:column width="200">
+						<f:facet name="header">
+							operazioni
+						</f:facet>
 					<center>
 						 <h:commandLink value="modifica"
 							action="#{tipiModuloHandler.modElement(t.id)}" />

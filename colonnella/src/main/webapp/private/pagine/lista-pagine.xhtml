@@ -10,8 +10,18 @@
 	<ui:define name="content">
 		<h:form id="central">
 			<center><p:panel header="Lista Pagine">
+				<h:panelGrid columns="3" rendered="true">
+					<h:outputLabel for="staticita" value="Tipo di contenuto: "/>
+					<h:selectOneMenu value="#{pageHandler.ricerca.oggetto.template.template.searchStatico}" >
+						<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}"/>
+					</h:selectOneMenu>
+					<h:commandButton action="#{pageHandler.cerca}" value="Cerca" />
+				</h:panelGrid>
+				<br/>
+			
 				<p:dataTable rowIndexVar="rowIndex" var="p"
-					value="#{pageHandler.model.wrappedData}">
+					value="#{pageHandler.model}"
+					rows="#{pageHandler.pageSize}" paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>

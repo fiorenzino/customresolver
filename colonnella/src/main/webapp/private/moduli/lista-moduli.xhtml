@@ -11,45 +11,77 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
+			<center>
+				<div class="cboxIntContArticWP" style="width: 100%; text-align: left;">
+				<div class="Box2ImgTitolo">
+				<h3 class="titoloredbold">Modulistica</h3>
+				<br />
+				In questa sezione sono raccolti i moduli per richieste
+				all'Amministrazione comunale. Seleziona il modulo di tuo interesse
+				per visualizzarlo sullo schermo.</div>
+				</div>
+			
+			<p:panel header="Lista moduli">
+			
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Seleziona tipo" />
+					<h:selectOneMenu value="#{moduliHandler.ricerca.oggetto.tipo.id}" style="width: 200px;">
+						<f:selectItems value="#{propertiesHandler.tipiModuloItems}"/>
+					</h:selectOneMenu>
+					<h:commandButton action="#{moduliHandler.cerca}" value="Cerca" />
+				</h:panelGrid>
+				<br/>
 
-			<p:dataTable var="modulo" value="#{moduloHandler.model.wrappedData}">
-				<p:column>
-					<f:facet name="header">id</f:facet>
-					<h:outputText value="#{modulo.id}" />
-				</p:column>
+				<p:dataTable var="modulo" value="#{moduliHandler.model}"
+					rowIndexVar="rowIndex" rows="#{moduliHandler.pageSize}"
+					paginator="true" dynamic="true" lazy="true">
+					<p:column width="50">
+						<center><h:outputText value="#{rowIndex+1}" /></center>
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">tipo</f:facet>
-					<h:outputText value="#{modulo.tipo.nome}" />
-				</p:column>
+					<p:column width="200">
+						<f:facet name="header">tipo</f:facet>
+						<h:outputText value="#{modulo.tipo.nome}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">data Pubblicazione</f:facet>
-					<h:outputText value="#{modulo.data}" />
-				</p:column>
+					<p:column width="75">
+						<f:facet name="header">pubblicazione</f:facet>
+						<h:outputText value="#{modulo.data}" >
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">oggetto</f:facet>
-					<h:outputText value="#{modulo.oggetto}" />
-				</p:column>
+					<p:column width="200">
+						<f:facet name="header">oggetto</f:facet>
+						<h:outputText value="#{modulo.oggettoBreve}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">operazioni</f:facet>
-					<h:commandLink action="#{moduliHandler.viewElement(modulo.id)}"
-						value="[v]" />
+					<p:column width="50">
+						<f:facet name="header">allegato</f:facet>
+						<h:outputLink target="_blank" rendered="#{not empty modulo.documento and not empty modulo.documento.id}"
+							value="#{request.contextPath}/private/moduli/getModulo.jsp?id=#{modulo.id}">
+							<h:graphicImage value="/images/icons/pdf.gif" />
+						</h:outputLink>
+						<h:outputText rendered="#{empty modulo.documento or empty modulo.documento.id}" value="n.d."/>
+					</p:column>
+
+					<p:column width="100">
+						<f:facet name="header">operazioni</f:facet>
+						<center>
+						<h:commandLink action="#{moduliHandler.viewElement(modulo.id)}"
+							value="vedi" />
 						- 
 					<h:commandLink action="#{moduliHandler.modElement(modulo.id)}"
-						value="[m]" />
-
-
-				</p:column>
-			</p:dataTable>
+							value="modifica" />
+						</center>
+					</p:column>
+				</p:dataTable>
+			</p:panel> <br />
 			<br />
-			<br />
-
-			<h:commandLink id="creaPubb"
-				action="#{moduliHandler.addElement}"
-				value="Crea nuovo Modulo" />
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{moduliHandler.addElement}"
+					value="Aggiungi" />
+			</h:panelGrid></center>
 		</h:form>
 	</ui:define>
 </ui:composition>

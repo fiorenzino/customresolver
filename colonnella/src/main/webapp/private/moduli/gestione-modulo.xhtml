@@ -15,12 +15,13 @@
 			<center><p:panel header="Gestione Modulo">
 
 				<h:panelGrid columns="2" style="width: 95%">
-					<h:outputLabel id="tipoLabel" for="tipo" value="Modulo" />
-					<h:selectOneMenu id="tipo" value="#{moduliHandler.idTipo}">
+					<h:outputLabel id="tipoLabel" for="tipo" value="Modulo:" />
+					<h:selectOneMenu id="tipo" value="#{moduliHandler.element.tipo.id}"
+						style="width: 100%;" required="true">
 						<f:selectItems value="#{propertiesHandler.tipiModuloItems}" />
 					</h:selectOneMenu>
 
-					<h:outputLabel for="nome" value="Nome" />
+					<h:outputLabel for="nome" value="Nome:" />
 					<h:inputText id="nome" value="#{moduliHandler.element.nome}"
 						required="true" style="width: 100%;" />
 
@@ -28,14 +29,29 @@
 					<h:outputLabel for="oggetto" value="Oggetto:" />
 					<h:inputTextarea id="oggetto" cols="20" rows="5"
 						value="#{moduliHandler.element.oggetto}"
-						style=" height : 166px; width : 372px;" />
+						style=" height : 166px; width : 100%;" />
 
-
-					<p:fileUpload
+					<h:outputText value=""/>
+					<p:fileUpload 
 						fileUploadListener="#{moduliHandler.handleFileUpload}"
-						multiple="false" label="Scegli File Pdf" allowTypes="*"
-						description="Scegli File Pdf" />
-					<br />
+						multiple="false" label="Scegli File Pdf" allowTypes="*.pdf"
+						description="Scegli File Pdf" update="scarica" />
+
+					<h:outputLabel for="scarica" value="Allegato:" />
+					<h:panelGroup id="scarica">
+						<h:outputLink target="_blank"
+							value="#{request.contextPath}/private/moduli/getModulo.jsp"
+							rendered="#{not empty moduliHandler.element.documento.data or not empty moduliHandler.element.documento.id }">
+							<h:outputText value="scarica"/>
+						</h:outputLink>
+						<h:outputText value=" - "
+							rendered="#{not empty moduliHandler.element.documento.data or not empty moduliHandler.element.documento.id}"
+						/>
+						<h:commandLink action="#{moduliHandler.removeDocument}" value="elimina" 
+							rendered="#{not empty moduliHandler.element.documento.data or not empty moduliHandler.element.documento.id}"
+						/>
+					</h:panelGroup>
+
 				</h:panelGrid>
 				<br />
 			</p:panel> <br />

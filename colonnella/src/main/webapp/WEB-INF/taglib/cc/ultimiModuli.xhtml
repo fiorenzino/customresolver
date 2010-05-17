@@ -24,17 +24,17 @@
 		<c:set var="pagesize" value="5"/>
 	</c:if>
 	<c:if test="${empty label}" >
-		<c:set var="label" value="Ultime notizie..."/>
+		<c:set var="label" value="Modulistica..."/>
 	</c:if>
 	<c:if test="${empty width}" >
 		<c:set var="width" value="200px"/>
 	</c:if>
 	
-	<flw:uiRepeatPaged id="ultimeNotizie" showpages="#{showpages}" label="#{label}"
+	<flw:uiRepeatPaged id="ultimiModuli" showpages="#{showpages}" label="#{label}"
 		selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-		model="#{notizieHandler.ultimeNotizie(tipo,pagesize)}" width="#{width}" >
+		model="#{moduliHandler.modulistica(tipo,pagesize)}" width="#{width}" >
 
-		<cc:notizia notizia="#{var}"/>
+		<cc:modulo modulo="#{var}"/>
 
 	</flw:uiRepeatPaged>
 

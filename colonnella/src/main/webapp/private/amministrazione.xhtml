@@ -41,7 +41,7 @@
 				rendered="#{menuHandler.clear}">
 				<div style="height: 50px;">
 				<h:commandLink action="#{menuHandler.loadModel}"
-					value="Associa pagine e percorsi" />
+					value="associa pagine e percorsi" />
 				<br />
 				<h:commandLink action="#{menuHandler.addElement}"
 					value="aggiungi nuovo" />
@@ -122,8 +122,6 @@
 					value="aggiungi nuova" />
 			</p:panel>
 
-
-
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Albo Pretorio"
@@ -149,6 +147,7 @@
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Modulistica"
+				rendered="#{moduliHandler.clear}"
 				style="width:200px; float:left;">
 				<h:commandLink
 					action="/private/moduli/lista-moduli.jsf?faces-redirect=true"
@@ -159,6 +158,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Tipi Modulo"
+				rendered="#{tipiModuloHandler.clear}"
 				style="width:200px; float:left;">
 				<h:commandLink
 					action="/private/tipi-modulo/lista-tipi-modulo.jsf?faces-redirect=true"
