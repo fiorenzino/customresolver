@@ -18,11 +18,12 @@
 						style="width: 400px;">
 						<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
 					</h:selectOneMenu>
-					<h:commandButton action="#{templateHandler.cerca}" value="Cerca" />
+					<p:commandButton action="#{templateHandler.cerca}" value="Cerca"
+						process="@form" update="templatesList" />
 				</h:panelGrid>
 				<br />
 
-				<p:dataTable rowIndexVar="rowIndex" var="t"
+				<p:dataTable pdate="templatesList" rowIndexVar="rowIndex" var="t"
 					value="#{templateHandler.model}" rows="#{templateHandler.pageSize}"
 					paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">

@@ -14,8 +14,8 @@
 			<h:selectOneMenu value="#{fileHandler.fileType}">
 				<f:selectItems value="#{propertiesHandler.fileTypeItems}" />
 			</h:selectOneMenu>
-			<h:commandButton action="#{fileHandler.caricaFiles}"
-				value="Visualizza Files" />
+			<p:commandButton action="#{fileHandler.caricaFiles}"
+				value="Visualizza Files" process="@form" update="filesList"/>
 
 			<br />
 			<p:panel header="Lista Files" id="filesList">
