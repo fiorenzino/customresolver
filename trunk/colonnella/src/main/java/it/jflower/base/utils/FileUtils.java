@@ -58,28 +58,35 @@ public class FileUtils {
 		return getFilesName("swf", new String[] { "swf" });
 	}
 
-	public static void createImage(String folder, String image, byte[] data) {
+	public static String createImage_(String folder, String imageFileName, byte[] data) {
 		try {
+			String actualFileName = getUniqueName(
+					getRealPath() + folder, imageFileName);
 			FileImageOutputStream imageOutput;
-			imageOutput = new FileImageOutputStream(new File(getUniqueName(
-					getRealPath() + folder, image)));
+			imageOutput = new FileImageOutputStream(new File(actualFileName));
 			imageOutput.write(data, 0, data.length);
 			imageOutput.close();
+			return actualFileName.substring(actualFileName.lastIndexOf(File.separator)+1);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 
-	public static void createFile(String folder, String fileName, byte[] data) {
+	public static String createFile_(String folder, String fileName, byte[] data) {
 		try {
-			FileOutputStream fos = new FileOutputStream(new File(getUniqueName(
-					getRealPath() + folder, fileName)));
+			String actualFileName = getUniqueName(
+					getRealPath() + folder, fileName);
+			FileOutputStream fos = new FileOutputStream(new File(actualFileName));
 			fos.write(data);
 			fos.close();
+			return actualFileName.substring( actualFileName.lastIndexOf(File.separator)+1 );
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 

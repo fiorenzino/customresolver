@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Modulo implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String nome;
 	private Date data;
@@ -93,4 +95,10 @@ public class Modulo implements Serializable {
 	public void setTipo(TipoModulo tipo) {
 		this.tipo = tipo;
 	}
+	
+	@Transient
+	public String getOggettoBreve() {
+		return oggetto == null || oggetto.length() == 0 ? "n.d." : oggetto.length() < 30 ? oggetto : oggetto.substring(0,30)+"...";
+	}
+
 }

@@ -117,8 +117,9 @@ public class PubblicazioniHandler implements Serializable {
 		doc.setData(event.getFile().getContents());
 		doc.setFilename(event.getFile().getFileName());
 		doc.setType(event.getFile().getContentType());
-		FileUtils.createFile("docs", event.getFile().getFileName(), event
+		String filename = FileUtils.createFile_("docs", event.getFile().getFileName(), event
 				.getFile().getContents());
+		doc.setFilename(filename);
 		getDocumenti().add(doc);
 	}
 

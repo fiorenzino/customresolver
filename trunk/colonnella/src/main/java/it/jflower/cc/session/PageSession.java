@@ -1,15 +1,19 @@
 package it.jflower.cc.session;
 
+import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.seamframework.tx.Transactional;
 
@@ -68,6 +72,45 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 			}
 		}
 		return "";
+	}
+
+	@Override
+	protected Query getRestrictions(Ricerca<Page> ricerca, String orderBy,
+			boolean count) {
+		
+		if ( ricerca == null || ricerca.getOggetto() == null )
+			return super.getRestrictions(ricerca, orderBy, count);
+
+		Map<String,Object> params = new HashMap<String, Object>();
+		
+		String alias = "t";
+		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
+				count));
+		sb.append(" where ").append(alias).append(".attivo = :attivo");
+		params.put("attivo", true);
+		
+		String separator = " and ";
+
+		if (ricerca.getOggetto().getTemplate() != null && ricerca.getOggetto().getTemplate().getTemplate() != null && ricerca.getOggetto().getTemplate().getTemplate().getSearchStatico() != null ) {
+			sb.append(separator).append(alias).append(".template.template.statico = :statico ");
+			params.put("statico", ricerca.getOggetto().getTemplate().getTemplate().getSearchStatico());
+		}
+		
+		if (!count) {
+			sb.append(" order by ").append(alias).append(".").append(orderBy);
+		} else {
+			logger.info("order by null");
+		}
+		
+		logger.info(sb.toString());
+		
+		Query q = getEm().createQuery(sb.toString());
+		
+		for ( String param : params.keySet() ) {
+			q.setParameter(param, params.get(param));
+		}
+
+		return q;
 	}
 
 }

@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.TipoInformazioniSession;
 
@@ -10,12 +11,10 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
@@ -108,10 +107,9 @@ public class TipoInformazioniHandler implements Serializable {
 		this.model = model;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		// setModel(new LocalDataModel<TipoInformazione>(pageSize, ricerca,
-		// getSession()));
-		setModel(new ListDataModel<TipoInformazione>(session.getAllList()));
+		setModel(new LocalLazyDataModel<TipoInformazione>(this.ricerca, this.session));
 	}
 
 	/**

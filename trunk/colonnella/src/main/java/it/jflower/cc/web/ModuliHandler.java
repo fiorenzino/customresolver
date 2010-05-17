@@ -3,20 +3,18 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
+import it.jflower.base.web.model.LocalDataModel;
+import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Modulo;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.ModuliSession;
-import it.jflower.cc.session.TipoModuloSession;
-import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -50,12 +48,6 @@ public class ModuliHandler implements Serializable {
 	@Inject
 	PropertiesHandler propertiesHandler;
 
-	@Inject
-	TipoModuloSession tipoModuloSession;
-
-	private Documento documento;
-
-	private int idTipo;
 	// ------------------------------------------------
 
 	protected Logger logger = Logger.getLogger(getClass());
@@ -80,7 +72,6 @@ public class ModuliHandler implements Serializable {
 	 * protetto da parte delle sottoclassi
 	 */
 	public ModuliHandler() {
-
 	}
 
 	// ------------------------------------------------
@@ -93,6 +84,7 @@ public class ModuliHandler implements Serializable {
 	@PostConstruct
 	protected void gatherCriteria() {
 		ricerca = new Ricerca<Modulo>(Modulo.class);
+		ricerca.getOggetto().setTipo( new TipoModulo() );
 	}
 
 	/**
@@ -102,7 +94,7 @@ public class ModuliHandler implements Serializable {
 		return t.getId();
 	}
 
-	protected SuperSession<Modulo> getSession() {
+	public SuperSession<Modulo> getSession() {
 		return session;
 	}
 
@@ -120,10 +112,9 @@ public class ModuliHandler implements Serializable {
 		this.model = model;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		// setModel(new LocalDataModel<TipoInformazione>(pageSize, ricerca,
-		// getSession()));
-		setModel(new ListDataModel<Modulo>(session.getAllList()));
+		setModel(new LocalLazyDataModel(this.ricerca, this.session));
 	}
 
 	/**
@@ -142,7 +133,7 @@ public class ModuliHandler implements Serializable {
 		reset();
 		return true;
 	}
-
+	
 	// -----------------------------------------------------
 
 	public Modulo getElement() {
@@ -226,9 +217,9 @@ public class ModuliHandler implements Serializable {
 		// n.d.
 		// settaggi nel super handler
 		try {
-			this.element = (Modulo) ricerca.getOggetto().getClass()
-					.newInstance();
-			this.idTipo = 0;
+			this.element = new Modulo();
+			this.element.setTipo( new TipoModulo() );
+			this.element.setDocumento( new Documento() );
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
 			e.printStackTrace();
@@ -241,6 +232,8 @@ public class ModuliHandler implements Serializable {
 		// fetch dei dati
 		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
+		if ( t.getDocumento() == null )
+			t.setDocumento( new Documento() );
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -249,10 +242,10 @@ public class ModuliHandler implements Serializable {
 
 	public String modElement() {
 		// fetch dei dati;
-
 		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
-		this.idTipo = t.getTipo().getId().intValue();
+		if ( t.getDocumento() == null )
+			t.setDocumento( new Documento() );
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -265,19 +258,10 @@ public class ModuliHandler implements Serializable {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		if (getDocumento().getData() != null)
-			this.element.setDocumento(getDocumento());
-		String idTitle = PageUtils.createPageId(this.element.getNome());
-		String idFinal = testId(idTitle);
-		this.element.setId(idFinal);
-		this.element.setData(new Date());
-		TipoModulo tipo = tipoModuloSession.find(new Long(idTipo));
-		if (tipo != null)
-			element.setTipo(tipo);
-		element = getSession().persist(element);
+		Modulo t = getSession().persist(element);
 		// refresh locale
 		refreshModel();
-
+		element = t;
 		// vista di destinazione
 		return viewPage();
 	}
@@ -286,15 +270,9 @@ public class ModuliHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		if (getDocumento().getData() != null)
-			this.element.setDocumento(getDocumento());
-		TipoModulo tipo = tipoModuloSession.find(new Long(idTipo));
-		if (tipo != null)
-			element.setTipo(tipo);
-		element = getSession().persist(element);
-		getSession().update(element);
+		Modulo t = getSession().update(element);
 		// refresh locale
-		element = getSession().fetch(getId(element));
+		element = t;
 		refreshModel();
 		// vista di destinzione
 		return viewPage();
@@ -306,7 +284,6 @@ public class ModuliHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		element = null;
-
 		// visat di destinazione
 		return listPage();
 	}
@@ -316,6 +293,8 @@ public class ModuliHandler implements Serializable {
 	public String modCurrent() {
 		// fetch dei dati
 		element = getSession().fetch(getId(element));
+		if ( element.getDocumento() == null )
+			element.setDocumento( new Documento() );
 		// vista di arrivo
 		return editPage();
 	}
@@ -323,6 +302,8 @@ public class ModuliHandler implements Serializable {
 	public String viewCurrent() {
 		// fetch dei dati
 		element = getSession().fetch(getId(element));
+		if ( element.getDocumento() == null )
+			element.setDocumento( new Documento() );
 		// vista di arrivo
 		return viewPage();
 	}
@@ -341,6 +322,8 @@ public class ModuliHandler implements Serializable {
 		// }
 		// }
 		this.element = session.fetch(id);
+		if ( element.getDocumento() == null )
+			element.setDocumento( new Documento() );
 		return viewPage();
 	}
 
@@ -352,35 +335,9 @@ public class ModuliHandler implements Serializable {
 		// }
 		// }
 		this.element = session.fetch(id);
+		if ( element.getDocumento() == null )
+			element.setDocumento( new Documento() );
 		return editPage();
-	}
-
-	public int getIdTipo() {
-		return idTipo;
-	}
-
-	public void setIdTipo(int idTipo) {
-		this.idTipo = idTipo;
-	}
-
-	public String testId(String id) {
-		String idFinal = id;
-		boolean trovato = false;
-		int i = 0;
-		while (!trovato) {
-			System.out.println("id final: " + idFinal);
-			Modulo moduloFind = session.find(idFinal);
-			System.out.println("trovato_ " + moduloFind);
-			if (moduloFind != null) {
-				i++;
-				idFinal = id + "-" + i;
-			} else {
-				trovato = true;
-				return idFinal;
-			}
-		}
-
-		return "";
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
@@ -388,22 +345,42 @@ public class ModuliHandler implements Serializable {
 		logger.info("Uploaded: {}" + event.getFile().getContentType());
 		logger.info("Uploaded: {}" + event.getFile().getSize());
 
-		getDocumento().setUploadedData(event.getFile());
-		getDocumento().setData(event.getFile().getContents());
-		getDocumento().setFilename(event.getFile().getFileName());
-		getDocumento().setType(event.getFile().getContentType());
-		FileUtils.createFile("docs", event.getFile().getFileName(), event
+		this.element.getDocumento().setUploadedData(event.getFile());
+		this.element.getDocumento().setData(event.getFile().getContents());
+		this.element.getDocumento().setType(event.getFile().getContentType());
+		String filename = FileUtils.createFile_("docs", event.getFile().getFileName(), event
 				.getFile().getContents());
-
+		this.element.getDocumento().setFilename(filename);
 	}
 
-	public Documento getDocumento() {
-		if (this.documento == null)
-			this.documento = new Documento();
-		return documento;
+	public String removeDocument() {
+		this.element.setDocumento( new Documento() );
+		return null;
+	}
+	
+	public String cerca() {
+		refreshModel();
+		return null;
 	}
 
-	public void setDocumento(Documento documento) {
-		this.documento = documento;
+	// -----------------------------------------------------------
+
+	private LocalDataModel<Modulo> modulisticaModel;
+	private String modulisticaTipo;
+	private Integer modulisticaPageSize;
+
+	public LocalDataModel<Modulo> modulistica(String tipo, int pageSize) {
+		if (modulisticaModel == null || this.modulisticaTipo == null || this.modulisticaPageSize == null
+				|| !this.modulisticaTipo.equals(tipo) || this.modulisticaPageSize != pageSize) {
+			Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
+			ricerca.getOggetto().setTipo(new TipoModulo());
+			ricerca.getOggetto().getTipo().setNome(tipo);
+			modulisticaModel = new LocalDataModel<Modulo>(pageSize, ricerca,
+					session);
+		}
+		return modulisticaModel;
 	}
+
+	// -----------------------------------------------------------
+
 }

@@ -38,7 +38,7 @@ public class Template implements Serializable {
 
 	private boolean statico = true;
 
-	private Boolean searchStatico = true;
+	private Boolean searchStatico;
 
 	// ------------------------------------------------------------------------
 

@@ -358,11 +358,11 @@ public class AttivitaHandler implements Serializable {
 
 		getImmagine().setUploadedData(event.getFile());
 		getImmagine().setData(event.getFile().getContents());
-		getImmagine().setFilename(event.getFile().getFileName());
 		getImmagine().setType(event.getFile().getContentType());
-		FileUtils.createImage("img", event.getFile().getFileName(), event
+		String filename = FileUtils.createImage_("img", event.getFile().getFileName(), event
 				.getFile().getContents());
 		this.element.setImmagine( new Immagine() );
+		this.getImmagine().setFilename( filename );
 		this.element.getImmagine().setFilename( getImmagine().getFilename() );
 	}
 

@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.TipoModuloSession;
 
@@ -10,7 +11,6 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -107,10 +107,12 @@ public class TipiModuloHandler implements Serializable {
 		this.model = model;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
 		// setModel(new LocalDataModel<TipoInformazione>(pageSize, ricerca,
 		// getSession()));
-		setModel(new ListDataModel<TipoModulo>(session.getAllList()));
+//		setModel(new ListDataModel<TipoModulo>(session.getAllList()));
+		setModel(new LocalLazyDataModel<TipoModulo>(this.ricerca, this.session));
 	}
 
 	/**
@@ -253,7 +255,7 @@ public class TipiModuloHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		// altre dipendenze
-		propertiesHandler.setTipoInformazioneItems(null);
+		propertiesHandler.setTipiModuloItems(null);
 		// vista di destinazione
 		return LIST;
 	}
@@ -267,7 +269,7 @@ public class TipiModuloHandler implements Serializable {
 		element = getSession().fetch(getId(element));
 		refreshModel();
 		// altre dipendenze
-		propertiesHandler.setTipoInformazioneItems(null);
+		propertiesHandler.setTipiModuloItems(null);
 		// vista di destinzione
 		return LIST;
 	}
