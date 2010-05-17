@@ -7,35 +7,34 @@
 	template="/WEB-INF/layout/t.xhtml">
 
 	<ui:define name="title">
-		<h:outputText value="Amministrazione del portale" />
+		<h:outputText value="Gestione Tipo di Pubblicazione" />
 	</ui:define>
 	<ui:define name="content">
 		<h:form prependId="false">
-			<center><p:panel header="Gestione Tipo Pubblicazione">
+			<center><p:panel header="Gestione Tipo di Pubblicazione">
 
-				<h:panelGrid columns="2" style="width: 95%">
-					<h:outputLabel for="nome" value="Tipo Pubblicazione" />
-					<h:inputText id="nome"
+				<h:panelGrid columns="2" style="width: 95%;">
+					<h:outputLabel for="nome" value="Tipo di Pubblicazione" />
+					<h:inputText id="nome" style="width: 65%;"
 						value="#{categorieHandler.tipoPubblicazione.nome}" required="true" />
 					<br />
 				</h:panelGrid>
-				<br />
 			</p:panel> <br />
 			<br />
 			<h:panelGrid columns="4">
 
 				<h:commandButton action="#{categorieHandler.saveTipoPubblicazione}"
-					value="salva tipo" immediate="false"
+					value="Salva" immediate="false"
 					rendered="#{not categorieHandler.editMode}" />
 
 				<h:commandButton
 					action="#{categorieHandler.updateTipoPubblicazione}"
-					value="aggiorna tipo" immediate="false"
+					value="Salva le modifiche" immediate="false"
 					rendered="#{categorieHandler.editMode}" />
 
 				<h:commandButton
 					action="#{categorieHandler.deleteTipoPubblicazione}"
-					value="elimina tipo" immediate="false"
+					value="Elimina" immediate="false"
 					rendered="#{categorieHandler.editMode}"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 			</h:panelGrid></center>

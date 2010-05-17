@@ -51,29 +51,29 @@ function addImageBrowser() {
 				<h:panelGrid columns="2" style="width: 95%">
 					<h:outputLabel for="titolo" value="Titolo" />
 					<h:inputText id="titolo" value="#{notizieHandler.notizia.titolo}"
-						style=" width : 409px;" required="true" />
+						style="width: 100%;" required="true" />
 
 
 					<h:outputLabel value="Tipo informazione(*):" for="tipo" />
-					<h:selectOneMenu id="tipo"
+					<h:selectOneMenu id="tipo" style="width: 100%;"
 						value="#{notizieHandler.idTipo}" required="true">
 						<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
 					</h:selectOneMenu>
 
-					<h:outputLabel for="autore" value="Autore:" />
+					<h:outputLabel for="autore" value="Autore:" style="width: 100%;" />
 					<h:inputText id="autore" value="#{notizieHandler.notizia.autore}"
-						style=" width : 395px;" required="true" />
+						style="width: 100%;" required="true" />
 
 
 					<h:outputLabel for="anteprima" value="Anteprima:" />
 					<h:inputTextarea id="anteprima" cols="20" rows="20"
 						value="#{notizieHandler.notizia.anteprima}"
-						style=" height : 166px; width : 372px;" />
+						style=" height : 166px; width: 100%;" />
 
 
 					<h:outputLabel for="descrizione" value="Contenuto:" />
 					<p:editor id="descrizione"
-						value="#{notizieHandler.notizia.contenuto}" width="640px"
+						value="#{notizieHandler.notizia.contenuto}" width="100%"
 						height="320px" widgetVar="myEditor" language="it" />
 
 				</h:panelGrid>
@@ -83,15 +83,15 @@ function addImageBrowser() {
 			<h:panelGrid columns="4">
 
 				<h:commandButton action="#{notizieHandler.saveNotizia}"
-					value="salva notizia" immediate="false"
+					value="Salva" immediate="false"
 					rendered="#{not notizieHandler.editMode}" />
 
 				<h:commandButton action="#{notizieHandler.updateNotizia}"
-					value="aggiorna notizia" immediate="false"
+					value="Salva le modifiche" immediate="false"
 					rendered="#{notizieHandler.editMode}" />
 
 				<h:commandButton action="#{notizieHandler.deleteNotizia}"
-					value="elimina notizia" rendered="#{pagesHandler.editMode}"
+					value="Elimina" rendered="#{notizieHandler.editMode}"
 					immediate="true"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 			</h:panelGrid></center>

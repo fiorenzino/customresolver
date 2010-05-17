@@ -7,34 +7,52 @@
 	template="/WEB-INF/layout/t.xhtml">
 
 	<ui:define name="title">
-		<h:outputText value="Amministrazione del portale" />
+		<h:outputText value="Lista Notizie" />
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:dataTable var="notizia" value="#{notizieHandler.all}">
-				<p:column>
-					<f:facet name="header">id</f:facet>
-					<h:outputText value="#{notizia.id}" />
-				</p:column>
+			<center><p:panel header="Lista Notizie">
+				<h:panelGrid columns="3">
+					<h:outputLabel for="tipo" value="Seleziona tipo:" />
+					<h:selectOneMenu value="#{notizieHandler.ricerca.oggetto.tipo.id}">
+						<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
+					</h:selectOneMenu>
+					<h:commandButton action="#{notizieHandler.cerca}" value="Cerca" />
+				</h:panelGrid>
+				<br />
 
-				<p:column>
-					<f:facet name="header">titolo</f:facet>
-					<h:outputText value="#{notizia.titolo}" />
-				</p:column>
+				<p:dataTable rowIndexVar="rowIndex" var="notizia"
+					value="#{notizieHandler.model}" rows="#{notizieHandler.pageSize}"
+					paginator="true" dynamic="true" lazy="true">
+					<p:column width="50">
+						<h:outputText value="#{rowIndex+1}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">operazioni</f:facet>
-					<h:commandLink
-						action="#{notizieHandler.detailNotizia(notizia.id)}" value="[v]" />
-					- <h:commandLink
-						action="#{notizieHandler.modNotizia(notizia.id)}" value="[m]" />
-				</p:column>
-			</p:dataTable>
+					<p:column width="200">
+						<f:facet name="header">titolo</f:facet>
+						<h:outputText value="#{notizia.titolo}" />
+					</p:column>
+
+					<p:column width="100">
+						<f:facet name="header">tipo</f:facet>
+						<h:outputText value="#{notizia.tipo.nome}" />
+					</p:column>
+
+					<p:column width="100">
+						<f:facet name="header">operazioni</f:facet>
+						<center><h:commandLink
+							action="#{notizieHandler.detailNotizia(notizia.id)}" value="vedi" />
+						- <h:commandLink action="#{notizieHandler.modNotizia(notizia.id)}"
+							value="modifica" /></center>
+					</p:column>
+				</p:dataTable>
+			</p:panel> <br />
 			<br />
-			<br />
 
-			<h:commandLink id="creaNotizia"
-				action="#{notizieHandler.addNotizia}" value="Crea nuova Notizia" />
+			<h:panelGrid columns="1">
+				<h:commandButton id="creaNotizia"
+					action="#{notizieHandler.addNotizia}" value="Aggiungi" />
+			</h:panelGrid></center>
 		</h:form>
 	</ui:define>
 </ui:composition>

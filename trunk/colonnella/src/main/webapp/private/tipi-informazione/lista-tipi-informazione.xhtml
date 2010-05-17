@@ -12,7 +12,8 @@
 		<h:form id="central">
 			<center><p:panel header="Lista Tipi Informazione">
 				<p:dataTable rowIndexVar="rowIndex" var="t"
-					value="#{tipoInformazioniHandler.model.wrappedData}">
+					value="#{tipoInformazioniHandler.model}"
+					rows="#{tipoInformazioniHandler.pageSize}" paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
