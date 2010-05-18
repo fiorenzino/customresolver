@@ -351,9 +351,15 @@ public class PageHandler implements Serializable {
 		PageUtils.generateContent(getElement());
 		return "/private/pagine/anteprima-testuale.xhtml"+FACES_REDIRECT;
 	}
-	public String anteprimaRisultato() {
-		PageUtils.generateContent(getElement());
-		// TODO
+	
+	/**
+	 * Necessario salvare per l'anteprima, ma se ridirigessi all'uscita di questo metodo
+	 * e non in outputLink causerei la morte di hibernate in caso di errori nel parser facelet
+	 * @return
+	 */
+	public String salvaPerAnteprimaRisultato() {
+		update();
+//		return "/pagine/"+element.getId()+".xhtml"+FACES_REDIRECT;
 		return null;
 	}
 }
