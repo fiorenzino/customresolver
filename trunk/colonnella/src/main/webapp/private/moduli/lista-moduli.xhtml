@@ -28,11 +28,12 @@
 					<h:selectOneMenu value="#{moduliHandler.ricerca.oggetto.tipo.id}" style="width: 200px;">
 						<f:selectItems value="#{propertiesHandler.tipiModuloItems}"/>
 					</h:selectOneMenu>
-					<h:commandButton action="#{moduliHandler.cerca}" value="Cerca" />
+					<p:commandButton action="#{moduliHandler.cerca}" value="Cerca" 
+					process="@form" update="modulesList"/>
 				</h:panelGrid>
 				<br/>
 
-				<p:dataTable var="modulo" value="#{moduliHandler.model}"
+				<p:dataTable id="modulesList" var="modulo" value="#{moduliHandler.model}"
 					rowIndexVar="rowIndex" rows="#{moduliHandler.pageSize}"
 					paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
