@@ -11,7 +11,12 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-
+			<h:outputText value="benvenuto: #{loginHandler.username}" />
+			<br />
+			<h:outputText value="sei ADMIN" rendered="#{loginHandler.admin}" />
+			<br />
+			<h:outputText value="sei USER" rendered="#{loginHandler.user}" />
+			<br />
 			<p:panel header="Gestione Modelli di Pagina"
 				rendered="#{templateHandler.clear}" style="width:200px; float:left;">
 				<div style="height: 50px;"><h:commandLink
@@ -54,7 +59,6 @@
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Tipi Informazione"
-				rendered="#{tipoInformazioniHandler.clear}"
 				style="width:200px; float:left;">
 				<h:commandLink action="#{tipoInformazioniHandler.loadModel}"
 					value="lista tipi informazione" />
@@ -63,9 +67,9 @@
 					value="aggiungi nuovo" />
 			</p:panel>
 
-			<p:panel header="Gestione Notizie" style="width:200px; float:left;"
-				rendered="#{notizieHandler.clear}">
-				<h:commandLink action="#{notizieHandler.loadModel}"
+			<p:panel header="Gestione Notizie" style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
 					value="lista notizie" />
 				<br />
 				<h:commandLink action="#{notizieHandler.addNotizia}"
@@ -85,7 +89,8 @@
 
 			<p:panel header="Gestione Attivita'"
 				rendered="#{attivitaHandler.clear}" style="width:200px; float:left;">
-				<h:commandLink action="#{attivitaHandler.loadModel}"
+				<h:commandLink
+					action="/private/attivita/lista-attivita.jsf?faces-redirect=true"
 					value="lista attivita'" />
 				<br />
 				<h:commandLink action="#{attivitaHandler.addAttivita}"
@@ -138,7 +143,8 @@
 
 			<p:panel header="Gestione Modulistica"
 				rendered="#{moduliHandler.clear}" style="width:200px; float:left;">
-				<h:commandLink action="#{moduliHandler.loadModel}"
+				<h:commandLink
+					action="/private/moduli/lista-moduli.jsf?faces-redirect=true"
 					value="lista moduli" />
 				<br />
 				<h:commandLink action="#{moduliHandler.addElement}"
@@ -148,7 +154,8 @@
 			<p:panel header="Gestione Tipi Modulo"
 				rendered="#{tipiModuloHandler.clear}"
 				style="width:200px; float:left;">
-				<h:commandLink action="#{tipiModuloHandler.loadModel}"
+				<h:commandLink
+					action="/private/tipi-modulo/lista-tipi-modulo.jsf?faces-redirect=true"
 					value="lista tipi modulo" />
 				<br />
 				<h:commandLink action="#{tipiModuloHandler.addElement}"
