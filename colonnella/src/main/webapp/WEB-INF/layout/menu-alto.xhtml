@@ -5,7 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ul id="menu_a_2livelli" title="Menu' di primo livello">
-		<li class="M5cellaprima"><a href="/" title="" accesskey="1">Home</a></li>
+		<li class="M5cellaprima"><a href="/" title="" accesskey="1">Home</a>
+		<ul>
+			<li><a href="/colonnella/logout.jsp" title="" accesskey="2">logout</a></li>
+		</ul>
+		</li>
 
 		<li class="M5cellaunica"><a href="/private/" title=""
 			accesskey="2">Amministrazione</a>
@@ -78,8 +82,7 @@
 		<li class="M5cellaunica"><a href="/private/risorse/" title=""
 			accesskey="7">Risorse</a>
 		<ul>
-			<li><h:commandLink action="/private/risorse/"
-				value="lista" /></li>
+			<li><h:commandLink action="/private/risorse/" value="lista" /></li>
 		</ul>
 
 		</li>

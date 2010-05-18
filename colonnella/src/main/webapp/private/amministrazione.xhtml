@@ -12,11 +12,9 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputText value="benvenuto: #{loginHandler.username}" />
-			<br />
-			<h:outputText value="sei ADMIN" rendered="#{loginHandler.admin}" />
-			<br />
-			<h:outputText value="sei USER" rendered="#{loginHandler.user}" />
-			<br />
+			<h:outputText value="[ADMIN] " rendered="#{loginHandler.admin}" />
+			<h:outputText value="[USER]" rendered="#{loginHandler.user}" />
+			<br /><br />
 			<p:panel header="Gestione Modelli di Pagina"
 				rendered="#{templateHandler.clear}" style="width:200px; float:left;">
 				<div style="height: 50px;"><h:commandLink
