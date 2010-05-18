@@ -4,151 +4,21 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	template="/WEB-INF/layout/t.xhtml">
- 
+
 	<ui:define name="title">
 		<h:outputText value="Gestione Pagina" />
 	</ui:define>
 
 	<ui:define name="content">
-		<style>
-.col1 {
-	width: 35%;
-	text-align: left;
-}
-
-.col2 {
-	width: 65%;
-	text-align: left;
-}
-</style>
 		<script type="text/javascript"
 			src="#{request.contextPath}/js/it_editor.js"></script>
-		<script type="text/javascript">
-         //<![CDATA[
-function addImageBrowser() {
 
-	myEditorH.on('toolbarLoaded', function() {
-	    //When the toolbar is loaded, add a listener to the insertimage button
-	    this.toolbar.on('insertimageClick', function() {
-	        //Get the selected element
-	        var _sel = this._getSelectedElement();
-	        //If the selected element is an image, do the normal thing so they can manipulate the image
-	        if (_sel && _sel.tagName && (_sel.tagName.toLowerCase() == 'img')) {
-	            //Do the normal thing here..
-	        } else {
-	            //They don't have a selected image, open the image browser window
-	            win = window.open('#{request.contextPath}/private/pagine/imagesH.jsf', 'IMAGE_BROWSER',
-	                'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0');
-	            if (!win) {
-	                //Catch the popup blocker
-	                alert('Please disable your popup blocker!!');
-	            }
-	            //This is important.. Return false here to not fire the rest of the listeners
-	            return false;
-	        }
-	    }, this, true);
-	}, myEditorH, true);
-
-    myEditorC1.on('toolbarLoaded', function() {
-        //When the toolbar is loaded, add a listener to the insertimage button
-        this.toolbar.on('insertimageClick', function() {
-            //Get the selected element
-            var _sel = this._getSelectedElement();
-            //If the selected element is an image, do the normal thing so they can manipulate the image
-            if (_sel && _sel.tagName && (_sel.tagName.toLowerCase() == 'img')) {
-                //Do the normal thing here..
-            } else {
-                //They don't have a selected image, open the image browser window
-                win = window.open('#{request.contextPath}/private/pagine/imagesC1.jsf', 'IMAGE_BROWSER',
-                    'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0');
-                if (!win) {
-                    //Catch the popup blocker
-                    alert('Please disable your popup blocker!!');
-                }
-                //This is important.. Return false here to not fire the rest of the listeners
-                return false;
-            }
-        }, this, true);
-    }, myEditorC1, true);
-
-    myEditorC2.on('toolbarLoaded', function() {
-        //When the toolbar is loaded, add a listener to the insertimage button
-        this.toolbar.on('insertimageClick', function() {
-            //Get the selected element
-            var _sel = this._getSelectedElement();
-            //If the selected element is an image, do the normal thing so they can manipulate the image
-            if (_sel && _sel.tagName && (_sel.tagName.toLowerCase() == 'img')) {
-                //Do the normal thing here..
-            } else {
-                //They don't have a selected image, open the image browser window
-                win = window.open('#{request.contextPath}/private/pagine/imagesC2.jsf', 'IMAGE_BROWSER',
-                    'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0');
-                if (!win) {
-                    //Catch the popup blocker
-                    alert('Please disable your popup blocker!!');
-                }
-                //This is important.. Return false here to not fire the rest of the listeners
-                return false;
-            }
-        }, this, true);
-    }, myEditorC2, true);
-
-    myEditorC3.on('toolbarLoaded', function() {
-        //When the toolbar is loaded, add a listener to the insertimage button
-        this.toolbar.on('insertimageClick', function() {
-            //Get the selected element
-            var _sel = this._getSelectedElement();
-            //If the selected element is an image, do the normal thing so they can manipulate the image
-            if (_sel && _sel.tagName && (_sel.tagName.toLowerCase() == 'img')) {
-                //Do the normal thing here..
-            } else {
-                //They don't have a selected image, open the image browser window
-                win = window.open('#{request.contextPath}/private/pagine/imagesC3.jsf', 'IMAGE_BROWSER',
-                    'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0');
-                if (!win) {
-                    //Catch the popup blocker
-                    alert('Please disable your popup blocker!!');
-                }
-                //This is important.. Return false here to not fire the rest of the listeners
-                return false;
-            }
-        }, this, true);
-    }, myEditorC3, true);
-
-    myEditorF.on('toolbarLoaded', function() {
-        //When the toolbar is loaded, add a listener to the insertimage button
-        this.toolbar.on('insertimageClick', function() {
-            //Get the selected element
-            var _sel = this._getSelectedElement();
-            //If the selected element is an image, do the normal thing so they can manipulate the image
-            if (_sel && _sel.tagName && (_sel.tagName.toLowerCase() == 'img')) {
-                //Do the normal thing here..
-            } else {
-                //They don't have a selected image, open the image browser window
-                win = window.open('#{request.contextPath}/private/pagine/imagesF.jsf', 'IMAGE_BROWSER',
-                    'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0');
-                if (!win) {
-                    //Catch the popup blocker
-                    alert('Please disable your popup blocker!!');
-                }
-                //This is important.. Return false here to not fire the rest of the listeners
-                return false;
-            }
-        }, this, true);
-    }, myEditorF, true);
-
-
-}
-window.onload = addImageBrowser;
-         //]]>
-      </script>
-
-		<h:form>
+		<h:form id="mainForm">
 
 			<p:panel header="Gestione Pagina">
 
 				<h:panelGrid columns="2" style="width: 95%"
-					columnClasses="col1,col2">
+					columnClasses="p_col1,p_col2">
 
 					<h:outputLabel value="Titolo(*):" for="titoloW"
 						rendered="#{empty pageHandler.element.title}" />
@@ -194,7 +64,7 @@ window.onload = addImageBrowser;
 				<h:panelGroup id="campi">
 
 					<h:panelGrid columns="2" style="width: 95%"
-						columnClasses="col1,col2">
+						columnClasses="p_col1,p_col2">
 
 						<h:outputLabel value="Intestazione:"
 							rendered="#{not empty pageHandler.element.template.template.header_stop}"
@@ -206,10 +76,24 @@ window.onload = addImageBrowser;
 								rendered="#{not empty pageHandler.element.template.template.header_stop and not pageHandler.element.template.template.statico}"
 								value="#{pageHandler.element.template.header}"
 								style="color: black; width: 100%;" escape="false" />
-							<p:editor id="pEditorH"
-								rendered="#{not empty pageHandler.element.template.template.header_stop and pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.header}" width="100%"
-								height="320px" widgetVar="myEditorH" language="it" />
+							<h:panelGroup style="width: 100%;"
+								rendered="#{not empty pageHandler.element.template.template.header_stop and pageHandler.element.template.template.statico}">
+								<p:editor id="pEditorH"
+									value="#{pageHandler.element.template.header}" width="100%"
+									height="320px" widgetVar="myEditorH" language="it" />
+								<f:verbatim>
+									<span
+										onclick="ridimensiona('mainForm','pEditorH','100%','600px');"
+										style="float: left;">ingrandisci</span>
+									<span
+										onclick="ridimensiona('mainForm','pEditorH','100%','320px');"
+										style="float: right;">riduci</span>
+								</f:verbatim>
+								<script type="text/javascript">
+						         //<![CDATA[
+						         	addImageBrowser(myEditorH,'#{request.contextPath}/private/pagine/imagesH.jsf');
+						         //]]></script>
+							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputText value="&lt;hr/&gt;"
@@ -221,16 +105,30 @@ window.onload = addImageBrowser;
 						<h:outputLabel value="Colonna 1:"
 							rendered="#{not empty pageHandler.element.template.template.col1_stop}"
 							for="col1" />
-						<h:panelGroup id="col1"
+						<h:panelGroup style="width: 100%;"
 							rendered="#{not empty pageHandler.element.template.template.col1_stop}">
 							<h:inputTextarea
 								rendered="#{not empty pageHandler.element.template.template.col1_stop and not pageHandler.element.template.template.statico}"
 								value="#{pageHandler.element.template.col1}"
 								style="color: black; width: 100%;" escape="false" />
-							<p:editor id="pEditorC1"
-								rendered="#{not empty pageHandler.element.template.template.col1_stop and pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.col1}" width="100%"
-								height="320px" widgetVar="myEditorC1" language="it" />
+							<h:panelGroup
+								rendered="#{not empty pageHandler.element.template.template.col1_stop and pageHandler.element.template.template.statico}">
+								<p:editor id="pEditorC1"
+									value="#{pageHandler.element.template.col1}" width="100%"
+									height="320px" widgetVar="myEditorC1" language="it" />
+								<f:verbatim>
+									<span
+										onclick="ridimensiona('mainForm','pEditorC1','100%','600px');"
+										style="float: left;">ingrandisci</span>
+									<span
+										onclick="ridimensiona('mainForm','pEditorC1','100%','320px');"
+										style="float: right;">riduci</span>
+								</f:verbatim>
+								<script type="text/javascript">
+						         //<![CDATA[
+						         	addImageBrowser(myEditorC1,'#{request.contextPath}/private/pagine/imagesC1.jsf');
+						         //]]></script>
+							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputLabel value="Colonna 2:"
@@ -242,10 +140,24 @@ window.onload = addImageBrowser;
 								rendered="#{not empty pageHandler.element.template.template.col2_stop and not pageHandler.element.template.template.statico}"
 								value="#{pageHandler.element.template.col2}"
 								style="color: black; width: 100%;" escape="false" />
-							<p:editor id="pEditorC2"
-								rendered="#{not empty pageHandler.element.template.template.col2_stop and pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.col2}" width="100%"
-								height="320px" widgetVar="myEditorC2" language="it" />
+							<h:panelGroup
+								rendered="#{not empty pageHandler.element.template.template.col2_stop and pageHandler.element.template.template.statico}">
+								<p:editor id="pEditorC2"
+									value="#{pageHandler.element.template.col2}" width="100%"
+									height="320px" widgetVar="myEditorC2" language="it" />
+								<f:verbatim>
+									<span
+										onclick="ridimensiona('mainForm','pEditorC2','100%','600px');"
+										style="float: left;">ingrandisci</span>
+									<span
+										onclick="ridimensiona('mainForm','pEditorC2','100%','320px');"
+										style="float: right;">riduci</span>
+								</f:verbatim>
+								<script type="text/javascript">
+						         //<![CDATA[
+						         	addImageBrowser(myEditorC2,'#{request.contextPath}/private/pagine/imagesC2.jsf');
+						         //]]></script>
+							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputLabel value="Colonna 3:"
@@ -257,10 +169,24 @@ window.onload = addImageBrowser;
 								rendered="#{not empty pageHandler.element.template.template.col3_stop and not pageHandler.element.template.template.statico}"
 								value="#{pageHandler.element.template.col3}" width="100%"
 								style="color: black; width: 100%;" escape="false" />
-							<p:editor id="pEditorC3"
-								rendered="#{not empty pageHandler.element.template.template.col3_stop and pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.col3}" width="100%"
-								height="320px" widgetVar="myEditorC3" language="it" />
+							<h:panelGroup
+								rendered="#{not empty pageHandler.element.template.template.col3_stop and pageHandler.element.template.template.statico}">
+								<p:editor id="pEditorC3"
+									value="#{pageHandler.element.template.col3}" width="100%"
+									height="320px" widgetVar="myEditorC3" language="it" />
+								<f:verbatim>
+									<span
+										onclick="ridimensiona('mainForm','pEditorC3','100%','600px');"
+										style="float: left;">ingrandisci</span>
+									<span
+										onclick="ridimensiona('mainForm','pEditorC3','100%','320px');"
+										style="float: right;">riduci</span>
+								</f:verbatim>
+								<script type="text/javascript">
+						         //<![CDATA[
+						         	addImageBrowser(myEditorC3,'#{request.contextPath}/private/pagine/imagesC3.jsf');
+						         //]]></script>
+							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputText value="&lt;hr/&gt;"
@@ -278,12 +204,25 @@ window.onload = addImageBrowser;
 								rendered="#{not empty pageHandler.element.template.template.footer_stop and not pageHandler.element.template.template.statico}"
 								value="#{pageHandler.element.template.footer}"
 								style="color: black; width: 100%;" escape="false" />
-							<p:editor id="pEditorF"
-								rendered="#{not empty pageHandler.element.template.template.footer_stop and pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.footer}" width="100%"
-								height="320px" widgetVar="myEditorF" language="it" />
+							<h:panelGroup
+								rendered="#{not empty pageHandler.element.template.template.footer_stop and pageHandler.element.template.template.statico}">
+								<p:editor id="pEditorF"
+									value="#{pageHandler.element.template.footer}" width="100%"
+									height="320px" widgetVar="myEditorF" language="it" />
+								<f:verbatim>
+									<span
+										onclick="ridimensiona('mainForm','pEditorF','100%','600px');"
+										style="float: left;">ingrandisci</span>
+									<span
+										onclick="ridimensiona('mainForm','pEditorF','100%','320px');"
+										style="float: right;">riduci</span>
+								</f:verbatim>
+								<script type="text/javascript">
+						         //<![CDATA[
+						         	addImageBrowser(myEditorF,'#{request.contextPath}/private/pagine/imagesF.jsf');
+						         //]]></script>
+							</h:panelGroup>
 						</h:panelGroup>
-
 					</h:panelGrid>
 
 				</h:panelGroup>
