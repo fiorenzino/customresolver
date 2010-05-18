@@ -19,7 +19,7 @@
 					<h:panelGroup>
 						<h:selectOneMenu id="tipo"
 							value="#{attivitaHandler.ricerca.oggetto.categoria.tipoAttivita.id}"
-							style="width: 100%;">
+							style="width: 700px;">
 							<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
 							<p:ajax actionListener="#{propertiesHandler.cambioTipoRicerca}"
 								update="categoria" event="change" process="@this" />
@@ -30,17 +30,19 @@
 						value="Categoria Attivita'" />
 					<h:selectOneMenu id="categoria"
 						value="#{attivitaHandler.ricerca.oggetto.categoria.id}"
-						style="width: 100%;">
+						style="width: 700px;">
 						<f:selectItems value="#{propertiesHandler.categorieByTipoItems}" />
 					</h:selectOneMenu>
 
 				</h:panelGrid>
 				<br />
-				<h:commandButton value="cerca" action="#{attivitaHandler.cerca}" />
+				<p:commandButton value="cerca" action="#{attivitaHandler.cerca}" 
+				process="@form" update="activitiesList"/>
+				<br />
 				<br />
 				<br />
 
-				<p:dataTable var="attivita" value="#{attivitaHandler.model}"
+				<p:dataTable id="activitiesList" var="attivita" value="#{attivitaHandler.model}"
 					rowIndexVar="rowIndex" paginator="true" dynamic="true" lazy="true"
 					rows="#{attivitaHandler.pageSize}">
 					<p:column width="50">
