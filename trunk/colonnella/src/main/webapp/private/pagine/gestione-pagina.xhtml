@@ -236,20 +236,27 @@
 			<br />
 			<br />
 
-			<center><h:panelGrid columns="3">
-				<h:commandLink value="anteprima testo completo"
-					action="#{pageHandler.anteprimaTestuale}" target="_blank" />
-				<h:outputText value=" - " rendered="false" />
-				<h:commandLink value="anteprima risultato finale"
-					action="#{pageHandler.anteprimaRisultato}" target="_blank"
-					rendered="false" />
+			<center>
+
+			<h:panelGrid columns="1">
+				<h:outputLink target="_blank"
+					value="#{request.contextPath}/pagine/#{pageHandler.element.id}">
+					<h:outputText value="anteprima del contenuto gia' salvato" />
+				</h:outputLink>
 			</h:panelGrid> <br />
-			<h:panelGrid columns="4">
-				<h:commandButton action="#{pageHandler.save}" value="Salva"
+
+			<h:panelGrid columns="6">
+				<h:commandButton value="Anteprima testo completo"
+					action="#{pageHandler.anteprimaTestuale}" />
+
+				<h:commandButton value="Salva dati correnti"
+				action="#{pageHandler.salvaPerAnteprimaRisultato}"/>
+
+				<h:commandButton action="#{pageHandler.save}" value="Salva ed esci"
 					rendered="#{empty pageHandler.element.id}" />
 
 				<h:commandButton action="#{pageHandler.update}"
-					value="Salva le modifiche"
+					value="Salva le modifiche ed esci"
 					rendered="#{not empty pageHandler.element.id}" />
 
 				<h:commandButton action="#{pageHandler.delete}" value="Elimina"
