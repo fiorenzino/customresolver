@@ -7,6 +7,7 @@ import it.jflower.cc.par.TemplateImpl;
 public class PageUtils {
 
 	private static final String prologo = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
+	private static final String newline = "\n";
 	
 	public static String createPageId(String title) {
 		title = title.replaceAll("[^a-zA-Z0-9\\s]", "")
@@ -82,34 +83,49 @@ public class PageUtils {
 		TemplateImpl i = page.getTemplate();
 
 		StringBuffer b = new StringBuffer( t.getHeader_start() == null ? prologo : t.getHeader_start() );
-
+		b.append(newline);
+		
 		if ( t.getHeader_stop() != null && t.getHeader_stop().length() > 0 ) {
 			b.append( i.getHeader() );
+			b.append(newline);
 			b.append(t.getHeader_stop() );
+			b.append(newline);
 		}
 
 		b.append( t.getCol1_start() == null ? "" : t.getCol1_start() );
+		b.append(newline);
 		if ( t.getCol1_stop() != null && t.getCol1_stop().length() > 0 ) {
 			b.append( i.getCol1() );
+			b.append(newline);
 			b.append(t.getCol1_stop() );
+			b.append(newline);
 		}
 
 		b.append( t.getCol2_start() == null ? "" : t.getCol2_start() );
+		b.append(newline);
 		if ( t.getCol2_stop() != null && t.getCol2_stop().length() > 0 ) {
 			b.append( i.getCol2() );
+			b.append(newline);
 			b.append(t.getCol2_stop() );
+			b.append(newline);
 		}
 
 		b.append( t.getCol3_start() == null ? "" : t.getCol3_start() );
+		b.append(newline);
 		if ( t.getCol3_stop() != null && t.getCol3_stop().length() > 0 ) {
 			b.append( i.getCol3() );
+			b.append(newline);
 			b.append(t.getCol3_stop() );
+			b.append(newline);
 		}
 
 		b.append( t.getFooter_start() == null ? "" : t.getFooter_start() );
+		b.append(newline);
 		if ( t.getFooter_stop() != null && t.getFooter_stop().length() > 0 ) {
 			b.append( i.getFooter() );
+			b.append(newline);
 			b.append(t.getFooter_stop() );
+			b.append(newline);
 		}
 		
 		return b.toString();
