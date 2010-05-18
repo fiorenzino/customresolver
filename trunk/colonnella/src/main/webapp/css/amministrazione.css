@@ -67,6 +67,16 @@ ul#menu_a_2livelli li li {
 	text-align: left;
 }
 
+.p_col1 {
+	width: 20%;
+	text-align: left;
+}
+
+.p_col2 {
+	width: 80%;
+	text-align: left;
+}
+
 .m_col1 {
 	width: 350px;
 	background-color: white;
