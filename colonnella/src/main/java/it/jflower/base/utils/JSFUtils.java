@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public class JSFUtils {
 
 	static Logger logger = Logger.getLogger(JSFUtils.class);
-	
+
 	public static <T> T getBean(Class<T> beanClass) {
 		try {
 			Context initCtx = new InitialContext();
@@ -31,18 +31,17 @@ public class JSFUtils {
 			BeanManager beanManager = (BeanManager) envCtx
 					.lookup("BeanManager");
 
-			Bean phBean = (Bean) beanManager.getBeans(beanClass)
-					.iterator().next();
+			Bean phBean = (Bean) beanManager.getBeans(beanClass).iterator()
+					.next();
 			CreationalContext cc = beanManager.createCreationalContext(phBean);
-			T bean = (T) beanManager.getReference(phBean, beanClass,
-					cc);
+			T bean = (T) beanManager.getReference(phBean, beanClass, cc);
 			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public static int count(Collection collection) {
 		return collection == null ? 0 : collection.size();
 	}
@@ -50,10 +49,18 @@ public class JSFUtils {
 	/**
 	 * @param ricerca
 	 * @param ejb
-	 * @param idField il nome del campo del par il cui valore è da usare come selectItem.value
-	 * @param valueField il nome del campo del par il cui valore è da usare selectItem.label
-	 * @param emptyMessage messaggio da mettere in caso di no risultati: selectItem(null,"nessun entity trovato...")
-	 * @param labelMessage messaggio da mettere nel primo selectitem in caso di no-selezione: select(null,"scegli l'entity....")
+	 * @param idField
+	 *            il nome del campo del par il cui valore è da usare come
+	 *            selectItem.value
+	 * @param valueField
+	 *            il nome del campo del par il cui valore è da usare
+	 *            selectItem.label
+	 * @param emptyMessage
+	 *            messaggio da mettere in caso di no risultati:
+	 *            selectItem(null,"nessun entity trovato...")
+	 * @param labelMessage
+	 *            messaggio da mettere nel primo selectitem in caso di
+	 *            no-selezione: select(null,"scegli l'entity....")
 	 * @return
 	 */
 	public static SelectItem[] setupItems(Ricerca ricerca, SuperSession ejb,
@@ -91,24 +98,25 @@ public class JSFUtils {
 	}
 
 	public static String breadcrumbs() {
-		HttpServletRequest hsr = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpServletRequest hsr = (HttpServletRequest) FacesContext
+				.getCurrentInstance().getExternalContext().getRequest();
 		String url = hsr.getRequestURL().toString();
 		url = url.substring("http://".length());
-		if ( url.indexOf("/") >= 0 )
-			url = url.substring(url.indexOf("/")+1);
+		if (url.indexOf("/") >= 0)
+			url = url.substring(url.indexOf("/") + 1);
 		String[] crumbs = url.split("/");
 
 		String base = "/";
 		StringBuffer sb = new StringBuffer();
-		for ( int i = 0 ; i < crumbs.length ; i++ ) {
+		for (int i = 0; i < crumbs.length; i++) {
 			base += crumbs[i];
 			String label = i == 0 ? "home" : crumbs[i];
-			if ( label.contains(".") ) {
-				label = label.substring(0,label.indexOf("."));
-				sb.append("<b>"+label+"</b>");
-			}
-			else {
-				sb.append("<a href=\""+base+"\" title=\""+crumbs[i]+"\">"+label+"</a> ");
+			if (label.contains(".")) {
+				label = label.substring(0, label.indexOf("."));
+				sb.append("<b>" + label + "</b>");
+			} else {
+				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
+						+ "\">" + label + "</a> ");
 				sb.append("<span class=\"freccia\">&gt;</span> ");
 			}
 			base += "/";
@@ -116,12 +124,11 @@ public class JSFUtils {
 		return sb.toString();
 	}
 
-	
 	public static String getUserName() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest req = (HttpServletRequest) context
 				.getExternalContext().getRequest();
-		//String rem = req.getRemoteUser();
+		// String rem = req.getRemoteUser();
 		// System.out.println("******************************");
 		// System.out.println("REM USER: " + rem);
 		Principal pr = req.getUserPrincipal();
@@ -129,11 +136,16 @@ public class JSFUtils {
 		// System.out.println("******************************");
 
 		if (pr == null)
-			return context.getExternalContext().getInitParameter("jflower.DEFAULT_USER");
+			return context.getExternalContext().getInitParameter(
+					"jflower.DEFAULT_USER");
 		return pr.getName();
 	}
-	
-	
-	
-	
+
+	public static boolean isUserInRole(String role) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest req = (HttpServletRequest) context
+				.getExternalContext().getRequest();
+		return req.isUserInRole(role);
+	}
+
 }
