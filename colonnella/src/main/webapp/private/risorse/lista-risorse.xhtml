@@ -17,10 +17,12 @@
 						value="#{resourceHandler.ricerca.oggetto.tipo}">
 						<f:selectItems value="#{propertiesHandler.risorseItems}" />
 					</h:selectOneMenu>
-					<h:commandButton action="#{resourceHandler.reset}" value="Cerca" />
+					<p:commandButton action="#{resourceHandler.reset}" value="Cerca" 
+						process="@form" update="resourcesList"/>
 				</h:panelGrid>
+				<br/>
 
-				<p:dataTable rowIndexVar="rowIndex" var="r" value="#{resourceHandler.model}"
+				<p:dataTable id="resourcesList" rowIndexVar="rowIndex" var="r" value="#{resourceHandler.model}"
 					rows="#{resourceHandler.pageSize}" paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
