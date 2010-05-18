@@ -11,31 +11,37 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:dataTable var="galleria" value="#{gallerieHandler.all}">
-				<p:column>
-					<f:facet name="header">id</f:facet>
-					<h:outputText value="#{galleria.id}" />
+		<center>
+		<p:panel header="Lista Gallerie di Foto">
+			<p:dataTable var="galleria" value="#{gallerieHandler.all}" rowIndexVar="rowIndex">
+				<p:column width="50">
+					<h:outputText value="#{rowIndex+1}" />
 				</p:column>
 
-				<p:column>
+				<p:column width="400">
 					<f:facet name="header">titolo</f:facet>
 					<h:outputText value="#{galleria.titolo}" />
 				</p:column>
 
-				<p:column>
+				<p:column width="200">
 					<f:facet name="header">operazioni</f:facet>
 					<h:commandLink
 						action="#{gallerieHandler.detailGalleria(galleria.id)}"
-						value="[v]" />
+						value="vedi" />
 					- <h:commandLink
-						action="#{gallerieHandler.modGalleria(galleria.id)}" value="[m]" />
+						action="#{gallerieHandler.modGalleria(galleria.id)}" value="modifica" />
 				</p:column>
 			</p:dataTable>
+		</p:panel>
+			
 			<br />
 			<br />
 
-			<h:commandLink id="creaGalleria"
-				action="#{gallerieHandler.addGalleria}" value="Crea nuova Galleria" />
+			<h:panelGrid columns="1">
+			<h:commandButton id="creaGalleria"
+				action="#{gallerieHandler.addGalleria}" value="Aggiungi" />
+			</h:panelGrid>
+		</center>
 		</h:form>
 	</ui:define>
 </ui:composition>
