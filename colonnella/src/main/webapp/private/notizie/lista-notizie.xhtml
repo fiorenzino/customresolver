@@ -17,20 +17,28 @@
 					<h:selectOneMenu value="#{notizieHandler.ricerca.oggetto.tipo.id}">
 						<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
 					</h:selectOneMenu>
-					<h:commandButton action="#{notizieHandler.cerca}" value="Cerca" />
+					<p:commandButton action="#{notizieHandler.cerca}" value="Cerca" 
+						process="@form" update="newsList"/>
 				</h:panelGrid>
 				<br />
 
-				<p:dataTable rowIndexVar="rowIndex" var="notizia"
+				<p:dataTable id="newsList" rowIndexVar="rowIndex" var="notizia"
 					value="#{notizieHandler.model}" rows="#{notizieHandler.pageSize}"
 					paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
 						<h:outputText value="#{rowIndex+1}" />
 					</p:column>
 
-					<p:column width="200">
+					<p:column width="300">
 						<f:facet name="header">titolo</f:facet>
 						<h:outputText value="#{notizia.titolo}" />
+					</p:column>
+
+					<p:column width="100">
+						<f:facet name="header">data</f:facet>
+						<h:outputText value="#{notizia.data}" >
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
 					</p:column>
 
 					<p:column width="100">
