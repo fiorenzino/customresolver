@@ -27,9 +27,9 @@ public class CategorieHandler implements Serializable {
 	public static String NEW_OR_EDIT_CAT = "/private/attivita/gestione-categorie-attivita.xhtml"
 			+ FACES_REDIRECT;
 
-	public static String LIST_TIP_PUB = "/private/pubblicazioni/lista-tipi-pubblicazione.xhtml"
+	public static String LIST_TIP_PUB = "/private/tipi-pubblicazione/lista-tipi-pubblicazione.xhtml"
 			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT_TIP_PUB = "/private/pubblicazioni/gestione-tipi-pubblicazione.xhtml"
+	public static String NEW_OR_EDIT_TIP_PUB = "/private/tipi-pubblicazione/gestione-tipi-pubblicazione.xhtml"
 			+ FACES_REDIRECT;
 
 	public static String LIST_TIP_ATT = "/private/attivita/lista-tipi-attivita.xhtml"

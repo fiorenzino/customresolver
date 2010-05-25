@@ -58,15 +58,17 @@ public class FileUtils {
 		return getFilesName("swf", new String[] { "swf" });
 	}
 
-	public static String createImage_(String folder, String imageFileName, byte[] data) {
+	public static String createImage_(String folder, String imageFileName,
+			byte[] data) {
 		try {
-			String actualFileName = getUniqueName(
-					getRealPath() + folder, imageFileName);
+			String actualFileName = getUniqueName(getRealPath() + folder,
+					imageFileName);
 			FileImageOutputStream imageOutput;
 			imageOutput = new FileImageOutputStream(new File(actualFileName));
 			imageOutput.write(data, 0, data.length);
 			imageOutput.close();
-			return actualFileName.substring(actualFileName.lastIndexOf(File.separator)+1);
+			return actualFileName.substring(actualFileName
+					.lastIndexOf(File.separator) + 1);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -78,12 +80,14 @@ public class FileUtils {
 
 	public static String createFile_(String folder, String fileName, byte[] data) {
 		try {
-			String actualFileName = getUniqueName(
-					getRealPath() + folder, fileName);
-			FileOutputStream fos = new FileOutputStream(new File(actualFileName));
+			String actualFileName = getUniqueName(getRealPath() + folder,
+					fileName);
+			FileOutputStream fos = new FileOutputStream(
+					new File(actualFileName));
 			fos.write(data);
 			fos.close();
-			return actualFileName.substring( actualFileName.lastIndexOf(File.separator)+1 );
+			return actualFileName.substring(actualFileName
+					.lastIndexOf(File.separator) + 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -92,8 +96,9 @@ public class FileUtils {
 
 	private static String getUniqueName(String folder, String fileName) {
 		String est = fileName.substring(fileName.indexOf(".") + 1);
-		String nome = fileName.substring(0, fileName.indexOf("."));
-		String finalName = fileName;
+		String nome = fileName.substring(0, fileName.indexOf(".")).replaceAll(
+				" ", "");
+		String finalName = fileName.replaceAll(" ", "");
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {

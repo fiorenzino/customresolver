@@ -11,8 +11,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -23,52 +21,52 @@ public class Pubblicazione implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private TipoPubblicazione tipoPubblicazione;
-	private String oggetto;
-	private String mittente;
-	private Date dataPubblicazione;
+	private String id;
+	private String nome;
+	private TipoPubblicazione tipo;
+	private String titolo;
+	private String autore;
+	private Date data;
 	private Date dal;
 	private Date al;
 	private List<Documento> documenti;
 	private boolean attivo = true;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	@ManyToOne
-	public TipoPubblicazione getTipoPubblicazione() {
-		if (tipoPubblicazione == null)
-			tipoPubblicazione = new TipoPubblicazione();
-		return tipoPubblicazione;
+	public TipoPubblicazione getTipo() {
+		if (tipo == null)
+			tipo = new TipoPubblicazione();
+		return tipo;
 	}
 
-	public void setTipoPubblicazione(TipoPubblicazione tipoPubblicazione) {
-		this.tipoPubblicazione = tipoPubblicazione;
+	public void setTipo(TipoPubblicazione tipo) {
+		this.tipo = tipo;
 	}
 
 	@Lob
-	public String getOggetto() {
-		return oggetto;
+	public String getTitolo() {
+		return titolo;
 	}
 
-	public void setOggetto(String oggetto) {
-		this.oggetto = oggetto;
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 
-	public String getMittente() {
-		return mittente;
+	public String getAutore() {
+		return autore;
 	}
 
-	public void setMittente(String mittente) {
-		this.mittente = mittente;
+	public void setAutore(String autore) {
+		this.autore = autore;
 	}
 
 	public Date getDal() {
@@ -87,12 +85,12 @@ public class Pubblicazione implements Serializable {
 		this.al = al;
 	}
 
-	public Date getDataPubblicazione() {
-		return dataPubblicazione;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDataPubblicazione(Date dataPubblicazione) {
-		this.dataPubblicazione = dataPubblicazione;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -116,5 +114,13 @@ public class Pubblicazione implements Serializable {
 
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }
