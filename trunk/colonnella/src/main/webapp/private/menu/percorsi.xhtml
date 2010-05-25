@@ -8,39 +8,42 @@
 		<h:outputText value="Lista Pagine" />
 	</ui:define>
 	<ui:define name="content">
+		<h:form id="form1">
+			<p:panel header="Crea nuovo percorso" id="percorsoPan">
 
-		<p:panel header="Crea nuovo percorso">
-			<h:form>
 				<center><h:panelGrid columns="2">
 					<h:outputLabel for="nome" value="Nome(*):" />
-					<h:inputText required="true" value="#{menuHandler.element.nome}"
-						style="width: 500px;" />
-					<h:outputLabel for="nome" value="Percorso(*):" />
-					<h:inputText required="true"
+					<h:inputText id="nome" required="true"
+						value="#{menuHandler.element.nome}" style="width: 500px;" />
+					<h:outputLabel for="percorso" value="Percorso(*):" />
+					<h:inputText id="percorso" required="true"
 						value="#{menuHandler.element.percorso}" style="width: 500px;" />
 				</h:panelGrid> <h:panelGrid columns="2">
 					<h:commandButton value="Aggiungi" action="#{menuHandler.save}" />
-					<h:commandButton value="Indietro" action="#{menuHandler.reset}" />
+					<h:commandButton value="Indietro" action="#{menuHandler.reset}"
+						immediate="true" />
 				</h:panelGrid></center>
-			</h:form>
-		</p:panel>
+
+			</p:panel>
+		</h:form>
 		<br />
 		<br />
 
 		<p:panel header="Gestisci associazioni"
 			style="display: #{menuHandler.gruppi ? 'block' : 'none'};">
 
-			<center><h:panelGrid columns="2" columnClasses="m_col1,m_col2">
+			<center><h:panelGrid columns="2"
+				columnClasses="m_col1,m_col2">
 
 				<h:panelGroup id="leftPanel">
-					<h:form>
+					<h:form id="form2">
 						<p:tree value="#{menuHandler.modelTree}" dynamic="true" var="node"
 							cache="false" nodeSelectListener="#{menuHandler.onNodeSelect}"
 							update="rightPanel">
 
 							<p:treeNode type="menuGroup">
-								<h:outputText value="#{node.percorso}"
-									title="Percorso: #{node.nome}" />
+								<h:outputText value="#{node.nome}"
+									title="Percorso: #{node.percorso}" />
 							</p:treeNode>
 
 							<p:treeNode type="menuItem" styleClass="documentStyle">
@@ -56,7 +59,7 @@
 
 					<p:outputPanel id="pannelloPickList"
 						style="display: #{empty menuHandler.selectedGroup ? 'none' : 'block'};">
-						<h:form>
+						<h:form id="form3">
 							<center><h:panelGrid columns="2">
 								<h:outputText value="Menu: " />
 								<h:outputText
@@ -133,10 +136,8 @@
 							<h:outputLink target="_blank"
 								value="#{request.contextPath}/pagine/#{menuHandler.selectedItem.data.pagina.id}">
 								<h:outputText value="anteprima"></h:outputText>
-							</h:outputLink>
-
-							<br/>
-							<br/>
+							</h:outputLink> <br />
+							<br />
 							<h:panelGrid columns="2">
 								<h:commandButton value="Conferma"
 									action="#{menuHandler.updateItem}" />

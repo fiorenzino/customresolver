@@ -11,44 +11,56 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form prependId="false">
-			<p:messages id="messages" />
+			<p:panel header="Scheda Modulo">
+				<h:panelGrid columns="2">
+					<h:outputLabel for="tipo" value="Tipo Pubblicazione" />
+					<h:outputText id="tipo"
+						value="#{pubblicazioniHandler.element.tipo.nome}" />
 
-			<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Pubblicazione" />
-			<h:outputText id="tipo"
-				value="#{pubblicazioniHandler.pubblicazione.tipoPubblicazione.nome}" />
-			<br />
+					<h:outputLabel for="nome" value="Nome:" />
+					<h:outputText id="nome"
+						value="#{pubblicazioniHandler.element.nome}" />
 
-			<h:outputLabel for="nome" value="Oggetto:" />
-			<h:outputText id="nome"
-				value="#{pubblicazioniHandler.pubblicazione.oggetto}" />
-			<br />
-			<h:outputLabel for="dataDal" value="Data dal:" />
-			<h:outputText id="dataDal"
-				value="#{pubblicazioniHandler.pubblicazione.dal}">
-				<f:convertDateTime pattern="dd/MM/yyyy" />
-			</h:outputText>
-			<br />
+					<h:outputLabel for="titolo" value="Titolo:" />
+					<h:outputText id="titolo"
+						value="#{pubblicazioniHandler.element.titolo}" />
 
-			<h:outputLabel for="dataAl" value="Data al:" />
-			<h:outputText id="dataAl"
-				value="#{pubblicazioniHandler.pubblicazione.al}">
-				<f:convertDateTime pattern="dd/MM/yyyy" />
-			</h:outputText>
+					<h:outputLabel for="data" value="Data pubblicazione:" />
+					<h:outputText id="data"
+						value="#{pubblicazioniHandler.element.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+					<h:outputLabel for="dataDal" value="Data dal:" />
+					<h:outputText id="dataDal"
+						value="#{pubblicazioniHandler.element.dal}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+
+					<h:outputLabel for="dataAl" value="Data al:" />
+					<h:outputText id="dataAl"
+						value="#{pubblicazioniHandler.element.al}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</h:panelGrid>
+
+			</p:panel>
 			<br />
 			<p:dataTable var="doc"
-				value="#{pubblicazioniHandler.pubblicazione.documenti}">
+				value="#{pubblicazioniHandler.element.documenti}">
 				<p:column>
 					<f:facet name="header">nome</f:facet>
-					<h:outputText value="#{doc.nome}" />
+					<h:outputText value="#{doc.filename}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">vedi</f:facet>
-					<h:outputLink value="/colonnella/docs/#{doc.nome}" />
+					<h:outputLink value="/colonnella/docs/#{doc.filename}">
+						<h:outputText value="#{doc.filename}" />
+					</h:outputLink>
 				</p:column>
 			</p:dataTable>
-
-
 		</h:form>
 
 	</ui:define>

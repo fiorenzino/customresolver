@@ -12,9 +12,13 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputText value="benvenuto: #{loginHandler.username}" />
-			<h:outputText value="[ADMIN] " rendered="#{loginHandler.admin}" />
-			<h:outputText value="[USER]" rendered="#{loginHandler.user}" />
-			<br /><br />
+			<br />
+			<h:outputText value="ruolo: ADMIN" rendered="#{loginHandler.admin}" />
+			<br />
+			<h:outputText value="ruolo: USER" rendered="#{loginHandler.user}" />
+			<br />
+			<br />
+			<br />
 			<p:panel header="Gestione Modelli di Pagina"
 				rendered="#{templateHandler.clear}" style="width:200px; float:left;">
 				<div style="height: 50px;"><h:commandLink
@@ -44,7 +48,7 @@
 					value="aggiungi nuovo" /></div>
 			</p:panel>
 
-			<p:panel header="Gestione Risorse Statiche (img,js,swf,css)"
+			<p:panel header="Gestione img,js,swf,css"
 				rendered="#{resourceHandler.clear}"
 				style="width: 200px; float: left;">
 				<div style="height: 27px;"><h:commandLink
@@ -130,7 +134,7 @@
 			<p:panel header="Gestione Tipi Pubblicazioni"
 				style="width:200px; float:left;">
 				<h:commandLink
-					action="/private/pubblicazioni/lista-tipi-pubblicazione.jsf?faces-redirect=true"
+					action="/private/tipi-pubblicazione/lista-tipi-pubblicazione.jsf?faces-redirect=true"
 					value="lista tipi pubblicazioni" />
 				<br />
 				<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
