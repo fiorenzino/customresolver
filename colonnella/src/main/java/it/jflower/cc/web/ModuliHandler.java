@@ -84,7 +84,7 @@ public class ModuliHandler implements Serializable {
 	@PostConstruct
 	protected void gatherCriteria() {
 		ricerca = new Ricerca<Modulo>(Modulo.class);
-		ricerca.getOggetto().setTipo( new TipoModulo() );
+		ricerca.getOggetto().setTipo(new TipoModulo());
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class ModuliHandler implements Serializable {
 		reset();
 		return true;
 	}
-	
+
 	// -----------------------------------------------------
 
 	public Modulo getElement() {
@@ -218,8 +218,8 @@ public class ModuliHandler implements Serializable {
 		// settaggi nel super handler
 		try {
 			this.element = new Modulo();
-			this.element.setTipo( new TipoModulo() );
-			this.element.setDocumento( new Documento() );
+			this.element.setTipo(new TipoModulo());
+			this.element.setDocumento(new Documento());
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
 			e.printStackTrace();
@@ -232,8 +232,8 @@ public class ModuliHandler implements Serializable {
 		// fetch dei dati
 		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
-		if ( t.getDocumento() == null )
-			t.setDocumento( new Documento() );
+		if (t.getDocumento() == null)
+			t.setDocumento(new Documento());
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -244,8 +244,8 @@ public class ModuliHandler implements Serializable {
 		// fetch dei dati;
 		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
-		if ( t.getDocumento() == null )
-			t.setDocumento( new Documento() );
+		if (t.getDocumento() == null)
+			t.setDocumento(new Documento());
 		// settaggi nel super handler
 		this.element = t;
 		// vista di destinazione
@@ -293,8 +293,8 @@ public class ModuliHandler implements Serializable {
 	public String modCurrent() {
 		// fetch dei dati
 		element = getSession().fetch(getId(element));
-		if ( element.getDocumento() == null )
-			element.setDocumento( new Documento() );
+		if (element.getDocumento() == null)
+			element.setDocumento(new Documento());
 		// vista di arrivo
 		return editPage();
 	}
@@ -302,8 +302,8 @@ public class ModuliHandler implements Serializable {
 	public String viewCurrent() {
 		// fetch dei dati
 		element = getSession().fetch(getId(element));
-		if ( element.getDocumento() == null )
-			element.setDocumento( new Documento() );
+		if (element.getDocumento() == null)
+			element.setDocumento(new Documento());
 		// vista di arrivo
 		return viewPage();
 	}
@@ -322,8 +322,8 @@ public class ModuliHandler implements Serializable {
 		// }
 		// }
 		this.element = session.fetch(id);
-		if ( element.getDocumento() == null )
-			element.setDocumento( new Documento() );
+		if (element.getDocumento() == null)
+			element.setDocumento(new Documento());
 		return viewPage();
 	}
 
@@ -335,8 +335,8 @@ public class ModuliHandler implements Serializable {
 		// }
 		// }
 		this.element = session.fetch(id);
-		if ( element.getDocumento() == null )
-			element.setDocumento( new Documento() );
+		if (element.getDocumento() == null)
+			element.setDocumento(new Documento());
 		return editPage();
 	}
 
@@ -348,16 +348,16 @@ public class ModuliHandler implements Serializable {
 		this.element.getDocumento().setUploadedData(event.getFile());
 		this.element.getDocumento().setData(event.getFile().getContents());
 		this.element.getDocumento().setType(event.getFile().getContentType());
-		String filename = FileUtils.createFile_("docs", event.getFile().getFileName(), event
-				.getFile().getContents());
+		String filename = FileUtils.createFile_("docs", event.getFile()
+				.getFileName(), event.getFile().getContents());
 		this.element.getDocumento().setFilename(filename);
 	}
 
 	public String removeDocument() {
-		this.element.setDocumento( new Documento() );
+		this.element.setDocumento(new Documento());
 		return null;
 	}
-	
+
 	public String cerca() {
 		refreshModel();
 		return null;
@@ -370,8 +370,10 @@ public class ModuliHandler implements Serializable {
 	private Integer modulisticaPageSize;
 
 	public LocalDataModel<Modulo> modulistica(String tipo, int pageSize) {
-		if (modulisticaModel == null || this.modulisticaTipo == null || this.modulisticaPageSize == null
-				|| !this.modulisticaTipo.equals(tipo) || this.modulisticaPageSize != pageSize) {
+		if (modulisticaModel == null || this.modulisticaTipo == null
+				|| this.modulisticaPageSize == null
+				|| !this.modulisticaTipo.equals(tipo)
+				|| this.modulisticaPageSize != pageSize) {
 			Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
 			ricerca.getOggetto().setTipo(new TipoModulo());
 			ricerca.getOggetto().getTipo().setNome(tipo);
