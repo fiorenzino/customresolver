@@ -34,7 +34,11 @@
             //Focus the editor's window
             myEditor._focusWindow();
             //Fire the execCommand for insertimage
-            myEditor.execCommand('insertimage', tar.getAttribute('src', 2));
+//          myEditor.execCommand('insertimage', tar.getAttribute('src', 2));
+            var imgSrc = tar.getAttribute('src', 2);
+            var imgFilenameExt = imgSrc.match(/[^\\/]*$/)[0];
+            var imgFilename = imgFilenameExt.match( /(.*)\.[^.]+$/ )[1];
+            myEditor.execCommand('inserthtml','<img src="'+imgSrc+'" alt="'+imgFilename+'" title="'+imgFilename+'" class="replaceMe ">');
             //Close this window
             window.close();
         }
