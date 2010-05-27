@@ -25,6 +25,7 @@ public class GallerieSession implements Serializable {
 	@Transactional
 	public Galleria update(Galleria galleria) {
 		try {
+			closeHtmlTags(galleria);
 			em.merge(galleria);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,11 +36,16 @@ public class GallerieSession implements Serializable {
 	@Transactional
 	public Galleria persist(Galleria galleria) {
 		try {
+			closeHtmlTags(galleria);
 			em.persist(galleria);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return galleria;
+	}
+
+	private void closeHtmlTags(Galleria galleria) {
+		galleria.setDescrizione( galleria.getDescrizione() == null ? null : galleria.getDescrizione().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
 	}
 
 	@Transactional

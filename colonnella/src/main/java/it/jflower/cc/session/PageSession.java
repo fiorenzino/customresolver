@@ -49,9 +49,17 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	@Override
 	@Transactional
 	protected Page prePersist(Page page) {
+		closeHtmlTags(page);
 		String idTitle = PageUtils.createPageId(page.getTitle());
 		String idFinal = testId(idTitle);
 		page.setId(idFinal);
+		return page;
+	}
+
+	@Override
+	@Transactional
+	protected Page preUpdate(Page page) {
+		closeHtmlTags(page);
 		return page;
 	}
 
@@ -111,6 +119,14 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		}
 
 		return q;
+	}
+
+	private void closeHtmlTags(Page page) {
+		page.getTemplate().setHeader( page.getTemplate().getHeader() == null ? null : page.getTemplate().getHeader().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
+		page.getTemplate().setCol1( page.getTemplate().getCol1() == null ? null : page.getTemplate().getCol1().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
+		page.getTemplate().setCol2( page.getTemplate().getCol2() == null ? null : page.getTemplate().getCol2().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
+		page.getTemplate().setCol3( page.getTemplate().getCol3() == null ? null : page.getTemplate().getCol3().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
+		page.getTemplate().setFooter( page.getTemplate().getFooter() == null ? null : page.getTemplate().getFooter().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
 	}
 
 }
