@@ -369,8 +369,12 @@ public class ModuliHandler implements Serializable {
 	private String modulisticaTipo;
 	private Integer modulisticaPageSize;
 
+	public LocalDataModel<Modulo> modulistica(int pageSize) {
+		return modulistica(null,pageSize);
+	}
+
 	public LocalDataModel<Modulo> modulistica(String tipo, int pageSize) {
-		if (modulisticaModel == null || this.modulisticaTipo == null
+		if (modulisticaModel == null || this.modulisticaTipo == null 
 				|| this.modulisticaPageSize == null
 				|| !this.modulisticaTipo.equals(tipo)
 				|| this.modulisticaPageSize != pageSize) {
