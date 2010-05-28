@@ -28,6 +28,11 @@
 	</tag>
 
 	<tag>
+		<tag-name>dynamicBreadcrumbs</tag-name>
+		<source>dynamicBreadcrumbs.xhtml</source>
+	</tag>
+
+	<tag>
 		<tag-name>uiRepeatPaged</tag-name>
 		<source>uiRepeatPaged.xhtml</source>
 	</tag>

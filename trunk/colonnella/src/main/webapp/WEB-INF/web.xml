@@ -75,7 +75,7 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>All Page</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/nessuno/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<!-- Anyone with one of the listed roles may access this area -->

@@ -25,13 +25,8 @@
 	</tag>
 
 	<tag>
-		<tag-name>modulo</tag-name>
-		<source>modulo.xhtml</source>
-	</tag>
-
-	<tag>
-		<tag-name>ultimiModuli</tag-name>
-		<source>ultimiModuli.xhtml</source>
+		<tag-name>moduli</tag-name>
+		<source>moduli.xhtml</source>
 	</tag>
 
 </facelet-taglib>

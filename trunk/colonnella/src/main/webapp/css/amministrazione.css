@@ -1,108 +1,58 @@
-ul#menu_a_2livelli {
+ul#menu_a_2livelli{
+
 	float: left;
 	margin: 2px 0 0 0;
 	padding: 0;
-	border: 0;
-	list-style: none;
-	font: 1em Arial;
-	font-weight: bold;
+	border:0;
+	list-style:none;
+	font:1em Arial;
+	font-weight:bold;
 }
+ul#menu_a_2livelli li ul li{
+	list-style:none;
+	margin:0;
+	padding:0;
 
-ul#menu_a_2livelli li ul li {
-	list-style: none;
+}
+ul#menu_a_2livelli li{
+	float:left;
 	margin: 0;
 	padding: 0;
-}
+	color:black;
 
-ul#menu_a_2livelli li {
-	float: left;
-	margin: 0;
-	padding: 0;
-	color: black;
 }
-
-ul#menu_a_2livelli a:link,ul#menu_a_2livelli a:visited {
+ul#menu_a_2livelli a:link,
+ul#menu_a_2livelli a:visited{
 	display: block;
 	padding: 4px 16px;
 	color: #000;
 	text-decoration: none;
 }
-
-ul#menu_a_2livelli a:hover,ul#menu_a_2livelli a:focus,ul#menu_a_2livelli a:active
-	{
+ul#menu_a_2livelli a:hover,
+ul#menu_a_2livelli a:focus,
+ul#menu_a_2livelli a:active{
 	background-color: #0A84CD;
 	color: #fff;
 	text-decoration: none;
 }
-
-ul#menu_a_2livelli li ul {
+ul#menu_a_2livelli li ul{
 	display: none;
-}
 
-ul#menu_a_2livelli li:hover ul {
+}
+ul#menu_a_2livelli li:hover ul{
 	display: block;
 	position: absolute;
-	z-index: 1;
-	width: 130px;
+	z-index:1;
+	width:200px;
 	padding: 0;
 	margin: 0 0 0 -1px;
-	border: 1px solid #0094D6;
+	border:1px solid #0094D6;
 	background: #fff;
-	font-size: 1em;
-	font-weight: normal;
+	font-size:1em;
+	font-weight:normal;
 }
-
 ul#menu_a_2livelli li li {
-	border-bottom: 1px solid #369;
-	width: 130px;
+	border-bottom:1px solid #369;
+	width: 200px;
+
 }
-
-.col1 {
-	width: 35%;
-	text-align: left;
-}
-
-.col2 {
-	width: 65%;
-	text-align: left;
-}
-
-.p_col1 {
-	width: 20%;
-	text-align: left;
-}
-
-.p_col2 {
-	width: 80%;
-	text-align: left;
-}
-
-.m_col1 {
-	width: 350px;
-	background-color: white;
-	vertical-align: top;
-	border: 1px solid gray;
-}
-
-.m_col2 {
-	width: 750px;
-	background-color: white;
-	vertical-align: top;
-	border: 1px solid gray;
-}
-
-.pf-picklist-source,.pf-picklist-target {
-	width: 300px;
-	height: 150px;
-}
-
-.m_label {
-	width: 250px;
-	text-align: left;
-}
-
-.m_separator {
-	width: 10px;
-}
-
-
