@@ -27,13 +27,9 @@
 			</span>
 		</div>
 
-		<div style="clear: both;">
-			<br/>
-			<ui:repeat var="var" id="uiRepeat#{id}">
-				<ui:insert />
-			</ui:repeat>
-		</div>
-		<div style="clear: both;"></div> 
+		<ui:repeat var="var" id="uiRepeat#{id}">
+			<ui:insert />
+		</ui:repeat>
 
 	</div>
 

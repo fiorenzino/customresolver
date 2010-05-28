@@ -1,6 +1,6 @@
 /*IE 7*/
 
-.listaPuntoNero{list-style:square url(../images/propostaA/puntoNeroIE.gif) inside; text-indent:-.5em;}
+.listaPuntoNero{list-style:square url(../images/puntoNeroIE.gif) inside; text-indent:-.5em;}
 
 #content{height:auto; min-height:320px;}
 
@@ -16,7 +16,7 @@ div.ArchivioImgRight{margin-bottom:15px;}
 
 div.ArchivioImgLeft a,
 div.ArchivioImgRight a,
-div.ContImgParagWP a{background:url('../images/propostaA/freccia_puntatore.gif') 3px left no-repeat;}
+div.ContImgParagWP a{background:url('../images/freccia_puntatore.gif') 3px left no-repeat;}
 
 div.cboxIntContResult div.PageNumb{height:1em;}
 
@@ -35,8 +35,8 @@ div#cruscotto div.tab span.off a{padding:5px 0;}
 
 .roundButtonGray div.roundCont p{padding:0; margin:14px 12px 0 0;}
 
-div#cruscotto div.tab span.off{text-align:center; padding:10px; font-weight:bold; background:url('../images/propostaA/off_sx.gif') center left no-repeat;}
-div#cruscotto div.tab span.off a{text-align:center; padding:5px 0; font-weight:bold; background:#FFF url('../images/propostaA/off_dx.gif') center right no-repeat;}
+div#cruscotto div.tab span.off{text-align:center; padding:10px; font-weight:bold; background:url('../images/off_sx.gif') center left no-repeat;}
+div#cruscotto div.tab span.off a{text-align:center; padding:5px 0; font-weight:bold; background:#FFF url('../images/off_dx.gif') center right no-repeat;}
 
 /*Add x cruscotto spalla dx*/
 .cruscotto {width:170px; margin-left:auto; margin-right:auto; background-color:#ebebeb}
