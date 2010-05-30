@@ -3,6 +3,7 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Page;
+import it.jflower.cc.utils.DbUtils;
 import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
@@ -28,6 +29,9 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 
 	@Override
 	public EntityManager getEm() {
+		if (em == null) {
+			this.em = DbUtils.getEM();
+		}
 		return em;
 	}
 
@@ -70,6 +74,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		while (!trovato) {
 			// System.out.println("id final: " + idFinal);
 			Page pageFind = find(idFinal);
+			// Page pageFind = find(new Long(1));
 			// System.out.println("trovato_ " + pageFind);
 			if (pageFind != null) {
 				i++;
@@ -85,36 +90,41 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	@Override
 	protected Query getRestrictions(Ricerca<Page> ricerca, String orderBy,
 			boolean count) {
-		
-		if ( ricerca == null || ricerca.getOggetto() == null )
+
+		if (ricerca == null || ricerca.getOggetto() == null)
 			return super.getRestrictions(ricerca, orderBy, count);
 
-		Map<String,Object> params = new HashMap<String, Object>();
-		
+		Map<String, Object> params = new HashMap<String, Object>();
+
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
 				count));
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
 		params.put("attivo", true);
-		
+
 		String separator = " and ";
 
-		if (ricerca.getOggetto().getTemplate() != null && ricerca.getOggetto().getTemplate().getTemplate() != null && ricerca.getOggetto().getTemplate().getTemplate().getSearchStatico() != null ) {
-			sb.append(separator).append(alias).append(".template.template.statico = :statico ");
-			params.put("statico", ricerca.getOggetto().getTemplate().getTemplate().getSearchStatico());
+		if (ricerca.getOggetto().getTemplate() != null
+				&& ricerca.getOggetto().getTemplate().getTemplate() != null
+				&& ricerca.getOggetto().getTemplate().getTemplate()
+						.getSearchStatico() != null) {
+			sb.append(separator).append(alias).append(
+					".template.template.statico = :statico ");
+			params.put("statico", ricerca.getOggetto().getTemplate()
+					.getTemplate().getSearchStatico());
 		}
-		
+
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);
 		} else {
 			logger.info("order by null");
 		}
-		
+
 		logger.info(sb.toString());
-		
+
 		Query q = getEm().createQuery(sb.toString());
-		
-		for ( String param : params.keySet() ) {
+
+		for (String param : params.keySet()) {
 			q.setParameter(param, params.get(param));
 		}
 
@@ -122,11 +132,36 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	}
 
 	private void closeHtmlTags(Page page) {
-		page.getTemplate().setHeader( page.getTemplate().getHeader() == null ? null : page.getTemplate().getHeader().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
-		page.getTemplate().setCol1( page.getTemplate().getCol1() == null ? null : page.getTemplate().getCol1().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
-		page.getTemplate().setCol2( page.getTemplate().getCol2() == null ? null : page.getTemplate().getCol2().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
-		page.getTemplate().setCol3( page.getTemplate().getCol3() == null ? null : page.getTemplate().getCol3().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
-		page.getTemplate().setFooter( page.getTemplate().getFooter() == null ? null : page.getTemplate().getFooter().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
+		page.getTemplate().setHeader(
+				page.getTemplate().getHeader() == null ? null : page
+						.getTemplate().getHeader().replaceAll(
+								"class=\"replaceMe \">",
+								"class=\"replaceMe\"/>").replaceAll("<br>",
+								"<br/>"));
+		page.getTemplate().setCol1(
+				page.getTemplate().getCol1() == null ? null : page
+						.getTemplate().getCol1().replaceAll(
+								"class=\"replaceMe \">",
+								"class=\"replaceMe\"/>").replaceAll("<br>",
+								"<br/>"));
+		page.getTemplate().setCol2(
+				page.getTemplate().getCol2() == null ? null : page
+						.getTemplate().getCol2().replaceAll(
+								"class=\"replaceMe \">",
+								"class=\"replaceMe\"/>").replaceAll("<br>",
+								"<br/>"));
+		page.getTemplate().setCol3(
+				page.getTemplate().getCol3() == null ? null : page
+						.getTemplate().getCol3().replaceAll(
+								"class=\"replaceMe \">",
+								"class=\"replaceMe\"/>").replaceAll("<br>",
+								"<br/>"));
+		page.getTemplate().setFooter(
+				page.getTemplate().getFooter() == null ? null : page
+						.getTemplate().getFooter().replaceAll(
+								"class=\"replaceMe \">",
+								"class=\"replaceMe\"/>").replaceAll("<br>",
+								"<br/>"));
 	}
 
 }

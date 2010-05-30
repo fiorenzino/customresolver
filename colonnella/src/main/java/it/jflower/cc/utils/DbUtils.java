@@ -8,6 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.enterprise.context.spi.CreationalContext;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class DbUtils {
 
 	public static Connection getConnection() {
@@ -66,4 +71,13 @@ public class DbUtils {
 
 		return null;
 	}
+
+	public static EntityManagerFactory getEMF() {
+		return Persistence.createEntityManagerFactory("colonnella");
+	}
+
+	public static EntityManager getEM() {
+		return getEMF().createEntityManager();
+	}
+
 }

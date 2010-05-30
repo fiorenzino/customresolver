@@ -55,6 +55,8 @@ public class NotizieHandler implements Serializable {
 	private int pageSize = 10;
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
+	
+	private Notizia evidenza;
 
 	private String backPage = BACK;
 
@@ -309,6 +311,14 @@ public class NotizieHandler implements Serializable {
 
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
+	}
+
+	public Notizia getEvidenza() {
+		return evidenza;
+	}
+
+	public void setEvidenza(Notizia evidenza) {
+		this.evidenza = evidenza;
 	}
 
 }
