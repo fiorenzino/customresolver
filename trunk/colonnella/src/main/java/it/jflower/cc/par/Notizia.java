@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Notizia implements Serializable {
@@ -94,6 +95,13 @@ public class Notizia implements Serializable {
 		if (this.immagini == null)
 			this.immagini = new ArrayList<Immagine>();
 		return immagini;
+	}
+
+	@Transient
+	public Immagine getFirstImmagine() {
+		if (getImmagini().size() > 0)
+			return getImmagini().get(0);
+		return new Immagine();
 	}
 
 	public void setImmagini(List<Immagine> immagini) {

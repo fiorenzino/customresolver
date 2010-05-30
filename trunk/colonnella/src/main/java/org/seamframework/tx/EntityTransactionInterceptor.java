@@ -29,7 +29,8 @@ public class EntityTransactionInterceptor implements Serializable {
 	EntityManager em;
 
 	@AroundInvoke
-	public Object aroundInvoke(InvocationContext ic) throws Exception {
+	public Object aroundInvoke(InvocationContext ic) {
+		// throws Exception {
 		logger.debug("Entity tx interceptor running...");
 		boolean toManage = (em != null && em.isOpen() && !em.getTransaction()
 				.isActive());
@@ -39,20 +40,29 @@ public class EntityTransactionInterceptor implements Serializable {
 		}
 		boolean isActive = (em != null && em.isOpen() && em.getTransaction()
 				.isActive());
+		Object result;
 		try {
-			Object result = ic.proceed();
+			result = ic.proceed();
+			return result;
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+
 			isActive = em.getTransaction().isActive();
 			if (toManage && isActive) {
 				em.getTransaction().commit();
 				logger.debug("...tx has succeeded!");
 			}
-			return result;
+			// return result;
 		} catch (Exception e) {
 			if (toManage && isActive) {
 				em.getTransaction().rollback();
 				logger.debug("...tx has failed!");
 			}
-			throw e;
+			// throw e;
 		}
+		return null;
 	}
 }
