@@ -28,5 +28,13 @@
 		<tag-name>moduli</tag-name>
 		<source>moduli.xhtml</source>
 	</tag>
+	<tag>
+		<tag-name>notiziaEvidenza</tag-name>
+		<source>notiziaEvidenza.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>ultimeAlboPretorio</tag-name>
+		<source>ultimeAlboPretorio.xhtml</source>
+	</tag>
 
 </facelet-taglib>

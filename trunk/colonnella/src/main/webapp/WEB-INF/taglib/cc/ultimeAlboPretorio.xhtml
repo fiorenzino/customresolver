@@ -9,12 +9,11 @@
 	<!-- 
 	parametri: selectedStyleClass, selectedClass, label, showpages, pagesize, cellaprimaClass
 	 -->
-	<ui:repeat var="var" value="#{notizieHandler.ultimeNotizie('',pageSize)}">
-		<div class="#{cellaprimaClass}"><a href="page/news/#{var.id}"
-			title="#{var.titolo}" class="arrowLink "> #{var.titolo} </a><br />
-		#{var.anteprima}<br />
-		<br />
-		<div class="clearLeft"></div>
-		</div>
-	</ui:repeat>
+	<div id="BoxNews"><ui:repeat var="pubblicazione"
+		value="#{pubblicazioniHandler.model}" size="10">
+
+		<p>#{pubblicazione.data}&nbsp;<a
+			href="page/pubblicazioni/#{pubblicazione.id}"
+			title="#{pubblicazione.titolo}">#{pubblicazione.titolo}</a></p>
+	</ui:repeat></div>
 </ui:composition>

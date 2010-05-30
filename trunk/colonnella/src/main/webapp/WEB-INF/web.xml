@@ -47,7 +47,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
 	<session-config>
-		<session-timeout>10</session-timeout>
+		<session-timeout>1</session-timeout>
 	</session-config>
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
@@ -75,7 +75,7 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>All Page</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/private/*</url-pattern>
 			<!--
 			<url-pattern>/nessuno/*</url-pattern>
 			-->
