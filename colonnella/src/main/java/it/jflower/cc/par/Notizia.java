@@ -97,13 +97,6 @@ public class Notizia implements Serializable {
 		return immagini;
 	}
 
-	@Transient
-	public Immagine getFirstImmagine() {
-		if (getImmagini().size() > 0)
-			return getImmagini().get(0);
-		return new Immagine();
-	}
-
 	public void setImmagini(List<Immagine> immagini) {
 		this.immagini = immagini;
 	}
