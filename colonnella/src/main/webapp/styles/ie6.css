@@ -13,7 +13,7 @@ div.contentHpR1IntTop,
 div.contentHpR1IntBot,
 div.Row1sxInt{overflow:visible;}
 
-.listaPuntoNero {list-style:square url(../images/puntoNeroIE.gif) inside; text-indent:-.5em;}
+.listaPuntoNero {list-style:square url(../images/propostaA/puntoNeroIE.gif) inside; text-indent:-.5em;}
 
 #navigation ul#menu1,
 #navigation ul#menu1 li{overflow:visible;}
@@ -61,7 +61,7 @@ div.ArchivioImgRight{margin-bottom:15px;}
 
 div.ArchivioImgLeft a,
 div.ArchivioImgRight a,
-div.ContImgParagWP a{background:url('../images/freccia_puntatore.gif') 3px left no-repeat;}
+div.ContImgParagWP a{background:url('../images/propostaA/freccia_puntatore.gif') 3px left no-repeat;}
 
 .RigaSeparazione3{height:0; margin-right:4px;}
 
