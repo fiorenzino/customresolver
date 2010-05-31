@@ -2,10 +2,8 @@ package it.jflower.cc.session;
 
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.JSFUtils;
-import it.jflower.cc.par.Modulo;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.attachment.Documento;
-import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.utils.PageUtils;
 
