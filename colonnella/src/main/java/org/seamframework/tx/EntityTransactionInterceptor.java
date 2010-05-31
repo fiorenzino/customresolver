@@ -1,5 +1,7 @@
 package org.seamframework.tx;
 
+import it.jflower.cc.utils.DbUtils;
+
 import java.io.Serializable;
 
 import javax.enterprise.inject.Any;
@@ -29,8 +31,13 @@ public class EntityTransactionInterceptor implements Serializable {
 	EntityManager em;
 
 	@AroundInvoke
-	public Object aroundInvoke(InvocationContext ic) {
-		// throws Exception {
+	public Object aroundInvoke(InvocationContext ic) 
+//	throws Exception 
+	{
+		if ( em == null ) {
+			logger.debug("Renewing ETX's EM...");
+			em = DbUtils.getEM();
+		}
 		logger.debug("Entity tx interceptor running...");
 		boolean toManage = (em != null && em.isOpen() && !em.getTransaction()
 				.isActive());
@@ -40,29 +47,21 @@ public class EntityTransactionInterceptor implements Serializable {
 		}
 		boolean isActive = (em != null && em.isOpen() && em.getTransaction()
 				.isActive());
-		Object result;
 		try {
-			result = ic.proceed();
-			return result;
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-
+			Object result = ic.proceed();
 			isActive = em.getTransaction().isActive();
 			if (toManage && isActive) {
 				em.getTransaction().commit();
 				logger.debug("...tx has succeeded!");
 			}
-			// return result;
+			return result;
 		} catch (Exception e) {
 			if (toManage && isActive) {
 				em.getTransaction().rollback();
 				logger.debug("...tx has failed!");
 			}
-			// throw e;
+			return null;
+//			throw e;
 		}
-		return null;
 	}
 }

@@ -357,7 +357,7 @@ public class PageHandler implements Serializable {
 	 * e non in outputLink causerei la morte di hibernate in caso di errori nel parser facelet
 	 * @return
 	 */
-	@Transactional
+//	@Transactional
 	public String salvaPerAnteprimaRisultato() {
 		if ( this.getElement().getId() == null ) 
 			save();
