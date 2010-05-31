@@ -3,9 +3,11 @@ package it.jflower.cc.par;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -60,6 +62,8 @@ public class Page implements Serializable {
 		this.title = title;
 	}
 
+	@Lob
+	@Column(length = 1024)
 	public String getDescription() {
 		return description;
 	}
