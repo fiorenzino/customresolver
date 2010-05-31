@@ -3,6 +3,7 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
+import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.attachment.Documento;
@@ -48,6 +49,9 @@ public class PubblicazioniHandler implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
+
+	@Inject
+	ParamsHandler paramsHandler;
 
 	// ------------------------------------------------
 
@@ -395,4 +399,35 @@ public class PubblicazioniHandler implements Serializable {
 		refreshModel();
 		return null;
 	}
+	
+	// -----------------------------------------------------------------
+	
+	private LocalDataModel<Pubblicazione> attiModel;
+	private String attiTipo;
+	private Integer attiPageSize;
+
+	public LocalDataModel<Pubblicazione> atti(int pageSize) {
+		return atti(null, pageSize);
+	}
+
+	private void leggiParams() {
+		String id = paramsHandler.getParam("id");
+		logger.info("TROVATO ID: " + id);
+	}
+
+	public LocalDataModel<Pubblicazione> atti(String tipo, int pageSize) {
+		leggiParams();
+		if (attiModel == null || this.attiTipo == null
+				|| this.attiPageSize == null
+				|| !this.attiTipo.equals(tipo)
+				|| this.attiPageSize != pageSize) {
+			Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(Pubblicazione.class);
+			ricerca.getOggetto().setTipo(new TipoPubblicazione());
+			ricerca.getOggetto().getTipo().setNome(tipo);
+			attiModel = new LocalDataModel<Pubblicazione>(pageSize, ricerca,
+					session);
+		}
+		return attiModel;
+	}
+
 }
