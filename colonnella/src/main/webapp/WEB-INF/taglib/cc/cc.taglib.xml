@@ -16,12 +16,19 @@
 
 	<tag>
 		<tag-name>notizia</tag-name>
-		<source>notizia.xhtml</source>
+		<source>notizie/notizia.xhtml</source>
 	</tag>
-
+	<tag>
+		<tag-name>notizie</tag-name>
+		<source>notizie/notizie.xhtml</source>
+	</tag>
 	<tag>
 		<tag-name>ultimeNotizie</tag-name>
-		<source>ultimeNotizie.xhtml</source>
+		<source>notizie/ultimeNotizie.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>notiziaEvidenza</tag-name>
+		<source>notizie/notiziaEvidenza.xhtml</source>
 	</tag>
 
 	<tag>
@@ -31,10 +38,6 @@
 	<tag>
 		<tag-name>pubblicazioni</tag-name>
 		<source>pubblicazioni.xhtml</source>
-	</tag>
-	<tag>
-		<tag-name>notiziaEvidenza</tag-name>
-		<source>notiziaEvidenza.xhtml</source>
 	</tag>
 	<tag>
 		<tag-name>ultimeAlboPretorio</tag-name>
