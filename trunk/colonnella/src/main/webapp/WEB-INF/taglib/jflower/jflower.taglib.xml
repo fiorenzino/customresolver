@@ -23,6 +23,24 @@
 	</tag>
 
 	<tag>
+		<tag-name>pagerWithParams</tag-name>
+		<component>
+			<component-type>javax.faces.Command</component-type>
+			<renderer-type>uiRepeatPagerWithParams</renderer-type>
+		</component>
+	</tag>
+
+	<tag>
+		<tag-name>uiRepeatPaged</tag-name>
+		<source>uiRepeatPaged.xhtml</source>
+	</tag>
+
+	<tag>
+		<tag-name>uiRepeatPagedWithParams</tag-name>
+		<source>uiRepeatPagedWithParams.xhtml</source>
+	</tag>
+
+	<tag>
 		<tag-name>breadcrumbs</tag-name>
 		<source>breadcrumbs.xhtml</source>
 	</tag>
@@ -30,11 +48,6 @@
 	<tag>
 		<tag-name>dynamicBreadcrumbs</tag-name>
 		<source>dynamicBreadcrumbs.xhtml</source>
-	</tag>
-
-	<tag>
-		<tag-name>uiRepeatPaged</tag-name>
-		<source>uiRepeatPaged.xhtml</source>
 	</tag>
 
 	<function>
