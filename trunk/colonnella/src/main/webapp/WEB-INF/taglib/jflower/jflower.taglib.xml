@@ -32,22 +32,22 @@
 
 	<tag>
 		<tag-name>uiRepeatPaged</tag-name>
-		<source>uiRepeatPaged.xhtml</source>
+		<source>pager/uiRepeatPaged.xhtml</source>
 	</tag>
 
 	<tag>
 		<tag-name>uiRepeatPagedWithParams</tag-name>
-		<source>uiRepeatPagedWithParams.xhtml</source>
+		<source>pager/uiRepeatPagedWithParams.xhtml</source>
 	</tag>
 
 	<tag>
 		<tag-name>breadcrumbs</tag-name>
-		<source>breadcrumbs.xhtml</source>
+		<source>breadcrumbs/breadcrumbs.xhtml</source>
 	</tag>
 
 	<tag>
 		<tag-name>dynamicBreadcrumbs</tag-name>
-		<source>dynamicBreadcrumbs.xhtml</source>
+		<source>breadcrumbs/dynamicBreadcrumbs.xhtml</source>
 	</tag>
 
 	<function>

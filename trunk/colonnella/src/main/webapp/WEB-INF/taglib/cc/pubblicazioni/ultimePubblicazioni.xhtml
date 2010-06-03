@@ -9,10 +9,12 @@
 	<!-- 
 	parametri: selectedStyleClass, selectedClass, label, showpages, pagesize, cellaprimaClass
 	 -->
-	<div id="BoxNews"><ui:repeat var="pubblicazione"
-		value="#{pubblicazioniHandler.model}" size="10">
+	<div id="BoxNews">
+		
+		<ui:repeat var="pubblicazione"
+		value="#{pubblicazioniHandlerRequest.loadPage('','',0,10)}">
 
-		<p>#{pubblicazione.data}&nbsp;<a
+		<p>#{pubblicazione.data} <a
 			href="page/pubblicazioni/#{pubblicazione.id}"
 			title="#{pubblicazione.titolo}">#{pubblicazione.titolo}</a></p>
 	</ui:repeat></div>
