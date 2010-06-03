@@ -4,19 +4,20 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
+	xmlns:cc="http://colonnella/taglib" 
+	xmlns:flw="http://jflower/taglib">
 
 	<div class="BoxRedTitleBot">
 	<div class="txt">
 
 	<div><a href="#" title="foto_1"><img
-		src="images/imgEvidenzaFissa.jpg" alt="foto_1"
+		src="#{request.contextPath}/images/imgEvidenzaFissa.jpg" alt="foto_1"
 		class="alignL" /></a></div>
 	<a href="#" title="#{notizieHandler.evidenza.titolo}">#{notizieHandler.evidenza.titolo}</a>
 	<br />
 	<br />
 	#{notizieHandler.evidenza.anteprima}
 	<p style="font-style: italic;"><a
-		href="page/news/#{notizieHandler.evidenza.id}"
+		href="#{request.contextPath}/pagine/#{notizieHandler.evidenza.id}"
 		title="#{notizieHandler.evidenza.titolo}">Continua...</a></p>
 </ui:composition>
