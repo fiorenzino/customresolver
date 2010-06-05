@@ -62,9 +62,20 @@ public class PropertiesHandler implements Serializable {
 
 	private SelectItem[] staticoDinamicoItems = new SelectItem[] {};
 
+	private SelectItem[] ruoliItems = new SelectItem[] {};
+
 	public PropertiesHandler() {
 		super();
 		reset();
+	}
+
+	public SelectItem[] getRuoliItems() {
+		if (ruoliItems == null || ruoliItems.length == 0) {
+			ruoliItems = new SelectItem[2];
+			ruoliItems[0] = new SelectItem(0, "admin");
+			ruoliItems[1] = new SelectItem(1, "user");
+		}
+		return ruoliItems;
 	}
 
 	public SelectItem[] getFileTypeItems() {

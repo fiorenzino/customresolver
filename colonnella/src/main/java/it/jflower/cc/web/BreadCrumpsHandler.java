@@ -37,6 +37,8 @@ public class BreadCrumpsHandler implements Serializable {
 				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
 						+ "\">" + label + "</a> ");
 				sb.append("<span class=\"freccia\">&gt;</span> ");
+			} else if (crumbs[i].trim().equals("pagine")) {
+				base += "/" + crumbs[i];
 			} else if (!crumbs[i].trim().equals("pagine")) {
 				base += "/" + crumbs[i];
 				String label = crumbs[i];

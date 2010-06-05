@@ -6,7 +6,6 @@ import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.PubblicazioniSession;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,11 +19,15 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	String filtro;
 	int currentpage;
+	String id;
 
 	@Inject
 	PubblicazioniSession pubblicazioniSession;
+
 	@Inject
 	ParamsHandler paramsHandler;
+
+	private Pubblicazione pubblicazione;
 
 	public PubblicazioniHandlerRequest() {
 	}
@@ -41,6 +44,9 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 	public void init() {
 		this.filtro = paramsHandler.getParam("filtro");
 		this.currentpage = 0;
+		this.id = paramsHandler.getParam("id");
+		if (this.id != null)
+			this.pubblicazione = pubblicazioniSession.find(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
 					.getParam("currentpage"));
@@ -51,10 +57,10 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	@SuppressWarnings("unchecked")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
-		if ("notizie".equals(tipo)) {
-			return ultimePubblicazioni(filtro, startRow, pageSize);
-		}
-		return new ArrayList();
+		// if ("notizie".equals(tipo)) {
+		return ultimePubblicazioni(filtro, startRow, pageSize);
+		// }
+		// return new ArrayList();
 	}
 
 	public int totalSize(String tipo, String filtro) {
@@ -85,6 +91,14 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
 		}
 		return pubblicazioniSession.getListSize(ricerca);
+	}
+
+	public Pubblicazione getPubblicazione() {
+		return pubblicazione;
+	}
+
+	public void setPubblicazione(Pubblicazione pubblicazione) {
+		this.pubblicazione = pubblicazione;
 	}
 
 }

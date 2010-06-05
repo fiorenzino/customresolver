@@ -111,20 +111,20 @@ public class ResourceHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		boolean lazy = true;
+		// boolean lazy = true;
 		// setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
-		if (!lazy)
-			setModel(new ListDataModel<Resource>(session.getList(ricerca, 0,
-					pageSize)));
-		else
-			setModel(new LazyDataModel<Resource>(session.getListSize(ricerca)) {
-				private static final long serialVersionUID = 1L;
+		// if (!lazy)
+		// setModel(new ListDataModel<Resource>(session.getList(ricerca, 0,
+		// pageSize)));
+		// else
+		setModel(new LazyDataModel<Resource>(session.getListSize(ricerca)) {
+			private static final long serialVersionUID = 1L;
 
-				@Override
-				public List<Resource> fetchLazyData(int first, int pageSize) {
-					return session.getList(ricerca, first, pageSize);
-				}
-			});
+			@Override
+			public List<Resource> fetchLazyData(int first, int pageSize) {
+				return session.getList(ricerca, first, pageSize);
+			}
+		});
 	}
 
 	/**
@@ -351,10 +351,10 @@ public class ResourceHandler implements Serializable {
 		}
 		return imgModel;
 	}
+
 	public void setImgModel(LocalDataModel<Resource> object) {
 		this.imgModel = object;
 	}
-
 
 	public Integer proportionalHeight(String url, int maxWidth, int maxHeight) {
 		return ImageUtils.getImageHeightProportional("img" + File.separator

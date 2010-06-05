@@ -33,11 +33,15 @@ public class PageHandler implements Serializable {
 	// --------------------------------------------------------
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
-	
-	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-	public static String VIEW = "/private/pagine/scheda-pagina.xhtml"+FACES_REDIRECT;
-	public static String LIST = "/private/pagine/lista-pagine.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml"+FACES_REDIRECT;
+
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String VIEW = "/private/pagine/scheda-pagina.xhtml"
+			+ FACES_REDIRECT;
+	public static String LIST = "/private/pagine/lista-pagine.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml"
+			+ FACES_REDIRECT;
 
 	// ------------------------------------------------
 
@@ -53,6 +57,8 @@ public class PageHandler implements Serializable {
 
 	@Inject
 	TemplateSession templateSession;
+
+	private Long idTemplate;
 
 	// --------------------------------------------------------
 
@@ -117,8 +123,8 @@ public class PageHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-//		setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
-		setModel( new LocalLazyDataModel<Page>( ricerca, session ));
+		// setModel(new LocalDataModel<Page>(pageSize, ricerca, getSession()));
+		setModel(new LocalLazyDataModel<Page>(ricerca, session));
 	}
 
 	/**
@@ -201,7 +207,7 @@ public class PageHandler implements Serializable {
 		reset();
 		return true;
 	}
-	
+
 	public String cerca() {
 		refreshModel();
 		return null;
@@ -238,7 +244,7 @@ public class PageHandler implements Serializable {
 		Page p = new Page();
 		p.setTemplate(new TemplateImpl());
 		p.getTemplate().setTemplate(new Template());
-		// settaggi 
+		// settaggi
 		this.element = p;
 		// vista di destinazione
 		return editPage();
@@ -249,7 +255,8 @@ public class PageHandler implements Serializable {
 	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
-		element.getTemplate().setTemplate( templateSession.find( element.getTemplate().getTemplate().getId() ) );
+		Template template = templateSession.find(getIdTemplate());
+		element.getTemplate().setTemplate(template);
 		// salvataggio
 		element = getSession().persist(element);
 		// refresh locale
@@ -263,23 +270,27 @@ public class PageHandler implements Serializable {
 	@Transactional
 	public String update() {
 		// recupero dati in input
-		element.getTemplate().setTemplate( templateSession.find( element.getTemplate().getTemplate().getId() ) );
+		Template template = templateSession.find(getIdTemplate());
+		element.getTemplate().setTemplate(template);
+
 		// salvataggio
 		getSession().update(element);
 		// refresh locale
 		Page result = getSession().fetch(getId(element));
-		if ( result != null ) {
+		if (result != null) {
 			refreshModel();
 			// altre dipendenze
 			propertiesHandler.setPageItems(null);
 			// vista di destinzione
 			return viewPage();
-		}
-		else {
+		} else {
 			// messaggio di errore
-			FacesContext.getCurrentInstance().addMessage(
-					"titolo",
-					new FacesMessage("Attenzione: titolo di pagina non valido o gia' utilizzato!"));
+			FacesContext
+					.getCurrentInstance()
+					.addMessage(
+							"titolo",
+							new FacesMessage(
+									"Attenzione: titolo di pagina non valido o gia' utilizzato!"));
 			// vista di destinzione
 			return null;
 		}
@@ -313,56 +324,68 @@ public class PageHandler implements Serializable {
 		// vista di arrivo
 		return viewPage();
 	}
-	
+
 	// -----------------------------------------------------
 
-	
-//	public List<Page> getList() {
-//		return session.getAllList();
-//	}
+	// public List<Page> getList() {
+	// return session.getAllList();
+	// }
 
 	public String viewElement(Object id) {
-//		for (Page t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
+		// for (Page t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
 		this.element = session.fetch(id);
 		return viewPage();
 	}
 
 	public String modElement(Object id) {
-//		for (Page t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
+		// for (Page t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
 		this.element = session.fetch(id);
+		this.idTemplate = this.element.getTemplate().getTemplate().getId();
 		return editPage();
 	}
 
 	public void cambioTemplate(ActionEvent event) {
-		this.element.getTemplate().setTemplate( templateSession.find(this.element.getTemplate().getTemplate().getId()));
+		// Long id = this.element.getTemplate().getTemplate().getId();
+		Template template = templateSession.find(getIdTemplate());
+		this.element.getTemplate().setTemplate(template);
 	}
 
 	public String anteprimaTestuale() {
 		PageUtils.generateContent(getElement());
-		return "/private/pagine/anteprima-testuale.xhtml"+FACES_REDIRECT;
+		return "/private/pagine/anteprima-testuale.xhtml" + FACES_REDIRECT;
 	}
-	
+
 	/**
-	 * Necessario salvare per l'anteprima, ma se ridirigessi all'uscita di questo metodo
-	 * e non in outputLink causerei la morte di hibernate in caso di errori nel parser facelet
+	 * Necessario salvare per l'anteprima, ma se ridirigessi all'uscita di
+	 * questo metodo e non in outputLink causerei la morte di hibernate in caso
+	 * di errori nel parser facelet
+	 * 
 	 * @return
 	 */
-//	@Transactional
+	// @Transactional
 	public String salvaPerAnteprimaRisultato() {
-		if ( this.getElement().getId() == null ) 
+		if (this.getElement().getId() == null)
 			save();
 		else
 			update();
 		return null;
+	}
+
+	public Long getIdTemplate() {
+		return idTemplate;
+	}
+
+	public void setIdTemplate(Long idTemplate) {
+		this.idTemplate = idTemplate;
 	}
 }

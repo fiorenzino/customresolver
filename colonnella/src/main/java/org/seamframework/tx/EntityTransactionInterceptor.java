@@ -31,10 +31,10 @@ public class EntityTransactionInterceptor implements Serializable {
 	EntityManager em;
 
 	@AroundInvoke
-	public Object aroundInvoke(InvocationContext ic) 
-//	throws Exception 
+	public Object aroundInvoke(InvocationContext ic)
+	// throws Exception
 	{
-		if ( em == null ) {
+		if (em == null) {
 			logger.debug("Renewing ETX's EM...");
 			em = DbUtils.getEM();
 		}
@@ -57,11 +57,15 @@ public class EntityTransactionInterceptor implements Serializable {
 			return result;
 		} catch (Exception e) {
 			if (toManage && isActive) {
-				em.getTransaction().rollback();
+				// em.getTransaction().rollback();
+				if (em != null)
+					em.clear();
+				// em = DbUtils.getEM();
+
 				logger.debug("...tx has failed!");
 			}
 			return null;
-//			throw e;
+			// throw e;
 		}
 	}
 }

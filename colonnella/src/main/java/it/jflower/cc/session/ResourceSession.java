@@ -48,9 +48,9 @@ implements Serializable {
 //			fos.close();
 			String filename = null;
 			if ( "img".equals(object.getTipo()) )
-				filename = FileUtils.createImage_(object.getTipo(), object.getId(), object.getBytes());
+				filename = FileUtils.createImage_(object.getTipo(), object.getNome(), object.getBytes());
 			else
-				filename = FileUtils.createFile_(object.getTipo(), object.getId(), object.getBytes());
+				filename = FileUtils.createFile_(object.getTipo(), object.getNome(), object.getBytes());
 			object.setNome(filename);
 			object.setId(object.getTipo()+File.separator+object.getNome());
 			return object;

@@ -2,6 +2,7 @@ package it.jflower.cc.utils;
 
 import it.jflower.cc.par.Page;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,14 +13,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DbUtils {
+public class DbUtils implements Serializable {
 
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/weldtest";
-			Connection con = DriverManager.getConnection(url, "weldtest",
-					"weldtest");
+			String url = "jdbc:mysql://localhost:3306/colonnella";
+			Connection con = DriverManager.getConnection(url, "colonnella",
+					"colonnella");
 			return con;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
