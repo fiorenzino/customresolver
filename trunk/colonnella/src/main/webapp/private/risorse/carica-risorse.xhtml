@@ -18,30 +18,31 @@
 					fileUploadListener="#{resourceHandler.handleFileUpload}"
 					description="Seleziona i file da caricare" multiple="true"
 					allowTypes="*" update="commands,resourceList" />
-			<br />
-			<br />
-			
-			<h:panelGroup id="resourceList">
-								<p:dataTable var="filename" rowIndexVar="row"
-						value="#{resourceHandler.uploadedResources}" >
+				<br />
+				<br />
+
+				<h:panelGroup id="resourceList">
+					<p:dataTable var="filename" rowIndexVar="row"
+						value="#{resourceHandler.uploadedResources}">
 						<p:column style="width: 100%;">
 							<f:facet name="header">file da confermare</f:facet>
 							<h:outputText value="#{resourceHandler.getResource(row).nome}" />
 						</p:column>
 						<p:column style="width: 100%;">
 							<f:facet name="header">dimensione</f:facet>
-							<h:outputText value="#{resourceHandler.getResource(row).size} byte" />
+							<h:outputText
+								value="#{resourceHandler.getResource(row).size} byte" />
 						</p:column>
 						<p:column style="width: 100%;">
 							<f:facet name="header">anteprima</f:facet>
-							<h:graphicImage value="util/resourcePreview.jsp?row=#{row}" rendered="#{resourceHandler.getResource(row).tipo == 'img'}"/>
-							<h:outputLink value="util/resourcePreview.jsp?row=#{row}" rendered="#{not resourceHandler.getResource(row).tipo == 'img'}"/>
+							<h:graphicImage value="util/resourcePreview.jsp?row=#{row}"
+								rendered="#{resourceHandler.getResource(row).tipo == 'img'}" />
+							<h:outputLink value="util/resourcePreview.jsp?row=#{row}"
+								rendered="#{not resourceHandler.getResource(row).tipo == 'img'}" />
 						</p:column>
 					</p:dataTable>
-			</h:panelGroup>
-			</p:panel> 
-			
-			<h:panelGroup id="commands">
+				</h:panelGroup>
+			</p:panel> <h:panelGroup id="commands">
 				<h:panelGrid columns="4">
 					<h:commandButton action="#{resourceHandler.save}" value="Conferma"
 						rendered="#{empty resourceHandler.element.id and not empty resourceHandler.uploadedResources}" />

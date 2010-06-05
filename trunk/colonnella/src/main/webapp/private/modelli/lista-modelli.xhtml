@@ -12,8 +12,8 @@
 		<h:form id="central">
 			<center><p:panel header="Lista Modelli">
 				<h:panelGrid columns="3" rendered="true">
-					<h:outputLabel for="staticita" value="Tipo di modello: " />
-					<h:selectOneMenu id="staticita"
+					<h:outputLabel for="tipo" value="Tipo di modello: " />
+					<h:selectOneMenu id="tipo"
 						value="#{templateHandler.ricerca.oggetto.searchStatico}"
 						style="width: 400px;">
 						<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
@@ -23,7 +23,7 @@
 				</h:panelGrid>
 				<br />
 
-				<p:dataTable pdate="templatesList" rowIndexVar="rowIndex" var="t"
+				<p:dataTable id="templatesList" rowIndexVar="rowIndex" var="t"
 					value="#{templateHandler.model}" rows="#{templateHandler.pageSize}"
 					paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">

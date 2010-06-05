@@ -7,10 +7,10 @@
 	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
 
 	<flw:uiRepeatPagedWithParams id="news" label="#{label}" 
-		filtro="#{uiRepeatWithParamsHandler.filtro}" currentpage="#{uiRepeatWithParamsHandler.currentpage}" 
+		filtro="#{newsHandlerRequest.filtro}" currentpage="#{newsHandlerRequest.currentpage}" 
 		tipo="notizie"
 		selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-		handler="#{uiRepeatWithParamsHandler}"
+		handler="#{newsHandlerRequest}"
 		width="100%">
 
 		<div class="#{cellaprimaClass}">

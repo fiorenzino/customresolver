@@ -9,17 +9,18 @@
 <f:view contentType="text/html">
 	<h:head>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<ui:define name="title">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title><ui:define name="title">
 			<h:outputText
 				value="Comune di Colonnella - Amministrazione del portale" />
-		</ui:define>
+		</ui:define></title>
 		<link rel="stylesheet" href="#{request.contextPath}/styles/style.css"
 			media="screen" />
 		<link rel="stylesheet" href="#{request.contextPath}/styles/home.css"
 			media="screen" />
 		<link rel="stylesheet"
-			href="#{request.contextPath}/styles/amministrazione.css" media="screen" />
+			href="#{request.contextPath}/styles/amministrazione.css"
+			media="screen" />
 		<!--[if IE 7]><link rel="stylesheet" href="#{request.contextPath}/styles/ie7.css" media="screen" /><![endif]-->
 		<!--[if IE 6]><link rel="stylesheet" href="#{request.contextPath}/styles/ie6.css" media="screen" /><![endif]-->
 		<!--[if IE 5]><link rel="stylesheet" href="#{request.contextPath}/styles/ie5x.css" media="screen" /><![endif]-->
@@ -89,25 +90,18 @@
 		<div class="clearDiv" id="mainContent"></div>
 		<!-- importante --> <!-- CONTENUTI -->
 		<div id="content"><!-- SINISTRA -->
-			<div class="FSNewsLeft">
-				<div class="FSNewsLeftInt">
-				<!-- BOX 2 SX -->
-					
-		<!-- /BOX 2 SX --></div>
+		<div class="FSNewsLeft">
+		<div class="FSNewsLeftInt"><!-- BOX 2 SX --> <!-- /BOX 2 SX --></div>
 		</div>
 		<!-- /SINISTRA --> <!-- /destra -->
-		<div class="contentRight"><!-- Menu di navigazione -->
-		
-		<!-- /BREADCRUMBS -->
-		<div id="menuNav">
-		<!-- <span class="navigator"> <a
+		<div class="contentRight"><!-- Menu di navigazione --> <!-- /BREADCRUMBS -->
+		<div id="menuNav"><!-- <span class="navigator"> <a
 			title="Home" href="#{request.contextPath}/">Home</a> <span
 			class="freccia">&gt;</span> <a title="Turismo"
 			href="#{request.contextPath}/private/">Amministrazione</a> </span>
-		 -->
-		<flw:breadcrumbs/>
-		 
-		 
+		 --> <flw:breadcrumbs />
+
+
 
 		<div class="clearDiv"></div>
 		</div>

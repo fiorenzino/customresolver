@@ -4,8 +4,7 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:cc="http://colonnella/taglib" 
-	xmlns:flw="http://jflower/taglib">
+	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
 
 	<!-- 
 	parametri: selectedStyleClass, selectedClass, label, showpages, pagesize, cellaprimaClass
@@ -20,11 +19,11 @@
 			<th scope="col" class="topleftth">Nome</th>
 			<th scope="col" class="titoloth">Allegato</th>
 		</tr>
-
-		<flw:uiRepeatPaged id="moduli" showpages="#{showpages}"
-			label="#{label}" selectedStyleClass="#{selectedStyleClass}"
-			styleClass="#{styleClass}"
-			model="#{moduliHandler.modulistica(pagesize)}" width="100%">
+		<flw:uiRepeatPagedWithParams id="news" label="#{label}"
+			filtro="#{moduliHandlerRequest.filtro}"
+			currentpage="#{moduliHandlerRequest.currentpage}" tipo=""
+			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
+			handler="#{moduliHandlerRequest}" width="100%">
 
 			<tr>
 				<td class="#{cellaprimaClass}">#{var.tipo.nome}</td>
@@ -37,8 +36,7 @@
 					style="border: 0" /></a></td>
 			</tr>
 
-		</flw:uiRepeatPaged>
-
+		</flw:uiRepeatPagedWithParams>
 	</table>
 
 </ui:composition>

@@ -1,6 +1,6 @@
 
 <%
 	response.sendRedirect(request.getContextPath()
-			+ "/pagine/index");
+			+ "/private/amministrazione.jsf");
 %>
 

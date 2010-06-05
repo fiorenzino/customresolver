@@ -1,3 +1,4 @@
+
 <%
 	try {
 		HttpSession sess = request.getSession();
@@ -7,5 +8,6 @@
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	response.sendRedirect("index.jsp");
+	response.sendRedirect(request.getContextPath()
+			+ "/amministrazione.jsp");
 %>
