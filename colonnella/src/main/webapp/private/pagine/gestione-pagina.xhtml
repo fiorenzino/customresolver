@@ -40,7 +40,7 @@
 					<h:panelGroup id="template">
 						<h:selectOneMenu
 							rendered="#{pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.template.id}"
+							value="#{pageHandler.idTemplate}"
 							required="true" style="width: 100%">
 							<f:selectItems value="#{propertiesHandler.templateStaticiItems}" />
 							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
@@ -48,7 +48,7 @@
 						</h:selectOneMenu>
 						<h:selectOneMenu
 							rendered="#{not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.element.template.template.id}"
+							value="#{pageHandler.idTemplate}"
 							required="true" style="width: 100%">
 							<f:selectItems value="#{propertiesHandler.templateDinamiciItems}" />
 							<p:ajax actionListener="#{pageHandler.cambioTemplate}"

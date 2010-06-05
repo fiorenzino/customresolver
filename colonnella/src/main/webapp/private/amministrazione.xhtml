@@ -20,7 +20,8 @@
 			<br />
 			<br />
 			<p:panel header="Gestione Modelli di Pagina"
-				rendered="#{templateHandler.clear}" style="width:200px; float:left;">
+				rendered="#{templateHandler.clear and loginHandler.admin}"
+				style="width:200px; float:left;">
 				<div style="height: 50px;"><h:commandLink
 					action="#{templateHandler.loadModel}"
 					value="lista dei modelli disponibili" /> <br />
@@ -29,7 +30,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Pagine" style="width:200px; float:left;"
-				rendered="#{pageHandler.clear}">
+				rendered="#{pageHandler.clear and loginHandler.admin}">
 				<div style="height: 50px;"><h:commandLink
 					action="#{pageHandler.loadModel}"
 					value="lista delle pagine disponibili" /> <br />
@@ -40,7 +41,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Menu" style="width: 200px; float: left;"
-				rendered="#{menuHandler.clear}">
+				rendered="#{menuHandler.clear and loginHandler.admin}">
 				<div style="height: 50px;"><h:commandLink
 					action="#{menuHandler.loadModel}" value="associa pagine e percorsi" />
 				<br />
@@ -49,7 +50,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione img,js,swf,css"
-				rendered="#{resourceHandler.clear}"
+				rendered="#{resourceHandler.clear and loginHandler.admin}"
 				style="width: 200px; float: left;">
 				<div style="height: 27px;"><h:commandLink
 					action="#{resourceHandler.loadModel}" value="lista delle risorse" />

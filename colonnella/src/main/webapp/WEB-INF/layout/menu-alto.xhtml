@@ -28,8 +28,10 @@
 			<li><h:commandLink
 				action="/private/pagine/lista-pagine.jsf?faces-redirect=true"
 				value="lista" /></li>
-			<li><h:commandLink action="#{pagesHandler.creaPagina}"
-				value="nuova" /></li>
+			<li><h:commandLink action="#{pageHandler.addPaginaStatica}"
+				value="nuova statica" /></li>
+			<li><h:commandLink action="#{pageHandler.addPaginaDinamica}"
+				value="nuova dinamica" /></li>
 		</ul>
 
 		</li>
