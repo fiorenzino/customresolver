@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<version>1.0</version>
 
-	<name>colonnella</name> 
+	<name>colonnella</name>
 	<description>Sito del comune di colonnella</description>
 
 	<build>
@@ -41,7 +41,7 @@
 							<files>
 								<file>${basedir}/build.properties</file>
 							</files>
-					 	</configuration>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -58,9 +58,8 @@
 						</goals>
 						<configuration>
 							<tasks>
-								<mkdir dir="${deploy.dir}/${project.artifactId}"/>
-								<copy overwrite="false"
-									todir="${deploy.dir}/${project.artifactId}">
+								<mkdir dir="${deploy.dir}/${project.artifactId}" />
+								<copy overwrite="false" todir="${deploy.dir}/${project.artifactId}">
 									<fileset dir="${basedir}/src/main/webapp">
 										<include name="**/*.xml" />
 										<include name="**/*.xhtml" />
@@ -242,6 +241,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>jtidy</groupId>
+			<artifactId>jtidy</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>el-impl</artifactId>
