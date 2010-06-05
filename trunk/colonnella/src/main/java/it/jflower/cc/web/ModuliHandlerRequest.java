@@ -6,7 +6,6 @@ import it.jflower.cc.par.Modulo;
 import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.ModuliSession;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -51,22 +50,22 @@ public class ModuliHandlerRequest implements UiRepeatInterface {
 
 	@SuppressWarnings("unchecked")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
-		if ("notizie".equals(tipo)) {
-			return ultimeNotizie(filtro, startRow, pageSize);
-		}
-		return new ArrayList();
+//		if ("notizie".equals(tipo)) {
+			return ultimiModuli(filtro, startRow, pageSize);
+		// }
+		// return new ArrayList();
 	}
 
 	public int totalSize(String tipo, String filtro) {
 		if ("notizie".equals(tipo)) {
-			return totaleNotizie(filtro);
+			return totaleModuli(filtro);
 		}
 		return 0;
 	}
 
 	// -----------------------------------------------------------------------------------
 
-	private List<Modulo> ultimeNotizie(String filtroNomeTipo, int startRow,
+	private List<Modulo> ultimiModuli(String filtroNomeTipo, int startRow,
 			int pageSize) {
 		Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
 		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
@@ -76,7 +75,7 @@ public class ModuliHandlerRequest implements UiRepeatInterface {
 		return moduliSession.getList(ricerca, startRow, pageSize);
 	}
 
-	private int totaleNotizie(String filtroNomeTipo) {
+	private int totaleModuli(String filtroNomeTipo) {
 		Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
 		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoModulo());
