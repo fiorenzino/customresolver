@@ -59,6 +59,16 @@
 					value="aggiungi nuovo" /></div>
 			</p:panel>
 
+			<p:panel header="Log Operazioni"
+				rendered="#{operazioniLogHandler.clear and loginHandler.admin}"
+				style="width: 200px; float: left;">
+				<div style="height: 27px;"><h:commandLink
+					action="#{operazioniLogHandler.loadModel}"
+					value="lista delle risorse" /> <br />
+				<br />
+				</div>
+			</p:panel>
+
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Tipi Informazione"
