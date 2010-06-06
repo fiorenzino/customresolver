@@ -20,6 +20,8 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 
 	String filtro;
 	int currentpage;
+	String id;
+	private Notizia notizia;
 
 	@Inject
 	NotizieSession notizieSession;
@@ -41,6 +43,9 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 	public void init() {
 		this.filtro = paramsHandler.getParam("filtro");
 		this.currentpage = 0;
+		this.id = paramsHandler.getParam("id");
+		if (this.id != null)
+			this.notizia = notizieSession.find(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
 					.getParam("currentpage"));
@@ -83,6 +88,16 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
 		}
 		return notizieSession.getListSize(ricerca);
+	}
+
+	public Notizia getNotizia() {
+		if (this.notizia == null)
+			this.notizia = notizieSession.findLast();
+		return notizia;
+	}
+
+	public void setNotizia(Notizia notizia) {
+		this.notizia = notizia;
 	}
 
 }

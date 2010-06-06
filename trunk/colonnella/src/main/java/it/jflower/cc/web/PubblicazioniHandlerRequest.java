@@ -20,14 +20,13 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 	String filtro;
 	int currentpage;
 	String id;
+	private Pubblicazione pubblicazione;
 
 	@Inject
 	PubblicazioniSession pubblicazioniSession;
 
 	@Inject
 	ParamsHandler paramsHandler;
-
-	private Pubblicazione pubblicazione;
 
 	public PubblicazioniHandlerRequest() {
 	}
@@ -94,6 +93,8 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 	}
 
 	public Pubblicazione getPubblicazione() {
+		if (this.pubblicazione == null)
+			this.pubblicazione = pubblicazioniSession.findLast();
 		return pubblicazione;
 	}
 

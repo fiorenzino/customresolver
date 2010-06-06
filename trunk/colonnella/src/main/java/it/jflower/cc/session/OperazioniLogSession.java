@@ -2,9 +2,7 @@ package it.jflower.cc.session;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
-import it.jflower.cc.par.Notizia;
-import it.jflower.cc.par.Pubblicazione;
-import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.par.OperazioniLog;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,7 +17,7 @@ import javax.persistence.Query;
 
 @Named
 @SessionScoped
-public class NotizieSession extends SuperSession<Notizia> implements
+public class OperazioniLogSession extends SuperSession<OperazioniLog> implements
 		Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,8 +31,8 @@ public class NotizieSession extends SuperSession<Notizia> implements
 	}
 
 	@Override
-	protected Class<Notizia> getEntityType() {
-		return Notizia.class;
+	protected Class<OperazioniLog> getEntityType() {
+		return OperazioniLog.class;
 	}
 
 	@Override
@@ -52,8 +50,8 @@ public class NotizieSession extends SuperSession<Notizia> implements
 	 * tramite overriding
 	 */
 	@Override
-	protected Query getRestrictions(Ricerca<Notizia> ricerca, String orderBy,
-			boolean count) {
+	protected Query getRestrictions(Ricerca<OperazioniLog> ricerca,
+			String orderBy, boolean count) {
 
 		if (ricerca == null || ricerca.getOggetto() == null)
 			return super.getRestrictions(ricerca, orderBy, count);
@@ -68,17 +66,19 @@ public class NotizieSession extends SuperSession<Notizia> implements
 
 		String separator = " and ";
 
-		if (ricerca.getOggetto().getTipo() != null
-				&& ricerca.getOggetto().getTipo().getNome() != null
-				&& ricerca.getOggetto().getTipo().getNome().length() > 0) {
-			sb.append(separator).append(alias)
-					.append(".tipo.nome = :nomeTipo ");
-			params.put("nomeTipo", ricerca.getOggetto().getTipo().getNome());
+		if (ricerca.getOggetto().getData() != null) {
+			sb.append(separator).append(alias).append(".data = :data ");
+			params.put("data", ricerca.getOggetto().getData());
+		}
+		if (ricerca.getOggetto().getUsername() != null
+				&& !"".equals(ricerca.getOggetto().getUsername())) {
+			sb.append(separator).append(alias).append(".username = :username ");
+			params.put("username", ricerca.getOggetto().getUsername());
 		}
 		if (ricerca.getOggetto().getTipo() != null
-				&& ricerca.getOggetto().getTipo().getId() != null) {
-			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
-			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
+				&& !"".equals(ricerca.getOggetto().getTipo())) {
+			sb.append(separator).append(alias).append(".type = :type ");
+			params.put("type", ricerca.getOggetto().getTipo());
 		}
 
 		if (!count) {
@@ -99,26 +99,9 @@ public class NotizieSession extends SuperSession<Notizia> implements
 	}
 
 	@Override
-	protected Notizia prePersist(Notizia n) {
+	protected OperazioniLog prePersist(OperazioniLog n) {
 		if (n.getData() == null)
 			n.setData(new Date());
-		if (n.getTipo() != null && n.getTipo().getId() != null)
-			n
-					.setTipo(getEm().find(TipoInformazione.class,
-							n.getTipo().getId()));
 		return n;
-	}
-
-	public Notizia findLast() {
-		Notizia ret = new Notizia();
-		try {
-			ret = (Notizia) em.createQuery(
-					"select p from Notizia p order by p.id desc ")
-					.setMaxResults(1).getSingleResult();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ret;
 	}
 }
