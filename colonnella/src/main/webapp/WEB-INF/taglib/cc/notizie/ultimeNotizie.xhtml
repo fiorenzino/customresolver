@@ -9,7 +9,8 @@
 	<ui:repeat var="var"
 		value="#{newsHandlerRequest.loadPage('notizie','',0,10)}">
 
-		<div class="#{cellaprimaClass}"><a href="page/news/#{var.id}"
+		<div class="#{cellaprimaClass}"><a
+			href="#{request.contextPath}/pagine/notizie/leggiNews?id=#{var.id}"
 			title="#{var.titolo}" class="arrowLink "> #{var.titolo} </a> <br />
 		#{var.anteprima}<br />
 		<br />
