@@ -9,13 +9,11 @@
 	<!-- 
 	parametri: selectedStyleClass, selectedClass, label, showpages, pagesize, cellaprimaClass
 	 -->
-	<div id="BoxNews">
-		
-		<ui:repeat var="pubblicazione"
+	<div id="BoxNews"><ui:repeat var="pubblicazione"
 		value="#{pubblicazioniHandlerRequest.loadPage('','',0,10)}">
 
 		<p>#{pubblicazione.data} <a
-			href="page/pubblicazioni/#{pubblicazione.id}"
+			href="#{request.contextPath}/pagine/albo-pretorio/leggiPubblicazione?id=#{pubblicazione.id}"
 			title="#{pubblicazione.titolo}">#{pubblicazione.titolo}</a></p>
 	</ui:repeat></div>
 </ui:composition>
