@@ -139,38 +139,39 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	}
 
 	private void closeHtmlTags(Page page) {
+		if (page.getTemplate().getTemplate().getStatico()) {
+			page.getTemplate().setHeader(
+					page.getTemplate().getHeader() == null ? null : HtmlUtils
+							.normalizeHtml(page.getTemplate().getHeader()
+									.replaceAll("class=\"replaceMe \">",
+											"class=\"replaceMe\"/>")
+									.replaceAll("<br>", "<br/>")));
 
-		page.getTemplate().setHeader(
-				page.getTemplate().getHeader() == null ? null : HtmlUtils
-						.normalizeHtml(page.getTemplate().getHeader()
-								.replaceAll("class=\"replaceMe \">",
-										"class=\"replaceMe\"/>").replaceAll(
-										"<br>", "<br/>")));
-
-		page.getTemplate().setCol1(
-				page.getTemplate().getCol1() == null ? null : HtmlUtils
-						.normalizeHtml(page.getTemplate().getCol1().replaceAll(
-								"class=\"replaceMe \">",
-								"class=\"replaceMe\"/>").replaceAll("<br>",
-								"<br/>")));
-		page.getTemplate().setCol2(
-				page.getTemplate().getCol2() == null ? null : HtmlUtils
-						.normalizeHtml(page.getTemplate().getCol2().replaceAll(
-								"class=\"replaceMe \">",
-								"class=\"replaceMe\"/>").replaceAll("<br>",
-								"<br/>")));
-		page.getTemplate().setCol3(
-				page.getTemplate().getCol3() == null ? null : HtmlUtils
-						.normalizeHtml(page.getTemplate().getCol3().replaceAll(
-								"class=\"replaceMe \">",
-								"class=\"replaceMe\"/>").replaceAll("<br>",
-								"<br/>")));
-		page.getTemplate().setFooter(
-				page.getTemplate().getFooter() == null ? null : HtmlUtils
-						.normalizeHtml(page.getTemplate().getFooter()
-								.replaceAll("class=\"replaceMe \">",
-										"class=\"replaceMe\"/>").replaceAll(
-										"<br>", "<br/>")));
+			page.getTemplate().setCol1(
+					page.getTemplate().getCol1() == null ? null : HtmlUtils
+							.normalizeHtml(page.getTemplate().getCol1()
+									.replaceAll("class=\"replaceMe \">",
+											"class=\"replaceMe\"/>")
+									.replaceAll("<br>", "<br/>")));
+			page.getTemplate().setCol2(
+					page.getTemplate().getCol2() == null ? null : HtmlUtils
+							.normalizeHtml(page.getTemplate().getCol2()
+									.replaceAll("class=\"replaceMe \">",
+											"class=\"replaceMe\"/>")
+									.replaceAll("<br>", "<br/>")));
+			page.getTemplate().setCol3(
+					page.getTemplate().getCol3() == null ? null : HtmlUtils
+							.normalizeHtml(page.getTemplate().getCol3()
+									.replaceAll("class=\"replaceMe \">",
+											"class=\"replaceMe\"/>")
+									.replaceAll("<br>", "<br/>")));
+			page.getTemplate().setFooter(
+					page.getTemplate().getFooter() == null ? null : HtmlUtils
+							.normalizeHtml(page.getTemplate().getFooter()
+									.replaceAll("class=\"replaceMe \">",
+											"class=\"replaceMe\"/>")
+									.replaceAll("<br>", "<br/>")));
+		}
 	}
 
 }

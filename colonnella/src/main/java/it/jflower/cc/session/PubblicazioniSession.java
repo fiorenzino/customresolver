@@ -148,4 +148,17 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		if (d != null)
 			d.setAttivo(false);
 	}
+
+	public Pubblicazione findLast() {
+		Pubblicazione ret = new Pubblicazione();
+		try {
+			ret = (Pubblicazione) em.createQuery(
+					"select p from Pubblicazione p order by p.id desc ")
+					.setMaxResults(1).getSingleResult();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
 }

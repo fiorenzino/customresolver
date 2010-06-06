@@ -169,45 +169,47 @@ public class TemplateSession extends SuperSession<Template> implements
 	}
 
 	private void closeHtmlTags(Template t) {
-		t.setHeader_start(t.getHeader_start() == null ? null : HtmlUtils
-				.normalizeHtml(t.getHeader_start().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setHeader_stop(t.getHeader_stop() == null ? null : HtmlUtils
-				.normalizeHtml(t.getHeader_stop().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setCol1_start(t.getCol1_start() == null ? null : HtmlUtils
-				.normalizeHtml(t.getCol1_start().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setCol1_stop(t.getCol1_stop() == null ? null : HtmlUtils
-				.normalizeHtml(t.getCol1_stop().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setCol2_start(t.getCol2_start() == null ? null : HtmlUtils
-				.normalizeHtml(t.getCol2_start().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setCol2_stop(t.getCol2_stop() == null ? null : HtmlUtils
-				.normalizeHtml(t.getCol2_stop().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setCol3_start(t.getCol3_start() == null ? null : HtmlUtils
-				.normalizeHtml(t.getCol3_start().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setCol3_stop(t.getCol3_stop() == null ? null : HtmlUtils
-				.normalizeHtml(t.getCol3_stop().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setFooter_start(t.getFooter_start() == null ? null : HtmlUtils
-				.normalizeHtml(t.getFooter_start().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
-		t.setFooter_stop(t.getFooter_stop() == null ? null : HtmlUtils
-				.normalizeHtml(t.getFooter_stop().replaceAll(
-						"class=\"replaceMe \">", "class=\"replaceMe\"/>")
-						.replaceAll("<br>", "<br/>")));
+		if (t.getStatico()) {
+			t.setHeader_start(t.getHeader_start() == null ? null : HtmlUtils
+					.normalizeHtml(t.getHeader_start().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setHeader_stop(t.getHeader_stop() == null ? null : HtmlUtils
+					.normalizeHtml(t.getHeader_stop().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setCol1_start(t.getCol1_start() == null ? null : HtmlUtils
+					.normalizeHtml(t.getCol1_start().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setCol1_stop(t.getCol1_stop() == null ? null : HtmlUtils
+					.normalizeHtml(t.getCol1_stop().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setCol2_start(t.getCol2_start() == null ? null : HtmlUtils
+					.normalizeHtml(t.getCol2_start().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setCol2_stop(t.getCol2_stop() == null ? null : HtmlUtils
+					.normalizeHtml(t.getCol2_stop().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setCol3_start(t.getCol3_start() == null ? null : HtmlUtils
+					.normalizeHtml(t.getCol3_start().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setCol3_stop(t.getCol3_stop() == null ? null : HtmlUtils
+					.normalizeHtml(t.getCol3_stop().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setFooter_start(t.getFooter_start() == null ? null : HtmlUtils
+					.normalizeHtml(t.getFooter_start().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+			t.setFooter_stop(t.getFooter_stop() == null ? null : HtmlUtils
+					.normalizeHtml(t.getFooter_stop().replaceAll(
+							"class=\"replaceMe \">", "class=\"replaceMe\"/>")
+							.replaceAll("<br>", "<br/>")));
+		}
 	}
 }
