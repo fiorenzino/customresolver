@@ -17,8 +17,8 @@ import javax.persistence.Query;
 
 @Named
 @SessionScoped
-public class AttivitaSession 
-extends SuperSession<Attivita> implements Serializable {
+public class AttivitaSession extends SuperSession<Attivita> implements
+		Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,11 +29,11 @@ extends SuperSession<Attivita> implements Serializable {
 	public EntityManager getEm() {
 		return em;
 	}
+
 	@Override
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-
 
 	@Override
 	protected Class<Attivita> getEntityType() {
@@ -47,58 +47,80 @@ extends SuperSession<Attivita> implements Serializable {
 
 	@Override
 	protected Attivita prePersist(Attivita a) {
-		a.setCategoria( getEm().find(CategoriaAttivita.class, a.getCategoria().getId() ));
+		a.setCategoria(getEm().find(CategoriaAttivita.class,
+				a.getCategoria().getId()));
 		return a;
 	}
 
 	@Override
 	protected Attivita preUpdate(Attivita a) {
-		a.setCategoria( getEm().find(CategoriaAttivita.class, a.getCategoria().getId() ));
+		a.setCategoria(getEm().find(CategoriaAttivita.class,
+				a.getCategoria().getId()));
 		return a;
 	}
 
 	@Override
 	protected Query getRestrictions(Ricerca<Attivita> ricerca, String orderBy,
 			boolean count) {
-		
-		if ( ricerca == null || ricerca.getOggetto() == null )
+
+		if (ricerca == null || ricerca.getOggetto() == null)
 			return super.getRestrictions(ricerca, orderBy, count);
 
-		Map<String,Object> params = new HashMap<String, Object>();
-		
+		Map<String, Object> params = new HashMap<String, Object>();
+
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
 				count));
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
 		params.put("attivo", true);
-		
+
 		String separator = " and ";
 
-		if (ricerca.getOggetto().getCategoria() != null && ricerca.getOggetto().getCategoria().getTipoAttivita() != null && ricerca.getOggetto().getCategoria().getTipoAttivita().getId() != null ) {
-			sb.append(separator).append(alias).append(".categoria.tipoAttivita.id = :idAttivita ");
-			params.put("idAttivita", ricerca.getOggetto().getCategoria().getTipoAttivita().getId());
+		if (ricerca.getOggetto().getCategoria() != null
+				&& ricerca.getOggetto().getCategoria().getTipoAttivita() != null
+				&& ricerca.getOggetto().getCategoria().getTipoAttivita()
+						.getId() != null) {
+			sb.append(separator).append(alias).append(
+					".categoria.tipoAttivita.id = :idAttivita ");
+			params.put("idAttivita", ricerca.getOggetto().getCategoria()
+					.getTipoAttivita().getId());
 		}
-		if (ricerca.getOggetto().getCategoria() != null && ricerca.getOggetto().getCategoria().getId() != null ) {
-			sb.append(separator).append(alias).append(".categoria.id = :idCategoria ");
-			params.put("idCategoria", ricerca.getOggetto().getCategoria().getId());
+		if (ricerca.getOggetto().getCategoria() != null
+				&& ricerca.getOggetto().getCategoria().getId() != null) {
+			sb.append(separator).append(alias).append(
+					".categoria.id = :idCategoria ");
+			params.put("idCategoria", ricerca.getOggetto().getCategoria()
+					.getId());
 		}
-		
+
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);
 		} else {
 			logger.info("order by null");
 		}
-		
+
 		logger.info(sb.toString());
-		
+
 		Query q = getEm().createQuery(sb.toString());
-		
-		for ( String param : params.keySet() ) {
+
+		for (String param : params.keySet()) {
 			q.setParameter(param, params.get(param));
 		}
 
 		return q;
 	}
 
-	
+	public Attivita findLast() {
+		Attivita ret = new Attivita();
+		try {
+			ret = (Attivita) em.createQuery(
+					"select p from Attivita p order by p.id desc ")
+					.setMaxResults(1).getSingleResult();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+
 }
