@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +52,8 @@ public class MenuGroup implements Serializable {
 		this.nome = nome;
 	}
 
-	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL )
 	public List<MenuItem> getLista() {
 		return lista;
 	}

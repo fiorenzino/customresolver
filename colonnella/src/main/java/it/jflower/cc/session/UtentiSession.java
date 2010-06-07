@@ -16,8 +16,6 @@ import java.util.Map;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.seamframework.tx.Transactional;
-
 @Named
 @SessionScoped
 public class UtentiSession implements Serializable {

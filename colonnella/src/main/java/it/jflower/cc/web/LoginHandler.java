@@ -16,6 +16,8 @@ import javax.inject.Named;
 @SessionScoped
 public class LoginHandler implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	// --------------------------------------------------------
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";

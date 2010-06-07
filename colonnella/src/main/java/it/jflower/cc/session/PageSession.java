@@ -7,12 +7,7 @@ import it.jflower.cc.par.Page;
 import it.jflower.cc.utils.DbUtils;
 import it.jflower.cc.utils.PageUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +18,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.seamframework.tx.Transactional;
-import org.w3c.tidy.Tidy;
 
 @Named
 @SessionScoped
@@ -142,35 +136,19 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		if (page.getTemplate().getTemplate().getStatico()) {
 			page.getTemplate().setHeader(
 					page.getTemplate().getHeader() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getHeader()
-									.replaceAll("class=\"replaceMe \">",
-											"class=\"replaceMe\"/>")
-									.replaceAll("<br>", "<br/>")));
-
+							.normalizeHtml(page.getTemplate().getHeader()));
 			page.getTemplate().setCol1(
 					page.getTemplate().getCol1() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getCol1()
-									.replaceAll("class=\"replaceMe \">",
-											"class=\"replaceMe\"/>")
-									.replaceAll("<br>", "<br/>")));
+							.normalizeHtml(page.getTemplate().getCol1()) );
 			page.getTemplate().setCol2(
 					page.getTemplate().getCol2() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getCol2()
-									.replaceAll("class=\"replaceMe \">",
-											"class=\"replaceMe\"/>")
-									.replaceAll("<br>", "<br/>")));
+							.normalizeHtml(page.getTemplate().getCol2()));
 			page.getTemplate().setCol3(
 					page.getTemplate().getCol3() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getCol3()
-									.replaceAll("class=\"replaceMe \">",
-											"class=\"replaceMe\"/>")
-									.replaceAll("<br>", "<br/>")));
+							.normalizeHtml(page.getTemplate().getCol3()));
 			page.getTemplate().setFooter(
 					page.getTemplate().getFooter() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getFooter()
-									.replaceAll("class=\"replaceMe \">",
-											"class=\"replaceMe\"/>")
-									.replaceAll("<br>", "<br/>")));
+							.normalizeHtml(page.getTemplate().getFooter()));
 		}
 	}
 

@@ -15,6 +15,8 @@ import javax.persistence.Persistence;
 
 public class DbUtils implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

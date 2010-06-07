@@ -3,7 +3,6 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
-import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.type.TipoInformazione;
 
 import java.io.Serializable;
