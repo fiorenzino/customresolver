@@ -267,13 +267,10 @@ public abstract class SuperSession<T> {
 								}
 							}
 						}
-						if (indexOfPassivato > 0) {
-							// TODO
-							// TO FIX.... non sembra avere effetti sulla
-							// persistent bag
+						if (indexOfPassivato >= 0) {
 							list.remove(indexOfPassivato);
 						}
-					} while (indexOfPassivato > 0);
+					} while (indexOfPassivato >= 0);
 
 					// fetcho i rimanenti
 					for (Object listItem : list) {

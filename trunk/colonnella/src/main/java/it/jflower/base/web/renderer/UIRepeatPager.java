@@ -133,8 +133,8 @@ public class UIRepeatPager extends Renderer {
 		if (response == null || response.equals(""))
 			return;
 
-		String uiRepeatId = (String) component.getAttributes()
-				.get("uiRepeatId");
+//		String uiRepeatId = (String) component.getAttributes()
+//				.get("uiRepeatId");
 		int showpages = toInt(component.getAttributes().get("showpages"));
 		LocalDataModel model = (LocalDataModel) component.getAttributes().get(
 				"model");
@@ -157,12 +157,15 @@ public class UIRepeatPager extends Renderer {
 			int page = Integer.parseInt(response);
 			first = (page - 1) * pagesize;
 		}
-		if (first + pagesize > itemcount)
-			first = itemcount - pagesize;
+
+// questo controllo insensato introduceva il bug della mancata visualizzazione dell'ultima pagina. boh.
+//		if (first + pagesize > itemcount)
+//			first = itemcount - pagesize;
+
 		if (first < 0)
 			first = 0;
 
-		UIRepeat data = (UIRepeat) component.findComponent(uiRepeatId);
+//		UIRepeat data = (UIRepeat) component.findComponent(uiRepeatId);
 //		data.setValue(model.fetchPage(first, pagesize).getData());
 
 		model.setCurrentPage( first / pagesize );

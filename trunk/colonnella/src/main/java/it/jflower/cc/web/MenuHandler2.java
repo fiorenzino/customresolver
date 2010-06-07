@@ -29,7 +29,7 @@ import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
-public class MenuHandler implements Serializable {
+public class MenuHandler2 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -87,7 +87,7 @@ public class MenuHandler implements Serializable {
 	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore
 	 * protetto da parte delle sottoclassi
 	 */
-	public MenuHandler() {
+	public MenuHandler2() {
 
 	}
 
@@ -357,7 +357,6 @@ public class MenuHandler implements Serializable {
 		for (MenuGroup mg : (List<MenuGroup>) getModel().getWrappedData()) {
 			TreeNode mgn = new TreeNode("menuGroup", mg, root);
 			if (mg.getLista() != null) {
-				mg = session.fetch(mg.getId());
 				for (MenuItem mi : mg.getLista()) {
 					if ( mi.isAttivo() ) {
 						@SuppressWarnings("unused")
