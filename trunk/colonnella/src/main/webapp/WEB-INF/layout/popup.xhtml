@@ -38,7 +38,8 @@
             var imgSrc = tar.getAttribute('src', 2);
             var imgFilenameExt = imgSrc.match(/[^\\/]*$/)[0];
             var imgFilename = imgFilenameExt.match( /(.*)\.[^.]+$/ )[1];
-            myEditor.execCommand('inserthtml','<img src="'+imgSrc+'" alt="'+imgFilename+'" title="'+imgFilename+'" class="replaceMe ">');
+//            myEditor.execCommand('inserthtml','<img src="'+imgSrc+'" alt="'+imgFilename+'" title="'+imgFilename+'" class="replaceMe ">');
+            myEditor.execCommand('inserthtml','<img src="'+imgSrc+'" alt="'+imgFilename+'" title="'+imgFilename+'" >');
             //Close this window
             window.close();
         }
