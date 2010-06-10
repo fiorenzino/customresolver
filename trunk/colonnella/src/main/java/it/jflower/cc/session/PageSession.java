@@ -2,7 +2,6 @@ package it.jflower.cc.session;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
-import it.jflower.base.utils.HtmlUtils;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.utils.DbUtils;
 import it.jflower.cc.utils.PageUtils;
@@ -54,7 +53,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	@Override
 	@Transactional
 	protected Page prePersist(Page page) {
-		closeHtmlTags(page);
+		// closeHtmlTags(page);
 		String idTitle = PageUtils.createPageId(page.getTitle());
 		String idFinal = testId(idTitle);
 		page.setId(idFinal);
@@ -64,7 +63,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	@Override
 	@Transactional
 	protected Page preUpdate(Page page) {
-		closeHtmlTags(page);
+		// closeHtmlTags(page);
 		return page;
 	}
 
@@ -130,26 +129,6 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		}
 
 		return q;
-	}
-
-	private void closeHtmlTags(Page page) {
-		if (page.getTemplate().getTemplate().getStatico()) {
-			page.getTemplate().setHeader(
-					page.getTemplate().getHeader() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getHeader()));
-			page.getTemplate().setCol1(
-					page.getTemplate().getCol1() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getCol1()) );
-			page.getTemplate().setCol2(
-					page.getTemplate().getCol2() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getCol2()));
-			page.getTemplate().setCol3(
-					page.getTemplate().getCol3() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getCol3()));
-			page.getTemplate().setFooter(
-					page.getTemplate().getFooter() == null ? null : HtmlUtils
-							.normalizeHtml(page.getTemplate().getFooter()));
-		}
 	}
 
 }

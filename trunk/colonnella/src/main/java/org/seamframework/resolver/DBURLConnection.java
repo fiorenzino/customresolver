@@ -11,6 +11,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 public class DBURLConnection extends URLConnection {
@@ -51,7 +52,7 @@ public class DBURLConnection extends URLConnection {
 						this.form);
 				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
-				logger.debug(this.content);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				logger.debug(" DBUTL EXC 1");
