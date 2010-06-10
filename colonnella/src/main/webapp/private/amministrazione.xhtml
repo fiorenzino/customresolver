@@ -11,7 +11,8 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<h:outputText value="benvenuto: #{loginHandler.username}" />
+			<h:outputText value="Benvenuto: #{loginHandler.username}"
+				escape="true" />
 			<br />
 			<h:outputText value="ruolo: ADMIN" rendered="#{loginHandler.admin}" />
 			<br />
