@@ -17,6 +17,8 @@ public class HtmlUtils {
 		tidy.setDocType("omit");
 		tidy.setPrintBodyOnly(true);
 		tidy.setInputEncoding("UTF-8");
+		tidy.setShowErrors(0);
+		tidy.setShowWarnings(false);
 		InputStream is;
 		String content = "";
 		OutputStream arg1 = new ByteArrayOutputStream();
@@ -30,7 +32,7 @@ public class HtmlUtils {
 			StringEscapeUtils escape = new StringEscapeUtils();
 			// escape.unescapeHtml(arg0)
 			content = escape.unescapeHtml(arg1.toString());
-//			System.out.println(content);
+			// System.out.println(content);
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
