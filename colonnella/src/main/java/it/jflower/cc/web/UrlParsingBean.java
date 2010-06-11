@@ -32,20 +32,9 @@ public class UrlParsingBean implements Serializable {
 	}
 
 	public String parseComplexUrl() throws UnsupportedEncodingException {
-		// String uri = PrettyContext.getCurrentInstance().getOriginalUri();
-		// System.out.println("viewID: "
-		// + PrettyContext.getCurrentInstance().getCurrentViewId());
-		// System.out
-		// .println("URL: "
-		// + PrettyContext.getCurrentInstance().getRequestURL()
-		// .toString());
-		// System.out.println("query: "
-		// + PrettyContext.getCurrentInstance().getRequestQueryString()
-		// .toQueryString());
-		String uri = PrettyContext.getCurrentInstance().getRequestURL()
-				.toString();
+		String uri = PrettyContext.getCurrentInstance().getOriginalUri();
 		String uriPars = PrettyContext.getCurrentInstance()
-				.getRequestQueryString().toQueryString();
+				.getOriginalRequestUrl();
 		System.out.println("uri: " + uri);
 		System.out.println("uriPars: " + uriPars);
 
