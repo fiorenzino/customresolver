@@ -12,52 +12,53 @@
 				accesskey="2">logout</a></li>
 		</ul>
 		</li>
+		<f:verbatim rendered="#{loginHandler.admin}">
+			<li class="M5cellaunica"><a
+				href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
+			<ul>
+				<li><a
+					href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
+					title="" accesskey="2">utenti</a></li>
+			</ul>
+			</li>
+			<li class="M5cellaunica"><a
+				href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
+				title="" accesskey="3">Pagine</a>
+			<ul>
+				<li><h:commandLink
+					action="/private/pagine/lista-pagine.jsf?faces-redirect=true"
+					value="lista" /></li>
+				<li><h:commandLink action="#{pageHandler.addPaginaStatica}"
+					value="nuova statica" /></li>
+				<li><h:commandLink action="#{pageHandler.addPaginaDinamica}"
+					value="nuova dinamica" /></li>
+			</ul>
 
-		<li class="M5cellaunica"><a
-			href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
-		<ul>
-			<li><a
-				href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
-				title="" accesskey="2">utenti</a></li>
-		</ul>
-		</li>
-		<li class="M5cellaunica"><a
-			href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
-			title="" accesskey="3">Pagine</a>
-		<ul>
-			<li><h:commandLink
-				action="/private/pagine/lista-pagine.jsf?faces-redirect=true"
-				value="lista" /></li>
-			<li><h:commandLink action="#{pageHandler.addPaginaStatica}"
-				value="nuova statica" /></li>
-			<li><h:commandLink action="#{pageHandler.addPaginaDinamica}"
-				value="nuova dinamica" /></li>
-		</ul>
+			</li>
 
-		</li>
-		<li class="M5cellaunica"><a
-			href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
-			title="" accesskey="4">Modelli</a>
-		<ul>
-			<li><h:commandLink
-				action="/private/modelli/lista-modelli.jsf?faces-redirect=true"
-				value="lista" /></li>
-			<li><h:commandLink action="#{templateHandler.addElement}"
-				value="nuova" /></li>
-		</ul>
-		</li>
-		<li class="M5cellaunica"><a
-			href="#{request.contextPath}/private/menu/percorsi.jsf?faces-redirect=true"
-			title="" accesskey="5">Menu</a>
-		<ul>
-			<li><h:commandLink
-				action="/private/menu/percorsi.jsf?faces-redirect=true"
-				value="lista" /></li>
-			<li><h:commandLink action="#{menuHandler.addElement}"
-				value="nuova" /></li>
-		</ul>
-
-		</li>
+			<li class="M5cellaunica"><a
+				href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
+				title="" accesskey="4">Modelli</a>
+			<ul>
+				<li><h:commandLink
+					action="/private/modelli/lista-modelli.jsf?faces-redirect=true"
+					value="lista" /></li>
+				<li><h:commandLink action="#{templateHandler.addElement}"
+					value="nuova" /></li>
+			</ul>
+			</li>
+			<li class="M5cellaunica"><a
+				href="#{request.contextPath}/private/menu/percorsi.jsf?faces-redirect=true"
+				title="" accesskey="5">Menu</a>
+			<ul>
+				<li><h:commandLink
+					action="/private/menu/percorsi.jsf?faces-redirect=true"
+					value="lista" /></li>
+				<li><h:commandLink action="#{menuHandler.addElement}"
+					value="nuova" /></li>
+			</ul>
+			</li>
+		</f:verbatim>
 		<li class="M5cellaunica"><a
 			href="#{request.contextPath}/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
 			title="" accesskey="6">Albo Pretorio</a>
