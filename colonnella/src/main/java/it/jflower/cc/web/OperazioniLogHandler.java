@@ -7,6 +7,7 @@ import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.session.OperazioniLogSession;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -186,6 +187,12 @@ public class OperazioniLogHandler implements Serializable {
 
 	public void save(OperazioniLog operazioniLog) {
 		operazioniLogSession.persist(operazioniLog);
+		this.model = null;
+	}
+
+	public void save(String tipo, String username, String descrizione) {
+		operazioniLogSession.persist(new OperazioniLog(tipo, username,
+				descrizione, new Date()));
 		this.model = null;
 	}
 

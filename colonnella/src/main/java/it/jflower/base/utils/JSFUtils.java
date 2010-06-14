@@ -16,6 +16,7 @@ import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -122,6 +123,31 @@ public class JSFUtils {
 			base += "/";
 		}
 		return sb.toString();
+	}
+
+	public static Principal getPrincipal() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest req = (HttpServletRequest) context
+					.getExternalContext().getRequest();
+			Principal pr = req.getUserPrincipal();
+			return pr;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	public static HttpSession getHttpSession() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession) context.getExternalContext()
+					.getSession(false);
+			return session;
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 
 	public static String getUserName() {

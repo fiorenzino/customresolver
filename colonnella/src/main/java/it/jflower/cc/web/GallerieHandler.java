@@ -1,5 +1,6 @@
 package it.jflower.cc.web;
 
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.Galleria;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.session.GallerieSession;
@@ -19,11 +20,29 @@ public class GallerieHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	// --------------------------------------------------------
+
+	private static String FACES_REDIRECT = "?faces-redirect=true";
+
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String VIEW = "/private/gallerie/scheda-galleria.xhtml"
+			+ FACES_REDIRECT;
+	public static String LIST = "/private/gallerie/lista-gallerie.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/gallerie/gestione-galleria.xhtml"
+			+ FACES_REDIRECT;
+
+	// ------------------------------------------------
+
 	@Inject
 	GallerieSession gallerieSession;
 
 	@Inject
 	ResourceHandler resourceHandler;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	private Galleria galleria;
 	private boolean editMode;
@@ -33,7 +52,7 @@ public class GallerieHandler implements Serializable {
 		resourceHandler.setImgModel(null);
 		this.galleria = new Galleria();
 
-		return "/private/gallerie/gestione-galleria?redirect=true";
+		return NEW_OR_EDIT;
 	}
 
 	public void addFoto() {
@@ -54,30 +73,36 @@ public class GallerieHandler implements Serializable {
 
 		gallerieSession.persist(this.galleria);
 		this.all = null;
-		return "/private/gallerie/scheda-galleria?redirect=true";
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione galleria: " + this.galleria.getTitolo());
+		return VIEW;
 	}
 
 	public String deleteGalleria() {
 		gallerieSession.delete(this.galleria.getId());
 		this.all = null;
-		return "/private/gallerie/lista-notizie?redirect=true";
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione galleria: " + this.galleria.getTitolo());
+		return LIST;
 	}
 
 	public String modGalleria(String id) {
 		this.editMode = true;
 		this.galleria = gallerieSession.find(id);
-		return "/private/gallerie/gestione-galleria?redirect=true";
+		return NEW_OR_EDIT;
 	}
 
 	public String updateGalleria() {
 		this.galleria = gallerieSession.update(this.galleria);
 		this.all = null;
-		return "/private/gallerie/scheda-galleria?redirect=true";
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"eliminazione galleria: " + this.galleria.getTitolo());
+		return VIEW;
 	}
 
 	public String detailGalleria(String id) {
 		this.galleria = gallerieSession.find(id);
-		return "/private/gallerie/scheda-galleria?redirect=true";
+		return VIEW;
 	}
 
 	public Galleria getGalleria() {

@@ -24,6 +24,7 @@ public class Pubblicazione implements Serializable {
 
 	private String id;
 	private String nome;
+	private String descrizione;
 	private TipoPubblicazione tipo;
 	private String titolo;
 	private String autore;
@@ -134,5 +135,14 @@ public class Pubblicazione implements Serializable {
 
 	public void setValidoIl(Date validoIl) {
 		this.validoIl = validoIl;
+	}
+
+	@Lob
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 }

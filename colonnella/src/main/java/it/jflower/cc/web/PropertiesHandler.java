@@ -64,6 +64,8 @@ public class PropertiesHandler implements Serializable {
 
 	private SelectItem[] ruoliItems = new SelectItem[] {};
 
+	private SelectItem[] tipiOperazioniLogItems = new SelectItem[] {};
+
 	public PropertiesHandler() {
 		super();
 		reset();
@@ -76,6 +78,25 @@ public class PropertiesHandler implements Serializable {
 			ruoliItems[1] = new SelectItem(1, "user");
 		}
 		return ruoliItems;
+	}
+
+	// NEW
+	// DELETE
+	// MODIFY
+	// LOGIN
+	// LOGOUT
+	public SelectItem[] getTipiOperazioniLogItems() {
+		if (tipiOperazioniLogItems == null
+				|| tipiOperazioniLogItems.length == 0) {
+			tipiOperazioniLogItems = new SelectItem[6];
+			tipiOperazioniLogItems[0] = new SelectItem(null, "operazione");
+			tipiOperazioniLogItems[1] = new SelectItem("NEW", "NEW");
+			tipiOperazioniLogItems[2] = new SelectItem("DELETE", "DELETE");
+			tipiOperazioniLogItems[3] = new SelectItem("MODIFY", "MODIFY");
+			tipiOperazioniLogItems[4] = new SelectItem("LOGIN", "LOGIN");
+			tipiOperazioniLogItems[5] = new SelectItem("LOGOUT", "LOGOUT");
+		}
+		return tipiOperazioniLogItems;
 	}
 
 	public SelectItem[] getFileTypeItems() {
