@@ -1,5 +1,6 @@
 package it.jflower.cc.web;
 
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.type.CategoriaAttivita;
 import it.jflower.cc.par.type.TipoAttivita;
 import it.jflower.cc.par.type.TipoPubblicazione;
@@ -47,6 +48,9 @@ public class CategorieHandler implements Serializable {
 	@Inject
 	PropertiesHandler propertiesHandler;
 
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
+
 	private List<CategoriaAttivita> allCategorie;
 	private List<TipoAttivita> allTipi;
 	private List<TipoPubblicazione> allTipiPubblicazioni;
@@ -72,6 +76,9 @@ public class CategorieHandler implements Serializable {
 		categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.persistCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione categoria attivita'': "
+						+ this.categoriaAttivita.getCategoria());
 		return LIST_CAT;
 	}
 
@@ -92,12 +99,17 @@ public class CategorieHandler implements Serializable {
 			this.categoriaAttivita.setTipoAttivita(tipo);
 		categorieSession.updateCategoriaAttivita(categoriaAttivita);
 		aggCategorie();
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica attivita': " + this.categoriaAttivita.getCategoria());
 		return LIST_CAT;
 	}
 
 	public String deleteCategoriaAttivita() {
 		categorieSession.deleteCategoriaAttivita(categoriaAttivita.getId());
 		aggCategorie();
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione attivita': "
+						+ this.categoriaAttivita.getCategoria());
 		return LIST_CAT;
 	}
 
@@ -110,6 +122,9 @@ public class CategorieHandler implements Serializable {
 	public String saveTipoPubblicazione() {
 		categorieSession.persistTipoPubblicazione(tipoPubblicazione);
 		aggTipiPubblicazioni();
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione tipo pubblicazione': "
+						+ this.tipoPubblicazione.getNome());
 		return LIST_TIP_PUB;
 	}
 
@@ -122,12 +137,18 @@ public class CategorieHandler implements Serializable {
 	public String updateTipoPubblicazione() {
 		categorieSession.updateTipoPubblicazione(tipoPubblicazione);
 		aggTipiPubblicazioni();
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica tipo pubblicazione': "
+						+ this.tipoPubblicazione.getNome());
 		return LIST_TIP_PUB;
 	}
 
 	public String deleteTipoPubblicazione() {
 		categorieSession.deleteTipoPubblicazione(tipoPubblicazione.getId());
 		aggTipiPubblicazioni();
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione tipo pubblicazione': "
+						+ this.tipoPubblicazione.getNome());
 		return LIST_TIP_PUB;
 	}
 
@@ -139,6 +160,8 @@ public class CategorieHandler implements Serializable {
 	public String saveTipoAttivita() {
 		categorieSession.persistTipoAttivita(tipoAttivita);
 		aggTipi();
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione attivita': " + this.tipoAttivita.getTipo());
 		return LIST_TIP_ATT;
 	}
 
@@ -151,12 +174,16 @@ public class CategorieHandler implements Serializable {
 	public String updateTipoAttivita() {
 		categorieSession.updateTipoAttivita(tipoAttivita);
 		aggTipi();
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica tipo attivita': " + this.tipoAttivita.getTipo());
 		return LIST_TIP_ATT;
 	}
 
 	public String deleteTipoAttivita() {
 		categorieSession.deleteTipoAttivita(tipoAttivita.getId());
 		aggTipi();
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione tipo attivita': " + this.tipoAttivita.getTipo());
 		return LIST_TIP_ATT;
 	}
 

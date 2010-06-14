@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.MenuGroup;
 import it.jflower.cc.par.MenuItem;
@@ -55,6 +56,9 @@ public class MenuHandler implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// ------------------------------------------------
 
@@ -273,6 +277,8 @@ public class MenuHandler implements Serializable {
 		// altre dipendenze
 		// propertiesHandler.setMenuGroupItems(null);
 		// vista di destinazione
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione menu: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -288,6 +294,8 @@ public class MenuHandler implements Serializable {
 		// altre dipendenze
 		// propertiesHandler.setMenuGroupItems(null);
 		// vista di destinzione
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica menu: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -301,6 +309,8 @@ public class MenuHandler implements Serializable {
 		// altre dipendenze
 		// propertiesHandler.setMenuGroupItems(null);
 		// visat di destinazione
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione menu: " + this.element.getNome());
 		return listPage();
 	}
 

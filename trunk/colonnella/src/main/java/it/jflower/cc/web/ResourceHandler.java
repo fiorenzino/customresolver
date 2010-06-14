@@ -71,6 +71,10 @@ public class ResourceHandler implements Serializable {
 
 	private List<Resource> uploadedResources = null;
 
+	private LocalDataModel<Resource> imgModel;
+
+	private Ricerca<Resource> imgRicerca = new Ricerca<Resource>(Resource.class);
+
 	// ------------------------------------------------
 
 	/**
@@ -340,18 +344,23 @@ public class ResourceHandler implements Serializable {
 		uploadedResources.add(resource);
 	}
 
-	
+	public Resource getSingleResource(int row) {
+		try {
+			Resource resource = uploadedResources.get(row);
+			return resource;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
-	private Ricerca<Resource> imgRicerca = new Ricerca<Resource>(Resource.class);
+	public Ricerca<Resource> getImgRicerca() {
+		return imgRicerca;
+	}
 
-	public Ricerca<Resource> getImgRicerca() { return imgRicerca; }
-	
 	public String reloadImgModel() {
 		this.imgModel = null;
 		return null;
 	}
-	
-	private LocalDataModel<Resource> imgModel;
 
 	public LocalDataModel<Resource> getImgModel() {
 		if (imgModel == null) {

@@ -3,6 +3,7 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Modulo;
@@ -50,6 +51,9 @@ public class ModuliHandler implements Serializable {
 
 	@Inject
 	ParamsHandler paramsHandler;
+	
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// ------------------------------------------------
 
@@ -266,6 +270,8 @@ public class ModuliHandler implements Serializable {
 		refreshModel();
 		element = t;
 		// vista di destinazione
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"eliminazione moduli: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -278,6 +284,8 @@ public class ModuliHandler implements Serializable {
 		element = t;
 		refreshModel();
 		// vista di destinzione
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica moduli: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -288,6 +296,8 @@ public class ModuliHandler implements Serializable {
 		refreshModel();
 		element = null;
 		// visat di destinazione
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione moduli: " + this.element.getNome());
 		return listPage();
 	}
 

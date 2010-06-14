@@ -41,7 +41,6 @@ public class AttivitaHandler implements Serializable {
 
 	// ------------------------------------------------
 
-
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 
 	public static String BACK = "/private/amministrazione.xhtml"
@@ -67,6 +66,9 @@ public class AttivitaHandler implements Serializable {
 	@Inject
 	ResourceSession resourceSession;
 
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
+
 	private Logger logger = LoggerFactory.getLogger(AttivitaHandler.class);
 
 	private Ricerca<Attivita> ricerca;
@@ -78,7 +80,7 @@ public class AttivitaHandler implements Serializable {
 	private Immagine immagine;
 
 	private int rowCount;
-	private int pageSize = 2;
+	private int pageSize = 10;
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
 
@@ -95,8 +97,8 @@ public class AttivitaHandler implements Serializable {
 	@PostConstruct
 	protected void gatherCriteria() {
 		ricerca = new Ricerca<Attivita>(Attivita.class);
-		ricerca.getOggetto().setCategoria( new CategoriaAttivita());
-		ricerca.getOggetto().getCategoria().setTipoAttivita( new TipoAttivita() );
+		ricerca.getOggetto().setCategoria(new CategoriaAttivita());
+		ricerca.getOggetto().getCategoria().setTipoAttivita(new TipoAttivita());
 	}
 
 	/**
@@ -123,7 +125,7 @@ public class AttivitaHandler implements Serializable {
 	public void setModel(DataModel<Attivita> model) {
 		this.model = model;
 	}
-	
+
 	public String cerca() {
 		refreshModel();
 		return listPage();
@@ -131,12 +133,14 @@ public class AttivitaHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-//		setModel(new LocalDataModel<Attivita>(pageSize, ricerca, getSession()));
+		// setModel(new LocalDataModel<Attivita>(pageSize, ricerca,
+		// getSession()));
 		boolean lazy = true;
 		if (!lazy)
-			setModel( new ListDataModel<Attivita>( attivitaSession.getAllList() ));
+			setModel(new ListDataModel<Attivita>(attivitaSession.getAllList()));
 		else
-			setModel(new LazyDataModel<Attivita>(attivitaSession.getListSize(ricerca)) {
+			setModel(new LazyDataModel<Attivita>(attivitaSession
+					.getListSize(ricerca)) {
 				private static final long serialVersionUID = 1L;
 
 				@Override
@@ -146,14 +150,13 @@ public class AttivitaHandler implements Serializable {
 			});
 	}
 
-
 	public String addAttivita() {
 		this.tipoId = 0;
 		this.catId = 0;
 		this.immagine = null;
 		this.element = new Attivita();
-		this.element.setCategoria( new CategoriaAttivita() );
-		this.element.getCategoria().setTipoAttivita( new TipoAttivita() );
+		this.element.setCategoria(new CategoriaAttivita());
+		this.element.getCategoria().setTipoAttivita(new TipoAttivita());
 		this.editMode = false;
 		return NEW_OR_EDIT;
 	}
@@ -171,6 +174,8 @@ public class AttivitaHandler implements Serializable {
 			this.element.setImmagine(getImmagine());
 		this.element = attivitaSession.persist(this.element);
 		this.model = null;
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione attivita': " + this.element.getNome());
 		return VIEW;
 	}
 
@@ -182,14 +187,16 @@ public class AttivitaHandler implements Serializable {
 				.intValue();
 		propertiesHandler.cambioTipoDirect(this.tipoId);
 		this.immagine = new Immagine();
-		if ( this.element.getImmagine() != null ) {
-			this.immagine.setFilename( this.element.getImmagine().getFilename() );
+		if (this.element.getImmagine() != null) {
+			this.immagine.setFilename(this.element.getImmagine().getFilename());
 		}
 		this.editMode = true;
 		return NEW_OR_EDIT;
 	}
 
 	public String deleteAttivita(String id) {
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"emilinazione attivita': " + this.element.getNome());
 		attivitaSession.delete(id);
 		this.model = null;
 		return LIST;
@@ -204,6 +211,8 @@ public class AttivitaHandler implements Serializable {
 		if (getImmagine().getData() != null)
 			this.element.setImmagine(getImmagine());
 		attivitaSession.update(this.element);
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica attivita': " + this.element.getNome());
 		this.model = null;
 		return VIEW;
 	}
@@ -359,11 +368,11 @@ public class AttivitaHandler implements Serializable {
 		getImmagine().setUploadedData(event.getFile());
 		getImmagine().setData(event.getFile().getContents());
 		getImmagine().setType(event.getFile().getContentType());
-		String filename = FileUtils.createImage_("img", event.getFile().getFileName(), event
-				.getFile().getContents());
-		this.element.setImmagine( new Immagine() );
-		this.getImmagine().setFilename( filename );
-		this.element.getImmagine().setFilename( getImmagine().getFilename() );
+		String filename = FileUtils.createImage_("img", event.getFile()
+				.getFileName(), event.getFile().getContents());
+		this.element.setImmagine(new Immagine());
+		this.getImmagine().setFilename(filename);
+		this.element.getImmagine().setFilename(getImmagine().getFilename());
 	}
 
 	public Immagine getImmagine() {
@@ -383,17 +392,21 @@ public class AttivitaHandler implements Serializable {
 	}
 
 	public String discardImage() {
-		if ( this.element.getImmagine() != null && this.element.getImmagine().getFilename() != null ) {
-			Resource r = this.resourceSession.find("img",this.element.getImmagine().getFilename());
-			if ( r != null ) 
+		if (this.element.getImmagine() != null
+				&& this.element.getImmagine().getFilename() != null) {
+			Resource r = this.resourceSession.find("img", this.element
+					.getImmagine().getFilename());
+			if (r != null)
 				resourceSession.delete(r);
 		}
-		if ( this.getImmagine() != null && this.getImmagine().getFilename() != null ) {
-			Resource r = this.resourceSession.find("img",this.getImmagine().getFilename());
-			if ( r != null ) 
+		if (this.getImmagine() != null
+				&& this.getImmagine().getFilename() != null) {
+			Resource r = this.resourceSession.find("img", this.getImmagine()
+					.getFilename());
+			if (r != null)
 				resourceSession.delete(r);
 		}
-		this.element.setImmagine( new Immagine() );
+		this.element.setImmagine(new Immagine());
 		this.immagine = new Immagine();
 		return null;
 	}

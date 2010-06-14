@@ -10,7 +10,7 @@ import javax.persistence.Lob;
 
 @Entity
 public class OperazioniLog implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -19,6 +19,19 @@ public class OperazioniLog implements Serializable {
 	private String descrizione;
 	private boolean attivo = true;
 	private Date data;
+
+	public OperazioniLog() {
+
+	}
+
+	public OperazioniLog(String tipo, String username, String descrizione,
+			Date data) {
+		this.tipo = tipo;
+		this.username = username;
+		this.descrizione = descrizione;
+		this.data = data;
+		this.attivo = true;
+	}
 
 	@Id
 	@GeneratedValue
@@ -30,9 +43,9 @@ public class OperazioniLog implements Serializable {
 		this.id = id;
 	}
 
-	// NEW_TABLE
-	// DELETE_TABLE
-	// MODIFY_TABLE
+	// NEW
+	// DELETE
+	// MODIFY
 	// LOGIN
 	// LOGOUT
 	public String getTipo() {

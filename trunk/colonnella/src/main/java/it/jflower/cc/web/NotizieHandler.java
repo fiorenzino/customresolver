@@ -1,6 +1,7 @@
 package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Notizia;
@@ -50,21 +51,24 @@ public class NotizieHandler implements Serializable {
 	private Ricerca<Notizia> ricerca;
 	private boolean editMode;
 	private DataModel<Notizia> model;
-	
+
 	private int rowCount;
 	private int pageSize = 10;
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
-	
+
 	private Notizia evidenza;
 
 	private String backPage = BACK;
 
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
+
 	// --------------------------------------------------------
-	
+
 	public NotizieHandler() {
 	}
-	
+
 	// --------------------------------------------------------
 
 	/**
@@ -75,7 +79,7 @@ public class NotizieHandler implements Serializable {
 	@PostConstruct
 	protected void gatherCriteria() {
 		ricerca = new Ricerca<Notizia>(Notizia.class);
-		ricerca.getOggetto().setTipo( new TipoInformazione() );
+		ricerca.getOggetto().setTipo(new TipoInformazione());
 	}
 
 	// --------------------------------------------------------
@@ -115,7 +119,7 @@ public class NotizieHandler implements Serializable {
 		reset();
 		return true;
 	}
-	
+
 	// -----------------------------------------------------
 
 	public Notizia getElement() {
@@ -196,8 +200,8 @@ public class NotizieHandler implements Serializable {
 		refreshModel();
 		return null;
 	}
+
 	// --------------------------------------------------------
-	
 
 	public String addNotizia() {
 		this.editMode = false;
@@ -215,12 +219,16 @@ public class NotizieHandler implements Serializable {
 			this.element.setTipo(tipo);
 		notizieSession.persist(this.element);
 		this.model = null;
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione notizia: " + this.element.getTitolo());
 		return VIEW;
 	}
 
 	public String deleteNotizia() {
 		notizieSession.delete(this.element.getId());
 		this.model = null;
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione menu: " + this.element.getTitolo());
 		return LIST;
 	}
 
@@ -238,6 +246,8 @@ public class NotizieHandler implements Serializable {
 			this.element.setTipo(tipo);
 		this.element = notizieSession.update(this.element);
 		this.model = null;
+		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+				"modifica notizia: " + this.element.getTitolo());
 		return VIEW;
 	}
 
@@ -284,7 +294,6 @@ public class NotizieHandler implements Serializable {
 		return "";
 	}
 
-	
 	// -----------------------------------------------------------
 
 	private LocalDataModel<Notizia> latestNewsModel;
@@ -292,8 +301,9 @@ public class NotizieHandler implements Serializable {
 	private Integer latestPageSize;
 
 	public LocalDataModel<Notizia> ultimeNotizie(String tipo, int pageSize) {
-		if (latestNewsModel == null || this.latestTipo == null || this.latestPageSize == null
-				|| !this.latestTipo.equals(tipo) || this.latestPageSize != pageSize) {
+		if (latestNewsModel == null || this.latestTipo == null
+				|| this.latestPageSize == null || !this.latestTipo.equals(tipo)
+				|| this.latestPageSize != pageSize) {
 			Ricerca<Notizia> ricerca = new Ricerca<Notizia>(Notizia.class);
 			ricerca.getOggetto().setTipo(new TipoInformazione());
 			ricerca.getOggetto().getTipo().setNome(tipo);

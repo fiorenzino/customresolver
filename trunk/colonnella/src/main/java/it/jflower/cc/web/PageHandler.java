@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Template;
@@ -59,6 +60,9 @@ public class PageHandler implements Serializable {
 	TemplateSession templateSession;
 
 	private Long idTemplate;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// --------------------------------------------------------
 
@@ -263,6 +267,8 @@ public class PageHandler implements Serializable {
 		refreshModel();
 		// altre dipendenze
 		propertiesHandler.setPageItems(null);
+		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+				"creazione pagina: " + this.element.getTitle());
 		// vista di destinazione
 		return viewPage();
 	}
@@ -282,6 +288,8 @@ public class PageHandler implements Serializable {
 			// altre dipendenze
 			propertiesHandler.setPageItems(null);
 			// vista di destinzione
+			operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+					"modifica menu: " + this.element.getTitle());
 			return viewPage();
 		} else {
 			// messaggio di errore
@@ -306,6 +314,8 @@ public class PageHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setPageItems(null);
 		// visat di destinazione
+		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+				"eliminazione pagina: " + this.element.getTitle());
 		return listPage();
 	}
 
@@ -374,10 +384,17 @@ public class PageHandler implements Serializable {
 	 */
 	// @Transactional
 	public String salvaPerAnteprimaRisultato() {
-		if (this.getElement().getId() == null)
+		if (this.getElement().getId() == null) {
+			operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+					"creazione pagina: " + this.element.getTitle());
 			save();
-		else
+
+		} else {
+			operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+					"modica pagina: " + this.element.getTitle());
 			update();
+
+		}
 		return null;
 	}
 
