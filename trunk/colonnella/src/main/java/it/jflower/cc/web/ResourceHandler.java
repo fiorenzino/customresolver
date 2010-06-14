@@ -340,13 +340,23 @@ public class ResourceHandler implements Serializable {
 		uploadedResources.add(resource);
 	}
 
+	
+
+	private Ricerca<Resource> imgRicerca = new Ricerca<Resource>(Resource.class);
+
+	public Ricerca<Resource> getImgRicerca() { return imgRicerca; }
+	
+	public String reloadImgModel() {
+		this.imgModel = null;
+		return null;
+	}
+	
 	private LocalDataModel<Resource> imgModel;
 
 	public LocalDataModel<Resource> getImgModel() {
 		if (imgModel == null) {
-			Ricerca<Resource> ricerca = new Ricerca<Resource>(Resource.class);
-			ricerca.getOggetto().setTipo("img");
-			imgModel = new LocalDataModel<Resource>(9, ricerca, session);
+			imgRicerca.getOggetto().setTipo("img");
+			imgModel = new LocalDataModel<Resource>(9, imgRicerca, session);
 		}
 		return imgModel;
 	}
