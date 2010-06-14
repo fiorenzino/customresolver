@@ -22,8 +22,8 @@
 
 
 /*COLORE ROSSO - HEADER HP GRUPPO, HP LAVORA CON NOI  &  HEADER PAGINE INTERNE*/
-#headerGruppo{background:url('../images/sx_home.jpg') bottom left repeat-x;	height:auto !important; padding:0; margin:0; min-height:145px; height:145px; font-size:.7em;}
-#header{background:url('../images/sx_home.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0;	min-height:115px; height:115px; font-size:.7em;}
+#headerGruppo{background:url('../images/sx_amministrazione.jpg') bottom left repeat-x;	height:auto !important; padding:0; margin:0; min-height:145px; height:145px; font-size:.7em;}
+#header{background:url('../images/sx_amministrazione.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0;	min-height:115px; height:115px; font-size:.7em;}
 
 #headerGruppo div.headerTop,
 #header div.headerTop{padding:12px 25px 0 25px;}
@@ -44,9 +44,9 @@
 #header div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:82px; text-align:right;}
 
 #headerGruppo div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('../images/dx_home.jpg') bottom right repeat-x;}
-#header div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('../images/sx_home.jpg') bottom right repeat-x;}
+#header div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('../images/sx_amministrazione.jpg') bottom right repeat-x;}
 #headerGruppo div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('../images/bg_header_gruppo.jpg') bottom left no-repeat;}
-#header div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('../images/sx_home.jpg') bottom left no-repeat;}
+#header div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('../images/sx_amministrazione.jpg') bottom left no-repeat;}
 
 
 /*COLORE ROSSO - VERSIONE TESTO EDITABILE */
