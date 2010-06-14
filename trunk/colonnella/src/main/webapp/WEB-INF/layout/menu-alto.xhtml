@@ -5,33 +5,27 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ul id="menu_a_2livelli" title="Menu' di primo livello">
-		<li class="M5cellaprima"><a href="#{request.contextPath}/"
-			title="" accesskey="1">Home</a>
+
+		<li class="M5cellaunica"><a
+			href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
 		<ul>
+			<li><a
+				href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
+				title="" accesskey="2">utenti</a></li>
+			</f:verbatim>
 			<li><a href="#{request.contextPath}/logout.jsp" title=""
 				accesskey="2">logout</a></li>
+			<f:verbatim rendered="#{loginHandler.admin}">
 		</ul>
 		</li>
 		<f:verbatim rendered="#{loginHandler.admin}">
 			<li class="M5cellaunica"><a
-				href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
-			<ul>
-				<li><a
-					href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
-					title="" accesskey="2">utenti</a></li>
-			</ul>
-			</li>
-			<li class="M5cellaunica"><a
 				href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
 				title="" accesskey="3">Pagine</a>
 			<ul>
-				<li><h:commandLink
-					action="/private/pagine/lista-pagine.jsf?faces-redirect=true"
-					value="lista" /></li>
-				<li><h:commandLink action="#{pageHandler.addPaginaStatica}"
-					value="nuova statica" /></li>
-				<li><h:commandLink action="#{pageHandler.addPaginaDinamica}"
-					value="nuova dinamica" /></li>
+				<li><a
+					href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
+					title="" accesskey="3">lista</a></li>
 			</ul>
 
 			</li>
@@ -40,22 +34,18 @@
 				href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
 				title="" accesskey="4">Modelli</a>
 			<ul>
-				<li><h:commandLink
-					action="/private/modelli/lista-modelli.jsf?faces-redirect=true"
-					value="lista" /></li>
-				<li><h:commandLink action="#{templateHandler.addElement}"
-					value="nuova" /></li>
+				<li><a
+					href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
+					title="" accesskey="4">lista</a></li>
 			</ul>
 			</li>
 			<li class="M5cellaunica"><a
-				href="#{request.contextPath}/private/menu/percorsi.jsf?faces-redirect=true"
+				href="#{request.contextPath}/private/menu/lista-menu.jsf?faces-redirect=true"
 				title="" accesskey="5">Menu</a>
 			<ul>
-				<li><h:commandLink
-					action="/private/menu/percorsi.jsf?faces-redirect=true"
-					value="lista" /></li>
-				<li><h:commandLink action="#{menuHandler.addElement}"
-					value="nuova" /></li>
+				<li><a
+					href="#{request.contextPath}/private/menu/lista-menu.jsf?faces-redirect=true"
+					title="" accesskey="5">lista</a></li>
 			</ul>
 			</li>
 		</f:verbatim>
@@ -123,5 +113,7 @@
 				value="categorie" /></li>
 		</ul>
 		</li>
+		<li class="M5cellaprima"><a href="#{request.contextPath}/"
+			title="" accesskey="1">Vai al Portale</a></li>
 	</ul>
 </h:form>
