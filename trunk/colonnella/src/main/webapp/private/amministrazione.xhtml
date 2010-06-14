@@ -13,9 +13,10 @@
 		<h:form>
 			<h:outputText value="Benvenuto: #{loginHandler.username}"
 				escape="true" />
+			 - 
+			<h:outputText value=" ruolo: ADMIN" rendered="#{loginHandler.admin}" />
+			<h:outputText value=" ruolo: USER" rendered="#{loginHandler.user}" />
 			<br />
-			<h:outputText value="ruolo: ADMIN" rendered="#{loginHandler.admin}" />
-			<h:outputText value="ruolo: USER" rendered="#{loginHandler.user}" />
 			<p:panel header="Gestione Modelli di Pagina"
 				rendered="#{templateHandler.clear and loginHandler.admin}"
 				style="width:200px; float:left;">
@@ -40,8 +41,7 @@
 			<p:panel header="Gestione Menu" style="width: 200px; float: left;"
 				rendered="#{menuHandler.clear and loginHandler.admin}">
 				<div style="height: 50px;"><h:commandLink
-					action="#{menuHandler.loadModel}" value="lista menu" />
-				<br />
+					action="#{menuHandler.loadModel}" value="lista menu" /> <br />
 				<h:commandLink action="#{menuHandler.addElement}"
 					value="aggiungi nuovo" /></div>
 			</p:panel>
@@ -56,17 +56,17 @@
 					value="aggiungi nuovo" /></div>
 			</p:panel>
 
+
+			<div style="width: 600px; height: 40px; clear: both;"></div>
 			<p:panel header="Log Operazioni"
 				rendered="#{operazioniLogHandler.clear and loginHandler.admin}"
 				style="width: 200px; float: left;">
 				<div style="height: 27px;"><h:commandLink
 					action="#{operazioniLogHandler.loadModel}"
-					value="lista delle risorse" /> <br />
+					value="lista delle operazioni" /> <br />
 				<br />
 				</div>
 			</p:panel>
-
-			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:panel header="Gestione Tipi Informazione"
 				style="width:200px; float:left;">
@@ -135,7 +135,7 @@
 					action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
 					value="lista pubblicazioni" />
 				<br />
-				<h:commandLink action="#{pubblicazioniHandler.addPubblicazione}"
+				<h:commandLink action="#{pubblicazioniHandler.addElement}"
 					value="aggiungi nuova" />
 			</p:panel>
 

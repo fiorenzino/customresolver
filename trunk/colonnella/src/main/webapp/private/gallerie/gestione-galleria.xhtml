@@ -48,18 +48,17 @@ function addImageBrowser() {
 			<center><p:panel header="Gestione Galleria di Foto">
 
 				<h:panelGrid columns="2" style="width: 95%">
-					<h:outputLabel for="titolo" value="Titolo" />
+
+					<h:outputLabel for="titolo" value="Titolo(*)" />
 					<h:inputText id="titolo" value="#{gallerieHandler.galleria.titolo}"
-						required="true" />
-					
+						required="true" style="width: 100%;" />
+
 
 					<h:outputLabel for="descrizione" value="Descrizione:" />
-					
-					
-					<p:editor id="descrizione" 
+					<p:editor id="descrizione"
 						value="#{gallerieHandler.galleria.descrizione}" width="640px"
 						height="320px" widgetVar="myEditor" language="it" />
-					
+
 				</h:panelGrid>
 				<br />
 			</p:panel> <br />

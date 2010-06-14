@@ -11,12 +11,12 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<center><p:panel header=""ListaOperazioni"">
+			<center><p:panel header="ListaOperazioni">
 				<h:panelGrid columns="3">
 					<h:outputLabel for="tipo" value="Seleziona tipo:" />
 					<h:selectOneMenu
 						value="#{operazioniLogHandler.ricerca.oggetto.tipo}">
-						<f:selectItems value="#{propertiesHandler.tipoOperazioniLogItems}" />
+						<f:selectItems value="#{propertiesHandler.tipiOperazioniLogItems}" />
 					</h:selectOneMenu>
 					<p:commandButton action="#{operazioniLogHandler.cerca}"
 						value="Cerca" process="@form" update="operazioniList" />
@@ -24,7 +24,7 @@
 				<br />
 
 				<p:dataTable id="operazioniList" rowIndexVar="rowIndex"
-					var="operazione" value="#{notizieHandler.model}"
+					var="operazione" value="#{operazioniLogHandler.model}"
 					rows="#{operazioniLogHandler.pageSize}" paginator="true"
 					dynamic="true" lazy="true">
 					<p:column width="50">
@@ -43,7 +43,7 @@
 
 					<p:column width="100">
 						<f:facet name="header">data</f:facet>
-						<h:outputText value="#{notizia.data}">
+						<h:outputText value="#{operazione.data}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
@@ -51,7 +51,8 @@
 					<p:column width="100">
 						<f:facet name="header">operazioni</f:facet>
 						<center><h:commandLink
-							action="#{operazioniLogHandler.detail(notizia.id)}" value="vedi" /></center>
+							action="#{operazioniLogHandler.detail(operazione.id)}"
+							value="vedi" /></center>
 					</p:column>
 				</p:dataTable>
 			</p:panel> <br />
