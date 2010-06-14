@@ -6,6 +6,7 @@ import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.PubblicazioniSession;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -75,6 +76,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 			int startRow, int pageSize) {
 		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
 				Pubblicazione.class);
+		ricerca.getOggetto().setValidoIl(new Date());
 		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoPubblicazione());
 			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);

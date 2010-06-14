@@ -1,7 +1,9 @@
 package it.jflower.cc.session;
 
+import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.JSFUtils;
+import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoPubblicazione;
@@ -9,11 +11,14 @@ import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 @Named
 @SessionScoped
@@ -160,5 +165,51 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 			e.printStackTrace();
 		}
 		return ret;
+	}
+
+	@Override
+	protected Query getRestrictions(Ricerca<Pubblicazione> ricerca,
+			String orderBy, boolean count) {
+
+		if (ricerca == null || ricerca.getOggetto() == null)
+			return super.getRestrictions(ricerca, orderBy, count);
+
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		String alias = "t";
+		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
+				count));
+		sb.append(" where ").append(alias).append(".attivo = :attivo");
+		params.put("attivo", true);
+
+		String separator = " and ";
+
+		if (ricerca.getOggetto().getValidoIl() != null) {
+			sb.append(separator).append(alias).append(".dal <= :VALIDO1 AND ")
+					.append(alias).append(".al >= :VALIDO2 ");
+			params.put("VALIDO1", ricerca.getOggetto().getValidoIl());
+			params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
+		}
+		if (ricerca.getOggetto().getTipo() != null
+				&& ricerca.getOggetto().getTipo().getId() != null) {
+			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
+			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
+		}
+
+		if (!count) {
+			sb.append(" order by ").append(alias).append(".").append(orderBy);
+		} else {
+			logger.info("order by null");
+		}
+
+		logger.info(sb.toString());
+
+		Query q = getEm().createQuery(sb.toString());
+
+		for (String param : params.keySet()) {
+			q.setParameter(param, params.get(param));
+		}
+
+		return q;
 	}
 }
