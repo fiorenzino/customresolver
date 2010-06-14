@@ -14,7 +14,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
