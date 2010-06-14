@@ -12,18 +12,26 @@
 			<center><p:panel header="Lista Risorse">
 
 				<h:panelGrid columns="3">
-					<h:outputLabel for="tipo" value="Tipo di risorsa:" />
+					<h:outputLabel for="tipo" value="Tipo di risorsa:"
+						rendered="#{loginHandler.admin}" />
 					<h:selectOneMenu id="tipo"
-						value="#{resourceHandler.ricerca.oggetto.tipo}">
-						<f:selectItems value="#{propertiesHandler.risorseItems}" />
+						value="#{resourceHandler.ricerca.oggetto.tipo}"
+						rendered="#{loginHandler.admin}">
+						<f:selectItems value="#{propertiesHandler.risorseItems}"
+							rendered="#{loginHandler.admin}" />
 					</h:selectOneMenu>
-					<p:commandButton action="#{resourceHandler.reset}" value="Cerca" 
-						process="@form" update="resourcesList"/>
+					<h:outputLabel for="tipo2" value="Tipo di risorsa:"
+						rendered="#{loginHandler.user}" />
+					<h:outputText value="Immagini " id="tipo2"
+						rendered="#{loginHandler.user}" />
+					<p:commandButton action="#{resourceHandler.reset}" value="Cerca"
+						process="@form" update="resourcesList" />
 				</h:panelGrid>
-				<br/>
+				<br />
 
-				<p:dataTable id="resourcesList" rowIndexVar="rowIndex" var="r" value="#{resourceHandler.model}"
-					rows="#{resourceHandler.pageSize}" paginator="true" dynamic="true" lazy="true">
+				<p:dataTable id="resourcesList" rowIndexVar="rowIndex" var="r"
+					value="#{resourceHandler.model}" rows="#{resourceHandler.pageSize}"
+					paginator="true" dynamic="true" lazy="true">
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>

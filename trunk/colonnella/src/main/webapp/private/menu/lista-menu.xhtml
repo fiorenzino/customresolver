@@ -17,13 +17,13 @@
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
-					<p:column width="400">
+					<p:column width="100">
 						<f:facet name="header">
 							nome
 						</f:facet>
 						<h:outputText value="#{m.nome}" />
 					</p:column>
-					<p:column width="50">
+					<p:column width="300">
 						<f:facet name="header">
 							percorso
 						</f:facet>
@@ -37,20 +37,17 @@
 					</p:column>
 					<p:column width="200">
 						<center><h:commandLink value="vedi"
-							action="#{menuHandler.viewElement(m.id)}" /> - 
-							<h:commandLink value="modifica"
-							action="#{menuHandler.modElement(m.id)}" />
-						</center>
+							action="#{menuHandler.viewElement(m.id)}" /> - <h:commandLink
+							value="modifica" action="#{menuHandler.modElement(m.id)}" /></center>
 					</p:column>
 				</p:dataTable>
 			</p:panel> <br />
 			<br />
 
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{menuHandler.addElement}"
-					value="Aggiungi" />
-				<h:commandButton action="#{menuHandler.backPage}"
-					value="Indietro" rendered="false" />
+				<h:commandButton action="#{menuHandler.addElement}" value="Aggiungi" />
+				<h:commandButton action="#{menuHandler.backPage}" value="Indietro"
+					rendered="false" />
 			</h:panelGrid></center>
 
 		</h:form>
