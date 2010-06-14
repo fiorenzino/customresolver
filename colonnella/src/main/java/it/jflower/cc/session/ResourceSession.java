@@ -144,7 +144,7 @@ implements Serializable {
 //			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
 //			if ( ! f.exists() || ! f.isDirectory() )
 //				throw new Exception("directory could not be read!");
-			List<String> files = getFiles(ricerca.getOggetto().getTipo());
+			List<String> files = getFiles(ricerca.getOggetto().getTipo(),ricerca.getOggetto().getNome());
 			if ( startRow > files.size() )
 				return result;
 			int max = files.size();
@@ -173,7 +173,7 @@ implements Serializable {
 //			if ( ! f.exists() || ! f.isDirectory() )
 //				throw new Exception("directory could not be read!");
 //			return f.list().length;
-			return getFiles(ricerca.getOggetto().getTipo()).size();
+			return getFiles(ricerca.getOggetto().getTipo(),ricerca.getOggetto().getNome()).size();
 		} catch (Exception e) {
 			staticLogger.error(e.getMessage(), e);
 			return 0;
@@ -181,9 +181,17 @@ implements Serializable {
 	}	
 
 	
-	private List<String> getFiles(String tipo) {
-		if ( tipo.equals("img") ) 
-			return FileUtils.getImgFiles();
+	private List<String> getFiles(String tipo, String nameLike) {
+		if ( tipo.equals("img") ) {
+			if  ( nameLike == null || nameLike.equals("") ) 
+				return FileUtils.getImgFiles();
+			List<String> filteredFiles = new ArrayList<String>();
+			for ( String filename : FileUtils.getImgFiles() ) {
+				if ( filename.toUpperCase().contains(nameLike.toUpperCase()) )
+					filteredFiles.add(filename);
+			}
+			return filteredFiles;
+		}
 		else if ( tipo.equals("js") ) 
 			return FileUtils.getJsFiles();
 		if ( tipo.equals("swf") ) 
