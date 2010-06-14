@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Pubblicazione implements Serializable {
@@ -31,6 +32,8 @@ public class Pubblicazione implements Serializable {
 	private Date al;
 	private List<Documento> documenti;
 	private boolean attivo = true;
+
+	private Date validoIl;
 
 	@Id
 	public String getId() {
@@ -122,5 +125,14 @@ public class Pubblicazione implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Transient
+	public Date getValidoIl() {
+		return validoIl;
+	}
+
+	public void setValidoIl(Date validoIl) {
+		this.validoIl = validoIl;
 	}
 }
