@@ -9,13 +9,14 @@
 		<li class="M5cellaunica"><a
 			href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
 		<ul>
-			<li><a
-				href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
-				title="" accesskey="2">utenti</a></li>
+			<f:verbatim rendered="#{loginHandler.admin}">
+				<li><a
+					href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
+					title="" accesskey="2">utenti</a></li>
 			</f:verbatim>
 			<li><a href="#{request.contextPath}/logout.jsp" title=""
 				accesskey="2">logout</a></li>
-			<f:verbatim rendered="#{loginHandler.admin}">
+
 		</ul>
 		</li>
 		<f:verbatim rendered="#{loginHandler.admin}">
@@ -59,8 +60,8 @@
 			<li><h:commandLink
 				action="#{pubblicazioniHandler.addPubblicazione}" value="nuova" /></li>
 			<li><h:commandLink
-				action="/private/pubblicazioni/gestione-tipi-pubblicazione.jsf?faces-redirect=true"
-				value="tipi" /></li>
+				action="/private/tipi-pubblicazione/lista-tipi-pubblicazione.jsf?faces-redirect=true"
+				value="lista tipi" /></li>
 		</ul>
 		</li>
 		<li class="M5cellaunica"><a
@@ -72,6 +73,8 @@
 				value="lista" /></li>
 			<li><h:commandLink action="#{notizieHandler.addNotizia}"
 				value="nuova" /></li>
+			<li><h:commandLink action="#{tipoInformazioniHandler.loadModel}"
+				value="lista tipi" /></li>
 		</ul>
 
 		</li>
@@ -107,10 +110,10 @@
 				value="nuova" /></li>
 			<li><h:commandLink
 				action="/private/attivita/lista-tipi-attivita.jsf?faces-redirect=true"
-				value="tipi" /></li>
+				value="lista tipi" /></li>
 			<li><h:commandLink
 				action="/private/attivita/lista-categorie-attivita.jsf?faces-redirect=true"
-				value="categorie" /></li>
+				value="lista categorie" /></li>
 		</ul>
 		</li>
 		<li class="M5cellaprima"><a href="#{request.contextPath}/"

@@ -35,10 +35,12 @@
 						</p:column>
 						<p:column style="width: 100%;">
 							<f:facet name="header">anteprima</f:facet>
-							<h:graphicImage value="util/resourcePreview.jsp?row=#{row}"
+							<h:graphicImage
+								value="#{request.contextPath}/util/resourcePreview.jsp?row=#{row}"
 								rendered="#{resourceHandler.getResource(row).tipo == 'img'}" />
-							<h:outputLink value="util/resourcePreview.jsp?row=#{row}"
-								rendered="#{not resourceHandler.getResource(row).tipo == 'img'}" />
+							<h:outputLink
+								value="#{request.contextPath}/util/resourcePreview.jsp?row=#{row}"
+								rendered="#{not resourceHandler.getResource(row).tipo != 'img'}" />
 						</p:column>
 					</p:dataTable>
 				</h:panelGroup>
