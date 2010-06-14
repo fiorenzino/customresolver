@@ -33,12 +33,18 @@ public class MenuHandler implements Serializable {
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 
-	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-	public static String VIEW = "/private/menu/scheda-menu.xhtml"+FACES_REDIRECT;
-	public static String LIST = "/private/menu/lista-menu.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/menu/gestione-menu1.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT2 = "/private/menu/gestione-menu2.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT3 = "/private/menu/gestione-menu3.xhtml"+FACES_REDIRECT;
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String VIEW = "/private/menu/scheda-menu.xhtml"
+			+ FACES_REDIRECT;
+	public static String LIST = "/private/menu/lista-menu.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/menu/gestione-menu1.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT2 = "/private/menu/gestione-menu2.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT3 = "/private/menu/gestione-menu3.xhtml"
+			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
@@ -116,7 +122,7 @@ public class MenuHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel( new LocalLazyDataModel<MenuGroup>( this.ricerca, session ));
+		setModel(new LocalLazyDataModel<MenuGroup>(this.ricerca, session));
 	}
 
 	/**
@@ -135,7 +141,7 @@ public class MenuHandler implements Serializable {
 		reset();
 		return true;
 	}
-	
+
 	public String cerca() {
 		refreshModel();
 		return null;
@@ -193,9 +199,17 @@ public class MenuHandler implements Serializable {
 		return this.backPage;
 	}
 
-	public String viewPage() { return VIEW; }
-	public String listPage() { return LIST; }
-	public String editPage() { return NEW_OR_EDIT; }
+	public String viewPage() {
+		return VIEW;
+	}
+
+	public String listPage() {
+		return LIST;
+	}
+
+	public String editPage() {
+		return NEW_OR_EDIT;
+	}
 
 	// -----------------------------------------------------
 
@@ -217,7 +231,7 @@ public class MenuHandler implements Serializable {
 		// settaggi nel super handler
 		try {
 			this.element = new MenuGroup();
-			this.element.setLista( new ArrayList<MenuItem>() );
+			this.element.setLista(new ArrayList<MenuItem>());
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
 			e.printStackTrace();
@@ -257,7 +271,7 @@ public class MenuHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		// altre dipendenze
-//		propertiesHandler.setMenuGroupItems(null);
+		// propertiesHandler.setMenuGroupItems(null);
 		// vista di destinazione
 		return viewPage();
 	}
@@ -272,7 +286,7 @@ public class MenuHandler implements Serializable {
 		element = getSession().fetch(getId(element));
 		refreshModel();
 		// altre dipendenze
-//		propertiesHandler.setMenuGroupItems(null);
+		// propertiesHandler.setMenuGroupItems(null);
 		// vista di destinzione
 		return viewPage();
 	}
@@ -285,7 +299,7 @@ public class MenuHandler implements Serializable {
 		refreshModel();
 		element = null;
 		// altre dipendenze
-//		propertiesHandler.setMenuGroupItems(null);
+		// propertiesHandler.setMenuGroupItems(null);
 		// visat di destinazione
 		return listPage();
 	}
@@ -307,7 +321,7 @@ public class MenuHandler implements Serializable {
 	}
 
 	// ----------------------------------------------------
-	
+
 	public String viewElement(Object id) {
 		this.element = session.fetch(id);
 		return viewPage();
@@ -317,7 +331,7 @@ public class MenuHandler implements Serializable {
 		this.element = session.fetch(id);
 		return editPage();
 	}
-	
+
 	// ----------------------------------------------------
 	// ----------------------------------------------------
 	// ----------------------------------------------------
@@ -325,19 +339,19 @@ public class MenuHandler implements Serializable {
 	public String step2() {
 		this.pagine = pageSession.getAllList();
 		List<Page> pagineSelezionate = new ArrayList<Page>();
-		for ( Page pagina : pagine ) {
-			for ( MenuItem menuItem : this.element.getLista() ) {
-				if ( menuItem.getPagina().getId().equals( pagina.getId() ) ) {
+		for (Page pagina : pagine) {
+			for (MenuItem menuItem : this.element.getLista()) {
+				if (menuItem.getPagina().getId().equals(pagina.getId())) {
 					pagineSelezionate.add(pagina);
 				}
 			}
 		}
-		this.pagineSelezionate = pagineSelezionate.toArray(new Page[]{});
+		this.pagineSelezionate = pagineSelezionate.toArray(new Page[] {});
 		return NEW_OR_EDIT2;
 	}
 
 	private List<Page> pagine;
-	
+
 	private Page[] pagineSelezionate;
 
 	public Page[] getPagineSelezionate() {
@@ -358,44 +372,49 @@ public class MenuHandler implements Serializable {
 
 	public String step3() {
 		List<Page> pagineDaAggiungere = new ArrayList<Page>();
-		for ( Page paginaSelezionata : this.pagineSelezionate ) {
+		for (Page paginaSelezionata : this.pagineSelezionate) {
 			boolean giaPresente = false;
-			for ( MenuItem menuItem : this.element.getLista() ) {
-				if ( menuItem.getPagina().getId().equals(paginaSelezionata.getId()) ) {
+			for (MenuItem menuItem : this.element.getLista()) {
+				if (menuItem.getPagina().getId().equals(
+						paginaSelezionata.getId())) {
 					giaPresente = false;
 				}
 			}
-			if ( ! giaPresente ) {
-				pagineDaAggiungere.add( paginaSelezionata );
+			if (!giaPresente) {
+				pagineDaAggiungere.add(paginaSelezionata);
 			}
 		}
 		List<MenuItem> menuItemsDaRimuovere = new ArrayList<MenuItem>();
-		for ( MenuItem menuItem : this.element.getLista() ) {
+		for (MenuItem menuItem : this.element.getLista()) {
 			boolean mantenuto = false;
-			for ( Page paginaSelezionata : this.pagineSelezionate ) {
-				if ( paginaSelezionata.getId().equals(menuItem.getPagina().getId()) ) {
+			for (Page paginaSelezionata : this.pagineSelezionate) {
+				if (paginaSelezionata.getId().equals(
+						menuItem.getPagina().getId())) {
 					mantenuto = true;
 				}
 			}
-			if ( ! mantenuto ) {
-				menuItemsDaRimuovere.add( menuItem );
+			if (!mantenuto) {
+				menuItemsDaRimuovere.add(menuItem);
 			}
 		}
-		for ( Page paginaDaAggiungere : pagineDaAggiungere ) {
+		for (Page paginaDaAggiungere : pagineDaAggiungere) {
 			MenuItem menuItem = new MenuItem();
 			menuItem.setNome(paginaDaAggiungere.getTitle());
-			menuItem.setPercorso(paginaDaAggiungere.getTitle());
+			String percorso = getElement().getPercorso()
+					+ (getElement().getPercorso().endsWith("/") ? "" : "/")
+					+ paginaDaAggiungere.getId();
+			menuItem.setPercorso(percorso);
 			menuItem.setDescrizione(paginaDaAggiungere.getDescription());
 			menuItem.setPagina(paginaDaAggiungere);
 			menuItem.setGruppo(this.element);
 			this.element.getLista().add(menuItem);
 		}
-		for ( MenuItem menuItemDaRimuovere : menuItemsDaRimuovere ) {
+		for (MenuItem menuItemDaRimuovere : menuItemsDaRimuovere) {
 			menuItemDaRimuovere.setAttivo(false);
 		}
 		List<MenuItem> menuItem2dataModel = new ArrayList<MenuItem>();
-		for ( MenuItem menuItem : this.element.getLista() ) {
-			if ( menuItem.isAttivo() ) {
+		for (MenuItem menuItem : this.element.getLista()) {
+			if (menuItem.isAttivo()) {
 				menuItem2dataModel.add(menuItem);
 			}
 		}
@@ -413,5 +432,4 @@ public class MenuHandler implements Serializable {
 		this.menuItemModel = menuItemModel;
 	}
 
-	
 }
