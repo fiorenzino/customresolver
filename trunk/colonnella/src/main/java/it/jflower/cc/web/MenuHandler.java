@@ -386,6 +386,8 @@ public class MenuHandler implements Serializable {
 			menuItem.setNome(paginaDaAggiungere.getTitle());
 			menuItem.setPercorso(paginaDaAggiungere.getTitle());
 			menuItem.setDescrizione(paginaDaAggiungere.getDescription());
+			menuItem.setPagina(paginaDaAggiungere);
+			menuItem.setGruppo(this.element);
 			this.element.getLista().add(menuItem);
 		}
 		for ( MenuItem menuItemDaRimuovere : menuItemsDaRimuovere ) {
