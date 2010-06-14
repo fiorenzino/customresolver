@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class MenuGroup implements Serializable {
@@ -22,10 +21,10 @@ public class MenuGroup implements Serializable {
 	// ------------------------------------------------------------------------
 
 	private String nome;
+	private String descrizione;
 	private String percorso;
 
 	private List<MenuItem> lista;
-	private List<MenuItem> tutti;
 
 	// ------------------------------------------------------------------------
 
@@ -78,12 +77,12 @@ public class MenuGroup implements Serializable {
 		this.percorso = percorso;
 	}
 
-	@Transient
-	public List<MenuItem> getTutti() {
-		return tutti;
+	public String getDescrizione() {
+		return descrizione;
 	}
-	public void setTutti(List<MenuItem> tutti) {
-		this.tutti = tutti;
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
 }

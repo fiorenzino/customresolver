@@ -19,6 +19,8 @@ public class MenuItem implements Serializable {
 	boolean attivo = true;
 
 	private String nome;
+	private String descrizione;
+	private String percorso;
 
 	private Page pagina;
 	private MenuGroup gruppo;
@@ -77,6 +79,20 @@ public class MenuItem implements Serializable {
 
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
+	}
+
+	public String getPercorso() {
+		return percorso;
+	}
+	public void setPercorso(String percorso) {
+		this.percorso = percorso;
+	}
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
 }

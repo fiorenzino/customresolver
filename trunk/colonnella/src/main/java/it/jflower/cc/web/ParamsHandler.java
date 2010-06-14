@@ -10,6 +10,9 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class ParamsHandler implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	public ParamsHandler() {
 
 	}

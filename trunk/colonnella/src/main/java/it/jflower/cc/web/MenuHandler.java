@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.MenuGroup;
 import it.jflower.cc.par.MenuItem;
 import it.jflower.cc.par.Page;
@@ -10,9 +11,7 @@ import it.jflower.cc.session.PageSession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -22,9 +21,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.primefaces.event.NodeSelectEvent;
-import org.primefaces.model.DualListModel;
-import org.primefaces.model.TreeNode;
 import org.seamframework.tx.Transactional;
 
 @Named
@@ -37,18 +33,17 @@ public class MenuHandler implements Serializable {
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 
-	public static String BACK = "/private/amministrazione.xhtml"
-			+ FACES_REDIRECT;
-	public static String VIEW = "/private/menu/percorsi.xhtml" + FACES_REDIRECT;
-	public static String LIST = "/private/menu/percorsi.xhtml" + FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/menu/percorsi.xhtml"
-			+ FACES_REDIRECT;
+	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
+	public static String VIEW = "/private/menu/scheda-menu.xhtml"+FACES_REDIRECT;
+	public static String LIST = "/private/menu/lista-menu.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/menu/gestione-menu1.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT2 = "/private/menu/gestione-menu2.xhtml"+FACES_REDIRECT;
+	public static String NEW_OR_EDIT3 = "/private/menu/gestione-menu3.xhtml"+FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
 	@Inject
 	MenuSession session;
-
 	@Inject
 	PageSession pageSession;
 
@@ -71,15 +66,6 @@ public class MenuHandler implements Serializable {
 	private int scrollerPage = 1;
 
 	private String backPage = BACK;
-
-	private TreeNode root;
-	private TreeNode selectedGroup;
-	private DualListModel<MenuItem> dualListModel;
-	private List<Page> pages;
-
-	private TreeNode selectedItem;
-
-	private List<MenuItem> itemList;
 
 	// ------------------------------------------------
 
@@ -128,11 +114,9 @@ public class MenuHandler implements Serializable {
 		this.model = model;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		// setModel(new LocalDataModel<Template>(pageSize, ricerca,
-		// getSession()));
-		setModel(new ListDataModel<MenuGroup>(session.getAllList()));
-		this.pages = pageSession.getAllList();
+		setModel( new LocalLazyDataModel<MenuGroup>( this.ricerca, session ));
 	}
 
 	/**
@@ -144,19 +128,22 @@ public class MenuHandler implements Serializable {
 	public String reset() {
 		this.element = null;
 		this.model = null;
-		return backPage();
+		return listPage();
 	}
 
 	public boolean getClear() {
 		reset();
 		return true;
 	}
+	
+	public String cerca() {
+		refreshModel();
+		return null;
+	}
 
 	// -----------------------------------------------------
 
 	public MenuGroup getElement() {
-		if (element == null)
-			element = new MenuGroup();
 		return element;
 	}
 
@@ -206,17 +193,9 @@ public class MenuHandler implements Serializable {
 		return this.backPage;
 	}
 
-	public String viewPage() {
-		return VIEW;
-	}
-
-	public String listPage() {
-		return LIST;
-	}
-
-	public String editPage() {
-		return NEW_OR_EDIT;
-	}
+	public String viewPage() { return VIEW; }
+	public String listPage() { return LIST; }
+	public String editPage() { return NEW_OR_EDIT; }
 
 	// -----------------------------------------------------
 
@@ -234,27 +213,35 @@ public class MenuHandler implements Serializable {
 
 	public String addElement() {
 		// impostazioni locali
-		MenuGroup m = new MenuGroup();
-		m.setLista(new ArrayList<MenuItem>());
 		// n.d.
 		// settaggi nel super handler
-		this.element = m;
+		try {
+			this.element = new MenuGroup();
+			this.element.setLista( new ArrayList<MenuItem>() );
+		} catch (Exception e) {
+			// logger.error(e.getMessage());
+			e.printStackTrace();
+		}
 		// vista di destinazione
 		return editPage();
 	}
 
 	public String viewElement() {
 		// fetch dei dati
-		this.element = (MenuGroup) getModel().getRowData();
-		this.element = getSession().fetch(getId(this.element));
+		MenuGroup m = (MenuGroup) getModel().getRowData();
+		m = getSession().fetch(getId(m));
+		// settaggi nel super handler
+		this.element = m;
 		// vista di destinazione
 		return viewPage();
 	}
 
 	public String modElement() {
 		// fetch dei dati;
-		this.element = (MenuGroup) getModel().getRowData();
-		this.element = getSession().fetch(getId(this.element));
+		MenuGroup t = (MenuGroup) getModel().getRowData();
+		t = getSession().fetch(getId(t));
+		// settaggi nel super handler
+		this.element = t;
 		// vista di destinazione
 		return editPage();
 	}
@@ -270,7 +257,7 @@ public class MenuHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		// altre dipendenze
-		// n.d.
+//		propertiesHandler.setMenuGroupItems(null);
 		// vista di destinazione
 		return viewPage();
 	}
@@ -285,7 +272,7 @@ public class MenuHandler implements Serializable {
 		element = getSession().fetch(getId(element));
 		refreshModel();
 		// altre dipendenze
-		// n.d.
+//		propertiesHandler.setMenuGroupItems(null);
 		// vista di destinzione
 		return viewPage();
 	}
@@ -298,7 +285,7 @@ public class MenuHandler implements Serializable {
 		refreshModel();
 		element = null;
 		// altre dipendenze
-		// n.d.
+//		propertiesHandler.setMenuGroupItems(null);
 		// visat di destinazione
 		return listPage();
 	}
@@ -320,208 +307,109 @@ public class MenuHandler implements Serializable {
 	}
 
 	// ----------------------------------------------------
-
-	// public List<Template> getList() {
-	// return session.getAllList();
-	// }
-
+	
 	public String viewElement(Object id) {
-		// for (Template t : session.getAllList() ) {
-		// if ( t.getId().equals(id) ) {
-		// this.element = t;
-		// break;
-		// }
-		// }
 		this.element = session.fetch(id);
 		return viewPage();
 	}
 
 	public String modElement(Object id) {
-		// for (Template t : session.getAllList() ) {
-		// if ( t.getId().equals(id) ) {
-		// this.element = t;
-		// break;
-		// }
-		// }
 		this.element = session.fetch(id);
 		return editPage();
 	}
-
-	// -----------------------------------------------------------------
-
-	@SuppressWarnings("unchecked")
-	public TreeNode getModelTree() {
-
-		root = new TreeNode("root", null);
-
-		for (MenuGroup mg : (List<MenuGroup>) getModel().getWrappedData()) {
-			TreeNode mgn = new TreeNode("menuGroup", mg, root);
-			if (mg.getLista() != null) {
-				mg = session.fetch(mg.getId());
-				for (MenuItem mi : mg.getLista()) {
-					if ( mi.isAttivo() ) {
-						@SuppressWarnings("unused")
-						TreeNode min = new TreeNode("menuItem", mi, mgn);
-					}
-				}
-			}
-		}
-
-		return root;
-	}
-
-	public TreeNode getSelectedGroup() {
-		return selectedGroup;
-	}
-
-	public void setSelectedGroup(TreeNode selectedGroup) {
-		this.selectedGroup = selectedGroup;
-		this.selectedItem = null;
-		this.itemList = null;
-	}
-
-	public TreeNode getSelectedItem() {
-		return selectedItem;
-	}
-
-	public void setSelectedItem(TreeNode selectedItem) {
-		this.selectedItem = selectedItem;
-		this.selectedGroup = null;
-		this.itemList = null;
-	}
-
-	public List<MenuItem> getItemList() {
-		return itemList;
-	}
-
-	public void setItemList(List<MenuItem> itemList) {
-		this.itemList = itemList;
-		this.selectedGroup = null;
-		this.selectedItem = null;
-	}
-
-	public void onNodeSelect(NodeSelectEvent event) {
-		TreeNode selected = event.getTreeNode();
-		if ("menuGroup".equals(selected.getType())) {
-			setSelectedGroup(selected);
-			MenuGroup menuGroup = ((MenuGroup) selected.getData());
-			Map<String, MenuItem> groupItems = new HashMap<String, MenuItem>();
-			if (menuGroup.getLista() != null) {
-				for (MenuItem item : menuGroup.getLista()) {
-					if ( item.isAttivo() ) {
-						groupItems.put(item.getPagina().getId(), item);
-					}
-				}
-			}
-			List<MenuItem> source = new ArrayList<MenuItem>();
-			List<MenuItem> target = new ArrayList<MenuItem>();
-			for (Page page : this.pages) {
-				if (groupItems.get(page.getId()) != null) {
-					target.add(groupItems.get(page.getId()));
-				} else {
-					source.add(new MenuItem(page, menuGroup));
-				}
-			}
-			dualListModel = new DualListModel<MenuItem>(source, target);
-			logger.debug("Selected:" + selectedGroup.getData());
-		}
-		else if ( "menuItem".equals(selected.getType())) {
-			setSelectedItem(selected);
-			@SuppressWarnings("unused")
-			MenuItem menuItem = ((MenuItem) selected.getData());
-			logger.debug("Selected:" + selectedItem.getData());
-		}
-	}
-
-	public DualListModel<MenuItem> getDualListModel() {
-		if (dualListModel == null)
-			dualListModel = new DualListModel<MenuItem>();
-		return dualListModel;
-	}
-
-	public void setDualListModel(DualListModel<MenuItem> dualListModel) {
-		this.dualListModel = dualListModel;
-	}
-
-	@Transactional
-	public String deleteGroup() {
-		session.delete( ((MenuGroup)this.selectedGroup.getData()).getId() );
-		this.selectedGroup = null;
-		refreshModel();
-		return null;
-	}
 	
-	@Transactional
-	public String confirmPages() {
-		// confermo quelli già presenti
-		MenuGroup menuGroup = (MenuGroup) selectedGroup.getData();
-		if (menuGroup.getLista() == null) {
-			menuGroup.setLista(new ArrayList<MenuItem>());
+	// ----------------------------------------------------
+	// ----------------------------------------------------
+	// ----------------------------------------------------
+
+	public String step2() {
+		this.pagine = pageSession.getAllList();
+		List<Page> pagineSelezionate = new ArrayList<Page>();
+		for ( Page pagina : pagine ) {
+			for ( MenuItem menuItem : this.element.getLista() ) {
+				if ( menuItem.getPagina().getId().equals( pagina.getId() ) ) {
+					pagineSelezionate.add(pagina);
+				}
+			}
 		}
-		for (MenuItem giaPresente : menuGroup.getLista()) {
+		this.pagineSelezionate = pagineSelezionate.toArray(new Page[]{});
+		return NEW_OR_EDIT2;
+	}
+
+	private List<Page> pagine;
+	
+	private Page[] pagineSelezionate;
+
+	public Page[] getPagineSelezionate() {
+		return pagineSelezionate;
+	}
+
+	public void setPagineSelezionate(Page[] pagineSelezionate) {
+		this.pagineSelezionate = pagineSelezionate;
+	}
+
+	public List<Page> getPagine() {
+		return pagine;
+	}
+
+	public void setPagine(List<Page> pagine) {
+		this.pagine = pagine;
+	}
+
+	public String step3() {
+		List<Page> pagineDaAggiungere = new ArrayList<Page>();
+		for ( Page paginaSelezionata : this.pagineSelezionate ) {
+			boolean giaPresente = false;
+			for ( MenuItem menuItem : this.element.getLista() ) {
+				if ( menuItem.getPagina().getId().equals(paginaSelezionata.getId()) ) {
+					giaPresente = false;
+				}
+			}
+			if ( ! giaPresente ) {
+				pagineDaAggiungere.add( paginaSelezionata );
+			}
+		}
+		List<MenuItem> menuItemsDaRimuovere = new ArrayList<MenuItem>();
+		for ( MenuItem menuItem : this.element.getLista() ) {
 			boolean mantenuto = false;
-			for (MenuItem scelto : dualListModel.getTarget()) {
-				if (giaPresente.getId().equals(scelto.getId()))
+			for ( Page paginaSelezionata : this.pagineSelezionate ) {
+				if ( paginaSelezionata.getId().equals(menuItem.getPagina().getId()) ) {
 					mantenuto = true;
-				break;
+				}
 			}
-			giaPresente.setAttivo(mantenuto);
-		}
-		// aggiungo i nuovi
-		List<MenuItem> nuovi = new ArrayList<MenuItem>();
-		for (MenuItem scelto : dualListModel.getTarget()) {
-			boolean aggiunto = true;
-			for (MenuItem giaPresente : menuGroup.getLista()) {
-				if (giaPresente.getId().equals(scelto.getId()))
-					aggiunto = true;
-				break;
+			if ( ! mantenuto ) {
+				menuItemsDaRimuovere.add( menuItem );
 			}
-			if (aggiunto)
-				nuovi.add(scelto);
 		}
-		List<MenuItem> nuovaLista = new ArrayList<MenuItem>();
-		for (MenuItem mantenutoOrimosso : menuGroup.getLista()) {
-			nuovaLista.add(mantenutoOrimosso);
+		for ( Page paginaDaAggiungere : pagineDaAggiungere ) {
+			MenuItem menuItem = new MenuItem();
+			menuItem.setNome(paginaDaAggiungere.getTitle());
+			menuItem.setPercorso(paginaDaAggiungere.getTitle());
+			menuItem.setDescrizione(paginaDaAggiungere.getDescription());
+			this.element.getLista().add(menuItem);
 		}
-		for (MenuItem nuovo : nuovi) {
-			nuovo.setGruppo(menuGroup);
-			nuovaLista.add(nuovo);
+		for ( MenuItem menuItemDaRimuovere : menuItemsDaRimuovere ) {
+			menuItemDaRimuovere.setAttivo(false);
 		}
-		menuGroup.setLista(nuovaLista);
-		session.update(menuGroup);
-		
-		List<MenuItem> listaAttivi = new ArrayList<MenuItem>();
-		for ( MenuItem i : nuovaLista ) {
-			if ( i.isAttivo() )
-				listaAttivi.add(i);
+		List<MenuItem> menuItem2dataModel = new ArrayList<MenuItem>();
+		for ( MenuItem menuItem : this.element.getLista() ) {
+			if ( menuItem.isAttivo() ) {
+				menuItem2dataModel.add(menuItem);
+			}
 		}
-		
-		setItemList(listaAttivi);
-		refreshModel();
-		
-		return null;
+		this.menuItemModel = new ListDataModel<MenuItem>(menuItem2dataModel);
+		return NEW_OR_EDIT3;
 	}
 
-	@SuppressWarnings("unchecked")
-	public boolean isGruppi() {
-		return ((List<MenuGroup>) getModel().getWrappedData()).size() > 0 ? true
-				: false;
+	private DataModel<MenuItem> menuItemModel;
+
+	public DataModel<MenuItem> getMenuItemModel() {
+		return menuItemModel;
 	}
 
-	@Transactional
-	public String confirmNames() {
-		for ( MenuItem mi : itemList ) {
-			session.updateItem(mi);
-		}
-		setItemList(null);
-		return null;
+	public void setMenuItemModel(DataModel<MenuItem> menuItemModel) {
+		this.menuItemModel = menuItemModel;
 	}
 
-	@Transactional
-	public String updateItem() {
-		session.updateItem( (MenuItem)this.selectedItem.getData() );
-//		setSelectedItem(null);
-		return null;
-	}
-
+	
 }
