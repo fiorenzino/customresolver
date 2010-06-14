@@ -21,25 +21,25 @@
 						<f:facet name="header">
 							nome
 						</f:facet>
-						<h:outputText value="#{t.nome}" />
+						<h:outputText value="#{m.nome}" />
 					</p:column>
 					<p:column width="50">
 						<f:facet name="header">
 							percorso
 						</f:facet>
-						<h:outputText value="#{t.percorso}" />
+						<h:outputText value="#{m.percorso}" />
 					</p:column>
-					<p:column width="50">
+					<p:column width="50" rendered="true">
 						<f:facet name="header">
 							n. pagine
 						</f:facet>
-						<h:outputText value="#{t.lista.size()}" />
+						<h:outputText value="#{m.lista.size()}" />
 					</p:column>
 					<p:column width="200">
 						<center><h:commandLink value="vedi"
-							action="#{menuHandler.viewElement(t.id)}" /> - 
+							action="#{menuHandler.viewElement(m.id)}" /> - 
 							<h:commandLink value="modifica"
-							action="#{menuHandler.modElement(t.id)}" />
+							action="#{menuHandler.modElement(m.id)}" />
 						</center>
 					</p:column>
 				</p:dataTable>
