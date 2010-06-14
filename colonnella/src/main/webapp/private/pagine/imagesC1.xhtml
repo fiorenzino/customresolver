@@ -38,6 +38,10 @@
 					<flw:uiRepeatPaged id="immagini" showpages="2" label="Immagini disponibili..."
 						selectedStyleClass="selected" styleClass="pager"
 						model="#{resourceHandler.imgModel}" width="350px" >
+					<h:inputText value="#{resourceHandler.imgRicerca.oggetto.nome}"/>
+					<h:commandButton action="#{resourceHandler.reloadImgModel}" value="Filtra per nome"/>
+					<br/>
+					<br/>
 
 						<p>
 							<img src="#{request.contextPath}/img/#{var.nome}"
