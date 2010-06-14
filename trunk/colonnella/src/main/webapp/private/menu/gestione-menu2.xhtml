@@ -20,8 +20,8 @@
 						style="width: 100%;" />
 
 					<h:outputLabel value="Descrizione:" for="descrizione" />
-					<h:outputText id="descrizione" value="#{menuHandler.element.descrizione}"
-						style="width: 100%;" />
+					<h:outputText id="descrizione"
+						value="#{menuHandler.element.descrizione}" style="width: 100%;" />
 
 					<h:outputLabel value="Percorso:" for="percorso" />
 					<h:outputText id="percorso" value="#{menuHandler.element.percorso}"
@@ -30,9 +30,11 @@
 				</h:panelGrid>
 				<br />
 
-				<p:dataTable var="pagina" value="#{menuHandler.pagine}" paginator="true" rows="10"
-					selection="#{menuHandler.pagineSelezionate}" selectionMode="multiple">
-					
+				<p:dataTable var="pagina" value="#{menuHandler.pagine}"
+					paginator="true" rows="10"
+					selection="#{menuHandler.pagineSelezionate}"
+					selectionMode="multiple">
+
 					<p:column width="50">
 						<center><h:outputText value="#{rowIndex+1} " /></center>
 					</p:column>
@@ -43,32 +45,40 @@
 						</f:facet>
 						<h:outputText value="#{pagina.title}" />
 					</p:column>
-			
+
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="descrizione" />
 						</f:facet>
 						<h:outputText value="#{pagina.description}" />
 					</p:column>
-			
-				</p:dataTable>
-				
-				<p:commandButton value="Submit" update="display"/>	
 
-				<h:outputLabel value="Pagine selezionate" for="display" style="font-weight: bolder;"/>				
+				</p:dataTable>
+
+				<p:commandButton value="Aggiorna pagine selezionate"
+					update="display" />
+				<br />
+				<br />
+
+				<h:outputLabel value="Pagine selezionate" for="display"
+					style="font-weight: bolder;" />
+				<br />
 				<p:outputPanel id="display">
-					<ui:repeat value="#{menuHandler.pagineSelezionate}" var="paginaSelezionata">
-						<h:outputText value="#{selectedCar.model}" style="font-style: italic;"/>
+					<ui:repeat value="#{menuHandler.pagineSelezionate}"
+						var="paginaSelezionata">
+						<h:outputText value="#{paginaSelezionata.title}"
+							style="font-style: italic;" />
 						<br />
 					</ui:repeat>
 				</p:outputPanel>
-	
+
 			</p:panel> <br />
 			<br />
 
 			<h:panelGrid columns="3">
-				<h:commandButton action="#{menuHandler.step3}" value="Prosegui (dettagli pagine)"/>
-				
+				<h:commandButton action="#{menuHandler.step3}"
+					value="Prosegui (dettagli pagine)" />
+
 				<h:commandButton id="reset" action="#{menuHandler.reset}"
 					value="Annulla" immediate="true" />
 			</h:panelGrid></center>
