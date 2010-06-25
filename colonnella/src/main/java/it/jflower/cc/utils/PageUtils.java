@@ -82,7 +82,7 @@ public class PageUtils {
 		closeHtmlTags(page);
 		Template t = page.getTemplate().getTemplate();
 		TemplateImpl i = page.getTemplate();
-		closeHtmlTagsT(i);
+		// closeHtmlTagsT(i);
 		StringBuffer b = new StringBuffer(t.getHeader_start() == null ? prologo
 				: t.getHeader_start());
 		b.append(newline);
