@@ -106,7 +106,7 @@ public class PropertiesHandler implements Serializable {
 			fileTypeItems[1] = new SelectItem(1, "img");
 			fileTypeItems[2] = new SelectItem(2, "flash");
 			fileTypeItems[3] = new SelectItem(3, "javascript");
-			fileTypeItems[3] = new SelectItem(4, "docs");
+			fileTypeItems[4] = new SelectItem(4, "docs");
 		}
 		return fileTypeItems;
 	}
