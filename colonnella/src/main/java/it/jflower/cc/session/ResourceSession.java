@@ -20,39 +20,44 @@ import org.apache.log4j.Logger;
 
 @Named
 @SessionScoped
-public class ResourceSession
-extends SuperSession<Resource>
-implements Serializable {
+public class ResourceSession extends SuperSession<Resource> implements
+		Serializable {
 
-	private static Logger staticLogger = Logger.getLogger(ResourceSession.class);
-	
+	private static Logger staticLogger = Logger
+			.getLogger(ResourceSession.class);
+
 	private static final long serialVersionUID = 1L;
 
 	private static String base = null;
-	
-	static { 
-		base = ResourceSession.class.getClassLoader().getResource("META-INF").getPath();
-		base = base.substring(0,base.indexOf("WEB-INF"))
-//		+"risorse"+File.separator
+
+	static {
+		base = ResourceSession.class.getClassLoader().getResource("META-INF")
+				.getPath();
+		base = base.substring(0, base.indexOf("WEB-INF"))
+		// +"risorse"+File.separator
 		;
 		staticLogger.info("Saving resources to: " + base);
 	}
 
 	public Resource persist(Resource object) {
 		try {
-//			File f = new File(base+object.getTipo()+File.separator+object.getNome().replaceAll(" ", "_"));
-//			if ( f.exists() || f.isDirectory() )
-//				throw new Exception("file could not be written!");
-//			FileOutputStream fos = new FileOutputStream(f);
-//			fos.write(object.getBytes());
-//			fos.close();
+			// File f = new
+			// File(base+object.getTipo()+File.separator+object.getNome().replaceAll(" ",
+			// "_"));
+			// if ( f.exists() || f.isDirectory() )
+			// throw new Exception("file could not be written!");
+			// FileOutputStream fos = new FileOutputStream(f);
+			// fos.write(object.getBytes());
+			// fos.close();
 			String filename = null;
-			if ( "img".equals(object.getTipo()) )
-				filename = FileUtils.createImage_(object.getTipo(), object.getNome(), object.getBytes());
+			if ("img".equals(object.getTipo()))
+				filename = FileUtils.createImage_(object.getTipo(), object
+						.getNome(), object.getBytes());
 			else
-				filename = FileUtils.createFile_(object.getTipo(), object.getNome(), object.getBytes());
+				filename = FileUtils.createFile_(object.getTipo(), object
+						.getNome(), object.getBytes());
 			object.setNome(filename);
-			object.setId(object.getTipo()+File.separator+object.getNome());
+			object.setId(object.getTipo() + File.separator + object.getNome());
 			return object;
 		} catch (Exception e) {
 			staticLogger.error(e.getMessage(), e);
@@ -62,15 +67,15 @@ implements Serializable {
 
 	public Resource find(String tipo, String id) {
 		try {
-			File f = new File(base+File.separator+tipo+File.separator+id);
-			if ( f.exists() && ! f.isDirectory() ) {
+			File f = new File(base + File.separator + tipo + File.separator
+					+ id);
+			if (f.exists() && !f.isDirectory()) {
 				Resource r = new Resource();
 				r.setId(id);
 				r.setNome(id);
 				r.setTipo(tipo);
 				return r;
-			}
-			else {
+			} else {
 				return null;
 			}
 		} catch (Exception e) {
@@ -78,24 +83,24 @@ implements Serializable {
 			return null;
 		}
 	}
-	
+
 	public Resource fetch(String tipo, String id) {
 		try {
-			File f = new File(base+File.separator+tipo+File.separator+id);
-			if ( f.exists() && ! f.isDirectory() ) {
+			File f = new File(base + File.separator + tipo + File.separator
+					+ id);
+			if (f.exists() && !f.isDirectory()) {
 				Resource r = new Resource();
 				r.setId(id);
 				r.setNome(id);
 				r.setTipo(tipo);
 				FileInputStream fis = new FileInputStream(f);
-				byte[] bytes = new byte[(int)f.length()];
-				for ( int i = 0 ; i < bytes.length ; i++ ) {
+				byte[] bytes = new byte[(int) f.length()];
+				for (int i = 0; i < bytes.length; i++) {
 					fis.read(bytes);
 				}
 				r.setBytes(bytes);
 				return r;
-			}
-			else {
+			} else {
 				return null;
 			}
 		} catch (Exception e) {
@@ -106,12 +111,14 @@ implements Serializable {
 
 	public Resource update(Resource object) {
 		try {
-			File f = new File(base+File.separator+object.getTipo()+File.separator+object.getId());
-			if ( f.exists() && f.isDirectory() )
+			File f = new File(base + File.separator + object.getTipo()
+					+ File.separator + object.getId());
+			if (f.exists() && f.isDirectory())
 				throw new Exception("file could not be written!");
-			if ( f.exists() ) 
+			if (f.exists())
 				f.delete();
-			f = new File(base+File.separator+object.getTipo()+File.separator+object.getId());
+			f = new File(base + File.separator + object.getTipo()
+					+ File.separator + object.getId());
 			FileOutputStream fos = new FileOutputStream(f);
 			fos.write(object.getBytes());
 			fos.close();
@@ -124,10 +131,11 @@ implements Serializable {
 
 	public void delete(Resource object) {
 		try {
-			File f = new File(base+object.getTipo()+File.separator+object.getId());
-			if ( f.exists() && f.isDirectory() )
+			File f = new File(base + object.getTipo() + File.separator
+					+ object.getId());
+			if (f.exists() && f.isDirectory())
 				throw new Exception("file could not be written!");
-			if ( f.exists() ) 
+			if (f.exists())
 				f.delete();
 			return;
 		} catch (Exception e) {
@@ -138,27 +146,30 @@ implements Serializable {
 
 	// --- LIST ------------------------------------------
 
-	public List<Resource> getList(Ricerca<Resource> ricerca, int startRow, int pageSize) {
+	public List<Resource> getList(Ricerca<Resource> ricerca, int startRow,
+			int pageSize) {
 		List<Resource> result = new ArrayList<Resource>();
 		try {
-//			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
-//			if ( ! f.exists() || ! f.isDirectory() )
-//				throw new Exception("directory could not be read!");
-			List<String> files = getFiles(ricerca.getOggetto().getTipo(),ricerca.getOggetto().getNome());
-			if ( startRow > files.size() )
+			// File f = new
+			// File(base+File.separator+ricerca.getOggetto().getTipo());
+			// if ( ! f.exists() || ! f.isDirectory() )
+			// throw new Exception("directory could not be read!");
+			List<String> files = getFiles(ricerca.getOggetto().getTipo(),
+					ricerca.getOggetto().getNome());
+			if (startRow > files.size())
 				return result;
 			int max = files.size();
-			if ( pageSize > 0 )
-				max = startRow+pageSize;
-			if ( max > files.size() ) {
+			if (pageSize > 0)
+				max = startRow + pageSize;
+			if (max > files.size()) {
 				max = files.size();
 			}
-			for ( int i = startRow ; i < max ; i++ ) {
+			for (int i = startRow; i < max; i++) {
 				Resource r = new Resource();
 				r.setTipo(ricerca.getOggetto().getTipo());
-//				r.setId( files[i].substring( files[i].lastIndexOf("/")+1 ) );
-				r.setId( files.get(i) );
-				r.setNome( r.getId() );
+				// r.setId( files[i].substring( files[i].lastIndexOf("/")+1 ) );
+				r.setId(files.get(i));
+				r.setNome(r.getId());
 				result.add(r);
 			}
 		} catch (Exception e) {
@@ -169,35 +180,37 @@ implements Serializable {
 
 	public int getListSize(Ricerca<Resource> ricerca) {
 		try {
-//			File f = new File(base+File.separator+ricerca.getOggetto().getTipo());
-//			if ( ! f.exists() || ! f.isDirectory() )
-//				throw new Exception("directory could not be read!");
-//			return f.list().length;
-			return getFiles(ricerca.getOggetto().getTipo(),ricerca.getOggetto().getNome()).size();
+			// File f = new
+			// File(base+File.separator+ricerca.getOggetto().getTipo());
+			// if ( ! f.exists() || ! f.isDirectory() )
+			// throw new Exception("directory could not be read!");
+			// return f.list().length;
+			return getFiles(ricerca.getOggetto().getTipo(),
+					ricerca.getOggetto().getNome()).size();
 		} catch (Exception e) {
 			staticLogger.error(e.getMessage(), e);
 			return 0;
 		}
-	}	
+	}
 
-	
 	private List<String> getFiles(String tipo, String nameLike) {
-		if ( tipo.equals("img") ) {
-			if  ( nameLike == null || nameLike.equals("") ) 
+		if (tipo.equals("img")) {
+			if (nameLike == null || nameLike.equals(""))
 				return FileUtils.getImgFiles();
 			List<String> filteredFiles = new ArrayList<String>();
-			for ( String filename : FileUtils.getImgFiles() ) {
-				if ( filename.toUpperCase().contains(nameLike.toUpperCase()) )
+			for (String filename : FileUtils.getImgFiles()) {
+				if (filename.toUpperCase().contains(nameLike.toUpperCase()))
 					filteredFiles.add(filename);
 			}
 			return filteredFiles;
-		}
-		else if ( tipo.equals("js") ) 
+		} else if (tipo.equals("js"))
 			return FileUtils.getJsFiles();
-		if ( tipo.equals("swf") ) 
+		if (tipo.equals("swf"))
 			return FileUtils.getFlashFiles();
-		if ( tipo.equals("css") ) 
+		if (tipo.equals("css"))
 			return FileUtils.getCssFiles();
+		if (tipo.equals("docs"))
+			return FileUtils.getPdfFiles();
 		else
 			return new ArrayList<String>();
 	}
@@ -223,8 +236,7 @@ implements Serializable {
 	@Override
 	public void setEm(EntityManager em) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-

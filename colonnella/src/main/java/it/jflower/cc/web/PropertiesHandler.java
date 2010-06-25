@@ -348,7 +348,8 @@ public class PropertiesHandler implements Serializable {
 		return new SelectItem[] { new SelectItem("img", "immagini"),
 				new SelectItem("js", "funzioni javascript"),
 				new SelectItem("css", "fogli di stile"),
-				new SelectItem("swf", "contenuti flash"), };
+				new SelectItem("swf", "contenuti flash"),
+				new SelectItem("docs", "documenti") };
 	}
 
 	public void setTipiModuloItems(SelectItem[] tipiModuloItems) {
