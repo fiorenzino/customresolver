@@ -2,7 +2,6 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
-import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Template;
@@ -23,7 +22,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
@@ -60,9 +58,6 @@ public class PageHandler implements Serializable {
 	TemplateSession templateSession;
 
 	private Long idTemplate;
-
-	@Inject
-	OperazioniLogHandler operazioniLogHandler;
 
 	// --------------------------------------------------------
 
@@ -232,12 +227,14 @@ public class PageHandler implements Serializable {
 	// -----------------------------------------------------
 
 	public String addPaginaStatica() {
+		this.idTemplate = null;
 		String rv = addElement();
 		this.element.getTemplate().getTemplate().setStatico(true);
 		return rv;
 	}
 
 	public String addPaginaDinamica() {
+		this.idTemplate = null;
 		String rv = addElement();
 		this.element.getTemplate().getTemplate().setStatico(false);
 		return rv;
@@ -245,6 +242,7 @@ public class PageHandler implements Serializable {
 
 	public String addElement() {
 		// impostazioni locali
+		this.idTemplate = null;
 		Page p = new Page();
 		p.setTemplate(new TemplateImpl());
 		p.getTemplate().setTemplate(new Template());
@@ -256,7 +254,6 @@ public class PageHandler implements Serializable {
 
 	// -----------------------------------------------------
 
-	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
 		Template template = templateSession.find(getIdTemplate());
@@ -267,13 +264,10 @@ public class PageHandler implements Serializable {
 		refreshModel();
 		// altre dipendenze
 		propertiesHandler.setPageItems(null);
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
-				"creazione pagina: " + this.element.getTitle());
 		// vista di destinazione
 		return viewPage();
 	}
 
-	@Transactional
 	public String update() {
 		// recupero dati in input
 		Template template = templateSession.find(getIdTemplate());
@@ -288,8 +282,6 @@ public class PageHandler implements Serializable {
 			// altre dipendenze
 			propertiesHandler.setPageItems(null);
 			// vista di destinzione
-			operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
-					"modifica menu: " + this.element.getTitle());
 			return viewPage();
 		} else {
 			// messaggio di errore
@@ -304,7 +296,6 @@ public class PageHandler implements Serializable {
 		}
 	}
 
-	@Transactional
 	public String delete() {
 		// operazione su db
 		getSession().delete(getId(element));
@@ -314,8 +305,6 @@ public class PageHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setPageItems(null);
 		// visat di destinazione
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
-				"eliminazione pagina: " + this.element.getTitle());
 		return listPage();
 	}
 
@@ -384,18 +373,11 @@ public class PageHandler implements Serializable {
 	 */
 	// @Transactional
 	public String salvaPerAnteprimaRisultato() {
-		if (this.getElement().getId() == null) {
-			operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
-					"creazione pagina: " + this.element.getTitle());
+		if (this.getElement().getId() == null)
 			save();
-
-		} else {
-			operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
-					"modica pagina: " + this.element.getTitle());
+		else
 			update();
-
-		}
-		return null;
+		return NEW_OR_EDIT;
 	}
 
 	public Long getIdTemplate() {

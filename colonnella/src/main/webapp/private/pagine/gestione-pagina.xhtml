@@ -40,16 +40,16 @@
 					<h:panelGroup id="template">
 						<h:selectOneMenu
 							rendered="#{pageHandler.element.template.template.statico}"
-							value="#{pageHandler.idTemplate}"
-							required="true" style="width: 100%">
+							value="#{pageHandler.idTemplate}" required="true"
+							style="width: 100%">
 							<f:selectItems value="#{propertiesHandler.templateStaticiItems}" />
 							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
 								update="campi" event="change" process="@this" />
 						</h:selectOneMenu>
 						<h:selectOneMenu
 							rendered="#{not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.idTemplate}"
-							required="true" style="width: 100%">
+							value="#{pageHandler.idTemplate}" required="true"
+							style="width: 100%">
 							<f:selectItems value="#{propertiesHandler.templateDinamiciItems}" />
 							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
 								update="campi" event="change" process="@this" />
@@ -236,9 +236,7 @@
 			<br />
 			<br />
 
-			<center>
-
-			<h:panelGrid columns="1">
+			<center><h:panelGrid columns="1">
 				<h:outputLink target="_blank"
 					value="#{request.contextPath}/pagine/#{pageHandler.element.id}">
 					<h:outputText value="anteprima del contenuto gia' salvato" />
@@ -246,21 +244,22 @@
 			</h:panelGrid> <br />
 
 			<h:panelGrid columns="6">
-				<h:commandButton value="Anteprima testo completo"
-					action="#{pageHandler.anteprimaTestuale}" />
+				<h:commandButton id="ant" value="Anteprima testo completo"
+					action="#{pageHandler.anteprimaTestuale}" rendered="false" />
 
-				<h:commandButton value="Salva dati correnti"
-				action="#{pageHandler.salvaPerAnteprimaRisultato}"/>
+				<h:commandButton id="save1" value="Salva dati correnti"
+					action="#{pageHandler.salvaPerAnteprimaRisultato}" />
 
-				<h:commandButton action="#{pageHandler.save}" value="Salva ed esci"
-					rendered="#{empty pageHandler.element.id}" />
+				<h:commandButton id="save2" action="#{pageHandler.save}"
+					value="Salva ed esci" rendered="#{empty pageHandler.element.id}" />
 
-				<h:commandButton action="#{pageHandler.update}"
+				<h:commandButton id="up1" action="#{pageHandler.update}"
 					value="Salva le modifiche ed esci"
 					rendered="#{not empty pageHandler.element.id}" />
 
-				<h:commandButton action="#{pageHandler.delete}" value="Elimina"
-					immediate="true" rendered="#{not empty pageHandler.element.id}"
+				<h:commandButton id="del1" action="#{pageHandler.delete}"
+					value="Elimina" immediate="true"
+					rendered="#{not empty pageHandler.element.id}"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 
 				<h:commandButton id="reset" action="#{pageHandler.reset}"

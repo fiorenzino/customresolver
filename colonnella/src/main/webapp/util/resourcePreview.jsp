@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@page
-	import="org.apache.log4j.Logger,java.io.DataOutputStream,java.io.DataOutput,it.jflower.cc.par.Resource"%>
+	import="it.jflower.base.utils.JSFUtils,it.jflower.cc.web.ResourceHandler,org.apache.log4j.Logger,java.io.DataOutputStream,java.io.DataOutput,it.jflower.cc.par.Resource"%>
 
-
-<jsp:useBean id="resourceHandler"
-	class="it.jflower.cc.web.ResourceHandler" scope="session" />
 
 <%
 	Logger log = Logger.getLogger(getClass().getName());
-
+	ResourceHandler resourceHandler = JSFUtils
+			.getBean(ResourceHandler.class);
 	if (request.getParameter("row") != null) {
 		String row = request.getParameter("row");
 		try {

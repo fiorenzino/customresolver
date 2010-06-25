@@ -101,11 +101,12 @@ public class PropertiesHandler implements Serializable {
 
 	public SelectItem[] getFileTypeItems() {
 		if (fileTypeItems == null || fileTypeItems.length == 0) {
-			fileTypeItems = new SelectItem[4];
+			fileTypeItems = new SelectItem[5];
 			fileTypeItems[0] = new SelectItem(0, "css");
 			fileTypeItems[1] = new SelectItem(1, "img");
 			fileTypeItems[2] = new SelectItem(2, "flash");
 			fileTypeItems[3] = new SelectItem(3, "javascript");
+			fileTypeItems[3] = new SelectItem(4, "docs");
 		}
 		return fileTypeItems;
 	}

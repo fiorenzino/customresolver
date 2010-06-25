@@ -82,7 +82,7 @@ public class PageUtils {
 		closeHtmlTags(page);
 		Template t = page.getTemplate().getTemplate();
 		TemplateImpl i = page.getTemplate();
-
+		closeHtmlTagsT(i);
 		StringBuffer b = new StringBuffer(t.getHeader_start() == null ? prologo
 				: t.getHeader_start());
 		b.append(newline);
@@ -151,6 +151,19 @@ public class PageUtils {
 					page.getTemplate().getFooter() == null ? null : HtmlUtils
 							.normalizeHtml(page.getTemplate().getFooter()));
 		}
+	}
+
+	public static void closeHtmlTagsT(TemplateImpl templ) {
+		templ.setHeader(templ.getHeader() == null ? null : HtmlUtils
+				.normalizeHtml(templ.getHeader()));
+		templ.setCol1(templ.getCol1() == null ? null : HtmlUtils
+				.normalizeHtml(templ.getCol1()));
+		templ.setCol2(templ.getCol2() == null ? null : HtmlUtils
+				.normalizeHtml(templ.getCol2()));
+		templ.setCol3(templ.getCol3() == null ? null : HtmlUtils
+				.normalizeHtml(templ.getCol3()));
+		templ.setFooter(templ.getFooter() == null ? null : HtmlUtils
+				.normalizeHtml(templ.getFooter()));
 	}
 
 }
