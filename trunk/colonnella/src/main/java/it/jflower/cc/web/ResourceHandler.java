@@ -7,6 +7,9 @@ import it.jflower.cc.par.Resource;
 import it.jflower.cc.session.ResourceSession;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,9 @@ import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 import org.seamframework.tx.Transactional;
 
@@ -151,6 +156,15 @@ public class ResourceHandler implements Serializable {
 
 	public Resource getResource(int index) {
 		return uploadedResources.get(index);
+	}
+
+	public StreamedContent getResourceStream(int index) {
+		Resource rs = uploadedResources.get(index);
+		if (!"img".equals(rs.getTipo()))
+			return null;
+		StreamedContent image = new DefaultStreamedContent(rs.getInputStream(),
+				rs.getTipo());
+		return image;
 	}
 
 	public Resource getElement() {
@@ -331,17 +345,26 @@ public class ResourceHandler implements Serializable {
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
-		UploadedFile file = event.getFile();
-		String filename = file.getFileName();
-		if (filename.contains("\\"))
-			filename = filename.substring(filename.lastIndexOf("\\") + 1);
-		Resource resource = new Resource();
-		resource.setNome(filename);
-		resource.setTipo(filename.endsWith("css") ? "css" : filename
-				.endsWith("js") ? "js" : filename.endsWith("swf") ? "swf"
-				: "img");
-		resource.setBytes(file.getContents());
-		uploadedResources.add(resource);
+		try {
+			UploadedFile file = event.getFile();
+
+			InputStream is = event.getFile().getInputstream();
+
+			String filename = file.getFileName();
+			if (filename.contains("\\"))
+				filename = filename.substring(filename.lastIndexOf("\\") + 1);
+			Resource resource = new Resource();
+			resource.setInputStream(is);
+			resource.setNome(filename);
+			resource.setTipo(filename.endsWith("css") ? "css" : filename
+					.endsWith("js") ? "js" : filename.endsWith("swf") ? "swf"
+					: filename.endsWith("pdf") ? "docs" : "img");
+			resource.setBytes(file.getContents());
+			uploadedResources.add(resource);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Resource getSingleResource(int row) {

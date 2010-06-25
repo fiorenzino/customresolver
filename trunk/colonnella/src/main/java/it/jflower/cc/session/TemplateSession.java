@@ -104,7 +104,7 @@ public class TemplateSession extends SuperSession<Template> implements
 
 	@Override
 	protected String getOrderBy() {
-		return "nome";
+		return "nome asc";
 	}
 
 	@Override

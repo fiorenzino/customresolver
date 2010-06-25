@@ -1,5 +1,6 @@
 package it.jflower.cc.par;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.persistence.Transient;
@@ -16,6 +17,7 @@ public class Resource implements Serializable {
 	private byte[] bytes;
 
 	private String nome;
+	private InputStream inputStream;
 
 	// ------------------------------------------------------------------------
 
@@ -77,6 +79,15 @@ public class Resource implements Serializable {
 	@Override
 	public String toString() {
 		return (this.id != null) ? this.id.toString() : super.toString();
+	}
+
+	@Transient
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}
 
 }
