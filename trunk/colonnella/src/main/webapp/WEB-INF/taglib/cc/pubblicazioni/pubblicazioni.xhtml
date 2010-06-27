@@ -23,11 +23,11 @@
 			<th scope="col" class="luogoth">Validita' al</th>
 			<th scope="col" class="titoloth">Allegato</th>
 		</tr>
-
-		<flw:uiRepeatPaged id="pubblicazioni" showpages="#{showpages}"
-			label="#{label}" selectedStyleClass="#{selectedStyleClass}"
-			styleClass="#{styleClass}"
-			model="#{pubblicazioniHandler.atti(pagesize)}" width="100%">
+		<flw:uiRepeatPagedWithParams id="pubblicazioni" label="#{label}"
+			filtro="#{pubblicazioniHandlerRequest.filtro}" tipo="#{tipo}"
+			currentpage="#{pubblicazioniHandlerRequest.currentpage}"
+			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
+			handler="#{pubblicazioniHandlerRequest}" width="100%">
 
 			<tr>
 				<td class="cellaprima">#{var.autore}</td>
@@ -42,16 +42,17 @@
 				<td><h:outputText value="#{var.al}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText></td>
-				<td><a title="Scarica pdf"
-					href="#{request.contextPath}/docs/#{var.documenti.get(0).filename}"
-					target="_blank"><img
-					src="#{request.contextPath}/images/pdf.gif"
-					alt="Scarica la documentazione in formato PDF (Acrobat Reader)"
-					style="border: 0" /></a></td>
+				<td><h:outputLink
+					value="#{request.contextPath}/docs/#{var.documenti.get(0).filename}"
+					alt="lista" title="Scarica pdf" target="_blank"
+					rendered="#{var.docSize >0}">
+					<h:graphicImage value="/images/pdf.gif"
+						alt="Scarica la documentazione in formato PDF (Acrobat Reader)"
+						style="border: 0" />
+				</h:outputLink></td>
 			</tr>
 
-		</flw:uiRepeatPaged>
-
+		</flw:uiRepeatPagedWithParams>
 	</table>
 
 </ui:composition>

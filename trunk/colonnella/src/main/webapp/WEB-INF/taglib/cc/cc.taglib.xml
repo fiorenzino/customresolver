@@ -30,7 +30,10 @@
 		<tag-name>notiziaEvidenza</tag-name>
 		<source>notizie/notiziaEvidenza.xhtml</source>
 	</tag>
-
+	<tag>
+		<tag-name>attivita</tag-name>
+		<source>attivita/attivita.xhtml</source>
+	</tag>
 	<tag>
 		<tag-name>moduli</tag-name>
 		<source>moduli/moduli.xhtml</source>
