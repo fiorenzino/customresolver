@@ -14,6 +14,8 @@ public class BreadCrumpsHandler implements Serializable {
 
 	private String breadCrump;
 
+	private String pageName;
+
 	public BreadCrumpsHandler() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,7 +43,7 @@ public class BreadCrumpsHandler implements Serializable {
 				base += "/" + crumbs[i];
 			} else if (!crumbs[i].trim().equals("pagine")) {
 				base += "/" + crumbs[i];
-				String label = crumbs[i];
+				String label = crumbs[i].replaceAll("-", " ");
 
 				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
 						+ "\">" + label + "</a> ");
@@ -50,5 +52,13 @@ public class BreadCrumpsHandler implements Serializable {
 			}
 		}
 		return sb.toString();
+	}
+
+	public String getPageName() {
+		return pageName;
+	}
+
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
 	}
 }

@@ -108,6 +108,11 @@ public class Pubblicazione implements Serializable {
 		this.documenti = documenti;
 	}
 
+	@Transient
+	public int getDocSize() {
+		return getDocumenti().size();
+	}
+
 	public void addDocumento(Documento documento) {
 		getDocumenti().add(documento);
 	}

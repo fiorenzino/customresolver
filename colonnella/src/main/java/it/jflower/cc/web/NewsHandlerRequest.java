@@ -19,6 +19,7 @@ import javax.inject.Named;
 public class NewsHandlerRequest implements UiRepeatInterface {
 
 	String filtro;
+	String tipo;
 	int currentpage;
 	String id;
 	private Notizia notizia;
@@ -42,6 +43,7 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 	@PostConstruct
 	public void init() {
 		this.filtro = paramsHandler.getParam("filtro");
+		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
 		if (this.id != null)
@@ -56,36 +58,38 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 
 	@SuppressWarnings("unchecked")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
-		if ("notizie".equals(tipo)) {
-			return ultimeNotizie(filtro, startRow, pageSize);
-		}
-		return new ArrayList();
+		return ultimeNotizie(tipo, filtro, startRow, pageSize);
 	}
 
 	public int totalSize(String tipo, String filtro) {
-		if ("notizie".equals(tipo)) {
-			return totaleNotizie(filtro);
-		}
-		return 0;
+		return totaleNotizie(tipo, filtro);
 	}
 
 	// -----------------------------------------------------------------------------------
 
-	private List<Notizia> ultimeNotizie(String filtroNomeTipo, int startRow,
-			int pageSize) {
+	private List<Notizia> ultimeNotizie(String tipo, String filtro,
+			int startRow, int pageSize) {
 		Ricerca<Notizia> ricerca = new Ricerca<Notizia>(Notizia.class);
-		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
+		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoInformazione());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setTitolo(filtro);
+			ricerca.getOggetto().setContenuto(filtro);
 		}
 		return notizieSession.getList(ricerca, startRow, pageSize);
 	}
 
-	private int totaleNotizie(String filtroNomeTipo) {
+	private int totaleNotizie(String tipo, String filtro) {
 		Ricerca<Notizia> ricerca = new Ricerca<Notizia>(Notizia.class);
-		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
+		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoInformazione());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setTitolo(filtro);
+			ricerca.getOggetto().setContenuto(filtro);
 		}
 		return notizieSession.getListSize(ricerca);
 	}
@@ -98,6 +102,14 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 
 	public void setNotizia(Notizia notizia) {
 		this.notizia = notizia;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }

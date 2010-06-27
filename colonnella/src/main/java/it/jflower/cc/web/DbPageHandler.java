@@ -6,12 +6,12 @@ import it.jflower.cc.session.PageSession;
 import java.io.Serializable;
 import java.util.Random;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class DbPageHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,11 +23,13 @@ public class DbPageHandler implements Serializable {
 
 	private Page page;
 
+	private String pageName;
+
 	public DbPageHandler() {
 	}
 
 	public Page getPage() {
-		if ( page == null )
+		if (page == null)
 			page = new Page();
 		return page;
 	}
@@ -38,5 +40,14 @@ public class DbPageHandler implements Serializable {
 
 	public String getRng() {
 		return "" + rnd.nextLong();
+	}
+
+	public String getPageName() {
+		if ((this.page != null) && (this.page.getId() != null)) {
+			this.page = pageSession.find(this.page.getId());
+			return this.page.getTitle();
+		}
+		return "";
+
 	}
 }
