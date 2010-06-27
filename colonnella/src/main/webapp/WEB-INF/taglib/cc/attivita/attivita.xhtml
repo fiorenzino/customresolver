@@ -5,15 +5,17 @@
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
-
-	<flw:uiRepeatPagedWithParams id="news" label="#{label}"
+	<c:if test="${empty link}">
+		<c:set var="link" value="type" />
+	</c:if>
+	<flw:uiRepeatPagedWithParams id="attivita" label="#{label}"
 		filtro="#{attivitaHandlerRequest.filtro}"
-		currentpage="#{newsHandlerRequest.currentpage}" tipo="attivita"
+		currentpage="#{newsHandlerRequest.currentpage}" tipo="#{tipo}"
 		selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-		handler="#{attivitaHandlerRequest}" width="100%">
+		handler="#{attivitaHandlerRequest}" width="100%" link="#{link}">
 
 		<div class="#{cellaprimaClass}"><a
-			href="#{request.contextPath}/pagine/attivita/leggiAttivita?id=#{var.id}"
+			href="#{request.contextPath}/pagine/turismo/#{link}/leggiAttivita?id=#{var.id}"
 			title="#{var.nome}" class="arrowLink "> #{var.nome} </a> <br />
 		#{var.descrizione}<br />
 		<br />

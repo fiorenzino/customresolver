@@ -12,8 +12,11 @@
 	<div id="BoxNews"><ui:repeat var="pubblicazione"
 		value="#{pubblicazioniHandlerRequest.loadPage('','',0,10)}">
 
-		<p>#{pubblicazione.data} <a
+		<p><a
 			href="#{request.contextPath}/pagine/albo-pretorio/leggiPubblicazione?id=#{pubblicazione.id}"
-			title="#{pubblicazione.titolo}">#{pubblicazione.titolo}</a></p>
+			title="#{pubblicazione.titolo}">#{pubblicazione.titolo}</a> <h:outputText value=" "/>
+		<h:outputText value="#{pubblicazione.data}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText> <h:outputText value=" (#{pubblicazione.tipo.nome})" /></p>
 	</ui:repeat></div>
 </ui:composition>
