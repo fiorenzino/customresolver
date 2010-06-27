@@ -11,7 +11,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 public class DBURLConnection extends URLConnection {

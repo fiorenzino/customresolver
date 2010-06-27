@@ -19,6 +19,7 @@ import javax.inject.Named;
 public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	String filtro;
+	String tipo;
 	int currentpage;
 	String id;
 	private Pubblicazione pubblicazione;
@@ -32,17 +33,10 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 	public PubblicazioniHandlerRequest() {
 	}
 
-	public String getFiltro() {
-		return filtro;
-	}
-
-	public int getCurrentpage() {
-		return currentpage;
-	}
-
 	@PostConstruct
 	public void init() {
 		this.filtro = paramsHandler.getParam("filtro");
+		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
 		if (this.id != null)
@@ -57,39 +51,41 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	@SuppressWarnings("unchecked")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
-		// if ("notizie".equals(tipo)) {
-		return ultimePubblicazioni(filtro, startRow, pageSize);
-		// }
-		// return new ArrayList();
+		return ultimePubblicazioni(tipo, filtro, startRow, pageSize);
 	}
 
 	public int totalSize(String tipo, String filtro) {
-		if ("notizie".equals(tipo)) {
-			return totalePubblicazioni(filtro);
-		}
-		return 0;
+		return totalePubblicazioni(tipo, filtro);
+
 	}
 
 	// -----------------------------------------------------------------------------------
 
-	private List<Pubblicazione> ultimePubblicazioni(String filtroNomeTipo,
+	private List<Pubblicazione> ultimePubblicazioni(String tipo, String filtro,
 			int startRow, int pageSize) {
 		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
 				Pubblicazione.class);
 		ricerca.getOggetto().setValidoIl(new Date());
-		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
+		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoPubblicazione());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
 		}
 		return pubblicazioniSession.getList(ricerca, startRow, pageSize);
 	}
 
-	private int totalePubblicazioni(String filtroNomeTipo) {
+	private int totalePubblicazioni(String tipo, String filtro) {
 		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
 				Pubblicazione.class);
-		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
+		ricerca.getOggetto().setValidoIl(new Date());
+		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoPubblicazione());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
 		}
 		return pubblicazioniSession.getListSize(ricerca);
 	}
@@ -102,6 +98,22 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	public void setPubblicazione(Pubblicazione pubblicazione) {
 		this.pubblicazione = pubblicazione;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public int getCurrentpage() {
+		return currentpage;
 	}
 
 }

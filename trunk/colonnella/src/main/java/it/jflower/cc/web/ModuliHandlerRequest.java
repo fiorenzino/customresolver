@@ -18,6 +18,7 @@ import javax.inject.Named;
 public class ModuliHandlerRequest implements UiRepeatInterface {
 
 	String filtro;
+	String tipo;
 	int currentpage;
 
 	@Inject
@@ -39,6 +40,7 @@ public class ModuliHandlerRequest implements UiRepeatInterface {
 	@PostConstruct
 	public void init() {
 		this.filtro = paramsHandler.getParam("filtro");
+		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		try {
 			currentpage = Integer.parseInt(paramsHandler
@@ -50,38 +52,46 @@ public class ModuliHandlerRequest implements UiRepeatInterface {
 
 	@SuppressWarnings("unchecked")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
-//		if ("notizie".equals(tipo)) {
-			return ultimiModuli(filtro, startRow, pageSize);
-		// }
-		// return new ArrayList();
+		return ultimiModuli(tipo, filtro, startRow, pageSize);
 	}
 
 	public int totalSize(String tipo, String filtro) {
-		if ("notizie".equals(tipo)) {
-			return totaleModuli(filtro);
-		}
-		return 0;
+		return totaleModuli(tipo, filtro);
 	}
 
 	// -----------------------------------------------------------------------------------
 
-	private List<Modulo> ultimiModuli(String filtroNomeTipo, int startRow,
+	private List<Modulo> ultimiModuli(String tipo, String filtro, int startRow,
 			int pageSize) {
 		Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
-		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
+		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoModulo());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
 		}
 		return moduliSession.getList(ricerca, startRow, pageSize);
 	}
 
-	private int totaleModuli(String filtroNomeTipo) {
+	private int totaleModuli(String tipo, String filtro) {
 		Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
-		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
+		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoModulo());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
 		}
 		return moduliSession.getListSize(ricerca);
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }

@@ -92,6 +92,20 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 			params.put("idCategoria", ricerca.getOggetto().getCategoria()
 					.getId());
 		}
+		if (ricerca.getOggetto().getCategoria() != null
+				&& ricerca.getOggetto().getCategoria().getCategoria() != null
+				&& ricerca.getOggetto().getCategoria().getCategoria().length() > 0) {
+			sb.append(separator).append(alias).append(
+					".categoria.categoria = :categoria ");
+			params.put("categoria", ricerca.getOggetto().getCategoria()
+					.getCategoria());
+		}
+		if (ricerca.getOggetto() != null
+				&& ricerca.getOggetto().getNome() != null
+				&& ricerca.getOggetto().getNome().length() > 0) {
+			sb.append(separator).append(alias).append(".nome LIKE :nome ");
+			params.put("nome", "%" + ricerca.getOggetto().getNome() + "%");
+		}
 
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);

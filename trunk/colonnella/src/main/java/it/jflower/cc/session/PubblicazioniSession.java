@@ -191,9 +191,24 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 			params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
 		}
 		if (ricerca.getOggetto().getTipo() != null
+				&& ricerca.getOggetto().getTipo().getNome() != null
+				&& ricerca.getOggetto().getTipo().getNome().length() > 0) {
+			sb.append(separator).append(alias)
+					.append(".tipo.nome = :nomeTipo ");
+			params.put("nomeTipo", ricerca.getOggetto().getTipo().getNome());
+		}
+		if (ricerca.getOggetto().getTipo() != null
 				&& ricerca.getOggetto().getTipo().getId() != null) {
 			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
 			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
+		}
+		if (ricerca.getOggetto() != null
+				&& ricerca.getOggetto().getNome() != null
+				&& ricerca.getOggetto().getNome().length() > 0) {
+			sb.append(separator).append(alias).append(".nome LIKE :nome ");
+			params.put("nome", "%" + ricerca.getOggetto().getNome() + "%");
+			sb.append(separator).append(alias).append(".titolo LIKE :titolo ");
+			params.put("titolo", "%" + ricerca.getOggetto().getNome() + "%");
 		}
 
 		if (!count) {
