@@ -21,6 +21,7 @@ public class MenuItem implements Serializable {
 	private String nome;
 	private String descrizione;
 	private String percorso;
+	private Integer ordinamento = 1;
 
 	private Page pagina;
 	private MenuGroup gruppo;
@@ -94,5 +95,14 @@ public class MenuItem implements Serializable {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	public Integer getOrdinamento() {
+		return ordinamento;
+	}
+
+	public void setOrdinamento(Integer ordinamento) {
+		this.ordinamento = ordinamento;
+	}
+
 
 }

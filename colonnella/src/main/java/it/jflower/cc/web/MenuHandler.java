@@ -60,6 +60,9 @@ public class MenuHandler implements Serializable {
 	@Inject
 	OperazioniLogHandler operazioniLogHandler;
 
+	@Inject
+	MenuHolder menuHolder;
+
 	// ------------------------------------------------
 
 	protected Logger logger = Logger.getLogger(getClass());
@@ -275,7 +278,7 @@ public class MenuHandler implements Serializable {
 		// refresh locale
 		refreshModel();
 		// altre dipendenze
-		// propertiesHandler.setMenuGroupItems(null);
+		menuHolder.reset();
 		// vista di destinazione
 		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
 				"creazione menu: " + this.element.getNome());
@@ -292,7 +295,7 @@ public class MenuHandler implements Serializable {
 		element = getSession().fetch(getId(element));
 		refreshModel();
 		// altre dipendenze
-		// propertiesHandler.setMenuGroupItems(null);
+		menuHolder.reset();
 		// vista di destinzione
 		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
 				"modifica menu: " + this.element.getNome());
