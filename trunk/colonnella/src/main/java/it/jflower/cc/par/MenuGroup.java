@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Transient;
 
 @Entity
 public class MenuGroup implements Serializable {
@@ -23,6 +26,7 @@ public class MenuGroup implements Serializable {
 	private String nome;
 	private String descrizione;
 	private String percorso;
+	private Integer ordinamento = 1;
 
 	private List<MenuItem> lista;
 
@@ -51,8 +55,9 @@ public class MenuGroup implements Serializable {
 		this.nome = nome;
 	}
 
-//	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL )
+	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL, fetch=FetchType.EAGER )
+	@OrderBy( "ordinamento, nome" )
+//	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL )
 	public List<MenuItem> getLista() {
 		return lista;
 	}
@@ -83,6 +88,19 @@ public class MenuGroup implements Serializable {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public Integer getOrdinamento() {
+		return ordinamento;
+	}
+
+	public void setOrdinamento(Integer ordinamento) {
+		this.ordinamento = ordinamento;
+	}
+
+	@Transient
+	public int getListaSize() {
+		return this.lista == null ? 0 : lista.size();
 	}
 
 }
