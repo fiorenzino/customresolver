@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
+
+	<!-- 
+	parametro richiesto: 
+	menuGroup
+
+	parametri opzionali: 
+	-->
+
+	<div class="contcbox2 top6">
+
+		<div class="cbox2">
+		
+			<!-- 8 div open -->
+			<div class="cbox2LeftRow">
+			<div class="cbox2RightRow">
+			<div class="cboxTopLeft">
+			<div class="cboxTopRight">
+			<div class="cboxBotLeft">
+			<div class="cboxBotRight">
+			<div class="ContBoxCurva">
+			<div class="ContBoxRedTitle">
+			
+				<!-- 3 div open -->
+				<div class="BoxRedTitleTop">
+				<div class="rbtopl">
+				<div class="rbtopr">
+	
+					<div class="titolo">
+						<h3>#{menuGroup.nome}</h3>
+					</div>
+	
+				<!-- 3 div close -->
+				</div>
+				</div>
+				</div>
+
+				<div class="BoxRedTitleBot">
+				
+					<ui:repeat value="#{menuGroup.lista}" var="#{menuItem}" varStatus="rowKey">
+						<div class="txt">
+							<h4><a href="/#{request.contextPath}/#{menuGroup.percorso}/#{menuItem.pagina.id}" title="#{menuItem.nome}" class="arrowLink ">
+								#{menuItem.nome}
+							</a></h4>
+							#{menuItem.descrizione}
+						</div>
+						<f:verbatim rendered="#{rowKey lt (menuGroup.listaSize-1)}">
+							<div class="RowBot"></div>
+						</f:verbatim>
+					</ui:repeat>
+
+				</div>
+
+			<!-- 8 div close -->
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</ui:composition>
