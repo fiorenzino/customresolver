@@ -43,16 +43,14 @@
 
 				<div class="BoxRedTitleBot">
 				
-					<ui:repeat value="#{menuGroup.lista}" var="#{menuItem}" varStatus="rowKey">
+					<ui:repeat value="#{menuGroup.lista}" var="menuItem" varStatus="iterationStatus">
 						<div class="txt">
 							<h4><a href="/#{request.contextPath}/#{menuGroup.percorso}/#{menuItem.pagina.id}" title="#{menuItem.nome}" class="arrowLink ">
 								#{menuItem.nome}
 							</a></h4>
 							#{menuItem.descrizione}
 						</div>
-						<f:verbatim rendered="#{rowKey lt (menuGroup.listaSize-1)}">
-							<div class="RowBot"></div>
-						</f:verbatim>
+						<div class="RowBot" style="#{iterationStatus.last ? 'display: none;' : ''}"></div>
 					</ui:repeat>
 
 				</div>
