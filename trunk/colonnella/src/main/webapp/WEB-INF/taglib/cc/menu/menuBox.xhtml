@@ -45,7 +45,7 @@
 				
 					<ui:repeat value="#{menuGroup.lista}" var="menuItem" varStatus="iterationStatus" rendered="#{open}">
 						<div class="txt">
-							<h4><a href="/#{request.contextPath}/#{menuGroup.percorso}/#{menuItem.pagina.id}" title="#{menuItem.nome}" class="arrowLink ">
+							<h4><a href="#{request.contextPath}/pagine/#{menuGroup.percorso}/#{menuItem.pagina.id}" title="#{menuItem.nome}" class="arrowLink ">
 								#{menuItem.nome}
 							</a></h4>
 							#{menuItem.descrizione}
