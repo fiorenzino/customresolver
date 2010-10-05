@@ -74,8 +74,8 @@ public class PropertiesHandler implements Serializable {
 	public SelectItem[] getRuoliItems() {
 		if (ruoliItems == null || ruoliItems.length == 0) {
 			ruoliItems = new SelectItem[2];
-			ruoliItems[0] = new SelectItem(0, "admin");
-			ruoliItems[1] = new SelectItem(1, "user");
+			ruoliItems[0] = new SelectItem("admin", "amministratore");
+			ruoliItems[1] = new SelectItem("user", "utente ordinario");
 		}
 		return ruoliItems;
 	}

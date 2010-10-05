@@ -7,11 +7,12 @@ import it.jflower.cc.session.EmailSession;
 import it.jflower.cc.session.UtentiSession;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -85,7 +86,6 @@ public class LoginHandler implements Serializable {
 
 	public List<Utente> getList() {
 		return utentiSession.getList();
-		// return null;
 	}
 
 	public String addUser() {
@@ -94,6 +94,11 @@ public class LoginHandler implements Serializable {
 	}
 
 	public String save() {
+		if ( utentiSession.find(this.utente.getUsername()) != null ) {
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage("Nome utente non disponibile"));
+			return null;
+		}
 		boolean condition = false;
 		if (condition) {
 			String pwd = this.utente.getPassword();
@@ -137,6 +142,7 @@ public class LoginHandler implements Serializable {
 	public String delete() {
 		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
 				"eliminazione utente: " + this.utente.getUsername());
+		utentiSession.delete(this.utente.getUsername());
 		return LIST;
 	}
 

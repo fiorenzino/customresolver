@@ -8,6 +8,7 @@ public class Utente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private boolean nuovo = true;
 	private String username;
 	private String password;
 	private List<String> roles;
@@ -71,4 +72,14 @@ public class Utente implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean isNuovo() {
+		return nuovo;
+	}
+
+	public void setNuovo(boolean nuovo) {
+		this.nuovo = nuovo;
+	}
+	
+	
 }
