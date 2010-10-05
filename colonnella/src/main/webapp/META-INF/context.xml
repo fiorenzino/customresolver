@@ -8,4 +8,17 @@
 		<Listener
 		className="org.jboss.weld.environment.tomcat.WeldLifecycleListener" />
 	-->
+
+	<Realm  className="org.apache.catalina.realm.JDBCRealm"
+             driverName="com.mysql.jdbc.Driver"
+             connectionURL="jdbc:mysql://localhost/colonnella"
+             connectionName="colonnella"
+             connectionPassword="colonnella"
+             userTable="user_auth"
+             userNameCol="USERNAME"
+             userCredCol="PASSWORD"
+             userRoleTable="user_role"
+             roleNameCol="ROLE_NAME" 
+             digest="MD5"/>
+
 </Context>
