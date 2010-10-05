@@ -5,7 +5,9 @@
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
-
+	<c:if test="${empty link}">
+		<c:set var="link" value="tipo" />
+	</c:if>
 	<!-- 
 	parametri: selectedStyleClass, selectedClass, label, showpages, pagesize, cellaprimaClass
 	 -->
@@ -27,7 +29,7 @@
 			filtro="#{pubblicazioniHandlerRequest.filtro}" tipo="#{tipo}"
 			currentpage="#{pubblicazioniHandlerRequest.currentpage}"
 			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-			handler="#{pubblicazioniHandlerRequest}" width="100%">
+			handler="#{pubblicazioniHandlerRequest}" width="100%" link="#{link}">
 
 			<tr>
 				<td class="cellaprima">#{var.autore}</td>
