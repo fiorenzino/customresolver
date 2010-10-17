@@ -65,13 +65,13 @@
 		</ul>
 		</li>
 		<li class="M5cellaunica"><a
-			href="#{request.contextPath}/private/notizie/lista-notizie.jsf?faces-redirect=true"
+			href="#{request.contextPath}/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
 			title="" accesskey="7">Notizie</a>
 		<ul>
 			<li><h:commandLink
-				action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
+				action="/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
 				value="lista" /></li>
-			<li><h:commandLink action="#{notizieHandler.addNotizia}"
+			<li><h:commandLink action="#{newNotizieHandler.addNotizia}"
 				value="nuova" /></li>
 			<li><h:commandLink action="#{tipoInformazioniHandler.loadModel}"
 				value="lista tipi" /></li>

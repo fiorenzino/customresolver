@@ -19,6 +19,7 @@ public class Immagine implements Serializable {
 	private String nome;
 	private String descrizione;
 	private String filename;
+	private String filePath;
 	private byte[] data;
 	private String type;
 	private UploadedFile uploadedData;
@@ -82,4 +83,10 @@ public class Immagine implements Serializable {
 	public void setUploadedData(UploadedFile uploadedData) {
 		this.uploadedData = uploadedData;
 	}
+
+	@Transient
+	public String getFilePath() {
+		return "img/" + filename;
+	}
+
 }

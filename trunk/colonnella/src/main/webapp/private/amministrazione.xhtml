@@ -77,12 +77,23 @@
 					value="aggiungi nuovo" />
 			</p:panel>
 
-			<p:panel header="Gestione Notizie" style="width:200px; float:left;">
+			<p:panel header="Gestione Notizie" style="width:200px; float:left;"
+				rendered="false">
 				<h:commandLink
 					action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
 					value="lista notizie" />
 				<br />
 				<h:commandLink action="#{notizieHandler.addNotizia}"
+					value="aggiungi nuova" />
+			</p:panel>
+
+			<p:panel header="Gestione Notizie con Foto"
+				style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
+					value="lista notizie" />
+				<br />
+				<h:commandLink action="#{newNotizieHandler.addNotizia}"
 					value="aggiungi nuova" />
 			</p:panel>
 

@@ -4,13 +4,9 @@
 
 <facelet-taglib xmlns="http://java.sun.com/JSF/Facelet">
 
-	<!--
-		<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-		http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
-		version="2.0">
-	-->
+	<!-- <facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd" 
+		version="2.0"> -->
 
 	<namespace>http://jflower/taglib</namespace>
 
@@ -54,6 +50,16 @@
 		<function-name>bcrumbs</function-name>
 		<function-class>it.jflower.base.utils.JSFUtils</function-class>
 		<function-signature>java.lang.String breadcrumbs()</function-signature>
+	</function>
+	<function>
+		<function-name>proportionalWidth</function-name>
+		<function-class>it.jflower.base.utils.ImageUtils</function-class>
+		<function-signature>java.lang.Integer getImageWidthProportional(java.lang.String, java.lang.Integer,java.lang.Integer)</function-signature>
+	</function>
+	<function>
+		<function-name>proportionalHeight</function-name>
+		<function-class>it.jflower.base.utils.ImageUtils</function-class>
+		<function-signature>java.lang.Integer getImageHeightProportional(java.lang.String, java.lang.Integer, java.lang.Integer)</function-signature>
 	</function>
 
 </facelet-taglib>
