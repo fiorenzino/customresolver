@@ -19,6 +19,6 @@
              userCredCol="PASSWORD"
              userRoleTable="user_role"
              roleNameCol="ROLE_NAME" 
-             digest="MD5"/>
+       />
 
 </Context>
