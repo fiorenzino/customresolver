@@ -263,10 +263,13 @@ public class PubblicazioniHandler implements Serializable {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		Pubblicazione t = getSession().persist(element);
+		if (getElement().getTipo() == null
+				|| getElement().getTipo().getId() == null)
+			return "";
+		Pubblicazione t = getSession().persist(this.element);
 		// refresh locale
 		refreshModel();
-		element = t;
+		this.element = getSession().find(this.element.getId());
 		// vista di destinazione
 		return viewPage();
 	}
@@ -275,9 +278,12 @@ public class PubblicazioniHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		if (getElement().getTipo() == null
+				|| getElement().getTipo().getId() == null)
+			return "";
 		Pubblicazione t = getSession().update(element);
 		// refresh locale
-		element = t;
+		this.element = getSession().find(this.element.getId());
 		refreshModel();
 		// vista di destinzione
 		return viewPage();
@@ -399,9 +405,9 @@ public class PubblicazioniHandler implements Serializable {
 		refreshModel();
 		return null;
 	}
-	
+
 	// -----------------------------------------------------------------
-	
+
 	private LocalDataModel<Pubblicazione> attiModel;
 	private String attiTipo;
 	private Integer attiPageSize;
@@ -418,10 +424,10 @@ public class PubblicazioniHandler implements Serializable {
 	public LocalDataModel<Pubblicazione> atti(String tipo, int pageSize) {
 		leggiParams();
 		if (attiModel == null || this.attiTipo == null
-				|| this.attiPageSize == null
-				|| !this.attiTipo.equals(tipo)
+				|| this.attiPageSize == null || !this.attiTipo.equals(tipo)
 				|| this.attiPageSize != pageSize) {
-			Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(Pubblicazione.class);
+			Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
+					Pubblicazione.class);
 			ricerca.getOggetto().setTipo(new TipoPubblicazione());
 			ricerca.getOggetto().getTipo().setNome(tipo);
 			attiModel = new LocalDataModel<Pubblicazione>(pageSize, ricerca,
