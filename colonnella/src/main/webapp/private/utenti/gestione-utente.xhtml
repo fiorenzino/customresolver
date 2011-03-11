@@ -17,8 +17,7 @@
 
 					<h:outputLabel value="Nome(*):" for="nome" />
 					<h:inputText required="true" id="nome"
-						disabled="#{not loginHandler.utente.nuovo}" 
-						value="#{loginHandler.utente.username}" style="width: 100%; color: black;" />
+						value="#{loginHandler.utente.username}" style="width: 100%;" />
 
 					<h:outputLabel value="Password(*):" for="pwd" />
 					<h:inputSecret required="true" id="pwd"
@@ -49,8 +48,7 @@
 					rendered="#{not empty loginHandler.utente.username}" />
 
 				<h:commandButton action="#{loginHandler.delete}" value="Elimina"
-					immediate="true"
-					rendered="#{not empty loginHandler.utente.username}"
+					immediate="true" rendered="#{not empty loginHandler.utente.username}"
 					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 
 				<h:commandButton id="reset" action="#{loginHandler.reset}"

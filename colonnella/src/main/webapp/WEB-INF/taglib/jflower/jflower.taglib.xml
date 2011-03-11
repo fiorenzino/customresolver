@@ -4,9 +4,13 @@
 
 <facelet-taglib xmlns="http://java.sun.com/JSF/Facelet">
 
-	<!-- <facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd" 
-		version="2.0"> -->
+	<!--
+		<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+		version="2.0">
+	-->
 
 	<namespace>http://jflower/taglib</namespace>
 
@@ -35,7 +39,10 @@
 		<tag-name>uiRepeatPagedWithParams</tag-name>
 		<source>pager/uiRepeatPagedWithParams.xhtml</source>
 	</tag>
-
+        <tag>
+		<tag-name>uiRepeatPagedWithParamsTab</tag-name>
+	        <source>pager/uiRepeatPagedWithParamsTab.xhtml</source>
+	</tag>
 	<tag>
 		<tag-name>breadcrumbs</tag-name>
 		<source>breadcrumbs/breadcrumbs.xhtml</source>

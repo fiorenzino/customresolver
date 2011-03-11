@@ -1,0 +1,33 @@
+/* FOOTER #6598cd;    6598cd*/
+
+#footer{background:#FFF url('../images/bg_footer.gif') bottom left repeat-x; width:auto; height:auto; min-height:114px; font-size:.7em; text-align:right; margin:0; padding:0;}
+#footer div.bgRight{background:url('../images/bg_footer_dx.gif') top right no-repeat; width:auto; height:auto; min-height:114px; margin:0; padding:0;}
+#footer div.footerRightNav{float:right; width:auto; padding:20px 25px 0 0; margin:0;}
+#footer div.footerRightNavImg{float:right; width:auto; padding:13px 25px 0 0; margin:0;}
+#footer div.footerLeftNav{padding:20px 35px 0 0; float:right;}
+#footer a,
+#footer span{color:#000;}
+#footer a:hover{color:#6598cd;}
+#footer a.selected{color:#6598cd;}
+#footer img{border:none;}
+
+/* FOOTER COLONNELLA */
+#footerTre{background:#FFF url('../images/bg_footer_tre.gif') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:-10px 0 0 0; padding:0;}
+#footerTre div.bgRight{background:url('../images/cultura_footer.jpg') top right no-repeat; width:auto; height:auto; margin:0; padding:0;}
+#footerTre div.footerRightNav{float:right; width:auto; padding:10px 25px 0 0; margin:0;}
+
+/* FOOTER COL */
+#footerCOL{background:#FFF url('../images/bg_footer_tre.gif') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:0; padding:0;}
+#footerCOL div.bgRight{background:url('../images/cultura_footer.jpg') top right no-repeat; width:auto; height:auto; min-height:132px; margin:0; padding:0;}
+#footerCOL div.footerRightNav{float:right; width:auto; padding:20px 25px 0 0; margin:0;}
+#footerCOL div.footerRightNavImg{float:right; width:auto; padding:13px 25px 0 0; margin:0;}
+#footerCOL div.footerLeftNav{padding:20px 35px 0 0; float:right;}
+#footerCOL a,
+#footerCOL span{color:#000;}
+#footerCOL a:hover{color:#6598cd;}
+#footerCOL a.selected{color:#6598cd;}
+#footerCOL img{border:none;}
+
+
+
+
