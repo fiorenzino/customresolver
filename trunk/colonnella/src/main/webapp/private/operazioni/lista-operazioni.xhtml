@@ -31,24 +31,31 @@
 						<h:outputText value="#{rowIndex+1}" />
 					</p:column>
 
-					<p:column width="300">
+					<p:column width="50">
 						<f:facet name="header">tipo</f:facet>
 						<h:outputText value="#{operazione.tipo}" />
 					</p:column>
 
-					<p:column width="300">
+					<p:column width="50">
 						<f:facet name="header">username</f:facet>
 						<h:outputText value="#{operazione.username}" />
 					</p:column>
 
-					<p:column width="100">
+					<p:column width="50">
 						<f:facet name="header">data</f:facet>
 						<h:outputText value="#{operazione.data}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
 
-					<p:column width="100">
+					<p:column width="300">
+						<f:facet name="header">descrizione</f:facet>
+						<h:outputText value="#{operazione.descrizione}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column width="100" rendered="false">
 						<f:facet name="header">operazioni</f:facet>
 						<center><h:commandLink
 							action="#{operazioniLogHandler.detail(operazione.id)}"

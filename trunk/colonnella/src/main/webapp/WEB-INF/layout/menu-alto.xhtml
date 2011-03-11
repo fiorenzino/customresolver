@@ -78,17 +78,25 @@
 		</ul>
 
 		</li>
+<facet rendered="false">
+<!--
 		<li class="M5cellaunica"><a
 			href="#{request.contextPath}/private/gallerie/lista-gallerie.jsf?faces-redirect=true"
 			title="" accesskey="7">Gallerie</a>
 		<ul>
-			<li><h:commandLink
+			<li>
+--><h:commandLink rendered="false"
 				action="/private/gallerie/lista-gallerie.jsf?faces-redirect=true"
-				value="lista" /></li>
-			<li><h:commandLink action="#{gallerieHandler.addGalleria}"
-				value="nuova" /></li>
+				value="lista" />
+<!--</li>
+			<li>
+--><h:commandLink action="#{gallerieHandler.addGalleria}" rendered="false"
+				value="nuova" />
+<!--</li>
 		</ul>
 		</li>
+-->
+</facet>
 		<li class="M5cellaunica"><a
 			href="#{request.contextPath}/private/risorse/lista-risorse.jsf?faces-redirect=true"
 			title="" accesskey="7">Risorse</a>

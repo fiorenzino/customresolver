@@ -155,7 +155,7 @@ span.navigator span.frecciaSearch{font-size:.8em;}
 /*Box Centrale*/
 
 /*Contenuti (pagina con 2 colonne)*/ 
-#contentBox{margin:0; padding:0; background:#F7F7F9 url(../images/bg_contentBox_x.gif) top left repeat-x}
+#contentBox{margin:0; padding:0; background:#FFF url(../images/bg_contentBox_x.gif) top left repeat-x}
 
 /*Contenuti - Colonna centrale (pagina con 3 colonne)*/ 
 #contentBoxLeftCol{width:74%; float:left; margin:0;	padding:0; background:#F7F7F9 url(../images/bg_contentBox_x.gif) top left repeat-x}
@@ -215,11 +215,11 @@ div.ContImgParagWP p.testo{padding-top:8px; margin-right:38px}
 
 div.cboxIntContArtic{font-size:1.1em; padding:9px 0; margin:0}
 
-div.cboxIntContArticWP{font-size:1em; padding:9px 0; margin:0}
+div.cboxIntContArticWP{font-size:1em; padding:9px 9px; margin:0}
 
-div.ContImgParagWP{padding:15px 24px 0 47px; height:auto !important; min-height:168px; height:172px}
+div.ContImgParagWP{padding:0 8px 0 8px; height:auto !important; min-height:168px; height:172px}
 
-div.ContParag{overflow:visible; line-height:1.2em; padding:8px 24px 8px 24px; background:#FFF; margin:0 1px}/*BC. overflow:visible; aggiunto per risolvere italic bugs*/
+div.ContParag{overflow:visible; line-height:1.2em; padding:0px 8px 0px 8px; background:#FFF; margin:0 1px}/*BC. overflow:visible; aggiunto per risolvere italic bugs*/
 div.ContParag h4{padding-bottom:.5em}
 div.ContParag p{padding-bottom:20px}
 div.ContParag a.linkEsterno{color:#000; text-decoration:underline}
@@ -279,7 +279,9 @@ html>/**/body div.RightColContentLinks{overflow:hidden}/*Firefox*/
 div.RightColImgParag{padding:5px 7px; height:auto !important; min-height:48px; height:0}
 div.RightColImgParag img{float:left; border:1px solid #C5C5C5; padding:1px; margin:1px 4px 0 0}
 div.RightColImgParag div.ImgLnk {line-height:1.2}
-div.RightColContParag div.FrecciaLnk{padding:1px 0 1px 15px; margin:0 7px 0 7px; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.RightColContParag div.FrecciaLnk{padding:1px 0 1px 15px; margin:0 7px 0 7px; 
+background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.RightColTitoliSez{margin:0 7px 0 7px; }
 
 
 /*FORM GENERICA*/
