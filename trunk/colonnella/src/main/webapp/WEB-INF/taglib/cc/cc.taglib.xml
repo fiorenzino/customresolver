@@ -46,5 +46,13 @@
 		<tag-name>ultimePubblicazioni</tag-name>
 		<source>pubblicazioni/ultimePubblicazioni.xhtml</source>
 	</tag>
+	<tag>
+		<tag-name>menuBox</tag-name>
+		<source>menu/menuBox.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>menuBoxSxBase</tag-name>
+		<source>menu/menuBoxSxBase.xhtml</source>
+	</tag>
 
 </facelet-taglib>
