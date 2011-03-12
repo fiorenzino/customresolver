@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 @Entity
 public class MenuItem implements Serializable {
@@ -25,7 +26,9 @@ public class MenuItem implements Serializable {
 
 	private Page pagina;
 	private MenuGroup gruppo;
-	
+
+	private Long version;
+
 	// ------------------------------------------------------------------------
 
 	public MenuItem(){
@@ -102,6 +105,14 @@ public class MenuItem implements Serializable {
 
 	public void setOrdinamento(Integer ordinamento) {
 		this.ordinamento = ordinamento;
+	}
+	
+	@Version
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 

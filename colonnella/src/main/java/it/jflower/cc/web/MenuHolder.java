@@ -1,9 +1,11 @@
 package it.jflower.cc.web;
 
 import it.jflower.cc.par.MenuGroup;
+import it.jflower.cc.par.MenuItem;
 import it.jflower.cc.session.MenuSession;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -45,7 +47,16 @@ public class MenuHolder implements Serializable {
 	public MenuGroup get(String nome) {
 		if ( mappa == null )
 			init();
-		return mappa.get(nome);
+		MenuGroup g = mappa.get(nome);
+		if ( g == null ) {
+			g = new MenuGroup();
+			g.setNome(nome);
+			g.setDescrizione(nome);
+			g.setLista(new ArrayList<MenuItem>());
+			g.setOrdinamento(1);
+			g.setPercorso("");
+		}
+		return g;
 	}
 	
 	public void init() {
