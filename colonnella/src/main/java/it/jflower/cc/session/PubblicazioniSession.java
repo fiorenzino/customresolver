@@ -120,7 +120,11 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 
 	@Override
 	protected Pubblicazione preUpdate(Pubblicazione p) {
-		p.setTipo(getEm().find(TipoPubblicazione.class, p.getTipo().getId()));
+		if (p.getIdTipo() != null) {
+			TipoPubblicazione t = getEm().find(TipoPubblicazione.class,
+					p.getIdTipo());
+			p.setTipo(t);
+		}
 		if (p.getDocumenti() != null && p.getDocumenti().size() == 0) {
 			p.setDocumenti(null);
 		}
@@ -158,8 +162,9 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 	public Pubblicazione findLast() {
 		Pubblicazione ret = new Pubblicazione();
 		try {
-			ret = (Pubblicazione) em.createQuery(
-					"select p from Pubblicazione p order by p.id desc ")
+			ret = (Pubblicazione) em
+					.createQuery(
+							"select p from Pubblicazione p order by p.id desc ")
 					.setMaxResults(1).getSingleResult();
 
 		} catch (Exception e) {
@@ -206,10 +211,16 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		if (ricerca.getOggetto() != null
 				&& ricerca.getOggetto().getNome() != null
 				&& ricerca.getOggetto().getNome().length() > 0) {
-			sb.append(separator).append(alias).append(".nome LIKE :nome ");
+			sb.append(separator + " (").append(alias)
+					.append(".nome LIKE :nome ");
 			params.put("nome", "%" + ricerca.getOggetto().getNome() + "%");
-			sb.append(separator).append(alias).append(".titolo LIKE :titolo ");
+			sb.append(" or ").append(alias).append(".titolo LIKE :titolo ");
 			params.put("titolo", "%" + ricerca.getOggetto().getNome() + "%");
+			sb.append(" or ").append(alias)
+					.append(".descrizione LIKE :descrizione ");
+			params.put("descrizione", "%" + ricerca.getOggetto().getNome()
+					+ "%");
+			sb.append(" ) ");
 		}
 
 		if (!count) {

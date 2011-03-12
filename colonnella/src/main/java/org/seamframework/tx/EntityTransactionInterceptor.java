@@ -42,8 +42,15 @@ public class EntityTransactionInterceptor implements Serializable {
 		boolean toManage = (em != null && em.isOpen() && !em.getTransaction()
 				.isActive());
 		if (toManage) {
-			em.getTransaction().begin();
-			System.out.println("...tx has begun...");
+			try {
+				em.getTransaction().begin();
+				System.out.println("...tx has begun...");
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("...provo a ricostruirla...");
+				em.clear();
+			}
+
 		}
 		boolean isActive = (em != null && em.isOpen() && em.getTransaction()
 				.isActive());

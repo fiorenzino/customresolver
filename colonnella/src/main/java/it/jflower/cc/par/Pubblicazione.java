@@ -26,6 +26,7 @@ public class Pubblicazione implements Serializable {
 	private String nome;
 	private String descrizione;
 	private TipoPubblicazione tipo;
+	private Long idTipo;
 	private String titolo;
 	private String autore;
 	private Date data;
@@ -149,5 +150,14 @@ public class Pubblicazione implements Serializable {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	@Transient
+	public Long getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(Long idTipo) {
+		this.idTipo = idTipo;
 	}
 }

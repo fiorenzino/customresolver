@@ -76,7 +76,6 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		}
 		if (filtro != null && filtro.length() > 0) {
 			ricerca.getOggetto().setTitolo(filtro);
-			ricerca.getOggetto().setContenuto(filtro);
 		}
 		return notizieSession.getList(ricerca, startRow, pageSize);
 	}

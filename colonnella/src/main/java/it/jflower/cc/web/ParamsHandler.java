@@ -1,6 +1,9 @@
 package it.jflower.cc.web;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +13,7 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class ParamsHandler implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public ParamsHandler() {
@@ -39,8 +42,15 @@ public class ParamsHandler implements Serializable {
 
 	public String getParam(String param) {
 		if (getParams().containsKey(param)) {
+			try {
+				return URLDecoder.decode((String) getParams().get(param),
+						"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return getParams().get(param);
 		}
-		return null;
+		return "";
 	}
 }
