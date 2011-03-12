@@ -134,6 +134,9 @@ public abstract class SuperSession<T> {
 			ricercaNulla.setOggetto(null);
 			result = (List<T>) getRestrictions(ricercaNulla, getOrderBy(),
 					count).getResultList();
+			for (T t : result) {
+				getEm().refresh(t);
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -154,8 +157,13 @@ public abstract class SuperSession<T> {
 			if (pageSize > 0) {
 				res.setMaxResults(pageSize);
 			}
-			if (res.getResultList() != null)
+			if (res.getResultList() != null) {
 				result = (List<T>) res.getResultList();
+				for (T t : result) {
+					getEm().refresh(t);
+				}
+			}
+
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -183,6 +191,9 @@ public abstract class SuperSession<T> {
 		try {
 			if (res.getResultList() != null)
 				result = (List<T>) res.getResultList();
+			for (T t : result) {
+				getEm().refresh(t);
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}

@@ -35,15 +35,15 @@ public class EntityTransactionInterceptor implements Serializable {
 	// throws Exception
 	{
 		if (em == null) {
-			logger.debug("Renewing ETX's EM...");
+			System.out.println("Renewing ETX's EM...");
 			em = DbUtils.getEM();
 		}
-		logger.debug("Entity tx interceptor running...");
+		System.out.println("Entity tx interceptor running...");
 		boolean toManage = (em != null && em.isOpen() && !em.getTransaction()
 				.isActive());
 		if (toManage) {
 			em.getTransaction().begin();
-			logger.debug("...tx has begun...");
+			System.out.println("...tx has begun...");
 		}
 		boolean isActive = (em != null && em.isOpen() && em.getTransaction()
 				.isActive());
@@ -52,7 +52,7 @@ public class EntityTransactionInterceptor implements Serializable {
 			isActive = em.getTransaction().isActive();
 			if (toManage && isActive) {
 				em.getTransaction().commit();
-				logger.debug("...tx has succeeded!");
+				System.out.println("...tx has succeeded!");
 			}
 			return result;
 		} catch (Exception e) {
@@ -62,7 +62,7 @@ public class EntityTransactionInterceptor implements Serializable {
 					em.clear();
 				// em = DbUtils.getEM();
 
-				logger.debug("...tx has failed!");
+				System.out.println("...tx has failed!");
 			}
 			return null;
 			// throw e;
