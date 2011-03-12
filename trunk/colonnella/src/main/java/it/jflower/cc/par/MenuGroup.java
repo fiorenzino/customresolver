@@ -1,6 +1,7 @@
 package it.jflower.cc.par;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -29,6 +30,8 @@ public class MenuGroup implements Serializable {
 	private Integer ordinamento = 1;
 
 	private List<MenuItem> lista;
+
+	private List<MenuItem> listaAttivi;
 
 	// ------------------------------------------------------------------------
 
@@ -101,6 +104,13 @@ public class MenuGroup implements Serializable {
 	@Transient
 	public int getListaSize() {
 		return this.lista == null ? 0 : lista.size();
+	}
+
+	@Transient
+	public List<MenuItem> getListaAttivi() {
+		if ( listaAttivi == null )
+			listaAttivi = new ArrayList<MenuItem>();
+		return listaAttivi;
 	}
 
 }

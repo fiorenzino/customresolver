@@ -390,7 +390,7 @@ public class MenuHandler implements Serializable {
 			for (MenuItem menuItem : this.element.getLista()) {
 				if (menuItem.getPagina().getId().equals(
 						paginaSelezionata.getId())) {
-					giaPresente = false;
+					giaPresente = true;
 				}
 			}
 			if (!giaPresente) {
