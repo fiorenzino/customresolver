@@ -278,8 +278,7 @@ public class PubblicazioniHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		if (getElement().getTipo() == null
-				|| getElement().getTipo().getId() == null)
+		if (getElement().getIdTipo() == null)
 			return "";
 		Pubblicazione t = getSession().update(element);
 		// refresh locale
@@ -346,6 +345,10 @@ public class PubblicazioniHandler implements Serializable {
 		// }
 		// }
 		this.element = session.fetch(id);
+		if (this.element.getTipo() != null
+				&& this.element.getTipo().getId() != null) {
+			this.element.setIdTipo(this.element.getTipo().getId());
+		}
 		if (element.getDocumenti() == null)
 			element.setDocumenti(new ArrayList<Documento>());
 		return editPage();

@@ -80,6 +80,18 @@ public class NotizieSession extends SuperSession<Notizia> implements
 			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
 		}
 
+		if (ricerca.getOggetto().getTitolo() != null
+				&& !ricerca.getOggetto().getTitolo().isEmpty()) {
+			sb.append(separator + " (").append(alias)
+					.append(".titolo LIKE :titolo ");
+			params.put("titolo", "%" + ricerca.getOggetto().getTitolo() + "%");
+			sb.append(" or ").append(alias)
+					.append(".contenuto LIKE :contenuto ");
+			params.put("contenuto", "%" + ricerca.getOggetto().getTitolo()
+					+ "%");
+			sb.append(" ) ");
+		}
+
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);
 		} else {
@@ -102,17 +114,15 @@ public class NotizieSession extends SuperSession<Notizia> implements
 		if (n.getData() == null)
 			n.setData(new Date());
 		if (n.getTipo() != null && n.getTipo().getId() != null)
-			n
-					.setTipo(getEm().find(TipoInformazione.class,
-							n.getTipo().getId()));
+			n.setTipo(getEm().find(TipoInformazione.class, n.getTipo().getId()));
 		return n;
 	}
 
 	public Notizia findLast() {
 		Notizia ret = new Notizia();
 		try {
-			ret = (Notizia) em.createQuery(
-					"select p from Notizia p order by p.id desc ")
+			ret = (Notizia) em
+					.createQuery("select p from Notizia p order by p.id desc ")
 					.setMaxResults(1).getSingleResult();
 
 		} catch (Exception e) {
