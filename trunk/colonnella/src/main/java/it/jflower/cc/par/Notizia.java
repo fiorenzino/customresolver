@@ -1,5 +1,6 @@
 package it.jflower.cc.par;
 
+import it.jflower.base.utils.HtmlUtils;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Notizia implements Serializable {
@@ -62,6 +64,11 @@ public class Notizia implements Serializable {
 	@Lob
 	public String getContenuto() {
 		return contenuto;
+	}
+
+	@Transient
+	public String getContenutoN() {
+		return HtmlUtils.normalizeHtml(this.contenuto);
 	}
 
 	public void setContenuto(String contenuto) {
