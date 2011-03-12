@@ -4,8 +4,11 @@
 	<Resource name="BeanManager" auth="Container"
 		type="javax.enterprise.inject.spi.BeanManager" factory="org.jboss.weld.resources.ManagerObjectFactory" />
 	<!-- Uncomment to enable injection into Servlet -->
-	<!--
-		<Listener
-		className="org.jboss.weld.environment.tomcat.WeldLifecycleListener" />
-	-->
+	<!-- <Listener className="org.jboss.weld.environment.tomcat.WeldLifecycleListener" 
+		/> -->
+	<Realm className="org.apache.catalina.realm.JDBCRealm"
+		driverName="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/colonnella"
+		connectionName="colonnella" connectionPassword="colonnella" userTable="user_auth"
+		userNameCol="USERNAME" userCredCol="PASSWORD" userRoleTable="user_role"
+		roleNameCol="ROLE_NAME" />
 </Context>
