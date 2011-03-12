@@ -43,7 +43,7 @@
 
 				<div class="BoxRedTitleBot">
 				
-					<ui:repeat value="#{menuGroup.lista}" var="menuItem" varStatus="iterationStatus" rendered="#{open}">
+					<ui:repeat value="#{menuGroup.listaAttivi}" var="menuItem" varStatus="iterationStatus" rendered="#{open}">
 						<div class="txt">
 							<h4><a href="#{request.contextPath}/pagine/#{menuGroup.percorso}/#{menuItem.pagina.id}" title="#{menuItem.nome}" class="arrowLink ">
 								#{menuItem.nome}

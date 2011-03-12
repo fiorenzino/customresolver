@@ -18,7 +18,7 @@
 			<h:outputText value=" ruolo: USER" rendered="#{loginHandler.user}" />
 			<br />
 			<p:panel header="Gestione Modelli di Pagina"
-				rendered="#{templateHandler.clear and loginHandler.admin}"
+				rendered="#{templateHandler.clear and loginHandler.admin }"
 				style="width:200px; float:left;">
 				<div style="height: 50px;"><h:commandLink
 					action="#{templateHandler.loadModel}"
@@ -28,7 +28,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Pagine" style="width:200px; float:left;"
-				rendered="#{pageHandler.clear and loginHandler.admin}">
+				rendered="#{pageHandler.clear and loginHandler.admin }">
 				<div style="height: 50px;"><h:commandLink
 					action="#{pageHandler.loadModel}"
 					value="lista delle pagine disponibili" /> <br />
@@ -39,7 +39,7 @@
 			</p:panel>
 
 			<p:panel header="Gestione Menu" style="width: 200px; float: left;"
-				rendered="#{menuHandler.clear and loginHandler.admin}">
+				rendered="#{menuHandler.clear and loginHandler.admin }">
 				<div style="height: 50px;"><h:commandLink
 					action="#{menuHandler.loadModel}" value="lista menu" /> <br />
 				<h:commandLink action="#{menuHandler.addElement}"
