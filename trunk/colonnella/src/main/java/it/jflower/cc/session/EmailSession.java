@@ -8,6 +8,7 @@ import it.jflower.cc.par.Configurazione;
 import java.io.File;
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class EmailSession implements Serializable {
 
 	private Logger logger = LoggerFactory.getLogger(EmailSession.class);

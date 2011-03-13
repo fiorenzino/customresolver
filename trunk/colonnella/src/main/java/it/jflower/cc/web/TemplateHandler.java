@@ -27,10 +27,14 @@ public class TemplateHandler implements Serializable {
 
 	private static String FACES_REDIRECT = "?faces-redirect=true";
 
-	public static String BACK = "/private/amministrazione.xhtml"+FACES_REDIRECT;
-	public static String VIEW = "/private/modelli/scheda-modello.xhtml"+FACES_REDIRECT;
-	public static String LIST = "/private/modelli/lista-modelli.xhtml"+FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml"+FACES_REDIRECT;
+	public static String BACK = "/private/amministrazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String VIEW = "/private/modelli/scheda-modello.xhtml"
+			+ FACES_REDIRECT;
+	public static String LIST = "/private/modelli/lista-modelli.xhtml"
+			+ FACES_REDIRECT;
+	public static String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml"
+			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
 
@@ -106,7 +110,7 @@ public class TemplateHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel( new LocalLazyDataModel<Template>( this.ricerca, session ));
+		setModel(new LocalLazyDataModel<Template>(this.ricerca, session));
 	}
 
 	/**
@@ -125,7 +129,7 @@ public class TemplateHandler implements Serializable {
 		reset();
 		return true;
 	}
-	
+
 	public String cerca() {
 		refreshModel();
 		return null;
@@ -183,9 +187,17 @@ public class TemplateHandler implements Serializable {
 		return this.backPage;
 	}
 
-	public String viewPage() { return VIEW; }
-	public String listPage() { return LIST; }
-	public String editPage() { return NEW_OR_EDIT; }
+	public String viewPage() {
+		return VIEW;
+	}
+
+	public String listPage() {
+		return LIST;
+	}
+
+	public String editPage() {
+		return NEW_OR_EDIT;
+	}
 
 	// -----------------------------------------------------
 
@@ -238,7 +250,6 @@ public class TemplateHandler implements Serializable {
 
 	// -----------------------------------------------------
 
-	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
@@ -253,7 +264,6 @@ public class TemplateHandler implements Serializable {
 		return viewPage();
 	}
 
-	@Transactional
 	public String update() {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
@@ -268,7 +278,6 @@ public class TemplateHandler implements Serializable {
 		return viewPage();
 	}
 
-	@Transactional
 	public String delete() {
 		// operazione su db
 		getSession().delete(getId(element));
@@ -297,31 +306,30 @@ public class TemplateHandler implements Serializable {
 		return viewPage();
 	}
 
-	
 	// ----------------------------------------------------
-	
-//	public List<Template> getList() {
-//		return session.getAllList();
-//	}
+
+	// public List<Template> getList() {
+	// return session.getAllList();
+	// }
 
 	public String viewElement(Object id) {
-//		for (Template t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
+		// for (Template t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
 		this.element = session.fetch(id);
 		return viewPage();
 	}
 
 	public String modElement(Object id) {
-//		for (Template t : session.getAllList() ) {
-//			if ( t.getId().equals(id) ) {
-//				this.element = t;
-//				break;
-//			}
-//		}
+		// for (Template t : session.getAllList() ) {
+		// if ( t.getId().equals(id) ) {
+		// this.element = t;
+		// break;
+		// }
+		// }
 		this.element = session.fetch(id);
 		return editPage();
 	}

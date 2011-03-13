@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +20,7 @@ import javax.persistence.Query;
 import org.seamframework.tx.Transactional;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class PageSession extends SuperSession<Page> implements Serializable {
 
 	private static final long serialVersionUID = 1L;

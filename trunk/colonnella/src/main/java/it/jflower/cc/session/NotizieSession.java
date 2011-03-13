@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class NotizieSession extends SuperSession<Notizia> implements
 		Serializable {
 
@@ -84,11 +85,10 @@ public class NotizieSession extends SuperSession<Notizia> implements
 				&& !ricerca.getOggetto().getTitolo().isEmpty()) {
 			sb.append(separator + " (").append(alias)
 					.append(".titolo LIKE :titolo ");
-			params.put("titolo", "%" + ricerca.getOggetto().getTitolo() + "%");
+			params.put("titolo", likeParam(ricerca.getOggetto().getTitolo()));
 			sb.append(" or ").append(alias)
 					.append(".contenuto LIKE :contenuto ");
-			params.put("contenuto", "%" + ricerca.getOggetto().getTitolo()
-					+ "%");
+			params.put("contenuto", likeParam(ricerca.getOggetto().getTitolo()));
 			sb.append(" ) ");
 		}
 

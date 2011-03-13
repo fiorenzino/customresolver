@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,7 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class AttivitaSession extends SuperSession<Attivita> implements
 		Serializable {
 
@@ -80,23 +81,23 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 				&& ricerca.getOggetto().getCategoria().getTipoAttivita() != null
 				&& ricerca.getOggetto().getCategoria().getTipoAttivita()
 						.getId() != null) {
-			sb.append(separator).append(alias).append(
-					".categoria.tipoAttivita.id = :idAttivita ");
+			sb.append(separator).append(alias)
+					.append(".categoria.tipoAttivita.id = :idAttivita ");
 			params.put("idAttivita", ricerca.getOggetto().getCategoria()
 					.getTipoAttivita().getId());
 		}
 		if (ricerca.getOggetto().getCategoria() != null
 				&& ricerca.getOggetto().getCategoria().getId() != null) {
-			sb.append(separator).append(alias).append(
-					".categoria.id = :idCategoria ");
+			sb.append(separator).append(alias)
+					.append(".categoria.id = :idCategoria ");
 			params.put("idCategoria", ricerca.getOggetto().getCategoria()
 					.getId());
 		}
 		if (ricerca.getOggetto().getCategoria() != null
 				&& ricerca.getOggetto().getCategoria().getCategoria() != null
 				&& ricerca.getOggetto().getCategoria().getCategoria().length() > 0) {
-			sb.append(separator).append(alias).append(
-					".categoria.categoria = :categoria ");
+			sb.append(separator).append(alias)
+					.append(".categoria.categoria = :categoria ");
 			params.put("categoria", ricerca.getOggetto().getCategoria()
 					.getCategoria());
 		}
@@ -127,8 +128,8 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 	public Attivita findLast() {
 		Attivita ret = new Attivita();
 		try {
-			ret = (Attivita) em.createQuery(
-					"select p from Attivita p order by p.id desc ")
+			ret = (Attivita) em
+					.createQuery("select p from Attivita p order by p.id desc ")
 					.setMaxResults(1).getSingleResult();
 
 		} catch (Exception e) {
