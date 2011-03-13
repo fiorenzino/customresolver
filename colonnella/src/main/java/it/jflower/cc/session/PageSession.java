@@ -109,10 +109,16 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 				&& ricerca.getOggetto().getTemplate().getTemplate() != null
 				&& ricerca.getOggetto().getTemplate().getTemplate()
 						.getSearchStatico() != null) {
-			sb.append(separator).append(alias).append(
-					".template.template.statico = :statico ");
+			sb.append(separator).append(alias)
+					.append(".template.template.statico = :statico ");
 			params.put("statico", ricerca.getOggetto().getTemplate()
 					.getTemplate().getSearchStatico());
+		}
+
+		if (ricerca.getOggetto().getTitle() != null
+				&& !ricerca.getOggetto().getTitle().isEmpty()) {
+			sb.append(separator).append(alias).append(".title like :title ");
+			params.put("title", likeParam(ricerca.getOggetto().getTitle()));
 		}
 
 		if (!count) {
@@ -131,6 +137,4 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 
 		return q;
 	}
-
-	
 }

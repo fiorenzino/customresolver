@@ -85,6 +85,17 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
 		}
 
+		if (ricerca.getOggetto().getTitolo() != null
+				&& !ricerca.getOggetto().getTitolo().isEmpty()) {
+			sb.append(separator + " (").append(alias)
+					.append(".titolo LIKE :titolo ");
+			params.put("titolo", likeParam(ricerca.getOggetto().getTitolo()));
+			sb.append(" or ").append(alias)
+					.append(".contenuto LIKE :contenuto ");
+			params.put("contenuto", likeParam(ricerca.getOggetto().getTitolo()));
+			sb.append(" ) ");
+		}
+
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);
 		} else {
