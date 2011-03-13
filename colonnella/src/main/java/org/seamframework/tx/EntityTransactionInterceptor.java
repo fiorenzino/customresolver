@@ -51,6 +51,10 @@ public class EntityTransactionInterceptor implements Serializable {
 				em.clear();
 			}
 
+		} else {
+			System.out.println("Renewing ETX's EM...");
+			em = DbUtils.getEM();
+			em.getTransaction().begin();
 		}
 		boolean isActive = (em != null && em.isOpen() && em.getTransaction()
 				.isActive());
