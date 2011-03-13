@@ -8,6 +8,7 @@ import it.jflower.cc.par.MenuItem;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,7 +17,7 @@ import javax.persistence.EntityManager;
 import org.seamframework.tx.Transactional;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class MenuSession
 extends SuperSession<MenuGroup>
 implements Serializable {

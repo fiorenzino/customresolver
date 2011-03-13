@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,7 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class OperazioniLogSession extends SuperSession<OperazioniLog> implements
 		Serializable {
 
