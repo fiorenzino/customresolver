@@ -94,7 +94,7 @@ public class PersistenceContextExtension implements Extension {
 
 					@Override
 					public Class<? extends Annotation> getScope() {
-						return SessionScoped.class;
+						return ApplicationScoped.class;
 					}
 
 					@Override
