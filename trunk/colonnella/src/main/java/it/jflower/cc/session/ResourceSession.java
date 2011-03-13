@@ -52,11 +52,11 @@ public class ResourceSession extends SuperSession<Resource> implements
 			// fos.close();
 			String filename = null;
 			if ("img".equals(object.getTipo()))
-				filename = FileUtils.createImage_(object.getTipo(), object
-						.getNome(), object.getBytes());
+				filename = FileUtils.createImage_(object.getTipo(),
+						object.getNome(), object.getBytes());
 			else
-				filename = FileUtils.createFile_(object.getTipo(), object
-						.getNome(), object.getBytes());
+				filename = FileUtils.createFile_(object.getTipo(),
+						object.getNome(), object.getBytes());
 			object.setNome(filename);
 			object.setId(object.getTipo() + File.separator + object.getNome());
 			return object;
@@ -195,25 +195,29 @@ public class ResourceSession extends SuperSession<Resource> implements
 	}
 
 	private List<String> getFiles(String tipo, String nameLike) {
+		List<String> resources = new ArrayList<String>();
+		if (tipo == null || tipo.isEmpty())
+			return resources;
 		if (tipo.equals("img")) {
-			if (nameLike == null || nameLike.equals(""))
-				return FileUtils.getImgFiles();
-			List<String> filteredFiles = new ArrayList<String>();
-			for (String filename : FileUtils.getImgFiles()) {
-				if (filename.toUpperCase().contains(nameLike.toUpperCase()))
-					filteredFiles.add(filename);
-			}
-			return filteredFiles;
+			resources = FileUtils.getImgFiles();
 		} else if (tipo.equals("js"))
-			return FileUtils.getJsFiles();
-		if (tipo.equals("swf"))
-			return FileUtils.getFlashFiles();
-		if (tipo.equals("css"))
-			return FileUtils.getCssFiles();
-		if (tipo.equals("docs"))
-			return FileUtils.getPdfFiles();
-		else
-			return new ArrayList<String>();
+			resources = FileUtils.getJsFiles();
+		else if (tipo.equals("swf"))
+			resources = FileUtils.getFlashFiles();
+		else if (tipo.equals("css")) {
+			resources = FileUtils.getCssFiles();
+		} else if (tipo.equals("docs")) {
+			resources = FileUtils.getPdfFiles();
+		}
+		if (resources == null || resources.size() == 0 || nameLike == null
+				|| nameLike.equals(""))
+			return resources;
+		List<String> filteredFiles = new ArrayList<String>();
+		for (String filename : resources) {
+			if (filename.toUpperCase().contains(nameLike.toUpperCase()))
+				filteredFiles.add(filename);
+		}
+		return filteredFiles;
 	}
 
 	@Override
