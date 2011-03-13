@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Random;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.New;
 import javax.inject.Inject;
 import javax.inject.Named;
 
