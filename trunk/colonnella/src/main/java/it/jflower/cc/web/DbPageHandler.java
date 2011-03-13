@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.New;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,6 +21,9 @@ public class DbPageHandler implements Serializable {
 
 	@Inject
 	PageSession pageSession;
+
+	@Inject
+	NewsHandlerRequest newsHandlerRequest;
 
 	private Page page;
 
@@ -45,6 +49,10 @@ public class DbPageHandler implements Serializable {
 	public String getPageName() {
 		if ((this.page != null) && (this.page.getId() != null)) {
 			this.page = pageSession.find(this.page.getId());
+			if ("leggiNews".equals(this.page.getId())) {
+				if (newsHandlerRequest.getNotizia() != null)
+					return newsHandlerRequest.getNotizia().getTitolo();
+			}
 			return this.page.getTitle();
 		}
 		return "";
