@@ -9,64 +9,77 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form id="central">
-			<center><p:panel header="Lista Pagine">
-				<h:panelGrid columns="3" rendered="true">
-					<h:outputLabel for="staticita" value="Tipo di contenuto: " />
-					<h:selectOneMenu
-						value="#{pageHandler.ricerca.oggetto.template.template.searchStatico}">
-						<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
-					</h:selectOneMenu>
-					<p:commandButton action="#{pageHandler.cerca}" value="Cerca"
-						process="@form" update="pagesList" />
-				</h:panelGrid>
-				<br />
+			<center>
+				<p:panel header="Lista Pagine">
+					<h:panelGrid columns="5" rendered="true">
+						<h:outputLabel for="nome" value="Nome:" />
+						<h:inputText id="nome" value="#{pageHandler.ricerca.oggetto.title}" />
 
-				<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="p"
-					value="#{pageHandler.model}" rows="#{pageHandler.pageSize}"
-					paginator="true" dynamic="true" lazy="true">
-					<p:column width="50">
-						<center><h:outputText value="#{rowIndex+1} " /></center>
-					</p:column>
-					<p:column width="150">
-						<f:facet name="header">
+						<h:outputLabel for="staticita" value="Tipo di contenuto: " />
+						<h:selectOneMenu
+							value="#{pageHandler.ricerca.oggetto.template.template.searchStatico}">
+							<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
+						</h:selectOneMenu>
+						<p:commandButton action="#{pageHandler.cerca}" value="Cerca"
+							process="@form" update="pagesList" />
+					</h:panelGrid>
+					<br />
+
+					<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="p"
+						value="#{pageHandler.model}" rows="#{pageHandler.pageSize}"
+						paginator="true" dynamic="true" lazy="true">
+						<p:column width="50">
+							<center>
+								<h:outputText value="#{rowIndex+1} " />
+							</center>
+						</p:column>
+						<p:column width="150">
+							<f:facet name="header">
 							titolo
 						</f:facet>
-						<h:outputText value="#{p.title}" />
-					</p:column>
-					<p:column width="350">
-						<f:facet name="header">
+							<h:outputText value="#{p.title}" />
+						</p:column>
+						<p:column width="350">
+							<f:facet name="header">
 							descrizione
 						</f:facet>
-						<h:outputText value="#{p.description}" />
-					</p:column>
-					<p:column width="60">
-						<f:facet name="header">
+							<h:outputText value="#{p.description}" />
+						</p:column>
+						<p:column width="60">
+							<f:facet name="header">
 							contenuto
 						</f:facet>
-						<h:outputText value="statico"
-							rendered="#{p.template.template.statico}" />
-						<h:outputText value="dinamico"
-							rendered="#{not p.template.template.statico}" />
-					</p:column>
-					<p:column width="150">
-						<center><h:commandLink value="vedi"
-							action="#{pageHandler.viewElement(p.id)}" /> - <h:commandLink
-							value="modifica" action="#{pageHandler.modElement(p.id)}" /> - <h:outputLink
-							target="_blank" value="#{request.contextPath}/pagine/#{p.id}">
-							<h:outputText value="anteprima" />
-						</h:outputLink></center>
-					</p:column>
-				</p:dataTable>
-			</p:panel> <br />
-			<br />
-			<h:panelGrid columns="3">
-				<h:commandButton action="#{pageHandler.addPaginaStatica}"
-					value="Aggiungi pagina con contenuto statico" />
-				<h:commandButton action="#{pageHandler.addPaginaDinamica}"
-					value="Aggiungi pagina con contenuto dinamico" />
-				<h:commandButton action="#{pageHandler.backPage}" value="Indietro"
-					rendered="false" />
-			</h:panelGrid></center>
+							<h:outputText value="statico"
+								rendered="#{p.template.template.statico}" />
+							<h:outputText value="dinamico"
+								rendered="#{not p.template.template.statico}" />
+						</p:column>
+						<p:column width="150">
+							<center>
+								<h:commandLink value="vedi"
+									action="#{pageHandler.viewElement(p.id)}" />
+								-
+								<h:commandLink value="modifica"
+									action="#{pageHandler.modElement(p.id)}" />
+								-
+								<h:outputLink target="_blank"
+									value="#{request.contextPath}/pagine/#{p.id}">
+									<h:outputText value="anteprima" />
+								</h:outputLink>
+							</center>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="3">
+					<h:commandButton action="#{pageHandler.addPaginaStatica}"
+						value="Aggiungi pagina con contenuto statico" />
+					<h:commandButton action="#{pageHandler.addPaginaDinamica}"
+						value="Aggiungi pagina con contenuto dinamico" />
+					<h:commandButton action="#{pageHandler.backPage}" value="Indietro"
+						rendered="false" />
+				</h:panelGrid>
+			</center>
 		</h:form>
 
 	</ui:define>

@@ -10,54 +10,67 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form id="central">
-			<center><p:panel header="Lista Modelli">
-				<h:panelGrid columns="3" rendered="true">
-					<h:outputLabel for="tipo" value="Tipo di modello: " />
-					<h:selectOneMenu id="tipo"
-						value="#{templateHandler.ricerca.oggetto.searchStatico}"
-						style="width: 400px;">
-						<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
-					</h:selectOneMenu>
-					<p:commandButton action="#{templateHandler.cerca}" value="Cerca"
-						process="@form" update="templatesList" />
-				</h:panelGrid>
-				<br />
+			<center>
+				<p:panel header="Lista Modelli">
+					<h:panelGrid columns="5" rendered="true">
 
-				<p:dataTable id="templatesList" rowIndexVar="rowIndex" var="t"
-					value="#{templateHandler.model}" rows="#{templateHandler.pageSize}"
-					paginator="true" dynamic="true" lazy="true">
-					<p:column width="50">
-						<center><h:outputText value="#{rowIndex+1} " /></center>
-					</p:column>
-					<p:column width="400">
-						<f:facet name="header">
+						<h:outputLabel for="nome" value="Nome:" />
+						<h:inputText id="nome"
+							value="#{templateHandler.ricerca.oggetto.nome}" />
+							
+						<h:outputLabel for="tipo" value="Tipo di modello: " />
+						<h:selectOneMenu id="tipo"
+							value="#{templateHandler.ricerca.oggetto.searchStatico}"
+							style="width: 400px;">
+							<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
+						</h:selectOneMenu>
+						<p:commandButton action="#{templateHandler.cerca}" value="Cerca"
+							process="@form" update="templatesList" />
+					</h:panelGrid>
+					<br />
+
+					<p:dataTable id="templatesList" rowIndexVar="rowIndex" var="t"
+						value="#{templateHandler.model}"
+						rows="#{templateHandler.pageSize}" paginator="true" dynamic="true"
+						lazy="true">
+						<p:column width="50">
+							<center>
+								<h:outputText value="#{rowIndex+1} " />
+							</center>
+						</p:column>
+						<p:column width="400">
+							<f:facet name="header">
 							nome
 						</f:facet>
-						<h:outputText value="#{t.nome}" />
-					</p:column>
-					<p:column width="50">
-						<f:facet name="header">
+							<h:outputText value="#{t.nome}" />
+						</p:column>
+						<p:column width="50">
+							<f:facet name="header">
 							statico
 						</f:facet>
-						<h:outputText value="SI" rendered="#{t.statico}" />
-						<h:outputText value="NO" rendered="#{not t.statico}" />
-					</p:column>
-					<p:column width="200">
-						<center><h:commandLink value="vedi"
-							action="#{templateHandler.viewElement(t.id)}" /> - <h:commandLink
-							value="modifica" action="#{templateHandler.modElement(t.id)}" />
-						</center>
-					</p:column>
-				</p:dataTable>
-			</p:panel> <br />
-			<br />
+							<h:outputText value="SI" rendered="#{t.statico}" />
+							<h:outputText value="NO" rendered="#{not t.statico}" />
+						</p:column>
+						<p:column width="200">
+							<center>
+								<h:commandLink value="vedi"
+									action="#{templateHandler.viewElement(t.id)}" />
+								-
+								<h:commandLink value="modifica"
+									action="#{templateHandler.modElement(t.id)}" />
+							</center>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<br /> <br />
 
-			<h:panelGrid columns="2">
-				<h:commandButton action="#{templateHandler.addElement}"
-					value="Aggiungi" />
-				<h:commandButton action="#{templateHandler.backPage}"
-					value="Indietro" rendered="false" />
-			</h:panelGrid></center>
+				<h:panelGrid columns="2">
+					<h:commandButton action="#{templateHandler.addElement}"
+						value="Aggiungi" />
+					<h:commandButton action="#{templateHandler.backPage}"
+						value="Indietro" rendered="false" />
+				</h:panelGrid>
+			</center>
 
 		</h:form>
 

@@ -12,93 +12,98 @@
 	<ui:define name="content">
 		<h:form prependId="false">
 			<center>
-			<div class="cboxIntContArticWP"
-				style="width: 100%; text-align: left;">
-			<div class="Box2ImgTitolo">
-			<h3 class="titoloredbold">Pubblicazioni</h3>
-			<br />
-			In questa sezione sono raccolte le pubblicazioni (Albo Pretorio)
-			all'Amministrazione comunale. Seleziona la pubblicazione di tuo
-			interesse per visualizzarlo sullo schermo.</div>
-			</div>
+				<div class="cboxIntContArticWP"
+					style="width: 100%; text-align: left;">
+					<div class="Box2ImgTitolo">
+						<h3 class="titoloredbold">Pubblicazioni</h3>
+						<br /> In questa sezione sono raccolte le pubblicazioni (Albo
+						Pretorio) all'Amministrazione comunale. Seleziona la pubblicazione
+						di tuo interesse per visualizzarlo sullo schermo.
+					</div>
+				</div>
 
-			<p:panel header="Lista Pubblicazioni">
+				<p:panel header="Lista Pubblicazioni">
 
-				<h:panelGrid columns="3">
-					<h:outputLabel value="Seleziona tipo" />
-					<h:selectOneMenu
-						value="#{pubblicazioniHandler.ricerca.oggetto.tipo.id}"
-						style="width: 200px;">
-						<f:selectItems value="#{propertiesHandler.tipiPubblicazioneItems}" />
-					</h:selectOneMenu>
-					<p:commandButton action="#{pubblicazioniHandler.cerca}"
-						value="Cerca" process="@form" update="pubblicazioniList" />
-				</h:panelGrid>
-				<br />
+					<h:panelGrid columns="5">
+						<h:outputLabel for="nome" value="Nome:" />
+						<h:inputText id="nome"
+							value="#{pubblicazioniHandler.ricerca.oggetto.nome}" />
 
-				<p:dataTable id="pubblicazioniList" var="pubblicazione"
-					value="#{pubblicazioniHandler.model}" rowIndexVar="rowIndex"
-					rows="#{pubblicazioniHandler.pageSize}" paginator="true"
-					dynamic="true" lazy="true">
-					<p:column>
-						<center><h:outputText value="#{rowIndex+1}" /></center>
-					</p:column>
-					<p:column>
-						<f:facet name="header">nome</f:facet>
-						<h:outputText value="#{pubblicazione.nome}" />
-					</p:column>
 
-					<p:column>
-						<f:facet name="header">tipo</f:facet>
-						<h:outputText value="#{pubblicazione.tipo.nome}" />
-					</p:column>
+						<h:outputLabel value="Seleziona tipo" />
+						<h:selectOneMenu
+							value="#{pubblicazioniHandler.ricerca.oggetto.tipo.id}"
+							style="width: 200px;">
+							<f:selectItems
+								value="#{propertiesHandler.tipiPubblicazioneItems}" />
+						</h:selectOneMenu>
+						<p:commandButton action="#{pubblicazioniHandler.cerca}"
+							value="Cerca" process="@form" update="pubblicazioniList" />
+					</h:panelGrid>
+					<br />
 
-					<p:column>
-						<f:facet name="header">data Pubblicazione</f:facet>
-						<h:outputText value="#{pubblicazione.data}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
+					<p:dataTable id="pubblicazioniList" var="pubblicazione"
+						value="#{pubblicazioniHandler.model}" rowIndexVar="rowIndex"
+						rows="#{pubblicazioniHandler.pageSize}" paginator="true"
+						dynamic="true" lazy="true">
+						<p:column>
+							<center>
+								<h:outputText value="#{rowIndex+1}" />
+							</center>
+						</p:column>
+						<p:column>
+							<f:facet name="header">titolo</f:facet>
+							<h:outputText value="#{pubblicazione.titolo}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">valido dal</f:facet>
-						<h:outputText value="#{pubblicazione.dal}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
+						<p:column>
+							<f:facet name="header">tipo</f:facet>
+							<h:outputText value="#{pubblicazione.tipo.nome}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">valido al</f:facet>
-						<h:outputText value="#{pubblicazione.al}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
+						<p:column>
+							<f:facet name="header">data Pubblicazione</f:facet>
+							<h:outputText value="#{pubblicazione.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">titolo</f:facet>
-						<h:outputText value="#{pubblicazione.titolo}" />
-					</p:column>
+						<p:column>
+							<f:facet name="header">valido dal</f:facet>
+							<h:outputText value="#{pubblicazione.dal}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">operazioni</f:facet>
-						<h:commandLink
-							action="#{pubblicazioniHandler.viewElement(pubblicazione.id)}"
-							value="vedi" />
+						<p:column>
+							<f:facet name="header">valido al</f:facet>
+							<h:outputText value="#{pubblicazione.al}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+
+						<p:column>
+							<f:facet name="header">operazioni</f:facet>
+							<h:commandLink
+								action="#{pubblicazioniHandler.viewElement(pubblicazione.id)}"
+								value="vedi" />
 						- 
 					<h:commandLink
-							action="#{pubblicazioniHandler.modElement(pubblicazione.id)}"
-							value="modifica" />
+								action="#{pubblicazioniHandler.modElement(pubblicazione.id)}"
+								value="modifica" />
 
 
-					</p:column>
-				</p:dataTable>
-			</p:panel> <br />
-			<br />
-			<h:panelGrid columns="2">
-				<h:commandLink id="creaPubb"
-					action="#{pubblicazioniHandler.addElement}"
-					value="Crea nuova Pubblicazione" />
-			</h:panelGrid></center>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="2">
+					<h:commandLink id="creaPubb"
+						action="#{pubblicazioniHandler.addElement}"
+						value="Crea nuova Pubblicazione" />
+				</h:panelGrid>
+			</center>
 		</h:form>
 	</ui:define>
 </ui:composition>

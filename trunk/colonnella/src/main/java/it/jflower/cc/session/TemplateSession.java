@@ -139,6 +139,12 @@ public class TemplateSession extends SuperSession<Template> implements
 			params.put("statico", ricerca.getOggetto().getSearchStatico());
 		}
 
+		if (ricerca.getOggetto().getNome() != null
+				&& !ricerca.getOggetto().getNome().isEmpty()) {
+			sb.append(separator).append(alias).append(".nome like :nome ");
+			params.put("nome", likeParam(ricerca.getOggetto().getNome()));
+		}
+
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);
 		} else {
