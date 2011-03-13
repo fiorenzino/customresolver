@@ -7,6 +7,10 @@
 		<pattern>/index</pattern>
 		<view-id>/index.jsf </view-id>
 	</url-mapping>
+	<url-mapping id="recupero">
+		<pattern>/recupero</pattern>
+		<view-id>/recupero.jsf </view-id>
+	</url-mapping>
 
 	<!--
 		<url-mapping id="dbPage"> <pattern>/dbPage</pattern>
