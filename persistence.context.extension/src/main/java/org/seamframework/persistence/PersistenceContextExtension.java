@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Alternative;
@@ -93,7 +94,7 @@ public class PersistenceContextExtension implements Extension {
 
 					@Override
 					public Class<? extends Annotation> getScope() {
-						return ApplicationScoped.class;
+						return SessionScoped.class;
 					}
 
 					@Override
@@ -170,6 +171,7 @@ public class PersistenceContextExtension implements Extension {
 
 				@Override
 				public void dispose(EntityManager em) {
+					System.out.println("dispose EntityManager");
 					if (em.isOpen()) // work around what I suspect is a bug in
 										// Weld
 					{
