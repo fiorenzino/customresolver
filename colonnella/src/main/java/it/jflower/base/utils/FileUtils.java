@@ -54,7 +54,6 @@ public class FileUtils {
 	}
 
 	public static List<String> getFlashFiles() {
-
 		return getFilesName("swf", new String[] { "swf" });
 	}
 
