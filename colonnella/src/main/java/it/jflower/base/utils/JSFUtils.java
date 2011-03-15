@@ -174,4 +174,16 @@ public class JSFUtils {
 		return req.isUserInRole(role);
 	}
 
+	public static java.lang.Boolean urlContains(String nome) {
+		try {
+		FacesContext context = FacesContext.getCurrentInstance();
+		String request_uri = context
+				.getExternalContext().getRequestMap().get("javax.servlet.forward.request_uri").toString();
+		return request_uri.contains("index") ? true : request_uri.toUpperCase().indexOf(nome.toUpperCase()) >= 0;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
+
 }
