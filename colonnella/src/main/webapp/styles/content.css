@@ -13,7 +13,7 @@ a:hover.selected{text-decoration:underline}
 a.LinkFreccia{color:#000; padding-left:14px; margin:0; background:url(../images/freccia_puntatore.gif) left center no-repeat}
 a:hover.LinkFreccia{color:#00436F}
 
-input, textarea{font-family:Arial; margin:0; padding:0; height:18px; font-size:1.2em; width:auto; border:1px solid #000}
+textarea{font-family:Arial; margin:0; padding:0; height:18px; font-size:1.2em; width:auto; border:1px solid #000}
 
 form{padding:0; margin:0; font-family:Arial; font-size:1em}
 
