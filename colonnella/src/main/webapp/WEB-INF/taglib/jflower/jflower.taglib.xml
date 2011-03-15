@@ -59,6 +59,11 @@
 		<function-signature>java.lang.String breadcrumbs()</function-signature>
 	</function>
 	<function>
+		<function-name>urlContains</function-name>
+		<function-class>it.jflower.base.utils.JSFUtils</function-class>
+		<function-signature>java.lang.Boolean urlContains(java.lang.String)</function-signature>
+	</function>
+	<function>
 		<function-name>proportionalWidth</function-name>
 		<function-class>it.jflower.base.utils.ImageUtils</function-class>
 		<function-signature>java.lang.Integer getImageWidthProportional(java.lang.String, java.lang.Integer,java.lang.Integer)</function-signature>
