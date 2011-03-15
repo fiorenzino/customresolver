@@ -60,6 +60,8 @@
 			<fileset dir="${basedir}/src/main/webapp">
 				<include name="risorse/*" />
 				<include name="**/*.xhtml" />
+				<include name="**/*.html" />
+				<include name="**/*.htm" />
 				<include name="**/*.xml" />
 				<include name="**/*.jsp" />
 				<include name="**/*.css" />
