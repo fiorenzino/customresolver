@@ -25,6 +25,7 @@ public class JSFUtils {
 
 	static Logger logger = Logger.getLogger(JSFUtils.class);
 
+	@SuppressWarnings("rawtypes")
 	public static <T> T getBean(Class<T> beanClass) {
 		try {
 			Context initCtx = new InitialContext();
@@ -43,6 +44,7 @@ public class JSFUtils {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static int count(Collection collection) {
 		return collection == null ? 0 : collection.size();
 	}
@@ -64,6 +66,7 @@ public class JSFUtils {
 	 *            no-selezione: select(null,"scegli l'entity....")
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public static SelectItem[] setupItems(Ricerca ricerca, SuperSession ejb,
 			String idField, String valueField, String emptyMessage,
 			String labelMessage) {
@@ -176,12 +179,12 @@ public class JSFUtils {
 
 	public static java.lang.Boolean urlContains(String nome) {
 		try {
-		FacesContext context = FacesContext.getCurrentInstance();
-		String request_uri = context
-				.getExternalContext().getRequestMap().get("javax.servlet.forward.request_uri").toString();
-		return request_uri.contains("index") ? true : request_uri.toUpperCase().indexOf(nome.toUpperCase()) >= 0;
-		}
-		catch (Exception e) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			String request_uri = context.getExternalContext().getRequestMap()
+					.get("javax.servlet.forward.request_uri").toString();
+			return request_uri.contains("index") ? true : request_uri
+					.toUpperCase().indexOf(nome.toUpperCase()) >= 0;
+		} catch (Exception e) {
 			return false;
 		}
 	}

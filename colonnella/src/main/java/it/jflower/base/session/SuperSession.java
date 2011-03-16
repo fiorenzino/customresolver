@@ -130,7 +130,7 @@ public abstract class SuperSession<T> {
 		List<T> result = new ArrayList<T>();
 		try {
 			boolean count = false;
-			Ricerca ricercaNulla = new Ricerca(getEntityType());
+			Ricerca<T> ricercaNulla = new Ricerca<T>(getEntityType());
 			ricercaNulla.setOggetto(null);
 			result = (List<T>) getRestrictions(ricercaNulla, getOrderBy(),
 					count).getResultList();
@@ -248,6 +248,7 @@ public abstract class SuperSession<T> {
 	 * creare una seconda lista 'detached' e riassegnarla
 	 * 
 	 */
+	@SuppressWarnings("rawtypes")
 	@Transactional
 	private void fetchChildren(Object object) throws Exception {
 		if (object == null)
@@ -311,6 +312,7 @@ public abstract class SuperSession<T> {
 		return "%" + param + "%";
 	}
 
+	@SuppressWarnings("rawtypes")
 	protected Field getActiveField(Class clazz) {
 		try {
 			return clazz.getDeclaredField("attivo");

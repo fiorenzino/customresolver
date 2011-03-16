@@ -10,7 +10,6 @@ import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NewNotizieSession;
-import it.jflower.cc.session.NotizieSession;
 import it.jflower.cc.session.TipoInformazioniSession;
 import it.jflower.cc.utils.PageUtils;
 
@@ -108,7 +107,7 @@ public class NewNotizieHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel(this.ricerca, this.notizieSession));
+		setModel(new LocalLazyDataModel<Notizia>(this.ricerca, this.notizieSession));
 	}
 
 	/**

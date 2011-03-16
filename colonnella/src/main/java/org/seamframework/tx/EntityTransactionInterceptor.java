@@ -24,7 +24,7 @@ public class EntityTransactionInterceptor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Logger logger = Logger.getLogger(getClass());
+	protected Logger logger = Logger.getLogger(getClass());
 
 	private @Inject
 	@Any

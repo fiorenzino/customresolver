@@ -26,7 +26,7 @@ public class DbPageHandler implements Serializable {
 
 	private Page page;
 
-	private String pageName;
+//	private String pageName;
 
 	public DbPageHandler() {
 	}

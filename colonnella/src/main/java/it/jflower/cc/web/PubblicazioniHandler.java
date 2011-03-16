@@ -119,7 +119,7 @@ public class PubblicazioniHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel(this.ricerca, this.session));
+		setModel(new LocalLazyDataModel<Pubblicazione>(this.ricerca, this.session));
 	}
 
 	/**
@@ -266,6 +266,7 @@ public class PubblicazioniHandler implements Serializable {
 		if (getElement().getTipo() == null
 				|| getElement().getTipo().getId() == null)
 			return "";
+		@SuppressWarnings("unused")
 		Pubblicazione t = getSession().persist(this.element);
 		// refresh locale
 		refreshModel();
@@ -280,6 +281,7 @@ public class PubblicazioniHandler implements Serializable {
 		// salvataggio
 		if (getElement().getIdTipo() == null)
 			return "";
+		@SuppressWarnings("unused")
 		Pubblicazione t = getSession().update(element);
 		// refresh locale
 		this.element = getSession().find(this.element.getId());

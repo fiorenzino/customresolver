@@ -3,7 +3,6 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.JSFUtils;
-import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoPubblicazione;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;

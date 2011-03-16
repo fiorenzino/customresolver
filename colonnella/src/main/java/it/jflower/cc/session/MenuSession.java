@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -18,9 +17,8 @@ import org.seamframework.tx.Transactional;
 
 @Named
 @RequestScoped
-public class MenuSession
-extends SuperSession<MenuGroup>
-implements Serializable {
+public class MenuSession extends SuperSession<MenuGroup> implements
+		Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -52,11 +50,10 @@ implements Serializable {
 	}
 
 	public boolean updateItem(MenuItem mi) {
-		try{
+		try {
 			getEm().merge(mi);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 			return false;
@@ -65,27 +62,23 @@ implements Serializable {
 
 	/**
 	 * Override this if needed
+	 * 
 	 * @param object
 	 * @return
 	 */
 	@Override
 	protected MenuGroup preUpdate(MenuGroup mg) {
-		for ( MenuItem mi : mg.getLista() ) {
-			if ( mi.getId() == null ) {
+		for (MenuItem mi : mg.getLista()) {
+			if (mi.getId() == null) {
 				em.persist(mi);
-			}
-			else {
+			} else {
 				em.merge(mi);
 			}
 		}
+		processActiveMenuItems(mg);
 		return mg;
 	}
-	
 
-	
-	
-	
-	
 	@Transactional
 	@Override
 	public List<MenuGroup> getAllList() {
@@ -96,28 +89,29 @@ implements Serializable {
 
 	@Transactional
 	@Override
-	public List<MenuGroup> getList(Ricerca<MenuGroup> ricerca, int startRow, int pageSize) {
-		List<MenuGroup> result = super.getList(ricerca,startRow,pageSize);
+	public List<MenuGroup> getList(Ricerca<MenuGroup> ricerca, int startRow,
+			int pageSize) {
+		List<MenuGroup> result = super.getList(ricerca, startRow, pageSize);
 		processActiveMenuItems(result);
 		return result;
 	}
 
 	private void processActiveMenuItems(List<MenuGroup> result) {
-		if ( result != null ) {
-			for ( MenuGroup mg : result ) {
-				if ( mg.getLista() != null ) {
-					for ( MenuItem mi : mg.getLista() ) {
-						if ( mi.isAttivo() ) {
-							mg.getListaAttivi().add(mi);
-						}
-					}
+		if (result != null) {
+			for (MenuGroup mg : result) {
+				processActiveMenuItems(mg);
+			}
+		}
+	}
+
+	private void processActiveMenuItems(MenuGroup mg) {
+		if (mg.getLista() != null) {
+			for (MenuItem mi : mg.getLista()) {
+				if (mi.isAttivo()) {
+					mg.getListaAttivi().add(mi);
 				}
 			}
 		}
 	}
 
-
-	
-
-	
 }

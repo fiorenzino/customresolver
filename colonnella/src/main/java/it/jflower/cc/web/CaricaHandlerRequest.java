@@ -30,6 +30,8 @@ import javax.inject.Named;
 @RequestScoped
 public class CaricaHandlerRequest implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	NotizieSession notizieSession;
 
@@ -168,6 +170,7 @@ public class CaricaHandlerRequest implements Serializable {
 	}
 
 	private void caricaModuli() {
+		@SuppressWarnings("unused")
 		String testo = "Antichi palazzi costruiti su un'alta collina, un intreccio di viuzze e scalinate, diverse piazzette caratteristiche, un paronama incantevole, unico, l'aria salubre, fresca, questa è Colonnella."
 				+ "Le mie \"estati\" sono abruzzesi e quindi conosco bene "
 				+ "dell'Abruzzo il colore e il senso dell'estate, quando "

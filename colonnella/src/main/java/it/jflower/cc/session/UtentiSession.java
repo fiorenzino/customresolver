@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 @Named
@@ -133,6 +132,7 @@ public class UtentiSession implements Serializable {
 	public Utente update(Utente utente) {
 		Connection con = null;
 		PreparedStatement pageRes = null;
+		@SuppressWarnings("unused")
 		int res = 0;
 		try {
 			// update user_auth set PASSWORD = 'sdasda', EMAIL = '32424' where

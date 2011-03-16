@@ -100,7 +100,7 @@ public class NotizieHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel(this.ricerca, this.notizieSession));
+		setModel(new LocalLazyDataModel<Notizia>(this.ricerca, this.notizieSession));
 	}
 
 	/**

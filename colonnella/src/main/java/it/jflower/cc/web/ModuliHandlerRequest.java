@@ -50,7 +50,7 @@ public class ModuliHandlerRequest implements UiRepeatInterface {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
 		return ultimiModuli(tipo, filtro, startRow, pageSize);
 	}

@@ -121,7 +121,7 @@ public class ModuliHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel(this.ricerca, this.session));
+		setModel(new LocalLazyDataModel<Modulo>(this.ricerca, this.session));
 	}
 
 	/**
