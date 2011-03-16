@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 
 public class UIDUtils implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	protected Logger logger = Logger.getLogger(UIDUtils.class.getName());
 
 	public static Date getUidComparable(String uid) {

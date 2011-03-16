@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -20,6 +19,8 @@ import org.slf4j.LoggerFactory;
 @Named
 @RequestScoped
 public class EmailSession implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Logger logger = LoggerFactory.getLogger(EmailSession.class);
 

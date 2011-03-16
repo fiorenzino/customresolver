@@ -10,6 +10,8 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class Test implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	@Inject
 	ParamsHandler paramsHandler;
 

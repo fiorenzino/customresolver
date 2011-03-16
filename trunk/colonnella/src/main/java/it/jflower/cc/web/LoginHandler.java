@@ -42,7 +42,7 @@ public class LoginHandler implements Serializable {
 
 	// --------------------------------------------------------
 
-	private String username;
+//	private String username;
 
 	private String recuperoEmail;
 
@@ -72,9 +72,9 @@ public class LoginHandler implements Serializable {
 		return JSFUtils.getUserName();
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
 
 	public boolean isAdmin() {
 		return JSFUtils.isUserInRole("admin");

@@ -48,7 +48,7 @@ import java.util.Map;
  * @author $Author$
  * @version $Revision$ $Date$
  */
-@SuppressWarnings( { "deprecation", "unchecked", "unused" })
+@SuppressWarnings( { "deprecation", "unchecked", "unused", "rawtypes" })
 public class UIRepeat extends UIComponentBase implements NamingContainer {
 
 	public static final String COMPONENT_TYPE = "facelets.ui.Repeat";

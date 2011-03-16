@@ -6,7 +6,6 @@ import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NotizieSession;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -56,7 +55,7 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
 		return ultimeNotizie(tipo, filtro, startRow, pageSize);
 	}

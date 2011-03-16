@@ -1,12 +1,15 @@
 package it.jflower.base.utils;
 
 import java.io.Serializable;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import sun.misc.BASE64Encoder;
 
 public class PasswordUtils implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public static String createPassword(String pwd) {
 		MessageDigest md;

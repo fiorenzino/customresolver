@@ -39,7 +39,7 @@ public class PropertiesHandler implements Serializable {
 	@Inject
 	AttivitaHandler attivitaHandler;
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private Map<Class, SelectItem[]> items = null;
 
 	@Inject
@@ -324,7 +324,7 @@ public class PropertiesHandler implements Serializable {
 		this.items.put(Page.class, pageItems);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private SelectItem[] checkItems(Ricerca ricerca, SuperSession ejb,
 			String idField, String valueField, String emptyMessage,
 			String labelMessage) {
@@ -338,7 +338,7 @@ public class PropertiesHandler implements Serializable {
 
 	// ==============================================================================
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public String reset() {
 		items = new HashMap<Class, SelectItem[]>();
 		return null;

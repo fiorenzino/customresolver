@@ -29,9 +29,8 @@ public class HtmlUtils {
 			// System.out.println("*****************PRIMA: ");
 			// System.out.println(arg1.toString());
 			// System.out.println("*******************DOPO: ");
-			StringEscapeUtils escape = new StringEscapeUtils();
-			// escape.unescapeHtml(arg0)
-			content = escape.unescapeHtml(arg1.toString());
+			// StringEscapeUtils.unescapeHtml(arg0)
+			content = StringEscapeUtils.unescapeHtml(arg1.toString());
 			// System.out.println(content);
 
 		} catch (UnsupportedEncodingException e) {

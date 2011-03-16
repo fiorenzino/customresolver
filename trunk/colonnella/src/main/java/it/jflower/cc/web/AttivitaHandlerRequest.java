@@ -48,7 +48,7 @@ public class AttivitaHandlerRequest implements UiRepeatInterface {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
 		return ultimeAttivita(tipo, filtro, startRow, pageSize);
 	}

@@ -14,7 +14,7 @@ import javax.faces.render.Renderer;
 
 import com.sun.faces.facelets.component.UIRepeat;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings("rawtypes")
 @FacesRenderer(componentFamily = "javax.faces.Command", rendererType = "uiRepeatPager")
 public class UIRepeatPager extends Renderer {
 

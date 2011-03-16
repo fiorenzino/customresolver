@@ -10,7 +10,7 @@ import javax.faces.model.DataModel;
 
 import org.apache.log4j.Logger;
 
-@SuppressWarnings( "unchecked")
+@SuppressWarnings( {"unchecked","rawtypes"})
 public abstract class SuperHandlerNG 
 implements Serializable {
 
