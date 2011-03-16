@@ -179,15 +179,16 @@ div.BoxCOLNewsCenterSpSx div.titolo img{border:1px solid #C5C5C5; padding:1px; m
 div.BoxCOLNewsCenterSpSx div.testo{padding:6px 8px 2px 8px; background:#F5F4F6}
 
 div.BoxCOLNewsCenterDx div.COLNewsImgInt{height:auto !important; height:40px; min-height:40px; border-top:1px solid #E1E1E1; padding:6px 0 4px 7px;}
-html>/**/body div.BoxCOLNewsCenterDx div.COLNewsImgInt{overflow:hidden;}/* FireFox*/
+html>/**/body div.BoxCOLNewsCenterDx div.COLNewRicercasImgInt{overflow:hidden;}/* FireFox*/
 
 div.BoxCOLNewsCenter2{padding:6px 12px}
 div.BoxCOLNewsDown{padding:6px 12px}
 div.COLNewsImgInt{height:auto !important; height:40px; min-height:40px; border-top:1px solid #E1E1E1; padding:6px 0 4px 0}
 div.firstNews{border-top:0px}
 
-div.contHpWPILeftBot div.ContBotLeft div.ContBotLeftInt div.ContBoxCurva{height:auto !important; height:102px; min-height:102px}
+div.contHpWPILeftBot div.ContBotLeft div.ContBotLeftInt div.ContBoxCurva{height:auto !important; height:102px; min-height:102pRicercax}
 
-
-
+.currentPage {
+	font-size: 20px !important;
+	}
 
