@@ -59,4 +59,10 @@
 		<source>menu/menuBoxSxBase.xhtml</source>
 	</tag>
 
+	<function>
+		<function-name>showMenu</function-name>
+		<function-class>it.jflower.cc.utils.MenuUtils</function-class>
+		<function-signature>java.lang.Boolean showMenu(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
 </facelet-taglib>
