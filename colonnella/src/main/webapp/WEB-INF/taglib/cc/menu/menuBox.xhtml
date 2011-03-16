@@ -13,10 +13,6 @@
 	parametri opzionali: 
 	open
 	-->
-	<c:if test="${empty open}">
-		<c:set var="open" value="#{flw:urlContains(menuGroup.nome)}" />
-	</c:if>
-
 	<div class="contcbox2 top6">
 
 	<div class="cbox2"><!-- 8 div open -->
@@ -32,13 +28,14 @@
 	<div class="rbtopl">
 	<div class="rbtopr">
 
-	<div class="titolo"><f:verbatim rendered="#{not open}">
+	<div class="titolo"><f:verbatim rendered="#{not cc:showMenu(open,menuGroup.nome)}">
 		<a href="#{request.contextPath}/pagine/#{menuGroup.nome}">
 		<h3>#{menuGroup.nome}</h3>
 		</a>
-	</f:verbatim> <f:verbatim rendered="#{open}">
+	</f:verbatim> <f:verbatim rendered="#{cc:showMenu(open,menuGroup.nome)}">
 		<h3>#{menuGroup.nome}</h3>
-	</f:verbatim></div>
+	</f:verbatim>
+	</div>
 
 	<!-- 3 div close --></div>
 	</div>
@@ -49,7 +46,7 @@
 	<ui:repeat
 		value="#{menuGroup.listaAttivi}" var="menuItem"
 		varStatus="iterationStatus">
-		<div class="txt" style="display: #{open ? 'block' : 'none'};">
+		<div class="txt" style="display: #{cc:showMenu(open,menuGroup.nome) ? 'block' : 'none'};">
 		<h4><a
 			href="#{request.contextPath}/pagine/#{menuGroup.percorso}/#{menuItem.pagina.id}"
 			title="#{menuItem.nome}" class="arrowLink "> #{menuItem.nome} </a></h4>
@@ -57,7 +54,7 @@
 		<div class="RowBot" style="#{iterationStatus.last ? 'display: none;' : 'display: none;' }">
 		</div>
 	</ui:repeat>
-		<div class="txt" style="#{open ? 'display: none;' : 'font-weight: bold;' }">
+		<div class="txt" style="#{cc:showMenu(open,menuGroup.nome) ? 'display: none;' : 'font-weight: bold;' }">
 				<h:outputLink
 		value="#{request.contextPath}/pagine/#{menuGroup.nome}">#{closedMessage}
 	</h:outputLink>
