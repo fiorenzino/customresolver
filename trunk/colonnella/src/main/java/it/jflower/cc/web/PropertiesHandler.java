@@ -17,6 +17,7 @@ import it.jflower.cc.session.TipoInformazioniSession;
 import it.jflower.cc.session.TipoModuloSession;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,9 +74,24 @@ public class PropertiesHandler implements Serializable {
 
 	public SelectItem[] getRuoliItems() {
 		if (ruoliItems == null || ruoliItems.length == 0) {
-			ruoliItems = new SelectItem[2];
-			ruoliItems[0] = new SelectItem("admin", "amministratore");
-			ruoliItems[1] = new SelectItem("user", "utente ordinario");
+			List<SelectItem> ruoliList = new ArrayList<SelectItem>();
+//			ruoliList.add( new SelectItem("admin", "amministratore") );
+//			ruoliList.add ( new SelectItem("user", "utente ordinario") );
+			ruoliList.add ( new SelectItem("modelli", "gestione modelli") );
+			ruoliList.add ( new SelectItem("pagine", "gestione pagine") );
+			ruoliList.add ( new SelectItem("menu", "gestione menu") );
+			ruoliList.add ( new SelectItem("risorse", "gestione risorse") );
+			ruoliList.add ( new SelectItem("log", "visualizza log operazioni") );
+			ruoliList.add ( new SelectItem("tipi_informazione", "gestione tipi informazione") );
+			ruoliList.add ( new SelectItem("news", "gestione notizie") );
+			ruoliList.add ( new SelectItem("attivita", "gestione attivita'") );
+			ruoliList.add ( new SelectItem("tipi_attivita", "gestione tipi attivita'") );
+			ruoliList.add ( new SelectItem("categorie_attivita", "gestione categorie attivita'") );
+			ruoliList.add ( new SelectItem("pubblicazioni", "gestione albo pretorio") );
+			ruoliList.add ( new SelectItem("tipi_pubblicazione", "gestione tipi pubblicazione") );
+			ruoliList.add ( new SelectItem("moduli", "gestione modulistica") );
+			ruoliList.add ( new SelectItem("tipi_modulo", "gestione tipi modulo") );
+			ruoliItems = ruoliList.toArray(new SelectItem[]{});
 		}
 		return ruoliItems;
 	}

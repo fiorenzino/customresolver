@@ -136,4 +136,13 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 
 		return q;
 	}
+	
+//	@Override
+//	public Page find(Object key) {
+//		Page p = super.find(key);
+//		if ( p != null ) {
+//			em.refresh(p.getTemplate());
+//		}
+//		return p;
+//	}
 }
