@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Transient;
+
 public class Utente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -11,9 +13,15 @@ public class Utente implements Serializable {
 	private boolean nuovo = true;
 	private String username;
 	private String password;
+	private String oldPassword;
+	private String newPassword;
+	private String confirmPassword;
 	private List<String> roles;
-	private String ruolo;
-	private String email;
+	private Boolean admin;
+	
+//	private String ruolo;
+
+	//	private String email;
 
 	public Utente() {
 		// TODO Auto-generated constructor stub
@@ -57,21 +65,21 @@ public class Utente implements Serializable {
 		return ruoli.toString().substring(1);
 	}
 
-	public String getRuolo() {
-		return ruolo;
-	}
+//	public String getRuolo() {
+//		return ruolo;
+//	}
+//
+//	public void setRuolo(String ruolo) {
+//		this.ruolo = ruolo;
+//	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
 
 	public boolean isNuovo() {
 		return nuovo;
@@ -79,6 +87,45 @@ public class Utente implements Serializable {
 
 	public void setNuovo(boolean nuovo) {
 		this.nuovo = nuovo;
+	}
+
+	@Transient
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
+	@Transient
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	@Transient
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	@Transient
+	public boolean isAdmin() {
+		if ( admin == null ) {
+			admin = roles != null && roles.contains("admin");
+		}
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 	

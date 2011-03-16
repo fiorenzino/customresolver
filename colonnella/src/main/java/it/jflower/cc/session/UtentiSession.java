@@ -37,7 +37,7 @@ public class UtentiSession implements Serializable {
 			while (rs.next()) {
 				String username = rs.getString("USERNAME");
 				String password = rs.getString("PASSWORD");
-				String email = rs.getString("EMAIL");
+				// String email = rs.getString("EMAIL");
 				String role = rs.getString("ROLE_NAME");
 				if (utentiMap.containsKey(username)) {
 					((Utente) utentiMap.get(username)).addRole(role);
@@ -45,7 +45,7 @@ public class UtentiSession implements Serializable {
 					Utente utente = new Utente();
 					utente.setUsername(username);
 					utente.setPassword(password);
-					utente.setEmail(email);
+					// utente.setEmail(email);
 					utente.setNuovo(false);
 					utente.addRole(role);
 					utentiMap.put(username, utente);
@@ -76,15 +76,15 @@ public class UtentiSession implements Serializable {
 					utente = new Utente();
 					String username = rs.getString("USERNAME");
 					String password = rs.getString("PASSWORD");
-					String email = rs.getString("EMAIL");
+					// String email = rs.getString("EMAIL");
 					utente.setUsername(username);
 					utente.setPassword(password);
-					utente.setEmail(email);
+					// utente.setEmail(email);
 					utente.setNuovo(false);
 				}
 				String role = rs.getString("ROLE_NAME");
 				utente.addRole(role);
-				utente.setRuolo(role);
+				// utente.setRuolo(role);
 			}
 			return utente;
 		} catch (SQLException e) {
@@ -106,14 +106,19 @@ public class UtentiSession implements Serializable {
 					.prepareStatement("INSERT INTO user_auth (USERNAME ,PASSWORD, EMAIL) VALUES (?, ?, ?)");
 			pageRes.setString(1, utente.getUsername());
 			pageRes.setString(2, utente.getPassword());
-			pageRes.setString(3, utente.getEmail());
+			// pageRes.setString(3, utente.getEmail());
+			pageRes.setString(3, utente.getUsername());
 			res = pageRes.executeUpdate();
 			if (res > 0) {
-				pageRes = con
-						.prepareStatement("INSERT INTO user_role (USERNAME ,ROLE_NAME) VALUES (?, ?)");
-				pageRes.setString(1, utente.getUsername());
-				pageRes.setString(2, utente.getRuolo());
-				res = pageRes.executeUpdate();
+				if (utente.getRoles() != null) {
+					for (String ruolo : utente.getRoles()) {
+						pageRes = con
+								.prepareStatement("INSERT INTO user_role (USERNAME ,ROLE_NAME) VALUES (?, ?)");
+						pageRes.setString(1, utente.getUsername());
+						pageRes.setString(2, ruolo);
+						res = pageRes.executeUpdate();
+					}
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -141,15 +146,25 @@ public class UtentiSession implements Serializable {
 			pageRes = con
 					.prepareStatement("UPDATE user_auth set PASSWORD = ? , EMAIL = ? WHERE USERNAME = ? ");
 			pageRes.setString(1, utente.getPassword());
-			pageRes.setString(2, utente.getEmail());
+			// pageRes.setString(2, utente.getEmail());
+			pageRes.setString(2, utente.getUsername());
 			pageRes.setString(3, utente.getUsername());
 			res = pageRes.executeUpdate();
 
 			pageRes = con
-					.prepareStatement("UPDATE user_role set ROLE_NAME = ? WHERE USERNAME = ? ");
-			pageRes.setString(1, utente.getRuolo());
-			pageRes.setString(2, utente.getUsername());
+					.prepareStatement("DELETE from user_role WHERE USERNAME = ? ");
+			pageRes.setString(1, utente.getUsername());
 			res = pageRes.executeUpdate();
+
+			if (utente.getRoles() != null) {
+				for (String ruolo : utente.getRoles()) {
+					pageRes = con
+					.prepareStatement("INSERT INTO user_role (USERNAME ,ROLE_NAME) VALUES (?, ?)");
+					pageRes.setString(1, utente.getUsername());
+					pageRes.setString(2, ruolo);
+					res = pageRes.executeUpdate();
+				}
+			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -171,8 +186,8 @@ public class UtentiSession implements Serializable {
 					.prepareStatement("DELETE FROM user_role WHERE USERNAME = ?");
 			pageRes.setString(1, id);
 			res = pageRes.executeUpdate();
-			if (res == 0)
-				return false;
+			// if (res == 0)
+			// return false;
 
 			pageRes = con
 					.prepareStatement("DELETE FROM user_auth WHERE USERNAME = ? ");
