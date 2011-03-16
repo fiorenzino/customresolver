@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Gestione Configurazione" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<center><p:panel header="Gestione Configurazione">
+
+				<h:panelGrid columns="2" style="width: 95%">
+
+					<h:outputLabel value="Server smtp(*):" for="smtp" />
+					<h:inputText required="true" id="smtp"
+						value="#{configurazioneHandler.configurazione.smtp}" style="width: 100%;" />
+
+				</h:panelGrid>
+				<br />
+
+			</p:panel> <br />
+			<br />
+
+			<h:panelGrid columns="4">
+
+				<h:commandButton action="#{configurazioneHandler.update}"
+					value="Salva le modifiche" />
+
+				<h:commandButton id="reset" action="#{configurazioneHandler.reset}"
+					value="Annulla" immediate="true" />
+
+			</h:panelGrid></center>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

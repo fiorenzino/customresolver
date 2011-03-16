@@ -20,8 +20,8 @@
 					<h:outputText id="username" value="#{loginHandler.utente.username}" />
 
 					<h:outputLabel for="email" value="Email: "
-						style="font-weight: bolder;" />
-					<h:outputText id="email" value="#{loginHandler.utente.email}" />
+						style="font-weight: bolder;" rendered="false"/>
+					<h:outputText id="email" value="#{loginHandler.utente.email}" rendered="false"/>
 
 					<h:outputLabel for="roles" style="font-weight: bolder;"
 						value="Ruoli: " />
