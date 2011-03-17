@@ -10,78 +10,71 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<center><p:panel header="Gestione Menu (passo 2)">
+			<center>
+				<p:panel
+					header="Gestione Menu: #{menuHandler.element.nome} (passo 2)">
+					<h:outputLabel value="Pagine selezionate" for="display"
+						style="font-weight: bolder;" />
+					<br />
+					<p:outputPanel id="display">
+						<ui:repeat value="#{menuHandler.pagineSelezionate}"
+							var="paginaSelezionata">
+							<h:outputText value="#{paginaSelezionata.title}"
+								style="font-style: italic;" />
+							<br />
+						</ui:repeat>
+					</p:outputPanel>
+					<br />
+					<p:commandButton value="Aggiorna pagine selezionate"
+						update="display" />
+					<br />
+					<h:outputText
+						value="(NB: per mantenere le selezioni già effettuate ed aggiungere o rimuovere una selezione,"
+						style="font-weight: bold;" />
+					<br />
+					<h:outputText
+						value="tenere premuto contemporaneamente il tasto ctrl mentre si sceglie una voce.)"
+						style="font-weight: bold;" />
+					<br />
+					<p:dataTable var="pagina" value="#{menuHandler.pagine}"
+						rowIndexVar="rowIndex" paginator="true" rows="100"
+						selection="#{menuHandler.pagineSelezionate}"
+						selectionMode="multiple">
 
-				<h:panelGrid columns="2" style="width: 95%"
-					columnClasses="col1,col2">
+						<p:column width="50">
+							<center>
+								<h:outputText value="#{rowIndex+1}" />
+							</center>
+						</p:column>
 
-					<h:outputLabel value="Nome:" for="nome" />
-					<h:outputText id="nome" value="#{menuHandler.element.nome}"
-						style="width: 100%;" />
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="titolo" />
+							</f:facet>
+							<h:outputText value="#{pagina.title}" />
+						</p:column>
 
-					<h:outputLabel value="Descrizione:" for="descrizione" />
-					<h:outputText id="descrizione"
-						value="#{menuHandler.element.descrizione}" style="width: 100%;" />
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="descrizione" />
+							</f:facet>
+							<h:outputText value="#{pagina.description}" />
+						</p:column>
 
-					<h:outputLabel value="Percorso:" for="percorso" />
-					<h:outputText id="percorso" value="#{menuHandler.element.percorso}"
-						style="width: 100%;" />
+					</p:dataTable>
 
+
+				</p:panel>
+				<br /> <br />
+
+				<h:panelGrid columns="3">
+					<h:commandButton action="#{menuHandler.step3}"
+						value="Prosegui (dettagli pagine)" />
+
+					<h:commandButton id="reset" action="#{menuHandler.reset}"
+						value="Annulla" immediate="true" />
 				</h:panelGrid>
-				<br />
-
-				<p:dataTable var="pagina" value="#{menuHandler.pagine}"
-					paginator="true" rows="10"
-					selection="#{menuHandler.pagineSelezionate}"
-					selectionMode="multiple">
-
-					<p:column width="50">
-						<center><h:outputText value="#{rowIndex+1} " /></center>
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="titolo" />
-						</f:facet>
-						<h:outputText value="#{pagina.title}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="descrizione" />
-						</f:facet>
-						<h:outputText value="#{pagina.description}" />
-					</p:column>
-
-				</p:dataTable>
-
-				<p:commandButton value="Aggiorna pagine selezionate"
-					update="display" />
-				<br />
-				<br />
-
-				<h:outputLabel value="Pagine selezionate" for="display"
-					style="font-weight: bolder;" />
-				<br />
-				<p:outputPanel id="display">
-					<ui:repeat value="#{menuHandler.pagineSelezionate}"
-						var="paginaSelezionata">
-						<h:outputText value="#{paginaSelezionata.title}"
-							style="font-style: italic;" />
-						<br />
-					</ui:repeat>
-				</p:outputPanel>
-
-			</p:panel> <br />
-			<br />
-
-			<h:panelGrid columns="3">
-				<h:commandButton action="#{menuHandler.step3}"
-					value="Prosegui (dettagli pagine)" />
-
-				<h:commandButton id="reset" action="#{menuHandler.reset}"
-					value="Annulla" immediate="true" />
-			</h:panelGrid></center>
+			</center>
 
 		</h:form>
 	</ui:define>

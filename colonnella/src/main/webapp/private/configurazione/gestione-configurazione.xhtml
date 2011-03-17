@@ -10,31 +10,92 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
-			<center><p:panel header="Gestione Configurazione">
 
-				<h:panelGrid columns="2" style="width: 95%">
+		<center>
+			<h:form>
+				<p:panel header="Gestione Configurazione">
 
-					<h:outputLabel value="Server smtp(*):" for="smtp" />
-					<h:inputText required="true" id="smtp"
-						value="#{configurazioneHandler.configurazione.smtp}" style="width: 100%;" />
+					<h:panelGrid columns="2" style="width: 95%">
 
-				</h:panelGrid>
+						<h:outputLabel value="Server smtp(*):" for="smtp" />
+						<h:inputText required="true" id="smtp"
+							value="#{configurazioneHandler.configurazione.smtp}"
+							style="width: 100%;" />
+
+						<h:outputLabel value="Server port(*):" for="port" />
+						<h:inputText required="true" id="port"
+							value="#{configurazioneHandler.configurazione.serverPort}"
+							style="width: 100%;" />
+
+						<h:outputLabel value="username:" for="username" />
+						<h:inputText id="username"
+							value="#{configurazioneHandler.configurazione.username}"
+							style="width: 100%;" />
+
+						<h:outputLabel value="password:" for="password" />
+						<h:inputSecret id="password"
+							value="#{configurazioneHandler.configurazione.password}"
+							style="width: 100%;" />
+
+						<h:outputLabel value="con autenticazione?:" for="withAuth" />
+						<h:selectBooleanCheckbox title="withAuth"
+							value="#{configurazioneHandler.configurazione.withAuth}">
+						</h:selectBooleanCheckbox>
+
+						<h:outputLabel value="di tipo ssl?:" for="withSsl" />
+						<h:selectBooleanCheckbox title="withSsl"
+							value="#{configurazioneHandler.configurazione.withSsl}">
+						</h:selectBooleanCheckbox>
+
+						<h:outputLabel value="debug attivo?:" for="withDebug" />
+						<h:selectBooleanCheckbox title="withDebug"
+							value="#{configurazioneHandler.configurazione.withDebug}">
+						</h:selectBooleanCheckbox>
+
+					</h:panelGrid>
+					<br />
+
+				</p:panel>
+				<br />
 				<br />
 
-			</p:panel> <br />
-			<br />
+				<h:panelGrid columns="4">
 
-			<h:panelGrid columns="4">
+					<h:commandButton action="#{configurazioneHandler.update}"
+						value="Salva le modifiche" />
 
-				<h:commandButton action="#{configurazioneHandler.update}"
-					value="Salva le modifiche" />
+					<h:commandButton id="reset" action="#{configurazioneHandler.reset}"
+						value="Annulla" immediate="true" />
 
-				<h:commandButton id="reset" action="#{configurazioneHandler.reset}"
-					value="Annulla" immediate="true" />
+				</h:panelGrid>
+			</h:form>
+			<br /> <br />
+			<h:form>
+				<p:panel
+					header="Prova Configurazione: #{configurazioneHandler.configurazione.smtp}"
+					id="testEmailPanel">
 
-			</h:panelGrid></center>
+					<h:panelGrid columns="3">
+						<h:inputText required="true" id="smtp"
+							value="#{configurazioneHandler.emailTest}" style="width: 100%;" />
 
-		</h:form>
+						<h:commandButton value="Invia email di test"
+							action="#{configurazioneHandler.test}" />
+
+						<h:commandButton id="reset"
+							action="#{configurazioneHandler.setResultTest('')}"
+							value="Annulla" immediate="true" />
+
+					</h:panelGrid>
+					<br />
+					<br />
+					<h:outputText id="resultTest"
+						value="risultato del test: #{configurazioneHandler.resultTest}"
+						rendered="#{not empty configurazioneHandler.resultTest}" />
+				</p:panel>
+			</h:form>
+		</center>
+
+
 	</ui:define>
 </ui:composition>
