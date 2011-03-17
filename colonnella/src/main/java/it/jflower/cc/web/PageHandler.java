@@ -2,7 +2,9 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Template;
 import it.jflower.cc.par.TemplateImpl;
@@ -56,6 +58,9 @@ public class PageHandler implements Serializable {
 
 	@Inject
 	TemplateSession templateSession;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	private Long idTemplate;
 
@@ -265,6 +270,8 @@ public class PageHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setPageItems(null);
 		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"creazione nuova pagina: " + this.element.getTitle());
 		return viewPage();
 	}
 
@@ -282,6 +289,9 @@ public class PageHandler implements Serializable {
 			// altre dipendenze
 			propertiesHandler.setPageItems(null);
 			// vista di destinzione
+			operazioniLogHandler.save(OperazioniLog.MODIFY,
+					JSFUtils.getUserName(),
+					"modifica pagina: " + this.element.getTitle());
 			return viewPage();
 		} else {
 			// messaggio di errore
@@ -298,6 +308,8 @@ public class PageHandler implements Serializable {
 
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione pagina: " + this.element.getTitle());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();
@@ -305,6 +317,7 @@ public class PageHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setPageItems(null);
 		// visat di destinazione
+
 		return listPage();
 	}
 

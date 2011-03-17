@@ -2,7 +2,9 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Template;
 import it.jflower.cc.session.TemplateSession;
 
@@ -42,6 +44,9 @@ public class TemplateHandler implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// ------------------------------------------------
 
@@ -258,8 +263,10 @@ public class TemplateHandler implements Serializable {
 		refreshModel();
 		// altre dipendenze
 		propertiesHandler.setTemplateItems(null);
-		propertiesHandler.setTemplateItems(null);
+
 		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"creazione nuovo modello: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -274,11 +281,15 @@ public class TemplateHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTemplateItems(null);
 		// vista di destinzione
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+				"modifica modello: " + this.element.getNome());
 		return viewPage();
 	}
 
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione modello: " + this.element.getNome());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();

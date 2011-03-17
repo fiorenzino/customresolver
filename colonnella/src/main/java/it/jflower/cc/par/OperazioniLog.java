@@ -12,6 +12,11 @@ import javax.persistence.Lob;
 public class OperazioniLog implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	public static final String NEW = "NEW";
+	public static final String DELETE = "DELETE";
+	public static final String MODIFY = "MODIFY";
+	public static final String LOGIN = "LOGIN";
+	public static final String LOGOUT = "LOGOUT";
 
 	private Long id;
 	private String tipo;

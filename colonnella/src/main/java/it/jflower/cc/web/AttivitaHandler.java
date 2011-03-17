@@ -5,6 +5,7 @@ import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
 import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.Attivita;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Resource;
 import it.jflower.cc.par.attachment.Immagine;
@@ -139,8 +140,8 @@ public class AttivitaHandler implements Serializable {
 		if (!lazy)
 			setModel(new ListDataModel<Attivita>(attivitaSession.getAllList()));
 		else
-			setModel(new LazyDataModel<Attivita>(attivitaSession
-					.getListSize(ricerca)) {
+			setModel(new LazyDataModel<Attivita>(
+					attivitaSession.getListSize(ricerca)) {
 				private static final long serialVersionUID = 1L;
 
 				@Override
@@ -174,7 +175,7 @@ public class AttivitaHandler implements Serializable {
 			this.element.setImmagine(getImmagine());
 		this.element = attivitaSession.persist(this.element);
 		this.model = null;
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione attivita': " + this.element.getNome());
 		return VIEW;
 	}
@@ -195,7 +196,7 @@ public class AttivitaHandler implements Serializable {
 	}
 
 	public String deleteAttivita(String id) {
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
 				"emilinazione attivita': " + this.element.getNome());
 		attivitaSession.delete(id);
 		this.model = null;
@@ -211,7 +212,7 @@ public class AttivitaHandler implements Serializable {
 		if (getImmagine().getData() != null)
 			this.element.setImmagine(getImmagine());
 		attivitaSession.update(this.element);
-		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"modifica attivita': " + this.element.getNome());
 		this.model = null;
 		return VIEW;

@@ -27,22 +27,18 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 	@Inject
 	EntityManager em;
 
-	@Override
 	public EntityManager getEm() {
 		return em;
 	}
 
-	@Override
 	protected Class<MenuGroup> getEntityType() {
 		return MenuGroup.class;
 	}
 
-	@Override
 	protected String getOrderBy() {
 		return "percorso";
 	}
 
-	@Override
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
@@ -68,7 +64,7 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 	 * @param object
 	 * @return
 	 */
-	@Override
+
 	protected MenuGroup preUpdate(MenuGroup mg) {
 		for (MenuItem mi : mg.getLista()) {
 			if (mi.getId() == null) {
@@ -82,7 +78,6 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 	}
 
 	@Transactional
-	@Override
 	public List<MenuGroup> getAllList() {
 		List<MenuGroup> result = super.getAllList();
 		processActiveMenuItems(result);
@@ -90,7 +85,6 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 	}
 
 	@Transactional
-	@Override
 	public List<MenuGroup> getList(Ricerca<MenuGroup> ricerca, int startRow,
 			int pageSize) {
 		List<MenuGroup> result = super.getList(ricerca, startRow, pageSize);
@@ -115,9 +109,9 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 			}
 		}
 		Collections.sort(mg.getListaAttivi(), new Comparator<MenuItem>() {
-			@Override
 			public int compare(MenuItem o1, MenuItem o2) {
-				return o1.getOrdinamento() == null ? -1 : o1.getOrdinamento().compareTo(o2.getOrdinamento());
+				return o1.getOrdinamento() == null ? -1 : o1.getOrdinamento()
+						.compareTo(o2.getOrdinamento());
 			}
 		});
 	}

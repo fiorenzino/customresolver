@@ -2,7 +2,9 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.TipoModuloSession;
 
@@ -42,6 +44,9 @@ public class TipiModuloHandler implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// ------------------------------------------------
 
@@ -111,7 +116,7 @@ public class TipiModuloHandler implements Serializable {
 	protected void refreshModel() {
 		// setModel(new LocalDataModel<TipoInformazione>(pageSize, ricerca,
 		// getSession()));
-//		setModel(new ListDataModel<TipoModulo>(session.getAllList()));
+		// setModel(new ListDataModel<TipoModulo>(session.getAllList()));
 		setModel(new LocalLazyDataModel<TipoModulo>(this.ricerca, this.session));
 	}
 
@@ -257,6 +262,8 @@ public class TipiModuloHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipiModuloItems(null);
 		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"creazione tipo modulo: " + this.element.getNome());
 		return LIST;
 	}
 
@@ -271,6 +278,8 @@ public class TipiModuloHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipiModuloItems(null);
 		// vista di destinzione
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+				"modifica tipo modulo: " + this.element.getNome());
 		return LIST;
 	}
 
@@ -283,6 +292,8 @@ public class TipiModuloHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
 		// visat di destinazione
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione tipo modulo: " + this.element.getNome());
 		return LIST;
 	}
 
