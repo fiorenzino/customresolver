@@ -73,6 +73,7 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 				em.merge(mi);
 			}
 		}
+		mg.setListaAttivi(null);
 		processActiveMenuItems(mg);
 		return mg;
 	}
