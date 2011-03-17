@@ -17,21 +17,20 @@
 						<h:outputLabel for="nome" value="Nome:" />
 						<h:inputText id="nome"
 							value="#{templateHandler.ricerca.oggetto.nome}" />
-							
+
 						<h:outputLabel for="tipo" value="Tipo di modello: " />
 						<h:selectOneMenu id="tipo"
 							value="#{templateHandler.ricerca.oggetto.searchStatico}"
 							style="width: 400px;">
 							<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
 						</h:selectOneMenu>
-						<p:commandButton action="#{templateHandler.cerca}" value="Cerca"
-							process="@form" update="templatesList" />
+						<h:commandButton action="#{templateHandler.cerca}" value="Cerca" />
 					</h:panelGrid>
 					<br />
 
 					<p:dataTable id="templatesList" rowIndexVar="rowIndex" var="t"
 						value="#{templateHandler.model}"
-						rows="#{templateHandler.pageSize}" paginator="true" dynamic="true" page="#{templateHandler.scrollerPage}"
+						rows="#{templateHandler.pageSize}" paginator="true" dynamic="true"
 						lazy="true">
 						<p:column width="50">
 							<center>
