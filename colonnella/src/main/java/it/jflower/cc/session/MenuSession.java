@@ -6,6 +6,8 @@ import it.jflower.cc.par.MenuGroup;
 import it.jflower.cc.par.MenuItem;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -112,6 +114,12 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 				}
 			}
 		}
+		Collections.sort(mg.getListaAttivi(), new Comparator<MenuItem>() {
+			@Override
+			public int compare(MenuItem o1, MenuItem o2) {
+				return o1.getOrdinamento() == null ? -1 : o1.getOrdinamento().compareTo(o2.getOrdinamento());
+			}
+		});
 	}
 
 }
