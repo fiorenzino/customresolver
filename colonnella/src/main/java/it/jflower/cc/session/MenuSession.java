@@ -73,7 +73,6 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 				em.merge(mi);
 			}
 		}
-		mg.setListaAttivi(null);
 		processActiveMenuItems(mg);
 		return mg;
 	}
@@ -102,6 +101,7 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 	}
 
 	private void processActiveMenuItems(MenuGroup mg) {
+		mg.setListaAttivi(null);
 		if (mg.getLista() != null) {
 			for (MenuItem mi : mg.getLista()) {
 				if (mi.isAttivo()) {
