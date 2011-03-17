@@ -3,8 +3,10 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.base.utils.FileUtils;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoPubblicazione;
@@ -52,6 +54,9 @@ public class PubblicazioniHandler implements Serializable {
 
 	@Inject
 	ParamsHandler paramsHandler;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// ------------------------------------------------
 
@@ -119,7 +124,8 @@ public class PubblicazioniHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel<Pubblicazione>(this.ricerca, this.session));
+		setModel(new LocalLazyDataModel<Pubblicazione>(this.ricerca,
+				this.session));
 	}
 
 	/**
@@ -272,6 +278,8 @@ public class PubblicazioniHandler implements Serializable {
 		refreshModel();
 		this.element = getSession().find(this.element.getId());
 		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"nuova publicazione: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -287,11 +295,15 @@ public class PubblicazioniHandler implements Serializable {
 		this.element = getSession().find(this.element.getId());
 		refreshModel();
 		// vista di destinzione
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+				"modifica publicazione: " + this.element.getNome());
 		return viewPage();
 	}
 
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione publicazione: " + this.element.getNome());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();

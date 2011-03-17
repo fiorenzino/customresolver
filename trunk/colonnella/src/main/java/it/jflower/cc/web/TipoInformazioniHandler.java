@@ -2,7 +2,9 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.TipoInformazioniSession;
 
@@ -42,6 +44,9 @@ public class TipoInformazioniHandler implements Serializable {
 
 	@Inject
 	PropertiesHandler propertiesHandler;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 
 	// ------------------------------------------------
 
@@ -109,7 +114,8 @@ public class TipoInformazioniHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel<TipoInformazione>(this.ricerca, this.session));
+		setModel(new LocalLazyDataModel<TipoInformazione>(this.ricerca,
+				this.session));
 	}
 
 	/**
@@ -254,6 +260,8 @@ public class TipoInformazioniHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
 		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"creazione nuovo tipo informazione: " + this.element.getNome());
 		return viewPage();
 	}
 
@@ -267,12 +275,16 @@ public class TipoInformazioniHandler implements Serializable {
 		refreshModel();
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
-		// vista di destinzione
+		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+				"modifica tipo informazione: " + this.element.getNome());
 		return viewPage();
 	}
 
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione tipo informazione: " + this.element.getNome());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();
@@ -280,6 +292,7 @@ public class TipoInformazioniHandler implements Serializable {
 		// altre dipendenze
 		propertiesHandler.setTipoInformazioneItems(null);
 		// visat di destinazione
+
 		return listPage();
 	}
 

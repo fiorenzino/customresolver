@@ -23,24 +23,23 @@ import org.apache.log4j.Logger;
 public class Sender {
 	static Logger logger = Logger.getLogger(Sender.class.getName());
 
-	public static String send(Email2Send email, Server server, String debug)
-			throws Exception {
+	public static String send(Email2Send email, Server server) throws Exception {
 		Session session;
 
 		if (server.isAuth()) {
-			Authenticator auth = new PopAuthenticator(server.getUser(), server
-					.getPwd());
-			session = Session.getInstance(getProperties(server, debug), auth);
+			Authenticator auth = new PopAuthenticator(server.getUser(),
+					server.getPwd());
+			session = Session.getInstance(getProperties(server), auth);
 		} else {
-			session = Session.getInstance(getProperties(server, debug), null);
+			session = Session.getInstance(getProperties(server), null);
 		}
 		MyMessage mailMsg = new MyMessage(session);// a new email message
 		InternetAddress[] addresses = null;
 		try {
 			if (email.getDestinatari() != null
 					&& email.getDestinatari().size() > 0) {
-				addresses = InternetAddress.parse(email
-						.getDestinatariToString(), false);
+				addresses = InternetAddress.parse(
+						email.getDestinatariToString(), false);
 				mailMsg.setRecipients(Message.RecipientType.TO, addresses);
 			} else {
 				throw new MessagingException(
@@ -74,8 +73,8 @@ public class Sender {
 				// attachment
 				for (File allegato : email.getAllegati()) {
 					messageBodyPart = new MimeBodyPart();
-					DataSource source = new FileDataSource(allegato
-							.getCanonicalPath());
+					DataSource source = new FileDataSource(
+							allegato.getCanonicalPath());
 					DataHandler dataH = new DataHandler(source);
 					messageBodyPart.setDataHandler(dataH);
 					messageBodyPart.setFileName(allegato.getName());
@@ -109,8 +108,9 @@ public class Sender {
 		return mailMsg.getMessageID();
 	}
 
-	private static Properties getProperties(Server server, String debug) {
-		Properties properties = System.getProperties();
+	private static Properties getProperties(Server server) {
+		// Properties properties = System.getProperties();
+		Properties properties = new Properties();
 		properties.put("mail.smtp.host", server.getAddress());
 		if (server.isAuth()) {
 			properties.put("mail.smtp.auth", "true");
@@ -118,8 +118,13 @@ public class Sender {
 		if (server.isSsl()) {
 			properties.put("mail.smtp.socketFactory.class",
 					"javax.net.ssl.SSLSocketFactory");
+			properties.put("mail.transport.protocol", "smtps");
 		}
-		properties.put("mail.debug", debug);
+		if (server.isDebug()) {
+			properties.put("mail.debug", "true");
+		} else {
+			properties.put("mail.debug", "false");
+		}
 		if (server.getPort() != null && server.getPort().compareTo("") != 0) {
 			properties.put("mail.smtp.port", server.getPort());
 			properties.put("mail.smtp.socketFactory.port", server.getPort());

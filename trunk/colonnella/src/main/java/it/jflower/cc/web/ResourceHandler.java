@@ -2,7 +2,9 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.utils.ImageUtils;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Resource;
 import it.jflower.cc.session.ResourceSession;
 
@@ -60,6 +62,8 @@ public class ResourceHandler implements Serializable {
 	@Inject
 	PropertiesHandler propertiesHandler;
 
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
 	// --------------------------------------------------------
 
 	private Ricerca<Resource> ricerca;
@@ -257,7 +261,6 @@ public class ResourceHandler implements Serializable {
 
 	// -----------------------------------------------------
 
-	@Transactional
 	public String save() {
 		for (Resource resource : uploadedResources) {
 			if (resource.getTipo() == null)
@@ -271,10 +274,11 @@ public class ResourceHandler implements Serializable {
 		// altre dipendenze
 		//
 		// vista di destinazione
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"creazione risorsa: " + this.element.getNome());
 		return listPage();
 	}
 
-	@Transactional
 	public String update() {
 		// recupero dati in input
 		// TODO
@@ -285,12 +289,15 @@ public class ResourceHandler implements Serializable {
 		// altre dipendenze
 		//
 		// vista di destinzione
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+				"modifica risorsa: " + this.element.getNome());
 		return listPage();
 	}
 
-	@Transactional
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione risorsa: " + this.element.getNome());
 		session.delete(element);
 		// refresh locale
 		refreshModel();
@@ -298,6 +305,7 @@ public class ResourceHandler implements Serializable {
 		// altre dipendenze
 		//
 		// visat di destinazione
+
 		return listPage();
 	}
 
@@ -316,7 +324,7 @@ public class ResourceHandler implements Serializable {
 	// // vista di arrivo
 	// return viewPage();
 	// }
-	//	
+	//
 	// -----------------------------------------------------
 
 	// public List<Page> getList() {

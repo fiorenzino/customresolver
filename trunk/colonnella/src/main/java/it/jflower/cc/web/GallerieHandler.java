@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.Galleria;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.session.GallerieSession;
 import it.jflower.cc.utils.PageUtils;
@@ -73,7 +74,7 @@ public class GallerieHandler implements Serializable {
 
 		gallerieSession.persist(this.galleria);
 		this.all = null;
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione galleria: " + this.galleria.getTitolo());
 		return VIEW;
 	}
@@ -81,7 +82,7 @@ public class GallerieHandler implements Serializable {
 	public String deleteGalleria() {
 		gallerieSession.delete(this.galleria.getId());
 		this.all = null;
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
 				"eliminazione galleria: " + this.galleria.getTitolo());
 		return LIST;
 	}
@@ -95,7 +96,7 @@ public class GallerieHandler implements Serializable {
 	public String updateGalleria() {
 		this.galleria = gallerieSession.update(this.galleria);
 		this.all = null;
-		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"eliminazione galleria: " + this.galleria.getTitolo());
 		return VIEW;
 	}

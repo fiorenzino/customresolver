@@ -5,6 +5,7 @@ import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Notizia;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NotizieSession;
 import it.jflower.cc.session.TipoInformazioniSession;
@@ -100,7 +101,8 @@ public class NotizieHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel<Notizia>(this.ricerca, this.notizieSession));
+		setModel(new LocalLazyDataModel<Notizia>(this.ricerca,
+				this.notizieSession));
 	}
 
 	/**
@@ -219,7 +221,7 @@ public class NotizieHandler implements Serializable {
 			this.element.setTipo(tipo);
 		notizieSession.persist(this.element);
 		this.model = null;
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione notizia: " + this.element.getTitolo());
 		return VIEW;
 	}
@@ -227,7 +229,7 @@ public class NotizieHandler implements Serializable {
 	public String deleteNotizia() {
 		notizieSession.delete(this.element.getId());
 		this.model = null;
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
 				"eliminazione menu: " + this.element.getTitolo());
 		return LIST;
 	}
@@ -246,7 +248,7 @@ public class NotizieHandler implements Serializable {
 			this.element.setTipo(tipo);
 		this.element = notizieSession.update(this.element);
 		this.model = null;
-		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"modifica notizia: " + this.element.getTitolo());
 		return VIEW;
 	}

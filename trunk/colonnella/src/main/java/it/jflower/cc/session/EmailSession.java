@@ -56,7 +56,7 @@ public class EmailSession implements Serializable {
 		try {
 			String msgId = "";
 			if (from != null && to != null) {
-				msgId = Sender.send(email, getServer(), "true");
+				msgId = Sender.send(email, getServer());
 				logger.info("sendEmail: msgId:" + msgId);
 			} else {
 				logger.info("sendEmail: EMAIL NON INVIABILE");
@@ -74,15 +74,19 @@ public class EmailSession implements Serializable {
 		Configurazione conf = getConfigurazione();
 		Server server = new Server();
 		server.setAddress(conf.getSmtp());
-		server.setAuth(true);
-		server.setSsl(false);
+		server.setUser(conf.getUsername());
+		server.setPwd(conf.getPassword());
+		server.setPort("" + conf.getServerPort());
+		server.setAuth(conf.isWithAuth());
+		server.setSsl(conf.isWithSsl());
+		server.setDebug(conf.isWithDebug());
 		return server;
 
 	}
 
 	public Configurazione getConfigurazione() {
 		try {
-			return em.find(Configurazione.class, new Long(1));
+			return em.find(Configurazione.class, 1L);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return null;

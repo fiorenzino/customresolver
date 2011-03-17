@@ -17,6 +17,11 @@ public class Configurazione implements Serializable {
 	private String smtp;
 	private String serverType;
 	private int serverPort;
+	private String username;
+	private String password;
+	private boolean withAuth;
+	private boolean withSsl;
+	private boolean withDebug;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +63,46 @@ public class Configurazione implements Serializable {
 
 	public void setServerType(String serverType) {
 		this.serverType = serverType;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isWithAuth() {
+		return withAuth;
+	}
+
+	public void setWithAuth(boolean withAuth) {
+		this.withAuth = withAuth;
+	}
+
+	public boolean isWithSsl() {
+		return withSsl;
+	}
+
+	public void setWithSsl(boolean withSsl) {
+		this.withSsl = withSsl;
+	}
+
+	public boolean isWithDebug() {
+		return withDebug;
+	}
+
+	public void setWithDebug(boolean withDebug) {
+		this.withDebug = withDebug;
 	}
 
 }

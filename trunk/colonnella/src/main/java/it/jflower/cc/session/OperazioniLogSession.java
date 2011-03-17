@@ -71,13 +71,13 @@ public class OperazioniLogSession extends SuperSession<OperazioniLog> implements
 			params.put("data", ricerca.getOggetto().getData());
 		}
 		if (ricerca.getOggetto().getUsername() != null
-				&& !"".equals(ricerca.getOggetto().getUsername())) {
+				&& !ricerca.getOggetto().getUsername().isEmpty()) {
 			sb.append(separator).append(alias).append(".username = :username ");
 			params.put("username", ricerca.getOggetto().getUsername());
 		}
 		if (ricerca.getOggetto().getTipo() != null
-				&& !"".equals(ricerca.getOggetto().getTipo())) {
-			sb.append(separator).append(alias).append(".type = :type ");
+				&& !ricerca.getOggetto().getTipo().isEmpty()) {
+			sb.append(separator).append(alias).append(".tipo = :type ");
 			params.put("type", ricerca.getOggetto().getTipo());
 		}
 

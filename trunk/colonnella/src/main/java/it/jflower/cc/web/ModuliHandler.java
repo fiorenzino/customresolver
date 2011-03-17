@@ -7,6 +7,7 @@ import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Modulo;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.session.ModuliSession;
@@ -51,7 +52,7 @@ public class ModuliHandler implements Serializable {
 
 	@Inject
 	ParamsHandler paramsHandler;
-	
+
 	@Inject
 	OperazioniLogHandler operazioniLogHandler;
 
@@ -270,7 +271,7 @@ public class ModuliHandler implements Serializable {
 		refreshModel();
 		element = t;
 		// vista di destinazione
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"eliminazione moduli: " + this.element.getNome());
 		return viewPage();
 	}
@@ -284,7 +285,7 @@ public class ModuliHandler implements Serializable {
 		element = t;
 		refreshModel();
 		// vista di destinzione
-		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"modifica moduli: " + this.element.getNome());
 		return viewPage();
 	}
@@ -296,7 +297,7 @@ public class ModuliHandler implements Serializable {
 		refreshModel();
 		element = null;
 		// visat di destinazione
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
 				"eliminazione moduli: " + this.element.getNome());
 		return listPage();
 	}

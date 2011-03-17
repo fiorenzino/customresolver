@@ -2,6 +2,7 @@ package it.jflower.cc.web;
 
 import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.utils.PasswordUtils;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Utente;
 import it.jflower.cc.session.EmailSession;
 import it.jflower.cc.session.UtentiSession;
@@ -9,6 +10,7 @@ import it.jflower.cc.session.UtentiSession;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,7 +54,7 @@ public class LoginHandler implements Serializable {
 	// --------------------------------------------------------
 
 	private boolean modifica;
-	
+
 	private String recuperoEmail;
 
 	private Utente utente;
@@ -113,9 +115,13 @@ public class LoginHandler implements Serializable {
 					new FacesMessage("Nome utente non disponibile"));
 			return null;
 		}
-		if ( ! isValidEmailAddress(this.utente.getUsername())) {
-			FacesContext.getCurrentInstance().addMessage("",
-					new FacesMessage("Nome utente non valido","Il nome utente deve essere costituito da un indirizzo email valido"));
+		if (!isValidEmailAddress(this.utente.getUsername())) {
+			FacesContext
+					.getCurrentInstance()
+					.addMessage(
+							"",
+							new FacesMessage("Nome utente non valido",
+									"Il nome utente deve essere costituito da un indirizzo email valido"));
 			return null;
 		}
 		boolean condition = false;
@@ -123,13 +129,12 @@ public class LoginHandler implements Serializable {
 			String pwd = this.utente.getPassword();
 			this.utente.setPassword(PasswordUtils.createPassword(pwd));
 		}
-		if ( this.utente.isAdmin() ) {
+		if (this.utente.isAdmin()) {
 			this.utente.setRoles(Arrays.asList("admin"));
-		}
-		else {
+		} else {
 			this.utente.getRoles().add("user");
 		}
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione utente: " + this.utente.getUsername());
 		this.utente = utentiSession.save(this.utente);
 		return LIST;
@@ -149,15 +154,18 @@ public class LoginHandler implements Serializable {
 
 	@Transactional
 	public String update() {
-		if ( ! isValidEmailAddress(this.utente.getUsername())) {
-			FacesContext.getCurrentInstance().addMessage("",
-					new FacesMessage("Nome utente non valido","Il nome utente deve essere costituito da un indirizzo email valido"));
+		if (!isValidEmailAddress(this.utente.getUsername())) {
+			FacesContext
+					.getCurrentInstance()
+					.addMessage(
+							"",
+							new FacesMessage("Nome utente non valido",
+									"Il nome utente deve essere costituito da un indirizzo email valido"));
 			return null;
 		}
-		if ( this.utente.isAdmin() ) {
+		if (this.utente.isAdmin()) {
 			this.utente.setRoles(Arrays.asList("admin"));
-		}
-		else {
+		} else {
 			this.utente.getRoles().add("user");
 		}
 		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
@@ -179,7 +187,6 @@ public class LoginHandler implements Serializable {
 		return LIST;
 	}
 
-	@Transactional
 	public String delete() {
 		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
 				"eliminazione utente: " + this.utente.getUsername());
@@ -203,28 +210,36 @@ public class LoginHandler implements Serializable {
 		this.recuperoEmail = recuperoEmail;
 	}
 
-	@Transactional
 	public String startRecupero() {
 		Utente utente = utentiSession.find(getRecuperoEmail());
-		if ( utente == null ) {
+		if (utente == null) {
 			FacesMessage message = new FacesMessage();
-			message.setDetail(
-					"Nessun utente corrispondente all'indirizzo email fornito!");
+			message.setDetail("Nessun utente corrispondente all'indirizzo email fornito!");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			message.setSummary("Utente non presente");
 			FacesContext.getCurrentInstance().addMessage("", message);
 			return null;
 		}
-		
-		if ( (utente.getUsername() != null)
-				&& (!"".equals(utente.getUsername()))) {
-			String newPassword = ("" + utente.toString().hashCode()).substring(1,8);
+
+		if ((utente.getUsername() != null) && (!utente.getUsername().isEmpty())) {
+			String newPassword = UUID.randomUUID().toString().substring(1, 8);
+			// ("" + utente.toString().hashCode()).substring(
+			// 1, 8);
 			String title = "Richiesta modifica password";
-			String body = "La nuova password dell'utente '"+utente.getUsername() +"' è : " + newPassword;
-			emailSession.sendEmail("noreply@colonnella.it", body, title,
-					new String[] { utente.getUsername() }, null, new String[] { "fiorenzino@gmail.com" }, null);
-			utente.setPassword(newPassword);
-			utentiSession.update(utente);
+			String body = "La nuova password dell'utente '"
+					+ utente.getUsername() + "' è : " + newPassword;
+			String result = emailSession.sendEmail("noreply@colonnella.it",
+					body, title, new String[] { utente.getUsername() }, null,
+					new String[] { "fiorenzino@gmail.com" }, null);
+			if (result != null && !result.isEmpty()) {
+				utente.setPassword(newPassword);
+				utentiSession.update(utente);
+				operazioniLogHandler.save(
+						OperazioniLog.MODIFY,
+						"admin",
+						"richiesta nuova pwd utente: "
+								+ this.utente.getUsername());
+			}
 		}
 		return "/grazie.xhtml";
 	}
@@ -234,8 +249,8 @@ public class LoginHandler implements Serializable {
 		try {
 			if (JSFUtils.getPrincipal() != null) {
 				logger.info("destroy: @PreDestroy");
-				operazioniLogHandler.save("LOGOUT", JSFUtils.getUserName(),
-						"operazione logout");
+				operazioniLogHandler.save(OperazioniLog.LOGOUT,
+						JSFUtils.getUserName(), "operazione logout");
 				HttpSession session = JSFUtils.getHttpSession();
 				if (session != null) {
 					session.invalidate();
@@ -253,12 +268,10 @@ public class LoginHandler implements Serializable {
 		return CAMBIO_PASSWORD;
 	}
 
-	@Transactional
 	public String changePassword() {
 		if (!utente.getOldPassword().equals(utente.getPassword())) {
 			FacesMessage message = new FacesMessage();
-			message.setDetail(
-					"La password corrente non e' corretta!");
+			message.setDetail("La password corrente non e' corretta!");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			message.setSummary("Errore password corrente");
 			FacesContext.getCurrentInstance().addMessage("pwd:opwd", message);
@@ -267,8 +280,7 @@ public class LoginHandler implements Serializable {
 		if (utente.getNewPassword() == null
 				|| utente.getNewPassword().length() == 0) {
 			FacesMessage message = new FacesMessage();
-			message.setDetail(
-					"La nuova password non e' stata inserita in entrambi i campi di testo!");
+			message.setDetail("La nuova password non e' stata inserita in entrambi i campi di testo!");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			message.setSummary("Errore nuova password");
 			FacesContext.getCurrentInstance().addMessage("pwd:npwd", message);
@@ -277,8 +289,7 @@ public class LoginHandler implements Serializable {
 		if (utente.getConfirmPassword() == null
 				|| utente.getConfirmPassword().length() == 0) {
 			FacesMessage message = new FacesMessage();
-			message.setDetail(
-					"La nuova password non e' stata inserita in entrambi i campi di testo!");
+			message.setDetail("La nuova password non e' stata inserita in entrambi i campi di testo!");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			message.setSummary("Errore nuova password");
 			FacesContext.getCurrentInstance().addMessage("pwd:cpwd", message);
@@ -286,8 +297,7 @@ public class LoginHandler implements Serializable {
 		}
 		if (!utente.getNewPassword().equals(utente.getConfirmPassword())) {
 			FacesMessage message = new FacesMessage();
-			message.setDetail(
-					"Sono stati inseriti valori diversi nei due campi di testo relativi alla nuova password!");
+			message.setDetail("Sono stati inseriti valori diversi nei due campi di testo relativi alla nuova password!");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			message.setSummary("Errore nuova password");
 			FacesContext.getCurrentInstance().addMessage("pwd:cpwd", message);
@@ -295,6 +305,8 @@ public class LoginHandler implements Serializable {
 		}
 		utente.setPassword(utente.getNewPassword());
 		utentiSession.update(utente);
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+				"cambio pwd utente: " + this.utente.getUsername());
 		ExternalContext extCtx = FacesContext.getCurrentInstance()
 				.getExternalContext();
 		try {
@@ -326,5 +338,4 @@ public class LoginHandler implements Serializable {
 		this.modifica = modifica;
 	}
 
-	
 }

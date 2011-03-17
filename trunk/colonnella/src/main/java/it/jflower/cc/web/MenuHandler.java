@@ -6,6 +6,7 @@ import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.MenuGroup;
 import it.jflower.cc.par.MenuItem;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.session.MenuSession;
 import it.jflower.cc.session.PageSession;
@@ -47,6 +48,8 @@ public class MenuHandler implements Serializable {
 	public static String NEW_OR_EDIT3 = "/private/menu/gestione-menu3.xhtml"
 			+ FACES_REDIRECT;
 
+	private String backPage = BACK;
+
 	// --------------------------------------------------------
 
 	@Inject
@@ -78,7 +81,11 @@ public class MenuHandler implements Serializable {
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
 
-	private String backPage = BACK;
+	private DataModel<MenuItem> menuItemModel;
+
+	private List<Page> pagine;
+
+	private Page[] pagineSelezionate;
 
 	// ------------------------------------------------
 
@@ -269,7 +276,6 @@ public class MenuHandler implements Serializable {
 
 	// -----------------------------------------------------
 
-	@Transactional
 	public String save() {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
@@ -280,12 +286,11 @@ public class MenuHandler implements Serializable {
 		// altre dipendenze
 		menuHolder.reset();
 		// vista di destinazione
-		operazioniLogHandler.save("NEW", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione menu: " + this.element.getNome());
 		return viewPage();
 	}
 
-	@Transactional
 	public String update() {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
@@ -297,12 +302,11 @@ public class MenuHandler implements Serializable {
 		// altre dipendenze
 		menuHolder.reset();
 		// vista di destinzione
-		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"modifica menu: " + this.element.getNome());
 		return viewPage();
 	}
 
-	@Transactional
 	public String delete() {
 		// operazione su db
 		getSession().delete(getId(element));
@@ -312,7 +316,7 @@ public class MenuHandler implements Serializable {
 		// altre dipendenze
 		// propertiesHandler.setMenuGroupItems(null);
 		// visat di destinazione
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
 				"eliminazione menu: " + this.element.getNome());
 		return listPage();
 	}
@@ -363,10 +367,6 @@ public class MenuHandler implements Serializable {
 		return NEW_OR_EDIT2;
 	}
 
-	private List<Page> pagine;
-
-	private Page[] pagineSelezionate;
-
 	public Page[] getPagineSelezionate() {
 		return pagineSelezionate;
 	}
@@ -388,8 +388,8 @@ public class MenuHandler implements Serializable {
 		for (Page paginaSelezionata : this.pagineSelezionate) {
 			boolean giaPresente = false;
 			for (MenuItem menuItem : this.element.getLista()) {
-				if (menuItem.getPagina().getId().equals(
-						paginaSelezionata.getId())) {
+				if (menuItem.getPagina().getId()
+						.equals(paginaSelezionata.getId())) {
 					giaPresente = true;
 				}
 			}
@@ -410,6 +410,7 @@ public class MenuHandler implements Serializable {
 				menuItemsDaRimuovere.add(menuItem);
 			}
 		}
+
 		for (Page paginaDaAggiungere : pagineDaAggiungere) {
 			MenuItem menuItem = new MenuItem();
 			menuItem.setNome(paginaDaAggiungere.getTitle());
@@ -425,17 +426,17 @@ public class MenuHandler implements Serializable {
 		for (MenuItem menuItemDaRimuovere : menuItemsDaRimuovere) {
 			menuItemDaRimuovere.setAttivo(false);
 		}
+		int i = 0;
 		List<MenuItem> menuItem2dataModel = new ArrayList<MenuItem>();
 		for (MenuItem menuItem : this.element.getLista()) {
 			if (menuItem.isAttivo()) {
+				menuItem.setOrdinamento(++i);
 				menuItem2dataModel.add(menuItem);
 			}
 		}
 		this.menuItemModel = new ListDataModel<MenuItem>(menuItem2dataModel);
 		return NEW_OR_EDIT3;
 	}
-
-	private DataModel<MenuItem> menuItemModel;
 
 	public DataModel<MenuItem> getMenuItemModel() {
 		return menuItemModel;

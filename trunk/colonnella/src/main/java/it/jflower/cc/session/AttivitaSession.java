@@ -104,7 +104,7 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 				&& ricerca.getOggetto().getNome() != null
 				&& ricerca.getOggetto().getNome().length() > 0) {
 			sb.append(separator).append(alias).append(".nome LIKE :nome ");
-			params.put("nome", "%" + ricerca.getOggetto().getNome() + "%");
+			params.put("nome", likeParam(ricerca.getOggetto().getNome()));
 		}
 
 		if (!count) {

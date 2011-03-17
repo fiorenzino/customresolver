@@ -3,9 +3,11 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.utils.FileUtils;
 import it.jflower.base.utils.ImageUtils;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
 import it.jflower.cc.par.Notizia;
+import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
@@ -47,13 +49,18 @@ public class NewNotizieHandler implements Serializable {
 
 	// --------------------------------------------------------
 
-	private Logger logger = LoggerFactory.getLogger(getClass());
-
 	@Inject
 	NewNotizieSession notizieSession;
 
 	@Inject
 	TipoInformazioniSession tipoInformazioniSession;
+
+	@Inject
+	OperazioniLogHandler operazioniLogHandler;
+
+	// --------------------------------------------------------
+
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	private int idTipo;
 
@@ -107,7 +114,8 @@ public class NewNotizieHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel<Notizia>(this.ricerca, this.notizieSession));
+		setModel(new LocalLazyDataModel<Notizia>(this.ricerca,
+				this.notizieSession));
 	}
 
 	/**
@@ -275,10 +283,14 @@ public class NewNotizieHandler implements Serializable {
 			this.element.setTipo(tipo);
 		notizieSession.persist(this.element);
 		this.model = null;
+		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+				"creazione notizia: " + this.element.getTitolo());
 		return VIEW;
 	}
 
 	public String deleteNotizia() {
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione notizia: " + this.element.getTitolo());
 		notizieSession.delete(this.element.getId());
 		this.model = null;
 		return LIST;
@@ -297,6 +309,8 @@ public class NewNotizieHandler implements Serializable {
 		if (tipo != null)
 			this.element.setTipo(tipo);
 		this.element = notizieSession.update(this.element);
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"modifica notizia: " + this.element.getTitolo());
 		this.model = null;
 		return VIEW;
 	}
