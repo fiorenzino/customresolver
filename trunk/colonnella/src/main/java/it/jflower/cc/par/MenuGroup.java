@@ -117,5 +117,4 @@ public class MenuGroup implements Serializable {
 		this.listaAttivi = listaAttivi;
 	}
 
-	
 }

@@ -108,7 +108,6 @@ public class LoginHandler implements Serializable {
 		return NEW_OR_EDIT;
 	}
 
-	@Transactional
 	public String save() {
 		if (utentiSession.find(this.utente.getUsername()) != null) {
 			FacesContext.getCurrentInstance().addMessage("",
@@ -152,7 +151,6 @@ public class LoginHandler implements Serializable {
 		return VIEW;
 	}
 
-	@Transactional
 	public String update() {
 		if (!isValidEmailAddress(this.utente.getUsername())) {
 			FacesContext
@@ -234,11 +232,11 @@ public class LoginHandler implements Serializable {
 			if (result != null && !result.isEmpty()) {
 				utente.setPassword(newPassword);
 				utentiSession.update(utente);
-				operazioniLogHandler.save(
-						OperazioniLog.MODIFY,
-						"admin",
-						"richiesta nuova pwd utente: "
-								+ this.utente.getUsername());
+				// operazioniLogHandler.save(
+				// OperazioniLog.MODIFY,
+				// "admin",
+				// "richiesta nuova pwd utente: "
+				// + this.utente.getUsername());
 			}
 		}
 		return "/grazie.xhtml";

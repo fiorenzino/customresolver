@@ -12,14 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 
 @Named
-@ApplicationScoped
+@SessionScoped
 public class MenuHolder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,27 +28,27 @@ public class MenuHolder implements Serializable {
 
 	@Inject
 	MenuSession session;
-	
+
 	// ------------------------------------------------
 
 	protected Logger logger = Logger.getLogger(getClass());
 
 	// ------------------------------------------------
-	
+
 	private List<MenuGroup> lista = null;
-	private Map<String,MenuGroup> mappa = null;
+	private Map<String, MenuGroup> mappa = null;
 
 	public List<MenuGroup> getGruppi() {
-		if ( lista == null ) 
+		if (lista == null)
 			init();
 		return lista;
 	}
 
 	public MenuGroup get(String nome) {
-		if ( mappa == null )
+		if (mappa == null)
 			init();
 		MenuGroup g = mappa.get(nome);
-		if ( g == null ) {
+		if (g == null) {
 			g = new MenuGroup();
 			g.setNome(nome);
 			g.setDescrizione(nome);
@@ -58,21 +58,22 @@ public class MenuHolder implements Serializable {
 		}
 		return g;
 	}
-	
+
 	public void init() {
-		if ( lista == null ) {
+		if (lista == null) {
 			lista = session.getAllList();
 			Collections.sort(lista, new Comparator<MenuGroup>() {
 				@Override
 				public int compare(MenuGroup mg1, MenuGroup mg2) {
-					return mg1.getOrdinamento() != null ? 
-						( mg2.getOrdinamento() != null ? mg1.getOrdinamento().compareTo(mg2.getOrdinamento()) : 1 )
-						: 
-						( mg2.getOrdinamento() != null ? -1 : mg1.getNome().compareTo(mg2.getNome()) );
+					return mg1.getOrdinamento() != null ? (mg2.getOrdinamento() != null ? mg1
+							.getOrdinamento().compareTo(mg2.getOrdinamento())
+							: 1)
+							: (mg2.getOrdinamento() != null ? -1 : mg1
+									.getNome().compareTo(mg2.getNome()));
 				}
 			});
 			mappa = new HashMap<String, MenuGroup>();
-			for ( MenuGroup mg : lista ) {
+			for (MenuGroup mg : lista) {
 				mappa.put(mg.getNome(), mg);
 			}
 		}
@@ -82,5 +83,5 @@ public class MenuHolder implements Serializable {
 		this.lista = null;
 		this.mappa = null;
 	}
-	
+
 }
