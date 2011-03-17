@@ -48,7 +48,7 @@
 		varStatus="iterationStatus">
 		<div class="txt" style="display: #{cc:showMenu(open,menuGroup.nome) ? 'block' : 'none'};">
 		<h4><a
-			href="#{request.contextPath}/pagine/#{menuGroup.percorso}/#{menuItem.pagina.id}"
+			href="#{request.contextPath}#{menuGroup.percorso}/#{menuItem.pagina.id}"
 			title="#{menuItem.nome}" class="arrowLink "> #{menuItem.nome} </a></h4>
 		#{menuItem.descrizione}</div>
 		<div class="RowBot" style="#{iterationStatus.last ? 'display: none;' : 'display: none;' }">
