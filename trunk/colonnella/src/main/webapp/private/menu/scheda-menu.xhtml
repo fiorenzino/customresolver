@@ -11,65 +11,69 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form><center>
-		
-			<p:panel header="Scheda Menu">
-				<h:panelGrid columns="2" style="width: 95%" >
+		<h:form>
+			<center>
 
-					<h:outputLabel value="Nome:" for="nome" />
-					<h:outputText id="nome" value="#{menuHandler.element.nome}"
-						style="width: 100%;" />
+				<p:panel header="Scheda Menu">
+					<h:panelGrid columns="2" style="width: 95%">
 
-					<h:outputLabel value="Descrizione:" for="descrizione" />
-					<h:outputText id="descrizione" value="#{menuHandler.element.descrizione}"
-						style="width: 100%;" />
+						<h:outputLabel value="Nome:" for="nome" />
+						<h:outputText id="nome" value="#{menuHandler.element.nome}"
+							style="width: 100%;" />
 
-					<h:outputLabel value="Percorso:" for="percorso" />
-					<h:outputText id="percorso" value="#{menuHandler.element.percorso}"
-						style="width: 100%;" />
+						<h:outputLabel value="Descrizione:" for="descrizione" />
+						<h:outputText id="descrizione"
+							value="#{menuHandler.element.descrizione}" style="width: 100%;" />
 
-				</h:panelGrid>
-				<br />
-				
-				<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="item"
-					value="#{menuHandler.element.lista}" >
-					<p:column width="50">
-						<center><h:outputText value="#{rowIndex+1} " /></center>
-					</p:column>
-					<p:column width="200">
-						<f:facet name="header">
+						<h:outputLabel value="Percorso:" for="percorso" />
+						<h:outputText id="percorso"
+							value="#{menuHandler.element.percorso}" style="width: 100%;" />
+
+					</h:panelGrid>
+					<br />
+
+					<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="item"
+						value="#{menuHandler.element.lista}">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="ordinamento" />
+							</f:facet>
+							<h:outputText value="#{item.ordinamento}" />
+						</p:column>
+						<p:column width="200">
+							<f:facet name="header">
 							nome
 						</f:facet>
-						<h:outputText value="#{item.nome}" />
-					</p:column>
-					<p:column width="300">
-						<f:facet name="header">
+							<h:outputText value="#{item.nome}" />
+						</p:column>
+						<p:column width="300">
+							<f:facet name="header">
 							percorso
 						</f:facet>
-						<h:outputText value="#{item.percorso}" />
-					</p:column>
-					<p:column width="200">
-						<f:facet name="header">
+							<h:outputText value="#{item.percorso}" />
+						</p:column>
+						<p:column width="200">
+							<f:facet name="header">
 							id_pagina
 						</f:facet>
-						<h:outputText value="#{item.pagina.id}" />
-					</p:column>
-				</p:dataTable>
+							<h:outputText value="#{item.pagina.id}" />
+						</p:column>
+					</p:dataTable>
 
-			</p:panel>
+				</p:panel>
 
-			<br />
-			<br />
+				<br /> <br />
 
-			<h:panelGrid columns="2">
+				<h:panelGrid columns="2">
 
-				<h:commandButton action="#{menuHandler.modCurrent}"
-					value="Modifica" immediate="false" />
+					<h:commandButton action="#{menuHandler.modCurrent}"
+						value="Modifica" immediate="false" />
 
-				<h:commandButton id="reset" action="#{menuHandler.reset}"
-					value="Indietro" immediate="true" rendered="false"/>
+					<h:commandButton id="reset" action="#{menuHandler.reset}"
+						value="Indietro" immediate="true" rendered="false" />
 
-			</h:panelGrid></center>
+				</h:panelGrid>
+			</center>
 
 		</h:form>
 	</ui:define>

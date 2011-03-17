@@ -10,69 +10,74 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<center><p:panel header="Gestione Menu (passo 2)">
+			<center>
+				<p:panel header="Gestione Menu (passo 2)">
 
-				<h:panelGrid columns="2" style="width: 95%"
-					columnClasses="col1,col2">
+					<h:panelGrid columns="2" style="width: 95%"
+						columnClasses="col1,col2">
 
-					<h:outputLabel value="Nome:" for="nome" />
-					<h:outputText id="nome" value="#{menuHandler.element.nome}"
-						style="width: 100%;" />
+						<h:outputLabel value="Nome:" for="nome" />
+						<h:outputText id="nome" value="#{menuHandler.element.nome}"
+							style="width: 100%;" />
 
-					<h:outputLabel value="Descrizione:" for="descrizione" />
-					<h:outputText id="descrizione" value="#{menuHandler.element.descrizione}"
-						style="width: 100%;" />
+						<h:outputLabel value="Descrizione:" for="descrizione" />
+						<h:outputText id="descrizione"
+							value="#{menuHandler.element.descrizione}" style="width: 100%;" />
 
-					<h:outputLabel value="Percorso:" for="percorso" />
-					<h:outputText id="percorso" value="#{menuHandler.element.percorso}"
-						style="width: 100%;" />
+						<h:outputLabel value="Percorso:" for="percorso" />
+						<h:outputText id="percorso"
+							value="#{menuHandler.element.percorso}" style="width: 100%;" />
 
+					</h:panelGrid>
+					<br />
+
+					<p:dataTable var="menuItem" value="#{menuHandler.menuItemModel}">
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="ordinamento" />
+							</f:facet>
+							<h:inputText value="#{menuItem.ordinamento}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="nome" />
+							</f:facet>
+							<h:inputText value="#{menuItem.nome}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="descrizione" />
+							</f:facet>
+							<h:inputText value="#{menuItem.descrizione}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="percorso" />
+							</f:facet>
+							<h:inputText value="#{menuItem.percorso}" />
+						</p:column>
+
+					</p:dataTable>
+
+				</p:panel>
+				<br /> <br />
+
+				<h:panelGrid columns="4">
+					<h:commandButton action="#{menuHandler.save}" value="Salva"
+						rendered="#{empty menuHandler.element.id}" />
+
+					<h:commandButton action="#{menuHandler.update}"
+						value="Salva le modifiche"
+						rendered="#{not empty menuHandler.element.id}" />
+
+					<h:commandButton id="reset" action="#{menuHandler.reset}"
+						value="Annulla" immediate="true" />
 				</h:panelGrid>
-				<br />
-
-				<p:dataTable var="menuItem" value="#{menuHandler.menuItemModel}" >
-					
-					<p:column width="50">
-						<center><h:outputText value="#{rowIndex+1} " /></center>
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="nome" />
-						</f:facet>
-						<h:inputText value="#{menuItem.nome}" />
-					</p:column>
-			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="descrizione" />
-						</f:facet>
-						<h:inputText value="#{menuItem.descrizione}" />
-					</p:column>
-			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="percorso" />
-						</f:facet>
-						<h:inputText value="#{menuItem.percorso}" />
-					</p:column>
-
-				</p:dataTable>
-				
-			</p:panel> <br />
-			<br />
-
-			<h:panelGrid columns="4">
-				<h:commandButton action="#{menuHandler.save}" value="Salva"
-					rendered="#{empty menuHandler.element.id}" />
-
-				<h:commandButton action="#{menuHandler.update}"
-					value="Salva le modifiche"
-					rendered="#{not empty menuHandler.element.id}" />
-
-				<h:commandButton id="reset" action="#{menuHandler.reset}"
-					value="Annulla" immediate="true" />
-			</h:panelGrid></center>
+			</center>
 
 		</h:form>
 	</ui:define>

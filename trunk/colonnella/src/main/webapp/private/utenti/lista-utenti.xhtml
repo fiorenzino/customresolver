@@ -10,46 +10,50 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form id="central">
-			<center><p:panel header="Lista Utenti">
-				<p:dataTable rowIndexVar="rowIndex" var="utente"
-					value="#{loginHandler.list}">
-					<p:column width="50">
-						<center><h:outputText value="#{rowIndex+1} " /></center>
-					</p:column>
-					<p:column>
-						<f:facet name="header">
+			<center>
+				<p:panel header="Lista Utenti">
+					<p:dataTable rowIndexVar="rowIndex" var="utente"
+						value="#{loginHandler.list}">
+						<p:column width="50">
+							<center>
+								<h:outputText value="#{rowIndex+1} " />
+							</center>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
 							nome
 						</f:facet>
-						<h:outputText value="#{utente.username}" />
-					</p:column>
+							<h:outputText value="#{utente.username}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">
+						<p:column>
+							<f:facet name="header">
 							ruoli
 						</f:facet>
-						<h:outputText value="#{utente.ruoli}" />
-					</p:column>
+							<h:outputText value="#{utente.ruoli}" />
+						</p:column>
 
-					<p:column rendered="false">
-						<f:facet name="header">
+						<p:column rendered="false">
+							<f:facet name="header">
 							email
 						</f:facet>
-						<h:outputText value="#{utente.email}" />
-					</p:column>
+							<h:outputText value="#{utente.email}" />
+						</p:column>
 
-					<p:column>
-						<f:facet name="header">operazioni</f:facet>
-						<center><h:commandLink
-							action="#{loginHandler.detail(utente.username)}" value="vedi" />
-						- <h:commandLink action="#{loginHandler.modUser(utente.username)}"
-							value="modifica" /></center>
-					</p:column>
-				</p:dataTable>
-			</p:panel> <br />
-			<br />
-			<h:panelGrid columns="1">
-				<h:commandButton action="#{loginHandler.addUser}" value="Aggiungi" />
-			</h:panelGrid></center>
+						<p:column>
+							<f:facet name="header">operazioni</f:facet>
+							<center>
+								<h:commandLink action="#{loginHandler.modUser(utente.username)}"
+									value="modifica" />
+							</center>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="1">
+					<h:commandButton action="#{loginHandler.addUser}" value="Aggiungi" />
+				</h:panelGrid>
+			</center>
 
 		</h:form>
 
