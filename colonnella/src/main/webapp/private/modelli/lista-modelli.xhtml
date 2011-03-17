@@ -31,7 +31,7 @@
 
 					<p:dataTable id="templatesList" rowIndexVar="rowIndex" var="t"
 						value="#{templateHandler.model}"
-						rows="#{templateHandler.pageSize}" paginator="true" dynamic="true"
+						rows="#{templateHandler.pageSize}" paginator="true" dynamic="true" page="#{templateHandler.scrollerPage}"
 						lazy="true">
 						<p:column width="50">
 							<center>
