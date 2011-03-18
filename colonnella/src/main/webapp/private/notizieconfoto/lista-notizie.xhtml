@@ -23,8 +23,7 @@
 							value="#{newNotizieHandler.ricerca.oggetto.tipo.id}">
 							<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
 						</h:selectOneMenu>
-						<p:commandButton action="#{newNotizieHandler.cerca}" value="Cerca"
-							process="@form" update="newsList" />
+						<h:commandButton action="#{newNotizieHandler.cerca}" value="Cerca" />
 					</h:panelGrid>
 					<br />
 

@@ -25,8 +25,7 @@
 			<br />
 			<br />
 			<p:tabView>
-				<p:tab title="Cambio Password" style="width:200px; float:left;"
-					rendered="#{pageHandler.clear and loginHandler.isInRole('pagine')}">
+				<p:tab title="Cambio Password" style="width:200px; float:left;">
 					<div style="height: 50px;">
 						<h:commandLink value="cambio password"
 							action="#{loginHandler.goToChangePassword}" />
@@ -34,7 +33,7 @@
 				</p:tab>
 
 				<p:tab title="Gestione Utenti" style="width:200px; float:left;"
-					rendered="#{pageHandler.clear and loginHandler.isInRole('pagine')}">
+					rendered="#{loginHandler.admin}">
 					<div style="height: 50px;">
 						<h:commandLink
 							action="/private/utenti/lista-utenti.jsf?faces-redirect=true"
@@ -46,7 +45,7 @@
 				</p:tab>
 
 				<p:tab title="Configurazione" style="width: 200px; float: left;"
-					rendered="#{menuHandler.clear and loginHandler.isInRole('menu') }">
+					rendered="#{loginHandler.admin}">
 					<div style="height: 50px;">
 						<h:commandLink
 							action="/private/configurazione/gestione-configurazione.jsf?faces-redirect=true"
@@ -67,7 +66,8 @@
 
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
-			<p:tabView>
+			<p:tabView
+				rendered="#{loginHandler.admin or loginHandler.isInRole('pagine') or loginHandler.isInRole('modelli') or loginHandler.isInRole('menu') or loginHandler.isInRole('risorse')}">
 
 				<p:tab title="Gestione Pagine" style="width:200px; float:left;"
 					rendered="#{pageHandler.clear and loginHandler.isInRole('pagine')}">
@@ -106,7 +106,7 @@
 					</div>
 				</p:tab>
 
-				<p:tab title="Gestione img, js, swf, css"
+				<p:tab title="Gestione Risorse (img, js, swf, css)"
 					rendered="#{resourceHandler.clear and loginHandler.isInRole('risorse')}"
 					style="width: 200px; float: left;">
 					<div style="height: 50px;">
@@ -121,7 +121,21 @@
 			</p:tabView>
 
 			<div style="width: 600px; height: 40px; clear: both;"></div>
-			<p:tabView>
+			<p:tabView
+				rendered="#{loginHandler.admin or loginHandler.isInRole('news') or loginHandler.isInRole('tipi_informazione')}">
+
+				<p:tab title="Gestione Notizie con Foto"
+					style="width:200px; float:left;"
+					rendered="#{loginHandler.admin or loginHandler.isInRole('news')}">
+					<h:commandLink
+						action="/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
+						value="lista notizie" />
+					<br />
+					<h:commandLink action="#{newNotizieHandler.addNotizia}"
+						value="aggiungi nuova" />
+				</p:tab>
+
+
 				<p:tab title="Gestione Tipi Informazione"
 					style="width:200px; float:left;"
 					rendered="#{loginHandler.isInRole('tipi_informazione')}">
@@ -142,17 +156,6 @@
 						value="aggiungi nuova" />
 				</p:tab>
 
-				<p:tab title="Gestione Notizie con Foto"
-					style="width:200px; float:left;"
-					rendered="#{loginHandler.admin or loginHandler.isInRole('news')}">
-					<h:commandLink
-						action="/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
-						value="lista notizie" />
-					<br />
-					<h:commandLink action="#{newNotizieHandler.addNotizia}"
-						value="aggiungi nuova" />
-				</p:tab>
-
 				<p:tab title="Gestione Gallerie" style="width:200px; float:left;"
 					rendered="false">
 					<h:commandLink
@@ -165,7 +168,9 @@
 
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
-			<p:tabView>
+
+			<p:tabView
+				rendered="#{loginHandler.admin or loginHandler.isInRole('attivita') or loginHandler.isInRole('tipi_attivita') or loginHandler.isInRole('categorie_attivita')}">
 
 				<p:tab title="Gestione Attivita'"
 					rendered="#{attivitaHandler.clear and loginHandler.isInRole('attivita')}"
@@ -202,7 +207,8 @@
 
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
-			<p:tabView>
+			<p:tabView
+				rendered="#{loginHandler.admin or loginHandler.isInRole('pubblicazioni') or loginHandler.isInRole('tipi_pubblicazione') or loginHandler.isInRole('moduli') or loginHandler.isInRole('tipi_modulo')}">
 
 				<p:tab title="Gestione Albo Pretorio"
 					rendered="#{loginHandler.isInRole('pubblicazioni')}"

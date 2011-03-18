@@ -24,7 +24,7 @@
 								value="#{propertiesHandler.tipiPubblicazioneItems}" />
 						</h:selectOneMenu>
 
-						<h:outputLabel for="nome" value="Nome(*):" rendered="false"/>
+						<h:outputLabel for="nome" value="Nome(*):" rendered="false" />
 						<h:inputText id="nome" cols="20" rows="5"
 							value="#{pubblicazioniHandler.element.nome}"
 							style="width : 372px;" rendered="false" />
@@ -39,17 +39,19 @@
 							rendered="#{not empty pubblicazioniHandler.element.id}" />
 						<p:calendar id="dataInsert"
 							value="#{pubblicazioniHandler.element.data}" pattern="dd/MM/yyyy"
-							rendered="#{not empty pubblicazioniHandler.element.id}" />
+							rendered="#{not empty pubblicazioniHandler.element.id}"
+							timeZone="Europe/Rome" />
 
 
 						<h:outputLabel for="dataDal" value="Data dal(*):" />
 						<p:calendar id="dataDal" pattern="dd/MM/yyyy"
+							timeZone="Europe/Rome"
 							value="#{pubblicazioniHandler.element.dal}" required="true" />
 
 
 						<h:outputLabel for="dataAl" value="Data al(*):" />
 						<p:calendar id="dataAl" value="#{pubblicazioniHandler.element.al}"
-							required="true" pattern="dd/MM/yyyy" />
+							required="true" pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 
 						<h:outputLabel for="descrizione" value="Descrizione:" />
 						<h:inputTextarea id="descrizione" cols="20" rows="10"

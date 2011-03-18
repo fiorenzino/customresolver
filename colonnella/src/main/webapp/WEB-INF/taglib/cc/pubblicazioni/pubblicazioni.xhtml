@@ -31,15 +31,15 @@
 
 			<tr>
 				<td class="cellaprima"><h:outputText value="#{var.data}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
 				</h:outputText></td>
 				<td>#{var.titolo}</td>
 				<td>#{var.descrizione}</td>
 				<td><h:outputText value="#{var.dal}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
 				</h:outputText></td>
 				<td><h:outputText value="#{var.al}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
 				</h:outputText></td>
 				<td><h:outputLink
 					value="#{request.contextPath}/docs/#{var.documenti.get(0).filename}"
