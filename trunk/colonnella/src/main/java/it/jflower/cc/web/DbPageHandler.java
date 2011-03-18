@@ -24,9 +24,12 @@ public class DbPageHandler implements Serializable {
 	@Inject
 	NewsHandlerRequest newsHandlerRequest;
 
+	@Inject
+	AttivitaHandlerRequest attivitaHandlerRequest;
+
 	private Page page;
 
-//	private String pageName;
+	// private String pageName;
 
 	public DbPageHandler() {
 	}
@@ -51,6 +54,10 @@ public class DbPageHandler implements Serializable {
 			if ("leggiNews".equals(this.page.getId())) {
 				if (newsHandlerRequest.getNotizia() != null)
 					return newsHandlerRequest.getNotizia().getTitolo();
+			}
+			if ("leggiAttivita".equals(this.page.getId())) {
+				if (attivitaHandlerRequest.getAttivita() != null)
+					return attivitaHandlerRequest.getAttivita().getNome();
 			}
 			return this.page.getTitle();
 		}
