@@ -12,7 +12,7 @@
 			href="#{request.contextPath}/pagine/comune/sala-stampa/leggiNews?id=#{var.id}"
 			title="#{var.titolo}" class="arrowLink "> #{var.titolo} (<h:outputText
 			value="#{var.data}">
-			<f:convertDateTime pattern="dd/MM/yyyy" />
+			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
 		</h:outputText>)</a> <br />
 		#{var.anteprima}<br />
 		<br />

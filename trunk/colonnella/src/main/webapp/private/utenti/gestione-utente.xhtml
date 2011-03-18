@@ -77,7 +77,7 @@
 
 					<h:commandButton action="#{loginHandler.delete}" value="Elimina"
 						immediate="true"
-						rendered="#{not empty loginHandler.utente.username}"
+						rendered="#{not loginHandler.utente.admin and (not empty loginHandler.utente.username)}"
 						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 
 					<h:commandButton id="reset" action="#{loginHandler.reset}"

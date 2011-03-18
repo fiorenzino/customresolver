@@ -12,15 +12,6 @@
 	<ui:define name="content">
 		<h:form>
 			<center>
-				<div class="cboxIntContArticWP"
-					style="width: 100%; text-align: left;">
-					<div class="Box2ImgTitolo">
-						<h3 class="titoloredbold">Modulistica</h3>
-						<br /> In questa sezione sono raccolti i moduli per richieste
-						all'Amministrazione comunale. Seleziona il modulo di tuo interesse
-						per visualizzarlo sullo schermo.
-					</div>
-				</div>
 
 				<p:panel header="Lista moduli">
 
@@ -36,8 +27,7 @@
 							style="width: 200px;">
 							<f:selectItems value="#{propertiesHandler.tipiModuloItems}" />
 						</h:selectOneMenu>
-						<p:commandButton action="#{moduliHandler.cerca}" value="Cerca"
-							process="@form" update="modulesList" />
+						<h:commandButton action="#{moduliHandler.cerca}" value="Cerca" />
 					</h:panelGrid>
 					<br />
 
@@ -59,7 +49,7 @@
 						<p:column width="75">
 							<f:facet name="header">pubblicazione</f:facet>
 							<h:outputText value="#{modulo.data}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 							</h:outputText>
 						</p:column>
 

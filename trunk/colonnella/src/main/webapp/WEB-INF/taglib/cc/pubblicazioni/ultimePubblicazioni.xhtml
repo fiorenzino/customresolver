@@ -15,7 +15,7 @@
 		<p><a class="arrowLink"
 			href="#{request.contextPath}/pagine/albo-pretorio/leggiPubblicazione?id=#{pubblicazione.id}"
 			title="#{pubblicazione.titolo}"><h:outputText value="#{pubblicazione.data}">
-			<f:convertDateTime pattern="dd/MM/yyyy" />
+			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
 		</h:outputText> - #{pubblicazione.titolo}</a> <h:outputText value=" "/></p>
 	</ui:repeat></div>
 </ui:composition>

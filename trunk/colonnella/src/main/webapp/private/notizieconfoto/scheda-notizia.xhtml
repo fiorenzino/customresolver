@@ -11,55 +11,68 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<center><p:panel header="Scheda Notizia">
+			<center>
+				<p:panel header="Scheda Notizia">
 
-				<h:panelGrid columns="2">
-					<h:outputLabel for="titolo" style="font-weight: bolder;"
-						value="Titolo: " />
-					<h:outputText id="titolo" value="#{newNotizieHandler.notizia.titolo}" />
+					<h:panelGrid columns="2">
+						<h:outputLabel for="titolo" style="font-weight: bolder;"
+							value="Titolo: " />
+						<h:outputText id="titolo"
+							value="#{newNotizieHandler.notizia.titolo}" />
 
-					<h:outputLabel for="autore" style="font-weight: bolder;"
-						value="Autore: " />
-					<h:outputText id="autore" value="#{newNotizieHandler.notizia.autore}"
-						width="640px" height="320px"></h:outputText>
+						<h:outputLabel for="autore" style="font-weight: bolder;"
+							value="Autore: " />
+						<h:outputText id="autore"
+							value="#{newNotizieHandler.notizia.autore}" width="640px"
+							height="320px"></h:outputText>
 
-					<h:outputLabel for="tipo" style="font-weight: bolder;"
-						value="Tipo informazione: " />
-					<h:outputText id="tipo" value="#{newNotizieHandler.notizia.tipo.nome}"
-						width="640px" height="320px"></h:outputText>
+						<h:outputLabel style="font-weight: bolder;" value="In Evidenza: " />
+						<h:outputText id="evidenza1" value="SI" width="640px"
+							height="320px" rendered="#{newNotizieHandler.notizia.evidenza}" />
+						<h:outputText id="evidenza2" value="NO" width="640px"
+							height="320px"
+							rendered="#{not newNotizieHandler.notizia.evidenza}" />
 
-					<h:outputLabel for="anteprima" style="font-weight: bolder;"
-						value="Anteprima: " />
-					<h:outputText id="anteprima"
-						value="#{newNotizieHandler.notizia.anteprima}" />
+						<h:outputLabel for="tipo" style="font-weight: bolder;"
+							value="Tipo informazione: " />
+						<h:outputText id="tipo"
+							value="#{newNotizieHandler.notizia.tipo.nome}" width="640px"
+							height="320px"></h:outputText>
 
-					<h:outputLabel for="contenuto" style="font-weight: bolder;"
-						value="Contenuto: " />
-					<h:outputText id="contenuto"
-						value="#{newNotizieHandler.notizia.contenuto}" escape="false" />
+						<h:outputLabel for="anteprima" style="font-weight: bolder;"
+							value="Anteprima: " />
+						<h:outputText id="anteprima"
+							value="#{newNotizieHandler.notizia.anteprima}" />
+
+						<h:outputLabel for="contenuto" style="font-weight: bolder;"
+							value="Contenuto: " />
+						<h:outputText id="contenuto"
+							value="#{newNotizieHandler.notizia.contenuto}" escape="false" />
+					</h:panelGrid>
+
+					<h2>Immagini</h2>
+
+					<p:lightBox>
+						<ui:repeat var="var" value="#{newNotizieHandler.notizia.immagini}">
+							<h:outputLink value="/img/#{var.filename}"
+								title="#{var.filename}">
+								<h:graphicImage value="/img/#{var.filename}"
+									width="#{flw:proportionalWidth(var.filePath,100,100)}"
+									height="#{flw:proportionalHeight(var.filePath,100,100)}"
+									alt="#{var.filename}" title="#{var.filename}" />
+							</h:outputLink>
+							<h:outputText id="so" value="***" escape="false" />
+						</ui:repeat>
+					</p:lightBox>
+
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="1">
+					<h:commandButton
+						action="#{newNotizieHandler.modNotizia(newNotizieHandler.element.id)}"
+						value="Modifica" />
 				</h:panelGrid>
-
-				<h2>Immagini</h2>
-
-				<p:lightBox>
-					<ui:repeat var="var" value="#{newNotizieHandler.notizia.immagini}">
-						<h:outputLink value="/img/#{var.filename}" title="#{var.filename}">
-							<h:graphicImage value="/img/#{var.filename}"
-								width="#{flw:proportionalWidth(var.filePath,100,100)}"
-								height="#{flw:proportionalHeight(var.filePath,100,100)}"
-								alt="#{var.filename}" title="#{var.filename}" />
-						</h:outputLink>
-						<h:outputText id="so" value="***" escape="false" />
-					</ui:repeat>
-				</p:lightBox>
-
-			</p:panel> <br />
-			<br />
-			<h:panelGrid columns="1">
-				<h:commandButton
-					action="#{newNotizieHandler.modNotizia(newNotizieHandler.element.id)}"
-					value="Modifica" />
-			</h:panelGrid></center>
+			</center>
 		</h:form>
 
 	</ui:define>
