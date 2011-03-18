@@ -38,7 +38,7 @@ public class OperazioniLogHandler implements Serializable {
 
 	private OperazioniLog element;
 	private Ricerca<OperazioniLog> ricerca;
-//	private boolean editMode;
+	// private boolean editMode;
 	private DataModel<OperazioniLog> model;
 
 	private int rowCount;
@@ -46,7 +46,7 @@ public class OperazioniLogHandler implements Serializable {
 	private int rowsPerPage = 10;
 	private int scrollerPage = 1;
 
-//	private Notizia evidenza;
+	// private Notizia evidenza;
 
 	private String backPage = BACK;
 
@@ -85,7 +85,8 @@ public class OperazioniLogHandler implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void refreshModel() {
-		setModel(new LocalLazyDataModel<OperazioniLog>(this.ricerca, this.operazioniLogSession));
+		setModel(new LocalLazyDataModel<OperazioniLog>(this.ricerca,
+				this.operazioniLogSession));
 	}
 
 	/**
@@ -179,7 +180,7 @@ public class OperazioniLogHandler implements Serializable {
 
 	public String cerca() {
 		refreshModel();
-		return null;
+		return LIST;
 	}
 
 	// --------------------------------------------------------
