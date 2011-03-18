@@ -24,6 +24,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
+import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
@@ -384,13 +385,12 @@ public class PageHandler implements Serializable {
 	 * 
 	 * @return
 	 */
-	// @Transactional
 	public String salvaPerAnteprimaRisultato() {
 		if (this.getElement().getId() == null)
 			save();
 		else
 			update();
-		return NEW_OR_EDIT;
+		return editPage();
 	}
 
 	public Long getIdTemplate() {

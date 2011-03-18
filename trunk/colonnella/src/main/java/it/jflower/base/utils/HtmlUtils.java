@@ -31,6 +31,7 @@ public class HtmlUtils {
 			// System.out.println("*******************DOPO: ");
 			// StringEscapeUtils.unescapeHtml(arg0)
 			content = StringEscapeUtils.unescapeHtml(arg1.toString());
+			content = handleAmpersand(content);
 			// System.out.println(content);
 
 		} catch (UnsupportedEncodingException e) {
@@ -39,4 +40,9 @@ public class HtmlUtils {
 		}
 		return content;
 	}
+	
+	private static String handleAmpersand(String content) {
+		return ( content == null ) ? null : content.replaceAll("&","&amp;");
+	}
+
 }
