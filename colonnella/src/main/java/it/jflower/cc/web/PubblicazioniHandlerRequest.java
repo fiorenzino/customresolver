@@ -121,23 +121,29 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		return currentpage;
 	}
 
-/**
- * faccio questo perché per qualche strano motivo dentro lo ui:repeat questo codice si perde il valore di tipo dopo il primo accesso...
- * 
- * <ui:repeat value="#{categorieSession.allTipoPubblicazione}" var="tipo">
-<f:verbatim rendered="#{tipo.nome == pubblicazioniHandlerRequest.tipo}">
-	<option value="#{tipo.nome}" selected="true">#{tipo.nome}</option>
-</f:verbatim>
-<f:verbatim rendered="#{not (tipo.nome == pubblicazioniHandlerRequest.tipo)}">
-	<option value="#{tipo.nome}">#{tipo.nome}</option>
-</f:verbatim>
-</ui:repeat>
- * @return
- */
+	/**
+	 * faccio questo perché per qualche strano motivo dentro lo ui:repeat questo
+	 * codice si perde il valore di tipo dopo il primo accesso...
+	 * 
+	 * <ui:repeat value="#{categorieSession.allTipoPubblicazione}" var="tipo">
+	 * <f:verbatim rendered="#{tipo.nome == pubblicazioniHandlerRequest.tipo}">
+	 * <option value="#{tipo.nome}" selected="true">#{tipo.nome}</option>
+	 * </f:verbatim> <f:verbatim
+	 * rendered="#{not (tipo.nome == pubblicazioniHandlerRequest.tipo)}">
+	 * <option value="#{tipo.nome}">#{tipo.nome}</option> </f:verbatim>
+	 * </ui:repeat>
+	 * 
+	 * @return
+	 */
 	public List<String> getTipoOptions() {
 		List<String> options = new ArrayList<String>();
-		for ( TipoPubblicazione tipo : categorieSession.getAllTipoPubblicazione() ) {
-			options.add("<option value=\""+tipo.getNome()+"\" "+(tipo.getNome().equals(this.tipo)?"selected=\"true\"":"")+">"+tipo.getNome()+"</option>");
+		for (TipoPubblicazione tipo : categorieSession
+				.getAllTipoPubblicazione()) {
+			options.add("<option value=\""
+					+ tipo.getNome()
+					+ "\" "
+					+ (tipo.getNome().equals(this.tipo) ? "selected=\"true\""
+							: "") + ">" + tipo.getNome() + "</option>");
 		}
 		return options;
 	}

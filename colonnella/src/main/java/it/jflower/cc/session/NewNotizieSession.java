@@ -10,6 +10,7 @@ import it.jflower.cc.par.type.TipoInformazione;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
@@ -155,6 +156,23 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 		return ret;
 	}
 
+	public Notizia findEvidenza() {
+		Notizia ret = new Notizia();
+		try {
+			ret = (Notizia) em
+					.createQuery(
+							"select p from Notizia p where p.evidenza = :STATUS ")
+					.setParameter("STATUS", true).setMaxResults(1)
+					.getSingleResult();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (ret == null)
+			return findLast();
+		return ret;
+	}
+
 	@Transactional
 	public Notizia fetch(String id) {
 		Notizia notizia;
@@ -171,5 +189,26 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 			return null;
 		}
 
+	}
+
+	@Transactional
+	public void refreshEvidenza(String id) {
+		List<Notizia> ret = null;
+		try {
+			ret = (List<Notizia>) em
+					.createQuery(
+							"select p from Notizia p where p.id != :ID AND p.evidenza = :STATUS")
+					.setParameter("ID", id).setParameter("STATUS", true)
+					.getResultList();
+			if (ret != null) {
+				for (Notizia notizia : ret) {
+					notizia.setEvidenza(false);
+					update(notizia);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

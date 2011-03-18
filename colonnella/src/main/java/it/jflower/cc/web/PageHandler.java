@@ -214,7 +214,7 @@ public class PageHandler implements Serializable {
 
 	public String cerca() {
 		refreshModel();
-		return null;
+		return LIST;
 	}
 
 	// -----------------------------------------------------

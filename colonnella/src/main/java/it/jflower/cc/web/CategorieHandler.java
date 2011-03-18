@@ -60,16 +60,18 @@ public class CategorieHandler implements Serializable {
 	private CategoriaAttivita categoriaAttivita;
 	private boolean editMode;
 
-	private int idTipo;
+	private Long idTipo;
 
 	public String addCategoriaAttivita() {
-		this.idTipo = 0;
+		this.idTipo = null;
 		setEditMode(false);
 		this.categoriaAttivita = new CategoriaAttivita();
 		return NEW_OR_EDIT_CAT;
 	}
 
 	public String saveCategoriaAttivita() {
+		if (getIdTipo() == null)
+			return "";
 		TipoAttivita tipo = categorieSession.findTipoAttivita(new Long(
 				getIdTipo()));
 		if (tipo != null)
@@ -88,12 +90,13 @@ public class CategorieHandler implements Serializable {
 	public String modCategoriaAttivita(Long id) {
 		setEditMode(true);
 		this.categoriaAttivita = categorieSession.findCategoriaAttivita(id);
-		this.idTipo = this.categoriaAttivita.getTipoAttivita().getId()
-				.intValue();
+		this.idTipo = this.categoriaAttivita.getTipoAttivita().getId();
 		return NEW_OR_EDIT_CAT;
 	}
 
 	public String updateCategoriaAttivita() {
+		if (getIdTipo() == null)
+			return "";
 		System.out.println("ATT TIPO:"
 				+ this.categoriaAttivita.getTipoAttivita().getId());
 		TipoAttivita tipo = categorieSession.findTipoAttivita(new Long(
@@ -276,11 +279,11 @@ public class CategorieHandler implements Serializable {
 		this.tipoPubblicazione = tipoPubblicazione;
 	}
 
-	public int getIdTipo() {
+	public Long getIdTipo() {
 		return idTipo;
 	}
 
-	public void setIdTipo(int idTipo) {
+	public void setIdTipo(Long idTipo) {
 		this.idTipo = idTipo;
 	}
 }

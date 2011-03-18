@@ -285,15 +285,16 @@ public class TipiModuloHandler implements Serializable {
 
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione tipo modulo: " + this.element.getNome());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();
 		element = null;
 		// altre dipendenze
-		propertiesHandler.setTipoInformazioneItems(null);
+		propertiesHandler.setTipiModuloItems(null);
 		// visat di destinazione
-		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
-				"eliminazione tipo modulo: " + this.element.getNome());
+
 		return LIST;
 	}
 

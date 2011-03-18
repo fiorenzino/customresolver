@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +20,7 @@ import javax.inject.Named;
 import org.apache.log4j.Logger;
 
 @Named
-@SessionScoped
+@ApplicationScoped
 public class MenuHolder implements Serializable {
 
 	private static final long serialVersionUID = 1L;

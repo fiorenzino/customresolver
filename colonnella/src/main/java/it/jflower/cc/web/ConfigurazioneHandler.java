@@ -28,6 +28,9 @@ public class ConfigurazioneHandler implements Serializable {
 
 	public static String BACK = "/private/amministrazione.xhtml"
 			+ FACES_REDIRECT;
+
+	public static String CONF = "/private/configurazione/gestione-configurazione.xhtml"
+			+ FACES_REDIRECT;
 	// --------------------------------------------------------
 
 	private Configurazione configurazione;
@@ -67,7 +70,7 @@ public class ConfigurazioneHandler implements Serializable {
 		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"modifica configurazione: " + this.configurazione.getSmtp());
 		this.resultTest = "";
-		return BACK;
+		return CONF;
 	}
 
 	public String reset() {
