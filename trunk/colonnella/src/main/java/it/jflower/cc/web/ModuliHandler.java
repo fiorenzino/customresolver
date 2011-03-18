@@ -292,13 +292,14 @@ public class ModuliHandler implements Serializable {
 
 	public String delete() {
 		// operazione su db
+		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+				"eliminazione moduli: " + this.element.getNome());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();
 		element = null;
 		// visat di destinazione
-		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
-				"eliminazione moduli: " + this.element.getNome());
+
 		return listPage();
 	}
 
@@ -374,7 +375,7 @@ public class ModuliHandler implements Serializable {
 
 	public String cerca() {
 		refreshModel();
-		return null;
+		return LIST;
 	}
 
 	// -----------------------------------------------------------

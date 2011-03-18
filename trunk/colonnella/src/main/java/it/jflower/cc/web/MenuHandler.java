@@ -438,6 +438,25 @@ public class MenuHandler implements Serializable {
 		return NEW_OR_EDIT3;
 	}
 
+	public String rimuoviItem(Long id) {
+		int i = 0;
+		for (MenuItem menuItem : this.element.getLista()) {
+			if (menuItem.getId() != null && menuItem.getId().equals(id)) {
+				menuItem.setAttivo(false);
+			} else {
+				menuItem.setOrdinamento(++i);
+			}
+		}
+		List<MenuItem> menuItem2dataModel = new ArrayList<MenuItem>();
+		for (MenuItem menuItem : this.element.getLista()) {
+			if (menuItem.isAttivo()) {
+				menuItem2dataModel.add(menuItem);
+			}
+		}
+		this.menuItemModel = new ListDataModel<MenuItem>(menuItem2dataModel);
+		return NEW_OR_EDIT3;
+	}
+
 	public DataModel<MenuItem> getMenuItemModel() {
 		return menuItemModel;
 	}

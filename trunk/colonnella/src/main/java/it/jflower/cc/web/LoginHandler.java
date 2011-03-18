@@ -152,7 +152,8 @@ public class LoginHandler implements Serializable {
 	}
 
 	public String update() {
-		if (!isValidEmailAddress(this.utente.getUsername())) {
+		if (!this.utente.isAdmin()
+				&& !isValidEmailAddress(this.utente.getUsername())) {
 			FacesContext
 					.getCurrentInstance()
 					.addMessage(
@@ -259,6 +260,19 @@ public class LoginHandler implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String logout() {
+		operazioniLogHandler.save(OperazioniLog.LOGOUT, JSFUtils.getUserName(),
+				"operazione logout");
+		ExternalContext extCtx = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		try {
+			extCtx.redirect(extCtx.encodeActionURL(LOGOUT));
+		} catch (Exception e) {
+
+		}
+		return null;
 	}
 
 	public String goToChangePassword() {

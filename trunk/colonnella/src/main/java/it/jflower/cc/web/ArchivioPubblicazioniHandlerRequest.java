@@ -4,8 +4,10 @@ import it.jflower.base.par.Ricerca;
 import it.jflower.base.web.UiRepeatInterface;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.type.TipoPubblicazione;
+import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.session.PubblicazioniSession;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	@Inject
 	ParamsHandler paramsHandler;
+
+	@Inject
+	CategorieSession categorieSession;
 
 	public ArchivioPubblicazioniHandlerRequest() {
 	}
@@ -114,6 +119,33 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	public int getCurrentpage() {
 		return currentpage;
+	}
+
+	/**
+	 * faccio questo perché per qualche strano motivo dentro lo ui:repeat questo
+	 * codice si perde il valore di tipo dopo il primo accesso...
+	 * 
+	 * <ui:repeat value="#{categorieSession.allTipoPubblicazione}" var="tipo">
+	 * <f:verbatim rendered="#{tipo.nome == pubblicazioniHandlerRequest.tipo}">
+	 * <option value="#{tipo.nome}" selected="true">#{tipo.nome}</option>
+	 * </f:verbatim> <f:verbatim
+	 * rendered="#{not (tipo.nome == pubblicazioniHandlerRequest.tipo)}">
+	 * <option value="#{tipo.nome}">#{tipo.nome}</option> </f:verbatim>
+	 * </ui:repeat>
+	 * 
+	 * @return
+	 */
+	public List<String> getTipoOptions() {
+		List<String> options = new ArrayList<String>();
+		for (TipoPubblicazione tipo : categorieSession
+				.getAllTipoPubblicazione()) {
+			options.add("<option value=\""
+					+ tipo.getNome()
+					+ "\" "
+					+ (tipo.getNome().equals(this.tipo) ? "selected=\"true\""
+							: "") + ">" + tipo.getNome() + "</option>");
+		}
+		return options;
 	}
 
 }

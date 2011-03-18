@@ -75,23 +75,29 @@ public class PropertiesHandler implements Serializable {
 	public SelectItem[] getRuoliItems() {
 		if (ruoliItems == null || ruoliItems.length == 0) {
 			List<SelectItem> ruoliList = new ArrayList<SelectItem>();
-//			ruoliList.add( new SelectItem("admin", "amministratore") );
-//			ruoliList.add ( new SelectItem("user", "utente ordinario") );
-			ruoliList.add ( new SelectItem("modelli", "gestione modelli") );
-			ruoliList.add ( new SelectItem("pagine", "gestione pagine") );
-			ruoliList.add ( new SelectItem("menu", "gestione menu") );
-			ruoliList.add ( new SelectItem("risorse", "gestione risorse") );
-			ruoliList.add ( new SelectItem("log", "visualizza log operazioni") );
-			ruoliList.add ( new SelectItem("tipi_informazione", "gestione tipi informazione") );
-			ruoliList.add ( new SelectItem("news", "gestione notizie") );
-			ruoliList.add ( new SelectItem("attivita", "gestione attivita'") );
-			ruoliList.add ( new SelectItem("tipi_attivita", "gestione tipi attivita'") );
-			ruoliList.add ( new SelectItem("categorie_attivita", "gestione categorie attivita'") );
-			ruoliList.add ( new SelectItem("pubblicazioni", "gestione albo pretorio") );
-			ruoliList.add ( new SelectItem("tipi_pubblicazione", "gestione tipi pubblicazione") );
-			ruoliList.add ( new SelectItem("moduli", "gestione modulistica") );
-			ruoliList.add ( new SelectItem("tipi_modulo", "gestione tipi modulo") );
-			ruoliItems = ruoliList.toArray(new SelectItem[]{});
+			// ruoliList.add( new SelectItem("admin", "amministratore") );
+			// ruoliList.add ( new SelectItem("user", "utente ordinario") );
+			ruoliList.add(new SelectItem("modelli", "gestione modelli"));
+			ruoliList.add(new SelectItem("pagine", "gestione pagine"));
+			ruoliList.add(new SelectItem("menu", "gestione menu"));
+			ruoliList.add(new SelectItem("risorse", "gestione risorse"));
+			ruoliList.add(new SelectItem("log", "visualizza log operazioni"));
+			ruoliList.add(new SelectItem("tipi_informazione",
+					"gestione tipi informazione"));
+			ruoliList.add(new SelectItem("news", "gestione notizie"));
+			ruoliList.add(new SelectItem("attivita", "gestione attivita'"));
+			ruoliList.add(new SelectItem("tipi_attivita",
+					"gestione tipi attivita'"));
+			ruoliList.add(new SelectItem("categorie_attivita",
+					"gestione categorie attivita'"));
+			ruoliList.add(new SelectItem("pubblicazioni",
+					"gestione albo pretorio"));
+			ruoliList.add(new SelectItem("tipi_pubblicazione",
+					"gestione tipi pubblicazione"));
+			ruoliList.add(new SelectItem("moduli", "gestione modulistica"));
+			ruoliList
+					.add(new SelectItem("tipi_modulo", "gestione tipi modulo"));
+			ruoliItems = ruoliList.toArray(new SelectItem[] {});
 		}
 		return ruoliItems;
 	}
@@ -138,7 +144,8 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getCategorieAttivitaItems() {
-		if (categorieAttivitaItems.length == 0) {
+		if (categorieAttivitaItems == null
+				|| categorieAttivitaItems.length == 0) {
 			categorieAttivitaItems = new SelectItem[1];
 			categorieAttivitaItems[0] = new SelectItem(null,
 					"nessuna categoria");
@@ -149,8 +156,8 @@ public class PropertiesHandler implements Serializable {
 				categorieAttivitaItems[0] = new SelectItem(null, "categoria");
 				int i = 1;
 				for (CategoriaAttivita c : categorie) {
-					categorieAttivitaItems[i] = new SelectItem(c.getId(), c
-							.getCategoria());
+					categorieAttivitaItems[i] = new SelectItem(c.getId(),
+							c.getCategoria());
 					i++;
 
 				}
@@ -185,8 +192,8 @@ public class PropertiesHandler implements Serializable {
 			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
 			int i = 1;
 			for (CategoriaAttivita c : categorie) {
-				categorieAttivitaItems[i] = new SelectItem(c.getId(), c
-						.getCategoria());
+				categorieAttivitaItems[i] = new SelectItem(c.getId(),
+						c.getCategoria());
 				i++;
 
 			}
@@ -210,7 +217,8 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getTipiAttivitaItems() {
-		if (tipiAttivitaItems.length == 0) {
+		if (tipiAttivitaItems == null
+				|| tipiAttivitaItems.length == 0) {
 			tipiAttivitaItems = new SelectItem[1];
 			tipiAttivitaItems[0] = new SelectItem(null, "nessun tipo");
 			List<TipoAttivita> tipi = categorieSession.getAllTipoAttivita();
@@ -219,8 +227,8 @@ public class PropertiesHandler implements Serializable {
 				tipiAttivitaItems[0] = new SelectItem(null, "tipo");
 				int i = 1;
 				for (TipoAttivita c : tipi) {
-					tipiAttivitaItems[i] = new SelectItem(c.getId(), c
-							.getTipo());
+					tipiAttivitaItems[i] = new SelectItem(c.getId(),
+							c.getTipo());
 					i++;
 
 				}
@@ -230,7 +238,8 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getTipiPubblicazioneItems() {
-		if (tipiPubblicazioneItems.length == 0) {
+		if (tipiPubblicazioneItems == null
+				|| tipiPubblicazioneItems.length == 0) {
 			tipiPubblicazioneItems = new SelectItem[1];
 			tipiPubblicazioneItems[0] = new SelectItem(null, "nessun tipo");
 			List<TipoPubblicazione> tipi = categorieSession
@@ -240,8 +249,8 @@ public class PropertiesHandler implements Serializable {
 				tipiPubblicazioneItems[0] = new SelectItem(null, "tipo");
 				int i = 1;
 				for (TipoPubblicazione c : tipi) {
-					tipiPubblicazioneItems[i] = new SelectItem(c.getId(), c
-							.getNome());
+					tipiPubblicazioneItems[i] = new SelectItem(c.getId(),
+							c.getNome());
 					i++;
 
 				}
@@ -251,7 +260,7 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getTipiModuloItems() {
-		if (tipiModuloItems.length == 0) {
+		if (tipiModuloItems == null || tipiModuloItems.length == 0) {
 			tipiModuloItems = new SelectItem[1];
 			tipiModuloItems[0] = new SelectItem(null, "nessun tipo");
 			List<TipoModulo> tipi = tipoModuloSession.getAllList();

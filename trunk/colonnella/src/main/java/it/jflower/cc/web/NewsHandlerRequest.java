@@ -4,6 +4,7 @@ import it.jflower.base.par.Ricerca;
 import it.jflower.base.web.UiRepeatInterface;
 import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.session.NewNotizieSession;
 import it.jflower.cc.session.NotizieSession;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 
 	@Inject
 	NotizieSession notizieSession;
+
+	@Inject
+	NewNotizieSession newNotizieSession;
+
 	@Inject
 	ParamsHandler paramsHandler;
 
@@ -96,6 +101,10 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		if (this.notizia == null)
 			this.notizia = notizieSession.findLast();
 		return notizia;
+	}
+
+	public Notizia getInEvidenza() {
+		return newNotizieSession.findEvidenza();
 	}
 
 	public void setNotizia(Notizia notizia) {

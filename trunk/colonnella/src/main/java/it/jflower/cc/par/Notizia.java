@@ -34,6 +34,7 @@ public class Notizia implements Serializable {
 	private TipoInformazione tipo;
 	private List<Documento> documenti;
 	private List<Immagine> immagini;
+	private boolean evidenza;
 
 	@Id
 	public String getId() {
@@ -136,6 +137,14 @@ public class Notizia implements Serializable {
 
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
+	}
+
+	public boolean isEvidenza() {
+		return evidenza;
+	}
+
+	public void setEvidenza(boolean evidenza) {
+		this.evidenza = evidenza;
 	}
 
 }

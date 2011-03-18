@@ -213,7 +213,7 @@ public class NewNotizieHandler implements Serializable {
 
 	public String cerca() {
 		refreshModel();
-		return null;
+		return LIST;
 	}
 
 	// --------------------------------------------------------
@@ -282,6 +282,9 @@ public class NewNotizieHandler implements Serializable {
 		if (tipo != null)
 			this.element.setTipo(tipo);
 		notizieSession.persist(this.element);
+		if (this.element.isEvidenza()) {
+			notizieSession.refreshEvidenza(this.element.getId());
+		}
 		this.model = null;
 		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione notizia: " + this.element.getTitolo());
@@ -309,6 +312,9 @@ public class NewNotizieHandler implements Serializable {
 		if (tipo != null)
 			this.element.setTipo(tipo);
 		this.element = notizieSession.update(this.element);
+		if (this.element.isEvidenza()) {
+			notizieSession.refreshEvidenza(this.element.getId());
+		}
 		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
 				"modifica notizia: " + this.element.getTitolo());
 		this.model = null;
