@@ -23,20 +23,20 @@
 					<h:outputLabel for="data" value="Data pubblicazione:" />
 					<h:outputText id="data"
 						value="#{pubblicazioniHandler.element.data}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 					</h:outputText>
 
 					<h:outputLabel for="dataDal" value="Data dal:" />
 					<h:outputText id="dataDal"
 						value="#{pubblicazioniHandler.element.dal}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 					</h:outputText>
 
 
 					<h:outputLabel for="dataAl" value="Data al:" />
 					<h:outputText id="dataAl"
 						value="#{pubblicazioniHandler.element.al}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 					</h:outputText>
 				</h:panelGrid>
 
