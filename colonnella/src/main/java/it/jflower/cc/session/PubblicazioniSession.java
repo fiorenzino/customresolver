@@ -111,7 +111,8 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		String idTitle = PageUtils.createPageId(p.getNome());
 		String idFinal = testId(idTitle);
 		p.setId(idFinal);
-		p.setData(new Date());
+		if (p.getData() == null)
+			p.setData(new Date());
 		p.setAutore(JSFUtils.getUserName());
 		return p;
 	}
@@ -126,7 +127,8 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		if (p.getDocumenti() != null && p.getDocumenti().size() == 0) {
 			p.setDocumenti(null);
 		}
-		p.setData(new Date());
+		if (p.getData() == null)
+			p.setData(new Date());
 		p.setAutore(JSFUtils.getUserName());
 		return p;
 	}
