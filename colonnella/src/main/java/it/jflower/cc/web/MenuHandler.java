@@ -13,7 +13,9 @@ import it.jflower.cc.session.PageSession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -23,7 +25,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped
@@ -358,7 +359,10 @@ public class MenuHandler implements Serializable {
 		List<Page> pagineSelezionate = new ArrayList<Page>();
 		for (Page pagina : pagine) {
 			for (MenuItem menuItem : this.element.getLista()) {
-				if (menuItem.getPagina().getId().equals(pagina.getId())) {
+				if ( ! menuItem.isAttivo() ) {
+					continue;
+				}
+				if ( menuItem.getPagina().getId().equals(pagina.getId())) {
 					pagineSelezionate.add(pagina);
 				}
 			}
@@ -375,6 +379,18 @@ public class MenuHandler implements Serializable {
 		this.pagineSelezionate = pagineSelezionate;
 	}
 
+	public void aggiornaPagineSelezionate() {
+		// evito doppioni, almeno... beccare le deselezioni ancora non ho capito come..
+		Map<String,Page> pagineSelezionateUniche = new HashMap<String,Page>();
+		if ( pagineSelezionate != null ) {
+			for ( Page p : pagineSelezionate ) {
+				pagineSelezionateUniche.put(p.getId(),p);
+			}
+		}
+		pagineSelezionate = pagineSelezionateUniche.values().toArray(new Page[]{});
+	}
+	
+	
 	public List<Page> getPagine() {
 		return pagine;
 	}
@@ -388,7 +404,10 @@ public class MenuHandler implements Serializable {
 		for (Page paginaSelezionata : this.pagineSelezionate) {
 			boolean giaPresente = false;
 			for (MenuItem menuItem : this.element.getLista()) {
-				if (menuItem.getPagina().getId()
+				if ( ! menuItem.isAttivo() ) {
+					continue;
+				}
+				if ( menuItem.getPagina().getId()
 						.equals(paginaSelezionata.getId())) {
 					giaPresente = true;
 				}
@@ -399,6 +418,9 @@ public class MenuHandler implements Serializable {
 		}
 		List<MenuItem> menuItemsDaRimuovere = new ArrayList<MenuItem>();
 		for (MenuItem menuItem : this.element.getLista()) {
+			if ( ! menuItem.isAttivo() ) {
+				continue;
+			}
 			boolean mantenuto = false;
 			for (Page paginaSelezionata : this.pagineSelezionate) {
 				if (paginaSelezionata.getId().equals(
