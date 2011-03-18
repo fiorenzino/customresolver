@@ -49,6 +49,8 @@ public class LoginHandler implements Serializable {
 	public static String CAMBIO_PASSWORD = "/private/utenti/cambio-password.xhtml"
 			+ FACES_REDIRECT;
 
+	public static String GRAZIE = "/grazie.xhtml" + FACES_REDIRECT;
+
 	public static String LOGOUT = "/logout.jsp";
 
 	// --------------------------------------------------------
@@ -240,7 +242,7 @@ public class LoginHandler implements Serializable {
 				// + this.utente.getUsername());
 			}
 		}
-		return "/grazie.xhtml";
+		return GRAZIE;
 	}
 
 	@PreDestroy
