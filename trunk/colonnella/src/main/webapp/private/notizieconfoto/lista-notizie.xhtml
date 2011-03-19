@@ -19,7 +19,7 @@
 							value="#{newNotizieHandler.ricerca.oggetto.titolo}" />
 
 						<h:outputLabel for="tipo" value="Seleziona tipo:" />
-						<h:selectOneMenu
+						<h:selectOneMenu id="tipo"
 							value="#{newNotizieHandler.ricerca.oggetto.tipo.id}">
 							<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
 						</h:selectOneMenu>

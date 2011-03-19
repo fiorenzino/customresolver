@@ -20,14 +20,13 @@
 
 					<h:outputLabel for="nome" value="Nome: "
 						style="font-weight: bolder;" />
-					<h:outputText id="nome" value="#{moduliHandler.element.oggetto}" />
-
-					<h:outputLabel id="oggettoLabel" for="oggetto" value="Oggetto: "
+					<h:outputText id="nome" value="#{moduliHandler.element.nome}" />
+					
+					<h:outputLabel for="oggetto" value="Oggetto: "
 						style="font-weight: bolder;" />
-					<h:outputText id="oggetto"
-						value="#{moduliHandler.element.tipo.nome}" />
+					<h:outputText id="oggetto" value="#{moduliHandler.element.oggetto}" />
 
-					<h:outputLabel for="data" value="Pubblicazione: "
+					<h:outputLabel for="data" value="Data di pubblicazione: "
 						style="font-weight: bolder;" />
 					<h:outputText id="data" value="#{moduliHandler.element.data}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
