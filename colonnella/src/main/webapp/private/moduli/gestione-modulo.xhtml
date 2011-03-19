@@ -17,9 +17,8 @@
 
 					<h:panelGrid columns="2" style="width: 95%">
 						<h:outputLabel id="tipoLabel" for="tipo" value="Modulo:" />
-						<h:selectOneMenu id="tipo"
-							value="#{moduliHandler.element.tipo.id}" style="width: 100%;"
-							required="true">
+						<h:selectOneMenu id="tipo" value="#{moduliHandler.element.idTipo}"
+							style="width: 100%;">
 							<f:selectItems value="#{propertiesHandler.tipiModuloItems}" />
 						</h:selectOneMenu>
 
