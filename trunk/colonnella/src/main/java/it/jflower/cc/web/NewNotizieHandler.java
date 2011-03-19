@@ -315,7 +315,7 @@ public class NewNotizieHandler implements Serializable {
 		if (this.element.isEvidenza()) {
 			notizieSession.refreshEvidenza(this.element.getId());
 		}
-		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
+		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
 				"modifica notizia: " + this.element.getTitolo());
 		this.model = null;
 		return VIEW;
