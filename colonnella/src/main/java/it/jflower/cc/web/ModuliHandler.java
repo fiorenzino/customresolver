@@ -16,6 +16,8 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -252,6 +254,10 @@ public class ModuliHandler implements Serializable {
 		// fetch dei dati;
 		Modulo t = (Modulo) getModel().getRowData();
 		t = getSession().fetch(getId(t));
+		if (this.element.getTipo() != null
+				&& this.element.getTipo().getId() != null) {
+			this.element.setIdTipo(element.getTipo().getId());
+		}
 		if (t.getDocumento() == null)
 			t.setDocumento(new Documento());
 		// settaggi nel super handler
@@ -266,6 +272,14 @@ public class ModuliHandler implements Serializable {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		if (getElement().getIdTipo() == null) {
+			FacesContext.getCurrentInstance()
+					.addMessage(
+							"",
+							new FacesMessage("Tipo non valido",
+									"Selezionare il tipo."));
+			return null;
+		}
 		Modulo t = getSession().persist(element);
 		// refresh locale
 		refreshModel();
@@ -280,6 +294,14 @@ public class ModuliHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
+		if (getElement().getIdTipo() == null) {
+			FacesContext.getCurrentInstance()
+					.addMessage(
+							"",
+							new FacesMessage("Tipo non valido",
+									"Selezionare il tipo."));
+			return null;
+		}
 		Modulo t = getSession().update(element);
 		// refresh locale
 		element = t;
@@ -308,6 +330,10 @@ public class ModuliHandler implements Serializable {
 	public String modCurrent() {
 		// fetch dei dati
 		element = getSession().fetch(getId(element));
+		if (this.element.getTipo() != null
+				&& this.element.getTipo().getId() != null) {
+			this.element.setIdTipo(element.getTipo().getId());
+		}
 		if (element.getDocumento() == null)
 			element.setDocumento(new Documento());
 		// vista di arrivo
@@ -350,6 +376,10 @@ public class ModuliHandler implements Serializable {
 		// }
 		// }
 		this.element = session.fetch(id);
+		if (this.element.getTipo() != null
+				&& this.element.getTipo().getId() != null) {
+			this.element.setIdTipo(element.getTipo().getId());
+		}
 		if (element.getDocumento() == null)
 			element.setDocumento(new Documento());
 		return editPage();
