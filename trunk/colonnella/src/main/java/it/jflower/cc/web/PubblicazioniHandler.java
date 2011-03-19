@@ -14,9 +14,13 @@ import it.jflower.cc.session.PubblicazioniSession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -231,6 +235,11 @@ public class PubblicazioniHandler implements Serializable {
 			this.element = new Pubblicazione();
 			this.element.setTipo(new TipoPubblicazione());
 			this.element.setDocumenti(new ArrayList<Documento>());
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			this.element.setDal(cal.getTime());
+			cal.add(Calendar.DAY_OF_YEAR, 30);
+			this.element.setAl(cal.getTime());
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
 			e.printStackTrace();
@@ -255,6 +264,10 @@ public class PubblicazioniHandler implements Serializable {
 		// fetch dei dati;
 		Pubblicazione t = (Pubblicazione) getModel().getRowData();
 		t = getSession().fetch(getId(t));
+		if (this.element.getTipo() != null
+				&& this.element.getTipo().getId() != null) {
+			this.element.setIdTipo(element.getTipo().getId());
+		}
 		if (t.getDocumenti() == null)
 			t.setDocumenti(new ArrayList<Documento>());
 		// settaggi nel super handler
@@ -269,9 +282,14 @@ public class PubblicazioniHandler implements Serializable {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		if (getElement().getTipo() == null
-				|| getElement().getTipo().getId() == null)
-			return "";
+		if (getElement().getIdTipo() == null) {
+			FacesContext.getCurrentInstance()
+					.addMessage(
+							"",
+							new FacesMessage("Tipo non valido",
+									"Selezionare il tipo."));
+			return null;
+		}
 		@SuppressWarnings("unused")
 		Pubblicazione t = getSession().persist(this.element);
 		// refresh locale
@@ -287,8 +305,14 @@ public class PubblicazioniHandler implements Serializable {
 		// recupero dati in input
 		// nelle sottoclassi!! ovverride!
 		// salvataggio
-		if (getElement().getIdTipo() == null)
-			return "";
+		if (getElement().getIdTipo() == null) {
+			FacesContext.getCurrentInstance()
+					.addMessage(
+							"",
+							new FacesMessage("Tipo non valido",
+									"Selezionare il tipo."));
+			return null;
+		}
 		@SuppressWarnings("unused")
 		Pubblicazione t = getSession().update(element);
 		// refresh locale
@@ -317,6 +341,10 @@ public class PubblicazioniHandler implements Serializable {
 	public String modCurrent() {
 		// fetch dei dati
 		element = getSession().fetch(getId(element));
+		if (this.element.getTipo() != null
+				&& this.element.getTipo().getId() != null) {
+			this.element.setIdTipo(element.getTipo().getId());
+		}
 		if (element.getDocumenti() == null)
 			element.setDocumenti(new ArrayList<Documento>());
 		// vista di arrivo

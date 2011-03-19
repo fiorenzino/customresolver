@@ -122,7 +122,7 @@ public class ModuliSession extends SuperSession<Modulo> implements Serializable 
 
 	@Override
 	protected Modulo prePersist(Modulo m) {
-		m.setTipo(getEm().find(TipoModulo.class, m.getTipo().getId()));
+		m.setTipo(getEm().find(TipoModulo.class, m.getIdTipo()));
 		if (m.getDocumento() != null && m.getDocumento().getFilename() == null) {
 			m.setDocumento(null);
 		}
@@ -136,7 +136,7 @@ public class ModuliSession extends SuperSession<Modulo> implements Serializable 
 
 	@Override
 	protected Modulo preUpdate(Modulo m) {
-		m.setTipo(getEm().find(TipoModulo.class, m.getTipo().getId()));
+		m.setTipo(getEm().find(TipoModulo.class, m.getIdTipo()));
 		if (m.getDocumento() != null && m.getDocumento().getFilename() == null) {
 			m.setDocumento(null);
 		}

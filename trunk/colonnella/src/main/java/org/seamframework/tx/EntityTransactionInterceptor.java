@@ -35,24 +35,24 @@ public class EntityTransactionInterceptor implements Serializable {
 	// throws Exception
 	{
 		if (em == null) {
-			System.out.println("Renewing ETX's EM...");
+			logger.info("Renewing ETX's EM...");
 			em = DbUtils.getEM();
 		}
-		System.out.println("Entity tx interceptor running...");
+		logger.info("Entity tx interceptor running...");
 		boolean toManage = (em != null && em.isOpen() && !em.getTransaction()
 				.isActive());
 		if (toManage) {
 			try {
 				em.getTransaction().begin();
-				System.out.println("...tx has begun...");
+				logger.info("...tx has begun...");
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				System.out.println("...provo a ricostruirla...");
+				logger.info(e.getMessage());
+				logger.info("...provo a ricostruirla..." + e.getMessage());
 				em.clear();
 			}
 
 		} else {
-			System.out.println("Renewing ETX's EM...");
+			logger.info("Renewing ETX's EM...");
 			em = DbUtils.getEM();
 			em.getTransaction().begin();
 		}
@@ -63,7 +63,7 @@ public class EntityTransactionInterceptor implements Serializable {
 			isActive = em.getTransaction().isActive();
 			if (toManage && isActive) {
 				em.getTransaction().commit();
-				System.out.println("...tx has succeeded!");
+				logger.info("...tx has succeeded!");
 			}
 			return result;
 		} catch (Exception e) {
@@ -73,7 +73,7 @@ public class EntityTransactionInterceptor implements Serializable {
 					em.clear();
 				// em = DbUtils.getEM();
 
-				System.out.println("...tx has failed!");
+				logger.info("...tx has failed!" + e.getMessage());
 			}
 			return null;
 			// throw e;

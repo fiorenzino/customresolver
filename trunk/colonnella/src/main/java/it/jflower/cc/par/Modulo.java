@@ -27,6 +27,7 @@ public class Modulo implements Serializable {
 	private String oggetto;
 	private Documento documento;
 	private TipoModulo tipo;
+	private Long idTipo;
 
 	@Id
 	public String getId() {
@@ -95,10 +96,20 @@ public class Modulo implements Serializable {
 	public void setTipo(TipoModulo tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	@Transient
 	public String getOggettoBreve() {
-		return oggetto == null || oggetto.length() == 0 ? "n.d." : oggetto.length() < 30 ? oggetto : oggetto.substring(0,30)+"...";
+		return oggetto == null || oggetto.length() == 0 ? "n.d." : oggetto
+				.length() < 30 ? oggetto : oggetto.substring(0, 30) + "...";
+	}
+
+	@Transient
+	public Long getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(Long idTipo) {
+		this.idTipo = idTipo;
 	}
 
 }

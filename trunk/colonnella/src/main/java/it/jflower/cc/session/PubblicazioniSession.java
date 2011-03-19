@@ -94,7 +94,7 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 	}
 
 	protected String getOrderBy() {
-		return "id desc";
+		return "data desc";
 	}
 
 	@Override
@@ -104,11 +104,11 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 
 	@Override
 	protected Pubblicazione prePersist(Pubblicazione p) {
-		p.setTipo(getEm().find(TipoPubblicazione.class, p.getTipo().getId()));
+		p.setTipo(getEm().find(TipoPubblicazione.class, p.getIdTipo()));
 		if (p.getDocumenti() != null && p.getDocumenti().size() == 0) {
 			p.setDocumenti(null);
 		}
-		String idTitle = PageUtils.createPageId(p.getNome());
+		String idTitle = PageUtils.createPageId(p.getTitolo());
 		String idFinal = testId(idTitle);
 		p.setId(idFinal);
 		if (p.getData() == null)
