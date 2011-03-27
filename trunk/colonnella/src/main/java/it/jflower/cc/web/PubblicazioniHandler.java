@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -46,6 +47,8 @@ public class PubblicazioniHandler implements Serializable {
 	public static String LIST = "/private/pubblicazioni/lista-pubblicazioni.xhtml"
 			+ FACES_REDIRECT;
 	public static String NEW_OR_EDIT = "/private/pubblicazioni/gestione-pubblicazione.xhtml"
+			+ FACES_REDIRECT;
+	public static String PRINT_LIST = "/private/pubblicazioni/stampa-pubblicazioni.xhtml"
 			+ FACES_REDIRECT;
 
 	// --------------------------------------------------------
@@ -481,4 +484,8 @@ public class PubblicazioniHandler implements Serializable {
 		return attiModel;
 	}
 
+	public String print() {
+
+		return PRINT_LIST;
+	}
 }

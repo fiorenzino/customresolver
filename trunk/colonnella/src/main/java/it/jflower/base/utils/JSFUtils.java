@@ -112,9 +112,20 @@ public class JSFUtils {
 
 		String base = "/";
 		StringBuffer sb = new StringBuffer();
+		String label = "";
 		for (int i = 0; i < crumbs.length; i++) {
 			base += crumbs[i];
-			String label = i == 0 ? "home" : crumbs[i];
+			if (i == 0) {
+				label = "home";
+				if (url.contains("/private")) {
+					logger.info("siamo nellla sezione amministrazione!");
+					base += "/";
+					continue;
+				}
+			} else {
+				label = crumbs[i];
+			}
+
 			if (label.contains(".")) {
 				label = label.substring(0, label.indexOf("."));
 				sb.append("<b>" + label + "</b>");
