@@ -60,14 +60,17 @@
 
 						<p:column width="50">
 							<f:facet name="header">allegato</f:facet>
-							<h:outputLink target="_blank"
-								rendered="#{not empty modulo.documento and not empty modulo.documento.id}"
-								value="#{request.contextPath}/private/moduli/getModulo.jsp?id=#{modulo.id}">
+							<h:outputLink
+								value="/colonnella/docs/#{modulo.documento.filename}"
+								target="_blank"
+								rendered="#{not empty modulo.documento and not empty modulo.documento.id}">
 								<h:graphicImage value="/images/icons/pdf.gif" />
 							</h:outputLink>
+
 							<h:outputText
 								rendered="#{empty modulo.documento or empty modulo.documento.id}"
 								value="n.d." />
+
 						</p:column>
 
 						<p:column width="100">
