@@ -35,11 +35,9 @@
 							value="#{pubblicazioniHandler.element.titolo}"
 							style="width : 372px;" required="true" />
 
-						<h:outputLabel for="dataInsert" value="Data inserimento:"
-							rendered="#{not empty pubblicazioniHandler.element.id}" />
+						<h:outputLabel for="dataInsert" value="Data inserimento:"/>
 						<p:calendar id="dataInsert"
 							value="#{pubblicazioniHandler.element.data}" pattern="dd/MM/yyyy"
-							rendered="#{not empty pubblicazioniHandler.element.id}"
 							timeZone="Europe/Rome" />
 
 
@@ -85,7 +83,8 @@
 
 					<p:column>
 						<f:facet name="header">vedi</f:facet>
-						<h:outputLink value="/colonnella/docs/#{doc.filename}">
+						<h:outputLink value="/colonnella/docs/#{doc.filename}"
+							target="_blank">
 							<h:graphicImage value="/images/icons/pdf.gif" />
 						</h:outputLink>
 						<h:outputText value=" - "

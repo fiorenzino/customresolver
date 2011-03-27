@@ -21,9 +21,10 @@
 		<h:form prependId="false">
 
 			<p:messages id="messages" />
-			<center><p:panel header="Gestione Notizia">
+			<center>
+				<p:panel header="Gestione Notizia">
 
-				<script language="javascript" type="text/javascript">
+					<script language="javascript" type="text/javascript">
 		tinyMCE
 		.init({
 			// General options
@@ -64,80 +65,88 @@
 		});
 </script>
 
-				<h:panelGrid columns="2" style="width: 95%">
-					<h:outputLabel for="titolo" value="Titolo" />
-					<h:inputText id="titolo"
-						value="#{newNotizieHandler.notizia.titolo}" style="width: 100%;"
-						required="true" />
+					<h:panelGrid columns="2" style="width: 95%">
+						<h:outputLabel for="titolo" value="Titolo" />
+						<h:inputText id="titolo"
+							value="#{newNotizieHandler.notizia.titolo}" style="width: 100%;"
+							required="true" />
+						<h:outputLabel for="dataInsert" value="Data inserimento:" />
+						<p:calendar id="dataInsert"
+							value="#{newNotizieHandler.notizia.data}" pattern="dd/MM/yyyy"
+							timeZone="Europe/Rome" />
 
-					<h:outputLabel value="in evidenza?:" for="evidenza" />
-					<h:selectBooleanCheckbox title="evidenza"
-						value="#{newNotizieHandler.notizia.evidenza}">
-					</h:selectBooleanCheckbox>
+						<h:outputLabel value="in evidenza?:" for="evidenza" />
+						<h:selectBooleanCheckbox title="evidenza"
+							value="#{newNotizieHandler.notizia.evidenza}">
+						</h:selectBooleanCheckbox>
 
-					<h:outputLabel value="Tipo informazione(*):" for="tipo" />
-					<h:selectOneMenu id="tipo" style="width: 100%;"
-						value="#{newNotizieHandler.idTipo}" required="true">
-						<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
-					</h:selectOneMenu>
+						<h:outputLabel value="Tipo informazione(*):" for="tipo" />
+						<h:selectOneMenu id="tipo" style="width: 100%;"
+							value="#{newNotizieHandler.idTipo}" required="true">
+							<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
+						</h:selectOneMenu>
 
-					<h:outputLabel for="autore" value="Autore:" style="width: 100%;" />
-					<h:inputText id="autore"
-						value="#{newNotizieHandler.notizia.autore}" style="width: 100%;"
-						required="true" />
-
-
-					<h:outputLabel for="anteprima" value="Anteprima:" />
-					<h:inputTextarea id="anteprima" cols="20" rows="20"
-						value="#{newNotizieHandler.notizia.anteprima}"
-						style=" height : 166px; width: 100%;" />
+						<h:outputLabel for="autore" value="Autore:" style="width: 100%;" />
+						<h:inputText id="autore"
+							value="#{newNotizieHandler.notizia.autore}" style="width: 100%;"
+							required="true" />
 
 
-					<h:outputLabel for="descrizione" value="Contenuto:" />
-					<h:inputTextarea value="#{newNotizieHandler.notizia.contenuto}"
-						id="descrizione" styleClass="tinyMceTa" />
+						<h:outputLabel for="anteprima" value="Anteprima:" />
+						<h:inputTextarea id="anteprima" cols="20" rows="20"
+							value="#{newNotizieHandler.notizia.anteprima}"
+							style=" height : 166px; width: 100%;" />
 
-				</h:panelGrid>
+
+						<h:outputLabel for="descrizione" value="Contenuto:" />
+						<h:inputTextarea value="#{newNotizieHandler.notizia.contenuto}"
+							id="descrizione" styleClass="tinyMceTa" />
+
+					</h:panelGrid>
+					<br />
+				</p:panel>
 				<br />
-			</p:panel> <br />
-			<p:panel header="Caricamento Immagini">
-				<p:fileUpload
-					fileUploadListener="#{newNotizieHandler.handleImgUpload}"
-					multiple="true" label="Scegli Immagine" allowTypes="*"
-					description="Scegli Immagine" update="imgList" />
-			</p:panel> <br />
-			<p:dataTable id="imgList" var="img"
-				value="#{newNotizieHandler.element.immagini}" rowIndexVar="index2">
-				<p:column>
-					<f:facet name="header">ind</f:facet>
-					<h:outputText value="#{index2}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">nome</f:facet>
-					<h:outputText value="#{img.filename}" />
-				</p:column>
+				<p:panel header="Caricamento Immagini">
+					<p:fileUpload
+						fileUploadListener="#{newNotizieHandler.handleImgUpload}"
+						multiple="true" label="Scegli Immagine" allowTypes="*"
+						description="Scegli Immagine" update="imgList" />
+				</p:panel>
+				<br />
+				<p:dataTable id="imgList" var="img"
+					value="#{newNotizieHandler.element.immagini}" rowIndexVar="index2">
+					<p:column>
+						<f:facet name="header">ind</f:facet>
+						<h:outputText value="#{index2}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">nome</f:facet>
+						<h:outputText value="#{img.filename}" />
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">vedi</f:facet>
-					<h:commandLink action="#{newNotizieHandler.removeImage(index2)}"
-						value="elimina"
-						rendered="#{not empty img.filename or not empty img.id}" />
-				</p:column>
-			</p:dataTable> <h:panelGrid columns="4">
+					<p:column>
+						<f:facet name="header">vedi</f:facet>
+						<h:commandLink action="#{newNotizieHandler.removeImage(index2)}"
+							value="elimina"
+							rendered="#{not empty img.filename or not empty img.id}" />
+					</p:column>
+				</p:dataTable>
+				<h:panelGrid columns="4">
 
-				<h:commandButton action="#{newNotizieHandler.saveNotizia}"
-					value="Salva" immediate="false"
-					rendered="#{not newNotizieHandler.editMode}" />
+					<h:commandButton action="#{newNotizieHandler.saveNotizia}"
+						value="Salva" immediate="false"
+						rendered="#{not newNotizieHandler.editMode}" />
 
-				<h:commandButton action="#{newNotizieHandler.updateNotizia}"
-					value="Salva le modifiche" immediate="false"
-					rendered="#{newNotizieHandler.editMode}" />
+					<h:commandButton action="#{newNotizieHandler.updateNotizia}"
+						value="Salva le modifiche" immediate="false"
+						rendered="#{newNotizieHandler.editMode}" />
 
-				<h:commandButton action="#{newNotizieHandler.deleteNotizia}"
-					value="Elimina" rendered="#{newNotizieHandler.editMode}"
-					immediate="true"
-					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
-			</h:panelGrid></center>
+					<h:commandButton action="#{newNotizieHandler.deleteNotizia}"
+						value="Elimina" rendered="#{newNotizieHandler.editMode}"
+						immediate="true"
+						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
+				</h:panelGrid>
+			</center>
 		</h:form>
 
 	</ui:define>

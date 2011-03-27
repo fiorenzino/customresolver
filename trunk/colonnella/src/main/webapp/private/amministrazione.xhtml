@@ -66,60 +66,60 @@
 
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
+
 			<p:tabView
-				rendered="#{loginHandler.admin or loginHandler.isInRole('pagine') or loginHandler.isInRole('modelli') or loginHandler.isInRole('menu') or loginHandler.isInRole('risorse')}">
+				rendered="#{loginHandler.admin or loginHandler.isInRole('pubblicazioni') or loginHandler.isInRole('tipi_pubblicazione') or loginHandler.isInRole('moduli') or loginHandler.isInRole('tipi_modulo')}">
 
-				<p:tab title="Gestione Pagine" style="width:200px; float:left;"
-					rendered="#{pageHandler.clear and loginHandler.isInRole('pagine')}">
-					<div style="height: 50px;">
-						<h:commandLink action="#{pageHandler.loadModel}"
-							value="lista delle pagine disponibili" />
-						<br />
-						<h:commandLink action="#{pageHandler.addPaginaStatica}"
-							value="aggiungi nuova statica" />
-						<br />
-						<h:commandLink action="#{pageHandler.addPaginaDinamica}"
-							value="aggiungi nuova dinamica" />
-					</div>
+				<p:tab title="Gestione Albo Pretorio"
+					rendered="#{loginHandler.isInRole('pubblicazioni')}"
+					style="width:200px; float:left;">
+					<h:commandLink
+						action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
+						value="lista pubblicazioni" />
+					<br />
+					<h:commandLink action="#{pubblicazioniHandler.addElement}"
+						value="aggiungi nuova" />
+					<br />
+					<h:commandLink
+						action="/private/pubblicazioni/stampa-pubblicazioni.jsf?faces-redirect=true"
+						value="stampa lista pubblicazioni" />
 				</p:tab>
 
-				<p:tab title="Gestione Modelli" style="width:200px; float:left;"
-					rendered="#{pageHandler.clear and loginHandler.isInRole('modelli')}">
-					<div style="height: 50px;">
-						<h:commandLink
-							action="/private/modelli/lista-modelli.jsf?faces-redirect=true"
-							value="lista modelli" />
-						<br />
-						<h:commandLink action="#{templateHandler.addElement}"
-							value="aggiungi nuovo" />
-					</div>
+				<p:tab title="Gestione Tipi Pubblicazioni"
+					style="width:200px; float:left;"
+					rendered="#{loginHandler.isInRole('tipi_pubblicazione')}">
+					<h:commandLink
+						action="/private/tipi-pubblicazione/lista-tipi-pubblicazione.jsf?faces-redirect=true"
+						value="lista tipi pubblicazioni" />
+					<br />
+					<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
+						value="aggiungi nuova" />
 				</p:tab>
 
-				<p:tab title="Gestione Menu" style="width: 200px; float: left;"
-					rendered="#{menuHandler.clear and loginHandler.isInRole('menu') }">
-					<div style="height: 50px;">
-						<h:commandLink action="#{menuHandler.loadModel}"
-							value="lista menu" />
-						<br />
-						<h:commandLink action="#{menuHandler.addElement}"
-							value="aggiungi nuovo" />
-					</div>
+				<div style="width: 600px; height: 40px; clear: both;"></div>
+
+				<p:tab title="Gestione Modulistica"
+					rendered="#{moduliHandler.clear and loginHandler.isInRole('moduli')}"
+					style="width:200px; float:left;">
+					<h:commandLink
+						action="/private/moduli/lista-moduli.jsf?faces-redirect=true"
+						value="lista moduli" />
+					<br />
+					<h:commandLink action="#{moduliHandler.addElement}"
+						value="aggiungi nuovo" />
 				</p:tab>
 
-				<p:tab title="Gestione Risorse (img, js, swf, css)"
-					rendered="#{resourceHandler.clear and loginHandler.isInRole('risorse')}"
-					style="width: 200px; float: left;">
-					<div style="height: 50px;">
-						<h:commandLink action="#{resourceHandler.loadModel}"
-							value="lista delle risorse" />
-						<br />
-						<h:commandLink action="#{resourceHandler.addElement}"
-							value="aggiungi nuovo" />
-					</div>
+				<p:tab title="Gestione Tipi Modulo"
+					rendered="#{tipiModuloHandler.clear and loginHandler.isInRole('tipi_modulo')}"
+					style="width:200px; float:left;">
+					<h:commandLink
+						action="/private/tipi-modulo/lista-tipi-modulo.jsf?faces-redirect=true"
+						value="lista tipi modulo" />
+					<br />
+					<h:commandLink action="#{tipiModuloHandler.addElement}"
+						value="aggiungi nuovo" />
 				</p:tab>
-
 			</p:tabView>
-
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 			<p:tabView
 				rendered="#{loginHandler.admin or loginHandler.isInRole('news') or loginHandler.isInRole('tipi_informazione')}">
@@ -208,54 +208,62 @@
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 			<p:tabView
-				rendered="#{loginHandler.admin or loginHandler.isInRole('pubblicazioni') or loginHandler.isInRole('tipi_pubblicazione') or loginHandler.isInRole('moduli') or loginHandler.isInRole('tipi_modulo')}">
+				rendered="#{loginHandler.admin or loginHandler.isInRole('pagine') or loginHandler.isInRole('modelli') or loginHandler.isInRole('menu') or loginHandler.isInRole('risorse')}">
 
-				<p:tab title="Gestione Albo Pretorio"
-					rendered="#{loginHandler.isInRole('pubblicazioni')}"
-					style="width:200px; float:left;">
-					<h:commandLink
-						action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
-						value="lista pubblicazioni" />
-					<br />
-					<h:commandLink action="#{pubblicazioniHandler.addElement}"
-						value="aggiungi nuova" />
+				<p:tab title="Gestione Pagine" style="width:200px; float:left;"
+					rendered="#{pageHandler.clear and loginHandler.isInRole('pagine')}">
+					<div style="height: 50px;">
+						<h:commandLink action="#{pageHandler.loadModel}"
+							value="lista delle pagine disponibili" />
+						<br />
+						<h:commandLink action="#{pageHandler.addPaginaStatica}"
+							value="aggiungi nuova statica" />
+						<br />
+						<h:commandLink action="#{pageHandler.addPaginaDinamica}"
+							value="aggiungi nuova dinamica" />
+					</div>
 				</p:tab>
 
-				<p:tab title="Gestione Tipi Pubblicazioni"
-					style="width:200px; float:left;"
-					rendered="#{loginHandler.isInRole('tipi_pubblicazione')}">
-					<h:commandLink
-						action="/private/tipi-pubblicazione/lista-tipi-pubblicazione.jsf?faces-redirect=true"
-						value="lista tipi pubblicazioni" />
-					<br />
-					<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
-						value="aggiungi nuova" />
+				<p:tab title="Gestione Modelli" style="width:200px; float:left;"
+					rendered="#{pageHandler.clear and loginHandler.isInRole('modelli')}">
+					<div style="height: 50px;">
+						<h:commandLink
+							action="/private/modelli/lista-modelli.jsf?faces-redirect=true"
+							value="lista modelli" />
+						<br />
+						<h:commandLink action="#{templateHandler.addElement}"
+							value="aggiungi nuovo" />
+					</div>
 				</p:tab>
 
-				<div style="width: 600px; height: 40px; clear: both;"></div>
-
-				<p:tab title="Gestione Modulistica"
-					rendered="#{moduliHandler.clear and loginHandler.isInRole('moduli')}"
-					style="width:200px; float:left;">
-					<h:commandLink
-						action="/private/moduli/lista-moduli.jsf?faces-redirect=true"
-						value="lista moduli" />
-					<br />
-					<h:commandLink action="#{moduliHandler.addElement}"
-						value="aggiungi nuovo" />
+				<p:tab title="Gestione Menu" style="width: 200px; float: left;"
+					rendered="#{menuHandler.clear and loginHandler.isInRole('menu') }">
+					<div style="height: 50px;">
+						<h:commandLink action="#{menuHandler.loadModel}"
+							value="lista menu" />
+						<br />
+						<h:commandLink action="#{menuHandler.addElement}"
+							value="aggiungi nuovo" />
+					</div>
 				</p:tab>
 
-				<p:tab title="Gestione Tipi Modulo"
-					rendered="#{tipiModuloHandler.clear and loginHandler.isInRole('tipi_modulo')}"
-					style="width:200px; float:left;">
-					<h:commandLink
-						action="/private/tipi-modulo/lista-tipi-modulo.jsf?faces-redirect=true"
-						value="lista tipi modulo" />
-					<br />
-					<h:commandLink action="#{tipiModuloHandler.addElement}"
-						value="aggiungi nuovo" />
+				<p:tab title="Gestione Risorse (img, js, swf, css)"
+					rendered="#{resourceHandler.clear and loginHandler.isInRole('risorse')}"
+					style="width: 200px; float: left;">
+					<div style="height: 50px;">
+						<h:commandLink action="#{resourceHandler.loadModel}"
+							value="lista delle risorse" />
+						<br />
+						<h:commandLink action="#{resourceHandler.addElement}"
+							value="aggiungi nuovo" />
+					</div>
 				</p:tab>
+
 			</p:tabView>
+
+			<div style="width: 600px; height: 40px; clear: both;"></div>
+
+
 
 
 		</h:form>

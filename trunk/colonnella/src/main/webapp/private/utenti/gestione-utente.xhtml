@@ -16,15 +16,28 @@
 
 					<h:panelGrid columns="2" style="width: 95%">
 
-						<h:outputLabel value="Nome(*):" for="nome" />
+						<h:outputLabel value="Email(*):" for="nome" />
 						<h:inputText required="true" id="nome"
 							disabled="#{loginHandler.modifica}"
 							value="#{loginHandler.utente.username}" style="width: 100%;" />
 
-						<h:outputLabel value="Password(*):" for="pwd" />
-						<h:inputSecret required="true" id="pwd"
-							value="#{loginHandler.utente.password}" style="width: 100%;" />
+						<h:outputLabel value="Genera Password Casuale ed invia e-mail:"
+							for="rand" />
+						<h:selectBooleanCheckbox id="rand"
+							value="#{loginHandler.utente.random}">
+							<f:ajax event="change" render="pwdLabelP pwdLabelPL" />
+						</h:selectBooleanCheckbox>
 
+						<h:panelGroup id="pwdLabelPL">
+							<h:outputLabel value="Nuova Password:" for="pwd"
+								rendered="#{not loginHandler.utente.random}" />
+						</h:panelGroup>
+						<h:panelGroup id="pwdLabelP">
+							<h:inputSecret id="pwd"
+								value="#{loginHandler.utente.newPassword}"
+								rendered="#{not loginHandler.utente.random}"
+								style="width: 100%;" />
+						</h:panelGroup>
 						<h:outputLabel value="Email(*):" for="email" rendered="false" />
 						<h:inputText required="true" id="email" rendered="false"
 							value="#{loginHandler.utente.email}" style="width: 100%;" />
