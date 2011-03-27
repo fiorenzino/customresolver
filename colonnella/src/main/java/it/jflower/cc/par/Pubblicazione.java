@@ -32,6 +32,8 @@ public class Pubblicazione implements Serializable {
 	private Date data;
 	private Date dal;
 	private Date al;
+	private Date stampaDal;
+	private Date stampaAl;
 	private List<Documento> documenti;
 	private boolean attivo = true;
 
@@ -159,5 +161,23 @@ public class Pubblicazione implements Serializable {
 
 	public void setIdTipo(Long idTipo) {
 		this.idTipo = idTipo;
+	}
+
+	@Transient
+	public Date getStampaDal() {
+		return stampaDal;
+	}
+
+	public void setStampaDal(Date stampaDal) {
+		this.stampaDal = stampaDal;
+	}
+
+	@Transient
+	public Date getStampaAl() {
+		return stampaAl;
+	}
+
+	public void setStampaAl(Date stampaAl) {
+		this.stampaAl = stampaAl;
 	}
 }

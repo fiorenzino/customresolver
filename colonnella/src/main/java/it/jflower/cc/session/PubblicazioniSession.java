@@ -221,6 +221,14 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 			params.put("descrizione", likeParam(ricerca.getOggetto().getNome()));
 			sb.append(" ) ");
 		}
+		if (ricerca.getOggetto().getStampaDal() != null) {
+			sb.append(separator).append(alias).append(".data >= :STAMPADAL");
+			params.put("STAMPADAL", ricerca.getOggetto().getStampaDal());
+		}
+		if (ricerca.getOggetto().getStampaAl() != null) {
+			sb.append(separator).append(alias).append(".data <= :STAMPAAL");
+			params.put("STAMPAAL", ricerca.getOggetto().getStampaAl());
+		}
 
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);

@@ -107,6 +107,7 @@ public class LoginHandler implements Serializable {
 	public String addUser() {
 		modifica = false;
 		this.utente = new Utente();
+		this.utente.setRandom(true);
 		return NEW_OR_EDIT;
 	}
 
@@ -135,6 +136,29 @@ public class LoginHandler implements Serializable {
 		} else {
 			this.utente.getRoles().add("user");
 		}
+		if (this.utente.isRandom()) {
+			String newPassword = UUID.randomUUID().toString().substring(1, 8);
+			this.utente.setPassword(newPassword);
+			String title = "Generazione nuovo account portale Colonnella";
+			String body = "La password dell'utente '" + utente.getUsername()
+					+ "' è : " + newPassword;
+			String result = emailSession.sendEmail("noreply@colonnella.it",
+					body, title, new String[] { utente.getUsername() }, null,
+					new String[] { "fiorenzino@gmail.com" }, null);
+		} else {
+			if (this.utente.getNewPassword() == null
+					|| this.utente.getNewPassword().isEmpty()) {
+				FacesContext
+						.getCurrentInstance()
+						.addMessage(
+								"",
+								new FacesMessage("Password non inserita",
+										"La password deve essere inserita obbligatoriamente!"));
+				return null;
+			} else {
+				this.utente.setPassword(this.utente.getNewPassword());
+			}
+		}
 		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione utente: " + this.utente.getUsername());
 		this.utente = utentiSession.save(this.utente);
@@ -144,6 +168,11 @@ public class LoginHandler implements Serializable {
 	public String modUser(String username) {
 		modifica = true;
 		this.utente = utentiSession.find(username);
+		// this.utente.setRandom(true);
+		// if (this.utente.getPassword() != null
+		// && !this.utente.getPassword().isEmpty()) {
+		// this.utente.setRandom(false);
+		// }
 		return NEW_OR_EDIT;
 	}
 
@@ -168,6 +197,24 @@ public class LoginHandler implements Serializable {
 			this.utente.setRoles(Arrays.asList("admin"));
 		} else {
 			this.utente.getRoles().add("user");
+		}
+		if (this.utente.isRandom()) {
+			String newPassword = UUID.randomUUID().toString().substring(1, 8);
+			this.utente.setPassword(newPassword);
+			String title = "Accesso al portale del Comune di Colonnella: modifica password";
+			String body = "La password dell'utente '" + utente.getUsername()
+					+ "' è : " + newPassword;
+			String result = emailSession.sendEmail("noreply@colonnella.it",
+					body, title, new String[] { utente.getUsername() }, null,
+					new String[] { "fiorenzino@gmail.com" }, null);
+		} else {
+			if (this.utente.getNewPassword() != null
+					&& !this.utente.getNewPassword().isEmpty()) {
+				this.utente.setPassword(this.utente.getNewPassword());
+			} else {
+				logger.info("non e' stato richiesto un cambio password per account: "
+						+ utente.getUsername());
+			}
 		}
 		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
 				"modifica utente: " + this.utente.getUsername());

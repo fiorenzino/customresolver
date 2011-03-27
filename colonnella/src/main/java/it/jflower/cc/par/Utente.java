@@ -18,10 +18,11 @@ public class Utente implements Serializable {
 	private String confirmPassword;
 	private List<String> roles;
 	private Boolean admin;
-	
-//	private String ruolo;
+	private boolean random;
 
-	//	private String email;
+	// private String ruolo;
+
+	// private String email;
 
 	public Utente() {
 		// TODO Auto-generated constructor stub
@@ -65,21 +66,21 @@ public class Utente implements Serializable {
 		return ruoli.toString().substring(1);
 	}
 
-//	public String getRuolo() {
-//		return ruolo;
-//	}
-//
-//	public void setRuolo(String ruolo) {
-//		this.ruolo = ruolo;
-//	}
+	// public String getRuolo() {
+	// return ruolo;
+	// }
+	//
+	// public void setRuolo(String ruolo) {
+	// this.ruolo = ruolo;
+	// }
 
-//	public String getEmail() {
-//		return email;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
+	// public String getEmail() {
+	// return email;
+	// }
+	//
+	// public void setEmail(String email) {
+	// this.email = email;
+	// }
 
 	public boolean isNuovo() {
 		return nuovo;
@@ -118,7 +119,7 @@ public class Utente implements Serializable {
 
 	@Transient
 	public boolean isAdmin() {
-		if ( admin == null ) {
+		if (admin == null) {
 			admin = roles != null && roles.contains("admin");
 		}
 		return admin;
@@ -127,6 +128,14 @@ public class Utente implements Serializable {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	
-	
+
+	@Transient
+	public boolean isRandom() {
+		return random;
+	}
+
+	public void setRandom(boolean random) {
+		this.random = random;
+	}
+
 }

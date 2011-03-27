@@ -17,6 +17,7 @@ import it.jflower.cc.utils.PageUtils;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -270,6 +271,7 @@ public class NewNotizieHandler implements Serializable {
 	public String addNotizia() {
 		this.editMode = false;
 		this.element = new Notizia();
+		this.element.setData(new Date());
 		this.idTipo = 0;
 		return NEW_OR_EDIT;
 	}
