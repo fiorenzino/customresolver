@@ -16,14 +16,15 @@ import java.util.regex.Pattern;
 
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import org.seamframework.tx.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,6 +146,7 @@ public class LoginHandler implements Serializable {
 			String result = emailSession.sendEmail("noreply@colonnella.it",
 					body, title, new String[] { utente.getUsername() }, null,
 					new String[] { "fiorenzino@gmail.com" }, null);
+			logger.info(result);
 		} else {
 			if (this.utente.getNewPassword() == null
 					|| this.utente.getNewPassword().isEmpty()) {
@@ -207,6 +209,7 @@ public class LoginHandler implements Serializable {
 			String result = emailSession.sendEmail("noreply@colonnella.it",
 					body, title, new String[] { utente.getUsername() }, null,
 					new String[] { "fiorenzino@gmail.com" }, null);
+			logger.info(result);
 		} else {
 			if (this.utente.getNewPassword() != null
 					&& !this.utente.getNewPassword().isEmpty()) {
@@ -232,7 +235,7 @@ public class LoginHandler implements Serializable {
 
 	public String reset() {
 		modifica = false;
-		return LIST;
+		return BACK;
 	}
 
 	public String delete() {
@@ -397,6 +400,39 @@ public class LoginHandler implements Serializable {
 
 	public void setModifica(boolean modifica) {
 		this.modifica = modifica;
+	}
+
+	public void checkRoles(ComponentSystemEvent event) {
+
+		String acl = "" + event.getComponent().getAttributes().get("roles");
+
+		for (String a : acl.split(",")) {
+			if ("ANY".equalsIgnoreCase(a)) {
+				if (JSFUtils.getUserName() != null
+						&& JSFUtils.getUserName().length() > 0) {
+					return;
+				}
+			}
+			if (isInRole(a.trim())) {
+				return;
+			}
+		}
+		try {
+			// ExternalContext extCtx = FacesContext.getCurrentInstance()
+			// .getExternalContext();
+			// extCtx.redirect(extCtx.encodeActionURL(JSFUtils.getAbsolutePath()
+			// + "/" + getRedirectUrl()));
+			FacesContext context = FacesContext.getCurrentInstance();
+			ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) context
+					.getApplication().getNavigationHandler();
+			handler.performNavigation("amministrazione");
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Se siamo qui il redirect è fallito.
+			// A questo punto, piuttosto che lasciare andare l'utente dove
+			// non deve.. runtime exception!
+			throw new RuntimeException("Accesso non consentito");
+		}
 	}
 
 }

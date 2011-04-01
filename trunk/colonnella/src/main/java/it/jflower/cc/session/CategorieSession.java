@@ -2,6 +2,7 @@ package it.jflower.cc.session;
 
 import it.jflower.cc.par.type.CategoriaAttivita;
 import it.jflower.cc.par.type.TipoAttivita;
+import it.jflower.cc.par.type.TipoModulo;
 import it.jflower.cc.par.type.TipoPubblicazione;
 
 import java.io.Serializable;
@@ -28,7 +29,8 @@ public class CategorieSession implements Serializable {
 	@Transactional
 	public void updateCategoriaAttivita(CategoriaAttivita categoriaAttivita) {
 		try {
-			categoriaAttivita.setTipoAttivita( em.find(TipoAttivita.class, categoriaAttivita.getTipoAttivita().getId()));
+			categoriaAttivita.setTipoAttivita(em.find(TipoAttivita.class,
+					categoriaAttivita.getTipoAttivita().getId()));
 			em.merge(categoriaAttivita);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,8 +160,8 @@ public class CategorieSession implements Serializable {
 		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
 		try {
 			all = em.createQuery(
-					"select p from CategoriaAttivita p order by p.id")
-					.getResultList();
+					"select p from CategoriaAttivita p where p.attivo = :attivo order by p.id")
+					.setParameter("attivo", true).getResultList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,11 +174,10 @@ public class CategorieSession implements Serializable {
 
 		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
 		try {
-			all = em
-					.createQuery(
-							"select p from CategoriaAttivita p where p.tipoAttivita.id = :TIPO order by p.id")
-					.setParameter("TIPO", id).getResultList();
-
+			all = em.createQuery(
+					"select p from CategoriaAttivita p where p.tipoAttivita.id = :TIPO and p.attivo = :attivo order by p.id")
+					.setParameter("attivo", true).setParameter("TIPO", id)
+					.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -188,8 +189,9 @@ public class CategorieSession implements Serializable {
 
 		List<TipoAttivita> all = new ArrayList<TipoAttivita>();
 		try {
-			all = em.createQuery("select p from TipoAttivita p order by p.id")
-					.getResultList();
+			all = em.createQuery(
+					"select p from TipoAttivita p where p.attivo = :attivo order by p.id")
+					.setParameter("attivo", true).getResultList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,12 +205,26 @@ public class CategorieSession implements Serializable {
 		List<TipoPubblicazione> all = new ArrayList<TipoPubblicazione>();
 		try {
 			all = em.createQuery(
-					"select p from TipoPubblicazione p order by p.id")
-					.getResultList();
+					"select p from TipoPubblicazione p where p.attivo = :attivo order by p.id")
+					.setParameter("attivo", true).getResultList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return all;
 	}
+
+	public List<TipoModulo> getAllTipoModulo() {
+
+		List<TipoModulo> all = new ArrayList<TipoModulo>();
+		try {
+			all = em.createQuery(
+					"select p from TipoModulo p where p.attivo = :attivo order by p.id")
+					.setParameter("attivo", true).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return all;
+	}
+
 }

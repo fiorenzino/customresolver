@@ -79,8 +79,13 @@ public class ModuliSession extends SuperSession<Modulo> implements Serializable 
 		if (ricerca.getOggetto() != null
 				&& ricerca.getOggetto().getNome() != null
 				&& ricerca.getOggetto().getNome().length() > 0) {
-			sb.append(separator).append(alias).append(".nome LIKE :nome ");
+			sb.append(separator + " ( UPPER(").append(alias)
+					.append(".nome) LIKE :nome ");
 			params.put("nome", likeParam(ricerca.getOggetto().getNome()));
+			sb.append(" or UPPER(").append(alias)
+					.append(".oggetto) LIKE :oggetto ");
+			params.put("oggetto", likeParam(ricerca.getOggetto().getNome()));
+			sb.append(" ) ");
 		}
 		if (!count) {
 			sb.append(" order by ").append(alias).append(".").append(orderBy);
