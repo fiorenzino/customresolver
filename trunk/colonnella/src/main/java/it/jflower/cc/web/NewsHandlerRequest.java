@@ -3,6 +3,7 @@ package it.jflower.cc.web;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.web.UiRepeatInterface;
 import it.jflower.cc.par.Notizia;
+import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NewNotizieSession;
 import it.jflower.cc.session.NotizieSession;
@@ -105,6 +106,10 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 
 	public Notizia getInEvidenza() {
 		return newNotizieSession.findEvidenza();
+	}
+
+	public Immagine getInEvidenzaImmagine() {
+		return newNotizieSession.findEvidenzaImmagine();
 	}
 
 	public void setNotizia(Notizia notizia) {
