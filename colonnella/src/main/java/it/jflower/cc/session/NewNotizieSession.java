@@ -3,7 +3,6 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
-import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
 
@@ -174,24 +173,6 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 	}
 
 	@Transactional
-	public Notizia fetch(String id) {
-		Notizia notizia;
-		try {
-			notizia = getEm().find(Notizia.class, id);
-			for (Documento doc : notizia.getDocumenti()) {
-				doc.getFilename();
-			}
-			for (Immagine img : notizia.getImmagini()) {
-				img.getFilename();
-			}
-			return notizia;
-		} catch (Exception e) {
-			return null;
-		}
-
-	}
-
-	@Transactional
 	public void refreshEvidenza(String id) {
 		List<Notizia> ret = null;
 		try {
@@ -209,6 +190,26 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public Immagine findEvidenzaImmagine() {
+		Immagine ret = null;
+		try {
+			List<Notizia> nl = em
+					.createQuery(
+							"select p from Notizia p where p.evidenza = :STATUS")
+					.setParameter("STATUS", true).getResultList();
+			if (nl == null || nl.size() == 0 || nl.get(0).getImmagini() == null
+					|| nl.get(0).getImmagini().size() == 0) {
+				return null;
+			}
+			return nl.get(0).getImmagini().get(0);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
