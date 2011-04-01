@@ -5,9 +5,15 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="roles">
+		<f:attribute name="roles" value="admin" />
+	</ui:define>
+
 	<ui:define name="title">
 		<h:outputText value="Lista Tipi Modulo" />
 	</ui:define>
+
 	<ui:define name="content">
 		<h:form id="central">
 			<center>

@@ -211,13 +211,13 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		if (ricerca.getOggetto() != null
 				&& ricerca.getOggetto().getNome() != null
 				&& ricerca.getOggetto().getNome().length() > 0) {
-			sb.append(separator + " (").append(alias)
-					.append(".nome LIKE :nome ");
+			sb.append(separator + " ( UPPER(").append(alias)
+					.append(".nome) LIKE :nome ");
 			params.put("nome", likeParam(ricerca.getOggetto().getNome()));
-			sb.append(" or ").append(alias).append(".titolo LIKE :titolo ");
+			sb.append(" or UPPER(").append(alias).append(".titolo) LIKE :titolo ");
 			params.put("titolo", likeParam(ricerca.getOggetto().getNome()));
-			sb.append(" or ").append(alias)
-					.append(".descrizione LIKE :descrizione ");
+			sb.append(" or UPPER(").append(alias)
+					.append(".descrizione) LIKE :descrizione ");
 			params.put("descrizione", likeParam(ricerca.getOggetto().getNome()));
 			sb.append(" ) ");
 		}

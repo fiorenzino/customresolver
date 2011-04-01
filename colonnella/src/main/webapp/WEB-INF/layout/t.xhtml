@@ -7,6 +7,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:flw="http://jflower/taglib">
 <f:view contentType="text/html">
+
+	<f:event type="preRenderView"
+		listener="#{loginHandler.checkRoles}" />
+	<ui:insert name="roles">
+		<f:attribute name="roles" value="ANY" />
+	</ui:insert>
+
 	<h:head>
 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

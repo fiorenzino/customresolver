@@ -309,7 +309,7 @@ public abstract class SuperSession<T> {
 	// --- utilita --------------------------
 
 	protected String likeParam(String param) {
-		return "%" + param + "%";
+		return ( "%" + param + "%" ).toUpperCase();
 	}
 
 	@SuppressWarnings("rawtypes")
