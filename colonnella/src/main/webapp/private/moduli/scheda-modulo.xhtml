@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Scheda Modulo" />
+	</ui:define>
+	<ui:define name="roles">
+		<f:attribute name="roles" value="moduli" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<center>
+				<p:panel header="Scheda Modulo">
+					<h:panelGrid columns="2">
+
+						<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Modulo: "
+							style="font-weight: bolder;" />
+						<h:outputText id="tipo" value="#{moduliHandler.element.tipo.nome}" />
+
+						<h:outputLabel for="nome" value="Nome: "
+							style="font-weight: bolder;" />
+						<h:outputText id="nome" value="#{moduliHandler.element.nome}" />
+
+						<h:outputLabel for="oggetto" value="Oggetto: "
+							style="font-weight: bolder;" />
+						<h:outputText id="oggetto"
+							value="#{moduliHandler.element.oggetto}" />
+
+						<h:outputLabel for="data" value="Data di pubblicazione: "
+							style="font-weight: bolder;" />
+						<h:outputText id="data" value="#{moduliHandler.element.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+
+						<h:outputLabel for="autore" value="Autore: "
+							style="font-weight: bolder;" />
+						<h:outputText id="autore" value="#{moduliHandler.element.autore}" />
+
+						<h:outputLabel id="allegatoLabel" for="allegato"
+							value="Allegato: " style="font-weight: bolder;" />
+						<h:outputLink target="_blank"
+							value="#{request.contextPath}/private/moduli/getModulo.jsp"
+							rendered="#{not empty moduliHandler.element.documento.id}">
+							<h:outputText value="scarica" />
+						</h:outputLink>
+						<h:outputText value="n.d."
+							rendered="#{empty moduliHandler.element.documento.id}" />
+
+					</h:panelGrid>
+
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="2">
+					<h:commandButton action="#{moduliHandler.modCurrent}"
+						value="Modifica" />
+				</h:panelGrid>
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
