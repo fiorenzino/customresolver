@@ -36,7 +36,7 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 	}
 
 	protected String getOrderBy() {
-		return "percorso";
+		return "percorso asc";
 	}
 
 	public void setEm(EntityManager em) {
