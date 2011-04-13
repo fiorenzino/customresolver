@@ -37,7 +37,7 @@ public class TipoModuloSession extends SuperSession<TipoModulo> implements
 
 	@Override
 	protected String getOrderBy() {
-		return "nome";
+		return "nome asc";
 	}
 
 }

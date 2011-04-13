@@ -37,7 +37,7 @@ public class TipoInformazioniSession extends SuperSession<TipoInformazione>
 
 	@Override
 	protected String getOrderBy() {
-		return "nome";
+		return "nome asc";
 	}
 
 }

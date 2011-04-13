@@ -160,7 +160,7 @@ public class CategorieSession implements Serializable {
 		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
 		try {
 			all = em.createQuery(
-					"select p from CategoriaAttivita p where p.attivo = :attivo order by p.id")
+					"select p from CategoriaAttivita p where p.attivo = :attivo order by p.categoria asc ")
 					.setParameter("attivo", true).getResultList();
 
 		} catch (Exception e) {
@@ -190,7 +190,7 @@ public class CategorieSession implements Serializable {
 		List<TipoAttivita> all = new ArrayList<TipoAttivita>();
 		try {
 			all = em.createQuery(
-					"select p from TipoAttivita p where p.attivo = :attivo order by p.id")
+					"select p from TipoAttivita p where p.attivo = :attivo order by p.tipo asc")
 					.setParameter("attivo", true).getResultList();
 
 		} catch (Exception e) {
@@ -205,7 +205,7 @@ public class CategorieSession implements Serializable {
 		List<TipoPubblicazione> all = new ArrayList<TipoPubblicazione>();
 		try {
 			all = em.createQuery(
-					"select p from TipoPubblicazione p where p.attivo = :attivo order by p.id")
+					"select p from TipoPubblicazione p where p.attivo = :attivo order by p.nome asc")
 					.setParameter("attivo", true).getResultList();
 
 		} catch (Exception e) {
