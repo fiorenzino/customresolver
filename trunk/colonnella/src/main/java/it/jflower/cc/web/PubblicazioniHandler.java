@@ -242,7 +242,7 @@ public class PubblicazioniHandler implements Serializable {
 			cal.setTime(new Date());
 			this.element.setData(cal.getTime());
 			this.element.setDal(cal.getTime());
-			cal.add(Calendar.DAY_OF_YEAR, 30);
+			cal.add(Calendar.DAY_OF_YEAR, 15);
 			this.element.setAl(cal.getTime());
 		} catch (Exception e) {
 			// logger.error(e.getMessage());
