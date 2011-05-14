@@ -84,7 +84,7 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 	private int totalePubblicazioni(String tipo, String filtro) {
 		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
 				Pubblicazione.class);
-		ricerca.getOggetto().setValidoIl(new Date());
+		// ricerca.getOggetto().setValidoIl(new Date());
 		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoPubblicazione());
 			ricerca.getOggetto().getTipo().setNome(tipo);

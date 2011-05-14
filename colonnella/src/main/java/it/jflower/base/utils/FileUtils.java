@@ -37,7 +37,7 @@ public class FileUtils {
 	}
 
 	public static List<String> getPdfFiles() {
-		return getFilesName("docs", new String[] { "pdf", "PDF" });
+		return getFilesName("docs", new String[] { "pdf", "PDF","doc", "DOC","docx", "DOCX" });
 	}
 
 	public static List<String> getCssFiles() {
