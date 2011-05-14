@@ -81,9 +81,12 @@
 					</h:panelGrid>
 				</p:panel>
 				<br /> <br />
-				<h:panelGrid columns="1">
+				<h:panelGrid columns="2">
 					<h:commandButton value="Modifica"
 						action="#{attivitaHandler.modAttivita(attivitaHandler.attivita.id)}" />
+
+					<h:commandButton id="creaAttivita"
+						action="#{attivitaHandler.addAttivita}" value="Aggiungi" />
 				</h:panelGrid>
 
 			</center>
