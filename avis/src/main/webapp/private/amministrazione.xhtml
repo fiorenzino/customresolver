@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:outputText value="Benvenuto: #{loginHandler.username}"
+				escape="true" />
+			<h:outputText value=" - ruolo: ADMIN"
+				rendered="#{loginHandler.admin}" />
+			<h:outputText value=" - ruolo: USER" rendered="#{loginHandler.user}" />
+			<br />
+			<p:panel header="Gestione Modelli di Pagina"
+				rendered="#{templateHandler.clear and loginHandler.admin}"
+				style="width:200px; float:left;">
+				<div style="height: 50px;"><h:commandLink
+					action="#{templateHandler.loadModel}"
+					value="lista dei modelli disponibili" /> <br />
+				<h:commandLink action="#{templateHandler.addElement}"
+					value="aggiungi nuovo" /></div>
+			</p:panel>
+
+			<p:panel header="Gestione Pagine" style="width:200px; float:left;"
+				rendered="#{pageHandler.clear and loginHandler.admin}">
+				<div style="height: 50px;"><h:commandLink
+					action="#{pageHandler.loadModel}"
+					value="lista delle pagine disponibili" /> <br />
+				<h:commandLink action="#{pageHandler.addPaginaStatica}"
+					value="aggiungi nuova statica" /> <br />
+				<h:commandLink action="#{pageHandler.addPaginaDinamica}"
+					value="aggiungi nuova dinamica" /></div>
+			</p:panel>
+
+
+			<p:panel header="Gestione img,js,swf,css"
+				rendered="#{resourceHandler.clear and loginHandler.admin}"
+				style="width: 200px; float: left;">
+				<div style="height: 50px;"><h:commandLink
+					action="#{resourceHandler.loadModel}" value="lista delle risorse" />
+				<br />
+				<h:commandLink action="#{resourceHandler.addElement}"
+					value="aggiungi nuovo" /></div>
+			</p:panel>
+
+			<div style="width: 600px; height: 40px; clear: both;"></div>
+
+			<p:panel header="Gestione Tipi Informazione"
+				style="width:200px; float:left;">
+				<h:commandLink action="#{tipoInformazioniHandler.loadModel}"
+					value="lista tipi informazione" />
+				<br />
+				<h:commandLink action="#{tipoInformazioniHandler.addElement}"
+					value="aggiungi nuovo" />
+			</p:panel>
+
+			<p:panel header="Gestione Notizie/Archivio"
+				style="width:200px; float:left;">
+				<h:commandLink
+					action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
+					value="lista notizie" />
+				<br />
+				<h:commandLink action="#{notizieHandler.addNotizia}"
+					value="aggiungi nuova" />
+			</p:panel>
+
+
+		</h:form>
+		<div style="width: 600px; height: 40px; clear: both;"></div>
+
+	</ui:define>
+
+</ui:composition>

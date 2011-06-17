@@ -1,0 +1,66 @@
+<h:form xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ul id="menu_a_2livelli" title="Menu' di primo livello">
+
+		<li class="M5cellaunica"><a
+			href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
+		<ul>
+			<li><a href="#{request.contextPath}/logout.jsp" title=""
+				accesskey="2">logout</a></li>
+
+		</ul>
+		</li>
+		<f:verbatim rendered="#{loginHandler.admin}">
+			<li class="M5cellaunica"><a
+				href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
+				title="" accesskey="3">Pagine</a>
+			<ul>
+				<li><a
+					href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
+					title="" accesskey="3">lista</a></li>
+			</ul>
+
+			</li>
+
+			<li class="M5cellaunica"><a
+				href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
+				title="" accesskey="4">Modelli</a>
+			<ul>
+				<li><a
+					href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
+					title="" accesskey="4">lista</a></li>
+			</ul>
+			</li>
+		</f:verbatim>
+		<li class="M5cellaunica"><a
+			href="#{request.contextPath}/private/notizie/lista-notizie.jsf?faces-redirect=true"
+			title="" accesskey="7">Notizie/Archivio</a>
+		<ul>
+			<li><h:commandLink
+				action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
+				value="lista" /></li>
+			<li><h:commandLink action="#{notizieHandler.addNotizia}"
+				value="nuova" /></li>
+			<li><h:commandLink action="#{tipoInformazioniHandler.loadModel}"
+				value="lista tipi" /></li>
+		</ul>
+
+		</li>
+		<li class="M5cellaunica"><a
+			href="#{request.contextPath}/private/risorse/lista-risorse.jsf?faces-redirect=true"
+			title="" accesskey="7">Risorse</a>
+		<ul>
+			<li><h:commandLink
+				action="/private/risorse/lista-risorse.jsf?faces-redirect=true"
+				value="lista" /></li>
+		</ul>
+
+		</li>
+		<li class="M5cellaprima"><a href="#{request.contextPath}/"
+			title="" accesskey="1">Vai al Portale</a></li>
+	</ul>
+</h:form>

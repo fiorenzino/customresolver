@@ -1,0 +1,142 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Scheda Modello" />
+	</ui:define>
+
+	<ui:define name="content">
+		<style>
+		.col1 { width: 35%; text-align: left; }
+		.col2 { width: 65%; text-align: left; }
+		</style>
+		<h:form><center>
+		
+
+			<p:panel header="Scheda Modello">
+				<h:panelGrid columns="2" style="width: 95%" columnClasses="col1,col2">
+
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:outputText id="nome" value="#{templateHandler.element.nome}"
+						style="width: 100%;" />
+
+					<h:outputLabel value="Statico:" for="statico" />
+					<h:panelGroup id="statico">
+						<h:outputText value="SI" rendered="#{templateHandler.element.statico}"/>
+						<h:outputText value="NO" rendered="#{not templateHandler.element.statico}"/>
+					</h:panelGroup>
+
+					<h:outputText value="&lt;hr/&gt;" escape="false" />
+					<h:outputText />
+
+					<h:outputLabel value="Intestazione (apertura):" for="headerStart"
+						rendered="#{not empty templateHandler.element.header_start}" />
+					<h:inputTextarea disabled="true" id="headerStart"
+						value="#{templateHandler.element.header_start}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.header_start}" />
+					<h:outputLabel value="Intestazione (chiusura):" for="headerStop"
+						rendered="#{not empty templateHandler.element.header_stop}" />
+					<h:inputTextarea disabled="true" id="headerStop"
+						value="#{templateHandler.element.header_stop}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.header_stop}" />
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+						rendered="#{not empty templateHandler.element.header_start or not empty templateHandler.element.header_stop}" />
+					<h:outputText 
+						rendered="#{not empty templateHandler.element.header_start or not empty templateHandler.element.header_stop}" />
+
+					<h:outputLabel value="Colonna 1 (apertura):" for="col1Start"
+						rendered="#{not empty templateHandler.element.col1_start}" />
+					<h:inputTextarea disabled="true" id="col1Start"
+						value="#{templateHandler.element.col1_start}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.col1_start}" />
+					<h:outputLabel value="Colonna 1 (chiusura):" for="col1Stop"
+						rendered="#{not empty templateHandler.element.col1_stop}" />
+					<h:inputTextarea disabled="true" id="col1Stop"
+						value="#{templateHandler.element.col1_stop}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.col1_stop}" />
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+						rendered="#{not empty templateHandler.element.col1_start or not empty templateHandler.element.col1_stop}" />
+					<h:outputText 
+						rendered="#{not empty templateHandler.element.col1_start or not empty templateHandler.element.col1_stop}" />
+
+					<h:outputLabel value="Colonna 2 (apertura):" for="col1Start"
+						rendered="#{not empty templateHandler.element.col2_start}" />
+					<h:inputTextarea disabled="true" id="col2Start"
+						value="#{templateHandler.element.col2_start}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.col2_start}" />
+					<h:outputLabel value="Colonna 2 (chiusura):" for="col1Stop"
+						rendered="#{not empty templateHandler.element.col2_stop}" />
+					<h:inputTextarea disabled="true" id="col2Stop"
+						value="#{templateHandler.element.col2_stop}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.col2_stop}" />
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+						rendered="#{not empty templateHandler.element.col2_start or not empty templateHandler.element.col2_stop}" />
+					<h:outputText 
+						rendered="#{not empty templateHandler.element.col2_start or not empty templateHandler.element.col2_stop}" />
+
+					<h:outputLabel value="Colonna 3 (apertura):" for="col3Start"
+						rendered="#{not empty templateHandler.element.col3_start}" />
+					<h:inputTextarea disabled="true" id="col3Start"
+						value="#{templateHandler.element.col3_start}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.col3_start}" />
+					<h:outputLabel value="Colonna 3 (chiusura):" for="col3Stop"
+						rendered="#{not empty templateHandler.element.col3_stop}" />
+					<h:inputTextarea disabled="true" id="col3Stop"
+						value="#{templateHandler.element.col3_stop}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.col3_stop}" />
+
+					<h:outputText value="&lt;hr/&gt;" escape="false"
+						rendered="#{not empty templateHandler.element.col3_start or not empty templateHandler.element.col3_stop}" />
+					<h:outputText 
+						rendered="#{not empty templateHandler.element.col3_start or not empty templateHandler.element.col3_stop}" />
+
+					<h:outputLabel value="Pie' di pagina (apertura):" for="footerStart"
+						rendered="#{not empty templateHandler.element.footer_start}" />
+					<h:inputTextarea disabled="true" id="footerStart"
+						value="#{templateHandler.element.footer_start}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.footer_start}" />
+					<h:outputLabel value="Pie' di pagina (chiusura):" for="footerStop"
+						rendered="#{not empty templateHandler.element.footer_stop}" />
+					<h:inputTextarea disabled="true" id="footerStop"
+						value="#{templateHandler.element.footer_stop}"
+						style="color: black; width: 100%;" escape="false"
+						rendered="#{not empty templateHandler.element.footer_stop}" />
+
+				</h:panelGrid>
+				<br />
+
+			</p:panel>
+
+			<br />
+			<br />
+
+			<h:panelGrid columns="2">
+
+				<h:commandButton action="#{templateHandler.modCurrent}"
+					value="Modifica" immediate="false" />
+
+				<h:commandButton id="reset" action="#{templateHandler.reset}"
+					value="Indietro" immediate="true" rendered="false"/>
+
+			</h:panelGrid></center>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

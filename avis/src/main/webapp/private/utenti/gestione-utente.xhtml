@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Gestione Utente" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<center><p:panel header="Gestione Utente">
+
+				<h:panelGrid columns="2" style="width: 95%">
+
+					<h:outputLabel value="Nome(*):" for="nome" />
+					<h:inputText required="true" id="nome"
+						value="#{loginHandler.utente.username}" style="width: 100%;" />
+
+					<h:outputLabel value="Password(*):" for="pwd" />
+					<h:inputSecret required="true" id="pwd"
+						value="#{loginHandler.utente.password}" style="width: 100%;" />
+
+					<h:outputLabel value="Email(*):" for="email" />
+					<h:inputText required="true" id="email"
+						value="#{loginHandler.utente.email}" style="width: 100%;" />
+
+					<h:outputLabel value="Ruolo(*):" for="ruolo" />
+					<h:selectOneMenu id="ruolo" style="width: 100%;"
+						value="#{loginHandler.utente.ruolo}" required="true">
+						<f:selectItems value="#{propertiesHandler.ruoliItems}" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+				<br />
+
+			</p:panel> <br />
+			<br />
+
+			<h:panelGrid columns="4">
+				<h:commandButton action="#{loginHandler.save}" value="Salva"
+					rendered="#{empty loginHandler.utente.username}" />
+
+				<h:commandButton action="#{loginHandler.update}"
+					value="Salva le modifiche"
+					rendered="#{not empty loginHandler.utente.username}" />
+
+				<h:commandButton action="#{loginHandler.delete}" value="Elimina"
+					immediate="true" rendered="#{not empty loginHandler.utente.username}"
+					onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
+
+				<h:commandButton id="reset" action="#{loginHandler.reset}"
+					value="Annulla" immediate="true" />
+			</h:panelGrid></center>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

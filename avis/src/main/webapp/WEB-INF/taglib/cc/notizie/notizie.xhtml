@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:cc="http://colonnella/taglib" xmlns:flw="http://jflower/taglib">
+
+	<flw:uiRepeatPagedWithParams id="news" label="#{label}"
+		filtro="#{filtro}" currentpage="#{newsHandlerRequest.currentpage}"
+		tipo="notizie" selectedStyleClass="#{selectedStyleClass}"
+		styleClass="#{styleClass}" handler="#{newsHandlerRequest}"
+		width="100%">
+
+		<div><a
+			href="#{request.contextPath}/pagine/notizie/leggiNews?id=#{var.id}"
+			title="#{var.titolo}"> <h:outputText value="#{var.titolo}" /> -
+		<h:outputText value="#{var.data}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText></a> <br />
+		<h:graphicImage value="/img/#{var.first.filename}"
+			rendered="#{var.first != null}" style="float:left; margin: 8px;"
+			width="#{flw:proportionalWidth(var.first.filePath,100,100)}"
+			height="#{flw:proportionalHeight(var.first.filePath,100,100)}" /> <h:outputText
+			value="#{var.anteprima}" /> <br />
+		<br />
+		</div>
+		<div class="clear: both;"></div>
+	</flw:uiRepeatPagedWithParams>
+
+</ui:composition>

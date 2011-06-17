@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+	<ui:define name="title">
+		<h:outputText value="Lista Risorse" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="central">
+			<center><p:panel header="Lista Risorse">
+
+				<h:panelGrid columns="3">
+					<h:outputLabel for="tipo" value="Tipo di risorsa:"
+						rendered="#{loginHandler.admin}" />
+					<h:selectOneMenu id="tipo"
+						value="#{resourceHandler.ricerca.oggetto.tipo}"
+						rendered="#{loginHandler.admin}">
+						<f:selectItems value="#{propertiesHandler.risorseItems}"
+							rendered="#{loginHandler.admin}" />
+					</h:selectOneMenu>
+					<h:outputLabel for="tipo2" value="Tipo di risorsa:"
+						rendered="#{loginHandler.user}" />
+					<h:outputText value="Immagini " id="tipo2"
+						rendered="#{loginHandler.user}" />
+					<p:commandButton action="#{resourceHandler.reset}" value="Cerca"
+						process="@form" update="resourcesList"
+						rendered="#{loginHandler.admin}" />
+				</h:panelGrid>
+				<br />
+
+				<p:dataTable id="resourcesList" rowIndexVar="rowIndex" var="r"
+					value="#{resourceHandler.model}" rows="#{resourceHandler.pageSize}"
+					paginator="true" dynamic="true" lazy="true">
+					<p:column width="50">
+						<center><h:outputText value="#{rowIndex+1} " /></center>
+					</p:column>
+					<p:column width="150">
+						<f:facet name="header">
+							nome
+						</f:facet>
+						<h:outputText value="#{r.nome}" />
+					</p:column>
+					<p:column width="200">
+						<center><h:commandLink value="modifica"
+							action="#{resourceHandler.modElement(r.tipo,r.id)}" /> - <h:commandLink
+							value="elimina"
+							action="#{resourceHandler.delElement(r.tipo,r.id)}" /></center>
+					</p:column>
+				</p:dataTable>
+			</p:panel> <br />
+			<br />
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{resourceHandler.addElement}"
+					value="Aggiungi" />
+				<h:commandButton action="#{resourceHandler.backPage}"
+					value="Indietro" rendered="false" />
+			</h:panelGrid></center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
