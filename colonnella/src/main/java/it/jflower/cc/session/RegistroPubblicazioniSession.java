@@ -60,7 +60,7 @@ public class RegistroPubblicazioniSession extends
 		try {
 			ret = (RegistroPubblicazioni) em
 					.createQuery(
-							"select p from RegistroPubblicazioni p where p.anno = :ANNO")
+							"select p from RegistroPubblicazioni p where p.anno = :ANNO order by id desc")
 					.setParameter("ANNO", anno).setMaxResults(1)
 					.getSingleResult();
 
@@ -94,7 +94,7 @@ public class RegistroPubblicazioniSession extends
 		return null;
 
 	}
-
+	@Transactional
 	public String getNext() {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());

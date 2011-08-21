@@ -38,6 +38,7 @@ public class Pubblicazione implements Serializable {
 	private boolean attivo = true;
 	private String progressivoRegistro;
 	private String enteEmittente;
+	private boolean archivio;
 
 	private Date validoIl;
 
@@ -197,5 +198,14 @@ public class Pubblicazione implements Serializable {
 
 	public void setEnteEmittente(String enteEmittente) {
 		this.enteEmittente = enteEmittente;
+	}
+
+	@Transient
+	public boolean isArchivio() {
+		return archivio;
+	}
+
+	public void setArchivio(boolean archivio) {
+		this.archivio = archivio;
 	}
 }
