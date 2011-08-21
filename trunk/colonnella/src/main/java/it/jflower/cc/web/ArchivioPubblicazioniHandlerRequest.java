@@ -78,6 +78,7 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 		if (filtro != null && filtro.length() > 0) {
 			ricerca.getOggetto().setNome(filtro);
 		}
+		ricerca.getOggetto().setArchivio(true);
 		return pubblicazioniSession.getList(ricerca, startRow, pageSize);
 	}
 
@@ -92,6 +93,7 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 		if (filtro != null && filtro.length() > 0) {
 			ricerca.getOggetto().setNome(filtro);
 		}
+		ricerca.getOggetto().setArchivio(true);
 		return pubblicazioniSession.getListSize(ricerca);
 	}
 

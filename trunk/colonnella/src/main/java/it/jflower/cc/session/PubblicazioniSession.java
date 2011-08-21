@@ -140,6 +140,7 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 			params.put("VALIDO1", ricerca.getOggetto().getValidoIl());
 			params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
 		}
+
 		if (ricerca.getOggetto().getTipo() != null
 				&& ricerca.getOggetto().getTipo().getNome() != null
 				&& ricerca.getOggetto().getTipo().getNome().length() > 0) {
@@ -147,6 +148,13 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 					.append(".tipo.nome = :nomeTipo ");
 			params.put("nomeTipo", ricerca.getOggetto().getTipo().getNome());
 		}
+
+		if (ricerca.getOggetto().isArchivio()) {
+			sb.append(separator).append(alias)
+					.append(".tipo.nome != :nomeTipo ");
+			params.put("nomeTipo", "Pubblicazioni di Matrimonio");
+		}
+
 		if (ricerca.getOggetto().getTipo() != null
 				&& ricerca.getOggetto().getTipo().getId() != null) {
 			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
