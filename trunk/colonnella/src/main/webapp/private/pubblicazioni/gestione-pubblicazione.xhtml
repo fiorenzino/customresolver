@@ -37,6 +37,13 @@
 						<h:inputText id="titolo" cols="20" rows="5"
 							value="#{pubblicazioniHandler.element.titolo}"
 							style="width : 372px;" required="true" />
+							
+						<h:outputLabel for="enteEmittente" value="Ente Emittente:" />
+						<h:inputText id="enteEmittente" cols="20" rows="5"
+							value="#{pubblicazioniHandler.element.enteEmittente}"
+							style="width : 372px;" />
+							
+							
 
 						<h:outputLabel for="dataInsert" value="Data inserimento:" />
 						<p:calendar id="dataInsert"

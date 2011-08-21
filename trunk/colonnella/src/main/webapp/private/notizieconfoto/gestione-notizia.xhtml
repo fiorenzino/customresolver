@@ -134,6 +134,32 @@
 							rendered="#{not empty img.filename or not empty img.id}" />
 					</p:column>
 				</p:dataTable>
+
+				<p:panel header="Caricamento Documenti">
+					<p:fileUpload
+						fileUploadListener="#{notizieHandler.handleFileUpload}"
+						multiple="true" label="Scegli Documenti" allowTypes="*"
+						description="Scegli Documenti" update="docList" />
+				</p:panel>
+				<br />
+				<p:dataTable id="docList" var="doc"
+					value="#{notizieHandler.element.documenti}" rowIndexVar="index">
+					<p:column>
+						<f:facet name="header">ind</f:facet>
+						<h:outputText value="#{index}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">nome</f:facet>
+						<h:outputText value="#{doc.filename}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">vedi</f:facet>
+						<h:commandLink action="#{notizieHandler.removeDocument(index)}"
+							value="elimina"
+							rendered="#{not empty doc.filename or not empty doc.id}" />
+					</p:column>
+				</p:dataTable>
 				<h:panelGrid columns="4">
 
 					<h:commandButton action="#{newNotizieHandler.saveNotizia}"
