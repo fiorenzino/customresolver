@@ -19,7 +19,17 @@
 
 				<p:panel header="Lista Pubblicazioni">
 
-					<h:panelGrid columns="5">
+					<h:panelGrid columns="9">
+						<h:outputLabel for="dataDal" value="Data dal:" />
+						<p:calendar id="dataDal"
+							value="#{pubblicazioniHandler.ricerca.oggetto.stampaDal}"
+							pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+
+						<h:outputLabel for="dataAl" value="Data al:" />
+						<p:calendar id="dataAl"
+							value="#{pubblicazioniHandler.ricerca.oggetto.stampaAl}"
+							pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+
 						<h:outputLabel for="nome" value="Nome:" />
 						<h:inputText id="nome"
 							value="#{pubblicazioniHandler.ricerca.oggetto.nome}" />
@@ -45,7 +55,13 @@
 							<center>
 								<h:outputText value="#{rowIndex+1}" />
 							</center>
+						</p:column>	
+						<p:column>
+							<f:facet name="header">anno/num</f:facet>
+							<h:outputText value="#{pubblicazione.progressivoRegistro}" />
 						</p:column>
+
+
 						<p:column>
 							<f:facet name="header">titolo</f:facet>
 							<h:outputText value="#{pubblicazione.titolo}" />

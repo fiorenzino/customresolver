@@ -16,12 +16,25 @@
 		<h:form prependId="false">
 			<p:panel header="Scheda Modulo">
 				<h:panelGrid columns="2">
+
+
+
+					<h:outputLabel for="annonum" value="anno/num" />
+					<h:outputText id="annonum"
+						value="#{pubblicazioniHandler.element.progressivoRegistro}" />
+
 					<h:outputLabel for="tipo" value="Tipo Pubblicazione" />
 					<h:outputText id="tipo"
 						value="#{pubblicazioniHandler.element.tipo.nome}" />
 					<h:outputLabel for="titolo" value="Titolo:" />
 					<h:outputText id="titolo"
 						value="#{pubblicazioniHandler.element.titolo}" />
+
+					<h:outputLabel for="enteEmittente" value="Ente Emittente:" />
+					<h:outputText id="enteEmittente"
+						value="#{pubblicazioniHandler.element.enteEmittente}" />
+
+
 
 					<h:outputLabel for="data" value="Data pubblicazione:" />
 					<h:outputText id="data"

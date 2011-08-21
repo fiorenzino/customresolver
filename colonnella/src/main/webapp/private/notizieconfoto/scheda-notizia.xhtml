@@ -52,6 +52,25 @@
 						<h:outputText id="contenuto"
 							value="#{newNotizieHandler.notizia.contenuto}" escape="false" />
 					</h:panelGrid>
+					<br />
+					<h2>Documenti</h2>
+
+					<p:dataTable var="doc" rowIndexVar="rowIndex"
+						value="#{newNotizieHandler.notizia.documenti}">
+						<p:column>
+							<f:facet name="header">num</f:facet>
+							<h:outputText value="#{rowIndex+1}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">scarica documento</f:facet>
+							<h:outputLink value="/colonnella/docs/#{doc.filename}"
+								target="_blank">
+								<h:outputText value="#{doc.filename}" />
+							</h:outputLink>
+						</p:column>
+					</p:dataTable>
+					<br />
 
 					<h2>Immagini</h2>
 
