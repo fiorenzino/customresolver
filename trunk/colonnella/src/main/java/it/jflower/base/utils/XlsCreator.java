@@ -47,46 +47,63 @@ public class XlsCreator {
 					sheet = workbook.createSheet("Pagina " + numPage, numPage);
 					Label label = new Label(0, 0, "numero");
 					sheet.addCell(label);
-
-					label = new Label(1, 0, "titolo");
+					
+					label = new Label(1, 0, "anno/num");
 					sheet.addCell(label);
 
-					label = new Label(2, 0, "tipo");
+					label = new Label(2, 0, "titolo");
 					sheet.addCell(label);
 
-					label = new Label(3, 0, "data pubblicazione");
+					label = new Label(3, 0, "tipo");
 					sheet.addCell(label);
 
-					label = new Label(4, 0, "valido dal");
+					label = new Label(4, 0, "data pubblicazione");
 					sheet.addCell(label);
 
-					label = new Label(5, 0, "valido al");
+					label = new Label(5, 0, "valido dal");
 					sheet.addCell(label);
+
+					label = new Label(6, 0, "valido al");
+					sheet.addCell(label);
+					
+					label = new Label(7, 0, "ente emittente");
+					sheet.addCell(label);
+					
+					
 				}
 				logger.info("page: " + numPage + " - num: " + numRow);
 				Pubblicazione pubblicazione = list.get(i);
 
 				Label label = new Label(0, numRow, "" + numRow);
 				sheet.addCell(label);
-
-				label = new Label(1, numRow, "" + pubblicazione.getTitolo());
+				
+				label = new Label(1, numRow, "" + pubblicazione.getProgressivoRegistro());
 				sheet.addCell(label);
 
-				label = new Label(2, numRow, ""
-						+ pubblicazione.getTipo().getNome());
+				label = new Label(2, numRow, "" + pubblicazione.getTitolo());
 				sheet.addCell(label);
 
 				label = new Label(3, numRow, ""
-						+ format.format(pubblicazione.getData()));
+						+ pubblicazione.getTipo().getNome());
 				sheet.addCell(label);
 
 				label = new Label(4, numRow, ""
-						+ format.format(pubblicazione.getDal()));
+						+ format.format(pubblicazione.getData()));
 				sheet.addCell(label);
 
 				label = new Label(5, numRow, ""
+						+ format.format(pubblicazione.getDal()));
+				sheet.addCell(label);
+
+				label = new Label(6, numRow, ""
 						+ format.format(pubblicazione.getAl()));
 				sheet.addCell(label);
+				
+				label = new Label(7, numRow, ""
+						+ format.format(pubblicazione.getEnteEmittente()));
+				sheet.addCell(label);
+				
+				
 			}
 			workbook.write();
 			workbook.close();

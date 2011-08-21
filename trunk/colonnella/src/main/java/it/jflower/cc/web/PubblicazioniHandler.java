@@ -11,12 +11,12 @@ import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.PubblicazioniSession;
+import it.jflower.cc.session.RegistroPubblicazioniSession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -65,6 +65,9 @@ public class PubblicazioniHandler implements Serializable {
 	@Inject
 	OperazioniLogHandler operazioniLogHandler;
 
+	@Inject
+	RegistroPubblicazioniSession registroPubblicazioniSession;
+
 	// ------------------------------------------------
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -81,6 +84,8 @@ public class PubblicazioniHandler implements Serializable {
 	private int scrollerPage = 1;
 
 	private String backPage = BACK;
+
+	private String anno;
 
 	// ------------------------------------------------
 
@@ -282,6 +287,25 @@ public class PubblicazioniHandler implements Serializable {
 
 	// -----------------------------------------------------
 
+	public String allineaRegistro() {
+		boolean result = registroPubblicazioniSession
+				.allineaRegistro(this.anno);
+		if (result) {
+			FacesContext.getCurrentInstance().addMessage(
+					"anno",
+					new FacesMessage("Anno resettato con successo",
+							"Anno resettato con successo."));
+			return null;
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					"anno",
+					new FacesMessage("qualche problemino!",
+							"qualche problemino!"));
+			return null;
+		}
+
+	}
+
 	public String save() {
 		// recupero e preelaborazioni dati in input
 		// nelle sottoclassi!! ovverride!
@@ -294,14 +318,18 @@ public class PubblicazioniHandler implements Serializable {
 									"Selezionare il tipo."));
 			return null;
 		}
+		String indiceReg = registroPubblicazioniSession.getNext();
+		logger.info("nuovo indice registro: " + indiceReg);
+		getElement().setProgressivoRegistro(indiceReg);
 		@SuppressWarnings("unused")
 		Pubblicazione t = getSession().persist(this.element);
+
 		// refresh locale
 		refreshModel();
 		this.element = getSession().find(this.element.getId());
 		// vista di destinazione
 		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
-				"nuova publicazione: " + this.element.getNome());
+				"nuova publicazione: " + this.element.getTitolo());
 		return viewPage();
 	}
 
@@ -324,14 +352,14 @@ public class PubblicazioniHandler implements Serializable {
 		refreshModel();
 		// vista di destinzione
 		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
-				"modifica publicazione: " + this.element.getNome());
+				"modifica publicazione: " + this.element.getTitolo());
 		return viewPage();
 	}
 
 	public String delete() {
 		// operazione su db
 		operazioniLogHandler.save(OperazioniLog.DELETE, JSFUtils.getUserName(),
-				"eliminazione publicazione: " + this.element.getNome());
+				"eliminazione publicazione: " + this.element.getTitolo());
 		getSession().delete(getId(element));
 		// refresh locale
 		refreshModel();
@@ -488,5 +516,13 @@ public class PubblicazioniHandler implements Serializable {
 	public String print() {
 
 		return PRINT_LIST;
+	}
+
+	public String getAnno() {
+		return anno;
+	}
+
+	public void setAnno(String anno) {
+		this.anno = anno;
 	}
 }

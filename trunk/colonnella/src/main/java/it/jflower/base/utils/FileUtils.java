@@ -36,8 +36,10 @@ public class FileUtils {
 		return new ArrayList<String>();
 	}
 
+	// pdf, p7m, doc, docx, xls, xlsx
 	public static List<String> getPdfFiles() {
-		return getFilesName("docs", new String[] { "pdf", "PDF","doc", "DOC","docx", "DOCX" });
+		return getFilesName("docs", new String[] { "pdf", "PDF", "doc", "DOC",
+				"docx", "DOCX", "xls", "XLS", "xlsx", "XLSX", "p7m", "P7M" });
 	}
 
 	public static List<String> getCssFiles() {
@@ -50,7 +52,7 @@ public class FileUtils {
 
 	public static List<String> getImgFiles() {
 		return getFilesName("img", new String[] { "gif", "GIF", "jpg", "JPG",
-				"jpeg", "JPEG" });
+				"jpeg", "JPEG", "png", "PNG" });
 	}
 
 	public static List<String> getFlashFiles() {

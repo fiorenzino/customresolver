@@ -3,6 +3,7 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
+import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoInformazione;
 
 import java.io.Serializable;
@@ -15,6 +16,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.seamframework.tx.Transactional;
 
 @Named
 @RequestScoped
@@ -128,5 +131,16 @@ public class NotizieSession extends SuperSession<Notizia> implements
 			e.printStackTrace();
 		}
 		return ret;
+	}
+
+	@Override
+	@Transactional
+	public Notizia fetch(Object key) {
+		Notizia notizia = find(key);
+		for (Documento doc : notizia.getDocumenti()) {
+			doc.getFilename();
+			doc.getId();
+		}
+		return notizia;
 	}
 }
