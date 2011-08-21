@@ -36,6 +36,8 @@ public class Pubblicazione implements Serializable {
 	private Date stampaAl;
 	private List<Documento> documenti;
 	private boolean attivo = true;
+	private String progressivoRegistro;
+	private String enteEmittente;
 
 	private Date validoIl;
 
@@ -179,5 +181,21 @@ public class Pubblicazione implements Serializable {
 
 	public void setStampaAl(Date stampaAl) {
 		this.stampaAl = stampaAl;
+	}
+
+	public String getProgressivoRegistro() {
+		return progressivoRegistro;
+	}
+
+	public void setProgressivoRegistro(String progressivoRegistro) {
+		this.progressivoRegistro = progressivoRegistro;
+	}
+
+	public String getEnteEmittente() {
+		return enteEmittente;
+	}
+
+	public void setEnteEmittente(String enteEmittente) {
+		this.enteEmittente = enteEmittente;
 	}
 }

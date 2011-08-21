@@ -191,8 +191,9 @@ public class StampaPubblicazioniHandler implements Serializable {
 
 	public XlsDoc export() {
 		Date data = new Date();
-		List<Pubblicazione> lista = (List<Pubblicazione>) getModel()
-				.getWrappedData();
+		// List<Pubblicazione> lista = (List<Pubblicazione>) getModel()
+		// .getWrappedData();
+		List<Pubblicazione> lista = session.getList(ricerca, 0, 0);
 		XlsDoc file = XlsCreator.createPubblicazioniFile(lista,
 				"log_" + data.getTime() + ".xls");
 		return file;

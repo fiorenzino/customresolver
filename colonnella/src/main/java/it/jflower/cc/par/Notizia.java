@@ -99,6 +99,11 @@ public class Notizia implements Serializable {
 		getDocumenti().add(documento);
 	}
 
+	@Transient
+	public int getDocSize() {
+		return getDocumenti().size();
+	}
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<Immagine> getImmagini() {
 		if (this.immagini == null)
@@ -112,6 +117,11 @@ public class Notizia implements Serializable {
 
 	public void addImmagine(Immagine immagine) {
 		getImmagini().add(immagine);
+	}
+
+	@Transient
+	public int getImgSize() {
+		return getImmagini().size();
 	}
 
 	public Date getData() {

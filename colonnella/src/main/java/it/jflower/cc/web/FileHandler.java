@@ -38,9 +38,8 @@ public class FileHandler implements Serializable {
 	// 1 img
 	// 2 swf
 	// 3 js
+	// 4 pdf, p7m, doc, docx, xls, xlsx
 	private int fileType;
-
-	
 
 	public void handleFileUpload(FileUploadEvent event) {
 		// InputStream stream =
@@ -68,11 +67,12 @@ public class FileHandler implements Serializable {
 		case 3:
 			FileUtils.createFile_("js", event.getFile().getFileName(), event
 					.getFile().getContents());
+		case 4:
+			FileUtils.createFile_("docs", event.getFile().getFileName(), event
+					.getFile().getContents());
 		}
-		;
 		FacesMessage msg = new FacesMessage("Succesful", event.getFile()
-				.getFileName()
-				+ " is uploaded.");
+				.getFileName() + " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		setFileType(1);
 		caricaFiles();
@@ -82,6 +82,7 @@ public class FileHandler implements Serializable {
 	// 1 img
 	// 2 swf
 	// 3 js
+	// 3 docs
 
 	public String getTypeString() {
 		switch (fileType) {
@@ -93,6 +94,8 @@ public class FileHandler implements Serializable {
 			return "flash";
 		case 3:
 			return "javascript";
+		case 4:
+			return "docs";
 		default:
 			return "cosa??";
 		}
@@ -154,14 +157,15 @@ public class FileHandler implements Serializable {
 		case 3:
 			this.files = FileUtils.getJsFiles();
 			break;
+		case 4:
+			this.files = FileUtils.getPdfFiles();
+			break;
 		default:
 			this.files = new ArrayList<String>();
 			break;
 		}
 		System.out.println("dim files: " + this.files.size());
 	}
-
-	
 
 	public String getFileName() {
 		return fileName;

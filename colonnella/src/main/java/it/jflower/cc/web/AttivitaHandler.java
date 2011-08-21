@@ -22,6 +22,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -163,6 +165,13 @@ public class AttivitaHandler implements Serializable {
 	}
 
 	public String saveAttivita() {
+		if (catId == 0) {
+			FacesContext.getCurrentInstance().addMessage(
+					"",
+					new FacesMessage("Categoria non valida",
+							"Selezionare la categoria."));
+			return null;
+		}
 		String idTitle = PageUtils.createPageId(this.element.getNome());
 		String idFinal = testId(idTitle);
 		this.element.setId(idFinal);

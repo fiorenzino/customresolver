@@ -52,7 +52,7 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
 		if (this.id != null)
-			this.notizia = notizieSession.find(this.id);
+			this.notizia = notizieSession.fetch(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
 					.getParam("currentpage"));
