@@ -222,4 +222,15 @@ public class Pubblicazione implements Serializable {
 		this.allegati = allegati;
 	}
 
+	public boolean isValido() {
+		// sb.append(separator).append(alias).append(".dal <= :VALIDO1 AND ")
+		// .append(alias).append(".al >= :VALIDO2 ");
+		// params.put("VALIDO1", ricerca.getOggetto().getValidoIl());
+		// params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
+		Date today = new Date();
+		if ((getDal().compareTo(today) < 0) && (getAl().compareTo(today) > 0))
+			return true;
+		return false;
+	}
+
 }

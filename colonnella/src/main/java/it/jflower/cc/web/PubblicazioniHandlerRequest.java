@@ -1,6 +1,7 @@
 package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
+import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.UiRepeatInterface;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.type.TipoPubblicazione;
@@ -46,6 +47,9 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		this.id = paramsHandler.getParam("id");
 		if (this.id != null && !"".equals(this.id))
 			this.pubblicazione = pubblicazioniSession.find(this.id);
+		if (!this.pubblicazione.isValido()) {
+			// REDIRECT TO HOEM PAGE
+		}
 		try {
 			currentpage = Integer.parseInt(paramsHandler
 					.getParam("currentpage"));
@@ -56,7 +60,17 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	@SuppressWarnings("rawtypes")
 	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
-		return ultimePubblicazioni(tipo, filtro, startRow, pageSize);
+		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
+				Pubblicazione.class);
+		ricerca.getOggetto().setValidoIl(new Date());
+		if (tipo != null && tipo.length() > 0) {
+			ricerca.getOggetto().setTipo(new TipoPubblicazione());
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
+		}
+		return pubblicazioniSession.getList(ricerca, startRow, pageSize);
 	}
 
 	public int totalSize(String tipo, String filtro) {
@@ -66,7 +80,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 
 	// -----------------------------------------------------------------------------------
 
-	private List<Pubblicazione> ultimePubblicazioni(String tipo, String filtro,
+	public List<Pubblicazione> ultimePubblicazioni(String tipo, String filtro,
 			int startRow, int pageSize) {
 		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
 				Pubblicazione.class);
