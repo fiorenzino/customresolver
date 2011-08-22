@@ -55,12 +55,12 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 			this.pubblicazione = pubblicazioniSession.find(this.id);
 			if (!this.pubblicazione.isValido()) {
 				// REDIRECT TO HOEM PAGE
-				try {
-					JSFUtils.redirect("/index.jsp");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					logger.info("errore mentre ridirigo in home page!");
-				}
+				// try {
+				// JSFUtils.redirect("/index.jsp");
+				// } catch (IOException e) {
+				// TODO Auto-generated catch block
+				logger.info("errore mentre ridirigo in home page!");
+				// }
 			}
 		}
 		try {
@@ -176,5 +176,4 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		return options;
 	}
 
-	
 }
