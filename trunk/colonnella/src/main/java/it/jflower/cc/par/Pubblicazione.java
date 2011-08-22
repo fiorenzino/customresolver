@@ -12,10 +12,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Pubblicazione implements Serializable {
@@ -103,7 +105,8 @@ public class Pubblicazione implements Serializable {
 		this.data = data;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "Pubblicazione_Documento", joinColumns = @JoinColumn(name = "Pubblicazione_id"), inverseJoinColumns = @JoinColumn(name = "documenti_id"))
 	public List<Documento> getDocumenti() {
 		if (this.documenti == null)
 			this.documenti = new ArrayList<Documento>();
