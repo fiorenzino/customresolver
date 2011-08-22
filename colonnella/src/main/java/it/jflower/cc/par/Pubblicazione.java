@@ -41,6 +41,7 @@ public class Pubblicazione implements Serializable {
 	private String progressivoRegistro;
 	private String enteEmittente;
 	private boolean archivio;
+	private boolean allegati;
 
 	private Date validoIl;
 
@@ -211,4 +212,14 @@ public class Pubblicazione implements Serializable {
 	public void setArchivio(boolean archivio) {
 		this.archivio = archivio;
 	}
+
+	@Transient
+	public boolean isAllegati() {
+		return allegati;
+	}
+
+	public void setAllegati(boolean allegati) {
+		this.allegati = allegati;
+	}
+
 }
