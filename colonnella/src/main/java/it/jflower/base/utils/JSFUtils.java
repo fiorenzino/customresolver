@@ -3,6 +3,7 @@ package it.jflower.base.utils;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.security.Principal;
 import java.util.Collection;
@@ -197,6 +198,39 @@ public class JSFUtils {
 					.toUpperCase().indexOf(nome.toUpperCase()) >= 0;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	public static String getContextPath() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		String cp = fc.getExternalContext().getRequestContextPath();
+		return cp;
+	}
+
+	public static String getAbsolutePath() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		HttpServletRequest httpServletRequest = (HttpServletRequest) fc
+				.getExternalContext().getRequest();
+		String scheme = httpServletRequest.getScheme();
+		String hostName = httpServletRequest.getServerName();
+		int port = httpServletRequest.getServerPort();
+		// Because this is rendered in a <div> layer, portlets for some reason
+		// need the scheme://hostname:port part of the URL prepended.
+		return scheme + "://" + hostName + ":" + port + getContextPath();
+	}
+
+	public static void redirect(String nameUrl) throws IOException {
+		try {
+			String url = getAbsolutePath() + nameUrl;
+			FacesContext context = FacesContext.getCurrentInstance();
+			try {
+				context.getExternalContext().redirect(url);
+				context.responseComplete();
+			} catch (Exception e) {
+				logger.info(e.getMessage());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
