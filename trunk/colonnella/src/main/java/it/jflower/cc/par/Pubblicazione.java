@@ -41,7 +41,7 @@ public class Pubblicazione implements Serializable {
 	private String progressivoRegistro;
 	private String enteEmittente;
 	private boolean archivio;
-	private boolean allegati;
+	private boolean allegati = true;
 
 	private Date validoIl;
 
@@ -222,6 +222,7 @@ public class Pubblicazione implements Serializable {
 		this.allegati = allegati;
 	}
 
+	@Transient
 	public boolean isValido() {
 		// sb.append(separator).append(alias).append(".dal <= :VALIDO1 AND ")
 		// .append(alias).append(".al >= :VALIDO2 ");

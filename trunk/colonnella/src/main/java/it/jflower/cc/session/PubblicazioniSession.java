@@ -129,6 +129,11 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
 				count));
+		String leftOuterJoinAlias = "doc";
+		if ( ! count && ricerca.getOggetto().isAllegati()) {
+			sb.append(" left outer join ").append(alias).append(".documenti ").append(leftOuterJoinAlias).append(" ");
+		}
+		
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
 		params.put("attivo", true);
 
