@@ -44,7 +44,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
-		if (this.id != null && !"".equals(this.id) )
+		if (this.id != null && !"".equals(this.id))
 			this.pubblicazione = pubblicazioniSession.find(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
@@ -71,6 +71,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		Ricerca<Pubblicazione> ricerca = new Ricerca<Pubblicazione>(
 				Pubblicazione.class);
 		ricerca.getOggetto().setValidoIl(new Date());
+		ricerca.getOggetto().setAllegati(false);
 		if (tipo != null && tipo.length() > 0) {
 			ricerca.getOggetto().setTipo(new TipoPubblicazione());
 			ricerca.getOggetto().getTipo().setNome(tipo);
@@ -139,6 +140,21 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		List<String> options = new ArrayList<String>();
 		for (TipoPubblicazione tipo : categorieSession
 				.getAllTipoPubblicazione()) {
+			options.add("<option value=\""
+					+ tipo.getNome()
+					+ "\" "
+					+ (tipo.getNome().equals(this.tipo) ? "selected=\"true\""
+							: "") + ">" + tipo.getNome() + "</option>");
+		}
+		return options;
+	}
+
+	public List<String> getArchivioTipoOptions() {
+		List<String> options = new ArrayList<String>();
+		for (TipoPubblicazione tipo : categorieSession
+				.getAllTipoPubblicazione()) {
+			if (tipo.getNome().contains("Matrimonio"))
+				continue;
 			options.add("<option value=\""
 					+ tipo.getNome()
 					+ "\" "
