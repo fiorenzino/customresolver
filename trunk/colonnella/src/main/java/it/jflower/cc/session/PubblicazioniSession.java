@@ -131,7 +131,8 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 				count));
 		String leftOuterJoinAlias = "doc";
 		if ( ! count && ricerca.getOggetto().isAllegati()) {
-			sb.append(" left outer join ").append(alias).append(".documenti ").append(leftOuterJoinAlias).append(" ");
+			sb.append(" left outer join fetch ").append(alias).append(".documenti ").append(leftOuterJoinAlias).append(" ");
+			sb.append(" left join fetch ").append(alias).append(".tipo tip ");
 		}
 		
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
