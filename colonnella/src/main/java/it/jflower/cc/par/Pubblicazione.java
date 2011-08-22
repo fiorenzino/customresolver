@@ -105,7 +105,7 @@ public class Pubblicazione implements Serializable {
 		this.data = data;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Pubblicazione_Documento", joinColumns = @JoinColumn(name = "Pubblicazione_id"), inverseJoinColumns = @JoinColumn(name = "documenti_id"))
 	public List<Documento> getDocumenti() {
 		if (this.documenti == null)
