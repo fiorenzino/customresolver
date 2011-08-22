@@ -157,8 +157,9 @@ public abstract class SuperSession<T> {
 			if (pageSize > 0) {
 				res.setMaxResults(pageSize);
 			}
-			if (res.getResultList() != null) {
-				result = (List<T>) res.getResultList();
+			List<T> resultList = res.getResultList();
+			if (resultList != null) {
+				result = resultList;
 				// for (T t : result) {
 				// getEm().refresh(t);
 				// }
@@ -176,9 +177,12 @@ public abstract class SuperSession<T> {
 		try {
 			boolean count = true;
 			Query res = getRestrictions(ricerca, getOrderBy(), count);
-			if ((res != null) && (res.getSingleResult() != null))
-				result = (Long) res.getSingleResult();
-			return result.intValue();
+			if (res != null) {
+				if (res.getSingleResult() != null) {
+					result = (Long) res.getSingleResult();
+					return result.intValue();
+				}
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -189,8 +193,9 @@ public abstract class SuperSession<T> {
 	public List<T> getList(int startRow, int pageSize, Query res) {
 		List<T> result = new ArrayList<T>();
 		try {
-			if (res.getResultList() != null)
-				result = (List<T>) res.getResultList();
+			List<T> resultList = (List<T>) res.getResultList();
+			if (resultList != null)
+				result = resultList;
 			// for (T t : result) {
 			// getEm().refresh(t);
 			// }
