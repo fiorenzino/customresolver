@@ -24,6 +24,8 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 	int currentpage;
 	String id;
 	private Notizia notizia;
+	private Notizia evidenzaNotizia;
+	private Immagine evidenzaImmagine;
 
 	@Inject
 	NotizieSession notizieSession;
@@ -105,11 +107,17 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 	}
 
 	public Notizia getInEvidenza() {
-		return newNotizieSession.findEvidenza();
+		if (evidenzaNotizia == null) {
+			evidenzaNotizia = newNotizieSession.findEvidenza();
+		}
+		return evidenzaNotizia;
 	}
 
 	public Immagine getInEvidenzaImmagine() {
-		return newNotizieSession.findEvidenzaImmagine();
+		if ( evidenzaImmagine == null ) {
+			evidenzaImmagine = newNotizieSession.findEvidenzaImmagine();
+		}
+		return evidenzaImmagine;
 	}
 
 	public void setNotizia(Notizia notizia) {
