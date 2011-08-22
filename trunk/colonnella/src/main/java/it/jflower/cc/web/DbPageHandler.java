@@ -50,7 +50,6 @@ public class DbPageHandler implements Serializable {
 
 	public String getPageName() {
 		if ((this.page != null) && (this.page.getId() != null)) {
-			this.page = pageSession.fetchPage(this.page.getId());
 			if ("leggiNews".equals(this.page.getId())) {
 				if (newsHandlerRequest.getNotizia() != null)
 					return newsHandlerRequest.getNotizia().getTitolo();
@@ -59,6 +58,10 @@ public class DbPageHandler implements Serializable {
 				if (attivitaHandlerRequest.getAttivita() != null)
 					return attivitaHandlerRequest.getAttivita().getNome();
 			}
+			if ( this.page.getTitle() != null && this.page.getTitle().length() > 0 ) {
+				return this.page.getTitle();
+			}
+			this.page = pageSession.fetchPage(this.page.getId());
 			return this.page.getTitle();
 		}
 		return "";
