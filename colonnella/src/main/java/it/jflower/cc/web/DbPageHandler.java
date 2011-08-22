@@ -58,10 +58,11 @@ public class DbPageHandler implements Serializable {
 				if (attivitaHandlerRequest.getAttivita() != null)
 					return attivitaHandlerRequest.getAttivita().getNome();
 			}
-			if ( this.page.getTitle() != null && this.page.getTitle().length() > 0 ) {
+			if (this.page.getTitle() != null
+					&& this.page.getTitle().length() > 0) {
 				return this.page.getTitle();
 			}
-			this.page = pageSession.fetchPage(this.page.getId());
+			this.page = pageSession.fetch(this.page.getId());
 			return this.page.getTitle();
 		}
 		return "";
