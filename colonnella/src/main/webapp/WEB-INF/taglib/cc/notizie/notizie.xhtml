@@ -14,7 +14,7 @@
 		handler="#{newsHandlerRequest}" width="100%">
 
 		<div class="#{cellaprimaClass}"><a
-			href="#{request.contextPath}/pagine/comune/sala-stampa/leggiNews?id=#{var.id}"
+			href="#{request.contextPath}/pagine/#{empty contesto ? 'comune/sala-stampa' : contesto}/leggiNews?id=#{var.id}"
 			title="#{var.titolo}" class="arrowLink "> #{var.titolo} </a> <br />
 		#{var.anteprima}<br />
 		<br />
