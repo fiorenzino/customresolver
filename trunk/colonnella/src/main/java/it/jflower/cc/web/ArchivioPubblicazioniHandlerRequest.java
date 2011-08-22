@@ -8,7 +8,6 @@ import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.session.PubblicazioniSession;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -44,7 +43,7 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
-		if (this.id != null)
+		if (this.id != null && !"".equals(this.id))
 			this.pubblicazione = pubblicazioniSession.find(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
