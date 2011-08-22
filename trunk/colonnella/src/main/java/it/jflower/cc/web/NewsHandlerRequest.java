@@ -51,7 +51,7 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
-		if (this.id != null)
+		if (this.id != null && !"".equals(this.id))
 			this.notizia = notizieSession.fetch(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
