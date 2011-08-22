@@ -75,7 +75,6 @@ public class RegistroPubblicazioniSession extends
 				ret.setProgressivo(1L);
 				persist(ret);
 				em.flush();
-				em.clear();
 				return ret.getIndice();
 			} else {
 				// genero il progressivo dell'anno selezionato
@@ -85,7 +84,6 @@ public class RegistroPubblicazioniSession extends
 				next.setProgressivo(nextProgressivo);
 				persist(next);
 				em.flush();
-				em.clear();
 				return next.getIndice();
 			}
 		} catch (Exception e) {
@@ -94,6 +92,7 @@ public class RegistroPubblicazioniSession extends
 		return null;
 
 	}
+
 	@Transactional
 	public String getNext() {
 		Calendar cal = Calendar.getInstance();
@@ -114,9 +113,9 @@ public class RegistroPubblicazioniSession extends
 			for (RegistroPubblicazioni registroPubblicazioni : ret) {
 				logger.info(i + "elimino: " + registroPubblicazioni.getId());
 				em.remove(registroPubblicazioni);
-				em.flush();
 				i++;
 			}
+			em.flush();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
