@@ -8,6 +8,7 @@ import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.session.PubblicazioniSession;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,10 +46,17 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
-		if (this.id != null && !"".equals(this.id))
+		if (this.id != null && !"".equals(this.id)) {
 			this.pubblicazione = pubblicazioniSession.find(this.id);
-		if (!this.pubblicazione.isValido()) {
-			// REDIRECT TO HOEM PAGE
+			if (!this.pubblicazione.isValido()) {
+				// REDIRECT TO HOEM PAGE
+				try {
+					JSFUtils.redirect("http://");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		try {
 			currentpage = Integer.parseInt(paramsHandler
