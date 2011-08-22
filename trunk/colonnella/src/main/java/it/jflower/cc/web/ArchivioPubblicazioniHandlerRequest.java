@@ -140,6 +140,8 @@ public class ArchivioPubblicazioniHandlerRequest implements UiRepeatInterface {
 		List<String> options = new ArrayList<String>();
 		for (TipoPubblicazione tipo : categorieSession
 				.getAllTipoPubblicazione()) {
+			if (tipo.getNome().contains("Matrimonio"))
+				continue;
 			options.add("<option value=\""
 					+ tipo.getNome()
 					+ "\" "

@@ -176,18 +176,5 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		return options;
 	}
 
-	public List<String> getArchivioTipoOptions() {
-		List<String> options = new ArrayList<String>();
-		for (TipoPubblicazione tipo : categorieSession
-				.getAllTipoPubblicazione()) {
-			if (tipo.getNome().contains("Matrimonio"))
-				continue;
-			options.add("<option value=\""
-					+ tipo.getNome()
-					+ "\" "
-					+ (tipo.getNome().equals(this.tipo) ? "selected=\"true\""
-							: "") + ">" + tipo.getNome() + "</option>");
-		}
-		return options;
-	}
+	
 }
