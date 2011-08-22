@@ -157,8 +157,8 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 
 		if (ricerca.getOggetto().isArchivio()) {
 			sb.append(separator).append(alias)
-					.append(".tipo.nome != :nomeTipo ");
-			params.put("nomeTipo", "Pubblicazioni di Matrimonio");
+					.append(".tipo.nome != :nomeTipoSpecial ");
+			params.put("nomeTipoSpecial", "Pubblicazioni di Matrimonio");
 		}
 
 		if (ricerca.getOggetto().getTipo() != null
