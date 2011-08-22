@@ -138,7 +138,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		return q;
 	}
 
-	public Page fetchPage(String id) {
+	public Page fetch(String id) {
 		System.out.println("ENTRO fetchPage: " + id);
 		Page ret = null;
 		try {
@@ -154,12 +154,4 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		return ret;
 	}
 
-	// @Override
-	// public Page find(Object key) {
-	// Page p = super.find(key);
-	// if ( p != null ) {
-	// em.refresh(p.getTemplate());
-	// }
-	// return p;
-	// }
 }

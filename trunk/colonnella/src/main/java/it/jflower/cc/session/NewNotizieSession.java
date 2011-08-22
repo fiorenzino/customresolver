@@ -5,8 +5,10 @@ import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
+import it.jflower.cc.utils.TimeUtils;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.seamframework.tx.Transactional;
+
+import com.mysql.jdbc.TimeUtil;
 
 @Named
 @RequestScoped
@@ -124,6 +128,7 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 		if (n.getImmagini() != null && n.getImmagini().size() == 0) {
 			n.setImmagini(null);
 		}
+		n.setData(TimeUtils.correggiOraMinuti(n.getData()));
 		return n;
 	}
 
@@ -139,6 +144,7 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 		if (n.getImmagini() != null && n.getImmagini().size() == 0) {
 			n.setImmagini(null);
 		}
+		n.setData(TimeUtils.correggiOraMinuti(n.getData()));
 		return n;
 	}
 

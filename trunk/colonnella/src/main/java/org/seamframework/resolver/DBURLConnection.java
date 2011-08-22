@@ -48,8 +48,8 @@ public class DBURLConnection extends URLConnection {
 					url.getFile().lastIndexOf("?"));
 			logger.debug("form: " + this.form);
 			try {
-				this.currentPage = JSFUtils.getBean(PageSession.class)
-						.fetchPage(this.form);
+				this.currentPage = JSFUtils.getBean(PageSession.class).fetch(
+						this.form);
 				JSFUtils.getBean(DbPageHandler.class).setPage(currentPage);
 				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
