@@ -15,13 +15,14 @@
 		summary="Questa tabella contiene la lista delle pubblicazioni dell'Albo pretorio">
 
 		<tr align="left">
-			<th scope="col" class="topleftth">Pubblicazione</th>
-			<th scope="col" class="titoloth">Sintesi</th>
+			<th scope="col" class="topleftth">Numero e Data</th>
+			<!--th scope="col" class="titoloth">Sintesi</th -->
 			<!--th scope="col" class="luogoth">Tipologia</th -->
-			<th scope="col" class="titoloth">Descrizione</th>
-			<th scope="col" class="luogoth">Validita' dal</th>
-			<th scope="col" class="luogoth">Validita' al</th>
-			<th scope="col" class="titoloth">Allegato</th>
+			<th scope="col" class="topleftth">Tipologia</th>
+			<th scope="col" class="titoloth">Titolo e Oggetto</th>
+			<th scope="col" class="luogoth">Periodo Esposizione</th>
+			<!--th scope="col" class="luogoth">Validita' al</th -->
+
 		</tr>
 		<flw:uiRepeatPagedWithParamsTab id="pubblicazioni" label="#{label}"
 			filtro="#{pubblicazioniHandlerRequest.filtro}" tipo="#{tipo}"
@@ -30,25 +31,44 @@
 			handler="#{pubblicazioniHandlerRequest}" width="100%" colspan="7">
 
 			<tr>
-				<td class="cellaprima"><h:outputText value="#{var.data}">
-					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
-				</h:outputText></td>
-				<td>#{var.titolo}</td>
-				<td>#{var.descrizione}</td>
-				<td><h:outputText value="#{var.dal}">
-					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
-				</h:outputText></td>
-				<td><h:outputText value="#{var.al}">
-					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome"/>
-				</h:outputText></td>
-				<td><h:outputLink
-					value="#{request.contextPath}/docs/#{var.documenti.get(0).filename}"
-					alt="lista" title="Scarica pdf" target="_blank"
-					rendered="#{var.docSize >0}">
-					<h:graphicImage value="/images/pdf.gif"
-						alt="Scarica la documentazione in formato PDF (Acrobat Reader)"
-						style="border: 0" />
-				</h:outputLink></td>
+				<td class="cellaprima">n. #{var.progressivoRegistro}<br />del
+					<h:outputText value="#{var.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+					</h:outputText>
+				</td>
+				<td>#{var.tipo.nome}</td>
+				<!-- <td></td> -->
+				<td><b>#{var.titolo}</b> <br />#{var.descrizione} <br /> <br />
+
+					<h:outputText value="Ente emittente:"
+						rendered="#{not empty var.enteEmittente}"
+						style="font-weight: bold;" />
+					<h:outputText value="#{var.enteEmittente}"
+						rendered="#{not empty var.enteEmittente}"
+						style="font-weight: bold;" />  <br /> <br />
+
+
+					<h:outputText value="Documenti:" rendered="#{var.docSize >0}"
+						style="font-weight: bold;" /><br /> <ui:repeat var="docx"
+						value="#{var.documenti}" rendered="#{var.docSize >0}">
+						<h:outputLink value="#{request.contextPath}/docs/#{docx.filename}"
+							alt="#{docx.filename}" title="Scarica pdf: #{docx.filename}"
+							target="_blank">#{docx.filename}
+						</h:outputLink>
+						<br />
+					</ui:repeat>
+				</td>
+				<td>Dal <h:outputText value="#{var.dal}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+					</h:outputText><br /> al <h:outputText value="#{var.al}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+					</h:outputText>
+				</td>
+
+			</tr>
+			<tr>
+				<td colspan="7">
+					<hr /></td>
 			</tr>
 
 		</flw:uiRepeatPagedWithParamsTab>
