@@ -56,9 +56,13 @@ public abstract class SuperSession<T> {
 	@Transactional
 	public T find(Object key) {
 		try {
-			T t = getEm().find(getEntityType(), key);
-			// getEm().refresh(t);
-			return t;
+			T found = getEm().find(getEntityType(), key);
+			if (found == null)
+				return found;
+			else {
+				getEm().refresh(found);
+				return found;
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return null;
@@ -72,7 +76,7 @@ public abstract class SuperSession<T> {
 			if (found == null)
 				return found;
 			else {
-				// getEm().refresh(found);
+				getEm().refresh(found);
 				this.fetchChildren(found);
 				return found;
 			}

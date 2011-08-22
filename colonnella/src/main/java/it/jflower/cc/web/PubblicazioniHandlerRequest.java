@@ -44,7 +44,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		this.tipo = paramsHandler.getParam("tipo");
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
-		if (this.id != null)
+		if (this.id != null && !"".equals(this.id) )
 			this.pubblicazione = pubblicazioniSession.find(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
