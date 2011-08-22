@@ -19,20 +19,26 @@
 
 				<p:panel header="Lista Pubblicazioni">
 
-					<h:panelGrid columns="9">
+					<h:panelGrid columns="7">
 						<h:outputLabel for="dataDal" value="Data dal:" />
 						<p:calendar id="dataDal"
 							value="#{pubblicazioniHandler.ricerca.oggetto.stampaDal}"
 							pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+						<h:outputText value="" />
 
 						<h:outputLabel for="dataAl" value="Data al:" />
 						<p:calendar id="dataAl"
 							value="#{pubblicazioniHandler.ricerca.oggetto.stampaAl}"
 							pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 
+						<h:outputText value="" />
+
+						<h:outputText value="" />
+
 						<h:outputLabel for="nome" value="Nome:" />
 						<h:inputText id="nome"
 							value="#{pubblicazioniHandler.ricerca.oggetto.nome}" />
+						<h:outputText value="" />
 
 
 						<h:outputLabel value="Seleziona tipo" />
@@ -42,12 +48,14 @@
 							<f:selectItems
 								value="#{propertiesHandler.tipiPubblicazioneItems}" />
 						</h:selectOneMenu>
+						<h:outputText value="" />
+
 						<h:commandButton action="#{pubblicazioniHandler.cerca}"
 							value="cerca" />
 					</h:panelGrid>
 					<br />
 
-					<p:dataTable id="pubblicazioniList" var="pubblicazione"
+					<p:dataTable id="pubblicazioniList" var="pubblicazione" 
 						value="#{pubblicazioniHandler.model}" rowIndexVar="rowIndex"
 						rows="#{pubblicazioniHandler.pageSize}" paginator="true"
 						dynamic="true" lazy="true">
