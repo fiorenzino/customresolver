@@ -18,6 +18,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Named
 @RequestScoped
 public class PubblicazioniHandlerRequest implements UiRepeatInterface {
@@ -27,6 +30,8 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 	int currentpage;
 	String id;
 	private Pubblicazione pubblicazione;
+
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	PubblicazioniSession pubblicazioniSession;
@@ -54,7 +59,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 					JSFUtils.redirect("/index.jsp");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.info("errore mentre ridirigo in home page!");
 				}
 			}
 		}

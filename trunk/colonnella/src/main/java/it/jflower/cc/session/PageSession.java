@@ -139,7 +139,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	}
 
 	public Page fetch(String id) {
-		System.out.println("ENTRO fetchPage: " + id);
+		logger.info("ENTRO fetchPage: " + id);
 		Page ret = null;
 		try {
 			ret = (Page) em
@@ -148,9 +148,9 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 					.setParameter("ID", id).setMaxResults(1).getSingleResult();
 
 		} catch (Exception e) {
-			// e.printStackTrace();
+			logger.info(e.getMessage());
 		}
-		System.out.println("ESCO fetchPage: " + id);
+		logger.info("ESCO fetchPage: " + id);
 		return ret;
 	}
 
