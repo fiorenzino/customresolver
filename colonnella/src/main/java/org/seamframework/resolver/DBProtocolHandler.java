@@ -7,8 +7,14 @@ import java.net.URLStreamHandler;
 
 public class DBProtocolHandler extends URLStreamHandler {
 
+	DBURLConnection dburlConnection = null;
+	
 	@Override
 	protected URLConnection openConnection(URL u) throws IOException {
-		return new DBURLConnection(u);
+		if ( dburlConnection == null ) {
+			this.dburlConnection = new DBURLConnection(u);
+		}
+		return dburlConnection;
 	}
 }
+  

@@ -10,14 +10,21 @@
 		<param-value>colonnella</param-value>
 	</context-param>
 	<context-param>
-  		<param-name>com.sun.faces.autoCompleteOffOnViewState</param-name>
-  		<param-value>false</param-value>
+		<param-name>com.sun.faces.autoCompleteOffOnViewState</param-name>
+		<param-value>false</param-value>
 	</context-param>
 
 	<context-param>
 		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
 		<param-value>/WEB-INF/taglib/jflower/jflower.taglib.xml;/WEB-INF/taglib/cc/cc.taglib.xml</param-value>
 	</context-param>
+
+<!-- 
+	<context-param>
+		<param-name>facelets.REFRESH_PERIOD</param-name>
+		<param-value>1</param-value>
+	</context-param>
+ -->
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -80,9 +87,7 @@
 		<web-resource-collection>
 			<web-resource-name>All Page</web-resource-name>
 			<url-pattern>/private/*</url-pattern>
-			<!--
-			<url-pattern>/nessuno/*</url-pattern>
-			-->
+			<!-- <url-pattern>/nessuno/*</url-pattern> -->
 		</web-resource-collection>
 		<auth-constraint>
 			<!-- Anyone with one of the listed roles may access this area -->
@@ -108,16 +113,10 @@
 	<security-role>
 		<role-name>user</role-name>
 	</security-role>
-	<!--
-		<error-page>
-		<exception-type>java.lang.NullPointerException</exception-type>
-		<location>/error.html</location> </error-page> <error-page>
-		<exception-type>java.lang.Exception</exception-type>
-		<location>/error.html</location> </error-page> <error-page>
-		<error-code>500</error-code> <location>/error.html</location>
-		</error-page> <error-page> <error-code>404</error-code>
-		<location>/error.html</location> </error-page> <error-page>
-		<error-code>400</error-code> <location>/error.html</location>
-		</error-page>
-	-->
+	<!-- <error-page> <exception-type>java.lang.NullPointerException</exception-type> 
+		<location>/error.html</location> </error-page> <error-page> <exception-type>java.lang.Exception</exception-type> 
+		<location>/error.html</location> </error-page> <error-page> <error-code>500</error-code> 
+		<location>/error.html</location> </error-page> <error-page> <error-code>404</error-code> 
+		<location>/error.html</location> </error-page> <error-page> <error-code>400</error-code> 
+		<location>/error.html</location> </error-page> -->
 </web-app>
