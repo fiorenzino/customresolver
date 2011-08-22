@@ -75,4 +75,12 @@
 		</copy>
 	</target>
 
+	<target name="update.persistence">
+		<copy overwrite="true" todir="${deploy.dir}/${ant.project.name}/WEB-INF/classes/META-INF" >
+			<fileset dir="${basedir}/src/main/resources/META-INF">
+				<include name="persistence.xml" />
+			</fileset>
+		</copy>
+	</target>
+
 </project>
