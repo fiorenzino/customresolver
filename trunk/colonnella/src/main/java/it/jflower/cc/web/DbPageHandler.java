@@ -50,7 +50,7 @@ public class DbPageHandler implements Serializable {
 
 	public String getPageName() {
 		if ((this.page != null) && (this.page.getId() != null)) {
-			this.page = pageSession.find(this.page.getId());
+			this.page = pageSession.fetchPage(this.page.getId());
 			if ("leggiNews".equals(this.page.getId())) {
 				if (newsHandlerRequest.getNotizia() != null)
 					return newsHandlerRequest.getNotizia().getTitolo();
