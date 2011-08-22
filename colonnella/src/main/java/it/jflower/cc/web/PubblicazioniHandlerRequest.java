@@ -51,7 +51,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 			if (!this.pubblicazione.isValido()) {
 				// REDIRECT TO HOEM PAGE
 				try {
-					JSFUtils.redirect("/pagine/index");
+					JSFUtils.redirect("/index.jsp");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
