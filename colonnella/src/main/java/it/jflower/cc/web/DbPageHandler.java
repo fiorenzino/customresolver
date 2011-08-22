@@ -53,16 +53,23 @@ public class DbPageHandler implements Serializable {
 
 	public String getPageName() {
 		if ((this.page != null) && (this.page.getId() != null)) {
-			if ("leggiNews".equals(this.page.getId())) {
-				if (newsHandlerRequest.getNotizia() != null)
+			if ("leggiNews".toLowerCase().equals(
+					this.page.getId().toLowerCase())) {
+				if (newsHandlerRequest.getNotizia() != null
+						&& newsHandlerRequest.getNotizia().getTitolo() != null)
 					return newsHandlerRequest.getNotizia().getTitolo();
 			}
-			if ("leggiAttivita".equals(this.page.getId())) {
-				if (attivitaHandlerRequest.getAttivita() != null)
+			if ("leggiAttivita".toLowerCase().equals(
+					this.page.getId().toLowerCase())) {
+				if (attivitaHandlerRequest.getAttivita() != null
+						&& attivitaHandlerRequest.getAttivita().getNome() != null)
 					return attivitaHandlerRequest.getAttivita().getNome();
 			}
-			if ("leggiPubblicazione".equals(this.page.getId())) {
-				if (pubblicazioniHandlerRequest.getPubblicazione() != null)
+			if ("leggiPubblicazione".toLowerCase().equals(
+					this.page.getId().toLowerCase())) {
+				if (pubblicazioniHandlerRequest.getPubblicazione() != null
+						&& pubblicazioniHandlerRequest.getPubblicazione()
+								.getNome() != null)
 					return pubblicazioniHandlerRequest.getPubblicazione()
 							.getNome();
 			}

@@ -95,8 +95,8 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 		if (ricerca.getOggetto().getCategoria() != null
 				&& ricerca.getOggetto().getCategoria().getCategoria() != null
 				&& ricerca.getOggetto().getCategoria().getCategoria().length() > 0) {
-			sb.append(separator).append(alias)
-					.append(".categoria.categoria LIKE :categoria ");
+			sb.append(separator).append("UPPER(" + alias)
+					.append(".categoria.categoria) LIKE :categoria ");
 			params.put("categoria", likeParam(ricerca.getOggetto()
 					.getCategoria().getCategoria()));
 		}
