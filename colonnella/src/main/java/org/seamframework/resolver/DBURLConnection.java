@@ -4,6 +4,7 @@ import it.jflower.base.utils.JSFUtils;
 import it.jflower.cc.par.Page;
 import it.jflower.cc.session.PageSession;
 import it.jflower.cc.utils.PageUtils;
+import it.jflower.cc.web.DbPageHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +50,7 @@ public class DBURLConnection extends URLConnection {
 			try {
 				this.currentPage = JSFUtils.getBean(PageSession.class)
 						.fetchPage(this.form);
+				JSFUtils.getBean(DbPageHandler.class).setPage(currentPage);
 				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
 
