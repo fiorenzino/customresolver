@@ -6,27 +6,27 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-                        <property name="hibernate.hbm2ddl.auto" value="update" />
-                        <property name="hibernate.connection.driver_class" value="org.gjt.mm.mysql.Driver" />
-                        <property name="hibernate.connection.username" value="colonnella" />
-                        <property name="hibernate.connection.password" value="colonnella" />
-                        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/colonnella" />
-                        <property name="hibernate.jdbc.batch_size" value="0" />
-                        <property name="hibernate.shared-cache-mode" value="none" />
-                        <property name="hibernate.jdbc.use_scrollable_resultsets"
-                                value="false" />
-                        <!-- <property name="hibernate.show_sql" value="true" /> <property name="hibernate.format_sql" 
-                                value="true" /> -->
-                                
-                               <!-- 
-                        <property name="hibernate.c3p0.idle_test_period" value="100" /> 
-                        <property name="hibernate.c3p0.timeout" value="1800" /> 
-                        <property name="hibernate.c3p0.min_size" value="5" />
-                         <property name="hibernate.c3p0.max_size" value="100" /> 
-                        <property name="hibernate.c3p0.preferredTestQuery" value="select 1;" />
-                          <property name="hibernate.c3p0.max_statements" value="30" /> 
-                                -->
-                         <property name="hibernate.c3p0.acquire_increment" value="3" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.connection.driver_class" value="org.gjt.mm.mysql.Driver" />
+			<property name="hibernate.connection.username" value="colonnella" />
+			<property name="hibernate.connection.password" value="colonnella" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/colonnella" />
+			<property name="hibernate.jdbc.batch_size" value="0" />
+			<property name="hibernate.shared-cache-mode" value="none" />
+			<property name="hibernate.jdbc.use_scrollable_resultsets"
+				value="false" />
+			<!-- -->
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+
+			<property name="hibernate.c3p0.acquire_increment" value="3" />
+			<property name="hibernate.c3p0.idle_test_period" value="100" />
+			<property name="hibernate.c3p0.timeout" value="600" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.preferredTestQuery" value="select 1" />
 
 		</properties>
 	</persistence-unit>

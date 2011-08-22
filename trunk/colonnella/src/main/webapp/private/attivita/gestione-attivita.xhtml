@@ -23,7 +23,7 @@
 						<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Attivita'" />
 						<h:panelGroup>
 							<h:selectOneMenu id="tipo" value="#{attivitaHandler.tipoId}"
-								style="width: 100%;">
+								style="width: 100%;" required="true" requiredMessage="E' obbligatorio specificare il tipo di attivita'">
 								<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
 								<p:ajax actionListener="#{propertiesHandler.cambioTipo}"
 									update="categoria messages" event="change" process="@this" />
@@ -33,14 +33,14 @@
 						<h:outputLabel id="categoriaLabel" for="categoria"
 							value="Categoria Attivita'" />
 						<h:selectOneMenu id="categoria" value="#{attivitaHandler.catId}"
-							style="width: 100%;">
+							style="width: 100%;" required="true" requiredMessage="E' obbligatorio specificare la categoria dell'attivita'">
 							<f:selectItems value="#{propertiesHandler.categorieByTipoItems}" />
 						</h:selectOneMenu>
 
 
 						<h:outputLabel for="nome" value="Nome Attivita'" />
 						<h:inputText id="nome" value="#{attivitaHandler.attivita.nome}"
-							required="true" style="width: 100%;" />
+							required="true" style="width: 100%;" requiredMessage="E' obbligatorio specificare il nome dell'attivita'"/>
 
 						<h:outputLabel for="indirizzo" value="Indirizzo:" />
 						<h:inputTextarea id="indirizzo" cols="20" rows="5"
