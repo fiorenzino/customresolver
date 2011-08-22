@@ -4,6 +4,7 @@ import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.attachment.Documento;
+import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
 
 import java.io.Serializable;
@@ -140,6 +141,10 @@ public class NotizieSession extends SuperSession<Notizia> implements
 		for (Documento doc : notizia.getDocumenti()) {
 			doc.getFilename();
 			doc.getId();
+		}
+		for (Immagine img : notizia.getImmagini()) {
+			img.getFilename();
+			img.getId();
 		}
 		return notizia;
 	}
