@@ -14,6 +14,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -85,6 +87,7 @@ public class Notizia implements Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "Notizia_Documento", joinColumns = @JoinColumn(name = "Notizia_id"), inverseJoinColumns = @JoinColumn(name = "documenti_id"))
 	public List<Documento> getDocumenti() {
 		if (this.documenti == null)
 			this.documenti = new ArrayList<Documento>();
@@ -104,7 +107,8 @@ public class Notizia implements Serializable {
 		return getDocumenti().size();
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "Notizia_Immagine", joinColumns = @JoinColumn(name = "Notizia_id"), inverseJoinColumns = @JoinColumn(name = "immagini_id"))
 	public List<Immagine> getImmagini() {
 		if (this.immagini == null)
 			this.immagini = new ArrayList<Immagine>();
