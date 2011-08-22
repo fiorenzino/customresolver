@@ -57,7 +57,7 @@ public abstract class SuperSession<T> {
 	public T find(Object key) {
 		try {
 			T t = getEm().find(getEntityType(), key);
-			getEm().refresh(t);
+			// getEm().refresh(t);
 			return t;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -72,7 +72,7 @@ public abstract class SuperSession<T> {
 			if (found == null)
 				return found;
 			else {
-				getEm().refresh(found);
+				// getEm().refresh(found);
 				this.fetchChildren(found);
 				return found;
 			}
@@ -134,9 +134,9 @@ public abstract class SuperSession<T> {
 			ricercaNulla.setOggetto(null);
 			result = (List<T>) getRestrictions(ricercaNulla, getOrderBy(),
 					count).getResultList();
-			for (T t : result) {
-				getEm().refresh(t);
-			}
+			// for (T t : result) {
+			// getEm().refresh(t);
+			// }
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -159,9 +159,9 @@ public abstract class SuperSession<T> {
 			}
 			if (res.getResultList() != null) {
 				result = (List<T>) res.getResultList();
-				for (T t : result) {
-					getEm().refresh(t);
-				}
+				// for (T t : result) {
+				// getEm().refresh(t);
+				// }
 			}
 
 		} catch (Exception e) {
@@ -191,9 +191,9 @@ public abstract class SuperSession<T> {
 		try {
 			if (res.getResultList() != null)
 				result = (List<T>) res.getResultList();
-			for (T t : result) {
-				getEm().refresh(t);
-			}
+			// for (T t : result) {
+			// getEm().refresh(t);
+			// }
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -309,7 +309,7 @@ public abstract class SuperSession<T> {
 	// --- utilita --------------------------
 
 	protected String likeParam(String param) {
-		return ( "%" + param + "%" ).toUpperCase();
+		return ("%" + param + "%").toUpperCase();
 	}
 
 	@SuppressWarnings("rawtypes")
