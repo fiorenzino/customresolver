@@ -3,6 +3,7 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Page;
+import it.jflower.cc.par.RegistroPubblicazioni;
 import it.jflower.cc.utils.DbUtils;
 import it.jflower.cc.utils.PageUtils;
 
@@ -136,14 +137,29 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 
 		return q;
 	}
-	
-//	@Override
-//	public Page find(Object key) {
-//		Page p = super.find(key);
-//		if ( p != null ) {
-//			em.refresh(p.getTemplate());
-//		}
-//		return p;
-//	}
-}
 
+	public Page fetchPage(String id) {
+		System.out.println("ENTRO fetchPage: " + id);
+		Page ret = null;
+		try {
+			ret = (Page) em
+					.createQuery(
+							"select p from Page p left join fetch p.template ti left join fetch ti.template t where p.id = :ID ")
+					.setParameter("ID", id).setMaxResults(1).getSingleResult();
+
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+		System.out.println("ESCO fetchPage: " + id);
+		return ret;
+	}
+
+	// @Override
+	// public Page find(Object key) {
+	// Page p = super.find(key);
+	// if ( p != null ) {
+	// em.refresh(p.getTemplate());
+	// }
+	// return p;
+	// }
+}

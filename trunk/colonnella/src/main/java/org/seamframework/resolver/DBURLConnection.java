@@ -47,11 +47,11 @@ public class DBURLConnection extends URLConnection {
 					url.getFile().lastIndexOf("?"));
 			logger.debug("form: " + this.form);
 			try {
-				this.currentPage = JSFUtils.getBean(PageSession.class).find(
-						this.form);
+				this.currentPage = JSFUtils.getBean(PageSession.class)
+						.fetchPage(this.form);
 				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				logger.debug(" DBUTL EXC 1");
