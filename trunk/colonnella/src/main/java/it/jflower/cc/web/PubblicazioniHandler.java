@@ -318,12 +318,14 @@ public class PubblicazioniHandler implements Serializable {
 									"Selezionare il tipo."));
 			return null;
 		}
-		String indiceReg = registroPubblicazioniSession.getNext();
-		logger.info("nuovo indice registro: " + indiceReg);
-		getElement().setProgressivoRegistro(indiceReg);
+
 		@SuppressWarnings("unused")
 		Pubblicazione t = getSession().persist(this.element);
 
+		String indiceReg = registroPubblicazioniSession.getNext();
+		logger.info("nuovo indice registro: " + indiceReg);
+		getElement().setProgressivoRegistro(indiceReg);
+		getSession().update(this.element);
 		// refresh locale
 		refreshModel();
 		this.element = getSession().find(this.element.getId());
