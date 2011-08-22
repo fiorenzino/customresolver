@@ -5,6 +5,7 @@ import it.jflower.cc.par.type.TipoPubblicazione;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -228,8 +229,16 @@ public class Pubblicazione implements Serializable {
 		// .append(alias).append(".al >= :VALIDO2 ");
 		// params.put("VALIDO1", ricerca.getOggetto().getValidoIl());
 		// params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
-		Date today = new Date();
-		if ((getDal().compareTo(today) < 0) && (getAl().compareTo(today) > 0))
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY,0);
+		cal.set(Calendar.MINUTE,0);
+		cal.set(Calendar.SECOND,1);
+		Date from = cal.getTime();
+		cal.set(Calendar.HOUR_OF_DAY,23);
+		cal.set(Calendar.MINUTE,59);
+		cal.set(Calendar.SECOND,59);
+		Date to = cal.getTime();
+		if ( getDal().after(from) && getAl().before(to) )
 			return true;
 		return false;
 	}
