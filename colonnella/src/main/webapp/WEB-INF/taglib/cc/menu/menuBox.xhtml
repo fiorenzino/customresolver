@@ -29,9 +29,11 @@
 	<div class="rbtopr">
 
 	<div class="titolo"><f:verbatim rendered="#{not cc:showMenu(open,menuGroup.nome)}">
+		<h3>
 		<a href="#{request.contextPath}/pagine/#{menuGroup.nome}">
-		<h3>#{menuGroup.nome}</h3>
+		#{menuGroup.nome}
 		</a>
+		</h3>
 	</f:verbatim> <f:verbatim rendered="#{cc:showMenu(open,menuGroup.nome)}">
 		<h3>#{menuGroup.nome}</h3>
 	</f:verbatim>
