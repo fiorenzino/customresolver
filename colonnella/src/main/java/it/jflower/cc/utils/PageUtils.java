@@ -88,7 +88,7 @@ public class PageUtils {
 		b.append(newline);
 
 		if (t.getHeader_stop() != null && t.getHeader_stop().length() > 0) {
-			b.append(i.getHeader());
+			b.append(i.getHeader() == null ? "" : i.getHeader());
 			b.append(newline);
 			b.append(t.getHeader_stop());
 			b.append(newline);
@@ -97,7 +97,7 @@ public class PageUtils {
 		b.append(t.getCol1_start() == null ? "" : t.getCol1_start());
 		b.append(newline);
 		if (t.getCol1_stop() != null && t.getCol1_stop().length() > 0) {
-			b.append(i.getCol1());
+			b.append(i.getCol1() == null ? "" : i.getCol1());
 			b.append(newline);
 			b.append(t.getCol1_stop());
 			b.append(newline);
@@ -106,7 +106,7 @@ public class PageUtils {
 		b.append(t.getCol2_start() == null ? "" : t.getCol2_start());
 		b.append(newline);
 		if (t.getCol2_stop() != null && t.getCol2_stop().length() > 0) {
-			b.append(i.getCol2());
+			b.append(i.getCol2() == null ? "" : i.getCol2());
 			b.append(newline);
 			b.append(t.getCol2_stop());
 			b.append(newline);
@@ -115,7 +115,7 @@ public class PageUtils {
 		b.append(t.getCol3_start() == null ? "" : t.getCol3_start());
 		b.append(newline);
 		if (t.getCol3_stop() != null && t.getCol3_stop().length() > 0) {
-			b.append(i.getCol3());
+			b.append(i.getCol3() == null ? "" : i.getCol3());
 			b.append(newline);
 			b.append(t.getCol3_stop());
 			b.append(newline);
@@ -124,7 +124,7 @@ public class PageUtils {
 		b.append(t.getFooter_start() == null ? "" : t.getFooter_start());
 		b.append(newline);
 		if (t.getFooter_stop() != null && t.getFooter_stop().length() > 0) {
-			b.append(i.getFooter());
+			b.append(i.getFooter() == null ? "" : i.getFooter());
 			b.append(newline);
 			b.append(t.getFooter_stop());
 			b.append(newline);
