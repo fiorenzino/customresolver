@@ -1,14 +1,12 @@
 package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
-import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.web.UiRepeatInterface;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.CategorieSession;
 import it.jflower.cc.session.PubblicazioniSession;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,14 +51,17 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 		this.id = paramsHandler.getParam("id");
 		if (this.id != null && !"".equals(this.id)) {
 			this.pubblicazione = pubblicazioniSession.find(this.id);
-			if (!this.pubblicazione.isValido()) {
-				// REDIRECT TO HOEM PAGE
-				// try {
-				// JSFUtils.redirect("/index.jsp");
-				// } catch (IOException e) {
-				// TODO Auto-generated catch block
-				logger.info("errore mentre ridirigo in home page!");
-				// }
+			if ( this.pubblicazione.getTipo().getNome() != null && this.pubblicazione.getTipo().getNome().toUpperCase().contains("MATRIMONIO") && !this.pubblicazione.isValido()) {
+				Pubblicazione scaduta = new Pubblicazione();
+				scaduta.setTipo(this.pubblicazione.getTipo());
+				scaduta.setTitolo("Pubblicazione non consultabile pubblicamente");
+				scaduta.setDescrizione("La presente pubblicazioine non e' consultabile pubblicamente in quanto scaduti i termini di visualizzazione. Si consiglia di rivolgersi presso gli uffici comunali per poterla visionare.");
+				scaduta.setAutore("Comune di Colonnella");
+				scaduta.setProgressivoRegistro(this.pubblicazione.getProgressivoRegistro());
+				scaduta.setDal(this.pubblicazione.getDal());
+				scaduta.setAl(this.pubblicazione.getAl());
+				scaduta.setData(this.pubblicazione.getData());
+				this.pubblicazione = scaduta;
 			}
 		}
 		try {

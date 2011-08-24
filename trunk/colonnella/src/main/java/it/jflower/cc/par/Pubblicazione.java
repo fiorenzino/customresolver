@@ -13,12 +13,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import javax.persistence.JoinColumn;
+
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Pubblicazione implements Serializable {
@@ -56,6 +60,8 @@ public class Pubblicazione implements Serializable {
 	}
 
 	@ManyToOne
+	@Fetch(FetchMode.JOIN)
+	@BatchSize(size = 10)
 	public TipoPubblicazione getTipo() {
 		if (tipo == null)
 			tipo = new TipoPubblicazione();
@@ -109,6 +115,8 @@ public class Pubblicazione implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Pubblicazione_Documento", joinColumns = @JoinColumn(name = "Pubblicazione_id"), inverseJoinColumns = @JoinColumn(name = "documenti_id"))
+	@Fetch(FetchMode.JOIN)
+	@BatchSize(size = 10)
 	public List<Documento> getDocumenti() {
 		if (this.documenti == null)
 			this.documenti = new ArrayList<Documento>();
@@ -230,17 +238,38 @@ public class Pubblicazione implements Serializable {
 		// params.put("VALIDO1", ricerca.getOggetto().getValidoIl());
 		// params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY,0);
-		cal.set(Calendar.MINUTE,0);
-		cal.set(Calendar.SECOND,1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
 		Date from = cal.getTime();
-		cal.set(Calendar.HOUR_OF_DAY,23);
-		cal.set(Calendar.MINUTE,59);
-		cal.set(Calendar.SECOND,59);
+		cal.set(Calendar.HOUR_OF_DAY, 23);
+		cal.set(Calendar.MINUTE, 59);
+		cal.set(Calendar.SECOND, 59);
 		Date to = cal.getTime();
-		if ( getDal().after(from) && getAl().before(to) )
-			return true;
-		return false;
+		// if ( getDal().after(from) && getAl().before(to) )
+		// return true;
+		// return false;
+		if (!getDal().after(from) || !getAl().before(to)) {
+			return false;
+		}
+		return true;
 	}
 
+//	@Override
+//	public int hashCode() {
+//		if (this.id != null)
+//			return this.id.hashCode();
+//		else
+//			return super.hashCode();
+//
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this.id != null && obj != null && obj instanceof Pubblicazione)
+//			return this.id.equals(((Pubblicazione) obj).id);
+//		else
+//			return super.equals(obj);
+//	}
 }

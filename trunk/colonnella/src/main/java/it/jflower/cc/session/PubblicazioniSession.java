@@ -131,8 +131,8 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 				count));
 		String leftOuterJoinAlias = "doc";
 		if ( ! count && ricerca.getOggetto().isAllegati()) {
-			sb.append(" left outer join fetch ").append(alias).append(".documenti ").append(leftOuterJoinAlias).append(" ");
-			sb.append(" left join fetch ").append(alias).append(".tipo tip ");
+			sb.append(" left outer join "/*fetch "*/).append(alias).append(".documenti ").append(leftOuterJoinAlias).append(" ");
+			sb.append(" left join "/*fetch "*/).append(alias).append(".tipo tip ");
 		}
 		
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
@@ -202,7 +202,22 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		for (String param : params.keySet()) {
 			q.setParameter(param, params.get(param));
 		}
+		
+		q.setHint("org.hibernate.cacheMode", "IGNORE");
 
 		return q;
 	}
+
+	@Override
+	protected String getBaseList(Class<? extends Object> clazz, String alias,
+			boolean count) {
+		if (count) {
+			return "select count( distinct " + alias + ") from " + clazz.getSimpleName()
+					+ " " + alias + " ";
+		} else {
+			return "select distinct " + alias + " from " + clazz.getSimpleName() + " "
+					+ alias + " ";
+		}
+	}
+
 }
