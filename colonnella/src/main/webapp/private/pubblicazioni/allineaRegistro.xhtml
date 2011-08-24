@@ -20,10 +20,10 @@
 
 					<h:panelGrid columns="2" style="width: 95%">
 
-						<h:outputLabel for="anno" value="Anno(*):"/>
-						<h:inputText id="anno" cols="20" rows="5"
-							value="#{pubblicazioniHandler.anno}" style="width : 372px;"
-							 />
+						<h:outputLabel for="anno" value="Anno(*):" />
+						<h:inputText id="anno" cols="20" rows="5" required="true"
+							requiredMessage="Il parametro Anno e'obbligatorio!"
+							value="#{pubblicazioniHandler.anno}" style="width : 372px;" />
 					</h:panelGrid>
 				</p:panel>
 
@@ -32,7 +32,7 @@
 					<h:commandButton action="#{pubblicazioniHandler.allineaRegistro}"
 						value="allineaRegistro" immediate="false" />
 
-					
+
 
 					<h:commandButton id="reset" action="#{pubblicazioniHandler.reset}"
 						value="Annulla" immediate="true" />
