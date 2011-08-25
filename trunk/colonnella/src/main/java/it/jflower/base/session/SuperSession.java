@@ -53,7 +53,7 @@ public abstract class SuperSession<T> {
 		return object;
 	}
 
-	@Transactional
+//	@Transactional
 	public T find(Object key) {
 		try {
 			T found = getEm().find(getEntityType(), key);
@@ -69,7 +69,7 @@ public abstract class SuperSession<T> {
 		}
 	}
 
-	@Transactional
+//	@Transactional
 	public T fetch(Object key) {
 		try {
 			T found = getEm().find(getEntityType(), key);
@@ -129,7 +129,7 @@ public abstract class SuperSession<T> {
 	}
 
 	// --- LIST ------------------------------------------
-	@Transactional
+//	@Transactional
 	public List<T> getAllList() {
 		List<T> result = new ArrayList<T>();
 		try {
@@ -147,7 +147,7 @@ public abstract class SuperSession<T> {
 		return result;
 	}
 
-	@Transactional
+//	@Transactional
 	public List<T> getList(Ricerca<T> ricerca, int startRow, int pageSize) {
 		List<T> result = new ArrayList<T>();
 		try {
@@ -175,7 +175,7 @@ public abstract class SuperSession<T> {
 		return result;
 	}
 
-	@Transactional
+//	@Transactional
 	public int getListSize(Ricerca<T> ricerca) {
 		Long result = new Long(0);
 		try {
@@ -193,7 +193,7 @@ public abstract class SuperSession<T> {
 		return 0;
 	}
 
-	@Transactional
+//	@Transactional
 	public List<T> getList(int startRow, int pageSize, Query res) {
 		List<T> result = new ArrayList<T>();
 		try {
@@ -258,7 +258,7 @@ public abstract class SuperSession<T> {
 	 * 
 	 */
 	@SuppressWarnings("rawtypes")
-	@Transactional
+//	@Transactional
 	private void fetchChildren(Object object) throws Exception {
 		if (object == null)
 			return;

@@ -113,10 +113,38 @@
 	<security-role>
 		<role-name>user</role-name>
 	</security-role>
-	<!-- <error-page> <exception-type>java.lang.NullPointerException</exception-type> 
-		<location>/error.html</location> </error-page> <error-page> <exception-type>java.lang.Exception</exception-type> 
-		<location>/error.html</location> </error-page> <error-page> <error-code>500</error-code> 
-		<location>/error.html</location> </error-page> <error-page> <error-code>404</error-code> 
-		<location>/error.html</location> </error-page> <error-page> <error-code>400</error-code> 
-		<location>/error.html</location> </error-page> -->
+	
+
+
+
+
+	 <error-page>
+           <error-code>404</error-code>
+           <location>/nontrovato.html</location>
+    </error-page>
+
+    <error-page>
+            <exception-type>PageNotFoundException</exception-type>
+            <location>/nontrovato.html</location>
+    </error-page>
+		<error-page>
+		        <exception-type>java.lang.NullPointerException</exception-type>
+            <location>/nontrovato.html</location> 
+    </error-page> 
+    <error-page>
+		        <exception-type>java.lang.Exception</exception-type>
+		        <location>/nontrovato.html</location> 
+    </error-page> 
+    <error-page>
+		        <error-code>500</error-code> 
+            <location>/nontrovato.html</location>
+    </error-page> 
+    <error-page>
+		        <error-code>304</error-code> 
+            <location>/nontrovato.html</location>
+    </error-page> 
+
+
+
+
 </web-app>
