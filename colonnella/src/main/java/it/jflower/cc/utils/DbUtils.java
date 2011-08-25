@@ -16,6 +16,7 @@ import javax.persistence.Persistence;
 public class DbUtils implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static EntityManagerFactory emf = null;
 
 	public static Connection getConnection() {
 		try {
@@ -75,7 +76,10 @@ public class DbUtils implements Serializable {
 	}
 
 	public static EntityManagerFactory getEMF() {
-		return Persistence.createEntityManagerFactory("colonnella");
+		if ( emf == null ) {
+			emf = Persistence.createEntityManagerFactory("colonnella");
+		}
+		return emf;
 	}
 
 	public static EntityManager getEM() {

@@ -52,6 +52,7 @@ public class EntityTransactionInterceptor implements Serializable {
 			}
 
 		} else {
+//			return null;
 			logger.info("Renewing ETX's EM...");
 			em = DbUtils.getEM();
 			em.getTransaction().begin();
