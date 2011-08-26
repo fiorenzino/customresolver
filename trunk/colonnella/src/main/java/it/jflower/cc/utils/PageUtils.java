@@ -139,6 +139,9 @@ public class PageUtils {
 	}
 
 	public static void closeHtmlTags(Page page) {
+		if ( page == null || page.getTemplate() == null || page.getTemplate().getTemplate() == null ) {
+			return;
+		}
 		if (page.getTemplate().getTemplate().getStatico()) {
 			page.getTemplate().setHeader(
 					page.getTemplate().getHeader() == null ? null : HtmlUtils
@@ -159,6 +162,9 @@ public class PageUtils {
 	}
 
 	public static void closeHtmlTagsT(TemplateImpl templ) {
+		if ( templ == null ) {
+			return;
+		}
 		templ.setHeader(templ.getHeader() == null ? null : HtmlUtils
 				.normalizeHtml(templ.getHeader()));
 		templ.setCol1(templ.getCol1() == null ? null : HtmlUtils
