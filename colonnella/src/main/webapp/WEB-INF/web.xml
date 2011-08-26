@@ -123,10 +123,6 @@
            <location>/nontrovato.html</location>
     </error-page>
 
-    <error-page>
-            <exception-type>PageNotFoundException</exception-type>
-            <location>/nontrovato.html</location>
-    </error-page>
 		<error-page>
 		        <exception-type>java.lang.NullPointerException</exception-type>
             <location>/nontrovato.html</location> 

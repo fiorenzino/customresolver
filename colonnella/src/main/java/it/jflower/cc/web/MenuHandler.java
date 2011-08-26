@@ -246,6 +246,7 @@ public class MenuHandler implements Serializable {
 		// settaggi nel super handler
 		try {
 			this.element = new MenuGroup();
+			this.element.setPercorso("/pagine/");
 			this.element.setLista(new ArrayList<MenuItem>());
 		} catch (Exception e) {
 			// logger.error(e.getMessage());

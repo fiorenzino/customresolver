@@ -26,6 +26,7 @@ public class MenuItem implements Serializable {
 
 	private Page pagina;
 	private MenuGroup gruppo;
+	boolean assoluto = false;
 
 	private Long version;
 
@@ -114,6 +115,14 @@ public class MenuItem implements Serializable {
 	public void setVersion(Long version) {
 		this.version = version;
 	}
+	
+	public boolean isAssoluto() {
+		return assoluto;
+	}
+	public void setAssoluto(boolean assoluto) {
+		this.assoluto = assoluto;
+	}
 
 
+	
 }
