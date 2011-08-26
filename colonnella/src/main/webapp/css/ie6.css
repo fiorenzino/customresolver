@@ -20,7 +20,6 @@ div.Row1sxInt{overflow:visible;}
 
 #content{overflow:visible; height:0;}
 #content div.contentLeft {display:inline;}
-/*#content div.HpTrenContLeft{display:inline;padding-bottom:10px;} */
 #contentBox{height:0;}
 
 #content div.contentLeft ul#menu2 a.primoAttivo{padding:7px 0 6px 0;}
@@ -92,8 +91,6 @@ div#cruscotto div.tab span.off a{padding:5px 0;}
 #AreaRiservata div{padding-bottom:2px;}
 
 div.contentHpR1IntTop,
-div.HpTrenContLeftBoxInt,
-div.HpTrenContLeft div.Box div.Box4Img{overflow:visible; }
 
 div.contentHpR2Right{margin-left:50.3%;}
 div.contentHpR2Left1Dx{margin-left:50.2%;}
@@ -102,7 +99,6 @@ div.contentHpR2RightDx{margin-left:64%;}
 div.contentHpR2RightDxV2{margin-left:36%;}
 
 div.BoxIntDxBannerDx{height:1px;}
-div.HpTrenContLeftBoxIntDx .BoxIntAR,
 div.boxBanner{height:1px;}
 
 div.contentHpR1IntTopRight div.BoxIntAR div.BoxIntbotl,

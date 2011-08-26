@@ -155,12 +155,6 @@ div.ContBoxLabelAR div.BotForm #AreaRiservata div input.but_Entra{width:35px; he
 div.ContBoxLabelAR div.BotForm div.R1{padding:0 0 0 12px; margin-top:-16px}
 div.ContBoxLabelAR div.BotForm div.R2{padding:0 0 0 12px; margin:0px}
 
-/*Box ViaggiaTreno - Cargo*/
-div.ContBoxCurva div.BoxViaggiatreno{height:auto !important; height:104px; min-height:104px; background:url('../images/bg_box_Cargo_ViaggiaTreno.gif') left top no-repeat}
-div.ContBoxCurva div.BoxViaggiatreno div{height:auto !important; height:94px; min-height:94px; text-align:right; padding:10px 14px 0 0; background:url('../images/bg_box_societ.gif') right top repeat-y}
-div.ContBoxCurva div.BoxViaggiatreno div p{padding:1.5em 1.2em 0 0}
-div.ContBoxCurva div.BoxViaggiatreno div img.arrowDx{position:relative; top:18px; left:9px; border:none}
-
 /*box fs news*/
 div.ContBoxCurva3{margin:0 6px; padding:6px 0}
 
@@ -263,12 +257,6 @@ div.contentHpR2RightSx div.rFlash{height:84px; padding:0 5px}
 div.contentHpR2RightSx div.rFlash div{height:84px; text-align:center}
 div.contentHpR2RightSx div.r2Flash{font-size:1.1em; text-align:right; font-weight:bold; padding:3px 20px 0 0; background:#E9E7EA}
 
-/* **Home Page - TRENITALIA** */
-#content div.HpTrenContLeft{float:left; width:69%; margin:15px 0 10px 0; padding:0; height:auto !important; height:220px; min-height:220px}
-#content div.HpTrenContRight{margin:15px 0 10px 69.8%; padding:0 0 10px 0; height:auto !important; height:220px; min-height:220px}
-#content div.HpTrenContRightBoxInt{margin-bottom:5px; font-size:1.1em}
-#content div.HpTrenContRightBoxInt p{padding-top:6px}
-
 /*Pagina con 4 Box*/
 div.BoxInt4{height:auto !important; height:85px; min-height:90px; padding:1em 0 0 1em}
 
@@ -287,38 +275,11 @@ div.rbtopr{background:url('../images/bg_rb_tr.gif') top right no-repeat}
 div.rbbotl{background:url('../images/bg_rb_bl.gif') bottom left no-repeat; height:6px}
 div.rbbotr{background:url('../images/bg_rb_br.gif') bottom right no-repeat; height:6px}
 
-div.HpTrenContLeft div.Box{background:#F5F5F7; margin:0 0 10px 0}
-div.HpTrenContLeft div.Box div.rbtopl{color:#FFF; height:auto !important; height:25px; min-height:25px; background:#006261 url('../images/bg_rb_tl.gif') top left no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr{height:auto !important; height:25px; min-height:25px; background:url('../images/bg_rb_tr_img.gif') top right no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr h3{color:#FFF; font-size:1.3em; padding:4px 0 0 14px; margin:0}
-div.HpTrenContLeft div.Box div.rbtopr h3 a{color:#FFF}/*Aggiunta BC*/
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab{font-size:1.3em; font-weight:bold; padding:0 0 0 0; height:29px; margin:0; background:url('../images/bg_linkBox4ImgOff1.gif') bottom left repeat-x}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.on{float:left; padding:4px 14px 0 14px; height:25px; text-align:center;  background:url('../images/bg_linkBox4ImgOn.gif') bottom right no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.off{float:left; text-align:center; padding:4px 10px}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.linea{float:left; font-weight:normal; padding-top:2px}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a,
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a:hover{color:#FFF}
-
-div.HpTrenContLeft div.Box div.rbbotl{height:4px; background:url('../images/bg_rb_bl.gif') bottom left no-repeat}
-div.HpTrenContLeft div.Box div.rbbotr{height:4px; background:url('../images/bg_rb_br.gif') bottom right no-repeat}
-div.HpTrenContLeft div.HpTrenContLeftBoxInt{background:#F5F5F7; margin-top:4px; padding:0 10px 0 8px; height:auto !important; height:230px; min-height:216px; overflow:hidden}
-div.HpTrenContLeft div.HpTrenContLeftBoxIntSx{float:left; width:49%; height:auto !important; height:216px; min-height:216px}
-div.HpTrenContLeft div.HpTrenContLeftBoxIntDx{margin:8px 0 0 49.3%; height:auto !important; height:216px; min-height:216px}
-
 div.BoxIntDxBannerSx{float:left; width:49%}
 div.BoxIntDxBannerDx{margin:0 0 0 50.2%}
 
-div.HpTrenContLeft div.Box div.Box4Img{background:#F5F5F7; padding:0 0 0 3%; height:auto !important; height:150px; min-height:150px; overflow:hidden}
-div.HpTrenContLeft div.Box div.Box4Img div{float:left; width:123px; height:auto !important; height:140px; min-height:140px; margin:14px 0 0 0}
-div.HpTrenContLeft div.Box div.Box4Img div.riga{width:5.5%; background:url('../images/bg_dx_box4img.gif') top center no-repeat}
-div.HpTrenContLeft div.Box div.Box4Img div.ultimaImg{background-image:none}
-div.HpTrenContLeft div.Box div.Box4Img div img{border:1px solid #C5C5C5; padding:1px}
-div.HpTrenContLeft div.Box div.Box4Img div a:hover{color:#000}
-div.HpTrenContLeft div.Box div.Box4Img div span{color:#016062; font-weight:bold}
-div.HpTrenContLeft div.Box div.Box4Img div p{width:86%}
 div.contEntra{padding:25px 0 20px 8px}
 
-/*Box Banner Trenitalia*/
 div.boxBanner{height:auto !important; height:200px; min-height:200px}
 div.boxBanner p{color:#FFF; padding:0 .5em; padding-top:126px; font-weight:bold; font-size:1.2em; line-height:1.1em}
 div.boxBanner a{color:#FFF}
@@ -377,9 +338,6 @@ div.boxFotoSet div.boxFotoSetBot div p{font-weight:normal; line-height:1em}
 .BoxIntAR h4 a{color:#2370b8}/*Aggiunta BC.*/
 .BoxIntAR span{font-size:.9em; padding-left:12px}
 
-/*Trenitalia*/
-div.HpTrenContLeftBoxIntDx .BoxIntAR{margin-top:0;  min-height:200px}
-div.HpTrenContLeftBoxIntDx .BoxIntAR div.BoxInttopl{min-height:200px}
 
 /*Box Servizio Clienti*/
 .BoxIntSC{font-size:1.1em; color:#000; margin-top:8px; height:auto !important; height:80px; min-height:80px}
@@ -568,7 +526,6 @@ div.BoxFSNewsDown{padding:6px 12px}
 div.FSNewsImgInt{height:auto !important; height:40px; min-height:40px; border-top:1px solid #E1E1E1; padding:6px 0 4px 0}
 div.firstNews{border-top:0px}
 
-/* **Home Page - Bandi e Gare - Trenitalia** */
 body.bodyHPBandi{background:#195E59 url('../images/bg_hpBandi.jpg') top left no-repeat}
 div#containerHPBandi{position:absolute; top:0; left:0; width:100%;	margin:0; padding:0}
 body>div#containerHPBandi{height:auto}
@@ -654,7 +611,6 @@ input.campoR{width:222px; height:16px; padding:2px 3px 2px 12px; border:0; font-
 #HPheader div.headerBottomRightIn div.R3{padding:4px 0 0 436px; height:auto !important; min-height:20px; height:20px;}
 #HPheader div.headerBottomRightIn div.R3 span{background:url('../images/arrowLink.gif') left center no-repeat; margin-left:8%; padding-left:9px;}
 
-/*HEADER SUB HOME PAGE:TRENITALIA;  RFI - Rete Ferroviaria Italiana*/
 #HPheaderTop{padding:12px 25px 0 25px; height:25px; background:#F3F3F3; font-size:.7em;}
 #HPheaderTop div.headerLeftNav{width:38%; padding:0; margin:0; height:auto !important; min-height:10px; height:10px; float:left;}
 #HPheaderTop div.headerRightNav{margin-left:39%;}
@@ -738,8 +694,6 @@ input.campoR{width:222px; height:16px; padding:2px 3px 2px 12px; border:0; font-
 #headerStampa div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:80px; background:url('../images/bg_header_dx.gif') bottom right repeat-x;}
 #headerStampa div.headerBottomLeftIn{padding:0; margin:0; height:80px; background:url('../images/bg_header_br.gif') bottom left no-repeat;}
 
-/*NUOVO HEADER TRENITALIA*/
-#headerN{background:url(../images/header_bgTrenitalia.gif) no-repeat left bottom #007677; height:61px;margin-top:30px;min-height:auto;position:relative;}
 #headerN #logo{float:left;padding:0px 0px 0px 30px;position:relative;top:-17px}
 #headerN .buttons{float:right;padding-top:9px;}
 
@@ -753,7 +707,6 @@ input.campoR{width:222px; height:16px; padding:2px 3px 2px 12px; border:0; font-
 #search_layer .right{float:right;width:60%;font-size:1em;}
 /*EO NUOVO HEADER*/
 
-/*NUOVO HEADER TRENITALIA PAGINE INTERNE  */
 #headerInt_tcom{background:url(../images/bg_headerInt_tcom.gif) left bottom repeat-x; height:91px}
 #headerInt_tcom #headerImg{background:url(../images/headerInt_tcom.gif) bottom left no-repeat;  width:auto !important; width:100%; height:91px; border-bottom:1px solid #F3F3F3}
 #headerInt_tcom #headerImg #logo{float:left;padding:13px 0px 0px 30px;}
@@ -794,7 +747,6 @@ div.headerTopFR div.ricerca{float:right; margin-top:-0px}
 div.headerTopFR div.ricerca p{padding:0; margin:0}
 div.headerTopFR div.headerRightNavLeft{float:right; margin-right:10px; white-space:nowrap}
 
-/* Nuova Header Pagine Interne - FS/Frecciarossa/Trenitalia */
 div.bgTCOM{background:url(../images/bgHeaderPagInt_TCOM.gif) bottom left no-repeat}
 div.bgFS{background:url(../images/bgHeaderPagInt_FS.gif) bottom left no-repeat}
 div.bgFR{background:url(../images/bgHeaderPagInt_FR.jpg) bottom left no-repeat}
@@ -1046,7 +998,7 @@ div.cboxLeftRow{background:url(../images/bg_contentBox_y.gif) top left repeat-y;
 div.cboxRightRow{background:url(../images/bg_contentBox_y.gif) top right repeat-y; padding:0;	margin:0}
 div.cboxTopLeft{background:url(../images/bg_contentBox_tl.gif) top left no-repeat; padding:0; margin:0}
 div.cboxTopRight{background:url(../images/bg_contentBox_tr.gif) top right no-repeat; padding:0; margin:0}	
-#contentBoxLeftCol div.cboxTopRight{background:url(../images/bg_contentBoxCenter_tr.gif) top right no-repeat; padding:0; margin:0}
+#contentBoxLeftCol div.cboxTopRight{background: top right no-repeat; padding:0; margin:0}
 div.cboxBotLeft{background:url(../images/bg_contentBox_bl.gif) bottom left no-repeat; padding:0; margin:0}
 div.cboxBotRight{background:url(../images/bg_contentBox_br.gif) bottom right no-repeat; padding:0; margin:0}
 
@@ -1455,11 +1407,6 @@ div#cruscotto div.tab span.linea{padding:0 2px}
 .cruscotto .alternate{position:relative; font-size:1em; color:#000; background-color:#dfdfdf; padding:5px 8px; border-bottom:1px solid #999; margin:0}
 .cruscotto .wcag-hide{position:absolute; left:-10000px; width:200px}
 
-/*Trenitalia*/
-div.HpTrenContLeftBoxIntDx #AreaRiservata div{padding-bottom:5px}
-div.HpTrenContLeftBoxIntDx #AreaRiservata div label{ color:#000; font-weight:bold; font-size:.9em; padding:0; margin:0}
-div.HpTrenContLeftBoxIntDx #AreaRiservata div input{width:98%; height:16px; font-weight:normal; font-size:1em; margin:.2em 0 0 0; padding:0; text-indent:.2em}
-div.HpTrenContLeftBoxIntDx #AreaRiservata div input.but_Entra{ float:right; width:35px; height:15px; border:none}
 div.arBot{padding:5px 12px}
 div.arBot p{font-size:.9em; margin:0; padding:0; line-height:1.2em}
 
@@ -1481,9 +1428,9 @@ table.table1 th a, table.table1 th a:hover{color:#FFF}
 th.luogoth , th.titoloth{border-right:1px solid #FFF}
 th.luogoth{width:18.8%}
 th.titoloth{width:46.2%}
-table.table1 td{color:#000; height:37px; padding:2px 8px; border-right:1px solid #E5E5E5; background:#FFF url(../images/puntinato.gif) bottom left repeat-x}
+table.table1 td{color:#000; height:37px; padding:2px 8px; border-right:1px solid #E5E5E5; background:#FFF  bottom left repeat-x}
 table.table1 td.cellaprima{padding-left:20px; color:#00436F; font-weight:bold; border-left:1px solid #E5E5E5}
-table.table1 tr.cellapari td{background:#F7F7F9 url(../images/puntinato.gif) bottom left repeat-x}
+table.table1 tr.cellapari td{background:#F7F7F9  bottom left repeat-x}
 
 /*Box Tabella Mese*/
 div.cboxMese table.table1 th.toprightth{width:auto; background:#00436F}
@@ -1500,8 +1447,8 @@ div.boxMeseTabBotRight{background:url(../images/bg_BoxTable_br.gif) bottom right
 table.dataTab {width:100%; font-size:.9em}
 table.dataTab th{background:#00436F; color:#FFF; font-weight:bold; border-right:1px solid #FFF; border-bottom:1px solid #FFF; padding:3px}
 table.dataTab td{border-left:1px solid #E5E5E5; padding:5px}
-table.dataTab tr.pari td{background:#F7F7F9 url(../images/puntinato.gif) bottom left repeat-x}
-table.dataTab tr.dispari td{background:#FFF url(../images/puntinato.gif) bottom left repeat-x}
+table.dataTab tr.pari td{background:#F7F7F9  bottom left repeat-x}
+table.dataTab tr.dispari td{background:#FFF  bottom left repeat-x}
 table.dataTab td.last,
 table.dataTab tr.tcomrow th.last{border-right:1px solid #E5E5E5}
 table.dataTab tr.tcomrow{font-weight:bold}
@@ -1545,8 +1492,8 @@ table.tabTCom th span{color:#00436F}
 table.tabTCom td{border-left:1px solid #E5E5E5; padding:5px 2px 5px 3px; text-align:center}
 table.tabTCom td img{border:none; text-align:center}
 table.tabTCom td.first{text-align:left}
-table.tabTCom tr.dispari td{background:#F7F7F9 url(../images/puntinato.gif) bottom left repeat-x}
-table.tabTCom tr.pari td{background:#FFF url(../images/puntinato.gif) bottom left repeat-x}
+table.tabTCom tr.dispari td{background:#F7F7F9  bottom left repeat-x}
+table.tabTCom tr.pari td{background:#FFF  bottom left repeat-x}
 table.tabTCom td.last, table.tabTCom td.testo,
 table.tabTCom tr.row2 th.last{border-right:1px solid #E5E5E5}
 table.tabTCom tr.row2{font-weight:bold; text-align:center}
@@ -1686,7 +1633,6 @@ div.boxRisult div{background:#F7F7F9; padding:4px 2px 2px 0px; font-weight:bold}
 #footer a.selected{color:#6598cd;}
 #footer img{border:none;}
 
-/* FOOTER TRENITALIA */
 #footerTre{background:#FFF url('../images/bg_footer_tre.gif') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:-10px 0 0 0; padding:0;}
 #footerTre div.bgRight{background:url('../images/bg_footer_dx_tre.gif') top right no-repeat; width:auto; height:auto; min-height:132px; margin:0; padding:0;}
 #footerTre div.footerRightNav{float:right; width:auto; padding:10px 25px 0 0; margin:0;}
@@ -1802,7 +1748,6 @@ div.ContImgParagWP a{background:url('../images/freccia_puntatore.gif') 3px left 
 #formGen .btnInviaCrusc{position:relative; top:2px;}
 
 div.contentHpR1IntTop,
-div.HpTrenContLeftBoxInt{overflow:visible;}
 
 div#cruscotto div.tab span.off{padding:10px;}
 div#cruscotto div.tab span.off a{padding:5px 0;}
@@ -1815,7 +1760,6 @@ div.contentHpR2RightDx{margin-left:64%;}
 div.contentHpR2RightDxV2{margin-left:36%;}
 
 div.BoxIntDxBannerDx{height:1px;}
-div.HpTrenContLeftBoxIntDx .BoxIntAR{height:200px;}
 
 div.contHpGruppoRight div.Box2Left {width:48%; }
 div.contHpGruppoRight div.Box2Right{width:48%; margin-left:0; height:0; float:right;}
@@ -1905,7 +1849,6 @@ div.Row1sxInt{overflow:visible;}
 
 #content{overflow:visible; height:0;}
 #content div.contentLeft {display:inline;}
-/*#content div.HpTrenContLeft{display:inline;padding-bottom:10px;} */
 #contentBox{height:0;}
 
 #content div.contentLeft ul#menu2 a.primoAttivo{padding:7px 0 6px 0;}
@@ -1977,8 +1920,6 @@ div#cruscotto div.tab span.off a{padding:5px 0;}
 #AreaRiservata div{padding-bottom:2px;}
 
 div.contentHpR1IntTop,
-div.HpTrenContLeftBoxInt,
-div.HpTrenContLeft div.Box div.Box4Img{overflow:visible; }
 
 div.contentHpR2Right{margin-left:50.3%;}
 div.contentHpR2Left1Dx{margin-left:50.2%;}
@@ -1987,7 +1928,6 @@ div.contentHpR2RightDx{margin-left:64%;}
 div.contentHpR2RightDxV2{margin-left:36%;}
 
 div.BoxIntDxBannerDx{height:1px;}
-div.HpTrenContLeftBoxIntDx .BoxIntAR,
 div.boxBanner{height:1px;}
 
 div.contentHpR1IntTopRight div.BoxIntAR div.BoxIntbotl,
@@ -2105,7 +2045,6 @@ div.ContImgParagWP a{background:url('../images/freccia_puntatore.gif') 3px left 
 div.cboxIntContResult div.PageNumb{height:1em;}
 
 #content div.contentLeft,
-#content div.HpTrenContLeft{display:inline;}
 
 .BoxIntIconeLeft,
 .BoxIntIconeRight{margin-bottom:3px; padding-bottom:0;}
