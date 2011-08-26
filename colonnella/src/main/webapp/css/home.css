@@ -77,8 +77,8 @@ div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3 a{color:#FFF;}
 div.ContBoxRedTitle div.BoxRedTitleBot{background-color:#E9E7EA; padding:0 0 6px 0; margin:0}
 div.ContBoxRedTitle div.BoxRedTitleBot div.txt{padding:10px 10px 4px 10px; overflow:hidden!important;}
 div.ContBoxRedTitle div.BoxRedTitleBot div.txt h4{color:#0a84cd; padding:0; margin:0; font-size:1.1em;}
-div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink{color:#0a84cd; font-weight: bold; padding-left:15px; background:url('/images/freccia_puntatore.gif') 2px left no-repeat}
-html>/**/body div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink{color:#0a84cd; background:url('/images/freccia_puntatore.gif') left center no-repeat} /* FireFox*/
+div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink{color:#0a84cd; font-weight: bold; padding-left:15px; background:url('/images/freccia_puntatore.png') 2px left no-repeat}
+html>/**/body div.ContBoxRedTitle div.BoxRedTitleBot div.txt a.arrowLink{color:#0a84cd; background:url('/images/freccia_puntatore.png') left center no-repeat} /* FireFox*/
 div.ContBoxRedTitle div.BoxRedTitleBot div.txt img{border:1px solid #C5C5C5; padding:1px; margin:.3em 0 .1em 0;}
 div.ContBoxRedTitle div.BoxRedTitleBot div.txt img.alignL{float:left; margin:0 6px 0 0}
 div.ContBoxRedTitle div.BoxRedTitleBot div.txt span{color:#0a84cd; font-size:1.1em; font-weight:bold}
@@ -94,16 +94,16 @@ div.RowBot{border-bottom:1px solid #D7D7D7}
 .BoxInfomob div.r2 ul{list-style-type:none; padding:5px 0 0 10px; margin:0; font-weight:bold; line-height:1.2em}
 .BoxInfomob div.r2 a{color:#000}
 
-.roundButtonGray div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:14px 0 0 0; background:url('/images/freccia_puntatore.gif') bottom right no-repeat}
-.roundButtonGray div.roundCont2 p{line-height:1em; margin:0 12px 0 0; padding:18px 0 0 0; background:url('/images/freccia_puntatore.gif') bottom right no-repeat}
-.roundButtonGray div.roundCont3 div.Cont3{height:auto !important; height:38px; min-height:38px; background:url('/images/freccia_puntatore.gif') center right no-repeat}
+.roundButtonGray div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:14px 0 0 0; background:url('/images/freccia_puntatore.png') bottom right no-repeat}
+.roundButtonGray div.roundCont2 p{line-height:1em; margin:0 12px 0 0; padding:18px 0 0 0; background:url('/images/freccia_puntatore.png') bottom right no-repeat}
+.roundButtonGray div.roundCont3 div.Cont3{height:auto !important; height:38px; min-height:38px; background:url('/images/freccia_puntatore.png') center right no-repeat}
 
-.roundButtonGrayCOLNews div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:5px 0 0 12px; background:url('/images/freccia_puntatore.gif') bottom right no-repeat}
+.roundButtonGrayCOLNews div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:5px 0 0 12px; background:url('/images/freccia_puntatore.png') bottom right no-repeat}
 
 .roundButtonCurve div.roundTR{background:url('/images/bg_rb_tl.gif') top left no-repeat}
 .roundButtonCurve div.roundTL{background:url('/images/bg_rb_tr.gif') top right no-repeat}
 
-.roundButtonCurve div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:12px 0 0 12px; background:url('/images/freccia_puntatore.gif') bottom right no-repeat}
+.roundButtonCurve div.roundCont p{line-height:1em; margin:0 12px 0 0; padding:12px 0 0 12px; background:url('/images/freccia_puntatore.png') bottom right no-repeat}
 
 div#BoxNewsDown{background:#E6E5E7; padding:2px 12px 0 12px; margin:0; height:auto !important; height:20px;  min-height:20px}
 div#BoxNewsUp{padding:6px 12px 10px 12px; margin:0; background:#F5F4F6; height:auto !important;  height:202px; min-height:202px}
@@ -116,7 +116,7 @@ div#allNews{padding:0; margin:0}
 div#allNews div.r2{float:right; padding:2px 0 0 8px; background:url('/images/arrowLink.gif') left center no-repeat}
 div#allNews a{font-weight:bold; color:#0a84cd}
 
-div.BoxNewsImgInt p{color:#0a84cd; font-weight:bold; padding:0px 1em 0px 0; margin:0; text-align:left; line-height:1em; background:url('/images/freccia_puntatore.gif') center right no-repeat}
+div.BoxNewsImgInt p{color:#0a84cd; font-weight:bold; padding:0px 1em 0px 0; margin:0; text-align:left; line-height:1em; background:url('/images/freccia_puntatore.png') center right no-repeat}
 
 /*Box News - HP COLNews*/
 div.TopTitCOLNews{height:32px; margin:0px; padding-left:20px; background:#F5F4F6 url('/images/bg_box_curva2.gif') top right no-repeat}
@@ -126,8 +126,8 @@ div.BoxCOLNews{padding:6px 0; margin:0}
 div.BoxCOLNews p{color:#0a84cd; font-weight:bold; padding:5px 0; margin:0; text-align:justify; line-height:1.1em}
 div.BoxCOLNews p a{font-weight:normal}
 div.BoxCOLNewsCenter{padding:6px 0}
-div.COLNewsLeftCol div.ContBoxCurva a.arrowLink{color:#0a84cd; font-weight: bold; padding-left:15px; background:url('/images/freccia_puntatore.gif') 2px left no-repeat}
-html>/**/body div.COLNewsLeftCol div.ContBoxCurva a.arrowLink{color:#0a84cd; background:url('/images/freccia_puntatore.gif') left center no-repeat} /* FireFox*/
+div.COLNewsLeftCol div.ContBoxCurva a.arrowLink{color:#0a84cd; font-weight: bold; padding-left:15px; background:url('/images/freccia_puntatore.png') 2px left no-repeat}
+html>/**/body div.COLNewsLeftCol div.ContBoxCurva a.arrowLink{color:#0a84cd; background:url('/images/freccia_puntatore.png') left center no-repeat} /* FireFox*/
 
 /*destra */
 div.BoxCOLNewsCenterLeft div.titolo{padding:12px 8px 4px 8px}
