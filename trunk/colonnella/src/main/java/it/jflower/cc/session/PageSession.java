@@ -146,6 +146,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 					.createQuery(
 							"select p from Page p left join fetch p.template ti left join fetch ti.template t where p.id = :ID ")
 					.setParameter("ID", id).setMaxResults(1).getSingleResult();
+			em.refresh(ret);
 
 		} catch (Exception e) {
 			logger.info(e.getMessage());
