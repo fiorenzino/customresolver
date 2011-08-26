@@ -33,7 +33,10 @@ public class BreadCrumpsHandler implements Serializable {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < crumbs.length; i++) {
 			if (crumbs[i].trim().equals("")) {
-				continue;
+				String label = "home";
+				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
+						+ "\">" + label + "</a> ");
+				sb.append("<span class=\"freccia\">&gt;</span> ");
 			} else if (crumbs[i].trim().equals(base.replaceAll("/", ""))) {
 				String label = "home";
 				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
