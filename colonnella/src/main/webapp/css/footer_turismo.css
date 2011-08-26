@@ -12,12 +12,12 @@
 #footer img{border:none;}
 
 /* FOOTER COLONNELLA */
-#footerTre{background:#FFF url('/images/bg_footer_tre.gif') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:-10px 0 0 0; padding:0;}
+#footerTre{background:#FFF url('/images/sx_turismo_footer.jpg') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:-10px 0 0 0; padding:0;}
 #footerTre div.bgRight{background:url('/images/turismo_footer.jpg') top right no-repeat; width:auto; height:auto; margin:0; padding:0;}
 #footerTre div.footerRightNav{float:right; width:auto; padding:10px 25px 0 0; margin:0;}
 
 /* FOOTER COL */
-#footerCOL{background:#FFF url('/images/bg_footer_tre.gif') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:0; padding:0;}
+#footerCOL{background:#FFF url('/images/sx_turismo_footer.jpg') bottom left repeat-x; width:auto; height:auto; min-height:132px; font-size:.7em; text-align:right; margin:0; padding:0;}
 #footerCOL div.bgRight{background:url('/images/turismo_footer.jpg') top right no-repeat; width:auto; height:auto; min-height:132px; margin:0; padding:0;}
 #footerCOL div.footerRightNav{float:right; width:auto; padding:20px 25px 0 0; margin:0;}
 #footerCOL div.footerRightNavImg{float:right; width:auto; padding:13px 25px 0 0; margin:0;}

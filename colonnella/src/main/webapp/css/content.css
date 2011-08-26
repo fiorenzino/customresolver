@@ -201,7 +201,7 @@ div.ArchivioImgRight img.alignLeft{float:left; border:1px solid #C5C5C5; padding
 
 div.ArchivioImgLeft a,
 div.ArchivioImgRight a,
-div.ContImgParagWP a{color:#00436F; font-size:1.1em; font-weight:bold; padding-left:15px; background:url(/images/freccia_puntatore.png) left center no-repeat}
+div.ContImgParagWP a{color:#00436F; font-size:1.1em; font-weight:bold; padding-left:5px; background:url(/images/space.png) left center no-repeat}
 
 /*Aggiunta per gestione titolored non linkato*/
 div.ArchivioImgLeft span.titolored,
