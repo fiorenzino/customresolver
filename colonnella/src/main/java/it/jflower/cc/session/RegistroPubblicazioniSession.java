@@ -100,6 +100,7 @@ public class RegistroPubblicazioniSession extends
 		return getNext("" + cal.get(Calendar.YEAR));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public boolean resetRegistro(String anno) {
 		List<RegistroPubblicazioni> ret = null;
@@ -128,6 +129,7 @@ public class RegistroPubblicazioniSession extends
 
 		resetRegistro(anno);
 		try {
+			@SuppressWarnings("unchecked")
 			List<Pubblicazione> lista = (List<Pubblicazione>) em
 					.createQuery(
 							"select p from Pubblicazione p where year(p.data) = :ANNO order by p.data asc")

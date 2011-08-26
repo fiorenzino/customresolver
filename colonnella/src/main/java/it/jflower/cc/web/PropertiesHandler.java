@@ -28,9 +28,13 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 @Named
 @SessionScoped
 public class PropertiesHandler implements Serializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	private static final long serialVersionUID = 1L;
 
@@ -184,7 +188,7 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public void cambioTipoDirect(int tipo) {
-		System.out.println("getCategorieByTipoItems: Tipo: " + tipo);
+		logger.info("getCategorieByTipoItems: Tipo: " + tipo);
 		List<CategoriaAttivita> categorie = categorieSession
 				.getAllCategoriaAttivitaByTipo(new Long(tipo));
 		if (categorie != null && categorie.size() > 0) {

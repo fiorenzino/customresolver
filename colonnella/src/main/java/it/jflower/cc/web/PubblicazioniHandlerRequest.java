@@ -29,7 +29,7 @@ public class PubblicazioniHandlerRequest implements UiRepeatInterface {
 	String id;
 	private Pubblicazione pubblicazione;
 
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	PubblicazioniSession pubblicazioniSession;

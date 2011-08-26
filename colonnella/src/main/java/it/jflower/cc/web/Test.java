@@ -7,16 +7,20 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 @Named
 @RequestScoped
 public class Test implements Serializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	private static final long serialVersionUID = 1L;
 	@Inject
 	ParamsHandler paramsHandler;
 
 	public Test() {
-		// System.out.println("creo Test: " + paramsHandler.getParam("id"));
+		// logger.info("creo Test: " + paramsHandler.getParam("id"));
 	}
 
 	private String id;
@@ -30,7 +34,7 @@ public class Test implements Serializable {
 	}
 
 	public void loadEntry() {
-		System.out.println("creo Test: " + paramsHandler.getParam("id"));
+		logger.info("creo Test: " + paramsHandler.getParam("id"));
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		if (ctx.isValidationFailed()) {
 			ctx.getApplication().getNavigationHandler().handleNavigation(ctx,
