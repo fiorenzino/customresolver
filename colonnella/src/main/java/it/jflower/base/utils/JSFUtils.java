@@ -170,11 +170,11 @@ public class JSFUtils {
 		HttpServletRequest req = (HttpServletRequest) context
 				.getExternalContext().getRequest();
 		// String rem = req.getRemoteUser();
-		// System.out.println("******************************");
-		// System.out.println("REM USER: " + rem);
+		// logger.info("******************************");
+		// logger.info("REM USER: " + rem);
 		Principal pr = req.getUserPrincipal();
-		// System.out.println("PRINC USER: " + pr.getName());
-		// System.out.println("******************************");
+		// logger.info("PRINC USER: " + pr.getName());
+		// logger.info("******************************");
 
 		if (pr == null)
 			return context.getExternalContext().getInitParameter(

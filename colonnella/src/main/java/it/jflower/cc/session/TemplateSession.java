@@ -79,7 +79,7 @@ public class TemplateSession extends SuperSession<Template> implements
 	// @SuppressWarnings("unchecked")
 	// @Transactional
 	// public List<Template> getAll() {
-	// System.out.println("get all templates");
+	// logger.info("get all templates");
 	//
 	// List<Template> lista = new ArrayList<Template>();
 	// try {

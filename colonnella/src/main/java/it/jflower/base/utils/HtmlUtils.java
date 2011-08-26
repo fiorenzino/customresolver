@@ -7,9 +7,13 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.log4j.Logger;
 import org.w3c.tidy.Tidy;
 
 public class HtmlUtils {
+	
+	protected static Logger logger = Logger.getLogger(HtmlUtils.class.getName());
+
 	public static String normalizeHtml(String code) {
 		Tidy tidy = new Tidy();
 		tidy.setXHTML(true);
@@ -26,13 +30,13 @@ public class HtmlUtils {
 			is = new ByteArrayInputStream(code.getBytes("UTF-8"));
 
 			tidy.parse(is, arg1);
-			// System.out.println("*****************PRIMA: ");
-			// System.out.println(arg1.toString());
-			// System.out.println("*******************DOPO: ");
+			// logger.info("*****************PRIMA: ");
+			// logger.info(arg1.toString());
+			// logger.info("*******************DOPO: ");
 			// StringEscapeUtils.unescapeHtml(arg0)
 			content = StringEscapeUtils.unescapeHtml(arg1.toString());
 			content = handleAmpersand(content);
-			// System.out.println(content);
+			// logger.info(content);
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

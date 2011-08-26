@@ -10,10 +10,14 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
+import org.apache.log4j.Logger;
+
 import com.sun.faces.facelets.component.UIRepeat;
 
 @FacesRenderer(componentFamily = "javax.faces.Command", rendererType = "uiRepeatPagerWithParams")
 public class UIRepeatPagerWithParams extends Renderer {
+
+	protected static Logger logger = Logger.getLogger(getClass().getName());
 
 	public void encodeBegin(FacesContext context, UIComponent component)
 			throws IOException {
@@ -29,13 +33,13 @@ public class UIRepeatPagerWithParams extends Renderer {
 		String tipo = (String) component.getAttributes().get("tipo");
 		String filtro = (String) component.getAttributes().get("filtro");
 		if ("null".equals(filtro)) {
-			System.out.println("filtro null");
+			logger.info("filtro null");
 			filtro = null;
 		} else if (filtro != null && filtro.endsWith("null")) {
-			System.out.println("filtro ends with null");
+			logger.info("filtro ends with null");
 			filtro = null;
 		}
-		System.out.println(" filtro = " + filtro);
+		logger.info(" filtro = " + filtro);
 		int pagesize = toInt(component.getAttributes().get("pagesize"));
 		int showpages = toInt(component.getAttributes().get("showpages"));
 		int currentpage = toInt(component.getAttributes().get("currentpage"));
