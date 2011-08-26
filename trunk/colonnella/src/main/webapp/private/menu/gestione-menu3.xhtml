@@ -33,15 +33,13 @@
 				</h:panelGrid>
 				<br />
 
-				<h:outputLabel value="Nota:" for="nota" style="font-weight: bolder;" />
-				<h:panelGroup id="nota">
-							eventuali modifiche al percorso proposto in automatico dal sistema devono rispettare la forma<br/>
+				<b> <h:outputText
+					value="NB: eventuali modifiche al percorso proposto in automatico dal sistema devono rispettare la forma" />
 				<br />
-						- <i>/pagine/xyz/id-pagina</i> nel caso di percorsi non
-						assoluti<br/>
-						- <i>http://xyz'</i> nel caso di percorsi relativi<br/>
+				- <i>/pagine/xyz/id-pagina</i> nel caso di percorsi non assoluti<br />
+				- <i>http://xyz'</i> nel caso di percorsi relativi<br />
+				</b>
 				<br />
-				</h:panelGroup>
 
 				<p:dataTable var="menuItem" value="#{menuHandler.menuItemModel}">
 
