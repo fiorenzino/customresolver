@@ -345,9 +345,9 @@ public class AttivitaHandler implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("id final: " + idFinal);
+			logger.info("id final: " + idFinal);
 			Attivita attivitaFind = attivitaSession.find(idFinal);
-			System.out.println("trovato_ " + attivitaFind);
+			logger.info("trovato_ " + attivitaFind);
 			if (attivitaFind != null) {
 				i++;
 				idFinal = id + "-" + i;

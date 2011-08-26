@@ -8,7 +8,6 @@ import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.utils.TimeUtils;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +20,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.seamframework.tx.Transactional;
-
-import com.mysql.jdbc.TimeUtil;
 
 @Named
 @RequestScoped
@@ -178,6 +175,7 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 		return ret;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public void refreshEvidenza(String id) {
 		List<Notizia> ret = null;
@@ -201,7 +199,6 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 
 	@SuppressWarnings("unchecked")
 	public Immagine findEvidenzaImmagine() {
-		Immagine ret = null;
 		try {
 			List<Notizia> nl = em
 					.createQuery(

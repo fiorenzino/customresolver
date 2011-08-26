@@ -10,6 +10,8 @@ import javax.persistence.Transient;
 
 @Entity
 public class RegistroPubblicazioni implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 	private String anno;
 	private Long progressivo;

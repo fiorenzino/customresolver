@@ -26,9 +26,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 @Named
 @RequestScoped
 public class CaricaHandlerRequest implements Serializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	private static final long serialVersionUID = 1L;
 
@@ -61,15 +65,15 @@ public class CaricaHandlerRequest implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("INIZIO N" + new Date());
+		logger.info("INIZIO N" + new Date());
 		caricaNews();
-		System.out.println("INIZIO A" + new Date());
+		logger.info("INIZIO A" + new Date());
 		caricaAttivita();
-		System.out.println("INIZIO M" + new Date());
+		logger.info("INIZIO M" + new Date());
 		caricaModuli();
-		System.out.println("INIZIO P" + new Date());
+		logger.info("INIZIO P" + new Date());
 		caricaPubblicazioni();
-		System.out.println("FINE" + new Date());
+		logger.info("FINE" + new Date());
 
 	}
 
@@ -208,9 +212,9 @@ public class CaricaHandlerRequest implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("id final: " + idFinal);
+			logger.info("id final: " + idFinal);
 			Notizia notiziaFind = notizieSession.find(idFinal);
-			System.out.println("trovato_ " + notiziaFind);
+			logger.info("trovato_ " + notiziaFind);
 			if (notiziaFind != null) {
 				i++;
 				idFinal = id + "-" + i;
@@ -230,7 +234,7 @@ public class CaricaHandlerRequest implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("id final: " + idFinal);
+			logger.info("id final: " + idFinal);
 			Attivita attivitaFind = attivitaSession.find(idFinal);
 			if (attivitaFind != null) {
 				i++;

@@ -15,9 +15,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 @Named
 @SessionScoped
 public class GallerieHandler implements Serializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	private static final long serialVersionUID = 1L;
 
@@ -137,9 +141,9 @@ public class GallerieHandler implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("id final: " + idFinal);
+			logger.info("id final: " + idFinal);
 			Galleria galleriaFind = gallerieSession.find(idFinal);
-			System.out.println("trovato_ " + galleriaFind);
+			logger.info("trovato_ " + galleriaFind);
 			if (galleriaFind != null) {
 				i++;
 				idFinal = id + "-" + i;
