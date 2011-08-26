@@ -1,6 +1,10 @@
 package it.jflower.base.utils;
 
 import java.io.File;
+
+
+import org.apache.log4j.Logger;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
@@ -20,6 +24,8 @@ import org.apache.commons.io.filefilter.NotFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 
 public class FileUtils {
+
+	protected static Logger logger = Logger.getLogger(FileUtils.class.getName());
 
 	public static List<String> getFilesName(String directory,
 			String[] extensions) {
@@ -103,9 +109,9 @@ public class FileUtils {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("finalName: " + finalName);
+			logger.info("finalName: " + finalName);
 			File file = new File(folder + File.separator + finalName);
-			System.out.println("trovato_ " + finalName);
+			logger.info("trovato_ " + finalName);
 			if (file != null && file.exists()) {
 				i++;
 				finalName = nome + "_" + i + "." + est;

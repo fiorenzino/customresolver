@@ -36,7 +36,7 @@ public class ObjectUtils {
 			}
 		}
 //		long end=System.currentTimeMillis();
-//		System.out.println("Encode:"+(end-start));
+//		logger.info("Encode:"+(end-start));
 		return out;
 	}
 
@@ -65,7 +65,7 @@ public class ObjectUtils {
 			}
 		}
 //		long end=System.currentTimeMillis();
-//		System.out.println("Decode:"+(end-start));
+//		logger.info("Decode:"+(end-start));
 		return out;
 	}
 

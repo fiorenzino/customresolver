@@ -266,7 +266,7 @@ public abstract class SuperSession<T> {
 		Class objectClass = object.getClass();
 		Field[] objectFields = objectClass.getDeclaredFields();
 		for (Field objectField : objectFields) {
-			// System.out.println(objectClass.getSimpleName() + "."
+			// logger.info(objectClass.getSimpleName() + "."
 			// + objectField.getName());
 			objectField.setAccessible(true);
 

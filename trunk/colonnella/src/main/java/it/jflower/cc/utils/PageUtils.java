@@ -5,7 +5,11 @@ import it.jflower.cc.par.Page;
 import it.jflower.cc.par.Template;
 import it.jflower.cc.par.TemplateImpl;
 
+import org.apache.log4j.Logger;
+
 public class PageUtils {
+
+	protected static Logger logger = Logger.getLogger(PageUtils.class.getName());
 
 	private static final String prologo = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
 	private static final String newline = "\n";
@@ -130,7 +134,7 @@ public class PageUtils {
 			b.append(newline);
 		}
 
-//		System.out.println(b.toString());
+//		logger.info(b.toString());
 		return b.toString();
 	}
 

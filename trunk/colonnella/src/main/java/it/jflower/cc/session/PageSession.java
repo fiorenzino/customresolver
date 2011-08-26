@@ -3,7 +3,6 @@ package it.jflower.cc.session;
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
 import it.jflower.cc.par.Page;
-import it.jflower.cc.par.RegistroPubblicazioni;
 import it.jflower.cc.utils.DbUtils;
 import it.jflower.cc.utils.PageUtils;
 
@@ -73,10 +72,10 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			// System.out.println("id final: " + idFinal);
+			// logger.info("id final: " + idFinal);
 			Page pageFind = find(idFinal);
 			// Page pageFind = find(new Long(1));
-			// System.out.println("trovato_ " + pageFind);
+			// logger.info("trovato_ " + pageFind);
 			if (pageFind != null) {
 				i++;
 				idFinal = id + "-" + i;
