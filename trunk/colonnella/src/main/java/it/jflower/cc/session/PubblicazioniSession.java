@@ -9,6 +9,7 @@ import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.utils.PageUtils;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -141,10 +142,23 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 		String separator = " and ";
 
 		if (ricerca.getOggetto().getValidoIl() != null) {
-			sb.append(separator).append(alias).append(".dal <= :VALIDO1 AND ")
-					.append(alias).append(".al >= :VALIDO2 ");
-			params.put("VALIDO1", ricerca.getOggetto().getValidoIl());
-			params.put("VALIDO2", ricerca.getOggetto().getValidoIl());
+
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(ricerca.getOggetto().getValidoIl());
+			cal.set(Calendar.HOUR_OF_DAY, 0);
+			cal.set(Calendar.MINUTE, 0);
+			cal.set(Calendar.SECOND, 0);
+			cal.set(Calendar.MILLISECOND, 0);
+			Date inizioGiornata = cal.getTime();
+			cal.set(Calendar.HOUR_OF_DAY, 23);
+			cal.set(Calendar.MINUTE, 59);
+			cal.set(Calendar.SECOND, 59);
+			Date fineGiornata = cal.getTime();
+
+			sb.append(separator).append(alias).append(".dal <= :FINEGIORNATA AND ")
+					.append(alias).append(".al >= :INIZIOGIORNATA ");
+			params.put("FINEGIORNATA", fineGiornata);
+			params.put("INIZIOGIORNATA", inizioGiornata);
 		}
 
 		if (ricerca.getOggetto().getTipo() != null
