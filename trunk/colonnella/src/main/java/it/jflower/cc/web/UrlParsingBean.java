@@ -32,7 +32,7 @@ public class UrlParsingBean implements Serializable {
 	protected Logger logger = Logger.getLogger(getClass().getName());
 
 	public UrlParsingBean() {
-		logger.info("OK UrlParsingBean");
+		// logger.info("OK UrlParsingBean");
 	}
 
 	public String parseComplexUrl() throws UnsupportedEncodingException {
@@ -40,7 +40,7 @@ public class UrlParsingBean implements Serializable {
 		String uriPars = PrettyContext.getCurrentInstance()
 				.getOriginalRequestUrl();
 		logger.info("uri: " + uri);
-		logger.info("uriPars: " + uriPars);
+		// logger.info("uriPars: " + uriPars);
 
 		@SuppressWarnings("unused")
 		List<String> categoryChain = new ArrayList<String>();
