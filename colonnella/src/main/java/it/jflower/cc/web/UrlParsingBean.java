@@ -10,6 +10,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 import com.ocpsoft.pretty.PrettyContext;
 
 @Named
@@ -27,16 +29,18 @@ public class UrlParsingBean implements Serializable {
 	@Inject
 	ParamsHandler paramsHandler;
 
+	protected Logger logger = Logger.getLogger(getClass().getName());
+
 	public UrlParsingBean() {
-		System.out.println("OK UrlParsingBean");
+		logger.info("OK UrlParsingBean");
 	}
 
 	public String parseComplexUrl() throws UnsupportedEncodingException {
 		String uri = PrettyContext.getCurrentInstance().getOriginalUri();
 		String uriPars = PrettyContext.getCurrentInstance()
 				.getOriginalRequestUrl();
-		System.out.println("uri: " + uri);
-		System.out.println("uriPars: " + uriPars);
+		logger.info("uri: " + uri);
+		logger.info("uriPars: " + uriPars);
 
 		@SuppressWarnings("unused")
 		List<String> categoryChain = new ArrayList<String>();
@@ -44,14 +48,13 @@ public class UrlParsingBean implements Serializable {
 		if (uriPars.contains("?")) {
 			String params = uriPars.substring(uriPars.lastIndexOf("?") + 1);
 			if (!params.contains("&")) {
-				System.out.println("param: "
-						+ URLDecoder.decode(params, "UTF-8"));
+				logger.info("param: " + URLDecoder.decode(params, "UTF-8"));
 				paramsHandler.addParam(params);
 			} else {
 				String[] pars = params.split("&");
 				for (String string : pars) {
 					if (!string.equals("")) {
-						System.out.println("param: "
+						logger.info("param: "
 								+ URLDecoder.decode(string, "UTF-8"));
 						paramsHandler.addParam(string);
 					}
@@ -59,18 +62,18 @@ public class UrlParsingBean implements Serializable {
 			}
 
 		} else {
-			System.out.println("NON CI SONO PARAMETRI");
+			logger.info("NON CI SONO PARAMETRI");
 		}
 		String pageId = uri.substring(uri.lastIndexOf("/") + 1);
 		String[] str = uri.split("/");
 		for (String string : str) {
 			if (!string.equals(""))
-				System.out.println("bb: " + URLDecoder.decode(string, "UTF-8"));
+				logger.info("bb: " + URLDecoder.decode(string, "UTF-8"));
 		}
 
 		breadCrumpsHandler.setBreadCrump(uri);
 		// #{pagesHandler.pageId}
-		System.out.println("pageId:" + pageId);
+		logger.info("pageId:" + pageId);
 		dbPageHandler.getPage().setId(pageId);
 		return "/page.jsf";
 
