@@ -64,17 +64,20 @@ public class UrlParsingBean implements Serializable {
 		} else {
 			logger.info("NON CI SONO PARAMETRI");
 		}
-		String pageId = uri.substring(uri.lastIndexOf("/") + 1);
-		String[] str = uri.split("/");
-		for (String string : str) {
-			if (!string.equals(""))
-				logger.info("bb: " + URLDecoder.decode(string, "UTF-8"));
+		if (uri.contains("/")) {
+			String pageId = uri.substring(uri.lastIndexOf("/") + 1);
+			// String[] str = uri.split("/");
+			// for (String string : str) {
+			// if (!string.equals(""))
+			// logger.info("bb: " + URLDecoder.decode(string, "UTF-8"));
+			// }
+
+			breadCrumpsHandler.setBreadCrump(uri);
+			// #{pagesHandler.pageId}
+			logger.info("pageId:" + pageId);
+			dbPageHandler.getPage().setId(pageId);
 		}
 
-		breadCrumpsHandler.setBreadCrump(uri);
-		// #{pagesHandler.pageId}
-		logger.info("pageId:" + pageId);
-		dbPageHandler.getPage().setId(pageId);
 		return "/page.jsf";
 
 	}
