@@ -17,7 +17,7 @@ import com.sun.faces.facelets.component.UIRepeat;
 @FacesRenderer(componentFamily = "javax.faces.Command", rendererType = "uiRepeatPagerWithParams")
 public class UIRepeatPagerWithParams extends Renderer {
 
-	protected static Logger logger = Logger.getLogger(getClass().getName());
+	protected static Logger logger = Logger.getLogger(UIRepeatPagerWithParams.class.getName());
 
 	public void encodeBegin(FacesContext context, UIComponent component)
 			throws IOException {
