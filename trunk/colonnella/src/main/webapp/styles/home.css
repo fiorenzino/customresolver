@@ -27,12 +27,6 @@ div.cbox3IcoDx div.titolo h4{font-size:1.4em; padding:14px .7em 0 0;  margin:0}
 /*Box Label Area Riservata -*/
 div.ContBoxLabelAR{margin:0; padding:10px; padding-top:5px; background:url('../images/bg_rb_tl.gif') top left no-repeat}
 
-/*Box - Cargo*/
-div.ContBoxCurva div.BoxViaggiatreno{height:auto !important; height:104px; min-height:104px; background:url('../images/bg_box_Cargo_ViaggiaTreno.gif') left top no-repeat}
-div.ContBoxCurva div.BoxViaggiatreno div{height:auto !important; height:94px; min-height:94px; text-align:right; padding:10px 14px 0 0; background:url('../images/bg_box_societ.gif') right top repeat-y}
-div.ContBoxCurva div.BoxViaggiatreno div p{padding:1.5em 1.2em 0 0}
-div.ContBoxCurva div.BoxViaggiatreno div img.arrowDx{position:relative; top:18px; left:9px; border:none}
-
 /*box COL news*/
 div.ContBoxCurva3{margin:0 6px; padding:6px 0}
 
@@ -61,38 +55,9 @@ div.contentHpR2 div.txt a:hover{color:#FFF}
 div.boxFlash div.top{width:7px; float:left}
 
 
-/* **Home Page - COLONNELLA** */
-#content div.HpTrenContLeft{float:left; width:69%; margin:15px 0 10px 0; padding:0; height:auto !important; height:220px; min-height:220px}
-#content div.HpTrenContRight{margin:15px 0 10px 69.8%; padding:0 0 10px 0; height:auto !important; height:220px; min-height:220px}
-#content div.HpTrenContRightBoxInt{margin-bottom:5px; font-size:1.1em}
-#content div.HpTrenContRightBoxInt p{padding-top:6px}
-
 /*Angoli Bianchi*/
 div.rbtopl{background:url('../images/bg_rb_tl.gif') top left no-repeat}
 div.rbtopr{background:url('../images/bg_rb_tr.gif') top right no-repeat}
-
-div.HpTrenContLeft div.Box div.rbtopl{color:#FFF; height:auto !important; height:25px; min-height:25px; background:#006261 url('../images/bg_rb_tl.gif') top left no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr{height:auto !important; height:25px; min-height:25px; background:url('../images/bg_rb_tr_img.gif') top right no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr h3{color:#FFF; font-size:1.3em; padding:4px 0 0 14px; margin:0}
-div.HpTrenContLeft div.Box div.rbtopr h3 a{color:#FFF}/*Aggiunta BC*/
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab{font-size:1.3em; font-weight:bold; padding:0 0 0 0; height:29px; margin:0; background:url('../images/bg_linkBox4ImgOff1.gif') bottom left repeat-x}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.on{float:left; padding:4px 14px 0 14px; height:25px; text-align:center;  background:url('../images/bg_linkBox4ImgOn.gif') bottom right no-repeat}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.off{float:left; text-align:center; padding:4px 10px}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab div.linea{float:left; font-weight:normal; padding-top:2px}
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a,
-div.HpTrenContLeft div.Box div.rbtopr div.whiteLinksTab a:hover{color:#FFF}
-
-div.HpTrenContLeft div.Box div.rbbotl{height:4px; background:url('../images/bg_rb_bl.gif') bottom left no-repeat}
-div.HpTrenContLeft div.Box div.rbbotr{height:4px; background:url('../images/bg_rb_br.gif') bottom right no-repeat}
-
-div.HpTrenContLeft div.Box div.Box4Img{background:#F5F5F7; padding:0 0 0 3%; height:auto !important; height:150px; min-height:150px; overflow:hidden}
-div.HpTrenContLeft div.Box div.Box4Img div{float:left; width:123px; height:auto !important; height:140px; min-height:140px; margin:14px 0 0 0}
-div.HpTrenContLeft div.Box div.Box4Img div.riga{width:5.5%; background:url('../images/bg_dx_box4img.gif') top center no-repeat}
-div.HpTrenContLeft div.Box div.Box4Img div.ultimaImg{background-image:none}
-div.HpTrenContLeft div.Box div.Box4Img div img{border:1px solid #C5C5C5; padding:1px}
-div.HpTrenContLeft div.Box div.Box4Img div a:hover{color:#000}
-div.HpTrenContLeft div.Box div.Box4Img div span{color:#016062; font-weight:bold}
-div.HpTrenContLeft div.Box div.Box4Img div p{width:86%}
 
 /* **Home Page - COLNews** */
 #content div.COLNewsLeft{float:left; width:20%; margin:15px 0 10px 0; padding:0; position:relative; left:0}
@@ -106,7 +71,7 @@ div.HpTrenContLeft div.Box div.Box4Img div p{width:86%}
 /*Box spalla sinistra - HP COLNews*/
 div.ContBoxRedTitle{padding:0; margin:0}
 div.ContBoxRedTitle img{border:none}
-div.ContBoxRedTitle div.BoxRedTitleTop{background:#0a84cd url('../images/bg_boxRightCOLNews2.jpg') top right no-repeat}
+div.ContBoxRedTitle div.BoxRedTitleTop{background:#0a84cd top right no-repeat}
 div.ContBoxRedTitle div.BoxRedTitleTop div.titolo{height:auto !important; height:25px; min-height:25px}
 div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3{color:#FFF; font-size:1.3em; font-weight:bold; padding:6px 0 0 8px; margin:0}
 div.ContBoxRedTitle div.BoxRedTitleTop div.titolo h3 a{color:#FFF;}
