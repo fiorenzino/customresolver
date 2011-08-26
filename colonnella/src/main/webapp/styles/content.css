@@ -10,7 +10,7 @@ a:hover{color:#00436F; text-decoration:underline}
 a.selected{font-weight:bold; color:#00436F; text-decoration:none}
 a:hover.selected{text-decoration:underline}
 
-a.LinkFreccia{color:#000; padding-left:14px; margin:0; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+a.LinkFreccia{color:#000; padding-left:14px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 a:hover.LinkFreccia{color:#00436F}
 
 textarea{font-family:Arial; margin:0; padding:0; height:18px; font-size:1.2em; width:auto; border:1px solid #000}
@@ -186,7 +186,7 @@ div.box3 div.boxCurva3Int div.r2{height:70px}
 
 
 /*Contenuti principali*/
-div.cboxIntArchivio p{color:#00436F; font-size:1.1em; padding:6px 0 6px 30px; margin:0; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.cboxIntArchivio p{color:#00436F; font-size:1.1em; padding:6px 0 6px 30px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 div.cboxIntWP{padding:18px 30px 2px 47px; background:#FFF; border-left:1px solid #F5F5F5; border-right:1px solid #F5F5F5; height:auto !important; min-height:223px;	height:210px}
 
@@ -201,7 +201,7 @@ div.ArchivioImgRight img.alignLeft{float:left; border:1px solid #C5C5C5; padding
 
 div.ArchivioImgLeft a,
 div.ArchivioImgRight a,
-div.ContImgParagWP a{color:#00436F; font-size:1.1em; font-weight:bold; padding-left:15px; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.ContImgParagWP a{color:#00436F; font-size:1.1em; font-weight:bold; padding-left:15px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 /*Aggiunta per gestione titolored non linkato*/
 div.ArchivioImgLeft span.titolored,
@@ -227,22 +227,22 @@ div.ContParag a:hover.linkEsterno{color:#00436F; text-decoration:underline}
 div.ContParag a.linkInterno{color:#000; text-decoration:underline}
 div.ContParag a:hover.linkInterno{color:#00436F; text-decoration:underline}
 
-div.ContParagSez p{font-size:.9em; padding:6px 0 6px 25px; margin:0; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.ContParagSez p{font-size:.9em; padding:6px 0 6px 25px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 
 /*BC.Aggiunta per gestione lista di paragrafo*/
 div.ContParagLista {padding:0; margin:6px 0}
 div.ContParagLista div.descrz {padding:0 0 4px 0}
-div.ContParagLista div.frecciaLink{padding:4px 0 4px 15px;	background:url(../images/freccia_puntatore.gif) no-repeat 0px 7px; display:inline;	line-height:1.7em}
+div.ContParagLista div.frecciaLink{padding:4px 0 4px 15px;	background:url(../images/freccia__puntatore.gif) no-repeat 0px 7px; display:inline;	line-height:1.7em}
 
 div.ContAncore div.titoloRight{padding:0; margin:0; background:#00436F url(../images/bg_rb_tr.gif) top right no-repeat}
 div.ContAncore div.titoloLeft{padding:5px 10px 3px 10px; margin:0; background:url(../images/bg_rb_tl.gif) top left no-repeat}
 
-div.ContAncore2 p{font-weight:bold; padding:4px 0 4px 30px; margin:0; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.ContAncore2 p{font-weight:bold; padding:4px 0 4px 30px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 /* Desktop*/
 div.Desktop2Img div a.arrowLink,
-div.Desktop1Img div a.arrowLink{font-size:1em; padding-left:14px; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.Desktop1Img div a.arrowLink{font-size:1em; padding-left:14px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 /* Lista News*/
 div.Box2ImgTitolo{padding:15px 30px}
@@ -252,20 +252,20 @@ div.cboxIntContResult{padding:24px 0; margin:0}
 
 div.ContResult{padding:20px 24px; margin:0 1px; background:#FFF}
 div.ContResult div{padding:7px 0; height:auto !important; min-height:30px; height:30px}
-div.ContResult div a.arrowLink{color:#00436F; font-size:1em; font-weight:bold; padding-left:18px; background:url(../images/freccia_puntatore.gif) 2px left no-repeat}
-html>/**/body div.ContResult div a.arrowLink /* FireFox*/{background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.ContResult div a.arrowLink{color:#00436F; font-size:1em; font-weight:bold; padding-left:18px; background:url(../images/freccia__puntatore.gif) 2px left no-repeat}
+html>/**/body div.ContResult div a.arrowLink /* FireFox*/{background:url(../images/freccia__puntatore.gif) left center no-repeat}
 div.ContResult div span.navigator{float:none; padding:2px 0 0 18px}
 div.cboxIntContResult div.PageNumb{padding-top:14px; padding-right:40px}
 div.cboxIntContResult div.PageNumb span.txtLeft{float:left; font-weight:bold; color:#000; padding-left:40px}
 
 /*Mappa del sito*/
-div.cboxIntContMap div.ContMap a.arrowLink{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.cboxIntContMap div.ContMap a.arrowLink{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 
 /*Faq - Aiuto*/
 div.cboxIntContFaq div.ContFaq div.testo{padding:5px 0 5px 14px; line-height:1.3em}
 div.cboxIntContFaq div.ContFaq a.arrowLink,
-div.cboxIntContFaq div.ContFaq span.titoloFaq{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.cboxIntContFaq div.ContFaq span.titoloFaq{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 /*Infoutili - Comunicato*/
 div.cboxIntContInfo div.ContInfo span.titolo{font-weight:bold; padding:0 0 10px 0}
@@ -279,7 +279,7 @@ html>/**/body div.RightColContentLinks{overflow:hidden}/*Firefox*/
 div.RightColImgParag{padding:5px 7px; height:auto !important; min-height:48px; height:0}
 div.RightColImgParag img{float:left; border:1px solid #C5C5C5; padding:1px; margin:1px 4px 0 0}
 div.RightColImgParag div.ImgLnk {line-height:1.2}
-div.RightColContParag div.FrecciaLnk{padding:1px 0 1px 15px; margin:0 7px 0 7px; background:url(../images/freccia_puntatore.gif) left center no-repeat}
+div.RightColContParag div.FrecciaLnk{padding:1px 0 1px 15px; margin:0 7px 0 7px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
 
 
 /*FORM GENERICA*/
@@ -335,7 +335,7 @@ div.cboxMese div.contentable table{font-size:1em}
 /*Tabella TCOM-1*/
 div.ContParagTab a.linkEsterno{color:#000; text-decoration:underline}
 div.ContParagTab a:hover.linkEsterno{color:#00436F; text-decoration:underline}
-div.ContParagTab div.frecciaLink{padding:6px 0 6px 15px; background:url(../images/freccia_puntatore.gif) no-repeat 0px 7px; display:inline; line-height:1.7em}
+div.ContParagTab div.frecciaLink{padding:6px 0 6px 15px; background:url(../images/freccia__puntatore.gif) no-repeat 0px 7px; display:inline; line-height:1.7em}
 
 table.tabTCom td.last, table.tabTCom td.testo,table.tabTCom tr.row2 th.last{border-right:1px solid #E5E5E5}
 div.cboxMMGalleryBot div.ContBoxRiq div.BoxRiq div.titolo{padding:8px 5px 10px 30px; color:#00436F; font-weight:bold; font-size:1.1em}
