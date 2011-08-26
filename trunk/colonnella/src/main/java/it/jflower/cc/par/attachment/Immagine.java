@@ -22,7 +22,6 @@ public class Immagine implements Serializable {
 	private byte[] data;
 	private String type;
 	private UploadedFile uploadedData;
-	private boolean attivo = true;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import sun.misc.BASE64Encoder;
 
+@SuppressWarnings("restriction")
 public class PasswordUtils implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -14,9 +14,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 @Named
 @SessionScoped
 public class CategorieHandler implements Serializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	// --------------------------------------------------------
 
@@ -97,7 +101,7 @@ public class CategorieHandler implements Serializable {
 	public String updateCategoriaAttivita() {
 		if (getIdTipo() == null)
 			return "";
-		System.out.println("ATT TIPO:"
+		logger.info("ATT TIPO:"
 				+ this.categoriaAttivita.getTipoAttivita().getId());
 		TipoAttivita tipo = categorieSession.findTipoAttivita(new Long(
 				getIdTipo()));

@@ -164,7 +164,7 @@ public class FileHandler implements Serializable {
 			this.files = new ArrayList<String>();
 			break;
 		}
-		System.out.println("dim files: " + this.files.size());
+		logger.info("dim files: " + this.files.size());
 	}
 
 	public String getFileName() {
