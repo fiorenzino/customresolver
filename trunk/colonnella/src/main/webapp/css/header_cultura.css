@@ -1,7 +1,7 @@
 
 /*HEADER HOME PAGE C5*/
 
-#HPheader div.headerBottom{padding:0; margin:0; height:auto !important; height:112px; min-height:112px; background:url('../images/bg_hp_header.gif') top left repeat-x;}
+#HPheader div.headerBottom{padding:0; margin:0; height:auto !important; height:112px; min-height:112px; background:url('/images/bg_hp_header.gif') top left repeat-x;}
 #HPheader div.headerBottomLeft{float:left; padding:0; margin:0; width:25.6%; height:auto !important; height:112px; min-height:112px; text-align:right;}
 #HPheader div.headerBottomLeft img{padding-top:17px;}
 
@@ -13,7 +13,7 @@
 #HPheader div.headerBottomRightIn div.R2 p{color:#B30002; font-weight:bold; padding:2.3% 0 0.3% 0;}
 #HPheader div.headerBottomRightIn div.R2 a{font-weight:normal;}
 #HPheader div.headerBottomRightIn div.R3{padding:4px 0 0 436px; height:auto !important; min-height:20px; height:20px;}
-#HPheader div.headerBottomRightIn div.R3 span{background:url('../images/arrowLink.gif') left center no-repeat; margin-left:8%; padding-left:9px;}
+#HPheader div.headerBottomRightIn div.R3 span{background:url('/images/arrowLink.gif') left center no-repeat; margin-left:8%; padding-left:9px;}
 #HPheaderBottom div.headerBottomLeft{padding:12px 0 0 0; margin:0 0 0 0; height:104px; text-align:right;}
 #HPheaderBottom div.headerBottomLeft p{}
 #HPheaderBottom div.headerBottomLeft a{background-color:transparent; display:block; height:104px;}
@@ -22,8 +22,8 @@
 
 
 /*COLORE ROSSO - HEADER HP GRUPPO, HP LAVORA CON NOI  &  HEADER PAGINE INTERNE*/
-#headerGruppo{background:url('../images/sx_cultura.jpg') bottom left repeat-x;	height:auto !important; padding:0; margin:0; min-height:145px; height:145px; font-size:.7em;}
-#header{background:url('../images/sx_cultura.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0;	min-height:115px; height:115px; font-size:.7em;}
+#headerGruppo{background:url('/images/sx_cultura.jpg') bottom left repeat-x;	height:auto !important; padding:0; margin:0; min-height:145px; height:145px; font-size:.7em;}
+#header{background:url('/images/sx_cultura.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0;	min-height:115px; height:115px; font-size:.7em;}
 
 #headerGruppo div.headerTop,
 #header div.headerTop{padding:12px 25px 0 25px;}
@@ -43,10 +43,10 @@
 #headerGruppo div.headerBottomRight img{margin-top:20px;}
 #header div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:82px; text-align:right;}
 
-#headerGruppo div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('../images/dx_cultura.jpg') bottom right repeat-x;}
-#header div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('../images/sx_cultura.jpg') bottom right repeat-x;}
-#headerGruppo div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('../images/bg_header_gruppo.jpg') bottom left no-repeat;}
-#header div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('../images/sx_cultura.jpg') bottom left no-repeat;}
+#headerGruppo div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('/images/dx_cultura.jpg') bottom right repeat-x;}
+#header div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('/images/sx_cultura.jpg') bottom right repeat-x;}
+#headerGruppo div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('/images/bg_header_gruppo.jpg') bottom left no-repeat;}
+#header div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('/images/sx_cultura.jpg') bottom left no-repeat;}
 
 
 /*COLORE ROSSO - VERSIONE TESTO EDITABILE */
@@ -59,15 +59,15 @@
 #headerGruppoVerde div.headerBottom{padding:0; margin:0; height:auto !important; min-height:210px; height:210px;}
 #headerGruppoVerde div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:122px; text-align:right;}
 #headerGruppoVerde div.headerBottomRight img{margin-top:20px;}
-#headerGruppoVerde div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('../images/bg_header_dx_verde.gif') bottom right repeat-x;}
-#headerGruppoVerde div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('../images/bg_header_Fercredit.jpg') bottom left no-repeat;}
+#headerGruppoVerde div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('/images/bg_header_dx_verde.gif') bottom right repeat-x;}
+#headerGruppoVerde div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('/images/bg_header_Fercredit.jpg') bottom left no-repeat;}
 
 
 /*COLORE VERDE - HEADER PAGINE INTERNE*/
 #headerVerde div.headerBottom{padding:0;	margin:0; height:auto !important; min-height:82px; height:82px;}
 #headerVerde div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:82px; text-align:right;}
-#headerVerde div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('../images/bg_header_dx_verde.gif') bottom right repeat-x;}
-#headerVerde div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('../images/bg_header_br_verde.gif') bottom left no-repeat;}
+#headerVerde div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('/images/bg_header_dx_verde.gif') bottom right repeat-x;}
+#headerVerde div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('/images/bg_header_br_verde.gif') bottom left no-repeat;}
 
 /*COLORE VERDE - VERSIONE TESTO EDITABILE */
 #headerVerde div.headerBottomLeftIn div{padding:46px 0 0 100px; color:#FFF; font-weight:bold; font-size:1.2em;}
@@ -75,10 +75,10 @@
 #headerVerde div.headerBottomLeftIn div a:hover{color:#FFF; text-decoration:none;}
 
 /*HEADER STAMPA*/
-#headerStampa{background:url('../images/bg_header.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0; min-height:80px; height:80px; font-size:.7em;}
+#headerStampa{background:url('/images/bg_header.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0; min-height:80px; height:80px; font-size:.7em;}
 #headerStampa div.headerBottom{padding:0; margin:0;	height:auto !important; min-height:80px; height:80px;}
 #headerStampa div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:80px; text-align:right;}
-#headerStampa div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:80px; background:url('../images/dx_cultura.jpg') bottom right repeat-x;}
-#headerStampa div.headerBottomLeftIn{padding:0; margin:0; height:80px; background:url('../images/bg_header_br.gif') bottom left no-repeat;}
+#headerStampa div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:80px; background:url('/images/dx_cultura.jpg') bottom right repeat-x;}
+#headerStampa div.headerBottomLeftIn{padding:0; margin:0; height:80px; background:url('/images/bg_header_br.gif') bottom left no-repeat;}
 
 
