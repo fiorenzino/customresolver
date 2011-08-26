@@ -349,9 +349,9 @@ public class NewNotizieHandler implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("id final: " + idFinal);
+			logger.info("id final: " + idFinal);
 			Notizia notiziaFind = notizieSession.find(idFinal);
-			System.out.println("trovato_ " + notiziaFind);
+			logger.info("trovato_ " + notiziaFind);
 			if (notiziaFind != null) {
 				i++;
 				idFinal = id + "-" + i;

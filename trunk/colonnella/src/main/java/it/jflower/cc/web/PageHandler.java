@@ -24,7 +24,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped

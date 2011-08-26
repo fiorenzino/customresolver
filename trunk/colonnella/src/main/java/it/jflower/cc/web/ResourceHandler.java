@@ -27,7 +27,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
-import org.seamframework.tx.Transactional;
 
 @Named
 @SessionScoped

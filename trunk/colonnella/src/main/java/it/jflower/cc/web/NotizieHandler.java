@@ -19,9 +19,13 @@ import javax.faces.model.DataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Logger;
+
 @Named
 @SessionScoped
 public class NotizieHandler implements Serializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	private static final long serialVersionUID = 1L;
 
@@ -279,9 +283,9 @@ public class NotizieHandler implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			System.out.println("id final: " + idFinal);
+			logger.info("id final: " + idFinal);
 			Notizia notiziaFind = notizieSession.find(idFinal);
-			System.out.println("trovato_ " + notiziaFind);
+			logger.info("trovato_ " + notiziaFind);
 			if (notiziaFind != null) {
 				i++;
 				idFinal = id + "-" + i;

@@ -2,33 +2,23 @@ package it.jflower.cc.web;
 
 import it.jflower.base.par.Ricerca;
 import it.jflower.base.session.SuperSession;
-import it.jflower.base.utils.FileUtils;
-import it.jflower.base.utils.JSFUtils;
 import it.jflower.base.utils.XlsCreator;
-import it.jflower.base.web.model.LocalDataModel;
 import it.jflower.base.web.model.LocalLazyDataModel;
-import it.jflower.cc.par.OperazioniLog;
 import it.jflower.cc.par.Pubblicazione;
 import it.jflower.cc.par.XlsDoc;
-import it.jflower.cc.par.attachment.Documento;
 import it.jflower.cc.par.type.TipoPubblicazione;
 import it.jflower.cc.session.PubblicazioniSession;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.FileUploadEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,12 +59,11 @@ public class StampaPubblicazioniHandler implements Serializable {
 
 	// ------------------------------------------------
 
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	Logger logger = LoggerFactory.getLogger(getClass());
 
 	// ------------------------------------------------
 
 	private Ricerca<Pubblicazione> ricerca;
-	private Pubblicazione element;
 	private DataModel<Pubblicazione> model;
 
 	private int rowCount;
@@ -142,7 +131,6 @@ public class StampaPubblicazioniHandler implements Serializable {
 	 * @return
 	 */
 	public String reset() {
-		this.element = null;
 		this.model = null;
 		return LIST;
 	}
