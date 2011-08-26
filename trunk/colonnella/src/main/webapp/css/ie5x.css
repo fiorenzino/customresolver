@@ -71,7 +71,6 @@ div.ContImgParagWP a{background:url('../images/freccia_puntatore.gif') 3px left 
 #formGen .btnInviaCrusc{position:relative; top:2px;}
 
 div.contentHpR1IntTop,
-div.HpTrenContLeftBoxInt{overflow:visible;}
 
 div#cruscotto div.tab span.off{padding:10px;}
 div#cruscotto div.tab span.off a{padding:5px 0;}
@@ -84,7 +83,6 @@ div.contentHpR2RightDx{margin-left:64%;}
 div.contentHpR2RightDxV2{margin-left:36%;}
 
 div.BoxIntDxBannerDx{height:1px;}
-div.HpTrenContLeftBoxIntDx .BoxIntAR{height:200px;}
 
 div.contHpGruppoRight div.Box2Left {width:48%; }
 div.contHpGruppoRight div.Box2Right{width:48%; margin-left:0; height:0; float:right;}

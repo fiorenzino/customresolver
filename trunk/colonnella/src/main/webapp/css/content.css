@@ -171,7 +171,7 @@ div.cboxLeftRow{background:url(../images/bg_contentBox_y.gif) top left repeat-y;
 div.cboxRightRow{background:url(../images/bg_contentBox_y.gif) top right repeat-y; padding:0;	margin:0}
 div.cboxTopLeft{background:url(../images/bg_contentBox_tl.gif) top left no-repeat; padding:0; margin:0}
 div.cboxTopRight{background:url(../images/bg_contentBox_tr.gif) top right no-repeat; padding:0; margin:0}	
-#contentBoxLeftCol div.cboxTopRight{background:url(../images/bg_contentBoxCenter_tr.gif) top right no-repeat; padding:0; margin:0}
+#contentBoxLeftCol div.cboxTopRight{background: top right no-repeat; padding:0; margin:0}
 div.cboxBotLeft{background:url(../images/bg_contentBox_bl.gif) bottom left no-repeat; padding:0; margin:0}
 div.cboxBotRight{background:url(../images/bg_contentBox_br.gif) bottom right no-repeat; padding:0; margin:0}
 
@@ -323,9 +323,9 @@ table.table1 th a, table.table1 th a:hover{color:#FFF}
 th.luogoth , th.titoloth{border-right:1px solid #FFF}
 th.luogoth{width:18.8%}
 th.titoloth{width:46.2%}
-table.table1 td{color:#000; height:37px; padding:2px 8px; border-right:1px solid #E5E5E5; background:#FFF url(../images/puntinato.gif) bottom left repeat-x}
+table.table1 td{color:#000; height:37px; padding:2px 8px; border-right:1px solid #E5E5E5; background:#FFF bottom left repeat-x}
 table.table1 td.cellaprima{padding-left:20px; color:#00436F; font-weight:bold; border-left:1px solid #E5E5E5}
-table.table1 tr.cellapari td{background:#F7F7F9 url(../images/puntinato.gif) bottom left repeat-x}
+table.table1 tr.cellapari td{background:#F7F7F9 bottom left repeat-x}
 
 
 /*Box Tabella Mese*/
