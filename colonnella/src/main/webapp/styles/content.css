@@ -10,7 +10,7 @@ a:hover{color:#00436F; text-decoration:underline}
 a.selected{font-weight:bold; color:#00436F; text-decoration:none}
 a:hover.selected{text-decoration:underline}
 
-a.LinkFreccia{color:#000; padding-left:14px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+a.LinkFreccia{color:#000; padding-left:14px; margin:0; background:url(/images/freccia_puntatore.png) left center no-repeat}
 a:hover.LinkFreccia{color:#00436F}
 
 textarea{font-family:Arial; margin:0; padding:0; height:18px; font-size:1.2em; width:auto; border:1px solid #000}
@@ -35,22 +35,22 @@ img.AlignLeft{border:1px solid #C5C5C5; padding:1px; float:left; margin-right:14
 
 
 /*Menu di Livello 1*/
-#navigation{margin:0; padding:5px 24px; font-size:.8em; font-weight:bold; height:auto !important; height:30px; min-height:30px;	background:#EAE8EB url(../images/bg_menu.gif) top left repeat-x}
+#navigation{margin:0; padding:5px 24px; font-size:.8em; font-weight:bold; height:auto !important; height:30px; min-height:30px;	background:#EAE8EB url(/images/bg_menu.gif) top left repeat-x}
 #navigation2{margin:0; padding:5px 24px; font-size:.8em; font-weight:bold;	height:auto !important; height:30px; min-height:30px; background:#FFF}
 #navigation div.menuInt,
-#navigation2 div.menuInt{background:#FFF url(../images/bg_menu_int.gif) bottom left repeat-x; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
+#navigation2 div.menuInt{background:#FFF url(/images/bg_menu_int.gif) bottom left repeat-x; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
 #navigation div.menuIntLeftRow,
-#navigation2 div.menuIntLeftRow{background:url(../images/bg_menu_int_lr.gif) top left repeat-y; padding:0; margin:0; height:auto !important; height:30px; min-height:30px}
+#navigation2 div.menuIntLeftRow{background:url(/images/bg_menu_int_lr.gif) top left repeat-y; padding:0; margin:0; height:auto !important; height:30px; min-height:30px}
 #navigation div.menuIntRightRow,
-#navigation2 div.menuIntRightRow{background:url(../images/bg_menu_int_lr.gif) top right repeat-y; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
+#navigation2 div.menuIntRightRow{background:url(/images/bg_menu_int_lr.gif) top right repeat-y; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
 
-#navigation div.menuIntTopLeft{background:url(../images/bg_menu_int_tl.gif) top left no-repeat; padding:0; margin:0; height:auto !important; height:30px;	min-height:30px}
-#navigation div.menuIntTopRight{background:url(../images/bg_menu_int_tr.gif) top right no-repeat; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
+#navigation div.menuIntTopLeft{background:url(/images/bg_menu_int_tl.gif) top left no-repeat; padding:0; margin:0; height:auto !important; height:30px;	min-height:30px}
+#navigation div.menuIntTopRight{background:url(/images/bg_menu_int_tr.gif) top right no-repeat; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
 
-#navigation div.menuIntBotLeft{background:url(../images/bg_menu_int_bl.gif) bottom left no-repeat; padding:0; margin:0; height:auto !important; height:30px; min-height:30px}
-#navigation div.menuIntBotRight{background:url(../images/bg_menu_int_br.gif) bottom right no-repeat; padding:0; margin:0; height:auto !important; height:30px; min-height:30px}
-#navigation2 div.menuIntBotLeft{background:url(../images/bg_menu2_int_bl.gif) bottom left no-repeat; padding:0; margin:0; height:auto !important; height:30px;	min-height:30px}
-#navigation2 div.menuIntBotRight{background:url(../images/bg_menu2_int_br.gif) bottom right no-repeat; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
+#navigation div.menuIntBotLeft{background:url(/images/bg_menu_int_bl.gif) bottom left no-repeat; padding:0; margin:0; height:auto !important; height:30px; min-height:30px}
+#navigation div.menuIntBotRight{background:url(/images/bg_menu_int_br.gif) bottom right no-repeat; padding:0; margin:0; height:auto !important; height:30px; min-height:30px}
+#navigation2 div.menuIntBotLeft{background:url(/images/bg_menu2_int_bl.gif) bottom left no-repeat; padding:0; margin:0; height:auto !important; height:30px;	min-height:30px}
+#navigation2 div.menuIntBotRight{background:url(/images/bg_menu2_int_br.gif) bottom right no-repeat; padding:0;	margin:0; height:auto !important; height:30px;	min-height:30px}
 #navigation ul#menu1,
 #navigation2 ul#menu2{list-style-type:none; margin:0; padding:0; text-align:center; width:100%; height:auto !important; height:30px; min-height:30px; overflow:hidden}
 
@@ -66,45 +66,45 @@ img.AlignLeft{border:1px solid #C5C5C5; padding:1px; float:left; margin-right:14
 #navigation2 ul#menu2 a:hover.menu1attivo{color:#00436F; text-decoration:underline}
 
 /*Menu 2 Link*/
-#navigation ul#menu1 li.M2cellaprima{width:49%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M2cellaprima{width:49%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M2cellaultima{width:49%}
 
 /*Menu 3 Link*/
-#navigation ul#menu1 li.M3cellaprima{width:32%; background:url(../images/separatore.gif) right center no-repeat}
-#navigation ul#menu1 li.M3cellaunica{width:34%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M3cellaprima{width:32%; background:url(/images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M3cellaunica{width:34%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M3cellaultima{width:32%}
 
 /*Menu 4 Link*/
-#navigation ul#menu1 li.M4cellaprima{width:24%; background:url(../images/separatore.gif) right center no-repeat}
-#navigation ul#menu1 li.M4cellaunica{width:25%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M4cellaprima{width:24%; background:url(/images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M4cellaunica{width:25%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M4cellaultima{width:24%}
 
 /*Menu 5 Link*/
 #navigation ul#menu1 li.C5cellaprima,
-#navigation2 ul#menu2 li.C5cellaprima{width:18%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation2 ul#menu2 li.C5cellaprima{width:18%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.C5cellaunica,
-#navigation2 ul#menu2 li.C5cellaunica{width:21%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation2 ul#menu2 li.C5cellaunica{width:21%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.C5cellaultima,
 #navigation2 ul#menu2 li.C5cellaultima{width:18%}
 
 /*Menu 6 Link*/
-#navigation ul#menu1 li.M6cellaprima{width:15.5%; background:url(../images/separatore.gif) right center no-repeat}
-#navigation ul#menu1 li.M6cellaunica{width:17%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M6cellaprima{width:15.5%; background:url(/images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M6cellaunica{width:17%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M6cellaultima{width:15.5%}
 
 /*Menu 7 Link*/
-#navigation ul#menu1 li.M7cellaprima{width:12%; background:url(../images/separatore.gif) right center no-repeat}
-#navigation ul#menu1 li.M7cellaunica{width:15%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M7cellaprima{width:12%; background:url(/images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M7cellaunica{width:15%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M7cellaultima{width:12.3%}
 
 /*Menu 8 Link*/
-#navigation ul#menu1 li.M8cellaprima{width:9.5%; background:url(../images/separatore.gif) right center no-repeat}
-#navigation ul#menu1 li.M8cellaunica{width:13.3%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M8cellaprima{width:9.5%; background:url(/images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M8cellaunica{width:13.3%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M8cellaultima{width:9%}
 
 /*Menu 9 Link*/
-#navigation ul#menu1 li.M9cellaprima{width:8%; background:url(../images/separatore.gif) right center no-repeat}
-#navigation ul#menu1 li.M9cellaunica{width:12.2%; background:url(../images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M9cellaprima{width:8%; background:url(/images/separatore.gif) right center no-repeat}
+#navigation ul#menu1 li.M9cellaunica{width:12.2%; background:url(/images/separatore.gif) right center no-repeat}
 #navigation ul#menu1 li.M9cellaultima{width:5%}
 
 /*Contenuti*/
@@ -141,52 +141,52 @@ span.navigator span.frecciaSearch{font-size:.8em;}
 #content div.contentLeft ul#menu2 a:hover.primoAttivoRed{text-decoration:underline; color:#00436F}
 
 /*Livello 3*/
-#content div.contentLeft ul#menu3{list-style-type:none; margin:3px 0 0 0; padding:5px 0 6px 0; border:0; background:#F7F7F9 url(../images/bg_menu2Left.gif) top left repeat-y}
+#content div.contentLeft ul#menu3{list-style-type:none; margin:3px 0 0 0; padding:5px 0 6px 0; border:0; background:#F7F7F9 url(/images/bg_menu2Left.gif) top left repeat-y}
 #content div.contentLeft #menu3 li{margin:0; padding:0}
 #content div.contentLeft ul#menu3 a{display:block; line-height:1.5em; font-weight:normal;	text-decoration:none; padding:0 0 0 20px; border:0}
 #content div.contentLeft ul#menu3 a:link,
-#content div.contentLeft ul#menu3 a:visited{color:#000; background:url(../images/marcatore.gif) left center no-repeat}
-#content div.contentLeft ul#menu3 a:hover{color:#00436F; text-decoration:underline; background:url(../images/marcatore_sel.gif) left center no-repeat}
+#content div.contentLeft ul#menu3 a:visited{color:#000; background:url(/images/marcatore.gif) left center no-repeat}
+#content div.contentLeft ul#menu3 a:hover{color:#00436F; text-decoration:underline; background:url(/images/marcatore_sel.gif) left center no-repeat}
 #content div.contentLeft #menuLiv2{margin-bottom:1.4em}
-#content div.contentLeft #menuLiv2 ul#menu3 a.menu3attivo{font-weight:bold; color:#00436F; text-decoration:none; background:url(../images/marcatore_sel.gif) left center no-repeat}
+#content div.contentLeft #menuLiv2 ul#menu3 a.menu3attivo{font-weight:bold; color:#00436F; text-decoration:none; background:url(/images/marcatore_sel.gif) left center no-repeat}
 #content div.contentLeft #menuLiv2 ul#menu3 a:hover.menu3attivo{text-decoration:underline}
-#content div.contentLeft #menu3{background:url(../images/marcatore_sel.gif) -500px -500px no-repeat;/*carica in anticipo l'img.*/}
+#content div.contentLeft #menu3{background:url(/images/marcatore_sel.gif) -500px -500px no-repeat;/*carica in anticipo l'img.*/}
 
 /*Box Centrale*/
 
 /*Contenuti (pagina con 2 colonne)*/ 
-#contentBox{margin:0; padding:0; background:#F7F7F9 url(../images/bg_contentBox_x.gif) top left repeat-x}
+#contentBox{margin:0; padding:0; background:#F7F7F9 url(/images/bg_contentBox_x.gif) top left repeat-x}
 
 /*Contenuti - Colonna centrale (pagina con 3 colonne)*/ 
-#contentBoxLeftCol{width:74%; float:left; margin:0;	padding:0; background:#F7F7F9 url(../images/bg_contentBox_x.gif) top left repeat-x}
+#contentBoxLeftCol{width:74%; float:left; margin:0;	padding:0; background:#F7F7F9 url(/images/bg_contentBox_x.gif) top left repeat-x}
 
 /*Contenuti - Spalla destra (pagina con 3 colonne)*/ 
 #contentBoxRightCol{margin:0 0 0 74%; padding:13px 0; background:#F7F7F9}
 
 
 /*angoli arrotondati - doppia linea*/
-div.contcbox{background:url(../images/bg_contentBox_x.gif) top left repeat-x}
-div.cbox{background:url(../images/bg_contentBox_x.gif) bottom left repeat-x; padding:0; margin:0}
-div.cboxLeftRow{background:url(../images/bg_contentBox_y.gif) top left repeat-y; padding:0; margin:0}
-div.cboxRightRow{background:url(../images/bg_contentBox_y.gif) top right repeat-y; padding:0;	margin:0}
-div.cboxTopLeft{background:url(../images/bg_contentBox_tl.gif) top left no-repeat; padding:0; margin:0}
-div.cboxTopRight{background:url(../images/bg_contentBox_tr.gif) top right no-repeat; padding:0; margin:0}	
+div.contcbox{background:url(/images/bg_contentBox_x.gif) top left repeat-x}
+div.cbox{background:url(/images/bg_contentBox_x.gif) bottom left repeat-x; padding:0; margin:0}
+div.cboxLeftRow{background:url(/images/bg_contentBox_y.gif) top left repeat-y; padding:0; margin:0}
+div.cboxRightRow{background:url(/images/bg_contentBox_y.gif) top right repeat-y; padding:0;	margin:0}
+div.cboxTopLeft{background:url(/images/bg_contentBox_tl.gif) top left no-repeat; padding:0; margin:0}
+div.cboxTopRight{background:url(/images/bg_contentBox_tr.gif) top right no-repeat; padding:0; margin:0}	
 #contentBoxLeftCol div.cboxTopRight{background: top right no-repeat; padding:0; margin:0}
-div.cboxBotLeft{background:url(../images/bg_contentBox_bl.gif) bottom left no-repeat; padding:0; margin:0}
-div.cboxBotRight{background:url(../images/bg_contentBox_br.gif) bottom right no-repeat; padding:0; margin:0}
+div.cboxBotLeft{background:url(/images/bg_contentBox_bl.gif) bottom left no-repeat; padding:0; margin:0}
+div.cboxBotRight{background:url(/images/bg_contentBox_br.gif) bottom right no-repeat; padding:0; margin:0}
 
 /*angoli arrotondati - una linea*/
-div.contcbox2{background:url(../images/bg_contentBox2_x.gif) top left repeat-x}
-div.cbox2{background:url(../images/bg_contentBox2_x.gif) bottom left repeat-x; padding:0; margin:0}
-div.cbox2LeftRow{background:url(../images/bg_contentBox2_y.gif) top left repeat-y; padding:0;	margin:0}
-div.cbox2RightRow{background:url(../images/bg_contentBox2_y.gif) top right repeat-y; padding:0; margin:0}
+div.contcbox2{background:url(/images/bg_contentBox2_x.gif) top left repeat-x}
+div.cbox2{background:url(/images/bg_contentBox2_x.gif) bottom left repeat-x; padding:0; margin:0}
+div.cbox2LeftRow{background:url(/images/bg_contentBox2_y.gif) top left repeat-y; padding:0;	margin:0}
+div.cbox2RightRow{background:url(/images/bg_contentBox2_y.gif) top right repeat-y; padding:0; margin:0}
 
 /*angoli arrotondati - una linea spessa colore grigio - 2 curve*/
 div.box3 div.boxCurva3Int div.r2{height:70px}
 
 
 /*Contenuti principali*/
-div.cboxIntArchivio p{color:#00436F; font-size:1.1em; padding:6px 0 6px 30px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.cboxIntArchivio p{color:#00436F; font-size:1.1em; padding:6px 0 6px 30px; margin:0; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 div.cboxIntWP{padding:18px 30px 2px 47px; background:#FFF; border-left:1px solid #F5F5F5; border-right:1px solid #F5F5F5; height:auto !important; min-height:223px;	height:210px}
 
@@ -201,7 +201,7 @@ div.ArchivioImgRight img.alignLeft{float:left; border:1px solid #C5C5C5; padding
 
 div.ArchivioImgLeft a,
 div.ArchivioImgRight a,
-div.ContImgParagWP a{color:#00436F; font-size:1.1em; font-weight:bold; padding-left:15px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.ContImgParagWP a{color:#00436F; font-size:1.1em; font-weight:bold; padding-left:15px; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 /*Aggiunta per gestione titolored non linkato*/
 div.ArchivioImgLeft span.titolored,
@@ -227,22 +227,22 @@ div.ContParag a:hover.linkEsterno{color:#00436F; text-decoration:underline}
 div.ContParag a.linkInterno{color:#000; text-decoration:underline}
 div.ContParag a:hover.linkInterno{color:#00436F; text-decoration:underline}
 
-div.ContParagSez p{font-size:.9em; padding:6px 0 6px 25px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.ContParagSez p{font-size:.9em; padding:6px 0 6px 25px; margin:0; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 
 /*BC.Aggiunta per gestione lista di paragrafo*/
 div.ContParagLista {padding:0; margin:6px 0}
 div.ContParagLista div.descrz {padding:0 0 4px 0}
-div.ContParagLista div.frecciaLink{padding:4px 0 4px 15px;	background:url(../images/freccia__puntatore.gif) no-repeat 0px 7px; display:inline;	line-height:1.7em}
+div.ContParagLista div.frecciaLink{padding:4px 0 4px 15px;	background:url(/images/freccia_puntatore.png) no-repeat 0px 7px; display:inline;	line-height:1.7em}
 
-div.ContAncore div.titoloRight{padding:0; margin:0; background:#00436F url(../images/bg_rb_tr.gif) top right no-repeat}
-div.ContAncore div.titoloLeft{padding:5px 10px 3px 10px; margin:0; background:url(../images/bg_rb_tl.gif) top left no-repeat}
+div.ContAncore div.titoloRight{padding:0; margin:0; background:#00436F url(/images/bg_rb_tr.gif) top right no-repeat}
+div.ContAncore div.titoloLeft{padding:5px 10px 3px 10px; margin:0; background:url(/images/bg_rb_tl.gif) top left no-repeat}
 
-div.ContAncore2 p{font-weight:bold; padding:4px 0 4px 30px; margin:0; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.ContAncore2 p{font-weight:bold; padding:4px 0 4px 30px; margin:0; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 /* Desktop*/
 div.Desktop2Img div a.arrowLink,
-div.Desktop1Img div a.arrowLink{font-size:1em; padding-left:14px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.Desktop1Img div a.arrowLink{font-size:1em; padding-left:14px; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 /* Lista News*/
 div.Box2ImgTitolo{padding:15px 30px}
@@ -252,20 +252,20 @@ div.cboxIntContResult{padding:24px 0; margin:0}
 
 div.ContResult{padding:20px 24px; margin:0 1px; background:#FFF}
 div.ContResult div{padding:7px 0; height:auto !important; min-height:30px; height:30px}
-div.ContResult div a.arrowLink{color:#00436F; font-size:1em; font-weight:bold; padding-left:18px; background:url(../images/freccia__puntatore.gif) 2px left no-repeat}
-html>/**/body div.ContResult div a.arrowLink /* FireFox*/{background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.ContResult div a.arrowLink{color:#00436F; font-size:1em; font-weight:bold; padding-left:18px; background:url(/images/freccia_puntatore.png) 2px left no-repeat}
+html>/**/body div.ContResult div a.arrowLink /* FireFox*/{background:url(/images/freccia_puntatore.png) left center no-repeat}
 div.ContResult div span.navigator{float:none; padding:2px 0 0 18px}
 div.cboxIntContResult div.PageNumb{padding-top:14px; padding-right:40px}
 div.cboxIntContResult div.PageNumb span.txtLeft{float:left; font-weight:bold; color:#000; padding-left:40px}
 
 /*Mappa del sito*/
-div.cboxIntContMap div.ContMap a.arrowLink{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.cboxIntContMap div.ContMap a.arrowLink{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 
 /*Faq - Aiuto*/
 div.cboxIntContFaq div.ContFaq div.testo{padding:5px 0 5px 14px; line-height:1.3em}
 div.cboxIntContFaq div.ContFaq a.arrowLink,
-div.cboxIntContFaq div.ContFaq span.titoloFaq{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.cboxIntContFaq div.ContFaq span.titoloFaq{font-size:1.1em; font-weight:bold; padding-left:14px; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 /*Infoutili - Comunicato*/
 div.cboxIntContInfo div.ContInfo span.titolo{font-weight:bold; padding:0 0 10px 0}
@@ -279,13 +279,13 @@ html>/**/body div.RightColContentLinks{overflow:hidden}/*Firefox*/
 div.RightColImgParag{padding:5px 7px; height:auto !important; min-height:48px; height:0}
 div.RightColImgParag img{float:left; border:1px solid #C5C5C5; padding:1px; margin:1px 4px 0 0}
 div.RightColImgParag div.ImgLnk {line-height:1.2}
-div.RightColContParag div.FrecciaLnk{padding:1px 0 1px 15px; margin:0 7px 0 7px; background:url(../images/freccia__puntatore.gif) left center no-repeat}
+div.RightColContParag div.FrecciaLnk{padding:1px 0 1px 15px; margin:0 7px 0 7px; background:url(/images/freccia_puntatore.png) left center no-repeat}
 
 
 /*FORM GENERICA*/
 #formGen div.Txt{padding:6px 0}
-#formGen div.Entra{font-size:1.1em; text-align:center; padding:.3em 0 .4em 0; margin-right:8px; background:#EAEAEA url(../images/bg_menu.gif) top left repeat-x}
-#formGen div.Entra2{font-size:1.1em; text-align:right; padding:.3em .5em .4em 0; margin-right:8px; background:#EAEAEA url(../images/bg_menu.gif) top left repeat-x}
+#formGen div.Entra{font-size:1.1em; text-align:center; padding:.3em 0 .4em 0; margin-right:8px; background:#EAEAEA url(/images/bg_menu.gif) top left repeat-x}
+#formGen div.Entra2{font-size:1.1em; text-align:right; padding:.3em .5em .4em 0; margin-right:8px; background:#EAEAEA url(/images/bg_menu.gif) top left repeat-x}
 #formGen div.Txt input.btnSubmit,
 
 
@@ -335,7 +335,7 @@ div.cboxMese div.contentable table{font-size:1em}
 /*Tabella TCOM-1*/
 div.ContParagTab a.linkEsterno{color:#000; text-decoration:underline}
 div.ContParagTab a:hover.linkEsterno{color:#00436F; text-decoration:underline}
-div.ContParagTab div.frecciaLink{padding:6px 0 6px 15px; background:url(../images/freccia__puntatore.gif) no-repeat 0px 7px; display:inline; line-height:1.7em}
+div.ContParagTab div.frecciaLink{padding:6px 0 6px 15px; background:url(/images/freccia_puntatore.png) no-repeat 0px 7px; display:inline; line-height:1.7em}
 
 table.tabTCom td.last, table.tabTCom td.testo,table.tabTCom tr.row2 th.last{border-right:1px solid #E5E5E5}
 div.cboxMMGalleryBot div.ContBoxRiq div.BoxRiq div.titolo{padding:8px 5px 10px 30px; color:#00436F; font-weight:bold; font-size:1.1em}
@@ -343,7 +343,7 @@ div.cboxMMGalleryBot div.ContBoxRiq div.BoxRiq div.descrizione div.txt{clear:bot
 div.cboxMMGalleryBot div.ContBoxRiq div.BoxRiq div.descrizione div.txt p{line-height:1.1em}
 
 /* Box Votazione */
-div.boxCaptcha{background:#E9E7EA url(../images/bg_menu.gif) repeat-x; margin:0; padding:1px; text-align:center}
+div.boxCaptcha{background:#E9E7EA url(/images/bg_menu.gif) repeat-x; margin:0; padding:1px; text-align:center}
 div.boxCaptcha div.Titolo{font-size:1em; font-weight:bold; padding:6px 12px 5px 12px; margin-bottom:10px}
 
 
