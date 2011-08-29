@@ -93,7 +93,6 @@ public class RegistroPubblicazioniSession extends
 
 	}
 
-	@Transactional
 	public String getNext() {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());

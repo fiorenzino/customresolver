@@ -87,7 +87,6 @@ public class CategorieSession implements Serializable {
 		return tipoPubblicazione;
 	}
 
-	@Transactional
 	public CategoriaAttivita findCategoriaAttivita(Long id) {
 		try {
 			CategoriaAttivita categoriaAttivita = em.find(
@@ -99,7 +98,6 @@ public class CategorieSession implements Serializable {
 		return null;
 	}
 
-	@Transactional
 	public TipoAttivita findTipoAttivita(Long id) {
 		try {
 			TipoAttivita tipoAttivita = em.find(TipoAttivita.class, id);
@@ -110,7 +108,6 @@ public class CategorieSession implements Serializable {
 		return null;
 	}
 
-	@Transactional
 	public TipoPubblicazione findTipoPubblicazione(Long id) {
 		try {
 			TipoPubblicazione tipoPubblicazione = em.find(
@@ -154,7 +151,6 @@ public class CategorieSession implements Serializable {
 		}
 	}
 
-	@Transactional
 	public List<CategoriaAttivita> getAllCategoriaAttivita() {
 
 		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
@@ -169,7 +165,6 @@ public class CategorieSession implements Serializable {
 		return all;
 	}
 
-	@Transactional
 	public List<CategoriaAttivita> getAllCategoriaAttivitaByTipo(Long id) {
 
 		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
@@ -184,7 +179,6 @@ public class CategorieSession implements Serializable {
 		return all;
 	}
 
-	@Transactional
 	public List<TipoAttivita> getAllTipoAttivita() {
 
 		List<TipoAttivita> all = new ArrayList<TipoAttivita>();
@@ -199,7 +193,6 @@ public class CategorieSession implements Serializable {
 		return all;
 	}
 
-	@Transactional
 	public List<TipoPubblicazione> getAllTipoPubblicazione() {
 
 		List<TipoPubblicazione> all = new ArrayList<TipoPubblicazione>();

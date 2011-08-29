@@ -135,9 +135,8 @@ public class NotizieSession extends SuperSession<Notizia> implements
 	}
 
 	@Override
-	@Transactional
 	public Notizia fetch(Object key) {
-		if ( key == null || key.toString().length() == 0 ) {
+		if (key == null || key.toString().length() == 0) {
 			return null;
 		}
 		Notizia notizia = find(key);

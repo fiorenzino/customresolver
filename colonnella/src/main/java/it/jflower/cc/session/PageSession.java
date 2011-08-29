@@ -51,7 +51,6 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	}
 
 	@Override
-	@Transactional
 	protected Page prePersist(Page page) {
 		// closeHtmlTags(page);
 		String idTitle = PageUtils.createPageId(page.getTitle());
