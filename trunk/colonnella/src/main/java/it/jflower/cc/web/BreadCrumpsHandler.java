@@ -34,12 +34,12 @@ public class BreadCrumpsHandler implements Serializable {
 		for (int i = 0; i < crumbs.length; i++) {
 			if (crumbs[i].trim().equals("")) {
 				String label = "home";
-				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
+				sb.append("<a href=\"" + base + "/\" title=\"" + crumbs[i]
 						+ "\">" + label + "</a> ");
 				sb.append("<span class=\"freccia\">&gt;</span> ");
 			} else if (crumbs[i].trim().equals(base.replaceAll("/", ""))) {
 				String label = "home";
-				sb.append("<a href=\"" + base + "\" title=\"" + crumbs[i]
+				sb.append("<a href=\"" + base + "/\" title=\"" + crumbs[i]
 						+ "\">" + label + "</a> ");
 				sb.append("<span class=\"freccia\">&gt;</span> ");
 			} else if (crumbs[i].trim().equals("pagine")) {
