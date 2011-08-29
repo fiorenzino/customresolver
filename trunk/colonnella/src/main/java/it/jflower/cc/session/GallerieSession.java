@@ -45,10 +45,14 @@ public class GallerieSession implements Serializable {
 	}
 
 	private void closeHtmlTags(Galleria galleria) {
-		galleria.setDescrizione( galleria.getDescrizione() == null ? null : galleria.getDescrizione().replaceAll("class=\"replaceMe \">", "class=\"replaceMe\"/>").replaceAll("<br>", "<br/>") );
+		galleria.setDescrizione(galleria.getDescrizione() == null ? null
+				: galleria
+						.getDescrizione()
+						.replaceAll("class=\"replaceMe \">",
+								"class=\"replaceMe\"/>")
+						.replaceAll("<br>", "<br/>"));
 	}
 
-	@Transactional
 	public Galleria find(String id) {
 		try {
 			Galleria galleria = em.find(Galleria.class, id);
@@ -70,7 +74,6 @@ public class GallerieSession implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public List<Galleria> getAll() {
 
 		List<Galleria> all = new ArrayList<Galleria>();

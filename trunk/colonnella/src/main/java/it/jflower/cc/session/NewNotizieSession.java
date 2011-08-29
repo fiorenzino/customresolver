@@ -176,7 +176,6 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public void refreshEvidenza(String id) {
 		List<Notizia> ret = null;
 		try {

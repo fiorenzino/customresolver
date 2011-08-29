@@ -77,14 +77,12 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 		return mg;
 	}
 
-	@Transactional
 	public List<MenuGroup> getAllList() {
 		List<MenuGroup> result = super.getAllList();
 		processActiveMenuItems(result);
 		return result;
 	}
 
-	@Transactional
 	public List<MenuGroup> getList(Ricerca<MenuGroup> ricerca, int startRow,
 			int pageSize) {
 		List<MenuGroup> result = super.getList(ricerca, startRow, pageSize);
