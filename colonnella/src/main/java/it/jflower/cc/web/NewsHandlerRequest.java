@@ -6,7 +6,6 @@ import it.jflower.cc.par.Notizia;
 import it.jflower.cc.par.attachment.Immagine;
 import it.jflower.cc.par.type.TipoInformazione;
 import it.jflower.cc.session.NewNotizieSession;
-import it.jflower.cc.session.NotizieSession;
 
 import java.util.List;
 
@@ -27,8 +26,8 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 	private Notizia evidenzaNotizia;
 	private Immagine evidenzaImmagine;
 
-	@Inject
-	NotizieSession notizieSession;
+//	@Inject
+//	NotizieSession _notizieSession;
 
 	@Inject
 	NewNotizieSession newNotizieSession;
@@ -54,7 +53,7 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		this.currentpage = 0;
 		this.id = paramsHandler.getParam("id");
 		if (this.id != null && !"".equals(this.id))
-			this.notizia = notizieSession.fetch(this.id);
+			this.notizia = newNotizieSession.fetch(this.id);
 		try {
 			currentpage = Integer.parseInt(paramsHandler
 					.getParam("currentpage"));
@@ -84,7 +83,7 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 		if (filtro != null && filtro.length() > 0) {
 			ricerca.getOggetto().setTitolo(filtro);
 		}
-		return notizieSession.getList(ricerca, startRow, pageSize);
+		return newNotizieSession.getList(ricerca, startRow, pageSize);
 	}
 
 	private int totaleNotizie(String tipo, String filtro) {
@@ -97,12 +96,12 @@ public class NewsHandlerRequest implements UiRepeatInterface {
 			ricerca.getOggetto().setTitolo(filtro);
 			ricerca.getOggetto().setContenuto(filtro);
 		}
-		return notizieSession.getListSize(ricerca);
+		return newNotizieSession.getListSize(ricerca);
 	}
 
 	public Notizia getNotizia() {
 		if (this.notizia == null)
-			this.notizia = notizieSession.findLast();
+			this.notizia = newNotizieSession.findLast();
 		return notizia;
 	}
 
