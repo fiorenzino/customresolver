@@ -19,8 +19,6 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.seamframework.tx.Transactional;
-
 @Named
 @RequestScoped
 public class NewNotizieSession extends SuperSession<Notizia> implements
@@ -149,9 +147,14 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 		Notizia ret = new Notizia();
 		try {
 			ret = (Notizia) em
-					.createQuery("select p from Notizia p order by p.id desc ")
+					.createQuery("select p from Notizia p order by p.data desc ")
 					.setMaxResults(1).getSingleResult();
-
+			if ( ret == null ) {
+				return null;
+			}
+			else {
+				return this.fetch(ret.getId());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -214,4 +217,6 @@ public class NewNotizieSession extends SuperSession<Notizia> implements
 			return null;
 		}
 	}
+	
+
 }

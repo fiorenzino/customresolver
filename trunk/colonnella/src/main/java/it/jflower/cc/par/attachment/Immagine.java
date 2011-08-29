@@ -16,6 +16,7 @@ public class Immagine implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	private boolean attivo = true;
 	private String nome;
 	private String descrizione;
 	private String filename;
@@ -88,4 +89,13 @@ public class Immagine implements Serializable {
 		return "img/" + filename;
 	}
 
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
+
+	
 }

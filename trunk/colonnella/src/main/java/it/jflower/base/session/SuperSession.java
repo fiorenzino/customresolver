@@ -326,7 +326,7 @@ public abstract class SuperSession<T> {
 		try {
 			return clazz.getDeclaredField("attivo");
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			// puo' darsi che anziché nullo dia eccezione se il campo non c'è
 			// ... ora non ricordo esattamente quale comportamento bisogna
 			// attendere
