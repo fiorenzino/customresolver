@@ -1,0 +1,48 @@
+/*IE 7*/
+
+
+
+#content{height:auto; min-height:320px;}
+
+#content div.contentLeft{min-height:300px;}
+ 
+#content div.contentLeft ul#menu3{padding:5px 0 8px 0;}
+
+div.cboxIntArchivio{min-height:205px;}
+div.cboxIntImgPar{min-height:156px;}
+
+div.ArchivioImgLeft,
+div.ArchivioImgRight{margin-bottom:15px;}
+
+div.ArchivioImgLeft a,
+div.ArchivioImgRight a,
+div.ContImgParagWP a{background:url('/images/freccia_puntatore.png') 3px left no-repeat;}
+
+div.cboxIntContResult div.PageNumb{height:1em;}
+
+#content div.contentLeft,
+
+.BoxIntIconeLeft,
+.BoxIntIconeRight{margin-bottom:3px; padding-bottom:0;}
+
+div#cruscotto div.tab span.off{padding:10px;}
+div#cruscotto div.tab span.off a{padding:5px 0;}
+
+#formGen .btnInviaCrusc {position:relative; top:2px;}
+
+#AreaRiservata div{padding-bottom:4px;}
+
+.roundButtonGray div.roundCont p{padding:0; margin:14px 12px 0 0;}
+
+
+/*Add x cruscotto spalla dx*/
+.cruscotto {width:170px; margin-left:auto; margin-right:auto; background-color:#ebebeb}
+.cruscotto fieldset {position:static; background-color:#ebebeb}
+.cruscotto .form-row label {display:block;float:none;width:auto;padding-left:0;text-align:left;}
+.cruscotto .alternate {position:static; padding:5px}
+
+div.ContBoxLabelAR div.BotForm div.R1{margin-top:-9px;}
+
+div.ContParag{height:auto !important; min-height:20px;}
+
+div#mooqueeStart{margin:0;padding:0;}
