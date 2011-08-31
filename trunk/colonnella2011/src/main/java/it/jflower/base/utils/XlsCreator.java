@@ -47,7 +47,7 @@ public class XlsCreator {
 					sheet = workbook.createSheet("Pagina " + numPage, numPage);
 					Label label = new Label(0, 0, "numero");
 					sheet.addCell(label);
-					
+
 					label = new Label(1, 0, "anno/num");
 					sheet.addCell(label);
 
@@ -65,19 +65,19 @@ public class XlsCreator {
 
 					label = new Label(6, 0, "valido al");
 					sheet.addCell(label);
-					
+
 					label = new Label(7, 0, "ente emittente");
 					sheet.addCell(label);
-					
-					
+
 				}
 				logger.info("page: " + numPage + " - num: " + numRow);
 				Pubblicazione pubblicazione = list.get(i);
 
 				Label label = new Label(0, numRow, "" + numRow);
 				sheet.addCell(label);
-				
-				label = new Label(1, numRow, "" + pubblicazione.getProgressivoRegistro());
+
+				label = new Label(1, numRow, ""
+						+ pubblicazione.getProgressivoRegistro());
 				sheet.addCell(label);
 
 				label = new Label(2, numRow, "" + pubblicazione.getTitolo());
@@ -98,12 +98,14 @@ public class XlsCreator {
 				label = new Label(6, numRow, ""
 						+ format.format(pubblicazione.getAl()));
 				sheet.addCell(label);
-				
-				label = new Label(7, numRow, ""
-						+ format.format(pubblicazione.getEnteEmittente()));
+
+				label = new Label(
+						7,
+						numRow,
+						"" + pubblicazione.getEnteEmittente() != null ? pubblicazione
+								.getEnteEmittente() : "");
 				sheet.addCell(label);
-				
-				
+
 			}
 			workbook.write();
 			workbook.close();
