@@ -50,12 +50,13 @@ public class DBURLConnection extends URLConnection {
 			try {
 				this.currentPage = JSFUtils.getBean(PageSession.class).fetch(
 						this.form);
-				JSFUtils.getBean(DbPageHandler.class).setPage(currentPage);
-				PageUtils.generateContent(this.currentPage);
-				this.content = this.currentPage.getContent();
-
+				if (this.currentPage != null) {
+					JSFUtils.getBean(DbPageHandler.class).setPage(currentPage);
+					PageUtils.generateContent(this.currentPage);
+					this.content = this.currentPage.getContent();
+				}
 			} catch (Exception e) {
-//				e.printStackTrace();
+				// e.printStackTrace();
 				logger.error(e.getMessage());
 			}
 			this.connected = true;
