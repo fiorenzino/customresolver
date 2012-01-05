@@ -1,5 +1,7 @@
 package by.giava.attivita.repository;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -14,14 +16,11 @@ import javax.persistence.Query;
 
 import by.giava.attivita.model.Attivita;
 import by.giava.attivita.model.type.CategoriaAttivita;
-import by.giava.base.common.ejb.SuperSession;
-import by.giava.base.model.Ricerca;
 
 @Named
 @Stateless
 @LocalBean
-public class AttivitaSession extends SuperSession<Attivita> implements
-		Serializable {
+public class AttivitaRepository extends AbstractRepository<Attivita> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,11 +43,6 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 	}
 
 	@Override
-	protected String getOrderBy() {
-		return "nome";
-	}
-
-	@Override
 	protected Attivita prePersist(Attivita a) {
 		a.setCategoria(getEm().find(CategoriaAttivita.class,
 				a.getCategoria().getId()));
@@ -63,63 +57,61 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 	}
 
 	@Override
-	protected Query getRestrictions(Ricerca<Attivita> ricerca, String orderBy,
-			boolean count) {
+	protected Query getRestrictions(Search<Attivita> search, boolean justCount) {
 
-		if (ricerca == null || ricerca.getOggetto() == null)
-			return super.getRestrictions(ricerca, orderBy, count);
+		if (search.getObj() == null) {
+			return super.getRestrictions(search, justCount);
+		}
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		String alias = "t";
-		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
-				count));
-		sb.append(" where ").append(alias).append(".attivo = :attivo");
+		String alias = "c";
+		StringBuffer sb = new StringBuffer(getBaseList(search.getObj()
+				.getClass(), alias, justCount));
+
+		String separator = " where ";
+
+		// attivo
+		sb.append(separator).append(" ").append(alias)
+				.append(".attivo = :attivo ");
+		// aggiunta alla mappa
 		params.put("attivo", true);
+		// separatore
+		separator = " and ";
 
-		String separator = " and ";
-
-		if (ricerca.getOggetto().getCategoria() != null
-				&& ricerca.getOggetto().getCategoria().getTipoAttivita() != null
-				&& ricerca.getOggetto().getCategoria().getTipoAttivita()
-						.getId() != null) {
+		if (search.getObj().getCategoria() != null
+				&& search.getObj().getCategoria().getTipoAttivita() != null
+				&& search.getObj().getCategoria().getTipoAttivita().getId() != null) {
 			sb.append(separator).append(alias)
 					.append(".categoria.tipoAttivita.id = :idAttivita ");
-			params.put("idAttivita", ricerca.getOggetto().getCategoria()
+			params.put("idAttivita", search.getObj().getCategoria()
 					.getTipoAttivita().getId());
 		}
-		if (ricerca.getOggetto().getCategoria() != null
-				&& ricerca.getOggetto().getCategoria().getId() != null) {
+		if (search.getObj().getCategoria() != null
+				&& search.getObj().getCategoria().getId() != null) {
 			sb.append(separator).append(alias)
 					.append(".categoria.id = :idCategoria ");
-			params.put("idCategoria", ricerca.getOggetto().getCategoria()
-					.getId());
+			params.put("idCategoria", search.getObj().getCategoria().getId());
 		}
-		if (ricerca.getOggetto().getCategoria() != null
-				&& ricerca.getOggetto().getCategoria().getCategoria() != null
-				&& ricerca.getOggetto().getCategoria().getCategoria().length() > 0) {
+		if (search.getObj().getCategoria() != null
+				&& search.getObj().getCategoria().getCategoria() != null
+				&& search.getObj().getCategoria().getCategoria().length() > 0) {
 			sb.append(separator).append("UPPER(" + alias)
 					.append(".categoria.categoria) LIKE :categoria ");
-			params.put("categoria", likeParam(ricerca.getOggetto()
-					.getCategoria().getCategoria()));
+			params.put("categoria", likeParam(search.getObj().getCategoria()
+					.getCategoria()));
 		}
-		if (ricerca.getOggetto() != null
-				&& ricerca.getOggetto().getNome() != null
-				&& ricerca.getOggetto().getNome().length() > 0) {
+		if (search.getObj().getNome() != null
+				&& search.getObj().getNome().length() > 0) {
 			sb.append(separator).append(alias).append(".nome LIKE :nome ");
-			params.put("nome", likeParam(ricerca.getOggetto().getNome()));
+			params.put("nome", likeParam(search.getObj().getNome()));
 		}
 
-		if (!count) {
-			sb.append(" order by ").append(alias).append(".").append(orderBy);
-		} else {
-			logger.info("order by null");
+		if (!justCount) {
+			sb.append(getOrderBy(alias, search.getOrder()));
 		}
-
-		logger.info(sb.toString());
 
 		Query q = getEm().createQuery(sb.toString());
-
 		for (String param : params.keySet()) {
 			q.setParameter(param, params.get(param));
 		}
@@ -138,6 +130,11 @@ public class AttivitaSession extends SuperSession<Attivita> implements
 			e.printStackTrace();
 		}
 		return ret;
+	}
+
+	@Override
+	protected String getDefaultOrderBy() {
+		return "nome asc";
 	}
 
 }
