@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
