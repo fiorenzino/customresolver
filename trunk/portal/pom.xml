@@ -8,7 +8,27 @@
 	<name>portal</name>
 	<description>portal project</description>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<commons2Ejb.version>1.1.2</commons2Ejb.version>
+		<commons2Web.version>1.2.2</commons2Web.version>
+		<primefaces.version>3.0</primefaces.version>
+		<primefaces.theme.version>1.0.1</primefaces.theme.version>
+	</properties>
+
 	<dependencies>
+
+		<!-- Coopservice Commons -->
+		<dependency>
+			<groupId>it.coopservice.commons2</groupId>
+			<artifactId>commons2Web</artifactId>
+			<version>${commons2Web.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>it.coopservice.commons2</groupId>
+			<artifactId>commons2Ejb</artifactId>
+			<version>${commons2Ejb.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
@@ -38,13 +58,18 @@
 			<scope>provided</scope>
 		</dependency>
 
-
-
 		<!-- Prime faces 2 -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>2.0.2</version>
+			<version>${primefaces.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>aristo</artifactId>
+			<version>${primefaces.theme.version}</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -119,6 +144,7 @@
 			<version>3.6.6.Final</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
