@@ -22,20 +22,20 @@
 
 						<h:outputLabel value="Nome(*):" for="nome" />
 						<h:inputText required="true" id="nome"
-							value="#{templateHandler.element.nome}" style="width: 100%;" />
+							value="#{templateController.element.nome}" style="width: 100%;" />
 
 						<h:outputLabel
 							value="Utilizza editor avanzato per le pagine di questo template (statico o dinamico):"
 							for="statico" />
 						<h:selectBooleanCheckbox id="statico"
-							value="#{templateHandler.element.statico}" />
+							value="#{templateController.element.statico}" />
 
 						<h:outputText value="&lt;hr/&gt;" escape="false" />
 						<h:outputText />
 
 						<h:outputLabel value="Intestazione (apertura):" for="headerStart" />
 						<h:inputTextarea id="headerStart"
-							value="#{templateHandler.element.header_start}"
+							value="#{templateController.element.header_start}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 						<h:panelGroup>
 							<h:outputLabel value="Intestazione (chiusura):" for="headerStop" />
@@ -44,7 +44,7 @@
 								value="(lasciare vuoto per non rendere modificabile il contenuto dell'intestazione all'interno delle singole pagine)" />
 						</h:panelGroup>
 						<h:inputTextarea id="headerStop"
-							value="#{templateHandler.element.header_stop}"
+							value="#{templateController.element.header_stop}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 
 						<h:outputText value="&lt;hr/&gt;" escape="false" />
@@ -52,7 +52,7 @@
 
 						<h:outputLabel value="Colonna 1 (apertura):" for="col1Start" />
 						<h:inputTextarea id="col1Start"
-							value="#{templateHandler.element.col1_start}"
+							value="#{templateController.element.col1_start}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 						<h:panelGroup>
 							<h:outputLabel value="Colonna 1 (chiusura):" for="col1Stop" />
@@ -61,7 +61,7 @@
 								value="(lasciare vuoto per non rendere modificabile il contenuto della colonna di sinistra all'interno delle singole pagine)" />
 						</h:panelGroup>
 						<h:inputTextarea id="col1Stop"
-							value="#{templateHandler.element.col1_stop}"
+							value="#{templateController.element.col1_stop}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 
 						<h:outputText value="&lt;hr/&gt;" escape="false" />
@@ -69,7 +69,7 @@
 
 						<h:outputLabel value="Colonna 2 (apertura):" for="col2Start" />
 						<h:inputTextarea id="col2Start"
-							value="#{templateHandler.element.col2_start}"
+							value="#{templateController.element.col2_start}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 						<h:panelGroup>
 							<h:outputLabel value="Colonna 2 (chiusura):" for="col2Stop" />
@@ -78,7 +78,7 @@
 								value="(lasciare vuoto per non rendere modificabile il contenuto della colonna centrale all'interno delle singole pagine)" />
 						</h:panelGroup>
 						<h:inputTextarea id="col2Stop"
-							value="#{templateHandler.element.col2_stop}"
+							value="#{templateController.element.col2_stop}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 
 						<h:outputText value="&lt;hr/&gt;" escape="false" />
@@ -86,7 +86,7 @@
 
 						<h:outputLabel value="Colonna 3 (apertura):" for="col3Start" />
 						<h:inputTextarea id="col3Start"
-							value="#{templateHandler.element.col3_start}"
+							value="#{templateController.element.col3_start}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 						<h:panelGroup>
 							<h:outputLabel value="Colonna 3 (chiusura):" for="col3Stop" />
@@ -95,7 +95,7 @@
 								value="(lasciare vuoto per non rendere modificabile il contenuto della colonna di destra all'interno delle singole pagine)" />
 						</h:panelGroup>
 						<h:inputTextarea id="col3Stop"
-							value="#{templateHandler.element.col3_stop}"
+							value="#{templateController.element.col3_stop}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 
 						<h:outputText value="&lt;hr/&gt;" escape="false" />
@@ -104,7 +104,7 @@
 						<h:outputLabel value="Pie' di pagina (apertura):"
 							for="footerStart" />
 						<h:inputTextarea id="footerStart"
-							value="#{templateHandler.element.footer_start}"
+							value="#{templateController.element.footer_start}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 						<h:panelGroup>
 							<h:outputLabel value="Pie' di pagina (chiusura):"
@@ -114,7 +114,7 @@
 								value="(lasciare vuoto per non rendere modificabile il contenuto del pie' di pagina all'interno delle singole pagine)" />
 						</h:panelGroup>
 						<h:inputTextarea id="footerStop"
-							value="#{templateHandler.element.footer_stop}"
+							value="#{templateController.element.footer_stop}"
 							style="color: black; height: 500px; width: 100%;" escape="false" />
 
 						<h:outputText value="&lt;hr/&gt;" escape="false" />
@@ -130,19 +130,19 @@
 				<br /> <br />
 
 				<h:panelGrid columns="4">
-					<h:commandButton action="#{templateHandler.save}" value="Salva"
-						rendered="#{empty templateHandler.element.id}" />
+					<h:commandButton action="#{templateController.save}" value="Salva"
+						rendered="#{empty templateController.element.id}" />
 
-					<h:commandButton action="#{templateHandler.update}"
+					<h:commandButton action="#{templateController.update}"
 						value="Salva le modifiche"
-						rendered="#{not empty templateHandler.element.id}" />
+						rendered="#{not empty templateController.element.id}" />
 
-					<h:commandButton action="#{templateHandler.delete}" value="Elimina"
+					<h:commandButton action="#{templateController.delete}" value="Elimina"
 						immediate="true"
-						rendered="#{not empty templateHandler.element.id}"
+						rendered="#{not empty templateController.element.id}"
 						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 
-					<h:commandButton id="reset" action="#{templateHandler.reset}"
+					<h:commandButton id="reset" action="#{templateController.reset}"
 						value="Annulla" immediate="true" />
 				</h:panelGrid>
 			</center>
