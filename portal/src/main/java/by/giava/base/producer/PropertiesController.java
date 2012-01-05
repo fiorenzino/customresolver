@@ -1,6 +1,7 @@
 package by.giava.base.producer;
 
 import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -73,5 +74,24 @@ public class PropertiesController implements Serializable {
 		}
 		return items.get(Template.class);
 	}
+
+	@Produces
+	@Named
+	public SelectItem[] getTemplateStaticiItems() {
+		Search<Template> ricerca = new Search<Template>(Template.class);
+		ricerca.getObj().setSearchStatico(true);
+		return JSFUtils.setupItems(ricerca, templateRepository, "id", "nome",
+				"nessun template per pagine statiche disponibile",
+				"seleziona template per pagine statiche...");
+	}
+
+	public SelectItem[] getTemplateDinamiciItems() {
+		Search<Template> ricerca = new Search<Template>(Template.class);
+		ricerca.getObj().setSearchStatico(false);
+		return JSFUtils.setupItems(ricerca, templateRepository, "id", "nome",
+				"nessun template per pagine dinamiche disponibile",
+				"seleziona template per pagine dinamiche...");
+	}
+
 
 }
