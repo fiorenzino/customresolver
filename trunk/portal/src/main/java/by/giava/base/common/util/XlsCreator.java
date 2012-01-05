@@ -1,6 +1,5 @@
 package by.giava.base.common.util;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -14,15 +13,14 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.XlsDoc;
 
 public class XlsCreator {
 
-	private static Logger logger = LoggerFactory.getLogger(XlsCreator.class);
+	private static Logger logger = Logger.getLogger(XlsCreator.class);
 
 	public static XlsDoc createPubblicazioniFile(List<Pubblicazione> list,
 			String nomeFile) {
