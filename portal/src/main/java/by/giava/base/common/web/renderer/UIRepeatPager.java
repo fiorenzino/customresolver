@@ -1,6 +1,8 @@
 package by.giava.base.common.web.renderer;
 
 
+import it.coopservice.commons2.model.LocalDataModel;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -10,8 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
-
-import by.giava.base.common.web.datamodel.LocalDataModel;
 
 import com.sun.faces.facelets.component.UIRepeat;
 
