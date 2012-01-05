@@ -1,5 +1,6 @@
 package by.giava.base.controller.util;
 
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -8,39 +9,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
-import by.giava.base.common.util.JSFUtils;
-import by.giava.base.controller.InitHandler;
 import by.giava.base.model.Page;
+import by.giava.base.producer.InitController;
 
 public class DbUtils implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static EntityManagerFactory emf = null;
 
 	public static Connection getConnection() {
-		InitHandler init = JSFUtils.getBean(InitHandler.class);
+		InitController init = JSFUtils.getBean(InitController.class);
 		try {
 			return init.getDs().getConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// try {
-		// Class.forName("com.mysql.jdbc.Driver");
-		// String url = "jdbc:mysql://localhost:3306/colonnella";
-		// Connection con = DriverManager.getConnection(url, "colonnella",
-		// "colonnella");
-		// return con;
-		// } catch (ClassNotFoundException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (SQLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// return null;
 		return null;
 
 	}
@@ -84,16 +68,9 @@ public class DbUtils implements Serializable {
 		return null;
 	}
 
-	// public static EntityManagerFactory getEMF() {
-	// if (emf == null) {
-	// emf = Persistence.createEntityManagerFactory("colonnella");
-	// }
-	// return emf;
-	// }
-
 	public static EntityManager getEM() {
 		// return getEMF().createEntityManager();
-		InitHandler init = JSFUtils.getBean(InitHandler.class);
+		InitController init = JSFUtils.getBean(InitController.class);
 		return init.getEm();
 	}
 

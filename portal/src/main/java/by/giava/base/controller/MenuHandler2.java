@@ -19,13 +19,10 @@ import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.TreeNode;
 
-import by.giava.base.common.ejb.SuperSession;
 import by.giava.base.model.MenuGroup;
 import by.giava.base.model.MenuItem;
 import by.giava.base.model.Page;
-import by.giava.base.model.Ricerca;
 import by.giava.base.repository.MenuSession;
-import by.giava.base.repository.PageSession;
 
 @Named
 @SessionScoped

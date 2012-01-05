@@ -1,7 +1,8 @@
 package by.giava.base.repository;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,16 +15,13 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import by.giava.base.common.ejb.SuperSession;
-import by.giava.base.controller.util.DbUtils;
 import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.Page;
-import by.giava.base.model.Ricerca;
 
 @Named
 @Stateless
 @LocalBean
-public class PageSession extends SuperSession<Page> implements Serializable {
+public class PageRepository extends AbstractRepository<Page> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,20 +30,7 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 
 	@Override
 	public EntityManager getEm() {
-		if (em == null) {
-			this.em = DbUtils.getEM();
-		}
 		return em;
-	}
-
-	@Override
-	protected Class<Page> getEntityType() {
-		return Page.class;
-	}
-
-	@Override
-	protected String getOrderBy() {
-		return "title";
 	}
 
 	@Override
@@ -89,40 +74,40 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 	}
 
 	@Override
-	protected Query getRestrictions(Ricerca<Page> ricerca, String orderBy,
-			boolean count) {
+	protected Query getRestrictions(Search<Page> search, boolean justCount) {
 
-		if (ricerca == null || ricerca.getOggetto() == null)
-			return super.getRestrictions(ricerca, orderBy, count);
+		if (search == null || search.getObj() == null)
+			return super.getRestrictions(search, justCount);
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
-				count));
+				justCount));
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
 		params.put("attivo", true);
 
 		String separator = " and ";
 
-		if (ricerca.getOggetto().getTemplate() != null
-				&& ricerca.getOggetto().getTemplate().getTemplate() != null
-				&& ricerca.getOggetto().getTemplate().getTemplate()
+		if (search.getObj().getTemplate() != null
+				&& search.getObj().getTemplate().getTemplate() != null
+				&& search.getObj().getTemplate().getTemplate()
 						.getSearchStatico() != null) {
 			sb.append(separator).append(alias)
 					.append(".template.template.statico = :statico ");
-			params.put("statico", ricerca.getOggetto().getTemplate()
-					.getTemplate().getSearchStatico());
+			params.put("statico", search.getObj().getTemplate().getTemplate()
+					.getSearchStatico());
 		}
 
-		if (ricerca.getOggetto().getTitle() != null
-				&& !ricerca.getOggetto().getTitle().isEmpty()) {
+		if (search.getObj().getTitle() != null
+				&& !search.getObj().getTitle().isEmpty()) {
 			sb.append(separator).append(alias).append(".title like :title ");
-			params.put("title", likeParam(ricerca.getOggetto().getTitle()));
+			params.put("title", likeParam(search.getObj().getTitle()));
 		}
 
-		if (!count) {
-			sb.append(" order by ").append(alias).append(".").append(orderBy);
+		if (!justCount) {
+			sb.append(" order by ").append(alias).append(".")
+					.append(getDefaultOrderBy());
 		} else {
 			logger.info("order by null");
 		}
@@ -153,6 +138,11 @@ public class PageSession extends SuperSession<Page> implements Serializable {
 		}
 		logger.info("ESCO fetchPage: " + id);
 		return ret;
+	}
+
+	@Override
+	protected String getDefaultOrderBy() {
+		return "title";
 	}
 
 }

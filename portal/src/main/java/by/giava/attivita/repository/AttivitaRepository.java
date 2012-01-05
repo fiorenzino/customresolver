@@ -4,7 +4,6 @@ import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
 import it.coopservice.commons2.utils.JSFUtils;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -128,12 +127,12 @@ public class AttivitaRepository extends AbstractRepository<Attivita> {
 			params.put("idCategoria", search.getObj().getCategoria().getId());
 		}
 		if (search.getObj().getCategoria() != null
-				&& search.getObj().getCategoria().getCategoria() != null
-				&& search.getObj().getCategoria().getCategoria().length() > 0) {
+				&& search.getObj().getCategoria().getNome() != null
+				&& !search.getObj().getCategoria().getNome().isEmpty()) {
 			sb.append(separator).append("UPPER(" + alias)
-					.append(".categoria.categoria) LIKE :categoria ");
+					.append(".categoria.nome) LIKE :categoria ");
 			params.put("categoria", likeParam(search.getObj().getCategoria()
-					.getCategoria()));
+					.getNome()));
 		}
 		if (search.getObj().getNome() != null
 				&& search.getObj().getNome().length() > 0) {
