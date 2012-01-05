@@ -1,0 +1,7 @@
+1) ripartire dai session bean (riscriverli usando le commons)
+
+2) gestire autenticazione con dominio su db
+
+3) aggiornare a jbo 7.0.2
+
+4) aggiornare primefaces (pesante)
