@@ -2,7 +2,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 
@@ -19,19 +19,19 @@
 					<h:panelGrid columns="3">
 						<h:outputLabel for="tipo" value="Seleziona tipo:" />
 						<h:selectOneMenu
-							value="#{operazioniLogHandler.ricerca.oggetto.tipo}">
+							value="#{operazioniLogController.ricerca.oggetto.tipo}">
 							<f:selectItems
 								value="#{propertiesHandler.tipiOperazioniLogItems}" />
 						</h:selectOneMenu>
-						<h:commandButton action="#{operazioniLogHandler.cerca}"
+						<h:commandButton action="#{operazioniLogController.cerca}"
 							value="Cerca" />
 					</h:panelGrid>
 					<br />
 
 					<p:dataTable id="operazioniList" rowIndexVar="rowIndex"
-						var="operazione" value="#{operazioniLogHandler.model}"
-						rows="#{operazioniLogHandler.pageSize}" paginator="true"
-						dynamic="true" lazy="true">
+						var="operazione" value="#{operazioniLogController.model}"
+						rows="#{operazioniLogController.pageSize}" paginator="true"
+						dynamic="true">
 						<p:column width="50">
 							<h:outputText value="#{rowIndex+1}" />
 						</p:column>
@@ -63,7 +63,7 @@
 							<f:facet name="header">operazioni</f:facet>
 							<center>
 								<h:commandLink
-									action="#{operazioniLogHandler.detail(operazione.id)}"
+									action="#{operazioniLogController.detail(operazione.id)}"
 									value="vedi" />
 							</center>
 						</p:column>
