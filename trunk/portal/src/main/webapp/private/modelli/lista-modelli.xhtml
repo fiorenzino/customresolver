@@ -19,21 +19,21 @@
 
 						<h:outputLabel for="nome" value="Nome:" />
 						<h:inputText id="nome"
-							value="#{templateHandler.ricerca.oggetto.nome}" />
+							value="#{templateController.search.obj.nome}" />
 
 						<h:outputLabel for="tipo" value="Tipo di modello: " />
 						<h:selectOneMenu id="tipo"
-							value="#{templateHandler.ricerca.oggetto.searchStatico}"
+							value="#{templateController.search.obj.searchStatico}"
 							style="width: 400px;">
-							<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
+							<f:selectItems value="#{staticoDinamicoItems}" />
 						</h:selectOneMenu>
-						<h:commandButton action="#{templateHandler.cerca}" value="Cerca" />
+						<h:commandButton action="#{templateController.reload}" value="Cerca" />
 					</h:panelGrid>
 					<br />
 
 					<p:dataTable id="templatesList" rowIndexVar="rowIndex" var="t"
-						value="#{templateHandler.model}"
-						rows="#{templateHandler.pageSize}" paginator="true" dynamic="true"
+						value="#{templateController.model}"
+						rows="#{templateController.pageSize}" paginator="true" dynamic="true"
 						lazy="true">
 						<p:column width="50">
 							<center>
@@ -56,10 +56,10 @@
 						<p:column width="200">
 							<center>
 								<h:commandLink value="vedi"
-									action="#{templateHandler.viewElement(t.id)}" />
+									action="#{templateController.viewElement(t.id)}" />
 								-
 								<h:commandLink value="modifica"
-									action="#{templateHandler.modElement(t.id)}" />
+									action="#{templateController.modElement(t.id)}" />
 							</center>
 						</p:column>
 					</p:dataTable>
@@ -67,9 +67,9 @@
 				<br /> <br />
 
 				<h:panelGrid columns="2">
-					<h:commandButton action="#{templateHandler.addElement}"
+					<h:commandButton action="#{templateController.addElement}"
 						value="Aggiungi" />
-					<h:commandButton action="#{templateHandler.backPage}"
+					<h:commandButton action="#{templateController.backPage}"
 						value="Indietro" rendered="false" />
 				</h:panelGrid>
 			</center>
