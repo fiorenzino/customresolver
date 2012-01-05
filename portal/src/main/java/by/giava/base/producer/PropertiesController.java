@@ -27,6 +27,7 @@ public class PropertiesController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Map<Class, SelectItem[]> items = null;
+	private SelectItem[] staticoDinamicoItems = new SelectItem[] {};
 
 	@Inject
 	TemplateRepository templateRepository;
@@ -91,6 +92,18 @@ public class PropertiesController implements Serializable {
 		return JSFUtils.setupItems(ricerca, templateRepository, "id", "nome",
 				"nessun template per pagine dinamiche disponibile",
 				"seleziona template per pagine dinamiche...");
+	}
+
+	@Produces
+	@Named
+	public SelectItem[] getStaticoDinamicoItems() {
+		if (staticoDinamicoItems == null || staticoDinamicoItems.length == 0) {
+			staticoDinamicoItems = new SelectItem[3];
+			staticoDinamicoItems[0] = new SelectItem(null, "qualsiasi");
+			staticoDinamicoItems[1] = new SelectItem(true, "statico");
+			staticoDinamicoItems[2] = new SelectItem(false, "dinamico");
+		}
+		return staticoDinamicoItems;
 	}
 
 
