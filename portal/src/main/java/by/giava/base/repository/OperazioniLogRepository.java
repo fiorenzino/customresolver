@@ -20,8 +20,7 @@ import by.giava.base.model.OperazioniLog;
 @Named
 @Stateless
 @LocalBean
-public class OperazioniLogRepository extends AbstractRepository<OperazioniLog>
-		implements Serializable {
+public class OperazioniLogRepository extends AbstractRepository<OperazioniLog> {
 
 	private static final long serialVersionUID = 1L;
 
