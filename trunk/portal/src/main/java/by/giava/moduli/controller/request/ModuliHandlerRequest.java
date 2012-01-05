@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.attivita.repository.CategorieSession;
-import by.giava.base.common.web.UiRepeatInterface;
+import by.giava.base.common.web.controller.UiRepeatInterface;
 import by.giava.base.controller.request.ParamsHandler;
 import by.giava.base.model.Ricerca;
 import by.giava.moduli.model.Modulo;

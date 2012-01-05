@@ -1,7 +1,9 @@
 package by.giava.pubblicazioni.repository;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
+import it.coopservice.commons2.utils.JSFUtils;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,10 +16,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import by.giava.base.common.ejb.SuperSession;
-import by.giava.base.common.util.JSFUtils;
 import by.giava.base.controller.util.PageUtils;
-import by.giava.base.model.Ricerca;
 import by.giava.base.model.attachment.Documento;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
@@ -25,8 +24,7 @@ import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 @Named
 @Stateless
 @LocalBean
-public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
-		Serializable {
+public class PubblicazioniRepository extends AbstractRepository<Pubblicazione> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,14 +33,6 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 
 	public EntityManager getEm() {
 		return em;
-	}
-
-	protected Class<Pubblicazione> getEntityType() {
-		return Pubblicazione.class;
-	}
-
-	protected String getOrderBy() {
-		return "progressivoRegistro desc";
 	}
 
 	@Override
@@ -122,19 +112,19 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 	}
 
 	@Override
-	protected Query getRestrictions(Ricerca<Pubblicazione> ricerca,
-			String orderBy, boolean count) {
+	protected Query getRestrictions(Search<Pubblicazione> search,
+			boolean justCount) {
 
-		if (ricerca == null || ricerca.getOggetto() == null)
-			return super.getRestrictions(ricerca, orderBy, count);
+		if (search == null || search.getObj() == null)
+			return super.getRestrictions(search, justCount);
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
-				count));
+				justCount));
 		String leftOuterJoinAlias = "doc";
-		if (!count && ricerca.getOggetto().isAllegati()) {
+		if (!justCount && search.getObj().isAllegati()) {
 			sb.append(" left outer join "/* fetch " */).append(alias)
 					.append(".documenti ").append(leftOuterJoinAlias)
 					.append(" ");
@@ -147,10 +137,10 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 
 		String separator = " and ";
 
-		if (ricerca.getOggetto().getValidoIl() != null) {
+		if (search.getObj().getValidoIl() != null) {
 
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(ricerca.getOggetto().getValidoIl());
+			cal.setTime(search.getObj().getValidoIl());
 			cal.set(Calendar.HOUR_OF_DAY, 0);
 			cal.set(Calendar.MINUTE, 0);
 			cal.set(Calendar.SECOND, 0);
@@ -168,50 +158,50 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 			params.put("INIZIOGIORNATA", inizioGiornata);
 		}
 
-		if (ricerca.getOggetto().getTipo() != null
-				&& ricerca.getOggetto().getTipo().getNome() != null
-				&& ricerca.getOggetto().getTipo().getNome().length() > 0) {
+		if (search.getObj().getTipo() != null
+				&& search.getObj().getTipo().getNome() != null
+				&& search.getObj().getTipo().getNome().length() > 0) {
 			sb.append(separator).append(alias)
 					.append(".tipo.nome = :nomeTipo ");
-			params.put("nomeTipo", ricerca.getOggetto().getTipo().getNome());
+			params.put("nomeTipo", search.getObj().getTipo().getNome());
 		}
 
-		if (ricerca.getOggetto().isArchivio()) {
+		if (search.getObj().isArchivio()) {
 			sb.append(separator).append(alias)
 					.append(".tipo.nome != :nomeTipoSpecial ");
 			params.put("nomeTipoSpecial", "Pubblicazioni di Matrimonio");
 		}
 
-		if (ricerca.getOggetto().getTipo() != null
-				&& ricerca.getOggetto().getTipo().getId() != null) {
+		if (search.getObj().getTipo() != null
+				&& search.getObj().getTipo().getId() != null) {
 			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
-			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
+			params.put("idTipo", search.getObj().getTipo().getId());
 		}
-		if (ricerca.getOggetto() != null
-				&& ricerca.getOggetto().getNome() != null
-				&& ricerca.getOggetto().getNome().length() > 0) {
+		if (search.getObj() != null && search.getObj().getNome() != null
+				&& search.getObj().getNome().length() > 0) {
 			sb.append(separator + " ( UPPER(").append(alias)
 					.append(".nome) LIKE :nome ");
-			params.put("nome", likeParam(ricerca.getOggetto().getNome()));
+			params.put("nome", likeParam(search.getObj().getNome()));
 			sb.append(" or UPPER(").append(alias)
 					.append(".titolo) LIKE :titolo ");
-			params.put("titolo", likeParam(ricerca.getOggetto().getNome()));
+			params.put("titolo", likeParam(search.getObj().getNome()));
 			sb.append(" or UPPER(").append(alias)
 					.append(".descrizione) LIKE :descrizione ");
-			params.put("descrizione", likeParam(ricerca.getOggetto().getNome()));
+			params.put("descrizione", likeParam(search.getObj().getNome()));
 			sb.append(" ) ");
 		}
-		if (ricerca.getOggetto().getStampaDal() != null) {
+		if (search.getObj().getStampaDal() != null) {
 			sb.append(separator).append(alias).append(".data >= :STAMPADAL");
-			params.put("STAMPADAL", ricerca.getOggetto().getStampaDal());
+			params.put("STAMPADAL", search.getObj().getStampaDal());
 		}
-		if (ricerca.getOggetto().getStampaAl() != null) {
+		if (search.getObj().getStampaAl() != null) {
 			sb.append(separator).append(alias).append(".data <= :STAMPAAL");
-			params.put("STAMPAAL", ricerca.getOggetto().getStampaAl());
+			params.put("STAMPAAL", search.getObj().getStampaAl());
 		}
 
-		if (!count) {
-			sb.append(" order by ").append(alias).append(".").append(orderBy);
+		if (!justCount) {
+			sb.append(" order by ").append(alias).append(".")
+					.append(getDefaultOrderBy());
 		} else {
 			logger.info("order by null");
 		}
@@ -239,6 +229,11 @@ public class PubblicazioniSession extends SuperSession<Pubblicazione> implements
 			return "select distinct " + alias + " from "
 					+ clazz.getSimpleName() + " " + alias + " ";
 		}
+	}
+
+	@Override
+	protected String getDefaultOrderBy() {
+		return "progressivoRegistro desc";
 	}
 
 }

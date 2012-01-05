@@ -8,7 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import by.giava.base.common.web.UiRepeatInterface;
+import by.giava.base.common.web.controller.UiRepeatInterface;
 import by.giava.base.controller.request.ParamsHandler;
 import by.giava.base.model.Ricerca;
 import by.giava.base.model.attachment.Immagine;
