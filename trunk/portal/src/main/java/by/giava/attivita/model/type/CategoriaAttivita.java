@@ -18,7 +18,7 @@ public class CategoriaAttivita implements Serializable {
 	// farmacie, studi medici, carabinieri, ecc
 	private Long id;
 	private TipoAttivita tipoAttivita;
-	private String categoria;
+	private String nome;
 	private boolean attivo = true;
 
 	@Id
@@ -42,12 +42,12 @@ public class CategoriaAttivita implements Serializable {
 		this.tipoAttivita = tipoAttivita;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public boolean isAttivo() {

@@ -58,10 +58,11 @@ public class MenuGroup implements Serializable {
 		this.nome = nome;
 	}
 
-	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL, fetch=FetchType.EAGER )
-	@OrderBy( "ordinamento, nome" )
-//	@OneToMany( mappedBy="gruppo", cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "gruppo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("ordinamento, nome")
 	public List<MenuItem> getLista() {
+		if (lista == null)
+			this.lista = new ArrayList<MenuItem>();
 		return lista;
 	}
 
@@ -108,7 +109,7 @@ public class MenuGroup implements Serializable {
 
 	@Transient
 	public List<MenuItem> getListaAttivi() {
-		if ( listaAttivi == null )
+		if (listaAttivi == null)
 			listaAttivi = new ArrayList<MenuItem>();
 		return listaAttivi;
 	}
@@ -116,7 +117,7 @@ public class MenuGroup implements Serializable {
 	public void setListaAttivi(List<MenuItem> listaAttivi) {
 		this.listaAttivi = listaAttivi;
 	}
-	
+
 	@Transient
 	public int getListaAttiviSize() {
 		return this.listaAttivi == null ? 0 : lista.size();

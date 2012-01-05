@@ -1,5 +1,6 @@
 package by.giava.base.common.util;
 
+import java.security.Principal;
 import java.util.Collection;
 
 import javax.enterprise.context.spi.CreationalContext;
@@ -9,13 +10,14 @@ import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.jboss.logging.Logger;
 
 @SuppressWarnings("unchecked")
-public class JSFUtils {
+public class JSFLocalUtils {
 
-	static Logger logger = Logger.getLogger(JSFUtils.class);
+	static Logger logger = Logger.getLogger(JSFLocalUtils.class);
 
 	@SuppressWarnings("rawtypes")
 	public static <T> T getBean(Class<T> beanClass) {
@@ -132,30 +134,30 @@ public class JSFUtils {
 		return sb.toString();
 	}
 
-	// public static Principal getPrincipal() {
-	// try {
-	// FacesContext context = FacesContext.getCurrentInstance();
-	// HttpServletRequest req = (HttpServletRequest) context
-	// .getExternalContext().getRequest();
-	// Principal pr = req.getUserPrincipal();
-	// return pr;
-	// } catch (Exception e) {
-	// return null;
-	// }
-	//
-	// }
-	//
-	// public static HttpSession getHttpSession() {
-	// try {
-	// FacesContext context = FacesContext.getCurrentInstance();
-	// HttpSession session = (HttpSession) context.getExternalContext()
-	// .getSession(false);
-	// return session;
-	// } catch (Exception e) {
-	// return null;
-	// }
-	//
-	// }
+	 public static Principal getPrincipal() {
+	 try {
+	 FacesContext context = FacesContext.getCurrentInstance();
+	 HttpServletRequest req = (HttpServletRequest) context
+	 .getExternalContext().getRequest();
+	 Principal pr = req.getUserPrincipal();
+	 return pr;
+	 } catch (Exception e) {
+	 return null;
+	 }
+
+	}
+
+	public static HttpSession getHttpSession() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession) context.getExternalContext()
+					.getSession(false);
+			return session;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
 
 	// public static String getUserName() {
 	// FacesContext context = FacesContext.getCurrentInstance();

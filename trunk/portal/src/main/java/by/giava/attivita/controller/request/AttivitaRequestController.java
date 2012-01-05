@@ -48,7 +48,7 @@ public class AttivitaRequestController extends
 			setElement(attivita);
 		}
 		if (tipo != null && tipo.length() > 0) {
-			getSearch().getObj().getCategoria().setCategoria(tipo);
+			getSearch().getObj().getCategoria().setNome(tipo);
 		}
 		if (filtro != null && filtro.length() > 0) {
 			getSearch().getObj().setNome(filtro);

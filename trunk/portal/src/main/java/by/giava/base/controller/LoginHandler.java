@@ -1,5 +1,6 @@
 package by.giava.base.controller;
 
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -21,7 +22,8 @@ import javax.servlet.http.HttpSession;
 
 import org.jboss.logging.Logger;
 
-import by.giava.base.common.util.JSFUtils;
+import by.giava.base.common.util.EmailUtils;
+import by.giava.base.common.util.JSFLocalUtils;
 import by.giava.base.common.util.PasswordUtils;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Utente;
@@ -66,7 +68,7 @@ public class LoginHandler implements Serializable {
 	UtentiSession utentiSession;
 
 	@Inject
-	OperazioniLogHandler operazioniLogHandler;
+	OperazioniLogController operazioniLogController;
 
 	@Inject
 	EmailSession emailSession;
@@ -80,7 +82,8 @@ public class LoginHandler implements Serializable {
 	public String getUsername() {
 		if (!login) {
 			this.login = true;
-			operazioniLogHandler.save("LOGIN", JSFUtils.getUserName(), "LOGIN");
+			operazioniLogController.save("LOGIN", JSFUtils.getUserName(),
+					"LOGIN");
 		}
 		return JSFUtils.getUserName();
 	}
@@ -118,7 +121,7 @@ public class LoginHandler implements Serializable {
 					new FacesMessage("Nome utente non disponibile"));
 			return null;
 		}
-		if (!isValidEmailAddress(this.utente.getUsername())) {
+		if (!EmailUtils.isValidEmailAddress(this.utente.getUsername())) {
 			FacesContext
 					.getCurrentInstance()
 					.addMessage(
@@ -161,7 +164,7 @@ public class LoginHandler implements Serializable {
 				this.utente.setPassword(this.utente.getNewPassword());
 			}
 		}
-		operazioniLogHandler.save(OperazioniLog.NEW, JSFUtils.getUserName(),
+		operazioniLogController.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione utente: " + this.utente.getUsername());
 		this.utente = utentiSession.save(this.utente);
 		return LIST;
@@ -186,7 +189,7 @@ public class LoginHandler implements Serializable {
 
 	public String update() {
 		if (!this.utente.isAdmin()
-				&& !isValidEmailAddress(this.utente.getUsername())) {
+				&& !EmailUtils.isValidEmailAddress(this.utente.getUsername())) {
 			FacesContext
 					.getCurrentInstance()
 					.addMessage(
@@ -219,7 +222,7 @@ public class LoginHandler implements Serializable {
 						+ utente.getUsername());
 			}
 		}
-		operazioniLogHandler.save("MODIFY", JSFUtils.getUserName(),
+		operazioniLogController.save("MODIFY", JSFUtils.getUserName(),
 				"modifica utente: " + this.utente.getUsername());
 		this.utente = utentiSession.update(this.utente);
 		return LIST;
@@ -239,7 +242,7 @@ public class LoginHandler implements Serializable {
 	}
 
 	public String delete() {
-		operazioniLogHandler.save("DELETE", JSFUtils.getUserName(),
+		operazioniLogController.save("DELETE", JSFUtils.getUserName(),
 				"eliminazione utente: " + this.utente.getUsername());
 		utentiSession.delete(this.utente.getUsername());
 		return LIST;
@@ -298,11 +301,11 @@ public class LoginHandler implements Serializable {
 	@PreDestroy
 	public void destroy() {
 		try {
-			if (JSFUtils.getPrincipal() != null) {
+			if (JSFLocalUtils.getPrincipal() != null) {
 				logger.info("destroy: @PreDestroy");
-				operazioniLogHandler.save(OperazioniLog.LOGOUT,
+				operazioniLogController.save(OperazioniLog.LOGOUT,
 						JSFUtils.getUserName(), "operazione logout");
-				HttpSession session = JSFUtils.getHttpSession();
+				HttpSession session = JSFLocalUtils.getHttpSession();
 				if (session != null) {
 					session.invalidate();
 				}
@@ -315,8 +318,8 @@ public class LoginHandler implements Serializable {
 	}
 
 	public String logout() {
-		operazioniLogHandler.save(OperazioniLog.LOGOUT, JSFUtils.getUserName(),
-				"operazione logout");
+		operazioniLogController.save(OperazioniLog.LOGOUT,
+				JSFUtils.getUserName(), "operazione logout");
 		ExternalContext extCtx = FacesContext.getCurrentInstance()
 				.getExternalContext();
 		try {
@@ -369,7 +372,8 @@ public class LoginHandler implements Serializable {
 		}
 		utente.setPassword(utente.getNewPassword());
 		utentiSession.update(utente);
-		operazioniLogHandler.save(OperazioniLog.MODIFY, JSFUtils.getUserName(),
+		operazioniLogController.save(OperazioniLog.MODIFY,
+				JSFUtils.getUserName(),
 				"cambio pwd utente: " + this.utente.getUsername());
 		ExternalContext extCtx = FacesContext.getCurrentInstance()
 				.getExternalContext();
@@ -386,14 +390,6 @@ public class LoginHandler implements Serializable {
 		return null;
 	}
 
-	private boolean isValidEmailAddress(String emailAddress) {
-		String expression = "^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-		CharSequence inputStr = emailAddress;
-		Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(inputStr);
-		return matcher.matches();
-	}
-
 	public boolean isModifica() {
 		return modifica;
 	}
@@ -405,7 +401,6 @@ public class LoginHandler implements Serializable {
 	public void checkRoles(ComponentSystemEvent event) {
 
 		String acl = "" + event.getComponent().getAttributes().get("roles");
-
 		for (String a : acl.split(",")) {
 			if ("ANY".equalsIgnoreCase(a)) {
 				if (JSFUtils.getUserName() != null

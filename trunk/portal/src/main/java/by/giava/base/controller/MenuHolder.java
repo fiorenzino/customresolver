@@ -1,6 +1,5 @@
 package by.giava.base.controller;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +34,10 @@ public class MenuHolder implements Serializable {
 	protected Logger logger = Logger.getLogger(getClass());
 
 	// ------------------------------------------------
+
+	public MenuHolder() {
+		// TODO Auto-generated constructor stub
+	}
 
 	private List<MenuGroup> lista = null;
 	private Map<String, MenuGroup> mappa = null;

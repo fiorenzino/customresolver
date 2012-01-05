@@ -4,6 +4,7 @@ import it.coopservice.commons2.annotations.BackPage;
 import it.coopservice.commons2.annotations.EditPage;
 import it.coopservice.commons2.annotations.OwnRepository;
 import it.coopservice.commons2.controllers.AbstractLazyController;
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.util.Date;
 
@@ -11,7 +12,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import by.giava.base.common.util.JSFUtils;
 import by.giava.base.model.Configurazione;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.repository.ConfigurazioneRepository;
