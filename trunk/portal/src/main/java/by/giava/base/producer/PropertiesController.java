@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.base.model.Template;
-import by.giava.base.repository.TemplateSession;
+import by.giava.base.repository.TemplateRepository;
 
 @Named
 @SessionScoped
@@ -28,7 +28,7 @@ public class PropertiesController implements Serializable {
 	private Map<Class, SelectItem[]> items = null;
 
 	@Inject
-	TemplateSession templateSession;
+	TemplateRepository templateRepository;
 	
 	@PostConstruct
 	public void reset() {
@@ -66,7 +66,7 @@ public class PropertiesController implements Serializable {
 		if ( items.get(Template.class) == null || items.get(Template.class).length  == 0 ) {
 		List<SelectItem> valori = new ArrayList<SelectItem>();
 		valori.add(new SelectItem(null,"template..."));
-		for ( Template t : templateSession.getList(new Search<Template>(Template.class),0,0) ) {
+		for ( Template t : templateRepository.getList(new Search<Template>(Template.class),0,0) ) {
 			valori.add(new SelectItem(t.getId(), t.getNome()));
 		}
 		items.put(Template.class,valori.toArray(new SelectItem[]{}));
@@ -74,25 +74,4 @@ public class PropertiesController implements Serializable {
 		return items.get(Template.class);
 	}
 
-	@Produces
-	@Named
-	public SelectItem[] getApplicationItems() {
-		List<SelectItem> valori = new ArrayList<SelectItem>();
-		valori.add(new SelectItem(null,"applicazione..."));
-		for ( Application s : Application.values() ) {
-			valori.add(new SelectItem(s.name()));
-		}
-		return valori.toArray(new SelectItem[] {});
-	}
-
-	@Produces
-	@Named
-	public SelectItem[] getCanaliItems() {
-		List<SelectItem> valori = new ArrayList<SelectItem>();
-		valori.add(new SelectItem(null,"canale..."));
-		for ( Channel s : Channel.values() ) {
-			valori.add(new SelectItem(s.name()));
-		}
-		return valori.toArray(new SelectItem[] {});
-	}
-
+}
