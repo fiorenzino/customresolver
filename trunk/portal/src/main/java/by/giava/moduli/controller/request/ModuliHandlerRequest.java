@@ -1,0 +1,129 @@
+package by.giava.moduli.controller.request;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import by.giava.attivita.repository.CategorieSession;
+import by.giava.base.common.web.UiRepeatInterface;
+import by.giava.base.controller.request.ParamsHandler;
+import by.giava.base.model.Ricerca;
+import by.giava.moduli.model.Modulo;
+import by.giava.moduli.model.type.TipoModulo;
+import by.giava.moduli.repository.ModuliSession;
+
+@Named
+@RequestScoped
+public class ModuliHandlerRequest implements UiRepeatInterface {
+
+	String filtro;
+	String tipo;
+	int currentpage;
+
+	@Inject
+	CategorieSession categorieSession;
+	@Inject
+	ModuliSession moduliSession;
+	@Inject
+	ParamsHandler paramsHandler;
+
+	public ModuliHandlerRequest() {
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public int getCurrentpage() {
+		return currentpage;
+	}
+
+	@PostConstruct
+	public void init() {
+		this.filtro = paramsHandler.getParam("filtro");
+		this.tipo = paramsHandler.getParam("tipo");
+		this.currentpage = 0;
+		try {
+			currentpage = Integer.parseInt(paramsHandler
+					.getParam("currentpage"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	public List loadPage(String tipo, String filtro, int startRow, int pageSize) {
+		return ultimiModuli(tipo, filtro, startRow, pageSize);
+	}
+
+	public int totalSize(String tipo, String filtro) {
+		return totaleModuli(tipo, filtro);
+	}
+
+	// -----------------------------------------------------------------------------------
+
+	private List<Modulo> ultimiModuli(String tipo, String filtro, int startRow,
+			int pageSize) {
+		Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
+		if (tipo != null && tipo.length() > 0) {
+			ricerca.getOggetto().setTipo(new TipoModulo());
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
+		}
+		return moduliSession.getList(ricerca, startRow, pageSize);
+	}
+
+	private int totaleModuli(String tipo, String filtro) {
+		Ricerca<Modulo> ricerca = new Ricerca<Modulo>(Modulo.class);
+		if (tipo != null && tipo.length() > 0) {
+			ricerca.getOggetto().setTipo(new TipoModulo());
+			ricerca.getOggetto().getTipo().setNome(tipo);
+		}
+		if (filtro != null && filtro.length() > 0) {
+			ricerca.getOggetto().setNome(filtro);
+		}
+		return moduliSession.getListSize(ricerca);
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * faccio questo perché per qualche strano motivo dentro lo ui:repeat questo
+	 * codice si perde il valore di tipo dopo il primo accesso...
+	 * 
+	 * <ui:repeat value="#{categorieSession.allTipoPubblicazione}" var="tipo">
+	 * <f:verbatim rendered="#{tipo.nome == pubblicazioniHandlerRequest.tipo}">
+	 * <option value="#{tipo.nome}" selected="true">#{tipo.nome}</option>
+	 * </f:verbatim> <f:verbatim
+	 * rendered="#{not (tipo.nome == pubblicazioniHandlerRequest.tipo)}">
+	 * <option value="#{tipo.nome}">#{tipo.nome}</option> </f:verbatim>
+	 * </ui:repeat>
+	 * 
+	 * @return
+	 */
+	public List<String> getTipoOptions() {
+		List<String> options = new ArrayList<String>();
+		for (TipoModulo tipo : categorieSession.getAllTipoModulo()) {
+			options.add("<option value=\""
+					+ tipo.getNome()
+					+ "\" "
+					+ (tipo.getNome().equals(this.tipo) ? "selected=\"true\""
+							: "") + ">" + tipo.getNome() + "</option>");
+		}
+		return options;
+	}
+
+}
