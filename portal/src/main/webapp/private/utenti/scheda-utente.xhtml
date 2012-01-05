@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="roles">
+		<f:attribute name="roles" value="admin" />
+	</ui:define>
+	<ui:define name="content">
+
+
+		<h:form prependId="false">
+			<center>
+				<p:panel header="Scheda Utente">
+					<h:panelGrid columns="2">
+						<h:outputLabel for="username" value="Username: "
+							style="font-weight: bolder;" />
+						<h:outputText id="username"
+							value="#{loginHandler.utente.username}" />
+
+						<h:outputLabel for="email" value="Email: "
+							style="font-weight: bolder;" rendered="false" />
+						<h:outputText id="email" value="#{loginHandler.utente.email}"
+							rendered="false" />
+
+						<h:outputLabel for="roles" style="font-weight: bolder;"
+							value="Ruoli: " />
+						<h:outputText id="roles" value="#{loginHandler.utente.ruoli}" />
+
+					</h:panelGrid>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="1">
+					<h:commandButton value="Modifica"
+						action="#{loginHandler.modUser(loginHandler.utente.username)}" />
+				</h:panelGrid>
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
