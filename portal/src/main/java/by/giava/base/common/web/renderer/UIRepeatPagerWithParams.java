@@ -11,7 +11,7 @@ import javax.faces.render.Renderer;
 
 import org.jboss.logging.Logger;
 
-import by.giava.base.common.web.UiRepeatInterface;
+import by.giava.base.common.web.controller.UiRepeatInterface;
 
 import com.sun.faces.facelets.component.UIRepeat;
 

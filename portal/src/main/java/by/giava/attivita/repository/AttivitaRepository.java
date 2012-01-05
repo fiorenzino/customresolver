@@ -2,8 +2,10 @@ package by.giava.attivita.repository;
 
 import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,7 @@ import javax.persistence.Query;
 
 import by.giava.attivita.model.Attivita;
 import by.giava.attivita.model.type.CategoriaAttivita;
+import by.giava.base.controller.util.PageUtils;
 
 @Named
 @Stateless
@@ -23,6 +26,9 @@ import by.giava.attivita.model.type.CategoriaAttivita;
 public class AttivitaRepository extends AbstractRepository<Attivita> {
 
 	private static final long serialVersionUID = 1L;
+
+	@Inject
+	CategorieAttivitaRepository categorieAttivitaRepository;
 
 	@Inject
 	EntityManager em;
@@ -43,17 +49,45 @@ public class AttivitaRepository extends AbstractRepository<Attivita> {
 	}
 
 	@Override
-	protected Attivita prePersist(Attivita a) {
-		a.setCategoria(getEm().find(CategoriaAttivita.class,
-				a.getCategoria().getId()));
-		return a;
+	protected Attivita prePersist(Attivita attivita) {
+		String idTitle = PageUtils.createPageId(attivita.getNome());
+		String idFinal = testId(idTitle);
+		attivita.setId(idFinal);
+		attivita.setData(new Date());
+		attivita.setAutore(JSFUtils.getUserName());
+		CategoriaAttivita cat = categorieAttivitaRepository.find(Long
+				.valueOf(attivita.getCategoria().getId()));
+		attivita.setCategoria(cat);
+		return attivita;
 	}
 
 	@Override
-	protected Attivita preUpdate(Attivita a) {
-		a.setCategoria(getEm().find(CategoriaAttivita.class,
-				a.getCategoria().getId()));
-		return a;
+	protected Attivita preUpdate(Attivita attivita) {
+		CategoriaAttivita cat = categorieAttivitaRepository.find(Long
+				.valueOf(attivita.getCategoria().getId()));
+		attivita.setCategoria(cat);
+		return attivita;
+	}
+
+	public String testId(String id) {
+		String idFinal = id;
+		boolean trovato = false;
+		int i = 0;
+		while (!trovato) {
+			logger.info("id final: " + idFinal);
+			Attivita attivitaFind = find(idFinal);
+			logger.info("trovato_ " + attivitaFind);
+			if (attivitaFind != null) {
+				i++;
+				idFinal = id + "-" + i;
+			} else {
+				trovato = true;
+				return idFinal;
+
+			}
+		}
+
+		return "";
 	}
 
 	@Override
