@@ -1,5 +1,9 @@
 package by.giava.base.controller;
 
+import it.coopservice.commons2.annotations.BackPage;
+import it.coopservice.commons2.annotations.EditPage;
+import it.coopservice.commons2.annotations.ListPage;
+import it.coopservice.commons2.annotations.ViewPage;
 
 import java.io.Serializable;
 
@@ -34,16 +38,14 @@ public class PageHandler implements Serializable {
 
 	// --------------------------------------------------------
 
-	private static String FACES_REDIRECT = "?faces-redirect=true";
-
-	public static String BACK = "/private/amministrazione.xhtml"
-			+ FACES_REDIRECT;
-	public static String VIEW = "/private/pagine/scheda-pagina.xhtml"
-			+ FACES_REDIRECT;
-	public static String LIST = "/private/pagine/lista-pagine.xhtml"
-			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml"
-			+ FACES_REDIRECT;
+	@BackPage
+	public static String BACK = "/private/amministrazione.xhtml";
+	@ViewPage
+	public static String VIEW = "/private/pagine/scheda-pagina.xhtml";
+	@ListPage
+	public static String LIST = "/private/pagine/lista-pagine.xhtml";
+	@EditPage
+	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml";
 
 	// ------------------------------------------------
 
@@ -375,7 +377,7 @@ public class PageHandler implements Serializable {
 
 	public String anteprimaTestuale() {
 		PageUtils.generateContent(getElement());
-		return "/private/pagine/anteprima-testuale.xhtml" + FACES_REDIRECT;
+		return "/private/pagine/anteprima-testuale.xhtml";
 	}
 
 	/**
