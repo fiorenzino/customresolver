@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="roles">
+		<f:attribute name="roles" value="pubblicazioni" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<center>
+
+
+				<p:panel header="Lista Pubblicazioni">
+
+					<h:panelGrid columns="7">
+						<h:outputLabel for="dataDal" value="Data dal:" />
+						<p:calendar id="dataDal"
+							value="#{pubblicazioniHandler.ricerca.oggetto.stampaDal}"
+							pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+						<h:outputText value="" />
+
+						<h:outputLabel for="dataAl" value="Data al:" />
+						<p:calendar id="dataAl"
+							value="#{pubblicazioniHandler.ricerca.oggetto.stampaAl}"
+							pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+
+						<h:outputText value="" />
+
+						<h:outputText value="" />
+
+						<h:outputLabel for="nome" value="Nome:" />
+						<h:inputText id="nome"
+							value="#{pubblicazioniHandler.ricerca.oggetto.nome}" />
+						<h:outputText value="" />
+
+
+						<h:outputLabel value="Seleziona tipo" />
+						<h:selectOneMenu
+							value="#{pubblicazioniHandler.ricerca.oggetto.tipo.id}"
+							style="width: 200px;">
+							<f:selectItems
+								value="#{propertiesHandler.tipiPubblicazioneItems}" />
+						</h:selectOneMenu>
+						<h:outputText value="" />
+
+						<h:commandButton action="#{pubblicazioniHandler.cerca}"
+							value="cerca" />
+					</h:panelGrid>
+					<br />
+
+					<p:dataTable id="pubblicazioniList" var="pubblicazione" 
+						value="#{pubblicazioniHandler.model}" rowIndexVar="rowIndex"
+						rows="#{pubblicazioniHandler.pageSize}" paginator="true"
+						dynamic="true" lazy="true">
+						<p:column>
+							<center>
+								<h:outputText value="#{rowIndex+1}" />
+							</center>
+						</p:column>	
+						<p:column>
+							<f:facet name="header">anno/num</f:facet>
+							<h:outputText value="#{pubblicazione.progressivoRegistro}" />
+						</p:column>
+
+
+						<p:column>
+							<f:facet name="header">titolo</f:facet>
+							<h:outputText value="#{pubblicazione.titolo}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">tipo</f:facet>
+							<h:outputText value="#{pubblicazione.tipo.nome}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">data Pubblicazione</f:facet>
+							<h:outputText value="#{pubblicazione.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">valido dal</f:facet>
+							<h:outputText value="#{pubblicazione.dal}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">valido al</f:facet>
+							<h:outputText value="#{pubblicazione.al}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
+							</h:outputText>
+						</p:column>
+
+
+						<p:column>
+							<f:facet name="header">operazioni</f:facet>
+							<h:commandLink
+								action="#{pubblicazioniHandler.viewElement(pubblicazione.id)}"
+								value="vedi" />
+						- 
+					<h:commandLink
+								action="#{pubblicazioniHandler.modElement(pubblicazione.id)}"
+								value="modifica" />
+
+
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="2">
+					<h:commandButton id="creaPubb"
+						action="#{pubblicazioniHandler.addElement}" value="Aggiungi" />
+				</h:panelGrid>
+			</center>
+		</h:form>
+	</ui:define>
+</ui:composition>
