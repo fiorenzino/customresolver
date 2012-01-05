@@ -1,7 +1,11 @@
 package by.giava.attivita.controller;
 
+import it.coopservice.commons2.annotations.BackPage;
+import it.coopservice.commons2.annotations.EditPage;
+import it.coopservice.commons2.annotations.ListPage;
+import it.coopservice.commons2.annotations.ViewPage;
+import it.coopservice.commons2.controllers.AbstractLazyController;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -23,40 +27,33 @@ import by.giava.attivita.model.type.CategoriaAttivita;
 import by.giava.attivita.model.type.TipoAttivita;
 import by.giava.attivita.repository.AttivitaSession;
 import by.giava.attivita.repository.CategorieSession;
-import by.giava.base.common.ejb.SuperSession;
 import by.giava.base.common.util.FileUtils;
 import by.giava.base.common.util.JSFUtils;
-import by.giava.base.controller.OperazioniLogHandler;
+import by.giava.base.controller.OperazioniLogController;
 import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Page;
 import by.giava.base.model.Resource;
-import by.giava.base.model.Ricerca;
 import by.giava.base.model.attachment.Immagine;
 import by.giava.base.repository.ResourceSession;
 
-
 @Named
 @SessionScoped
-public class AttivitaHandler implements Serializable {
+public class AttivitaController extends AbstractLazyController<Attivita> {
 
 	private static final long serialVersionUID = 1L;
 
 	// --------------------------------------------------------
 
-	// ------------------------------------------------
-
-	private static String FACES_REDIRECT = "?faces-redirect=true";
-
-	public static String BACK = "/private/amministrazione.xhtml"
-			+ FACES_REDIRECT;
-	public static String VIEW = "/private/attivita/scheda-attivita.xhtml"
-			+ FACES_REDIRECT;
-	public static String LIST = "/private/attivita/lista-attivita.xhtml"
-			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/attivita/gestione-attivita.xhtml"
-			+ FACES_REDIRECT;
+	@BackPage
+	public static String BACK = "/private/amministrazione.xhtml";
+	@ViewPage
+	public static String VIEW = "/private/attivita/scheda-attivita.xhtml";
+	@ListPage
+	public static String LIST = "/private/attivita/lista-attivita.xhtml";
+	@EditPage
+	public static String NEW_OR_EDIT = "/private/attivita/gestione-attivita.xhtml";
 
 	// --------------------------------------------------------
 
@@ -73,87 +70,13 @@ public class AttivitaHandler implements Serializable {
 	ResourceSession resourceSession;
 
 	@Inject
-	OperazioniLogHandler operazioniLogHandler;
+	OperazioniLogController operazioniLogController;
 
-	private Logger logger = Logger.getLogger(AttivitaHandler.class);
-
-	private Ricerca<Attivita> ricerca;
-	private boolean editMode;
-	private Attivita element;
-	private DataModel<Attivita> model;
 	private int tipoId;
 	private int catId;
 	private Immagine immagine;
 
-	private int rowCount;
-	private int pageSize = 10;
-	private int rowsPerPage = 10;
-	private int scrollerPage = 1;
-
-	private String backPage = BACK;
-
-	public AttivitaHandler() {
-	}
-
-	/**
-	 * Metodo da implementare per assicurare che i criteri di ricerca contengano
-	 * sempre tutti i vincoli desiderati (es: identità utente, selezioni
-	 * esterne, ecc...)
-	 */
-	@PostConstruct
-	protected void gatherCriteria() {
-		ricerca = new Ricerca<Attivita>(Attivita.class);
-		ricerca.getOggetto().setCategoria(new CategoriaAttivita());
-		ricerca.getOggetto().getCategoria().setTipoAttivita(new TipoAttivita());
-	}
-
-	/**
-	 * Metodo per ottenere l'id di ricerca
-	 */
-	protected Object getId(Page t) {
-		return t.getId();
-	}
-
-	protected SuperSession<Attivita> getSession() {
-		return attivitaSession;
-	}
-
-	public Ricerca<Attivita> getRicerca() {
-		return this.ricerca;
-	}
-
-	public DataModel<Attivita> getModel() {
-		if (model == null)
-			refreshModel();
-		return model;
-	}
-
-	public void setModel(DataModel<Attivita> model) {
-		this.model = model;
-	}
-
-	public String cerca() {
-		refreshModel();
-		return listPage();
-	}
-
-	@SuppressWarnings("unchecked")
-	protected void refreshModel() {
-		// setModel(new LocalDataModel<Attivita>(pageSize, ricerca,
-		// getSession()));
-		boolean lazy = true;
-		if (!lazy)
-			setModel(new ListDataModel<Attivita>(attivitaSession.getAllList()));
-		else
-			setModel(new LazyDataModel<Attivita>(
-					attivitaSession.getListSize(ricerca)) {
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				public List<Attivita> fetchLazyData(int first, int pageSize) {
-					return attivitaSession.getList(ricerca, first, pageSize);
-				}
-			});
+	public AttivitaController() {
 	}
 
 	public String addAttivita() {
@@ -230,108 +153,6 @@ public class AttivitaHandler implements Serializable {
 		return VIEW;
 	}
 
-	public String detailAttivita(String id) {
-		this.element = attivitaSession.find(id);
-		return VIEW;
-	}
-
-	public Attivita getAttivita() {
-		return element;
-	}
-
-	public void setAttivita(Attivita attivita) {
-		this.element = attivita;
-	}
-
-	public boolean isEditMode() {
-		return editMode;
-	}
-
-	public void setEditMode(boolean editMode) {
-		this.editMode = editMode;
-	}
-
-	// -----------------------------------------------------
-
-	public Attivita getElement() {
-		return element;
-	}
-
-	public void setElement(Attivita element) {
-		this.element = element;
-	}
-
-	public int getRowCount() {
-		return rowCount;
-	}
-
-	public void setRowCount(int rowCount) {
-		this.rowCount = rowCount;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int getRowsPerPage() {
-		return rowsPerPage;
-	}
-
-	public void setRowsPerPage(int rowsPerPage) {
-		this.rowsPerPage = rowsPerPage;
-	}
-
-	public int getScrollerPage() {
-		return scrollerPage;
-	}
-
-	public void setScrollerPage(int scrollerPage) {
-		this.scrollerPage = scrollerPage;
-	}
-
-	// -----------------------------------------------------
-
-	public void backPage(String backPage) {
-		this.backPage = backPage;
-	}
-
-	public String backPage() {
-		return this.backPage == null ? BACK : this.backPage;
-	}
-
-	public String viewPage() {
-		return VIEW;
-	}
-
-	public String listPage() {
-		return LIST;
-	}
-
-	public String editPage() {
-		return NEW_OR_EDIT;
-	}
-
-	public boolean getClear() {
-		reset();
-		return true;
-	}
-
-	// -----------------------------------------------------
-
-	/**
-	 * action che carica il modello dei dati, se inizialmente vuoto, tenendo
-	 * conto dei vari criteri esterni
-	 */
-	public String loadModel() {
-		gatherCriteria();
-		refreshModel();
-		return listPage();
-	}
-
 	// -----------------------------------------------------
 
 	public int getTipoId() {
@@ -374,18 +195,18 @@ public class AttivitaHandler implements Serializable {
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
-		logger.info("Uploaded: {}"+event.getFile().getFileName());
-		logger.info("Uploaded: {}"+event.getFile().getContentType());
-		logger.info("Uploaded: {}"+ event.getFile().getSize());
+		logger.info("Uploaded: {}" + event.getFile().getFileName());
+		logger.info("Uploaded: {}" + event.getFile().getContentType());
+		logger.info("Uploaded: {}" + event.getFile().getSize());
 
 		getImmagine().setUploadedData(event.getFile());
 		getImmagine().setData(event.getFile().getContents());
 		getImmagine().setType(event.getFile().getContentType());
 		String filename = FileUtils.createImage_("img", event.getFile()
 				.getFileName(), event.getFile().getContents());
-		this.element.setImmagine(new Immagine());
-		this.getImmagine().setFilename(filename);
-		this.element.getImmagine().setFilename(getImmagine().getFilename());
+		getElement().setImmagine(new Immagine());
+		getElement().getImmagine().setFilename(filename);
+		getElement().getImmagine().setFilename(getImmagine().getFilename());
 	}
 
 	public Immagine getImmagine() {
@@ -398,16 +219,10 @@ public class AttivitaHandler implements Serializable {
 		this.immagine = immagine;
 	}
 
-	public String reset() {
-		this.element = null;
-		this.model = null;
-		return listPage();
-	}
-
 	public String discardImage() {
-		if (this.element.getImmagine() != null
-				&& this.element.getImmagine().getFilename() != null) {
-			Resource r = this.resourceSession.find("img", this.element
+		if (getElement().getImmagine() != null
+				&& getElement().getImmagine().getFilename() != null) {
+			Resource r = this.resourceSession.find("img", getElement()
 					.getImmagine().getFilename());
 			if (r != null)
 				resourceSession.delete(r);
@@ -419,7 +234,7 @@ public class AttivitaHandler implements Serializable {
 			if (r != null)
 				resourceSession.delete(r);
 		}
-		this.element.setImmagine(new Immagine());
+		getElement().setImmagine(new Immagine());
 		this.immagine = new Immagine();
 		return null;
 	}

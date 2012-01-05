@@ -37,10 +37,7 @@ public class OperazioniLogRepository extends AbstractRepository<OperazioniLog> {
 		this.em = em;
 	}
 
-	/**
-	 * criteri di default, comuni a tutti, ma specializzabili da ogni EJB
-	 * tramite overriding
-	 */
+	
 	@Override
 	protected Query getRestrictions(Search<OperazioniLog> search,
 			boolean justCount) {

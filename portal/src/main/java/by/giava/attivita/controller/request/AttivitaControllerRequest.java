@@ -1,6 +1,5 @@
 package by.giava.attivita.controller.request;
 
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,28 +9,26 @@ import javax.inject.Named;
 
 import by.giava.attivita.model.Attivita;
 import by.giava.attivita.model.type.CategoriaAttivita;
-import by.giava.attivita.repository.AttivitaSession;
+import by.giava.attivita.repository.AttivitaRepository;
 import by.giava.base.common.web.UiRepeatInterface;
 import by.giava.base.controller.request.ParamsHandler;
-import by.giava.base.model.Ricerca;
 
 @Named
 @RequestScoped
-public class AttivitaHandlerRequest implements UiRepeatInterface {
+public class AttivitaControllerRequest implements UiRepeatInterface {
 
 	String filtro;
 	String tipo;
 	int currentpage;
 	String id;
-	private Attivita attivita;
 
 	@Inject
-	AttivitaSession attivitaSession;
+	AttivitaRepository attivitaRepository;
 
 	@Inject
 	ParamsHandler paramsHandler;
 
-	public AttivitaHandlerRequest() {
+	public AttivitaControllerRequest() {
 	}
 
 	@PostConstruct
