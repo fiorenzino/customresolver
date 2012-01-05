@@ -25,6 +25,7 @@ import by.giava.base.model.Page;
 import by.giava.base.model.Ricerca;
 import by.giava.base.model.Template;
 import by.giava.base.repository.PageSession;
+import by.giava.base.repository.TemplateRepository;
 import by.giava.base.repository.TemplateSession;
 import by.giava.moduli.model.type.TipoModulo;
 import by.giava.moduli.repository.TipoModuloSession;
@@ -48,9 +49,6 @@ public class PropertiesHandler implements Serializable {
 
 	@SuppressWarnings("rawtypes")
 	private Map<Class, SelectItem[]> items = null;
-
-	@Inject
-	private TemplateSession templateSession;
 
 	@Inject
 	private PageSession pageSession;
@@ -307,32 +305,6 @@ public class PropertiesHandler implements Serializable {
 	// ==============================================================================
 	// ==============================================================================
 	// ==============================================================================
-
-	public SelectItem[] getTemplateStaticiItems() {
-		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
-		ricerca.getOggetto().setSearchStatico(true);
-		return JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
-				"nessun template per pagine statiche disponibile",
-				"seleziona template per pagine statiche...");
-	}
-
-	public SelectItem[] getTemplateDinamiciItems() {
-		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
-		ricerca.getOggetto().setSearchStatico(false);
-		return JSFUtils.setupItems(ricerca, templateSession, "id", "nome",
-				"nessun template per pagine dinamiche disponibile",
-				"seleziona template per pagine dinamiche...");
-	}
-
-	public SelectItem[] getTemplateItems() {
-		Ricerca<Template> ricerca = new Ricerca<Template>(Template.class);
-		return checkItems(ricerca, templateSession, "id", "nome",
-				"nessun template disponibile", "seleziona template...");
-	}
-
-	public void setTemplateItems(SelectItem[] templateItems) {
-		this.items.put(Template.class, templateItems);
-	}
 
 	public SelectItem[] getTipoInformazioneItems() {
 		Ricerca<TipoInformazione> ricerca = new Ricerca<TipoInformazione>(
