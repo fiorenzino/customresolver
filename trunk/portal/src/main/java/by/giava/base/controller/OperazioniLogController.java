@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.base.model.OperazioniLog;
-import by.giava.base.repository.OperazioniLogSession;
+import by.giava.base.repository.OperazioniLogRepository;
 
 @Named
 @SessionScoped
@@ -35,8 +35,8 @@ public class OperazioniLogController extends
 	// --------------------------------------------------------
 
 	@Inject
-	@OwnRepository(OperazioniLogSession.class)
-	OperazioniLogSession operazioniLogSession;
+	@OwnRepository(OperazioniLogRepository.class)
+	OperazioniLogRepository operazioniLogRepository;
 
 	// --------------------------------------------------------
 
@@ -46,7 +46,7 @@ public class OperazioniLogController extends
 	// --------------------------------------------------------
 
 	public void save(String tipo, String username, String descrizione) {
-		operazioniLogSession.persist(new OperazioniLog(tipo, username,
+		operazioniLogRepository.persist(new OperazioniLog(tipo, username,
 				descrizione, new Date()));
 		reset();
 	}
