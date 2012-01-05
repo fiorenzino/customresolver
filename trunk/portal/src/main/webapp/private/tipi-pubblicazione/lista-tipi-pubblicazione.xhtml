@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Lista Tipi di Pubblicazione" />
+	</ui:define>
+	<ui:define name="roles">
+		<f:attribute name="roles" value="tipi_pubblicazione" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<center>
+				<p:panel header="Lista Tipi di Pubblicazione">
+					<p:dataTable var="tipo" rowIndexVar="rowIndex"
+						value="#{categorieHandler.allTipiPubblicazioni}">
+						<p:column>
+							<h:outputText value="#{rowIndex+1}" />
+						</p:column>
+
+						<p:column width="400">
+							<f:facet name="header">tipo</f:facet>
+							<h:outputText value="#{tipo.nome}" />
+						</p:column>
+
+						<p:column width="200">
+							<f:facet name="header">operazioni</f:facet>
+							<center>
+								<h:commandLink
+									action="#{categorieHandler.modTipoPubblicazione(tipo.id)}"
+									value="modifica" />
+							</center>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="1">
+					<h:commandButton action="#{categorieHandler.addTipoPubblicazione}"
+						value="Aggiungi" />
+				</h:panelGrid>
+			</center>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,77 @@
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+
+<facelet-taglib xmlns="http://java.sun.com/JSF/Facelet">
+
+	<!--
+		<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+		version="2.0">
+	-->
+
+	<namespace>http://jflower/taglib</namespace>
+
+	<tag>
+		<tag-name>pager</tag-name>
+		<component>
+			<component-type>javax.faces.Command</component-type>
+			<renderer-type>uiRepeatPager</renderer-type>
+		</component>
+	</tag>
+
+	<tag>
+		<tag-name>pagerWithParams</tag-name>
+		<component>
+			<component-type>javax.faces.Command</component-type>
+			<renderer-type>uiRepeatPagerWithParams</renderer-type>
+		</component>
+	</tag>
+
+	<tag>
+		<tag-name>uiRepeatPaged</tag-name>
+		<source>pager/uiRepeatPaged.xhtml</source>
+	</tag>
+
+	<tag>
+		<tag-name>uiRepeatPagedWithParams</tag-name>
+		<source>pager/uiRepeatPagedWithParams.xhtml</source>
+	</tag>
+        <tag>
+		<tag-name>uiRepeatPagedWithParamsTab</tag-name>
+	        <source>pager/uiRepeatPagedWithParamsTab.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>breadcrumbs</tag-name>
+		<source>breadcrumbs/breadcrumbs.xhtml</source>
+	</tag>
+
+	<tag>
+		<tag-name>dynamicBreadcrumbs</tag-name>
+		<source>breadcrumbs/dynamicBreadcrumbs.xhtml</source>
+	</tag>
+
+	<function>
+		<function-name>bcrumbs</function-name>
+		<function-class>it.jflower.base.utils.JSFUtils</function-class>
+		<function-signature>java.lang.String breadcrumbs()</function-signature>
+	</function>
+	<function>
+		<function-name>urlContains</function-name>
+		<function-class>it.jflower.base.utils.JSFUtils</function-class>
+		<function-signature>java.lang.Boolean urlContains(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<function-name>proportionalWidth</function-name>
+		<function-class>it.jflower.base.utils.ImageUtils</function-class>
+		<function-signature>java.lang.Integer getImageWidthProportional(java.lang.String, java.lang.Integer,java.lang.Integer)</function-signature>
+	</function>
+	<function>
+		<function-name>proportionalHeight</function-name>
+		<function-class>it.jflower.base.utils.ImageUtils</function-class>
+		<function-signature>java.lang.Integer getImageHeightProportional(java.lang.String, java.lang.Integer, java.lang.Integer)</function-signature>
+	</function>
+
+</facelet-taglib>
