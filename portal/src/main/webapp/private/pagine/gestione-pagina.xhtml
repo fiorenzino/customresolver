@@ -27,37 +27,37 @@
 					columnClasses="p_col1,p_col2">
 
 					<h:outputLabel value="Titolo(*):" for="titoloW"
-						rendered="#{empty pageHandler.element.title}" />
+						rendered="#{empty pageController.element.title}" />
 					<h:inputText required="true" id="titoloW"
-						value="#{pageHandler.element.title}" style="width: 100%;"
-						rendered="#{empty pageHandler.element.title}" />
+						value="#{pageController.element.title}" style="width: 100%;"
+						rendered="#{empty pageController.element.title}" />
 
 					<h:outputLabel value="Titolo:" for="titoloR"
-						rendered="#{not empty pageHandler.element.title}" />
+						rendered="#{not empty pageController.element.title}" />
 					<h:inputText disabled="true" id="titoloR"
-						value="#{pageHandler.element.title}" style="width: 100%;"
-						rendered="#{not empty pageHandler.element.title}" />
+						value="#{pageController.element.title}" style="width: 100%;"
+						rendered="#{not empty pageController.element.title}" />
 
 					<h:outputLabel value="Descrizione:" for="descrizione" />
 					<h:inputText id="descrizione"
-						value="#{pageHandler.element.description}" style="width: 100%;" />
+						value="#{pageController.element.description}" style="width: 100%;" />
 
 					<h:outputLabel value="Modello(*):" for="template" />
 					<h:panelGroup id="template">
 						<h:selectOneMenu
-							rendered="#{pageHandler.element.template.template.statico}"
-							value="#{pageHandler.idTemplate}" required="true"
+							rendered="#{pageController.element.template.template.statico}"
+							value="#{pageController.idTemplate}" required="true"
 							style="width: 100%">
 							<f:selectItems value="#{propertiesHandler.templateStaticiItems}" />
-							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
+							<p:ajax actionListener="#{pageController.cambioTemplate}"
 								update="campi" event="change" process="@this" />
 						</h:selectOneMenu>
 						<h:selectOneMenu
-							rendered="#{not pageHandler.element.template.template.statico}"
-							value="#{pageHandler.idTemplate}" required="true"
+							rendered="#{not pageController.element.template.template.statico}"
+							value="#{pageController.idTemplate}" required="true"
 							style="width: 100%">
 							<f:selectItems value="#{propertiesHandler.templateDinamiciItems}" />
-							<p:ajax actionListener="#{pageHandler.cambioTemplate}"
+							<p:ajax actionListener="#{pageController.cambioTemplate}"
 								update="campi" event="change" process="@this" />
 						</h:selectOneMenu>
 					</h:panelGroup>
@@ -114,94 +114,94 @@
 						columnClasses="p_col1,p_col2">
 
 						<h:outputLabel value="Intestazione:"
-							rendered="#{not empty pageHandler.element.template.template.header_stop}"
+							rendered="#{not empty pageController.element.template.template.header_stop}"
 							for="header" />
 						<h:panelGroup
-							rendered="#{not empty pageHandler.element.template.template.header_stop}"
+							rendered="#{not empty pageController.element.template.template.header_stop}"
 							id="header">
 							<h:inputTextarea
-								rendered="#{not empty pageHandler.element.template.template.header_stop and not pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.header}"
+								rendered="#{not empty pageController.element.template.template.header_stop and not pageController.element.template.template.statico}"
+								value="#{pageController.element.template.header}"
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup style="width: 100%;"
-								rendered="#{not empty pageHandler.element.template.template.header_stop and pageHandler.element.template.template.statico}">
-								<h:inputTextarea value="#{pageHandler.element.template.header}"
+								rendered="#{not empty pageController.element.template.template.header_stop and pageController.element.template.template.statico}">
+								<h:inputTextarea value="#{pageController.element.template.header}"
 									id="pEditorC1" styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputText value="&lt;hr/&gt;"
-							rendered="#{not empty pageHandler.element.template.template.header_stop}"
+							rendered="#{not empty pageController.element.template.template.header_stop}"
 							escape="false" />
 						<h:outputText
-							rendered="#{not empty pageHandler.element.template.template.header_stop}" />
+							rendered="#{not empty pageController.element.template.template.header_stop}" />
 
 						<h:outputLabel value="Colonna 1:"
-							rendered="#{not empty pageHandler.element.template.template.col1_stop}"
+							rendered="#{not empty pageController.element.template.template.col1_stop}"
 							for="col1" />
 						<h:panelGroup style="width: 100%;"
-							rendered="#{not empty pageHandler.element.template.template.col1_stop}">
+							rendered="#{not empty pageController.element.template.template.col1_stop}">
 							<h:inputTextarea
-								rendered="#{not empty pageHandler.element.template.template.col1_stop and not pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.col1}"
+								rendered="#{not empty pageController.element.template.template.col1_stop and not pageController.element.template.template.statico}"
+								value="#{pageController.element.template.col1}"
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup
-								rendered="#{not empty pageHandler.element.template.template.col1_stop and pageHandler.element.template.template.statico}">
-								<h:inputTextarea value="#{pageHandler.element.template.col1}"
+								rendered="#{not empty pageController.element.template.template.col1_stop and pageController.element.template.template.statico}">
+								<h:inputTextarea value="#{pageController.element.template.col1}"
 									styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputLabel value="Colonna 2:"
-							rendered="#{not empty pageHandler.element.template.template.col2_stop}"
+							rendered="#{not empty pageController.element.template.template.col2_stop}"
 							for="col2" />
 						<h:panelGroup id="col2"
-							rendered="#{not empty pageHandler.element.template.template.col2_stop}">
+							rendered="#{not empty pageController.element.template.template.col2_stop}">
 							<h:inputTextarea
-								rendered="#{not empty pageHandler.element.template.template.col2_stop and not pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.col2}"
+								rendered="#{not empty pageController.element.template.template.col2_stop and not pageController.element.template.template.statico}"
+								value="#{pageController.element.template.col2}"
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup
-								rendered="#{not empty pageHandler.element.template.template.col2_stop and pageHandler.element.template.template.statico}">
-								<h:inputTextarea value="#{pageHandler.element.template.col2}"
+								rendered="#{not empty pageController.element.template.template.col2_stop and pageController.element.template.template.statico}">
+								<h:inputTextarea value="#{pageController.element.template.col2}"
 									styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputLabel value="Colonna 3:"
-							rendered="#{not empty pageHandler.element.template.template.col3_stop}"
+							rendered="#{not empty pageController.element.template.template.col3_stop}"
 							for="col3" />
 						<h:panelGroup id="col3"
-							rendered="#{not empty pageHandler.element.template.template.col3_stop}">
+							rendered="#{not empty pageController.element.template.template.col3_stop}">
 							<h:inputTextarea
-								rendered="#{not empty pageHandler.element.template.template.col3_stop and not pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.col3}" width="100%"
+								rendered="#{not empty pageController.element.template.template.col3_stop and not pageController.element.template.template.statico}"
+								value="#{pageController.element.template.col3}" width="100%"
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup
-								rendered="#{not empty pageHandler.element.template.template.col3_stop and pageHandler.element.template.template.statico}">
-								<h:inputTextarea value="#{pageHandler.element.template.col3}"
+								rendered="#{not empty pageController.element.template.template.col3_stop and pageController.element.template.template.statico}">
+								<h:inputTextarea value="#{pageController.element.template.col3}"
 									styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
 
 						<h:outputText value="&lt;hr/&gt;"
-							rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}"
+							rendered="#{(not empty pageController.element.template.template.col1_stop) or (not empty pageController.element.template.template.col2_stop) or (not empty pageController.element.template.template.col3_stop)}"
 							escape="false" />
 						<h:outputText
-							rendered="#{(not empty pageHandler.element.template.template.col1_stop) or (not empty pageHandler.element.template.template.col2_stop) or (not empty pageHandler.element.template.template.col3_stop)}" />
+							rendered="#{(not empty pageController.element.template.template.col1_stop) or (not empty pageController.element.template.template.col2_stop) or (not empty pageController.element.template.template.col3_stop)}" />
 
 						<h:outputLabel value="Pie' di pagina:"
-							rendered="#{not empty pageHandler.element.template.template.footer_stop}"
+							rendered="#{not empty pageController.element.template.template.footer_stop}"
 							for="footer" />
 						<h:panelGroup id="footer"
-							rendered="#{not empty pageHandler.element.template.template.footer_stop}">
+							rendered="#{not empty pageController.element.template.template.footer_stop}">
 							<h:inputTextarea
-								rendered="#{not empty pageHandler.element.template.template.footer_stop and not pageHandler.element.template.template.statico}"
-								value="#{pageHandler.element.template.footer}"
+								rendered="#{not empty pageController.element.template.template.footer_stop and not pageController.element.template.template.statico}"
+								value="#{pageController.element.template.footer}"
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup
-								rendered="#{not empty pageHandler.element.template.template.footer_stop and pageHandler.element.template.template.statico}">
-								<h:inputTextarea value="#{pageHandler.element.template.footer}"
+								rendered="#{not empty pageController.element.template.template.footer_stop and pageController.element.template.template.statico}">
+								<h:inputTextarea value="#{pageController.element.template.footer}"
 									styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
@@ -221,7 +221,7 @@
 			<center>
 				<h:panelGrid columns="1">
 					<h:outputLink target="_blank"
-						value="#{request.contextPath}/pagine/#{pageHandler.element.id}">
+						value="#{request.contextPath}/pagine/#{pageController.element.id}">
 						<h:outputText value="anteprima del contenuto gia' salvato" />
 					</h:outputLink>
 				</h:panelGrid>
@@ -229,24 +229,24 @@
 
 				<h:panelGrid columns="6">
 					<h:commandButton id="ant" value="Anteprima testo completo"
-						action="#{pageHandler.anteprimaTestuale}" rendered="false" />
+						action="#{pageController.anteprimaTestuale}" rendered="false" />
 
 					<h:commandButton id="save1" value="Salva dati correnti"
-						action="#{pageHandler.salvaPerAnteprimaRisultato}" />
+						action="#{pageController.salvaPerAnteprimaRisultato}" />
 
-					<h:commandButton id="save2" action="#{pageHandler.save}"
-						value="Salva ed esci" rendered="#{empty pageHandler.element.id}" />
+					<h:commandButton id="save2" action="#{pageController.save}"
+						value="Salva ed esci" rendered="#{empty pageController.element.id}" />
 
-					<h:commandButton id="up1" action="#{pageHandler.update}"
+					<h:commandButton id="up1" action="#{pageController.update}"
 						value="Salva le modifiche ed esci"
-						rendered="#{not empty pageHandler.element.id}" />
+						rendered="#{not empty pageController.element.id}" />
 
-					<h:commandButton id="del1" action="#{pageHandler.delete}"
+					<h:commandButton id="del1" action="#{pageController.delete}"
 						value="Elimina" immediate="true"
-						rendered="#{not empty pageHandler.element.id}"
+						rendered="#{not empty pageController.element.id}"
 						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 
-					<h:commandButton id="reset" action="#{pageHandler.reset}"
+					<h:commandButton id="reset" action="#{pageController.reset}"
 						value="Annulla" immediate="true" />
 				</h:panelGrid>
 			</center>

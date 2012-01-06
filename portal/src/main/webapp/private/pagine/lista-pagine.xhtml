@@ -16,20 +16,19 @@
 				<p:panel header="Lista Pagine">
 					<h:panelGrid columns="5" rendered="true">
 						<h:outputLabel for="nome" value="Nome:" />
-						<h:inputText id="nome"
-							value="#{pageHandler.ricerca.oggetto.title}" />
+						<h:inputText id="nome" value="#{pageController.search.obj.title}" />
 
 						<h:outputLabel for="staticita" value="Tipo di contenuto: " />
 						<h:selectOneMenu id="staticita"
-							value="#{pageHandler.ricerca.oggetto.template.template.searchStatico}">
+							value="#{pageController.search.obj.template.template.searchStatico}">
 							<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
 						</h:selectOneMenu>
-						<h:commandButton action="#{pageHandler.cerca}" value="Cerca" />
+						<h:commandButton action="#{pageController.reload}" value="Cerca" />
 					</h:panelGrid>
 					<br />
 
 					<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="p"
-						value="#{pageHandler.model}" rows="#{pageHandler.pageSize}"
+						value="#{pageController.model}" rows="#{pageController.pageSize}"
 						paginator="true" dynamic="true" lazy="true">
 						<p:column width="50">
 							<center>
@@ -60,7 +59,7 @@
 						<p:column width="150">
 							<center>
 								<h:commandLink value="modifica"
-									action="#{pageHandler.modElement(p.id)}" />
+									action="#{pageController.modElement(p.id)}" />
 								-
 								<h:outputLink target="_blank"
 									value="#{request.contextPath}/pagine/#{p.id}">
@@ -72,12 +71,12 @@
 				</p:panel>
 				<br /> <br />
 				<h:panelGrid columns="3">
-					<h:commandButton action="#{pageHandler.addPaginaStatica}"
+					<h:commandButton action="#{pageController.addPaginaStatica}"
 						value="Aggiungi pagina con contenuto statico" />
-					<h:commandButton action="#{pageHandler.addPaginaDinamica}"
+					<h:commandButton action="#{pageController.addPaginaDinamica}"
 						value="Aggiungi pagina con contenuto dinamico" />
-					<h:commandButton action="#{pageHandler.backPage}" value="Indietro"
-						rendered="false" />
+					<h:commandButton action="#{pageController.backPage}"
+						value="Indietro" rendered="false" />
 				</h:panelGrid>
 			</center>
 		</h:form>
