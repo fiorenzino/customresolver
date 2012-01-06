@@ -2,7 +2,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 
@@ -58,7 +58,7 @@
 					<p:dataTable id="pubblicazioniList" var="pubblicazione" 
 						value="#{pubblicazioniHandler.model}" rowIndexVar="rowIndex"
 						rows="#{pubblicazioniHandler.pageSize}" paginator="true"
-						dynamic="true" lazy="true">
+						dynamic="true" >
 						<p:column>
 							<center>
 								<h:outputText value="#{rowIndex+1}" />

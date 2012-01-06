@@ -2,7 +2,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 
@@ -20,22 +20,22 @@
 					<h:panelGrid columns="2" style="width: 95%">
 
 						<h:outputLabel value="Nome:" for="nome" />
-						<h:outputText id="nome" value="#{menuHandler.element.nome}"
+						<h:outputText id="nome" value="#{menuController.element.nome}"
 							style="width: 100%;" />
 
 						<h:outputLabel value="Descrizione:" for="descrizione" />
 						<h:outputText id="descrizione"
-							value="#{menuHandler.element.descrizione}" style="width: 100%;" />
+							value="#{menuController.element.descrizione}" style="width: 100%;" />
 
 						<h:outputLabel value="Percorso:" for="percorso" />
 						<h:outputText id="percorso"
-							value="#{menuHandler.element.percorso}" style="width: 100%;" />
+							value="#{menuController.element.percorso}" style="width: 100%;" />
 
 					</h:panelGrid>
 					<br />
 
 					<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="item"
-						value="#{menuHandler.element.lista}">
+						value="#{menuController.element.lista}">
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="ordinamento" />
@@ -68,10 +68,10 @@
 
 				<h:panelGrid columns="2">
 
-					<h:commandButton action="#{menuHandler.modCurrent}"
+					<h:commandButton action="#{menuController.modCurrent}"
 						value="Modifica" immediate="false" />
 
-					<h:commandButton id="reset" action="#{menuHandler.reset}"
+					<h:commandButton id="reset" action="#{menuController.reset}"
 						value="Indietro" immediate="true" rendered="false" />
 
 				</h:panelGrid>

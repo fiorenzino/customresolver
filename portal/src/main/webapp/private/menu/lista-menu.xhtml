@@ -2,7 +2,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 	<ui:define name="title">
@@ -16,8 +16,8 @@
 			<center>
 				<p:panel header="Lista Menu">
 					<p:dataTable id="menusList" rowIndexVar="rowIndex" var="m"
-						value="#{menuHandler.model}" rows="#{menuHandler.pageSize}"
-						paginator="true" dynamic="true" lazy="true">
+						value="#{menuController.model}" rows="#{menuController.pageSize}"
+						paginator="true" dynamic="true" >
 						<p:column width="50">
 							<center>
 								<h:outputText value="#{rowIndex+1} " />
@@ -44,10 +44,10 @@
 						<p:column width="200">
 							<center>
 								<h:commandLink value="vedi"
-									action="#{menuHandler.viewElement(m.id)}" />
+									action="#{menuController.viewElement(m.id)}" />
 								-
 								<h:commandLink value="modifica"
-									action="#{menuHandler.modElement(m.id)}" />
+									action="#{menuController.modElement(m.id)}" />
 							</center>
 						</p:column>
 					</p:dataTable>
@@ -55,9 +55,9 @@
 				<br /> <br />
 
 				<h:panelGrid columns="2">
-					<h:commandButton action="#{menuHandler.addElement}"
+					<h:commandButton action="#{menuController.addElement}"
 						value="Aggiungi" />
-					<h:commandButton action="#{menuHandler.backPage}" value="Indietro"
+					<h:commandButton action="#{menuController.backPage}" value="Indietro"
 						rendered="false" />
 				</h:panelGrid>
 			</center>
