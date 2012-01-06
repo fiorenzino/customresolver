@@ -1,6 +1,5 @@
 package by.giava.pubblicazioni.model;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -172,15 +171,6 @@ public class Pubblicazione implements Serializable {
 	}
 
 	@Transient
-	public Long getIdTipo() {
-		return idTipo;
-	}
-
-	public void setIdTipo(Long idTipo) {
-		this.idTipo = idTipo;
-	}
-
-	@Transient
 	public Date getStampaDal() {
 		return stampaDal;
 	}
@@ -248,26 +238,27 @@ public class Pubblicazione implements Serializable {
 		cal.set(Calendar.MINUTE, 59);
 		cal.set(Calendar.SECOND, 59);
 		Date fineGiornataOggi = cal.getTime();
-		if ( inizioGiornataOggi.after(getAl()) || fineGiornataOggi.before(getDal())) {
+		if (inizioGiornataOggi.after(getAl())
+				|| fineGiornataOggi.before(getDal())) {
 			return false;
 		}
 		return true;
 	}
 
-//	@Override
-//	public int hashCode() {
-//		if (this.id != null)
-//			return this.id.hashCode();
-//		else
-//			return super.hashCode();
-//
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this.id != null && obj != null && obj instanceof Pubblicazione)
-//			return this.id.equals(((Pubblicazione) obj).id);
-//		else
-//			return super.equals(obj);
-//	}
+	// @Override
+	// public int hashCode() {
+	// if (this.id != null)
+	// return this.id.hashCode();
+	// else
+	// return super.hashCode();
+	//
+	// }
+	//
+	// @Override
+	// public boolean equals(Object obj) {
+	// if (this.id != null && obj != null && obj instanceof Pubblicazione)
+	// return this.id.equals(((Pubblicazione) obj).id);
+	// else
+	// return super.equals(obj);
+	// }
 }

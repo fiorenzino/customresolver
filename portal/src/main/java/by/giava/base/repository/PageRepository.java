@@ -17,6 +17,7 @@ import javax.persistence.Query;
 
 import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.Page;
+import by.giava.base.model.Template;
 
 @Named
 @Stateless
@@ -27,6 +28,9 @@ public class PageRepository extends AbstractRepository<Page> {
 
 	@Inject
 	EntityManager em;
+
+	@Inject
+	TemplateRepository templateRepository;
 
 	@Override
 	public EntityManager getEm() {
@@ -43,13 +47,16 @@ public class PageRepository extends AbstractRepository<Page> {
 		// closeHtmlTags(page);
 		String idTitle = PageUtils.createPageId(page.getTitle());
 		String idFinal = testId(idTitle);
+		Template template = templateRepository.find(page.getTemplate().getId());
+		page.getTemplate().setTemplate(template);
 		page.setId(idFinal);
 		return page;
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	protected Page preUpdate(Page page) {
-		// closeHtmlTags(page);
+		Template template = templateRepository.find(page.getTemplate().getId());
+		page.getTemplate().setTemplate(template);
 		return page;
 	}
 

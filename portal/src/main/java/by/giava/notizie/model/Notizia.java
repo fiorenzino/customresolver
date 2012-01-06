@@ -1,6 +1,5 @@
 package by.giava.notizie.model;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -139,6 +138,8 @@ public class Notizia implements Serializable {
 
 	@ManyToOne
 	public TipoInformazione getTipo() {
+		if (tipo == null)
+			tipo = new TipoInformazione();
 		return tipo;
 	}
 

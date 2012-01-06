@@ -1,51 +1,48 @@
 package by.giava.base.repository;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import org.jboss.logging.Logger;
-
-import by.giava.base.common.ejb.SuperSession;
 import by.giava.base.common.util.FileUtils;
 import by.giava.base.model.Resource;
-import by.giava.base.model.Ricerca;
 
 @Named
 @Stateless
 @LocalBean
-public class ResourceSession extends SuperSession<Resource> implements
-		Serializable {
-
-	private static Logger staticLogger = Logger
-			.getLogger(ResourceSession.class);
+public class ResourceRepository extends AbstractRepository<Resource> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static String base = null;
 
+	@Inject
+	EntityManager em;
+
 	static {
-		base = ResourceSession.class.getClassLoader().getResource("META-INF")
-				.getPath();
-		staticLogger.info("base: " + base);
+		base = ResourceRepository.class.getClassLoader()
+				.getResource("META-INF").getPath();
+		logger.info("base: " + base);
 		if (base != null && base.contains("WEB-INF"))
 			base = base.substring(0, base.indexOf("WEB-INF"));
 
 		// +"risorse"+File.separator
 
-		staticLogger.info("Saving resources to: " + base);
+		logger.info("Saving resources to: " + base);
 	}
 
+	@Override
 	public Resource persist(Resource object) {
 		try {
 			// File f = new
@@ -67,7 +64,7 @@ public class ResourceSession extends SuperSession<Resource> implements
 			object.setId(object.getTipo() + File.separator + object.getNome());
 			return object;
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 			return null;
 		}
 	}
@@ -86,7 +83,7 @@ public class ResourceSession extends SuperSession<Resource> implements
 				return null;
 			}
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 			return null;
 		}
 	}
@@ -111,12 +108,12 @@ public class ResourceSession extends SuperSession<Resource> implements
 				return null;
 			}
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 			return null;
 		}
 	}
 
-	public Resource update(Resource object) {
+	public Resource updateResource(Resource object) {
 		try {
 			File f = new File(base + File.separator + object.getTipo()
 					+ File.separator + object.getId());
@@ -131,7 +128,7 @@ public class ResourceSession extends SuperSession<Resource> implements
 			fos.close();
 			return object;
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 			return null;
 		}
 	}
@@ -146,14 +143,14 @@ public class ResourceSession extends SuperSession<Resource> implements
 				f.delete();
 			return;
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 			return;
 		}
 	}
 
 	// --- LIST ------------------------------------------
-
-	public List<Resource> getList(Ricerca<Resource> ricerca, int startRow,
+	@Override
+	public List<Resource> getList(Search<Resource> ricerca, int startRow,
 			int pageSize) {
 		List<Resource> result = new ArrayList<Resource>();
 		try {
@@ -161,8 +158,8 @@ public class ResourceSession extends SuperSession<Resource> implements
 			// File(base+File.separator+ricerca.getOggetto().getTipo());
 			// if ( ! f.exists() || ! f.isDirectory() )
 			// throw new Exception("directory could not be read!");
-			List<String> files = getFiles(ricerca.getOggetto().getTipo(),
-					ricerca.getOggetto().getNome());
+			List<String> files = getFiles(ricerca.getObj().getTipo(), ricerca
+					.getObj().getNome());
 			if (startRow > files.size())
 				return result;
 			int max = files.size();
@@ -173,29 +170,30 @@ public class ResourceSession extends SuperSession<Resource> implements
 			}
 			for (int i = startRow; i < max; i++) {
 				Resource r = new Resource();
-				r.setTipo(ricerca.getOggetto().getTipo());
+				r.setTipo(ricerca.getObj().getTipo());
 				// r.setId( files[i].substring( files[i].lastIndexOf("/")+1 ) );
 				r.setId(files.get(i));
 				r.setNome(r.getId());
 				result.add(r);
 			}
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 		}
 		return result;
 	}
 
-	public int getListSize(Ricerca<Resource> ricerca) {
+	@Override
+	public int getListSize(Search<Resource> ricerca) {
 		try {
 			// File f = new
 			// File(base+File.separator+ricerca.getOggetto().getTipo());
 			// if ( ! f.exists() || ! f.isDirectory() )
 			// throw new Exception("directory could not be read!");
 			// return f.list().length;
-			return getFiles(ricerca.getOggetto().getTipo(),
-					ricerca.getOggetto().getNome()).size();
+			return getFiles(ricerca.getObj().getTipo(),
+					ricerca.getObj().getNome()).size();
 		} catch (Exception e) {
-			staticLogger.error(e.getMessage(), e);
+			logger.info(e.getMessage());
 			return 0;
 		}
 	}
@@ -228,26 +226,17 @@ public class ResourceSession extends SuperSession<Resource> implements
 
 	@Override
 	public EntityManager getEm() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected Class<Resource> getEntityType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected String getOrderBy() {
-		// TODO Auto-generated method stub
-		return null;
+		return em;
 	}
 
 	@Override
 	public void setEm(EntityManager em) {
-		// TODO Auto-generated method stub
+		this.em = em;
+	}
 
+	@Override
+	protected String getDefaultOrderBy() {
+		return "nome";
 	}
 
 }

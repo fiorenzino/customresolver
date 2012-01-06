@@ -1,6 +1,5 @@
 package by.giava.base.resolver;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -9,11 +8,11 @@ import java.net.URLConnection;
 import org.apache.commons.io.IOUtils;
 import org.jboss.logging.Logger;
 
-import by.giava.base.common.util.JSFUtils;
+import it.coopservice.commons2.utils.JSFUtils;
 import by.giava.base.controller.request.DbPageHandler;
 import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.Page;
-import by.giava.base.repository.PageSession;
+import by.giava.base.repository.PageRepository;
 
 public class DBURLConnection extends URLConnection {
 
@@ -49,14 +48,14 @@ public class DBURLConnection extends URLConnection {
 					url.getFile().lastIndexOf("?"));
 			logger.debug("form: " + this.form);
 			try {
-				this.currentPage = JSFUtils.getBean(PageSession.class).fetch(
-						this.form);
+				this.currentPage = JSFUtils.getBean(PageRepository.class)
+						.fetch(this.form);
 				JSFUtils.getBean(DbPageHandler.class).setPage(currentPage);
 				PageUtils.generateContent(this.currentPage);
 				this.content = this.currentPage.getContent();
 
 			} catch (Exception e) {
-//				e.printStackTrace();
+				// e.printStackTrace();
 				logger.error(e.getMessage());
 			}
 			this.connected = true;

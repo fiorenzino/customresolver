@@ -1,4 +1,4 @@
-package by.giava.attivita.controller;
+package by.giava.notizie.controller;
 
 import it.coopservice.commons2.annotations.BackPage;
 import it.coopservice.commons2.annotations.EditPage;
@@ -12,10 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.attivita.model.type.CategoriaAttivita;
-import by.giava.attivita.repository.TipoPubblicazioneRepository;
 import by.giava.base.controller.OperazioniLogController;
 import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
+import by.giava.notizie.repository.TipoPubblicazioneRepository;
 
 @Named
 @SessionScoped

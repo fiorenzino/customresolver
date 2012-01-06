@@ -1,6 +1,5 @@
 package by.giava.base.converter;
 
-
 import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -11,8 +10,8 @@ import javax.inject.Named;
 import org.jboss.logging.Logger;
 
 import by.giava.base.model.MenuItem;
-import by.giava.base.repository.MenuSession;
-import by.giava.base.repository.PageSession;
+import by.giava.base.repository.MenuRepository;
+import by.giava.base.repository.PageRepository;
 
 @Named
 @RequestScoped
@@ -24,9 +23,9 @@ public class MenuItemConverter implements Converter {
 	}
 
 	@Inject
-	MenuSession menuSession;
+	MenuRepository menuRepository;
 	@Inject
-	PageSession pageSession;
+	PageRepository pageRepository;
 
 	public Object getAsObject(FacesContext facesContextImpl,
 			UIComponent pickList, String menuItemAsString) {
@@ -34,10 +33,10 @@ public class MenuItemConverter implements Converter {
 			return null;
 		// return ObjectUtils.deserialize(menuItemAsString);
 		if (menuItemAsString.indexOf("mID") >= 0)
-			return menuSession.findItem(Long.parseLong(menuItemAsString
+			return menuRepository.findItem(Long.parseLong(menuItemAsString
 					.substring(menuItemAsString.indexOf("mID") + 3)));
 		else if (menuItemAsString.indexOf("pID") >= 0) {
-			return new MenuItem(pageSession.find(menuItemAsString
+			return new MenuItem(pageRepository.find(menuItemAsString
 					.substring(menuItemAsString.indexOf("pID") + 3)), null);
 		} else {
 			return null;

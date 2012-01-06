@@ -23,7 +23,7 @@ import by.giava.base.model.MenuGroup;
 import by.giava.base.model.MenuItem;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Page;
-import by.giava.base.repository.MenuSession;
+import by.giava.base.repository.MenuRepository;
 import by.giava.base.repository.PageRepository;
 
 @Named
@@ -47,7 +47,7 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 	// --------------------------------------------------------
 
 	@Inject
-	MenuSession session;
+	MenuRepository menuRepository;
 
 	@Inject
 	@OwnRepository(PageRepository.class)
@@ -80,9 +80,8 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 
 	@Override
 	public String reset() {
-		// TODO Auto-generated method stub
-		return super.reset();
 		menuHolder.reset();
+		return super.reset();
 	}
 
 	@Override
