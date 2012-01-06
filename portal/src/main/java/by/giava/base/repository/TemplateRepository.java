@@ -47,36 +47,34 @@ public class TemplateRepository extends AbstractRepository<Template> implements
 	 * tramite overriding
 	 */
 	@Override
-	protected Query getRestrictions(Search<Template> ricerca, boolean count) {
+	protected Query getRestrictions(Search<Template> search, boolean justCount) {
 
-		if (ricerca == null || ricerca.getObj() == null)
-			return super.getRestrictions(ricerca, count);
+		if (search == null || search.getObj() == null)
+			return super.getRestrictions(search, justCount);
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
-				count));
+				justCount));
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
 		params.put("attivo", true);
 
 		String separator = " and ";
 
-		if (ricerca.getObj().getSearchStatico() != null) {
+		if (search.getObj().getSearchStatico() != null) {
 			sb.append(separator).append(alias).append(".statico = :statico ");
-			params.put("statico", ricerca.getObj().getSearchStatico());
+			params.put("statico", search.getObj().getSearchStatico());
 		}
 
-		if (ricerca.getObj().getNome() != null
-				&& !ricerca.getObj().getNome().isEmpty()) {
+		if (search.getObj().getNome() != null
+				&& !search.getObj().getNome().isEmpty()) {
 			sb.append(separator).append(alias).append(".nome like :nome ");
-			params.put("nome", likeParam(ricerca.getObj().getNome()));
+			params.put("nome", likeParam(search.getObj().getNome()));
 		}
 
-		if (!count) {
-			sb.append(" order by ").append(alias).append(".").append(ricerca.getOrder());
-		} else {
-			logger.info("order by null");
+		if (!justCount) {
+			sb.append(getOrderBy(alias, search.getOrder()));
 		}
 
 		logger.info(sb.toString());

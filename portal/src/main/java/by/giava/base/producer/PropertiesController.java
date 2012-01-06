@@ -31,7 +31,7 @@ public class PropertiesController implements Serializable {
 
 	@Inject
 	TemplateRepository templateRepository;
-	
+
 	@PostConstruct
 	public void reset() {
 		items = new HashMap<Class, SelectItem[]>();
@@ -47,31 +47,33 @@ public class PropertiesController implements Serializable {
 	@Named
 	public SelectItem[] getSiNoItems() {
 		List<SelectItem> valori = new ArrayList<SelectItem>();
-		valori.add(new SelectItem(true,"SI"));
-		valori.add(new SelectItem(false,"NO"));
+		valori.add(new SelectItem(true, "SI"));
+		valori.add(new SelectItem(false, "NO"));
 		return valori.toArray(new SelectItem[] {});
 	}
-	
+
 	@Produces
 	@Named
 	public SelectItem[] getSiNoNullItems() {
 		List<SelectItem> valori = new ArrayList<SelectItem>();
-		valori.add(new SelectItem(null,"..."));
-		valori.add(new SelectItem(true,"SI"));
-		valori.add(new SelectItem(false,"NO"));
+		valori.add(new SelectItem(null, "..."));
+		valori.add(new SelectItem(true, "SI"));
+		valori.add(new SelectItem(false, "NO"));
 		return valori.toArray(new SelectItem[] {});
 	}
 
 	@Produces
 	@Named
 	public SelectItem[] getTemplateItems() {
-		if ( items.get(Template.class) == null || items.get(Template.class).length  == 0 ) {
-		List<SelectItem> valori = new ArrayList<SelectItem>();
-		valori.add(new SelectItem(null,"template..."));
-		for ( Template t : templateRepository.getList(new Search<Template>(Template.class),0,0) ) {
-			valori.add(new SelectItem(t.getId(), t.getNome()));
-		}
-		items.put(Template.class,valori.toArray(new SelectItem[]{}));
+		if (items.get(Template.class) == null
+				|| items.get(Template.class).length == 0) {
+			List<SelectItem> valori = new ArrayList<SelectItem>();
+			valori.add(new SelectItem(null, "template..."));
+			for (Template t : templateRepository.getList(new Search<Template>(
+					Template.class), 0, 0)) {
+				valori.add(new SelectItem(t.getId(), t.getNome()));
+			}
+			items.put(Template.class, valori.toArray(new SelectItem[] {}));
 		}
 		return items.get(Template.class);
 	}
@@ -86,6 +88,8 @@ public class PropertiesController implements Serializable {
 				"seleziona template per pagine statiche...");
 	}
 
+	@Produces
+	@Named
 	public SelectItem[] getTemplateDinamiciItems() {
 		Search<Template> ricerca = new Search<Template>(Template.class);
 		ricerca.getObj().setSearchStatico(false);
@@ -105,6 +109,5 @@ public class PropertiesController implements Serializable {
 		}
 		return staticoDinamicoItems;
 	}
-
 
 }

@@ -3,6 +3,7 @@ package by.giava.base.controller;
 import it.coopservice.commons2.annotations.BackPage;
 import it.coopservice.commons2.annotations.EditPage;
 import it.coopservice.commons2.annotations.ListPage;
+import it.coopservice.commons2.annotations.OwnRepository;
 import it.coopservice.commons2.annotations.ViewPage;
 import it.coopservice.commons2.controllers.AbstractLazyController;
 import it.coopservice.commons2.utils.JSFUtils;
@@ -46,6 +47,7 @@ public class PageController extends AbstractLazyController<Page> {
 	// --------------------------------------------------------
 
 	@Inject
+	@OwnRepository(PageRepository.class)
 	PageRepository pageRepository;
 
 	@Inject

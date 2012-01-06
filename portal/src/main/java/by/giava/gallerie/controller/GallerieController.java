@@ -3,6 +3,7 @@ package by.giava.gallerie.controller;
 import it.coopservice.commons2.annotations.BackPage;
 import it.coopservice.commons2.annotations.EditPage;
 import it.coopservice.commons2.annotations.ListPage;
+import it.coopservice.commons2.annotations.OwnRepository;
 import it.coopservice.commons2.annotations.ViewPage;
 import it.coopservice.commons2.controllers.AbstractLazyController;
 import it.coopservice.commons2.utils.JSFUtils;
@@ -40,6 +41,7 @@ public class GallerieController extends AbstractLazyController<Galleria> {
 	// ------------------------------------------------
 
 	@Inject
+	@OwnRepository(GallerieRepository.class)
 	GallerieRepository gallerieRepository;
 
 	@Inject

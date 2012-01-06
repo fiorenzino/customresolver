@@ -13,8 +13,7 @@ import by.giava.notizie.model.Notizia;
 
 @Named
 @RequestScoped
-public class NewsHandlerRequestController extends
-		AbstractRequestController<Notizia> {
+public class NewsRequestController extends AbstractRequestController<Notizia> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +29,6 @@ public class NewsHandlerRequestController extends
 	@HttpParam("id")
 	String idParam;
 
-	private Notizia notizia;
 	private Notizia evidenzaNotizia;
 	private Immagine evidenzaImmagine;
 
@@ -40,7 +38,7 @@ public class NewsHandlerRequestController extends
 	@Inject
 	ParamsHandler paramsHandler;
 
-	public NewsHandlerRequestController() {
+	public NewsRequestController() {
 	}
 
 	@Override
@@ -48,7 +46,12 @@ public class NewsHandlerRequestController extends
 		if (idParam != null && !idParam.isEmpty()) {
 			Notizia notiziaF = newNotizieRepository.find(idParam);
 			setElement(notiziaF);
+		} else {
+
+			Notizia notiziaF = newNotizieRepository.findLast();
+			setElement(notiziaF);
 		}
+
 		if (tipo != null && tipo.length() > 0) {
 			getSearch().getObj().getTipo().setNome(tipo);
 		}
@@ -58,12 +61,6 @@ public class NewsHandlerRequestController extends
 	}
 
 	// -----------------------------------------------------------------------------------
-
-	public Notizia getNotizia() {
-		if (this.notizia == null)
-			this.notizia = newNotizieRepository.findLast();
-		return notizia;
-	}
 
 	public Notizia getInEvidenza() {
 		if (evidenzaNotizia == null) {
