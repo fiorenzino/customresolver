@@ -10,7 +10,7 @@ import javax.inject.Named;
 import by.giava.attivita.controller.request.AttivitaRequestController;
 import by.giava.base.model.Page;
 import by.giava.base.repository.PageRepository;
-import by.giava.news.controller.request.NewsHandlerRequest;
+import by.giava.news.controller.request.NewsHandlerRequestController;
 import by.giava.pubblicazioni.controller.request.PubblicazioniControllerRequest;
 
 @Named
@@ -25,7 +25,7 @@ public class DbPageHandler implements Serializable {
 	PageRepository pageRepository;
 
 	@Inject
-	NewsHandlerRequest newsHandlerRequest;
+	NewsHandlerRequestController newsHandlerRequestController;
 
 	@Inject
 	AttivitaRequestController attivitaRequestController;
@@ -58,9 +58,11 @@ public class DbPageHandler implements Serializable {
 		if ((this.page != null) && (this.page.getId() != null)) {
 			if ("leggiNews".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
-				if (newsHandlerRequest.getNotizia() != null
-						&& newsHandlerRequest.getNotizia().getTitolo() != null)
-					return newsHandlerRequest.getNotizia().getTitolo();
+				if (newsHandlerRequestController.getNotizia() != null
+						&& newsHandlerRequestController.getNotizia()
+								.getTitolo() != null)
+					return newsHandlerRequestController.getNotizia()
+							.getTitolo();
 			}
 			if ("leggiAttivita".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
