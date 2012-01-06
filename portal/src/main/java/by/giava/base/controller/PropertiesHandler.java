@@ -1,5 +1,8 @@
 package by.giava.base.controller;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,22 +18,18 @@ import javax.inject.Named;
 
 import org.jboss.logging.Logger;
 
-import by.giava.attivita.controller.AttivitaHandler;
+import by.giava.attivita.controller.AttivitaController;
 import by.giava.attivita.model.type.CategoriaAttivita;
 import by.giava.attivita.model.type.TipoAttivita;
-import by.giava.attivita.repository.CategorieSession;
-import by.giava.base.common.ejb.SuperSession;
-import by.giava.base.common.util.JSFUtils;
+import by.giava.attivita.repository.CategorieAttivitaRepository;
+import by.giava.attivita.repository.TipoAttivitaRepository;
 import by.giava.base.model.Page;
-import by.giava.base.model.Ricerca;
-import by.giava.base.model.Template;
-import by.giava.base.repository.PageSession;
-import by.giava.base.repository.TemplateRepository;
-import by.giava.base.repository.TemplateSession;
+import by.giava.base.repository.PageRepository;
 import by.giava.moduli.model.type.TipoModulo;
-import by.giava.moduli.repository.TipoModuloSession;
-import by.giava.news.repository.TipoInformazioniSession;
+import by.giava.moduli.repository.TipoModuloRepository;
+import by.giava.news.repository.TipoInformazioniRepository;
 import by.giava.notizie.model.type.TipoInformazione;
+import by.giava.notizie.repository.TipoPubblicazioneRepository;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 
 @Named
@@ -42,22 +41,28 @@ public class PropertiesHandler implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	CategorieSession categorieSession;
+	CategorieAttivitaRepository categorieAttivitaRepository;
 
 	@Inject
-	AttivitaHandler attivitaHandler;
+	AttivitaController attivitaController;
 
 	@SuppressWarnings("rawtypes")
 	private Map<Class, SelectItem[]> items = null;
 
 	@Inject
-	private PageSession pageSession;
+	private PageRepository pageRepository;
 
 	@Inject
-	private TipoInformazioniSession tipoInformazioniSession;
+	private TipoInformazioniRepository tipoInformazioniRepository;
 
 	@Inject
-	private TipoModuloSession tipoModuloSession;
+	private TipoModuloRepository tipoModuloRepository;
+
+	@Inject
+	TipoAttivitaRepository tipoAttivitaRepository;
+
+	@Inject
+	TipoPubblicazioneRepository tipoPubblicazioneRepository;
 
 	private SelectItem[] fileTypeItems = new SelectItem[] {};
 	private SelectItem[] categorieAttivitaItems = new SelectItem[] {};
@@ -141,15 +146,15 @@ public class PropertiesHandler implements Serializable {
 			categorieAttivitaItems = new SelectItem[1];
 			categorieAttivitaItems[0] = new SelectItem(null,
 					"nessuna categoria");
-			List<CategoriaAttivita> categorie = categorieSession
-					.getAllCategoriaAttivita();
+			List<CategoriaAttivita> categorie = categorieAttivitaRepository
+					.getAllList();
 			if (categorie != null && categorie.size() > 0) {
 				categorieAttivitaItems = new SelectItem[categorie.size() + 1];
 				categorieAttivitaItems[0] = new SelectItem(null, "categoria");
 				int i = 1;
 				for (CategoriaAttivita c : categorie) {
 					categorieAttivitaItems[i] = new SelectItem(c.getId(),
-							c.getCategoria());
+							c.getNome());
 					i++;
 
 				}
@@ -159,15 +164,16 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public void cambioTipo(ActionEvent event) {
-		int tipo = attivitaHandler.getTipoId();
+		Long tipo = attivitaController.getElement().getCategoria()
+				.getTipoAttivita().getId();
 		cambioTipoDirect(tipo);
 	}
 
 	public void cambioTipoRicerca(ActionEvent event) {
-		Long tipo = attivitaHandler.getRicerca().getOggetto().getCategoria()
+		Long tipo = attivitaController.getSearch().getObj().getCategoria()
 				.getTipoAttivita().getId();
 		if (tipo != null)
-			cambioTipoDirect(tipo.intValue());
+			cambioTipoDirect(tipo);
 		else {
 
 			categorieAttivitaItems = new SelectItem[1];
@@ -175,9 +181,9 @@ public class PropertiesHandler implements Serializable {
 		}
 	}
 
-	public void cambioTipoDirect(int tipo) {
+	public void cambioTipoDirect(Long tipo) {
 		logger.info("getCategorieByTipoItems: Tipo: " + tipo);
-		List<CategoriaAttivita> categorie = categorieSession
+		List<CategoriaAttivita> categorie = categorieAttivitaRepository
 				.getAllCategoriaAttivitaByTipo(new Long(tipo));
 		if (categorie != null && categorie.size() > 0) {
 			categorieAttivitaItems = new SelectItem[categorie.size() + 1];
@@ -185,7 +191,7 @@ public class PropertiesHandler implements Serializable {
 			int i = 1;
 			for (CategoriaAttivita c : categorie) {
 				categorieAttivitaItems[i] = new SelectItem(c.getId(),
-						c.getCategoria());
+						c.getNome());
 				i++;
 
 			}
@@ -209,18 +215,17 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getTipiAttivitaItems() {
-		if (tipiAttivitaItems == null
-				|| tipiAttivitaItems.length == 0) {
+		if (tipiAttivitaItems == null || tipiAttivitaItems.length == 0) {
 			tipiAttivitaItems = new SelectItem[1];
 			tipiAttivitaItems[0] = new SelectItem(null, "nessun tipo");
-			List<TipoAttivita> tipi = categorieSession.getAllTipoAttivita();
+			List<TipoAttivita> tipi = tipoAttivitaRepository.getAllList();
 			if (tipi != null && tipi.size() > 0) {
 				tipiAttivitaItems = new SelectItem[tipi.size() + 1];
 				tipiAttivitaItems[0] = new SelectItem(null, "tipo");
 				int i = 1;
 				for (TipoAttivita c : tipi) {
 					tipiAttivitaItems[i] = new SelectItem(c.getId(),
-							c.getTipo());
+							c.getNome());
 					i++;
 
 				}
@@ -234,8 +239,8 @@ public class PropertiesHandler implements Serializable {
 				|| tipiPubblicazioneItems.length == 0) {
 			tipiPubblicazioneItems = new SelectItem[1];
 			tipiPubblicazioneItems[0] = new SelectItem(null, "nessun tipo");
-			List<TipoPubblicazione> tipi = categorieSession
-					.getAllTipoPubblicazione();
+			List<TipoPubblicazione> tipi = tipoPubblicazioneRepository
+					.getAllList();
 			if (tipi != null && tipi.size() > 0) {
 				tipiPubblicazioneItems = new SelectItem[tipi.size() + 1];
 				tipiPubblicazioneItems[0] = new SelectItem(null, "tipo");
@@ -255,7 +260,7 @@ public class PropertiesHandler implements Serializable {
 		if (tipiModuloItems == null || tipiModuloItems.length == 0) {
 			tipiModuloItems = new SelectItem[1];
 			tipiModuloItems[0] = new SelectItem(null, "nessun tipo");
-			List<TipoModulo> tipi = tipoModuloSession.getAllList();
+			List<TipoModulo> tipi = tipoModuloRepository.getAllList();
 			if (tipi != null && tipi.size() > 0) {
 				tipiModuloItems = new SelectItem[tipi.size() + 1];
 				tipiModuloItems[0] = new SelectItem(null, "tipo");
@@ -295,9 +300,9 @@ public class PropertiesHandler implements Serializable {
 	// ==============================================================================
 
 	public SelectItem[] getTipoInformazioneItems() {
-		Ricerca<TipoInformazione> ricerca = new Ricerca<TipoInformazione>(
+		Search<TipoInformazione> ricerca = new Search<TipoInformazione>(
 				TipoInformazione.class);
-		return checkItems(ricerca, tipoInformazioniSession, "id", "nome",
+		return checkItems(ricerca, tipoInformazioniRepository, "id", "nome",
 				"nessun tipo disponibile", "seleziona tipo...");
 	}
 
@@ -306,8 +311,8 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	public SelectItem[] getPageItems() {
-		Ricerca<Page> ricerca = new Ricerca<Page>(Page.class);
-		return checkItems(ricerca, pageSession, "id", "title",
+		Search<Page> ricerca = new Search<Page>(Page.class);
+		return checkItems(ricerca, pageRepository, "id", "title",
 				"nessuna pagina disponibile", "seleziona pagina...");
 	}
 
@@ -316,10 +321,10 @@ public class PropertiesHandler implements Serializable {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private SelectItem[] checkItems(Ricerca ricerca, SuperSession ejb,
+	private SelectItem[] checkItems(Search ricerca, AbstractRepository ejb,
 			String idField, String valueField, String emptyMessage,
 			String labelMessage) {
-		Class clazz = ricerca.getOggetto().getClass();
+		Class clazz = ricerca.getObj().getClass();
 		if (items.get(clazz) == null || items.get(clazz).length == 0) {
 			items.put(clazz, JSFUtils.setupItems(ricerca, ejb, idField,
 					valueField, emptyMessage, labelMessage));

@@ -6,12 +6,12 @@ import it.coopservice.commons2.annotations.ListPage;
 import it.coopservice.commons2.annotations.OwnRepository;
 import it.coopservice.commons2.annotations.ViewPage;
 import it.coopservice.commons2.controllers.AbstractLazyController;
+import it.coopservice.commons2.utils.JSFUtils;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import by.giava.base.common.util.JSFUtils;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Template;
 import by.giava.base.producer.PropertiesController;
