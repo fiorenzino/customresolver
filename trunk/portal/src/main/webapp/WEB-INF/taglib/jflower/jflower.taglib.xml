@@ -55,12 +55,12 @@
 
 	<function>
 		<function-name>bcrumbs</function-name>
-		<function-class>by.giava.base.common.util.JSFUtils</function-class>
+		<function-class>by.giava.base.common.util.JSFLocalUtils</function-class>
 		<function-signature>java.lang.String breadcrumbs()</function-signature>
 	</function>
 	<function>
 		<function-name>urlContains</function-name>
-		<function-class>by.giava.base.common.util.JSFUtils</function-class>
+		<function-class>by.giava.base.common.util.JSFLocalUtils</function-class>
 		<function-signature>java.lang.Boolean urlContains(java.lang.String)</function-signature>
 	</function>
 	<function>
