@@ -19,7 +19,7 @@ import by.giava.pubblicazioni.repository.PubblicazioniRepository;
 
 @Named
 @RequestScoped
-public class PubblicazioniControllerRequest extends
+public class PubblicazioniRequestController extends
 		AbstractRequestController<Pubblicazione> {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class PubblicazioniControllerRequest extends
 	@Inject
 	ParamsHandler paramsHandler;
 
-	public PubblicazioniControllerRequest() {
+	public PubblicazioniRequestController() {
 	}
 
 	@Override

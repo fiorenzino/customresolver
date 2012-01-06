@@ -200,10 +200,7 @@ public class PubblicazioniRepository extends AbstractRepository<Pubblicazione> {
 		}
 
 		if (!justCount) {
-			sb.append(" order by ").append(alias).append(".")
-					.append(getDefaultOrderBy());
-		} else {
-			logger.info("order by null");
+			sb.append(getOrderBy(alias, search.getOrder()));
 		}
 
 		logger.info(sb.toString());

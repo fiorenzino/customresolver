@@ -1,5 +1,10 @@
 package by.giava.base.controller;
 
+import it.coopservice.commons2.annotations.BackPage;
+import it.coopservice.commons2.annotations.EditPage;
+import it.coopservice.commons2.annotations.ListPage;
+import it.coopservice.commons2.annotations.ViewPage;
+import it.coopservice.commons2.controllers.AbstractLazyController;
 import it.coopservice.commons2.utils.JSFUtils;
 
 import java.io.Serializable;
@@ -32,27 +37,23 @@ import by.giava.base.service.EmailSession;
 
 @Named
 @SessionScoped
-public class LoginHandler implements Serializable {
+public class LoginController extends AbstractLazyController<Utente> {
 
 	private static final long serialVersionUID = 1L;
 	private boolean login;
 
 	// --------------------------------------------------------
+	@BackPage
+	public static String BACK = "/private/amministrazione.xhtml";
+	@ViewPage
+	public static String VIEW = "/private/utenti/scheda-utente.xhtml";
+	@ListPage
+	public static String LIST = "/private/utenti/lista-utenti.xhtml";
+	@EditPage
+	public static String NEW_OR_EDIT = "/private/utenti/gestione-utente.xhtml";
+	public static String CAMBIO_PASSWORD = "/private/utenti/cambio-password.xhtml";
 
-	private static String FACES_REDIRECT = "?faces-redirect=true";
-
-	public static String BACK = "/private/amministrazione.xhtml"
-			+ FACES_REDIRECT;
-	public static String VIEW = "/private/utenti/scheda-utente.xhtml"
-			+ FACES_REDIRECT;
-	public static String LIST = "/private/utenti/lista-utenti.xhtml"
-			+ FACES_REDIRECT;
-	public static String NEW_OR_EDIT = "/private/utenti/gestione-utente.xhtml"
-			+ FACES_REDIRECT;
-	public static String CAMBIO_PASSWORD = "/private/utenti/cambio-password.xhtml"
-			+ FACES_REDIRECT;
-
-	public static String GRAZIE = "/grazie.xhtml" + FACES_REDIRECT;
+	public static String GRAZIE = "/grazie.xhtml";
 
 	public static String LOGOUT = "/logout.jsp";
 
@@ -73,9 +74,7 @@ public class LoginHandler implements Serializable {
 	@Inject
 	EmailSession emailSession;
 
-	private Logger logger = Logger.getLogger(LoginHandler.class);
-
-	public LoginHandler() {
+	public LoginController() {
 
 	}
 

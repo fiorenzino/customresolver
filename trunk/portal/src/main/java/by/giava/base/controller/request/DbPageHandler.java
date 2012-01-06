@@ -10,8 +10,8 @@ import javax.inject.Named;
 import by.giava.attivita.controller.request.AttivitaRequestController;
 import by.giava.base.model.Page;
 import by.giava.base.repository.PageRepository;
-import by.giava.news.controller.request.NewsHandlerRequestController;
-import by.giava.pubblicazioni.controller.request.PubblicazioniControllerRequest;
+import by.giava.news.controller.request.NewsRequestController;
+import by.giava.pubblicazioni.controller.request.PubblicazioniRequestController;
 
 @Named
 @RequestScoped
@@ -25,13 +25,13 @@ public class DbPageHandler implements Serializable {
 	PageRepository pageRepository;
 
 	@Inject
-	NewsHandlerRequestController newsHandlerRequestController;
+	NewsRequestController newsRequestController;
 
 	@Inject
 	AttivitaRequestController attivitaRequestController;
 
 	@Inject
-	PubblicazioniControllerRequest pubblicazioniControllerRequest;
+	PubblicazioniRequestController pubblicazioniRequestController;
 
 	private Page page;
 
@@ -58,11 +58,9 @@ public class DbPageHandler implements Serializable {
 		if ((this.page != null) && (this.page.getId() != null)) {
 			if ("leggiNews".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
-				if (newsHandlerRequestController.getNotizia() != null
-						&& newsHandlerRequestController.getNotizia()
-								.getTitolo() != null)
-					return newsHandlerRequestController.getNotizia()
-							.getTitolo();
+				if (newsRequestController.getElement() != null
+						&& newsRequestController.getElement().getTitolo() != null)
+					return newsRequestController.getElement().getTitolo();
 			}
 			if ("leggiAttivita".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
@@ -72,10 +70,10 @@ public class DbPageHandler implements Serializable {
 			}
 			if ("leggiPubblicazione".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
-				if (pubblicazioniControllerRequest.getElement() != null
-						&& pubblicazioniControllerRequest.getElement()
+				if (pubblicazioniRequestController.getElement() != null
+						&& pubblicazioniRequestController.getElement()
 								.getNome() != null)
-					return pubblicazioniControllerRequest.getElement()
+					return pubblicazioniRequestController.getElement()
 							.getNome();
 			}
 			if (this.page.getTitle() != null

@@ -23,7 +23,6 @@ import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.attachment.Documento;
 import by.giava.base.model.attachment.Immagine;
 import by.giava.news.repository.NewNotizieRepository;
-import by.giava.news.repository.TipoInformazioniRepository;
 import by.giava.notizie.model.Notizia;
 
 @Named
