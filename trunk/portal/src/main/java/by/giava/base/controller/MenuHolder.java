@@ -16,7 +16,7 @@ import org.jboss.logging.Logger;
 
 import by.giava.base.model.MenuGroup;
 import by.giava.base.model.MenuItem;
-import by.giava.base.repository.MenuSession;
+import by.giava.base.repository.MenuRepository;
 
 @Named
 @ApplicationScoped
@@ -27,7 +27,7 @@ public class MenuHolder implements Serializable {
 	// --------------------------------------------------------
 
 	@Inject
-	MenuSession session;
+	MenuRepository menuRepository;
 
 	// ------------------------------------------------
 
@@ -65,7 +65,7 @@ public class MenuHolder implements Serializable {
 
 	public void init() {
 		if (lista == null) {
-			lista = session.getAllList();
+			lista = menuRepository.getAllList();
 			Collections.sort(lista, new Comparator<MenuGroup>() {
 
 				public int compare(MenuGroup mg1, MenuGroup mg2) {

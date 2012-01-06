@@ -2,6 +2,7 @@ package by.giava.moduli.repository;
 
 import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
+import it.coopservice.commons2.utils.JSFUtils;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +15,6 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import by.giava.base.common.util.JSFUtils;
 import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.attachment.Documento;
 import by.giava.moduli.model.Modulo;

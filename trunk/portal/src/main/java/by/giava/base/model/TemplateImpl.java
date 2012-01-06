@@ -11,7 +11,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class TemplateImpl implements Serializable {
 
@@ -49,6 +48,8 @@ public class TemplateImpl implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	public Template getTemplate() {
+		if (template == null)
+			this.template = new Template();
 		return template;
 	}
 

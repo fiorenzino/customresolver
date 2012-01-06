@@ -1,4 +1,4 @@
-package by.giava.attivita.repository;
+package by.giava.notizie.repository;
 
 import it.coopservice.commons2.repository.AbstractRepository;
 

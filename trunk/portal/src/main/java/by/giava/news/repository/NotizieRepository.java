@@ -1,7 +1,8 @@
 package by.giava.news.repository;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +14,8 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import by.giava.base.common.ejb.SuperSession;
-import by.giava.base.model.Ricerca;
+import by.giava.base.controller.util.PageUtils;
+import by.giava.base.controller.util.TimeUtils;
 import by.giava.base.model.attachment.Documento;
 import by.giava.base.model.attachment.Immagine;
 import by.giava.notizie.model.Notizia;
@@ -23,8 +24,7 @@ import by.giava.notizie.model.type.TipoInformazione;
 @Named
 @Stateless
 @LocalBean
-public class NotizieSession extends SuperSession<Notizia> implements
-		Serializable {
+public class NotizieRepository extends AbstractRepository<Notizia> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,16 +37,6 @@ public class NotizieSession extends SuperSession<Notizia> implements
 	}
 
 	@Override
-	protected Class<Notizia> getEntityType() {
-		return Notizia.class;
-	}
-
-	@Override
-	protected String getOrderBy() {
-		return "data desc";
-	}
-
-	@Override
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
@@ -56,48 +46,47 @@ public class NotizieSession extends SuperSession<Notizia> implements
 	 * tramite overriding
 	 */
 	@Override
-	protected Query getRestrictions(Ricerca<Notizia> ricerca, String orderBy,
-			boolean count) {
-
-		if (ricerca == null || ricerca.getOggetto() == null)
-			return super.getRestrictions(ricerca, orderBy, count);
+	protected Query getRestrictions(Search<Notizia> search, boolean justCount) {
+		if (search.getObj() == null)
+			return super.getRestrictions(search, justCount);
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		String alias = "t";
 		StringBuffer sb = new StringBuffer(getBaseList(getEntityType(), alias,
-				count));
+				justCount));
 		sb.append(" where ").append(alias).append(".attivo = :attivo");
 		params.put("attivo", true);
 
 		String separator = " and ";
 
-		if (ricerca.getOggetto().getTipo() != null
-				&& ricerca.getOggetto().getTipo().getNome() != null
-				&& ricerca.getOggetto().getTipo().getNome().length() > 0) {
+		if (search.getObj().getTipo() != null
+				&& search.getObj().getTipo().getNome() != null
+				&& search.getObj().getTipo().getNome().length() > 0) {
 			sb.append(separator).append(alias)
 					.append(".tipo.nome = :nomeTipo ");
-			params.put("nomeTipo", ricerca.getOggetto().getTipo().getNome());
+			params.put("nomeTipo", search.getObj().getTipo().getNome());
 		}
-		if (ricerca.getOggetto().getTipo() != null
-				&& ricerca.getOggetto().getTipo().getId() != null) {
+		if (search.getObj().getTipo() != null
+				&& search.getObj().getTipo().getId() != null) {
 			sb.append(separator).append(alias).append(".tipo.id = :idTipo ");
-			params.put("idTipo", ricerca.getOggetto().getTipo().getId());
+			params.put("idTipo", search.getObj().getTipo().getId());
 		}
 
-		if (ricerca.getOggetto().getTitolo() != null
-				&& !ricerca.getOggetto().getTitolo().isEmpty()) {
+		if (search.getObj().getTitolo() != null
+				&& !search.getObj().getTitolo().isEmpty()) {
 			sb.append(separator + " (").append(alias)
 					.append(".titolo LIKE :titolo ");
-			params.put("titolo", likeParam(ricerca.getOggetto().getTitolo()));
+			params.put("titolo", likeParam(search.getObj().getTitolo()));
 			sb.append(" or ").append(alias)
 					.append(".contenuto LIKE :contenuto ");
-			params.put("contenuto", likeParam(ricerca.getOggetto().getTitolo()));
+			params.put("contenuto", likeParam(search.getObj().getTitolo()));
 			sb.append(" ) ");
 		}
 
-		if (!count) {
-			sb.append(" order by ").append(alias).append(".").append(orderBy);
+		if (!justCount) {
+			sb.append(" order by ").append(alias).append(".")
+					.append(getDefaultOrderBy());
 		} else {
 			logger.info("order by null");
 		}
@@ -115,11 +104,57 @@ public class NotizieSession extends SuperSession<Notizia> implements
 
 	@Override
 	protected Notizia prePersist(Notizia n) {
+		String idTitle = PageUtils.createPageId(n.getTitolo());
+		String idFinal = testId(idTitle);
+		n.setId(idFinal);
 		if (n.getData() == null)
 			n.setData(new Date());
 		if (n.getTipo() != null && n.getTipo().getId() != null)
 			n.setTipo(getEm().find(TipoInformazione.class, n.getTipo().getId()));
+		if (n.getDocumenti() != null && n.getDocumenti().size() == 0) {
+			n.setDocumenti(null);
+		}
+		if (n.getImmagini() != null && n.getImmagini().size() == 0) {
+			n.setImmagini(null);
+		}
+		n.setData(TimeUtils.correggiOraMinuti(n.getData()));
 		return n;
+	}
+
+	@Override
+	protected Notizia preUpdate(Notizia n) {
+		if (n.getData() == null)
+			n.setData(new Date());
+		if (n.getTipo() != null && n.getTipo().getId() != null)
+			n.setTipo(getEm().find(TipoInformazione.class, n.getTipo().getId()));
+		if (n.getDocumenti() != null && n.getDocumenti().size() == 0) {
+			n.setDocumenti(null);
+		}
+		if (n.getImmagini() != null && n.getImmagini().size() == 0) {
+			n.setImmagini(null);
+		}
+		n.setData(TimeUtils.correggiOraMinuti(n.getData()));
+		return n;
+	}
+
+	public String testId(String id) {
+		String idFinal = id;
+		boolean trovato = false;
+		int i = 0;
+		while (!trovato) {
+			logger.info("id final: " + idFinal);
+			Notizia notiziaFind = find(idFinal);
+			logger.info("trovato_ " + notiziaFind);
+			if (notiziaFind != null) {
+				i++;
+				idFinal = id + "-" + i;
+			} else {
+				trovato = true;
+				return idFinal;
+
+			}
+		}
+		return "";
 	}
 
 	public Notizia findLast() {
@@ -150,5 +185,10 @@ public class NotizieSession extends SuperSession<Notizia> implements
 			img.getId();
 		}
 		return notizia;
+	}
+
+	@Override
+	protected String getDefaultOrderBy() {
+		return "data desc";
 	}
 }

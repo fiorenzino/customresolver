@@ -1,4 +1,4 @@
-package by.giava.pubblicazioni.controller.request;
+package by.giava.moduli.controller.request;
 
 import it.coopservice.commons2.annotations.OwnRepository;
 
@@ -9,19 +9,18 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import by.giava.attivita.repository.CategorieAttivitaRepository;
-import by.giava.attivita.repository.TipoPubblicazioneRepository;
 import by.giava.base.common.annotation.HttpParam;
 import by.giava.base.common.web.controller.AbstractRequestController;
 import by.giava.base.controller.request.ParamsHandler;
-import by.giava.pubblicazioni.model.Pubblicazione;
-import by.giava.pubblicazioni.model.type.TipoPubblicazione;
-import by.giava.pubblicazioni.repository.PubblicazioniRepository;
+import by.giava.moduli.model.Modulo;
+import by.giava.moduli.model.type.TipoModulo;
+import by.giava.moduli.repository.ModuliRepository;
+import by.giava.moduli.repository.TipoModuloRepository;
 
 @Named
 @RequestScoped
-public class ArchivioPubblicazioniHandlerRequest extends
-		AbstractRequestController<Pubblicazione> {
+public class ModuliHandlerRequestController extends
+		AbstractRequestController<Modulo> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,29 +37,23 @@ public class ArchivioPubblicazioniHandlerRequest extends
 	String idParam;
 
 	@Inject
-	@OwnRepository(PubblicazioniRepository.class)
-	PubblicazioniRepository pubblicazioniRepository;
+	@OwnRepository(ModuliRepository.class)
+	ModuliRepository moduliRepository;
 
 	@Inject
 	ParamsHandler paramsHandler;
 
 	@Inject
-	CategorieAttivitaRepository categorieAttivitaRepository;
+	TipoModuloRepository tipoModuloRepository;
 
-	@Inject
-	TipoPubblicazioneRepository tipoPubblicazioneRepository;
-
-	public ArchivioPubblicazioniHandlerRequest() {
+	public ModuliHandlerRequestController() {
 	}
 
 	@Override
 	public void defaultCriteria() {
 		if (idParam != null && !idParam.isEmpty()) {
-			Pubblicazione pubblicazione = pubblicazioniRepository.find(idParam);
-			setElement(pubblicazione);
-		} else {
-			Pubblicazione pubblicazione = pubblicazioniRepository.findLast();
-			setElement(pubblicazione);
+			Modulo modulo = moduliRepository.find(idParam);
+			setElement(modulo);
 		}
 		if (tipo != null && tipo.length() > 0) {
 			getSearch().getObj().getTipo().setNome(tipo);
@@ -68,7 +61,6 @@ public class ArchivioPubblicazioniHandlerRequest extends
 		if (filtro != null && filtro.length() > 0) {
 			getSearch().getObj().setNome(filtro);
 		}
-		getSearch().getObj().setArchivio(true);
 	}
 
 	/**
@@ -87,10 +79,7 @@ public class ArchivioPubblicazioniHandlerRequest extends
 	 */
 	public List<String> getTipoOptions() {
 		List<String> options = new ArrayList<String>();
-		for (TipoPubblicazione tipo : tipoPubblicazioneRepository
-				.getAllTipoPubblicazione()) {
-			if (tipo.getNome().contains("Matrimonio"))
-				continue;
+		for (TipoModulo tipo : tipoModuloRepository.getAllList()) {
 			options.add("<option value=\""
 					+ tipo.getNome()
 					+ "\" "

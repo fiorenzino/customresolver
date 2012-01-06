@@ -13,11 +13,10 @@ public class BreadCrumpsHandler implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String breadCrump;
-
 	private String pageName;
 
 	public BreadCrumpsHandler() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public void setBreadCrump(String breadCrump) {

@@ -23,7 +23,7 @@ import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Resource;
 import by.giava.base.model.attachment.Immagine;
-import by.giava.base.repository.ResourceSession;
+import by.giava.base.repository.ResourceRepository;
 
 @Named
 @SessionScoped
@@ -55,7 +55,7 @@ public class AttivitaController extends AbstractLazyController<Attivita> {
 	CategorieAttivitaRepository categorieAttivitaRepository;
 
 	@Inject
-	ResourceSession resourceSession;
+	ResourceRepository resourceRepository;
 
 	@Inject
 	OperazioniLogController operazioniLogController;
@@ -179,17 +179,17 @@ public class AttivitaController extends AbstractLazyController<Attivita> {
 	public String discardImage() {
 		if (getElement().getImmagine() != null
 				&& getElement().getImmagine().getFilename() != null) {
-			Resource r = this.resourceSession.find("img", getElement()
+			Resource r = resourceRepository.find("img", getElement()
 					.getImmagine().getFilename());
 			if (r != null)
-				resourceSession.delete(r);
+				resourceRepository.delete(r);
 		}
 		if (getElement().getImmagine() != null
 				&& getElement().getImmagine().getFilename() != null) {
-			Resource r = this.resourceSession.find("img", getElement()
+			Resource r = resourceRepository.find("img", getElement()
 					.getImmagine().getFilename());
 			if (r != null)
-				resourceSession.delete(r);
+				resourceRepository.delete(r);
 		}
 		getElement().setImmagine(new Immagine());
 		return null;

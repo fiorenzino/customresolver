@@ -1,6 +1,5 @@
 package by.giava.moduli.model;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -73,6 +72,8 @@ public class Modulo implements Serializable {
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Documento getDocumento() {
+		if (documento == null)
+			this.documento = new Documento();
 		return documento;
 	}
 
@@ -91,6 +92,8 @@ public class Modulo implements Serializable {
 
 	@ManyToOne
 	public TipoModulo getTipo() {
+		if (tipo == null)
+			tipo = new TipoModulo();
 		return tipo;
 	}
 

@@ -1,6 +1,6 @@
 package by.giava.base.controller.util;
 
-import by.giava.base.common.util.JSFUtils;
+import by.giava.base.common.util.JSFLocalUtils;
 
 
 
@@ -10,7 +10,7 @@ public class MenuUtils {
 		if (open != null && open.length() > 0)
 			return Boolean.parseBoolean(open);
 		else
-			return JSFUtils.urlContains(nomeMenu);
+			return JSFLocalUtils.urlContains(nomeMenu);
 	}
 
 }

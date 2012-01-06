@@ -1,29 +1,25 @@
 package by.giava.base.repository;
 
+import it.coopservice.commons2.domain.Search;
+import it.coopservice.commons2.repository.AbstractRepository;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import by.giava.base.common.ejb.SuperSession;
 import by.giava.base.model.MenuGroup;
 import by.giava.base.model.MenuItem;
-import by.giava.base.model.Ricerca;
-
 
 @Named
 @Stateless
 @LocalBean
-public class MenuSession extends SuperSession<MenuGroup> implements
-		Serializable {
+public class MenuRepository extends AbstractRepository<MenuGroup> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,10 +32,6 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 
 	protected Class<MenuGroup> getEntityType() {
 		return MenuGroup.class;
-	}
-
-	protected String getOrderBy() {
-		return "percorso asc";
 	}
 
 	public void setEm(EntityManager em) {
@@ -55,7 +47,7 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 			getEm().merge(mi);
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.info(e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -86,7 +78,8 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 		return result;
 	}
 
-	public List<MenuGroup> getList(Ricerca<MenuGroup> ricerca, int startRow,
+	@Override
+	public List<MenuGroup> getList(Search<MenuGroup> ricerca, int startRow,
 			int pageSize) {
 		List<MenuGroup> result = super.getList(ricerca, startRow, pageSize);
 		processActiveMenuItems(result);
@@ -116,6 +109,11 @@ public class MenuSession extends SuperSession<MenuGroup> implements
 						.compareTo(o2.getOrdinamento());
 			}
 		});
+	}
+
+	@Override
+	protected String getDefaultOrderBy() {
+		return "percorso asc";
 	}
 
 }

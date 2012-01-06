@@ -11,7 +11,6 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
-
 @Entity
 public class Page implements Serializable {
 
@@ -46,8 +45,10 @@ public class Page implements Serializable {
 		this.id = id;
 	}
 
-	@OneToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public TemplateImpl getTemplate() {
+		if (template == null)
+			this.template = new TemplateImpl();
 		return template;
 	}
 
@@ -82,7 +83,7 @@ public class Page implements Serializable {
 	}
 
 	// ------------------------------------------------------------------------
-	
+
 	@Transient
 	public String getContent() {
 		return content;
@@ -93,23 +94,23 @@ public class Page implements Serializable {
 	}
 
 	// ------------------------------------------------------------------------
-	
+
 	@Override
 	public String toString() {
-		return ( this.id != null ) ? this.id : super.toString();
+		return (this.id != null) ? this.id : super.toString();
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		if ( ! ( o instanceof Page ) )
+		if (!(o instanceof Page))
 			return false;
-		Page p = (Page)o;
+		Page p = (Page) o;
 		return p.getId() == null ? false : p.getId().equals(this.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return ( this.id != null ) ? this.id.hashCode() : super.hashCode();
+		return (this.id != null) ? this.id.hashCode() : super.hashCode();
 	}
 
 }

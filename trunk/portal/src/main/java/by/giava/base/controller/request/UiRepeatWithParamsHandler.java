@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.base.common.web.controller.UiRepeatInterface;
-import by.giava.base.model.Ricerca;
 import by.giava.news.repository.NotizieSession;
 import by.giava.notizie.model.Notizia;
 import by.giava.notizie.model.type.TipoInformazione;

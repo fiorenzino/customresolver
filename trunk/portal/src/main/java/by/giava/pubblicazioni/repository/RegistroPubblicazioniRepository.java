@@ -1,5 +1,6 @@
 package by.giava.pubblicazioni.repository;
 
+import it.coopservice.commons2.repository.AbstractRepository;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -14,16 +15,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import by.giava.base.common.ejb.SuperSession;
-import by.giava.base.controller.util.DbUtils;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.RegistroPubblicazioni;
 
 @Named
 @Stateless
 @LocalBean
-public class RegistroPubblicazioniSession extends
-		SuperSession<RegistroPubblicazioni> implements Serializable {
+public class RegistroPubblicazioniRepository extends
+		AbstractRepository<RegistroPubblicazioni> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,20 +31,7 @@ public class RegistroPubblicazioniSession extends
 
 	@Override
 	public EntityManager getEm() {
-		if (em == null) {
-			this.em = DbUtils.getEM();
-		}
 		return em;
-	}
-
-	@Override
-	protected Class<RegistroPubblicazioni> getEntityType() {
-		return RegistroPubblicazioni.class;
-	}
-
-	@Override
-	protected String getOrderBy() {
-		return "id";
 	}
 
 	@Override
@@ -157,5 +143,10 @@ public class RegistroPubblicazioniSession extends
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	protected String getDefaultOrderBy() {
+		return "id";
 	}
 }

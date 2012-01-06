@@ -42,7 +42,7 @@ public class PubblicazioniRepository extends AbstractRepository<Pubblicazione> {
 
 	@Override
 	protected Pubblicazione prePersist(Pubblicazione p) {
-		p.setTipo(getEm().find(TipoPubblicazione.class, p.getIdTipo()));
+		p.setTipo(getEm().find(TipoPubblicazione.class, p.getTipo().getId()));
 		if (p.getDocumenti() != null && p.getDocumenti().size() == 0) {
 			p.setDocumenti(null);
 		}
@@ -57,9 +57,9 @@ public class PubblicazioniRepository extends AbstractRepository<Pubblicazione> {
 
 	@Override
 	protected Pubblicazione preUpdate(Pubblicazione p) {
-		if (p.getIdTipo() != null) {
+		if (p.getTipo().getId() != null) {
 			TipoPubblicazione t = getEm().find(TipoPubblicazione.class,
-					p.getIdTipo());
+					p.getTipo().getId());
 			p.setTipo(t);
 		}
 		if (p.getDocumenti() != null && p.getDocumenti().size() == 0) {

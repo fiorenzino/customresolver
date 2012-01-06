@@ -1,7 +1,6 @@
 package by.giava.news.repository;
 
-
-import java.io.Serializable;
+import it.coopservice.commons2.repository.AbstractRepository;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -9,14 +8,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-import by.giava.base.common.ejb.SuperSession;
 import by.giava.notizie.model.type.TipoInformazione;
 
 @Named
 @Stateless
 @LocalBean
-public class TipoInformazioniSession extends SuperSession<TipoInformazione>
-		implements Serializable {
+public class TipoInformazioniRepository extends
+		AbstractRepository<TipoInformazione> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,12 +32,7 @@ public class TipoInformazioniSession extends SuperSession<TipoInformazione>
 	}
 
 	@Override
-	protected Class<TipoInformazione> getEntityType() {
-		return TipoInformazione.class;
-	}
-
-	@Override
-	protected String getOrderBy() {
+	protected String getDefaultOrderBy() {
 		return "nome asc";
 	}
 

@@ -1,6 +1,5 @@
 package by.giava.base.controller.request;
 
-
 import java.io.Serializable;
 import java.util.Random;
 
@@ -8,11 +7,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import by.giava.attivita.controller.request.AttivitaHandlerRequest;
+import by.giava.attivita.controller.request.AttivitaRequestController;
 import by.giava.base.model.Page;
-import by.giava.base.repository.PageSession;
+import by.giava.base.repository.PageRepository;
 import by.giava.news.controller.request.NewsHandlerRequest;
-import by.giava.pubblicazioni.controller.request.PubblicazioniHandlerRequest;
+import by.giava.pubblicazioni.controller.request.PubblicazioniControllerRequest;
 
 @Named
 @RequestScoped
@@ -23,16 +22,16 @@ public class DbPageHandler implements Serializable {
 	private static final Random rnd = new Random();
 
 	@Inject
-	PageSession pageSession;
+	PageRepository pageRepository;
 
 	@Inject
 	NewsHandlerRequest newsHandlerRequest;
 
 	@Inject
-	AttivitaHandlerRequest attivitaHandlerRequest;
+	AttivitaRequestController attivitaRequestController;
 
 	@Inject
-	PubblicazioniHandlerRequest pubblicazioniHandlerRequest;
+	PubblicazioniControllerRequest pubblicazioniControllerRequest;
 
 	private Page page;
 
@@ -65,23 +64,23 @@ public class DbPageHandler implements Serializable {
 			}
 			if ("leggiAttivita".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
-				if (attivitaHandlerRequest.getAttivita() != null
-						&& attivitaHandlerRequest.getAttivita().getNome() != null)
-					return attivitaHandlerRequest.getAttivita().getNome();
+				if (attivitaRequestController.getElement() != null
+						&& attivitaRequestController.getElement().getNome() != null)
+					return attivitaRequestController.getElement().getNome();
 			}
 			if ("leggiPubblicazione".toLowerCase().equals(
 					this.page.getId().toLowerCase())) {
-				if (pubblicazioniHandlerRequest.getPubblicazione() != null
-						&& pubblicazioniHandlerRequest.getPubblicazione()
+				if (pubblicazioniControllerRequest.getElement() != null
+						&& pubblicazioniControllerRequest.getElement()
 								.getNome() != null)
-					return pubblicazioniHandlerRequest.getPubblicazione()
+					return pubblicazioniControllerRequest.getElement()
 							.getNome();
 			}
 			if (this.page.getTitle() != null
 					&& this.page.getTitle().length() > 0) {
 				return this.page.getTitle();
 			}
-			this.page = pageSession.fetch(this.page.getId());
+			this.page = pageRepository.fetch(this.page.getId());
 			return this.page.getTitle();
 		}
 		return "";
