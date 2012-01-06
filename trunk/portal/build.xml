@@ -3,13 +3,13 @@
 	<property file="build.properties" />
 
 	<target name="init.properties">
-		<property name="web.module" value="gestionechaletWeb" />
+			<property name="web.module" value="portal.war" />
 		<property name="war.artifact" value="${ant.project.name}.war" />
 	</target>
 
 	<target name="update" depends="init.properties,update.one">
 		<copy overwrite="false" todir="${deploy.dir}/${war.artifact}">
-			<fileset dir="${web.module}/src/main/webapp">
+			<fileset dir="src/main/webapp">
 				<include name="**/*.xml" />
 				<include name="**/*.xhtml" />
 				<include name="**/*.jsp" />
@@ -23,7 +23,7 @@
 			</fileset>
 		</copy>
 		<copy overwrite="false" todir="${deploy.dir}/${war.artifact}/WEB-INF/classes">
-			<fileset dir="${web.module}/src/main/resources">
+			<fileset dir="src/main/resources">
 				<exclude name="**/*.class" />
 			</fileset>
 		</copy>
