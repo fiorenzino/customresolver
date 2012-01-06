@@ -2,7 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/layout/t.xhtml">
 
 	<ui:define name="title">
@@ -20,15 +20,15 @@
 						columnClasses="col1,col2">
 
 						<h:outputLabel value="Nome(*):" for="nome" />
-						<h:inputText id="nome" value="#{menuHandler.element.nome}"
+						<h:inputText id="nome" value="#{menuController.element.nome}"
 							style="width: 100%;" required="true" />
 
 						<h:outputLabel value="Descrizione:" for="descrizione" />
 						<h:inputText id="descrizione"
-							value="#{menuHandler.element.descrizione}" style="width: 100%;" />
+							value="#{menuController.element.descrizione}" style="width: 100%;" />
 
 						<h:outputLabel value="Percorso(*):" for="percorso" />
-						<h:inputText id="percorso" value="#{menuHandler.element.percorso}"
+						<h:inputText id="percorso" value="#{menuController.element.percorso}"
 							style="width: 100%;" />
 
 					</h:panelGrid>
@@ -41,14 +41,14 @@
 				<br /> <br />
 
 				<h:panelGrid columns="3">
-					<h:commandButton action="#{menuHandler.step2}"
+					<h:commandButton action="#{menuController.step2}"
 						value="Prosegui (selezione pagine)" />
 
-					<h:commandButton action="#{menuHandler.delete}" value="Elimina"
-						immediate="true" rendered="#{not empty menuHandler.element.id}"
+					<h:commandButton action="#{menuController.delete}" value="Elimina"
+						immediate="true" rendered="#{not empty menuController.element.id}"
 						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 
-					<h:commandButton id="reset" action="#{menuHandler.reset}"
+					<h:commandButton id="reset" action="#{menuController.reset}"
 						value="Annulla" immediate="true" />
 				</h:panelGrid>
 			</center>

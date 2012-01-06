@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 	<ui:define name="title">
@@ -21,7 +21,7 @@
 						<h:outputLabel for="staticita" value="Tipo di contenuto: " />
 						<h:selectOneMenu id="staticita"
 							value="#{pageController.search.obj.template.template.searchStatico}">
-							<f:selectItems value="#{propertiesHandler.staticoDinamicoItems}" />
+							<f:selectItems value="#{staticoDinamicoItems}" />
 						</h:selectOneMenu>
 						<h:commandButton action="#{pageController.reload}" value="Cerca" />
 					</h:panelGrid>
@@ -29,7 +29,7 @@
 
 					<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="p"
 						value="#{pageController.model}" rows="#{pageController.pageSize}"
-						paginator="true" dynamic="true" lazy="true">
+						paginator="true" dynamic="true" >
 						<p:column width="50">
 							<center>
 								<h:outputText value="#{rowIndex+1} " />

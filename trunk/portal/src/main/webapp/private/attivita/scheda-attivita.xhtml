@@ -2,7 +2,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 
@@ -20,73 +20,73 @@
 						<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Attivita': "
 							style="font-weight: bolder;" />
 						<h:outputText id="tipo"
-							value="#{attivitaHandler.attivita.categoria.tipoAttivita.tipo}" />
+							value="#{attivitaController.attivita.categoria.tipoAttivita.tipo}" />
 
 						<h:outputLabel id="categoriaLabel" for="categoria"
 							style="font-weight: bolder;" value="Categoria Attivita': " />
 						<h:outputText id="categoria"
-							value="#{attivitaHandler.attivita.categoria.categoria}" />
+							value="#{attivitaController.attivita.categoria.categoria}" />
 
 						<h:outputLabel for="nome" value="Nome Attivita': "
 							style="font-weight: bolder;" />
-						<h:outputText id="nome" value="#{attivitaHandler.attivita.nome}" />
+						<h:outputText id="nome" value="#{attivitaController.attivita.nome}" />
 						<h:outputLabel for="indirizzo" value="Indirizzo:"
 							style="font-weight: bolder;" />
 						<h:outputText id="indirizzo"
-							value="#{attivitaHandler.attivita.indirizzo}" />
+							value="#{attivitaController.attivita.indirizzo}" />
 
 						<h:outputLabel for="city" value="Citta': "
 							style="font-weight: bolder;" />
-						<h:outputText id="city" value="#{attivitaHandler.attivita.city}" />
+						<h:outputText id="city" value="#{attivitaController.attivita.city}" />
 
 						<h:outputLabel for="provincia" value="Provincia: "
 							style="font-weight: bolder;" />
 						<h:outputText id="provincia"
-							value="#{attivitaHandler.attivita.provincia}" />
+							value="#{attivitaController.attivita.provincia}" />
 
 						<h:outputLabel for="telefono" value="Telefono:"
 							style="font-weight: bolder;" />
 						<h:outputText id="telefono"
-							value="#{attivitaHandler.attivita.telefono}" />
+							value="#{attivitaController.attivita.telefono}" />
 
 						<h:outputLabel for="fax" value="Fax:" style="font-weight: bolder;" />
-						<h:outputText id="fax" value="#{attivitaHandler.attivita.fax}" />
+						<h:outputText id="fax" value="#{attivitaController.attivita.fax}" />
 
 						<h:outputLabel for="orariEchiusura" value="Orari e chiusura:"
 							style="font-weight: bolder;" />
 						<h:outputText id="orariEchiusura"
-							value="#{attivitaHandler.attivita.orariEchiusura}" />
+							value="#{attivitaController.attivita.orariEchiusura}" />
 
 						<h:outputLabel for="email" value="Email:"
 							style="font-weight: bolder;" />
-						<h:outputText id="email" value="#{attivitaHandler.attivita.email}" />
+						<h:outputText id="email" value="#{attivitaController.attivita.email}" />
 
 						<h:outputLabel for="sitoInternet" value="Sito Internet:"
 							style="font-weight: bolder;" />
 						<h:outputText id="sitoInternet"
-							value="#{attivitaHandler.attivita.sitoInternet}" />
+							value="#{attivitaController.attivita.sitoInternet}" />
 
 						<h:outputLabel for="descrizione" value="Descrizione:"
 							style="font-weight: bolder;" />
 
 						<h:outputText id="descrizione"
-							value="#{attivitaHandler.attivita.descrizione}" />
+							value="#{attivitaController.attivita.descrizione}" />
 
 						<h:outputLabel for="descrizione"
 							value="Immagine rappresentativa: " style="font-weight: bolder;" />
 						<h:graphicImage alt="non disponibile"
 							title="immagine rappresentativa"
-							value="/img/#{attivitaHandler.attivita.immagine.filename}"
+							value="/img/#{attivitaController.attivita.immagine.filename}"
 							width="200" />
 					</h:panelGrid>
 				</p:panel>
 				<br /> <br />
 				<h:panelGrid columns="2">
 					<h:commandButton value="Modifica"
-						action="#{attivitaHandler.modAttivita(attivitaHandler.attivita.id)}" />
+						action="#{attivitaController.modAttivita(attivitaController.attivita.id)}" />
 
 					<h:commandButton id="creaAttivita"
-						action="#{attivitaHandler.addAttivita}" value="Aggiungi" />
+						action="#{attivitaController.addAttivita}" value="Aggiungi" />
 				</h:panelGrid>
 
 			</center>

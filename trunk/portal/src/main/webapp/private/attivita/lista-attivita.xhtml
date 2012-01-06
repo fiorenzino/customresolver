@@ -2,7 +2,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/layout/t.xhtml">
 
@@ -21,11 +21,11 @@
 
 					<h:outputLabel for="titolo" value="Nome:" />
 					<h:inputText id="titolo" style="width: 100%;"
-						value="#{attivitaHandler.ricerca.oggetto.nome}" />
+						value="#{attivitaController.ricerca.oggetto.nome}" />
 
 					<h:outputLabel id="tipoLabel" for="tipo" value="Tipo Attivita'" />
 					<h:selectOneMenu id="tipo"
-						value="#{attivitaHandler.ricerca.oggetto.categoria.tipoAttivita.id}"
+						value="#{attivitaController.ricerca.oggetto.categoria.tipoAttivita.id}"
 						style="width: 100%;">
 						<f:selectItems value="#{propertiesHandler.tipiAttivitaItems}" />
 						<p:ajax actionListener="#{propertiesHandler.cambioTipoRicerca}"
@@ -35,22 +35,22 @@
 					<h:outputLabel id="categoriaLabel" for="categoria"
 						value="Categoria Attivita'" />
 					<h:selectOneMenu id="categoria"
-						value="#{attivitaHandler.ricerca.oggetto.categoria.id}"
+						value="#{attivitaController.ricerca.oggetto.categoria.id}"
 						style="width: 100%;">
 						<f:selectItems value="#{propertiesHandler.categorieByTipoItems}" />
 					</h:selectOneMenu>
 
 				</h:panelGrid>
 				<br />
-				<h:commandButton value="cerca" action="#{attivitaHandler.cerca}" />
+				<h:commandButton value="cerca" action="#{attivitaController.cerca}" />
 				<br />
 				<br />
 				<br />
 
 				<p:dataTable id="activitiesList" var="attivita"
-					value="#{attivitaHandler.model}" rowIndexVar="rowIndex"
-					paginator="true" dynamic="true" lazy="true"
-					rows="#{attivitaHandler.pageSize}">
+					value="#{attivitaController.model}" rowIndexVar="rowIndex"
+					paginator="true" dynamic="true" 
+					rows="#{attivitaController.pageSize}">
 					<p:column width="50">
 						<f:facet name="header">num</f:facet>
 						<h:outputText value="#{rowIndex+1}" />
@@ -74,9 +74,9 @@
 					<p:column width="100">
 						<f:facet name="header">operazioni</f:facet>
 						<center><h:commandLink
-							action="#{attivitaHandler.detailAttivita(attivita.id)}"
+							action="#{attivitaController.detailAttivita(attivita.id)}"
 							value="vedi" /> - <h:commandLink
-							action="#{attivitaHandler.modAttivita(attivita.id)}"
+							action="#{attivitaController.modAttivita(attivita.id)}"
 							value="modifica" /></center>
 					</p:column>
 				</p:dataTable>
@@ -85,7 +85,7 @@
 
 			<h:panelGrid columns="1">
 				<h:commandButton id="creaAttivita"
-					action="#{attivitaHandler.addAttivita}" value="Aggiungi" />
+					action="#{attivitaController.addAttivita}" value="Aggiungi" />
 			</h:panelGrid></center>
 		</h:form>
 	</ui:define>

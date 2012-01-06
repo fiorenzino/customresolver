@@ -2,7 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/layout/t.xhtml">
 	<ui:define name="title">
 		<h:outputText value="Gestione Configurazione" />
@@ -21,37 +21,37 @@
 
 						<h:outputLabel value="Server smtp(*):" for="smtp" />
 						<h:inputText required="true" id="smtp"
-							value="#{configurazioneHandler.configurazione.smtp}"
+							value="#{configurazioneController.configurazione.smtp}"
 							style="width: 100%;" />
 
 						<h:outputLabel value="Server port(*):" for="port" />
 						<h:inputText required="true" id="port"
-							value="#{configurazioneHandler.configurazione.serverPort}"
+							value="#{configurazioneController.configurazione.serverPort}"
 							style="width: 100%;" />
 
 						<h:outputLabel value="username:" for="username" />
 						<h:inputText id="username"
-							value="#{configurazioneHandler.configurazione.username}"
+							value="#{configurazioneController.configurazione.username}"
 							style="width: 100%;" />
 
 						<h:outputLabel value="password:" for="password" />
 						<h:inputSecret id="password"
-							value="#{configurazioneHandler.configurazione.password}"
+							value="#{configurazioneController.configurazione.password}"
 							style="width: 100%;" />
 
 						<h:outputLabel value="con autenticazione?:" for="withAuth" />
 						<h:selectBooleanCheckbox title="withAuth" id="withAuth"
-							value="#{configurazioneHandler.configurazione.withAuth}">
+							value="#{configurazioneController.configurazione.withAuth}">
 						</h:selectBooleanCheckbox>
 
 						<h:outputLabel value="di tipo ssl?:" for="withSsl" />
 						<h:selectBooleanCheckbox title="withSsl" id="withSsl"
-							value="#{configurazioneHandler.configurazione.withSsl}">
+							value="#{configurazioneController.configurazione.withSsl}">
 						</h:selectBooleanCheckbox>
 
 						<h:outputLabel value="debug attivo?:" for="withDebug" />
 						<h:selectBooleanCheckbox title="withDebug" id="withDebug"
-							value="#{configurazioneHandler.configurazione.withDebug}">
+							value="#{configurazioneController.configurazione.withDebug}">
 						</h:selectBooleanCheckbox>
 
 					</h:panelGrid>
@@ -63,10 +63,10 @@
 
 				<h:panelGrid columns="4">
 
-					<h:commandButton action="#{configurazioneHandler.update}"
+					<h:commandButton action="#{configurazioneController.update}"
 						value="Salva le modifiche" />
 
-					<h:commandButton id="reset" action="#{configurazioneHandler.reset}"
+					<h:commandButton id="reset" action="#{configurazioneController.reset}"
 						value="Annulla" immediate="true" />
 
 				</h:panelGrid>
@@ -74,26 +74,26 @@
 			<br /> <br />
 			<h:form>
 				<p:panel
-					header="Prova Configurazione: #{configurazioneHandler.configurazione.smtp}"
+					header="Prova Configurazione: #{configurazioneController.configurazione.smtp}"
 					id="testEmailPanel">
 
 					<h:panelGrid columns="3">
 						<h:inputText required="true" id="smtp"
-							value="#{configurazioneHandler.emailTest}" style="width: 100%;" />
+							value="#{configurazioneController.emailTest}" style="width: 100%;" />
 
 						<h:commandButton value="Invia email di test"
-							action="#{configurazioneHandler.test}" />
+							action="#{configurazioneController.test}" />
 
 						<h:commandButton id="reset"
-							action="#{configurazioneHandler.setResultTest('')}"
+							action="#{configurazioneController.setResultTest('')}"
 							value="Annulla" immediate="true" />
 
 					</h:panelGrid>
 					<br />
 					<br />
 					<h:outputText id="resultTest"
-						value="risultato del test: #{configurazioneHandler.resultTest}"
-						rendered="#{not empty configurazioneHandler.resultTest}" />
+						value="risultato del test: #{configurazioneController.resultTest}"
+						rendered="#{not empty configurazioneController.resultTest}" />
 				</p:panel>
 			</h:form>
 		</center>
