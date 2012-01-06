@@ -96,7 +96,7 @@ public class ResourceController extends AbstractLazyController<Resource> {
 	@Override
 	public String reset() {
 		this.uploadedResources = null;
-		return reset();
+		return super.reset();
 	}
 
 	// -----------------------------------------------------
