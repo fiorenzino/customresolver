@@ -43,17 +43,17 @@
 					<h:panelGroup id="template">
 						<h:selectOneMenu
 							rendered="#{pageController.element.template.template.statico}"
-							value="#{pageController.idTemplate}" required="true"
+							value="#{pageController.element.template.template.id}" required="true"
 							style="width: 100%">
-							<f:selectItems value="#{propertiesHandler.templateStaticiItems}" />
+							<f:selectItems value="#{templateStaticiItems}" />
 							<p:ajax actionListener="#{pageController.cambioTemplate}"
 								update="campi" event="change" process="@this" />
 						</h:selectOneMenu>
 						<h:selectOneMenu
 							rendered="#{not pageController.element.template.template.statico}"
-							value="#{pageController.idTemplate}" required="true"
+							value="#{pageController.element.template.template.id}" required="true"
 							style="width: 100%">
-							<f:selectItems value="#{propertiesHandler.templateDinamiciItems}" />
+							<f:selectItems value="#{templateDinamiciItems}" />
 							<p:ajax actionListener="#{pageController.cambioTemplate}"
 								update="campi" event="change" process="@this" />
 						</h:selectOneMenu>
