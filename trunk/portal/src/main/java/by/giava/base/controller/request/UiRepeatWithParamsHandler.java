@@ -1,5 +1,6 @@
 package by.giava.base.controller.request;
 
+import it.coopservice.commons2.domain.Search;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.base.common.web.controller.UiRepeatInterface;
-import by.giava.news.repository.NotizieSession;
+import by.giava.news.repository.NotizieRepository;
 import by.giava.notizie.model.Notizia;
 import by.giava.notizie.model.type.TipoInformazione;
 
@@ -22,7 +23,7 @@ public class UiRepeatWithParamsHandler implements UiRepeatInterface {
 	int currentpage;
 
 	@Inject
-	NotizieSession notizieSession;
+	NotizieRepository notizieRepository;
 	@Inject
 	ParamsHandler paramsHandler;
 
@@ -68,21 +69,23 @@ public class UiRepeatWithParamsHandler implements UiRepeatInterface {
 
 	private List<Notizia> ultimeNotizie(String filtroNomeTipo, int startRow,
 			int pageSize) {
-		Ricerca<Notizia> ricerca = new Ricerca<Notizia>(Notizia.class);
+		Notizia notizia = new Notizia();
+		Search<Notizia> ricerca = new Search<Notizia>(notizia);
 		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
-			ricerca.getOggetto().setTipo(new TipoInformazione());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getObj().setTipo(new TipoInformazione());
+			ricerca.getObj().getTipo().setNome(filtroNomeTipo);
 		}
-		return notizieSession.getList(ricerca, startRow, pageSize);
+		return notizieRepository.getList(ricerca, startRow, pageSize);
 	}
 
 	private int totaleNotizie(String filtroNomeTipo) {
-		Ricerca<Notizia> ricerca = new Ricerca<Notizia>(Notizia.class);
+		Notizia notizia = new Notizia();
+		Search<Notizia> ricerca = new Search<Notizia>(notizia);
 		if (filtroNomeTipo != null && filtroNomeTipo.length() > 0) {
-			ricerca.getOggetto().setTipo(new TipoInformazione());
-			ricerca.getOggetto().getTipo().setNome(filtroNomeTipo);
+			ricerca.getObj().setTipo(new TipoInformazione());
+			ricerca.getObj().getTipo().setNome(filtroNomeTipo);
 		}
-		return notizieSession.getListSize(ricerca);
+		return notizieRepository.getListSize(ricerca);
 	}
 
 }

@@ -1,11 +1,11 @@
 package by.giava.base.controller.request;
 
-
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Timeout;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,20 +14,21 @@ import org.jboss.logging.Logger;
 
 import by.giava.attivita.model.Attivita;
 import by.giava.attivita.model.type.CategoriaAttivita;
-import by.giava.attivita.repository.AttivitaSession;
-import by.giava.attivita.repository.CategorieSession;
+import by.giava.attivita.repository.AttivitaRepository;
+import by.giava.attivita.repository.CategorieAttivitaRepository;
 import by.giava.base.controller.util.PageUtils;
 import by.giava.moduli.model.Modulo;
 import by.giava.moduli.model.type.TipoModulo;
-import by.giava.moduli.repository.ModuliSession;
-import by.giava.moduli.repository.TipoModuloSession;
-import by.giava.news.repository.NotizieSession;
-import by.giava.news.repository.TipoInformazioniSession;
+import by.giava.moduli.repository.ModuliRepository;
+import by.giava.moduli.repository.TipoModuloRepository;
+import by.giava.news.repository.NotizieRepository;
+import by.giava.news.repository.TipoInformazioniRepository;
 import by.giava.notizie.model.Notizia;
 import by.giava.notizie.model.type.TipoInformazione;
+import by.giava.notizie.repository.TipoPubblicazioneRepository;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
-import by.giava.pubblicazioni.repository.PubblicazioniSession;
+import by.giava.pubblicazioni.repository.PubblicazioniRepository;
 
 @Named
 @RequestScoped
@@ -38,25 +39,28 @@ public class CaricaHandlerRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	NotizieSession notizieSession;
+	NotizieRepository notizieRepository;
 
 	@Inject
-	TipoInformazioniSession tipoInformazioniSession;
+	TipoInformazioniRepository tipoInformazioniRepository;
 
 	@Inject
-	AttivitaSession attivitaSession;
+	AttivitaRepository attivitaRepository;
 
 	@Inject
-	CategorieSession categorieSession;
+	CategorieAttivitaRepository categorieAttivitaRepository;
 
 	@Inject
-	PubblicazioniSession pubblicazioniSession;
+	PubblicazioniRepository pubblicazioniRepository;
 
 	@Inject
-	ModuliSession moduliSession;
+	ModuliRepository moduliRepository;
 
 	@Inject
-	TipoModuloSession tipoModuloSession;
+	TipoPubblicazioneRepository tipoPubblicazioneRepository;
+
+	@Inject
+	TipoModuloRepository tipoModuloRepository;
 
 	private String ciao = "ciao flower";
 
@@ -87,7 +91,7 @@ public class CaricaHandlerRequest implements Serializable {
 				+ "coi mazzi di granturco sui tetti, le spiagge libere ancora, "
 				+ "i paesi affacciati su quei loro balconi naturali di colline, "
 				+ "le più belle che io conosca.";
-		TipoInformazione tipo = tipoInformazioniSession.find(new Long(1));
+		TipoInformazione tipo = tipoInformazioniRepository.find(new Long(1));
 		for (int i = 0; i < 1000; i++) {
 			Notizia notizia = new Notizia();
 			notizia.setTitolo("notizie" + i);
@@ -100,7 +104,7 @@ public class CaricaHandlerRequest implements Serializable {
 			String idTitle = PageUtils.createPageId(notizia.getTitolo());
 			String idFinal = testNotizieId(idTitle);
 			notizia.setId(idFinal);
-			notizieSession.persist(notizia);
+			notizieRepository.persist(notizia);
 		}
 	}
 
@@ -113,8 +117,8 @@ public class CaricaHandlerRequest implements Serializable {
 				+ "coi mazzi di granturco sui tetti, le spiagge libere ancora, "
 				+ "i paesi affacciati su quei loro balconi naturali di colline, "
 				+ "le più belle che io conosca.";
-		CategoriaAttivita categoria = categorieSession
-				.findCategoriaAttivita(new Long(2));
+		CategoriaAttivita categoria = categorieAttivitaRepository
+				.find(new Long(2));
 		for (int i = 0; i < 1000; i++) {
 			Attivita attivita = new Attivita();
 			attivita.setAttivo(true);
@@ -135,7 +139,7 @@ public class CaricaHandlerRequest implements Serializable {
 			String idTitle = PageUtils.createPageId(attivita.getNome());
 			String idFinal = testAttId(idTitle);
 			attivita.setId(idFinal);
-			attivitaSession.persist(attivita);
+			attivitaRepository.persist(attivita);
 		}
 	}
 
@@ -154,8 +158,7 @@ public class CaricaHandlerRequest implements Serializable {
 		Calendar al = Calendar.getInstance();
 		al.setTime(new Date());
 		al.add(Calendar.MONTH, 1);
-		TipoPubblicazione tipo = categorieSession
-				.findTipoPubblicazione(new Long(4));
+		TipoPubblicazione tipo = tipoPubblicazioneRepository.find(new Long(4));
 		for (int i = 0; i < 1000; i++) {
 			Pubblicazione pubblicazione = new Pubblicazione();
 			pubblicazione.setAl(al.getTime());
@@ -170,7 +173,7 @@ public class CaricaHandlerRequest implements Serializable {
 			String idTitle = PageUtils.createPageId(pubblicazione.getNome());
 			String idFinal = testPubbId(idTitle);
 			pubblicazione.setId(idFinal);
-			pubblicazioniSession.persist(pubblicazione);
+			pubblicazioniRepository.persist(pubblicazione);
 		}
 	}
 
@@ -184,7 +187,7 @@ public class CaricaHandlerRequest implements Serializable {
 				+ "coi mazzi di granturco sui tetti, le spiagge libere ancora, "
 				+ "i paesi affacciati su quei loro balconi naturali di colline, "
 				+ "le più belle che io conosca.";
-		TipoModulo tipo = tipoModuloSession.find(new Long(1));
+		TipoModulo tipo = tipoModuloRepository.find(new Long(1));
 		for (int i = 0; i < 1000; i++) {
 			Modulo modulo = new Modulo();
 			modulo.setAttivo(true);
@@ -196,7 +199,7 @@ public class CaricaHandlerRequest implements Serializable {
 			String idTitle = PageUtils.createPageId(modulo.getNome());
 			String idFinal = testModId(idTitle);
 			modulo.setId(idFinal);
-			moduliSession.persist(modulo);
+			moduliRepository.persist(modulo);
 		}
 	}
 
@@ -214,7 +217,7 @@ public class CaricaHandlerRequest implements Serializable {
 		int i = 0;
 		while (!trovato) {
 			logger.info("id final: " + idFinal);
-			Notizia notiziaFind = notizieSession.find(idFinal);
+			Notizia notiziaFind = notizieRepository.find(idFinal);
 			logger.info("trovato_ " + notiziaFind);
 			if (notiziaFind != null) {
 				i++;
@@ -236,7 +239,7 @@ public class CaricaHandlerRequest implements Serializable {
 		int i = 0;
 		while (!trovato) {
 			logger.info("id final: " + idFinal);
-			Attivita attivitaFind = attivitaSession.find(idFinal);
+			Attivita attivitaFind = attivitaRepository.find(idFinal);
 			if (attivitaFind != null) {
 				i++;
 				idFinal = id + "-" + i;
@@ -256,13 +259,13 @@ public class CaricaHandlerRequest implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			Pubblicazione pubblicazioneFind = pubblicazioniSession
+			Pubblicazione pubblicazioneFind = pubblicazioniRepository
 					.find(idFinal);
 			if (pubblicazioneFind != null) {
 				if ((pubblicazioneFind.getTitolo() == null)
 						|| ("".equals(pubblicazioneFind.getTitolo()))) {
 					pubblicazioneFind.setTitolo(pubblicazioneFind.getNome());
-					pubblicazioniSession.update(pubblicazioneFind);
+					pubblicazioniRepository.update(pubblicazioneFind);
 				}
 				i++;
 				idFinal = id + "-" + i;
@@ -279,7 +282,7 @@ public class CaricaHandlerRequest implements Serializable {
 		boolean trovato = false;
 		int i = 0;
 		while (!trovato) {
-			Modulo moduloFind = moduliSession.find(idFinal);
+			Modulo moduloFind = moduliRepository.find(idFinal);
 			if (moduloFind != null) {
 				i++;
 				idFinal = id + "-" + i;
