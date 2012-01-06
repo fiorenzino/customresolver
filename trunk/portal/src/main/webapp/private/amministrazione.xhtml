@@ -14,15 +14,15 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputText value="Benvenuto: " />
-			<h:outputText value="#{loginHandler.username}"
+			<h:outputText value="#{loginController.username}"
 				style="font-weight: bolder;" />
 			 - 
 			<h:outputText value=" Ruolo: " />
-			<h:outputText value="amministratore" rendered="#{loginHandler.admin}"
+			<h:outputText value="amministratore" rendered="#{loginController.admin}"
 				style="font-weight: bolder;" />
 
 			<h:outputText value="utente ordinario"
-				rendered="#{loginHandler.user}" style="font-weight: bolder;" />
+				rendered="#{loginController.user}" style="font-weight: bolder;" />
 
 			<br />
 			<br />
@@ -30,24 +30,24 @@
 				<p:tab title="Cambio Password" style="width:200px; float:left;">
 					<div style="height: 50px;">
 						<h:commandLink value="cambio password"
-							action="#{loginHandler.goToChangePassword}" />
+							action="#{loginController.goToChangePassword}" />
 					</div>
 				</p:tab>
 
 				<p:tab title="Gestione Utenti" style="width:200px; float:left;"
-					rendered="#{loginHandler.admin}">
+					rendered="#{loginController.admin}">
 					<div style="height: 50px;">
 						<h:commandLink
 							action="/private/utenti/lista-utenti.jsf?faces-redirect=true"
 							value="lista utenti" />
 						<br />
-						<h:commandLink action="#{loginHandler.addUser}"
+						<h:commandLink action="#{loginController.addUser}"
 							value="Aggiungi nuovo" />
 					</div>
 				</p:tab>
 
 				<p:tab title="Configurazione" style="width: 200px; float: left;"
-					rendered="#{loginHandler.admin}">
+					rendered="#{loginController.admin}">
 					<div style="height: 50px;">
 						<h:commandLink
 							action="/private/configurazione/gestione-configurazione.jsf?faces-redirect=true"
@@ -57,10 +57,10 @@
 				</p:tab>
 
 				<p:tab title="Log Operazioni"
-					rendered="#{operazioniLogHandler.clear and loginHandler.isInRole('log')}"
+					rendered="#{operazioniLogController.clear and loginController.isInRole('log')}"
 					style="width: 200px; float: left;">
 					<div style="height: 27px;">
-						<h:commandLink action="#{operazioniLogHandler.loadModel}"
+						<h:commandLink action="#{operazioniLogController.loadModel}"
 							value="lista delle operazioni" />
 						<br /> <br />
 					</div>
@@ -70,10 +70,10 @@
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:tabView
-				rendered="#{loginHandler.admin or loginHandler.isInRole('pubblicazioni') or loginHandler.isInRole('tipi_pubblicazione') or loginHandler.isInRole('moduli') or loginHandler.isInRole('tipi_modulo')}">
+				rendered="#{loginController.admin or loginController.isInRole('pubblicazioni') or loginController.isInRole('tipi_pubblicazione') or loginController.isInRole('moduli') or loginController.isInRole('tipi_modulo')}">
 
 				<p:tab title="Gestione Albo Pretorio"
-					rendered="#{loginHandler.isInRole('pubblicazioni')}"
+					rendered="#{loginController.isInRole('pubblicazioni')}"
 					style="width:200px; float:left;">
 					<h:commandLink
 						action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
@@ -94,62 +94,62 @@
 
 				<p:tab title="Gestione Tipi Pubblicazioni"
 					style="width:200px; float:left;"
-					rendered="#{loginHandler.isInRole('tipi_pubblicazione')}">
+					rendered="#{loginController.isInRole('tipi_pubblicazione')}">
 					<h:commandLink
 						action="/private/tipi-pubblicazione/lista-tipi-pubblicazione.jsf?faces-redirect=true"
 						value="lista tipi pubblicazioni" />
 					<br />
-					<h:commandLink action="#{categorieHandler.addTipoPubblicazione}"
+					<h:commandLink action="#{categorieController.addTipoPubblicazione}"
 						value="aggiungi nuova" />
 				</p:tab>
 
 				<div style="width: 600px; height: 40px; clear: both;"></div>
 
 				<p:tab title="Gestione Modulistica"
-					rendered="#{moduliHandler.clear and loginHandler.isInRole('moduli')}"
+					rendered="#{moduliController.clear and loginController.isInRole('moduli')}"
 					style="width:200px; float:left;">
 					<h:commandLink
 						action="/private/moduli/lista-moduli.jsf?faces-redirect=true"
 						value="lista moduli" />
 					<br />
-					<h:commandLink action="#{moduliHandler.addElement}"
+					<h:commandLink action="#{moduliController.addElement}"
 						value="aggiungi nuovo" />
 				</p:tab>
 
 				<p:tab title="Gestione Tipi Modulo"
-					rendered="#{tipiModuloHandler.clear and loginHandler.isInRole('tipi_modulo')}"
+					rendered="#{tipiModuloController.clear and loginController.isInRole('tipi_modulo')}"
 					style="width:200px; float:left;">
 					<h:commandLink
 						action="/private/tipi-modulo/lista-tipi-modulo.jsf?faces-redirect=true"
 						value="lista tipi modulo" />
 					<br />
-					<h:commandLink action="#{tipiModuloHandler.addElement}"
+					<h:commandLink action="#{tipiModuloController.addElement}"
 						value="aggiungi nuovo" />
 				</p:tab>
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 			<p:tabView
-				rendered="#{loginHandler.admin or loginHandler.isInRole('news') or loginHandler.isInRole('tipi_informazione')}">
+				rendered="#{loginController.admin or loginController.isInRole('news') or loginController.isInRole('tipi_informazione')}">
 
 				<p:tab title="Gestione Notizie con Foto"
 					style="width:200px; float:left;"
-					rendered="#{loginHandler.admin or loginHandler.isInRole('news')}">
+					rendered="#{loginController.admin or loginController.isInRole('news')}">
 					<h:commandLink
 						action="/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
 						value="lista notizie" />
 					<br />
-					<h:commandLink action="#{newNotizieHandler.addNotizia}"
+					<h:commandLink action="#{newNotizieController.addNotizia}"
 						value="aggiungi nuova" />
 				</p:tab>
 
 
 				<p:tab title="Gestione Tipi Informazione"
 					style="width:200px; float:left;"
-					rendered="#{loginHandler.isInRole('tipi_informazione')}">
-					<h:commandLink action="#{tipoInformazioniHandler.loadModel}"
+					rendered="#{loginController.isInRole('tipi_informazione')}">
+					<h:commandLink action="#{tipoInformazioniController.loadModel}"
 						value="lista tipi informazione" />
 					<br />
-					<h:commandLink action="#{tipoInformazioniHandler.addElement}"
+					<h:commandLink action="#{tipoInformazioniController.addElement}"
 						value="aggiungi nuovo" />
 				</p:tab>
 
@@ -159,7 +159,7 @@
 						action="/private/notizie/lista-notizie.jsf?faces-redirect=true"
 						value="lista notizie" />
 					<br />
-					<h:commandLink action="#{notizieHandler.addNotizia}"
+					<h:commandLink action="#{notizieController.addNotizia}"
 						value="aggiungi nuova" />
 				</p:tab>
 
@@ -169,7 +169,7 @@
 						action="/private/gallerie/lista-gallerie.jsf?faces-redirect=true"
 						value="lista gallerie" />
 					<br />
-					<h:commandLink action="#{gallerieHandler.addGalleria}"
+					<h:commandLink action="#{gallerieController.addGalleria}"
 						value="aggiungi nuova" />
 				</p:tab>
 
@@ -177,91 +177,91 @@
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 
 			<p:tabView
-				rendered="#{loginHandler.admin or loginHandler.isInRole('attivita') or loginHandler.isInRole('tipi_attivita') or loginHandler.isInRole('categorie_attivita')}">
+				rendered="#{loginController.admin or loginController.isInRole('attivita') or loginController.isInRole('tipi_attivita') or loginController.isInRole('categorie_attivita')}">
 
 				<p:tab title="Gestione Attivita'"
-					rendered="#{attivitaHandler.clear and loginHandler.isInRole('attivita')}"
+					rendered="#{attivitaController.clear and loginController.isInRole('attivita')}"
 					style="width:200px; float:left;">
 					<h:commandLink
 						action="/private/attivita/lista-attivita.jsf?faces-redirect=true"
 						value="lista attivita'" />
 					<br />
-					<h:commandLink action="#{attivitaHandler.addAttivita}"
+					<h:commandLink action="#{attivitaController.addAttivita}"
 						value="aggiungi nuova" />
 				</p:tab>
 
 				<p:tab title="Gestione Tipi Attivita'"
 					style="width:200px; float:left;"
-					rendered="#{loginHandler.isInRole('tipi_attivita')}">
+					rendered="#{loginController.isInRole('tipi_attivita')}">
 					<h:commandLink
 						action="/private/attivita/lista-tipi-attivita.jsf?faces-redirect=true"
 						value="lista tipi attivita'" />
 					<br />
-					<h:commandLink action="#{categorieHandler.addTipoAttivita}"
+					<h:commandLink action="#{categorieController.addTipoAttivita}"
 						value="aggiungi nuovo" />
 				</p:tab>
 
 				<p:tab title="Gestione Categorie Attivita'"
 					style="width:200px; float:left;"
-					rendered="#{loginHandler.isInRole('categorie_attivita')}">
+					rendered="#{loginController.isInRole('categorie_attivita')}">
 					<h:commandLink
 						action="/private/attivita/lista-categorie-attivita.jsf?faces-redirect=true"
 						value="lista categorie" />
 					<br />
-					<h:commandLink action="#{categorieHandler.addCategoriaAttivita}"
+					<h:commandLink action="#{categorieController.addCategoriaAttivita}"
 						value="aggiungi nuova" />
 				</p:tab>
 
 			</p:tabView>
 			<div style="width: 600px; height: 40px; clear: both;"></div>
 			<p:tabView
-				rendered="#{loginHandler.admin or loginHandler.isInRole('pagine') or loginHandler.isInRole('modelli') or loginHandler.isInRole('menu') or loginHandler.isInRole('risorse')}">
+				rendered="#{loginController.admin or loginController.isInRole('pagine') or loginController.isInRole('modelli') or loginController.isInRole('menu') or loginController.isInRole('risorse')}">
 
 				<p:tab title="Gestione Pagine" style="width:200px; float:left;"
-					rendered="#{pageHandler.clear and loginHandler.isInRole('pagine')}">
+					rendered="#{pageController.clear and loginController.isInRole('pagine')}">
 					<div style="height: 50px;">
-						<h:commandLink action="#{pageHandler.loadModel}"
+						<h:commandLink action="#{pageController.listPage}"
 							value="lista delle pagine disponibili" />
 						<br />
-						<h:commandLink action="#{pageHandler.addPaginaStatica}"
+						<h:commandLink action="#{pageController.addPaginaStatica}"
 							value="aggiungi nuova statica" />
 						<br />
-						<h:commandLink action="#{pageHandler.addPaginaDinamica}"
+						<h:commandLink action="#{pageController.addPaginaDinamica}"
 							value="aggiungi nuova dinamica" />
 					</div>
 				</p:tab>
 
 				<p:tab title="Gestione Modelli" style="width:200px; float:left;"
-					rendered="#{pageHandler.clear and loginHandler.isInRole('modelli')}">
+					rendered="#{pageController.clear and loginController.isInRole('modelli')}">
 					<div style="height: 50px;">
 						<h:commandLink
 							action="/private/modelli/lista-modelli.jsf?faces-redirect=true"
 							value="lista modelli" />
 						<br />
-						<h:commandLink action="#{templateHandler.addElement}"
+						<h:commandLink action="#{templateController.addElement}"
 							value="aggiungi nuovo" />
 					</div>
 				</p:tab>
 
 				<p:tab title="Gestione Menu" style="width: 200px; float: left;"
-					rendered="#{menuHandler.clear and loginHandler.isInRole('menu') }">
+					rendered="#{menuController.clear and loginController.isInRole('menu') }">
 					<div style="height: 50px;">
-						<h:commandLink action="#{menuHandler.loadModel}"
+						<h:commandLink action="#{menuController.loadModel}"
 							value="lista menu" />
 						<br />
-						<h:commandLink action="#{menuHandler.addElement}"
+						<h:commandLink action="#{menuController.addElement}"
 							value="aggiungi nuovo" />
 					</div>
 				</p:tab>
 
 				<p:tab title="Gestione Risorse (img, js, swf, css)"
-					rendered="#{resourceHandler.clear and loginHandler.isInRole('risorse')}"
+					rendered="#{resourceController.clear and loginController.isInRole('risorse')}"
 					style="width: 200px; float: left;">
 					<div style="height: 50px;">
-						<h:commandLink action="#{resourceHandler.loadModel}"
+						<h:commandLink action="#{resourceController.loadModel}"
 							value="lista delle risorse" />
 						<br />
-						<h:commandLink action="#{resourceHandler.addElement}"
+						<h:commandLink action="#{resourceController.addElement}"
 							value="aggiungi nuovo" />
 					</div>
 				</p:tab>

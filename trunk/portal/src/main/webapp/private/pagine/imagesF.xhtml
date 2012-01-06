@@ -35,21 +35,21 @@
 					<br />
 					<p:panel header="Scegli una immagine con un click!" id="images"
 						style="width: 450px;">
-						<h:inputText value="#{resourceHandler.imgRicerca.oggetto.nome}" />
-						<h:commandButton action="#{resourceHandler.reloadImgModel}"
+						<h:inputText value="#{resourceController.imgRicerca.oggetto.nome}" />
+						<h:commandButton action="#{resourceController.reloadImgModel}"
 							value="Filtra per nome" />
 						<br />
 						<br />
 
 						<flw:uiRepeatPaged id="immagini" showpages="10"
 							label="Immagini disponibili..." selectedStyleClass="selected"
-							styleClass="pager" model="#{resourceHandler.imgModel}"
+							styleClass="pager" model="#{resourceController.imgModel}"
 							width="350px">
 
 							<p>
 								<img src="#{request.contextPath}/img/#{var.nome}"
-									width="#{resourceHandler.proportionalWidth(var.nome,100,100)}"
-									height="#{resourceHandler.proportionalHeight(var.nome,100,100)}"
+									width="#{resourceController.proportionalWidth(var.nome,100,100)}"
+									height="#{resourceController.proportionalHeight(var.nome,100,100)}"
 									style="border: 1px;" />
 							</p>
 
