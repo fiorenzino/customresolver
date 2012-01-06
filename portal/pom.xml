@@ -23,11 +23,23 @@
 			<groupId>it.coopservice.commons2</groupId>
 			<artifactId>commons2Web</artifactId>
 			<version>${commons2Web.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jboss-ejb3-ext-api</artifactId>
+					<groupId>org.jboss.ejb3</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>it.coopservice.commons2</groupId>
 			<artifactId>commons2Ejb</artifactId>
 			<version>${commons2Ejb.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jboss-ejb3-ext-api</artifactId>
+					<groupId>org.jboss.ejb3</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -137,23 +149,14 @@
 			<version>1.3.2</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>3.6.6.Final</version>
-			<scope>provided</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
-
-
-
+		
 	</dependencies>
 
 	<build>
