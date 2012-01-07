@@ -10,16 +10,12 @@ import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import by.giava.attivita.model.type.CategoriaAttivita;
-import by.giava.attivita.model.type.TipoAttivita;
-import by.giava.moduli.model.Modulo;
 
 @Named
 @Stateless
@@ -47,7 +43,7 @@ public class CategorieAttivitaRepository extends
 
 	@Override
 	protected String getDefaultOrderBy() {
-		return "categoria asc";
+		return "nome asc";
 	}
 
 	@Override
@@ -103,23 +99,24 @@ public class CategorieAttivitaRepository extends
 		return q;
 	}
 
-	public List<CategoriaAttivita> getAllCategoriaAttivitaByTipo(Long id) {
-		List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
-		try {
-			CategoriaAttivita categoriaAttivita = new CategoriaAttivita();
-			categoriaAttivita.getTipoAttivita().setId(id);
-			Search<CategoriaAttivita> search = new Search<CategoriaAttivita>(
-					categoriaAttivita);
-			all = getList(search, 0, 0);
-			// all = (List<CategoriaAttivita>) em
-			// .createQuery(
-			// "select p from CategoriaAttivita p where p.tipoAttivita.id = :TIPO and p.attivo = :attivo order by p.id")
-			// .setParameter("attivo", true).setParameter("TIPO", id)
-			// .getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return all;
-	}
+	// public List<CategoriaAttivita> getAllCategoriaAttivitaByTipo(Long id) {
+	// List<CategoriaAttivita> all = new ArrayList<CategoriaAttivita>();
+	// try {
+	// CategoriaAttivita categoriaAttivita = new CategoriaAttivita();
+	// categoriaAttivita.getTipoAttivita().setId(id);
+	// Search<CategoriaAttivita> search = new Search<CategoriaAttivita>(
+	// categoriaAttivita);
+	// all = getList(search, 0, 0);
+	// // all = (List<CategoriaAttivita>) em
+	// // .createQuery(
+	// //
+	// "select p from CategoriaAttivita p where p.tipoAttivita.id = :TIPO and p.attivo = :attivo order by p.id")
+	// // .setParameter("attivo", true).setParameter("TIPO", id)
+	// // .getResultList();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return all;
+	// }
 
 }

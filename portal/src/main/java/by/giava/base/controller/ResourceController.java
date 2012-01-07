@@ -27,7 +27,7 @@ import org.primefaces.model.UploadedFile;
 
 import by.giava.base.common.util.ImageUtils;
 import by.giava.base.model.OperazioniLog;
-import by.giava.base.model.Resource;
+import by.giava.base.pojo.Resource;
 import by.giava.base.repository.ResourceRepository;
 
 @Named

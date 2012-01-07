@@ -1,6 +1,10 @@
-package by.giava.base.common.util;
+package by.giava.base.pojo;
 
-public class Server {
+import java.io.Serializable;
+
+public class Server implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String address;
 	private String user;
 	private String pwd;

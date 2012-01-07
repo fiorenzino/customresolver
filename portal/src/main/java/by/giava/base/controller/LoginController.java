@@ -31,7 +31,7 @@ import by.giava.base.common.util.EmailUtils;
 import by.giava.base.common.util.JSFLocalUtils;
 import by.giava.base.common.util.PasswordUtils;
 import by.giava.base.model.OperazioniLog;
-import by.giava.base.model.Utente;
+import by.giava.base.pojo.Utente;
 import by.giava.base.repository.UtentiSession;
 import by.giava.base.service.EmailSession;
 

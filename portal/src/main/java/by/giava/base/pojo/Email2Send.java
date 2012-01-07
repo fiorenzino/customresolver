@@ -1,4 +1,4 @@
-package by.giava.base.common.util;
+package by.giava.base.pojo;
 
 import java.io.File;
 import java.io.Serializable;
@@ -31,7 +31,6 @@ public class Email2Send implements Serializable {
 		this.corpo = corpo;
 	}
 
-	 
 	public List<String> getDestinatari() {
 		if (destinatari == null)
 			this.destinatari = new ArrayList<String>();
@@ -56,7 +55,6 @@ public class Email2Send implements Serializable {
 		return to.toString();
 	}
 
-	 
 	public List<String> getCc() {
 		if (cc == null)
 			this.cc = new ArrayList<String>();
@@ -81,7 +79,6 @@ public class Email2Send implements Serializable {
 		return to.toString();
 	}
 
-	 
 	public List<String> getBcc() {
 		if (bcc == null)
 			this.bcc = new ArrayList<String>();
@@ -122,7 +119,6 @@ public class Email2Send implements Serializable {
 		this.mittente = mittente;
 	}
 
-	 
 	public List<File> getAllegati() {
 		if (allegati == null)
 			this.allegati = new ArrayList<File>();

@@ -1,9 +1,12 @@
 package by.giava.notizie.repository;
 
+import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -12,7 +15,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
+import by.giava.attivita.model.type.TipoAttivita;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 
 @Named
@@ -41,60 +46,97 @@ public class TipoPubblicazioneRepository extends
 		return "nome asc";
 	}
 
-	public List<TipoPubblicazione> getAllTipoPubblicazione() {
+	@Override
+	protected Query getRestrictions(Search<TipoPubblicazione> search,
+			boolean justCount) {
 
-		List<TipoPubblicazione> all = new ArrayList<TipoPubblicazione>();
-		try {
-			all = (List<TipoPubblicazione>) em
-					.createQuery(
-							"select p from TipoPubblicazione p where p.attivo = :attivo order by p.nome asc")
-					.setParameter("attivo", true).getResultList();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (search.getObj() == null) {
+			return super.getRestrictions(search, justCount);
 		}
-		return all;
+
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		String alias = "c";
+		StringBuffer sb = new StringBuffer(getBaseList(search.getObj()
+				.getClass(), alias, justCount));
+
+		String separator = " where ";
+
+		// attivo
+		sb.append(separator).append(" ").append(alias)
+				.append(".attivo = :attivo ");
+		// aggiunta alla mappa
+		params.put("attivo", true);
+		// separatore
+		separator = " and ";
+
+		if (!justCount) {
+			sb.append(getOrderBy(alias, search.getOrder()));
+		}
+
+		Query q = getEm().createQuery(sb.toString());
+		for (String param : params.keySet()) {
+			q.setParameter(param, params.get(param));
+		}
+
+		return q;
 	}
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void updateTipoPubblicazione(TipoPubblicazione tipoPubblicazione) {
-		try {
-			em.merge(tipoPubblicazione);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	// public List<TipoPubblicazione> getAllTipoPubblicazione() {
+	//
+	// List<TipoPubblicazione> all = new ArrayList<TipoPubblicazione>();
+	// try {
+	// all = (List<TipoPubblicazione>) em
+	// .createQuery(
+	// "select p from TipoPubblicazione p where p.attivo = :attivo order by p.nome asc")
+	// .setParameter("attivo", true).getResultList();
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return all;
+	// }
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public TipoPubblicazione persistTipoPubblicazione(
-			TipoPubblicazione tipoPubblicazione) {
-		try {
-			em.persist(tipoPubblicazione);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return tipoPubblicazione;
-	}
+	// @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	// public void updateTipoPubblicazione(TipoPubblicazione tipoPubblicazione)
+	// {
+	// try {
+	// em.merge(tipoPubblicazione);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
 
-	public TipoPubblicazione findTipoPubblicazione(Long id) {
-		try {
-			TipoPubblicazione tipoPubblicazione = em.find(
-					TipoPubblicazione.class, id);
-			return tipoPubblicazione;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void deleteTipoPubblicazione(Long id) {
-		try {
-			TipoPubblicazione tipoPubblicazione = em.find(
-					TipoPubblicazione.class, id);
-			em.remove(tipoPubblicazione);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	// @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	// public TipoPubblicazione persistTipoPubblicazione(
+	// TipoPubblicazione tipoPubblicazione) {
+	// try {
+	// em.persist(tipoPubblicazione);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return tipoPubblicazione;
+	// }
+	//
+	// public TipoPubblicazione findTipoPubblicazione(Long id) {
+	// try {
+	// TipoPubblicazione tipoPubblicazione = em.find(
+	// TipoPubblicazione.class, id);
+	// return tipoPubblicazione;
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return null;
+	// }
+	//
+	// @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	// public void deleteTipoPubblicazione(Long id) {
+	// try {
+	// TipoPubblicazione tipoPubblicazione = em.find(
+	// TipoPubblicazione.class, id);
+	// em.remove(tipoPubblicazione);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
 }

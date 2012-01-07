@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Named;
 
 import by.giava.base.controller.util.DbUtils;
-import by.giava.base.model.Utente;
+import by.giava.base.pojo.Utente;
 
 @Named
 @Stateless

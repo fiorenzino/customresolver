@@ -149,7 +149,6 @@ public class BaseProducer implements Serializable {
 		return fileTypeItems;
 	}
 
-
 	@Produces
 	@Named
 	public SelectItem[] getCategorieAttivitaItems() {
@@ -189,8 +188,13 @@ public class BaseProducer implements Serializable {
 
 	public void cambioTipoDirect(Long tipo) {
 		logger.info("getCategorieByTipoItems: Tipo: " + tipo);
+		CategoriaAttivita categoriaAttivita = new CategoriaAttivita();
+		categoriaAttivita.getTipoAttivita().setId(new Long(tipo));
+		Search<CategoriaAttivita> search = new Search<CategoriaAttivita>(
+				categoriaAttivita);
 		List<CategoriaAttivita> categorie = categorieAttivitaRepository
-				.getAllCategoriaAttivitaByTipo(new Long(tipo));
+				.getList(search, 0, 0);
+
 		if (categorie != null && categorie.size() > 0) {
 			categorieAttivitaItems = new SelectItem[categorie.size() + 1];
 			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
