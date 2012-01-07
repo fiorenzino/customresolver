@@ -19,8 +19,6 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.model.SelectableDataModel;
-
 import by.giava.base.model.MenuGroup;
 import by.giava.base.model.MenuItem;
 import by.giava.base.model.OperazioniLog;
