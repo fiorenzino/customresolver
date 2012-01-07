@@ -1,1 +1,1 @@
-<jsp:forward page="lista-tipi-modulo.jsf"></jsp:forward>
+<jsp:forward page="lista.jsf"></jsp:forward>

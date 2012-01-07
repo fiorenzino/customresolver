@@ -90,8 +90,7 @@
 						value="lista" /></li>
 				<li><h:commandLink
 						rendered="#{loginController.isInRole('tipi_informazione')}"
-						action="#{tipoInformazioniController.loadModel}"
-						value="lista tipi" /></li>
+						action="#{tipoInformazioniController.listPage}" value="lista tipi" /></li>
 			</ul></li>
 		<f:verbatim rendered="#{loginController.isInRole('risorse')}">
 			<li class="M5cellaunica"><a

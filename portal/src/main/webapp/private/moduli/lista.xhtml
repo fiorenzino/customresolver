@@ -21,8 +21,7 @@
 					<h:panelGrid columns="5">
 
 						<h:outputLabel for="nome" value="Nome:" />
-						<h:inputText id="nome"
-							value="#{pubblicazioniController.search.obj.nome}" />
+						<h:inputText id="nome" value="#{moduliController.search.obj.nome}" />
 
 
 						<h:outputLabel value="Seleziona tipo" />
@@ -30,7 +29,7 @@
 							style="width: 200px;">
 							<f:selectItems value="#{tipiModuloItems}" />
 						</h:selectOneMenu>
-						<h:commandButton action="#{moduliController.cerca}" value="Cerca" />
+						<h:commandButton action="#{moduliController.reload}" value="Cerca" />
 					</h:panelGrid>
 					<br />
 
@@ -57,8 +56,8 @@
 						</p:column>
 
 						<p:column width="200">
-							<f:facet name="header">obj breve</f:facet>
-							<h:outputText value="#{modulo.objBreve}" />
+							<f:facet name="header">oggetto breve</f:facet>
+							<h:outputText value="#{modulo.oggettoBreve}" />
 						</p:column>
 
 						<p:column width="50">

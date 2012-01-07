@@ -1,1 +1,1 @@
-<jsp:forward page="lista-tipi-pubblicazione.jsf"></jsp:forward>
+<jsp:forward page="lista.jsf"></jsp:forward>
