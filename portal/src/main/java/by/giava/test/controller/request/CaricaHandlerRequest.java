@@ -1,11 +1,10 @@
-package by.giava.base.controller.request;
+package by.giava.test.controller.request;
 
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Timeout;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
