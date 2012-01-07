@@ -1,1 +1,1 @@
-<jsp:forward page="/private/menu/lista-menu.jsf"></jsp:forward>
+<jsp:forward page="lista.jsf"></jsp:forward>

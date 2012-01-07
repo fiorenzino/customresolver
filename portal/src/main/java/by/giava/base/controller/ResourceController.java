@@ -42,11 +42,11 @@ public class ResourceController extends AbstractLazyController<Resource> {
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ListPage
 	@ViewPage
-	public static String LIST = "/private/risorse/lista-risorse.xhtml";
+	public static String LIST = "/private/risorse/lista.xhtml";
 	@EditPage
-	public static String EDIT = "/private/risorse/gestione-risorsa.xhtml";
+	public static String EDIT = "/private/risorse/gestione.xhtml";
 
-	public static String UPLOAD = "/private/risorse/carica-risorse.xhtml";
+	public static String UPLOAD = "/private/risorse/carica.xhtml";
 
 	// --------------------------------------------------------
 

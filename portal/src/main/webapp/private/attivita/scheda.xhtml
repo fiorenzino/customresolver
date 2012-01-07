@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="roles">
+		<f:attribute name="roles" value="attivita" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<center>
+				<p:panel header="Scheda Attivita'">
+					<h:panelGrid columns="2">
+						<h:outputLabel id="tipoLabel" for="tipo"
+							value="Nome Tipo Attivita': " style="font-weight: bolder;" />
+						<h:outputText id="tipo"
+							value="#{attivitaController.element.categoria.tipoAttivita.nome}" />
+
+						<h:outputLabel id="categoriaLabel" for="categoria"
+							style="font-weight: bolder;" value="Nome Categoria Attivita': " />
+						<h:outputText id="categoria"
+							value="#{attivitaController.element.categoria.nomecategoria}" />
+
+						<h:outputLabel for="nome" value="Nome Attivita': "
+							style="font-weight: bolder;" />
+						<h:outputText id="nome" value="#{attivitaController.element.nome}" />
+						<h:outputLabel for="indirizzo" value="Indirizzo:"
+							style="font-weight: bolder;" />
+						<h:outputText id="indirizzo"
+							value="#{attivitaController.element.indirizzo}" />
+
+						<h:outputLabel for="city" value="Citta': "
+							style="font-weight: bolder;" />
+						<h:outputText id="city" value="#{attivitaController.element.city}" />
+
+						<h:outputLabel for="provincia" value="Provincia: "
+							style="font-weight: bolder;" />
+						<h:outputText id="provincia"
+							value="#{attivitaController.element.provincia}" />
+
+						<h:outputLabel for="telefono" value="Telefono:"
+							style="font-weight: bolder;" />
+						<h:outputText id="telefono"
+							value="#{attivitaController.element.telefono}" />
+
+						<h:outputLabel for="fax" value="Fax:" style="font-weight: bolder;" />
+						<h:outputText id="fax" value="#{attivitaController.element.fax}" />
+
+						<h:outputLabel for="orariEchiusura" value="Orari e chiusura:"
+							style="font-weight: bolder;" />
+						<h:outputText id="orariEchiusura"
+							value="#{attivitaController.element.orariEchiusura}" />
+
+						<h:outputLabel for="email" value="Email:"
+							style="font-weight: bolder;" />
+						<h:outputText id="email"
+							value="#{attivitaController.element.email}" />
+
+						<h:outputLabel for="sitoInternet" value="Sito Internet:"
+							style="font-weight: bolder;" />
+						<h:outputText id="sitoInternet"
+							value="#{attivitaController.element.sitoInternet}" />
+
+						<h:outputLabel for="descrizione" value="Descrizione:"
+							style="font-weight: bolder;" />
+
+						<h:outputText id="descrizione"
+							value="#{attivitaController.element.descrizione}" />
+
+						<h:outputLabel for="descrizione"
+							value="Immagine rappresentativa: " style="font-weight: bolder;" />
+						<h:graphicImage alt="non disponibile"
+							title="immagine rappresentativa"
+							value="/img/#{attivitaController.element.immagine.filename}"
+							width="200" />
+					</h:panelGrid>
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="2">
+					<h:commandButton value="Modifica"
+						action="#{attivitaController.modElement}" />
+
+					<h:commandButton id="creaAttivita"
+						action="#{attivitaController.addElement}" value="Aggiungi" />
+				</h:panelGrid>
+
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

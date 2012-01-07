@@ -19,16 +19,16 @@
 			<!--th scope="col" class="titoloth">Sintesi</th -->
 			<!--th scope="col" class="luogoth">Tipologia</th -->
 			<th scope="col" class="topleftth">Tipologia</th>
-			<th scope="col" class="titoloth">Titolo e Oggetto</th>
+			<th scope="col" class="titoloth">Titolo e obj</th>
 			<th scope="col" class="luogoth">Periodo Esposizione</th>
 			<!--th scope="col" class="luogoth">Validita' al</th -->
 
 		</tr>
 		<flw:uiRepeatPagedWithParamsTab id="pubblicazioni" label="#{label}"
-			filtro="#{pubblicazioniHandlerRequest.filtro}" tipo="#{tipo}"
-			currentpage="#{pubblicazioniHandlerRequest.currentpage}"
+			filtro="#{pubblicazioniControllerRequest.filtro}" tipo="#{tipo}"
+			currentpage="#{pubblicazioniControllerRequest.currentpage}"
 			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-			handler="#{pubblicazioniHandlerRequest}" width="100%" colspan="7">
+			handler="#{pubblicazioniControllerRequest}" width="100%" colspan="7">
 
 			<tr>
 				<td class="cellaprima">n. #{var.progressivoRegistro}<br />del

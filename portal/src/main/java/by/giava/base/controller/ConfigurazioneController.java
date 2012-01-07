@@ -30,7 +30,7 @@ public class ConfigurazioneController extends
 	public static String BACK = "/private/amministrazione.xhtml";
 
 	@EditPage
-	public static String CONF = "/private/configurazione/gestione-configurazione.xhtml";
+	public static String CONF = "/private/configurazione/gestione.xhtml";
 	// --------------------------------------------------------
 
 	private String emailTest;

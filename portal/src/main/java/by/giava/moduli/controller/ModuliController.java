@@ -35,11 +35,11 @@ public class ModuliController extends AbstractLazyController<Modulo> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/moduli/scheda-modulo.xhtml";
+	public static String VIEW = "/private/moduli/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/moduli/lista-moduli.xhtml";
+	public static String LIST = "/private/moduli/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/moduli/gestione-modulo.xhtml";
+	public static String NEW_OR_EDIT = "/private/moduli/gestione.xhtml";
 
 	// --------------------------------------------------------
 

@@ -27,10 +27,10 @@ public class OperazioniLogController extends
 	public static final String BACK = "/private/amministrazione.xhtml";
 
 	@ViewPage
-	public static final String VIEW = "/private/operazioni/scheda-operazione.xhtml";
+	public static final String VIEW = "/private/operazioni/scheda.xhtml";
 
 	@ListPage
-	public static final String LIST = "/private/operazioni/lista-operazioni.xhtml";
+	public static final String LIST = "/private/operazioni/lista.xhtml";
 
 	// --------------------------------------------------------
 

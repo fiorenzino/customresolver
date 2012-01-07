@@ -1,1 +1,1 @@
-<jsp:forward page="lista-files.jsf"></jsp:forward>
+<jsp:forward page="lista.jsf"></jsp:forward>

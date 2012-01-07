@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/layout/t.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Amministrazione del portale" />
+	</ui:define>
+	<ui:define name="roles">
+		<f:attribute name="roles" value="moduli" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages id="messages" />
+			<center>
+				<p:panel header="Gestione Modulo">
+
+					<h:panelGrid columns="2" style="width: 95%">
+						<h:outputLabel id="tipoLabel" for="tipo" value="Modulo:" />
+						<h:selectOneMenu id="tipo"
+							value="#{moduliController.element.idTipo}" style="width: 100%;">
+							<f:selectItems value="#{tipiModuloItems}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel for="nome" value="Nome:" />
+						<h:inputText id="nome" value="#{moduliController.element.nome}"
+							required="true" style="width: 100%;" />
+
+						<h:outputLabel for="dataInsert" value="Data inserimento:"
+							rendered="#{not empty moduliController.element.id}" />
+						<p:calendar id="dataInsert"
+							value="#{moduliController.element.data}" pattern="dd/MM/yyyy"
+							timeZone="Europe/Rome"
+							rendered="#{not empty moduliController.element.id}" />
+
+
+						<h:outputLabel for="obj" value="obj:" />
+						<h:inputTextarea id="obj" cols="20" rows="5"
+							value="#{moduliController.element.obj}"
+							style=" height : 166px; width : 100%;" />
+
+						<h:outputText value="" />
+						<p:fileUpload
+							fileUploadListener="#{moduliController.handleFileUpload}"
+							multiple="false" label="Scegli File" allowTypes="*"
+							description="Scegli File" update="scarica" />
+
+						<h:outputLabel for="scarica" value="Allegato:" />
+						<h:panelGroup id="scarica">
+							<h:outputLink target="_blank"
+								value="#{request.contextPath}/private/moduli/getModulo.jsp"
+								rendered="#{not empty moduliController.element.documento.data or not empty moduliController.element.documento.id }">
+								<h:outputText value="scarica" />
+							</h:outputLink>
+							<h:outputText value=" - "
+								rendered="#{not empty moduliController.element.documento.data or not empty moduliController.element.documento.id}" />
+							<h:commandLink action="#{moduliController.removeDocument}"
+								value="elimina"
+								rendered="#{not empty moduliController.element.documento.data or not empty moduliController.element.documento.id}" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+					<br />
+				</p:panel>
+				<br /> <br />
+				<h:panelGrid columns="4">
+					<h:commandButton action="#{moduliController.save}" value="Salva"
+						rendered="#{empty moduliController.element.id}" />
+
+					<h:commandButton action="#{moduliController.update}"
+						value="Salva le modifiche"
+						rendered="#{not empty moduliController.element.id}" />
+
+					<h:commandButton action="#{moduliController.delete}"
+						value="Elimina" immediate="true"
+						rendered="#{not empty moduliController.element.id}"
+						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
+
+					<h:commandButton id="reset" action="#{moduliController.reset}"
+						value="Annulla" immediate="true" />
+				</h:panelGrid>
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

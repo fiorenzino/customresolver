@@ -46,11 +46,11 @@ public class LoginController extends AbstractLazyController<Utente> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/utenti/scheda-utente.xhtml";
+	public static String VIEW = "/private/utenti/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/utenti/lista-utenti.xhtml";
+	public static String LIST = "/private/utenti/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/utenti/gestione-utente.xhtml";
+	public static String NEW_OR_EDIT = "/private/utenti/gestione.xhtml";
 	public static String CAMBIO_PASSWORD = "/private/utenti/cambio-password.xhtml";
 
 	public static String GRAZIE = "/grazie.xhtml";
@@ -111,7 +111,7 @@ public class LoginController extends AbstractLazyController<Utente> {
 		modifica = false;
 		this.utente = new Utente();
 		this.utente.setRandom(true);
-		return NEW_OR_EDIT;
+		return NEW_OR_EDIT + REDIRECT_PARAM;
 	}
 
 	public String save() {
@@ -166,7 +166,7 @@ public class LoginController extends AbstractLazyController<Utente> {
 		operazioniLogController.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione utente: " + this.utente.getUsername());
 		this.utente = utentiSession.save(this.utente);
-		return LIST;
+		return LIST + REDIRECT_PARAM;
 	}
 
 	public String modUser(String username) {
@@ -177,7 +177,7 @@ public class LoginController extends AbstractLazyController<Utente> {
 		// && !this.utente.getPassword().isEmpty()) {
 		// this.utente.setRandom(false);
 		// }
-		return NEW_OR_EDIT;
+		return NEW_OR_EDIT + REDIRECT_PARAM;
 	}
 
 	public String detail(String username) {
@@ -224,7 +224,7 @@ public class LoginController extends AbstractLazyController<Utente> {
 		operazioniLogController.save("MODIFY", JSFUtils.getUserName(),
 				"modifica utente: " + this.utente.getUsername());
 		this.utente = utentiSession.update(this.utente);
-		return LIST;
+		return LIST + REDIRECT_PARAM;
 	}
 
 	public Utente getUtente() {
@@ -294,7 +294,7 @@ public class LoginController extends AbstractLazyController<Utente> {
 				// + this.utente.getUsername());
 			}
 		}
-		return GRAZIE;
+		return GRAZIE + REDIRECT_PARAM;
 	}
 
 	@PreDestroy
@@ -331,7 +331,7 @@ public class LoginController extends AbstractLazyController<Utente> {
 
 	public String goToChangePassword() {
 		this.utente = utentiSession.find(JSFUtils.getUserName());
-		return CAMBIO_PASSWORD;
+		return CAMBIO_PASSWORD + REDIRECT_PARAM;
 	}
 
 	public String changePassword() {

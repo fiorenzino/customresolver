@@ -36,13 +36,13 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/menu/scheda-menu.xhtml";
+	public static String VIEW = "/private/menu/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/menu/lista-menu.xhtml";
+	public static String LIST = "/private/menu/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/menu/gestione-menu1.xhtml";
-	public static String NEW_OR_EDIT2 = "/private/menu/gestione-menu2.xhtml";
-	public static String NEW_OR_EDIT3 = "/private/menu/gestione-menu3.xhtml";
+	public static String NEW_OR_EDIT = "/private/menu/gestione1.xhtml";
+	public static String NEW_OR_EDIT2 = "/private/menu/gestione2.xhtml";
+	public static String NEW_OR_EDIT3 = "/private/menu/gestione3.xhtml";
 
 	// --------------------------------------------------------
 
