@@ -41,6 +41,7 @@
 					<br />
 					<p:dataTable var="pagina" value="#{menuController.pagine}"
 						rowIndexVar="rowIndex" paginator="true" rows="100"
+						rowKey="#{pagina.id}"
 						selection="#{menuController.pagineSelezionate}"
 						selectionMode="multiple">
 
