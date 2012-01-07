@@ -29,9 +29,9 @@ public class TipoAttivitaController extends
 
 	@ListPage
 	@ViewPage
-	public static String LIST = "/private/attivita/lista-tipi-attivita.xhtml";
+	public static String LIST = "/private/attivita/tipi/lista.xhtml";
 	@EditPage
-	public static String NEW = "/private/attivita/gestione-tipi-attivita.xhtml";
+	public static String NEW = "/private/attivita/tipi/gestione.xhtml";
 
 	// --------------------------------------------------------
 

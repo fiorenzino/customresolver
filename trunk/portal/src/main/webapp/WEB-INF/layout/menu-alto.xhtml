@@ -9,114 +9,115 @@
 		<li class="M5cellaunica"><a
 			href="#{request.contextPath}/private/" title="" accesskey="2">Amministrazione</a>
 			<ul>
-				<f:verbatim rendered="#{loginHandler.admin}">
+				<f:verbatim rendered="#{loginController.admin}">
 					<li><a
-						href="#{request.contextPath}/private/utenti/lista-utenti.jsf?faces-redirect=true"
+						href="#{request.contextPath}/private/utenti/lista.jsf?faces-redirect=true"
 						title="">utenti</a></li>
 					<li><a
-						href="#{request.contextPath}/private/configurazione/gestione-configurazione.jsf?faces-redirect=true"
+						href="#{request.contextPath}/private/configurazione/gestione.jsf?faces-redirect=true"
 						title="">configurazione</a></li>
 				</f:verbatim>
 				<li><h:commandLink value="cambio password"
-						action="#{loginHandler.goToChangePassword}" /></li>
+						action="#{loginController.goToChangePassword}" /></li>
 				<li><h:commandLink value="logout"
-						action="#{loginHandler.logout}" /></li>
+						action="#{loginController.logout}" /></li>
 			</ul></li>
-		<f:verbatim rendered="#{loginHandler.isInRole('pagine')}">
+		<f:verbatim rendered="#{loginController.isInRole('pagine')}">
 			<li class="M5cellaunica"><a
-				href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
+				href="#{request.contextPath}/private/pagine/lista.jsf?faces-redirect=true"
 				title="" accesskey="3">Pagine</a>
 				<ul>
 					<li><a
-						href="#{request.contextPath}/private/pagine/lista-pagine.jsf?faces-redirect=true"
+						href="#{request.contextPath}/private/pagine/lista.jsf?faces-redirect=true"
 						title="" accesskey="3">lista</a></li>
 				</ul></li>
 		</f:verbatim>
-		<f:verbatim rendered="#{loginHandler.isInRole('modelli')}">
+		<f:verbatim rendered="#{loginController.isInRole('modelli')}">
 			<li class="M5cellaunica"><a
-				href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
+				href="#{request.contextPath}/private/modelli/lista.jsf?faces-redirect=true"
 				title="" accesskey="4">Modelli</a>
 				<ul>
 					<li><a
-						href="#{request.contextPath}/private/modelli/lista-modelli.jsf?faces-redirect=true"
+						href="#{request.contextPath}/private/modelli/lista.jsf?faces-redirect=true"
 						title="" accesskey="4">lista</a></li>
 				</ul></li>
 		</f:verbatim>
-		<f:verbatim rendered="#{loginHandler.isInRole('menu')}">
+		<f:verbatim rendered="#{loginController.isInRole('menu')}">
 			<li class="M5cellaunica"><a
-				href="#{request.contextPath}/private/menu/lista-menu.jsf?faces-redirect=true"
+				href="#{request.contextPath}/private/menu/lista.jsf?faces-redirect=true"
 				title="" accesskey="5">Menu</a>
 				<ul>
 					<li><a
-						href="#{request.contextPath}/private/menu/lista-menu.jsf?faces-redirect=true"
+						href="#{request.contextPath}/private/menu/lista.jsf?faces-redirect=true"
 						title="" accesskey="5">lista</a></li>
 				</ul></li>
 		</f:verbatim>
-		<li class="M5cellaunica" style="#{(loginHandler.isInRole('pubblicazioni') or loginHandler.isInRole('tipi_pubblicazione')) ? '' : 'display: none;'}"><a
-			href="#{request.contextPath}/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true">Albo
+		<li class="M5cellaunica" style="#{(loginController.isInRole('pubblicazioni') or loginController.isInRole('tipi_pubblicazione')) ? '' : 'display: none;'}"><a
+			href="#{request.contextPath}/private/pubblicazioni/lista.jsf?faces-redirect=true">Albo
 				Pretorio</a>
 			<ul>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('pubblicazioni')}"
-						action="/private/pubblicazioni/lista-pubblicazioni.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('pubblicazioni')}"
+						action="/private/pubblicazioni/lista.jsf?faces-redirect=true"
 						value="lista" /></li>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('tipi_pubblicazione')}"
-						action="/private/tipi-pubblicazione/lista-tipi-pubblicazione.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('tipi_pubblicazione')}"
+						action="/private/tipi-pubblicazione/lista.jsf?faces-redirect=true"
 						value="lista tipi" /></li>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('tipi_pubblicazione')}"
-						action="/private/pubblicazioni/stampa-pubblicazioni.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('tipi_pubblicazione')}"
+						action="/private/pubblicazioni/stampa.jsf?faces-redirect=true"
 						value="stampa lista pubblicazioni" /></li>
 			</ul></li>
-		<li class="M5cellaunica" style="#{(loginHandler.isInRole('moduli') or loginHandler.isInRole('tipi_modulo')) ? '' : 'display: none;'}"><a
-			href="#{request.contextPath}/private/moduli/lista-moduli.jsf?faces-redirect=true">Modulistica</a>
+		<li class="M5cellaunica" style="#{(loginController.isInRole('moduli') or loginController.isInRole('tipi_modulo')) ? '' : 'display: none;'}"><a
+			href="#{request.contextPath}/private/moduli/lista.jsf?faces-redirect=true">Modulistica</a>
 			<ul>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('moduli')}"
-						action="/private/moduli/lista-moduli.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('moduli')}"
+						action="/private/moduli/lista.jsf?faces-redirect=true"
 						value="lista" /></li>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('tipi_modulo')}"
-						action="/private/tipi-modulo/lista-tipi-modulo.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('tipi_modulo')}"
+						action="/private/tipi-modulo/lista.jsf?faces-redirect=true"
 						value="lista tipi" /></li>
 			</ul></li>
-		<li style="#{(loginHandler.isInRole('news') or loginHandler.isInRole('tipi_informazione')) ? '' : 'display: none;'}" class="M5cellaunica"><a
-			href="#{request.contextPath}/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true">Notizie</a>
+		<li style="#{(loginController.isInRole('news') or loginController.isInRole('tipi_informazione')) ? '' : 'display: none;'}" class="M5cellaunica"><a
+			href="#{request.contextPath}/private/notizieconfoto/lista.jsf?faces-redirect=true">Notizie</a>
 			<ul>
-				<li><h:commandLink rendered="#{loginHandler.isInRole('news')}"
-						action="/private/notizieconfoto/lista-notizie.jsf?faces-redirect=true"
+				<li><h:commandLink
+						rendered="#{loginController.isInRole('news')}"
+						action="/private/notizieconfoto/lista.jsf?faces-redirect=true"
 						value="lista" /></li>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('tipi_informazione')}"
-						action="#{tipoInformazioniHandler.loadModel}" value="lista tipi" />
-				</li>
+						rendered="#{loginController.isInRole('tipi_informazione')}"
+						action="#{tipoInformazioniController.loadModel}"
+						value="lista tipi" /></li>
 			</ul></li>
-		<f:verbatim rendered="#{loginHandler.isInRole('risorse')}">
+		<f:verbatim rendered="#{loginController.isInRole('risorse')}">
 			<li class="M5cellaunica"><a
-				href="#{request.contextPath}/private/risorse/lista-risorse.jsf?faces-redirect=true"
+				href="#{request.contextPath}/private/risorse/lista.jsf?faces-redirect=true"
 				title="" accesskey="7">Risorse</a>
 				<ul>
 					<li><a
-						href="#{request.contextPath}/private/risorse/lista-risorse.jsf?faces-redirect=true">lista</a>
+						href="#{request.contextPath}/private/risorse/lista.jsf?faces-redirect=true">lista</a>
 					</li>
 				</ul></li>
 		</f:verbatim>
-		<li style="#{(loginHandler.isInRole('attivita') or loginHandler.isInRole('tipi_attivita') or loginHandler.isInRole('categorie_attivita')) ? '' : 'display: none;'}" class="M5cellaultima"><a
-			href="#{request.contextPath}/private/attivita/lista-attivita.jsf?faces-redirect=true">
+		<li style="#{(loginController.isInRole('attivita') or loginController.isInRole('tipi_attivita') or loginController.isInRole('categorie_attivita')) ? '' : 'display: none;'}" class="M5cellaultima"><a
+			href="#{request.contextPath}/private/attivita/lista.jsf?faces-redirect=true">
 				Attivita' </a>
 			<ul>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('attivita')}"
-						action="/private/attivita/lista-attivita.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('attivita')}"
+						action="/private/attivita/lista.jsf?faces-redirect=true"
 						value="lista" /></li>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('tipi_attivita')}"
-						action="/private/attivita/lista-tipi-attivita.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('tipi_attivita')}"
+						action="/private/attivita/tipi/lista.jsf?faces-redirect=true"
 						value="lista tipi" /></li>
 				<li><h:commandLink
-						rendered="#{loginHandler.isInRole('categorie_attivita')}"
-						action="/private/attivita/lista-categorie-attivita.jsf?faces-redirect=true"
+						rendered="#{loginController.isInRole('categorie_attivita')}"
+						action="/private/attivita/categorie/lista.jsf?faces-redirect=true"
 						value="lista categorie" /></li>
 			</ul></li>
 		<li class="M5cellaprima"><a href="#{request.contextPath}/"

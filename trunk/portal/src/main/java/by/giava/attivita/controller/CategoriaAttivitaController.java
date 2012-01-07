@@ -26,9 +26,9 @@ public class CategoriaAttivitaController extends
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ListPage
-	public static String LIST_CAT = "/private/attivita/lista-categorie-attivita.xhtml";
+	public static String LIST_CAT = "/private/attivita/categorie/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT_CAT = "/private/attivita/gestione-categorie-attivita.xhtml";
+	public static String NEW_OR_EDIT_CAT = "/private/attivita/categorie/gestione.xhtml";
 
 	// --------------------------------------------------------
 

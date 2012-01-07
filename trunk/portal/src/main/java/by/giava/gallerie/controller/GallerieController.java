@@ -32,11 +32,11 @@ public class GallerieController extends AbstractLazyController<Galleria> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/gallerie/scheda-galleria.xhtml";
+	public static String VIEW = "/private/gallerie/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/gallerie/lista-gallerie.xhtml";
+	public static String LIST = "/private/gallerie/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/gallerie/gestione-galleria.xhtml";
+	public static String NEW_OR_EDIT = "/private/gallerie/gestione.xhtml";
 
 	// ------------------------------------------------
 
@@ -49,7 +49,6 @@ public class GallerieController extends AbstractLazyController<Galleria> {
 
 	@Inject
 	OperazioniLogController operazioniLogController;
-	private List<Galleria> all;
 
 	@Override
 	public String addElement() {
@@ -71,37 +70,25 @@ public class GallerieController extends AbstractLazyController<Galleria> {
 		getElement().setImmagini(immagini);
 
 		super.save();
-		this.all = null;
 		operazioniLogController.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione galleria: " + getElement().getTitolo());
-		return VIEW;
+		return viewPage();
 	}
 
 	@Override
 	public String delete() {
-		this.all = null;
 		operazioniLogController.save(OperazioniLog.DELETE,
 				JSFUtils.getUserName(), "eliminazione galleria: "
 						+ getElement().getTitolo());
 		return super.delete();
 	}
 
+	@Override
 	public String update() {
-		this.all = null;
 		operazioniLogController.save(OperazioniLog.MODIFY,
 				JSFUtils.getUserName(), "eliminazione galleria: "
 						+ getElement().getTitolo());
 		return super.update();
-	}
-
-	public List<Galleria> getAll() {
-		if (this.all == null)
-			this.all = gallerieRepository.getAllList();
-		return all;
-	}
-
-	public void setAll(List<Galleria> all) {
-		this.all = all;
 	}
 
 }

@@ -22,15 +22,15 @@
 		</tr>
 
 		<flw:uiRepeatPagedWithParamsTab id="moduli" label="#{label}"
-			filtro="#{moduliHandlerRequest.filtro}"
-			currentpage="#{moduliHandlerRequest.currentpage}" tipo="#{tipo}"
+			filtro="#{moduliControllerRequest.filtro}"
+			currentpage="#{moduliControllerRequest.currentpage}" tipo="#{tipo}"
 			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-			handler="#{moduliHandlerRequest}" width="100%" colspan="4">
+			handler="#{moduliControllerRequest}" width="100%" colspan="4">
 
 			<tr>
 				<td class="#{cellaprimaClass}">#{var.nome}</td>
 				<td >#{var.tipo.nome}</td>
-				<td>#{var.oggetto}</td>
+				<td>#{var.obj}</td>
 				<td><h:outputLink
 					value="#{request.contextPath}/docs/#{var.documento.filename}"
 					alt="lista" title="Scarica pdf" target="_blank"

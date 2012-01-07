@@ -16,8 +16,11 @@
 		<h:form>
 			<center>
 				<p:panel header="Lista Tipi di Pubblicazione">
-					<p:dataTable var="tipo" rowIndexVar="rowIndex"
-						value="#{categorieHandler.allTipiPubblicazioni}">
+					<p:dataTable id="pagesList" rowIndexVar="rowIndex" var="tipo"
+						value="#{categoriaAttivitaController.model}"
+						rows="#{categoriaAttivitaController.pageSize}" paginator="true"
+						dynamic="true">
+
 						<p:column>
 							<h:outputText value="#{rowIndex+1}" />
 						</p:column>
@@ -31,7 +34,7 @@
 							<f:facet name="header">operazioni</f:facet>
 							<center>
 								<h:commandLink
-									action="#{categorieHandler.modTipoPubblicazione(tipo.id)}"
+									action="#{categoriaAttivitaController.modElement}"
 									value="modifica" />
 							</center>
 						</p:column>
@@ -39,7 +42,7 @@
 				</p:panel>
 				<br /> <br />
 				<h:panelGrid columns="1">
-					<h:commandButton action="#{categorieHandler.addTipoPubblicazione}"
+					<h:commandButton action="#{categoriaAttivitaController.addElement}"
 						value="Aggiungi" />
 				</h:panelGrid>
 			</center>

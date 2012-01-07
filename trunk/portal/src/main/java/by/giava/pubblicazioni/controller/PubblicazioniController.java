@@ -40,12 +40,12 @@ public class PubblicazioniController extends
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/pubblicazioni/scheda-pubblicazione.xhtml";
+	public static String VIEW = "/private/pubblicazioni/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/pubblicazioni/lista-pubblicazioni.xhtml";
+	public static String LIST = "/private/pubblicazioni/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/pubblicazioni/gestione-pubblicazione.xhtml";
-	public static String PRINT_LIST = "/private/pubblicazioni/stampa-pubblicazioni.xhtml";
+	public static String NEW_OR_EDIT = "/private/pubblicazioni/gestione.xhtml";
+	public static String PRINT_LIST = "/private/pubblicazioni/stampa.xhtml";
 
 	// --------------------------------------------------------
 

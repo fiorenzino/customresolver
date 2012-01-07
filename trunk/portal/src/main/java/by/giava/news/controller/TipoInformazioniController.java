@@ -30,11 +30,11 @@ public class TipoInformazioniController extends
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/tipi-informazione/scheda-tipo-informazione.xhtml";
+	public static String VIEW = "/private/tipi-informazione/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/tipi-informazione/lista-tipi-informazione.xhtml";
+	public static String LIST = "/private/tipi-informazione/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/tipi-informazione/gestione-tipo-informazione.xhtml";
+	public static String NEW_OR_EDIT = "/private/tipi-informazione/gestione.xhtml";
 
 	// --------------------------------------------------------
 

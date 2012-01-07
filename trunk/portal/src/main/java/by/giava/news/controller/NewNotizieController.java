@@ -36,11 +36,11 @@ public class NewNotizieController extends AbstractLazyController<Notizia> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/notizieconfoto/scheda-notizia.xhtml";
+	public static String VIEW = "/private/notizieconfoto/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/notizieconfoto/lista-notizie.xhtml";
+	public static String LIST = "/private/notizieconfoto/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/notizieconfoto/gestione-notizia.xhtml";
+	public static String NEW_OR_EDIT = "/private/notizieconfoto/gestione.xhtml";
 
 	// --------------------------------------------------------
 

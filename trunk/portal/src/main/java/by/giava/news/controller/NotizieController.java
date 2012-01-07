@@ -27,11 +27,11 @@ public class NotizieController extends AbstractLazyController<Notizia> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/notizie/scheda-notizia.xhtml";
+	public static String VIEW = "/private/notizie/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/notizie/lista-notizie.xhtml";
+	public static String LIST = "/private/notizie/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/notizie/gestione-notizia.xhtml";
+	public static String NEW_OR_EDIT = "/private/notizie/gestione.xhtml";
 
 	// --------------------------------------------------------
 
@@ -54,7 +54,7 @@ public class NotizieController extends AbstractLazyController<Notizia> {
 		super.save();
 		operazioniLogController.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione notizia: " + getElement().getTitolo());
-		return VIEW;
+		return viewPage();
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class NotizieController extends AbstractLazyController<Notizia> {
 		operazioniLogController.save(OperazioniLog.DELETE,
 				JSFUtils.getUserName(), "eliminazione menu: "
 						+ getElement().getTitolo());
-		return LIST;
+		return listPage();
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class NotizieController extends AbstractLazyController<Notizia> {
 		operazioniLogController.save(OperazioniLog.MODIFY,
 				JSFUtils.getUserName(), "modifica notizia: "
 						+ getElement().getTitolo());
-		return VIEW;
+		return viewPage();
 	}
 
 	// // -----------------------------------------------------------

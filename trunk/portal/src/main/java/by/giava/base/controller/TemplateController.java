@@ -28,11 +28,11 @@ public class TemplateController extends AbstractLazyController<Template> {
 	@BackPage
 	public static final String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static final String VIEW = "/private/modelli/scheda-modello.xhtml";
+	public static final String VIEW = "/private/modelli/scheda.xhtml";
 	@ListPage
-	public static final String LIST = "/private/modelli/lista-modelli.xhtml";
+	public static final String LIST = "/private/modelli/lista.xhtml";
 	@EditPage
-	public static final String NEW_OR_EDIT = "/private/modelli/gestione-modello.xhtml";
+	public static final String NEW_OR_EDIT = "/private/modelli/gestione.xhtml";
 
 	// --------------------------------------------------------
 

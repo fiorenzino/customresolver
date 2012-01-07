@@ -1,5 +1,6 @@
 package by.giava.base.controller;
 
+import it.coopservice.commons2.controllers.AbstractController;
 
 import java.io.File;
 import java.io.Serializable;
@@ -21,6 +22,9 @@ import by.giava.base.model.attachment.UploadObject;
 @Named
 @SessionScoped
 public class FileHandler implements Serializable {
+
+	public static String GESTIONE = "/private/files/gestione.xhtml"
+			+ AbstractController.REDIRECT_PARAM;
 
 	private static final long serialVersionUID = 1L;
 
@@ -104,7 +108,7 @@ public class FileHandler implements Serializable {
 	public String caricaFile(int type) {
 		setFileType(type);
 		this.daCaricare = null;
-		return "/private/files/gestione-file.xhtml";
+		return GESTIONE;
 	}
 
 	public int getFileType() {

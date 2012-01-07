@@ -1,6 +1,6 @@
-<%@page import="by.giava.base.common.util.JSFUtils"%>
+<%@page import="it.coopservice.commons2.utils.JSFUtils"%>
 <%@page import="by.giava.pubblicazioni.model.XlsDoc"%>
-<%@page import="by.giava.pubblicazioni.controller.StampaPubblicazioniHandler"%>
+<%@page import="by.giava.pubblicazioni.controller.StampaPubblicazioniController"%>
 <%@page import="java.io.DataOutputStream"%>
 <%@page import="java.io.DataOutput"%>
 <%@page import="java.io.OutputStream"%>
@@ -9,8 +9,8 @@
 	
 <%
 	try {
-		StampaPubblicazioniHandler pubblicazioniHandler = JSFUtils
-				.getBean(StampaPubblicazioniHandler.class);
+		StampaPubblicazioniController pubblicazioniHandler = JSFUtils
+				.getBean(StampaPubblicazioniController.class);
 
 		ServletOutputStream outputStream = response.getOutputStream();
 		DataOutput dataOutput = new DataOutputStream(outputStream);

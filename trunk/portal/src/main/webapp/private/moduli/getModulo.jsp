@@ -1,7 +1,7 @@
-<%@page import="by.giava.base.common.util.JSFUtils"%>
+<%@page import="it.coopservice.commons2.utils.JSFUtils"%>
 
 <%@page import="by.giava.moduli.model.Modulo"%>
-<%@page import="by.giava.moduli.controller.ModuliHandler"%>
+<%@page import="by.giava.moduli.controller.ModuliController"%>
 <%@page import="java.io.DataOutputStream"%>
 <%@page import="java.io.DataOutput"%>
 
@@ -13,8 +13,8 @@
 		ServletOutputStream outputStream = response.getOutputStream();
 		DataOutput dataOutput = new DataOutputStream(outputStream);
 
-		ModuliHandler mh = (ModuliHandler) JSFUtils
-				.getBean(ModuliHandler.class);
+		ModuliController mh = (ModuliController) JSFUtils
+				.getBean(ModuliController.class);
 		Modulo m = null;
 		String id = request.getParameter("id");
 		if (id != null && id.length() > 0) {

@@ -1,2 +1,2 @@
-<jsp:forward page="gestione-configurazione.jsf"></jsp:forward>
+<jsp:forward page="gestione.jsf"></jsp:forward>
 

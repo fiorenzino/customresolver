@@ -17,25 +17,22 @@
 			<p:messages id="messages" />
 			<center>
 				<p:panel header="allinea Registro">
-
 					<h:panelGrid columns="2" style="width: 95%">
-
 						<h:outputLabel for="anno" value="Anno(*):" />
 						<h:inputText id="anno" cols="20" rows="5" required="true"
 							requiredMessage="Il parametro Anno e'obbligatorio!"
-							value="#{pubblicazioniHandler.anno}" style="width : 372px;" />
+							value="#{pubblicazioniController.anno}" style="width : 372px;" />
 					</h:panelGrid>
 				</p:panel>
 
 				<h:panelGrid columns="2">
-
-					<h:commandButton action="#{pubblicazioniHandler.allineaRegistro}"
+					<h:commandButton
+						action="#{pubblicazioniController.allineaRegistro}"
 						value="allineaRegistro" immediate="false" />
 
-
-
-					<h:commandButton id="reset" action="#{pubblicazioniHandler.reset}"
-						value="Annulla" immediate="true" />
+					<h:commandButton id="reset"
+						action="#{pubblicazioniController.reset}" value="Annulla"
+						immediate="true" />
 				</h:panelGrid>
 			</center>
 		</h:form>

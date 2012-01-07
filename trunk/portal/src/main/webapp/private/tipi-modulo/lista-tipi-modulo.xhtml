@@ -16,8 +16,8 @@
 			<center>
 				<p:panel header="Lista Tipi Modulo">
 					<p:dataTable rowIndexVar="rowIndex" var="t"
-						rows="#{tipiModuloHandler.pageSize}" paginator="true"
-						dynamic="true"  value="#{tipiModuloHandler.model}">
+						rows="#{tipiModuloController.pageSize}" paginator="true"
+						dynamic="true" value="#{tipiModuloController.model}">
 						<p:column width="50">
 							<center>
 								<h:outputText value="#{rowIndex+1} " />
@@ -36,7 +36,7 @@
 						</f:facet>
 							<center>
 								<h:commandLink value="modifica"
-									action="#{tipiModuloHandler.modElement(t.id)}" />
+									action="#{tipiModuloController.modElement}" />
 							</center>
 						</p:column>
 					</p:dataTable>
@@ -45,9 +45,9 @@
 				<br /> <br />
 
 				<h:panelGrid columns="2">
-					<h:commandButton action="#{tipiModuloHandler.addElement}"
+					<h:commandButton action="#{tipiModuloController.addElement}"
 						value="Aggiungi" />
-					<h:commandButton action="#{tipiModuloHandler.backPage}"
+					<h:commandButton action="#{tipiModuloController.backPage}"
 						value="Indietro" rendered="false" />
 				</h:panelGrid>
 			</center>
