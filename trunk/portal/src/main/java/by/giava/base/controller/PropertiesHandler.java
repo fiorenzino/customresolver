@@ -29,8 +29,8 @@ import by.giava.moduli.model.type.TipoModulo;
 import by.giava.moduli.repository.TipoModuloRepository;
 import by.giava.news.repository.TipoInformazioniRepository;
 import by.giava.notizie.model.type.TipoInformazione;
-import by.giava.notizie.repository.TipoPubblicazioneRepository;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
+import by.giava.pubblicazioni.repository.TipoPubblicazioneRepository;
 
 @Named
 @SessionScoped

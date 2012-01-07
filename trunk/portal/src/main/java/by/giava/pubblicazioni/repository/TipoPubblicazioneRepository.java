@@ -1,23 +1,18 @@
-package by.giava.notizie.repository;
+package by.giava.pubblicazioni.repository;
 
 import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import by.giava.attivita.model.type.TipoAttivita;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 
 @Named

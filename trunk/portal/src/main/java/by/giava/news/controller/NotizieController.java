@@ -14,8 +14,8 @@ import javax.inject.Named;
 
 import by.giava.base.controller.OperazioniLogController;
 import by.giava.base.model.OperazioniLog;
-import by.giava.news.repository.NotizieRepository;
 import by.giava.notizie.model.Notizia;
+import by.giava.notizie.repository.NotizieRepository;
 
 @Named
 @SessionScoped
