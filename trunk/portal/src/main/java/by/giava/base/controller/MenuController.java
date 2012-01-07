@@ -47,10 +47,10 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 	// --------------------------------------------------------
 
 	@Inject
+	@OwnRepository(MenuRepository.class)
 	MenuRepository menuRepository;
 
 	@Inject
-	@OwnRepository(PageRepository.class)
 	PageRepository pageRepository;
 
 	@Inject

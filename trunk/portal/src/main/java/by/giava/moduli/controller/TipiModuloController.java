@@ -28,11 +28,10 @@ public class TipiModuloController extends AbstractLazyController<TipoModulo> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/tipi-modulo/scheda-tipo-modulo.xhtml";
 	@ListPage
-	public static String LIST = "/private/tipi-modulo/lista-tipi-modulo.xhtml";
+	public static String LIST = "/private/tipi-modulo/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/tipi-modulo/gestione-tipi-modulo.xhtml";
+	public static String NEW_OR_EDIT = "/private/tipi-modulo/gestione.xhtml";
 
 	// --------------------------------------------------------
 
