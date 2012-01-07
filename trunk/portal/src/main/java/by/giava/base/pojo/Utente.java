@@ -1,4 +1,4 @@
-package by.giava.base.model;
+package by.giava.base.pojo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package by.giava.base.common.util;
+package by.giava.base.pojo;
 
 import java.io.InputStream;
 

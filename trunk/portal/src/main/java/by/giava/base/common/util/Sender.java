@@ -1,6 +1,7 @@
 package by.giava.base.common.util;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Properties;
 
@@ -20,7 +21,11 @@ import javax.mail.internet.MimeMultipart;
 
 import org.jboss.logging.Logger;
 
-public class Sender {
+import by.giava.base.pojo.Email2Send;
+import by.giava.base.pojo.MyMessage;
+import by.giava.base.pojo.Server;
+
+public class Sender implements Serializable {
 	static Logger logger = Logger.getLogger(Sender.class.getName());
 
 	public static String send(Email2Send email, Server server) throws Exception {

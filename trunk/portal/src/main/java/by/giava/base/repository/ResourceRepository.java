@@ -16,7 +16,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 
 import by.giava.base.common.util.FileUtils;
-import by.giava.base.model.Resource;
+import by.giava.base.pojo.Resource;
 
 @Named
 @Stateless

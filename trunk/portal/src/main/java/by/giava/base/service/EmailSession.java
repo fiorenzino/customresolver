@@ -1,6 +1,5 @@
 package by.giava.base.service;
 
-
 import java.io.File;
 import java.io.Serializable;
 
@@ -12,10 +11,10 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 
-import by.giava.base.common.util.Email2Send;
 import by.giava.base.common.util.Sender;
-import by.giava.base.common.util.Server;
 import by.giava.base.model.Configurazione;
+import by.giava.base.pojo.Email2Send;
+import by.giava.base.pojo.Server;
 
 @Named
 @Stateless

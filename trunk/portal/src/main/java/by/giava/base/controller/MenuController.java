@@ -19,10 +19,13 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.SelectableDataModel;
+
 import by.giava.base.model.MenuGroup;
 import by.giava.base.model.MenuItem;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Page;
+import by.giava.base.pojo.PageDataModel;
 import by.giava.base.repository.MenuRepository;
 import by.giava.base.repository.PageRepository;
 
@@ -63,7 +66,7 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 	MenuHolder menuHolder;
 
 	private DataModel<MenuItem> menuItemModel;
-	private List<Page> pagine;
+	private PageDataModel pagine;
 	private Page[] pagineSelezionate;
 
 	// ------------------------------------------------
@@ -126,7 +129,7 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 	// ----------------------------------------------------
 
 	public String step2() {
-		this.pagine = pageRepository.getAllList();
+		this.pagine = new PageDataModel(pageRepository.getAllList());
 		List<Page> pagineSelezionate = new ArrayList<Page>();
 		for (Page pagina : pagine) {
 			for (MenuItem menuItem : getElement().getLista()) {
@@ -163,11 +166,11 @@ public class MenuController extends AbstractLazyController<MenuGroup> {
 				new Page[] {});
 	}
 
-	public List<Page> getPagine() {
+	public PageDataModel getPagine() {
 		return pagine;
 	}
 
-	public void setPagine(List<Page> pagine) {
+	public void setPagine(PageDataModel pagine) {
 		this.pagine = pagine;
 	}
 

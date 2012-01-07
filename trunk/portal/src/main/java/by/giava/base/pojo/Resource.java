@@ -1,4 +1,4 @@
-package by.giava.base.model;
+package by.giava.base.pojo;
 
 import java.io.InputStream;
 import java.io.Serializable;
