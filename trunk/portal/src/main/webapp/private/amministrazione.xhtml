@@ -246,7 +246,7 @@
 				<p:tab title="Gestione Menu" style="width: 200px; float: left;"
 					rendered="#{menuController.clear and loginController.isInRole('menu') }">
 					<div style="height: 50px;">
-						<h:commandLink action="#{menuController.loadModel}"
+						<h:commandLink action="#{menuController.listPage}"
 							value="lista menu" />
 						<br />
 						<h:commandLink action="#{menuController.addElement}"
@@ -258,7 +258,7 @@
 					rendered="#{resourceController.clear and loginController.isInRole('risorse')}"
 					style="width: 200px; float: left;">
 					<div style="height: 50px;">
-						<h:commandLink action="#{resourceController.loadModel}"
+						<h:commandLink action="#{resourceController.listPage}"
 							value="lista delle risorse" />
 						<br />
 						<h:commandLink action="#{resourceController.addElement}"

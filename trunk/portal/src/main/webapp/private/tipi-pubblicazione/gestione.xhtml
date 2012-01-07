@@ -20,7 +20,7 @@
 					<h:panelGrid columns="2" style="width: 95%;">
 						<h:outputLabel for="nome" value="Tipo di Pubblicazione" />
 						<h:inputText id="nome" style="width: 65%;"
-							value="#{categoriaAttivitaController.element.nome}"
+							value="#{tipoPubblicazioneController.element.nome}"
 							required="true" />
 						<br />
 					</h:panelGrid>
@@ -28,17 +28,17 @@
 				<br /> <br />
 				<h:panelGrid columns="4">
 
-					<h:commandButton action="#{categoriaAttivitaController.save}"
+					<h:commandButton action="#{tipoPubblicazioneController.save}"
 						value="Salva" immediate="false"
-						rendered="#{not categoriaAttivitaController.editMode}" />
+						rendered="#{not tipoPubblicazioneController.editMode}" />
 
-					<h:commandButton action="#{categoriaAttivitaController.update}"
+					<h:commandButton action="#{tipoPubblicazioneController.update}"
 						value="Salva le modifiche" immediate="false"
-						rendered="#{categoriaAttivitaController.editMode}" />
+						rendered="#{tipoPubblicazioneController.editMode}" />
 
-					<h:commandButton action="#{categoriaAttivitaController.delete}"
+					<h:commandButton action="#{tipoPubblicazioneController.delete}"
 						value="Elimina" immediate="false"
-						rendered="#{categoriaAttivitaController.editMode}"
+						rendered="#{tipoPubblicazioneController.editMode}"
 						onclick="if (!confirm('Vuoi davvero eliminare?')) return false" />
 				</h:panelGrid>
 			</center>
