@@ -11,9 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.base.common.web.controller.UiRepeatInterface;
-import by.giava.news.repository.NotizieRepository;
 import by.giava.notizie.model.Notizia;
 import by.giava.notizie.model.type.TipoInformazione;
+import by.giava.notizie.repository.NotizieRepository;
 
 @Named
 @RequestScoped

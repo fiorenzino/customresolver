@@ -12,10 +12,10 @@ import javax.inject.Named;
 import by.giava.base.common.annotation.HttpParam;
 import by.giava.base.common.web.controller.AbstractRequestController;
 import by.giava.base.controller.request.ParamsHandler;
-import by.giava.notizie.repository.TipoPubblicazioneRepository;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 import by.giava.pubblicazioni.repository.PubblicazioniRepository;
+import by.giava.pubblicazioni.repository.TipoPubblicazioneRepository;
 
 @Named
 @RequestScoped
@@ -83,8 +83,7 @@ public class ArchivioPubblicazioniRequestController extends
 	 */
 	public List<String> getTipoOptions() {
 		List<String> options = new ArrayList<String>();
-		for (TipoPubblicazione tipo : tipoPubblicazioneRepository
-				.getAllTipoPubblicazione()) {
+		for (TipoPubblicazione tipo : tipoPubblicazioneRepository.getAllList()) {
 			if (tipo.getNome().contains("Matrimonio"))
 				continue;
 			options.add("<option value=\""

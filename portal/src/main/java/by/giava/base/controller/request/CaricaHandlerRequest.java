@@ -21,14 +21,14 @@ import by.giava.moduli.model.Modulo;
 import by.giava.moduli.model.type.TipoModulo;
 import by.giava.moduli.repository.ModuliRepository;
 import by.giava.moduli.repository.TipoModuloRepository;
-import by.giava.news.repository.NotizieRepository;
 import by.giava.news.repository.TipoInformazioniRepository;
 import by.giava.notizie.model.Notizia;
 import by.giava.notizie.model.type.TipoInformazione;
-import by.giava.notizie.repository.TipoPubblicazioneRepository;
+import by.giava.notizie.repository.NotizieRepository;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 import by.giava.pubblicazioni.repository.PubblicazioniRepository;
+import by.giava.pubblicazioni.repository.TipoPubblicazioneRepository;
 
 @Named
 @RequestScoped
