@@ -1,4 +1,4 @@
-package by.giava.news.controller;
+package by.giava.pubblicazioni.controller;
 
 import it.coopservice.commons2.annotations.BackPage;
 import it.coopservice.commons2.annotations.EditPage;
@@ -12,35 +12,34 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import by.giava.attivita.model.type.CategoriaAttivita;
 import by.giava.base.controller.OperazioniLogController;
 import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
-import by.giava.news.repository.TipoInformazioniRepository;
-import by.giava.notizie.model.type.TipoInformazione;
+import by.giava.pubblicazioni.model.type.TipoPubblicazione;
+import by.giava.pubblicazioni.repository.TipoPubblicazioneRepository;
 
 @Named
 @SessionScoped
-public class TipoInformazioniController extends
-		AbstractLazyController<TipoInformazione> {
+public class TipoPubblicazioneController extends
+		AbstractLazyController<TipoPubblicazione> {
+
+	// --------------------------------------------------------
+	@BackPage
+	public static String BACK = "/private/amministrazione.xhtml";
+	@ListPage
+	@ViewPage
+	public static String LIST = "/private/tipi-pubblicazione/lista.xhtml";
+	@EditPage
+	public static String NEW_OR_EDIT = "/private/tipi-pubblicazione/gestione.xhtml";
+
+	// --------------------------------------------------------
 
 	private static final long serialVersionUID = 1L;
 
-	// --------------------------------------------------------
-
-	@BackPage
-	public static String BACK = "/private/amministrazione.xhtml";
-	@ViewPage
-	public static String VIEW = "/private/tipi-informazione/scheda.xhtml";
-	@ListPage
-	public static String LIST = "/private/tipi-informazione/lista.xhtml";
-	@EditPage
-	public static String NEW_OR_EDIT = "/private/tipi-informazione/gestione.xhtml";
-
-	// --------------------------------------------------------
-
 	@Inject
-	@OwnRepository(TipoInformazioniRepository.class)
-	TipoInformazioniRepository tipoInformazioniRepository;
+	@OwnRepository(TipoPubblicazioneRepository.class)
+	TipoPubblicazioneRepository tipoPubblicazioneRepository;
 
 	@Inject
 	PropertiesHandler propertiesHandler;
@@ -48,47 +47,27 @@ public class TipoInformazioniController extends
 	@Inject
 	OperazioniLogController operazioniLogController;
 
-	// ------------------------------------------------
-
-	/**
-	 * Obbligatoria l'invocazione 'appropriata' di questo super construttore
-	 * protetto da parte delle sottoclassi
-	 */
-	public TipoInformazioniController() {
-
-	}
-
-	@Override
-	public String reset() {
-		propertiesHandler.setTipoInformazioneItems(null);
-		return super.reset();
-	}
-
-	// ------------------------------------------------
 	@Override
 	public String save() {
-		super.save();
 		operazioniLogController.save(OperazioniLog.NEW, JSFUtils.getUserName(),
-				"creazione nuovo tipo informazione: " + getElement().getNome());
-		return viewPage();
+				"creazione tipo pubblicazione': " + getElement().getNome());
+		return super.save();
 	}
 
 	@Override
 	public String update() {
-		super.update();
 		operazioniLogController.save(OperazioniLog.MODIFY,
-				JSFUtils.getUserName(), "modifica tipo informazione: "
+				JSFUtils.getUserName(), "modifica tipo pubblicazione': "
 						+ getElement().getNome());
-		return viewPage();
+		return super.update();
 	}
 
 	@Override
 	public String delete() {
-		super.delete();
 		operazioniLogController.save(OperazioniLog.DELETE,
-				JSFUtils.getUserName(), "eliminazione tipo informazione: "
+				JSFUtils.getUserName(), "eliminazione tipo pubblicazione': "
 						+ getElement().getNome());
-		return listPage();
+		return super.delete();
 	}
 
 }

@@ -1,5 +1,7 @@
 package by.giava.news.controller.request;
 
+import it.coopservice.commons2.annotations.OwnRepository;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,6 +35,7 @@ public class NewsRequestController extends AbstractRequestController<Notizia> {
 	private Immagine evidenzaImmagine;
 
 	@Inject
+	@OwnRepository(NewNotizieRepository.class)
 	NewNotizieRepository newNotizieRepository;
 
 	@Inject
