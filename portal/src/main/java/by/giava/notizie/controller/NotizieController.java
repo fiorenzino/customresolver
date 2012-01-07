@@ -1,4 +1,4 @@
-package by.giava.news.controller;
+package by.giava.notizie.controller;
 
 import it.coopservice.commons2.annotations.BackPage;
 import it.coopservice.commons2.annotations.EditPage;
