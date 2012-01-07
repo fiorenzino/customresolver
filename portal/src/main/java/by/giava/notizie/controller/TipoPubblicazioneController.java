@@ -17,20 +17,21 @@ import by.giava.base.controller.OperazioniLogController;
 import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
 import by.giava.notizie.repository.TipoPubblicazioneRepository;
+import by.giava.pubblicazioni.model.type.TipoPubblicazione;
 
 @Named
 @SessionScoped
 public class TipoPubblicazioneController extends
-		AbstractLazyController<CategoriaAttivita> {
+		AbstractLazyController<TipoPubblicazione> {
 
 	// --------------------------------------------------------
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ListPage
 	@ViewPage
-	public static String LIST = "/private/tipi-pubblicazione/lista-tipi-pubblicazione.xhtml";
+	public static String LIST = "/private/tipi-pubblicazione/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/tipi-pubblicazione/gestione-tipi-pubblicazione.xhtml";
+	public static String NEW_OR_EDIT = "/private/tipi-pubblicazione/gestione.xhtml";
 
 	// --------------------------------------------------------
 
