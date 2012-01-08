@@ -25,10 +25,10 @@
 
 		</tr>
 		<flw:uiRepeatPagedWithParamsTab id="pubblicazioni" label="#{label}"
-			filtro="#{pubblicazioniControllerRequest.filtro}" tipo="#{tipo}"
-			currentpage="#{pubblicazioniControllerRequest.currentpage}"
+			filtro="#{pubblicazioniRequestController.filtro}" tipo="#{tipo}"
+			currentpage="#{pubblicazioniRequestController.currentpage}"
 			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-			handler="#{pubblicazioniControllerRequest}" width="100%" colspan="7">
+			handler="#{pubblicazioniRequestController}" width="100%" colspan="7">
 
 			<tr>
 				<td class="cellaprima">n. #{var.progressivoRegistro}<br />del

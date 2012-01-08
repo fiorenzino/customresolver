@@ -9,10 +9,10 @@
 		<c:set var="link" value="type" />
 	</c:if>
 	<flw:uiRepeatPagedWithParams id="attivita" label="#{label}"
-		filtro="#{attivitaControllerRequest.filtro}"
-		currentpage="#{newsHandlerRequest.currentpage}" tipo="#{tipo}"
+		filtro="#{attivitaRequestController.filtro}"
+		currentpage="#{attivitaRequestController.currentpage}" tipo="#{tipo}"
 		selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-		handler="#{attivitaControllerRequest}" width="100%" link="#{link}">
+		handler="#{attivitaRequestController}" width="100%" link="#{link}">
 
 		<div class="#{cellaprimaClass}"><a
 			href="#{request.contextPath}/pagine/turismo/#{link}/leggiAttivita?id=#{var.id}"

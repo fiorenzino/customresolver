@@ -9,9 +9,9 @@
 
 	<flw:uiRepeatPagedWithParams id="news" label="#{label}"
 		filtro="#{newsHandlerRequest.filtro}"
-		currentpage="#{newsHandlerRequest.currentpage}" tipo="#{tipo}"
+		currentpage="#{newsRequestController.currentpage}" tipo="#{tipo}"
 		selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-		handler="#{newsHandlerRequest}" width="100%">
+		handler="#{newsRequestController}" width="100%">
 
 		<div class="#{cellaprimaClass}"><a
 			href="#{request.contextPath}/pagine/#{empty contesto ? 'comune/sala-stampa' : contesto}/leggiNews?id=#{var.id}"
