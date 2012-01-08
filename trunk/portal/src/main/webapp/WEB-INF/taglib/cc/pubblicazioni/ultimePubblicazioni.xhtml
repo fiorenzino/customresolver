@@ -10,7 +10,7 @@
 	parametri: selectedStyleClass, selectedClass, label, showpages, pagesize, cellaprimaClass
 	 -->
 	<div id="BoxNews"><ui:repeat var="pubblicazione"
-		value="#{pubblicazioniControllerRequest.ultimePubblicazioni('','',0,10)}">
+		value="#{pubblicazioniRequestController.ultimePubblicazioni('','',0,10)}">
 
 		<p><a class="arrowLink"
 			href="#{request.contextPath}/pagine/comune/albo-pretorio/leggiPubblicazione?id=#{pubblicazione.id}"

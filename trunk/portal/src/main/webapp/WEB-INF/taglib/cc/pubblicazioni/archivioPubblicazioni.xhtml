@@ -25,10 +25,11 @@
 
 		</tr>
 		<flw:uiRepeatPagedWithParamsTab id="pubblicazioni" label="#{label}"
-			filtro="#{archiviopubblicazioniControllerRequest.filtro}" tipo="#{tipo}"
-			currentpage="#{archiviopubblicazioniControllerRequest.currentpage}"
+			filtro="#{archivioPubblicazioniRequestController.filtro}"
+			tipo="#{tipo}"
+			currentpage="#{archivioPubblicazioniRequestController.currentpage}"
 			selectedStyleClass="#{selectedStyleClass}" styleClass="#{styleClass}"
-			handler="#{archiviopubblicazioniControllerRequest}" width="100%"
+			handler="#{archivioPubblicazioniRequestController}" width="100%"
 			colspan="7">
 
 			<tr>
@@ -51,12 +52,12 @@
 						style="font-weight: bold;" /><br /> <ui:repeat var="docx"
 						value="#{var.documenti}" rendered="#{var.docSize >0}">
 						<h:outputLink value="#{request.contextPath}/docs/#{docx.filename}"
-							alt="#{docx.filename}" title="Scarica documento: #{docx.filename}"
-							target="_blank" class="arrowLink">#{docx.filename}
+							alt="#{docx.filename}"
+							title="Scarica documento: #{docx.filename}" target="_blank"
+							class="arrowLink">#{docx.filename}
 						</h:outputLink>
 						<br />
-					</ui:repeat>
-				</td>
+					</ui:repeat></td>
 				<td>Dal <h:outputText value="#{var.dal}">
 						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Rome" />
 					</h:outputText><br /> al <h:outputText value="#{var.al}">
@@ -67,7 +68,8 @@
 			</tr>
 			<tr>
 				<td colspan="7">
-					<hr /></td>
+					<hr />
+				</td>
 			</tr>
 
 		</flw:uiRepeatPagedWithParamsTab>
