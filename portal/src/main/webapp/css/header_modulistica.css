@@ -1,0 +1,84 @@
+
+/*HEADER HOME PAGE C5*/
+
+#HPheader div.headerBottom{padding:0; margin:0; height:auto !important; height:112px; min-height:112px; background:url('/images/bg_hp_header.gif') top left repeat-x;}
+#HPheader div.headerBottomLeft{float:left; padding:0; margin:0; width:25.6%; height:auto !important; height:112px; min-height:112px; text-align:right;}
+#HPheader div.headerBottomLeft img{padding-top:17px;}
+
+
+
+
+/* Header HP C5 con News */
+#HPheader div.headerBottomRightIn div.R2{padding:0 0 0 440px; line-height:1em; vertical-align:middle; height:auto !important; min-height:48px; height:48px;}
+#HPheader div.headerBottomRightIn div.R2 p{color:#B30002; font-weight:bold; padding:2.3% 0 0.3% 0;}
+#HPheader div.headerBottomRightIn div.R2 a{font-weight:normal;}
+#HPheader div.headerBottomRightIn div.R3{padding:4px 0 0 436px; height:auto !important; min-height:20px; height:20px;}
+#HPheader div.headerBottomRightIn div.R3 span{background:url('/images/arrowLink.gif') left center no-repeat; margin-left:8%; padding-left:9px;}
+#HPheaderBottom div.headerBottomLeft{padding:12px 0 0 0; margin:0 0 0 0; height:104px; text-align:right;}
+#HPheaderBottom div.headerBottomLeft p{}
+#HPheaderBottom div.headerBottomLeft a{background-color:transparent; display:block; height:104px;}
+#HPheaderBottom  div.headerBottomLeft a:hover{background-color:transparent; display:block; text-decoration:none;}
+
+
+
+/*COLORE ROSSO - HEADER HP GRUPPO, HP LAVORA CON NOI  &  HEADER PAGINE INTERNE*/
+#headerGruppo{background:url('/images/sx_modulistica.jpg') bottom left repeat-x;	height:auto !important; padding:0; margin:0; min-height:145px; height:145px; font-size:.7em;}
+#header{background:url('/images/sx_modulistica.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0;	min-height:115px; height:115px; font-size:.7em;}
+
+#headerGruppo div.headerTop,
+#header div.headerTop{padding:12px 25px 0 25px;}
+#headerGruppo div.headerTop div.headerLeftNav,
+#header div.headerTop div.headerLeftNav{width:36%; padding:0; margin:0; height:auto !important; min-height:10px; height:10px; float:left;}
+#headerGruppo div.headerTop div.headerRightNav,
+#header div.headerTop div.headerRightNav{margin-left:37%;}
+#headerGruppo div.ricerca,
+#header div.ricerca{float:right; margin-top:-2px;}
+#headerGruppo div.ricerca p,
+#header div.ricerca p{padding:0; margin:0;}
+#headerGruppo div.headerRightNavLeft,
+#header div.headerRightNavLeft{float:right; margin-right:10px; white-space:nowrap;}
+#headerGruppo div.headerBottom{padding:0; margin:0; height:auto !important; min-height:210px; height:210px;}
+#header div.headerBottom{padding:0;	margin:0; height:auto !important; min-height:82px; height:82px;}
+#headerGruppo div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:210px; text-align:right;}
+#headerGruppo div.headerBottomRight img{margin-top:20px;}
+#header div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:82px; text-align:right;}
+
+#headerGruppo div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('/images/dx_modulistica.jpg') bottom right repeat-x;}
+#header div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('/images/sx_modulistica.jpg') bottom right repeat-x;}
+#headerGruppo div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('/images/bg_header_gruppo.jpg') bottom left no-repeat;}
+#header div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('/images/sx_modulistica.jpg') bottom left no-repeat;}
+
+
+/*COLORE ROSSO - VERSIONE TESTO EDITABILE */
+#header div.headerBottomLeftIn div{padding:46px 0 0 100px; color:#FFF; font-weight:bold; font-size:1.2em;}
+#header div.headerBottomLeftIn div a{color:#FFF;  text-decoration:none;}
+#header div.headerBottomLeftIn div a:hover{color:#FFF; text-decoration:none;}
+
+
+/*COLORE VERDE - HEADER HP GRUPPO, */
+#headerGruppoVerde div.headerBottom{padding:0; margin:0; height:auto !important; min-height:210px; height:210px;}
+#headerGruppoVerde div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:122px; text-align:right;}
+#headerGruppoVerde div.headerBottomRight img{margin-top:20px;}
+#headerGruppoVerde div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:210px; background:url('/images/bg_header_dx_verde.gif') bottom right repeat-x;}
+#headerGruppoVerde div.headerBottomLeftIn{padding:0; margin:0; height:210px; background:url('/images/bg_header_Fercredit.jpg') bottom left no-repeat;}
+
+
+/*COLORE VERDE - HEADER PAGINE INTERNE*/
+#headerVerde div.headerBottom{padding:0;	margin:0; height:auto !important; min-height:82px; height:82px;}
+#headerVerde div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:82px; text-align:right;}
+#headerVerde div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:82px; background:url('/images/bg_header_dx_verde.gif') bottom right repeat-x;}
+#headerVerde div.headerBottomLeftIn{padding:0; margin:0; height:82px; background:url('/images/bg_header_br_verde.gif') bottom left no-repeat;}
+
+/*COLORE VERDE - VERSIONE TESTO EDITABILE */
+#headerVerde div.headerBottomLeftIn div{padding:46px 0 0 100px; color:#FFF; font-weight:bold; font-size:1.2em;}
+#headerVerde div.headerBottomLeftIn div a{color:#FFF;  text-decoration:none;}
+#headerVerde div.headerBottomLeftIn div a:hover{color:#FFF; text-decoration:none;}
+
+/*HEADER STAMPA*/
+#headerStampa{background:url('/images/bg_header.jpg') bottom left repeat-x; height:auto !important; padding:0; margin:0; min-height:80px; height:80px; font-size:.7em;}
+#headerStampa div.headerBottom{padding:0; margin:0;	height:auto !important; min-height:80px; height:80px;}
+#headerStampa div.headerBottomRight{float:left; padding:0; margin:0; width:25.6%; height:80px; text-align:right;}
+#headerStampa div.headerBottomLeft{padding:0; margin:0 0 0 1.2%; height:80px; background:url('/images/dx_modulistica.jpg') bottom right repeat-x;}
+#headerStampa div.headerBottomLeftIn{padding:0; margin:0; height:80px; background:url('/images/bg_header_br.gif') bottom left no-repeat;}
+
+
