@@ -2,8 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="/WEB-INF/layout/t.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/layout/t.xhtml">
 
 	<ui:define name="title">
 		<h:outputText value="Gestione Pagina" />
@@ -46,19 +45,19 @@
 					<h:panelGroup id="template">
 						<h:selectOneMenu
 							rendered="#{pageController.element.template.template.statico}"
-							value="#{pageController.element.template.template.id}" required="true"
-							style="width: 100%">
+							value="#{pageController.element.template.template.id}"
+							required="true" style="width: 100%">
 							<f:selectItems value="#{templateStaticiItems}" />
-							<p:ajax actionListener="#{pageController.cambioTemplate}"
-								update="campi" event="change" process="@this" />
+							<p:ajax listener="#{pageController.cambioTemplate}"
+								update="campi" />
 						</h:selectOneMenu>
 						<h:selectOneMenu
 							rendered="#{not pageController.element.template.template.statico}"
-							value="#{pageController.element.template.template.id}" required="true"
-							style="width: 100%">
+							value="#{pageController.element.template.template.id}"
+							required="true" style="width: 100%">
 							<f:selectItems value="#{templateDinamiciItems}" />
-							<p:ajax actionListener="#{pageController.cambioTemplate}"
-								update="campi" event="change" process="@this" />
+							<p:ajax listener="#{pageController.cambioTemplate}"
+								update="campi" />
 						</h:selectOneMenu>
 					</h:panelGroup>
 
@@ -125,7 +124,8 @@
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup style="width: 100%;"
 								rendered="#{not empty pageController.element.template.template.header_stop and pageController.element.template.template.statico}">
-								<h:inputTextarea value="#{pageController.element.template.header}"
+								<h:inputTextarea
+									value="#{pageController.element.template.header}"
 									id="pEditorC1" styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
@@ -201,7 +201,8 @@
 								style="color: black; height: 500px; width: 100%;" escape="false" />
 							<h:panelGroup
 								rendered="#{not empty pageController.element.template.template.footer_stop and pageController.element.template.template.statico}">
-								<h:inputTextarea value="#{pageController.element.template.footer}"
+								<h:inputTextarea
+									value="#{pageController.element.template.footer}"
 									styleClass="tinyMceTa" />
 							</h:panelGroup>
 						</h:panelGroup>
@@ -235,7 +236,8 @@
 						action="#{pageController.salvaPerAnteprimaRisultato}" />
 
 					<h:commandButton id="save2" action="#{pageController.save}"
-						value="Salva ed esci" rendered="#{empty pageController.element.id}" />
+						value="Salva ed esci"
+						rendered="#{empty pageController.element.id}" />
 
 					<h:commandButton id="up1" action="#{pageController.update}"
 						value="Salva le modifiche ed esci"
