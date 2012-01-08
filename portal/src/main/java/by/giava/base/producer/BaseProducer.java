@@ -174,7 +174,7 @@ public class BaseProducer implements Serializable {
 		return categorieAttivitaItems;
 	}
 
-	public void cambioTipoRicerca(ActionEvent event) {
+	public void cambioTipoRicerca() {
 		Long tipo = attivitaController.getSearch().getObj().getCategoria()
 				.getTipoAttivita().getId();
 		if (tipo != null)

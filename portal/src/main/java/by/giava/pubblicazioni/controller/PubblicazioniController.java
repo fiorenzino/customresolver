@@ -21,10 +21,10 @@ import org.primefaces.event.FileUploadEvent;
 
 import by.giava.base.common.util.FileUtils;
 import by.giava.base.controller.OperazioniLogController;
-import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.controller.request.ParamsHandler;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.attachment.Documento;
+import by.giava.base.producer.PropertiesHandler;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.repository.PubblicazioniRepository;
 import by.giava.pubblicazioni.repository.RegistroPubblicazioniRepository;

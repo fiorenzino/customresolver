@@ -17,7 +17,9 @@
 			<center>
 				<p:panel header="Lista Tipi Attivita'">
 
-					<p:dataTable var="tipo" value="#{tipoAttivitaController.model}">
+					<p:dataTable var="tipo" value="#{tipoAttivitaController.model}"
+						rowIndexVar="rowIndex" paginator="true" dynamic="true"
+						rows="#{tipoAttivitaController.pageSize}">
 						<p:column width="50">
 							<f:facet name="header">id</f:facet>
 							<h:outputText value="#{tipo.id}" />
@@ -25,7 +27,7 @@
 
 						<p:column width="400">
 							<f:facet name="header">tipo</f:facet>
-							<h:outputText value="#{tipo.tipo}" />
+							<h:outputText value="#{tipo.nome}" />
 						</p:column>
 
 						<p:column width="200">

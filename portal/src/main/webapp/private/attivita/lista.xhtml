@@ -29,8 +29,8 @@
 							value="#{attivitaController.search.obj.categoria.tipoAttivita.id}"
 							style="width: 100%;">
 							<f:selectItems value="#{tipiAttivitaItems}" />
-							<p:ajax actionListener="#{baseProducer.cambioTiposearch}"
-								update="categoria" event="change" process="@this" />
+							<p:ajax listener="#{baseProducer.cambioTipoRicerca}"
+								update="categoria" />
 						</h:selectOneMenu>
 
 						<h:outputLabel id="categoriaLabel" for="categoria"

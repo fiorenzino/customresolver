@@ -16,8 +16,8 @@ import javax.inject.Named;
 
 import by.giava.base.common.util.XlsCreator;
 import by.giava.base.controller.OperazioniLogController;
-import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.controller.request.ParamsHandler;
+import by.giava.base.producer.PropertiesHandler;
 import by.giava.pubblicazioni.model.Pubblicazione;
 import by.giava.pubblicazioni.model.XlsDoc;
 import by.giava.pubblicazioni.repository.PubblicazioniRepository;

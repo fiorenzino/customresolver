@@ -17,7 +17,9 @@
 			<center>
 				<p:panel header="Lista Categorie Attivita'">
 					<p:dataTable var="categoria"
-						value="#{categoriaAttivitaController.model}">
+						value="#{categoriaAttivitaController.model}"
+						rowIndexVar="rowIndex" paginator="true" dynamic="true"
+						rows="#{categoriaAttivitaController.pageSize}">
 						<p:column width="50">
 							<f:facet name="header">id</f:facet>
 							<h:outputText value="#{categoria.id}" />
@@ -25,12 +27,12 @@
 
 						<p:column width="200">
 							<f:facet name="header">categoria</f:facet>
-							<h:outputText value="#{categoria.categoria}" />
+							<h:outputText value="#{categoria.nome}" />
 						</p:column>
 
 						<p:column width="200">
 							<f:facet name="header">tipo</f:facet>
-							<h:outputText value="#{categoria.tipoAttivita.tipo}" />
+							<h:outputText value="#{categoria.tipoAttivita.nome}" />
 						</p:column>
 
 						<p:column width="200">

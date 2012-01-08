@@ -3,9 +3,7 @@ package by.giava.attivita.repository;
 import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ejb.LocalBean;

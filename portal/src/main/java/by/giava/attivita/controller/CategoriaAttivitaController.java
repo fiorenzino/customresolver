@@ -14,8 +14,8 @@ import javax.inject.Named;
 import by.giava.attivita.model.type.CategoriaAttivita;
 import by.giava.attivita.repository.CategorieAttivitaRepository;
 import by.giava.base.controller.OperazioniLogController;
-import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
+import by.giava.base.producer.PropertiesHandler;
 
 @Named
 @SessionScoped
