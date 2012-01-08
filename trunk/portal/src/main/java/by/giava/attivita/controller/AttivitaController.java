@@ -19,10 +19,10 @@ import by.giava.attivita.repository.AttivitaRepository;
 import by.giava.attivita.repository.CategorieAttivitaRepository;
 import by.giava.base.common.util.FileUtils;
 import by.giava.base.controller.OperazioniLogController;
-import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.attachment.Immagine;
 import by.giava.base.pojo.Resource;
+import by.giava.base.producer.PropertiesHandler;
 import by.giava.base.repository.ResourceRepository;
 
 @Named

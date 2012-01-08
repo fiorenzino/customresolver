@@ -37,7 +37,7 @@ public class TipoAttivitaRepository extends AbstractRepository<TipoAttivita> {
 	@Override
 	protected String getDefaultOrderBy() {
 		// TODO Auto-generated method stub
-		return "tipo asc";
+		return "nome asc";
 	}
 
 	@Override

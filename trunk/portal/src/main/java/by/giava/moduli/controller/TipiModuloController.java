@@ -13,8 +13,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import by.giava.base.controller.OperazioniLogController;
-import by.giava.base.controller.PropertiesHandler;
 import by.giava.base.model.OperazioniLog;
+import by.giava.base.producer.PropertiesHandler;
 import by.giava.moduli.model.type.TipoModulo;
 import by.giava.moduli.repository.TipoModuloRepository;
 

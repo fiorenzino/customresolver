@@ -1,4 +1,4 @@
-package by.giava.base.controller;
+package by.giava.base.producer;
 
 import it.coopservice.commons2.domain.Search;
 import it.coopservice.commons2.repository.AbstractRepository;
@@ -161,49 +161,6 @@ public class PropertiesHandler implements Serializable {
 			}
 		}
 		return categorieAttivitaItems;
-	}
-
-	public void cambioTipo(ActionEvent event) {
-		Long tipo = attivitaController.getElement().getCategoria()
-				.getTipoAttivita().getId();
-		cambioTipoDirect(tipo);
-	}
-
-	public void cambioTipoRicerca(ActionEvent event) {
-		Long tipo = attivitaController.getSearch().getObj().getCategoria()
-				.getTipoAttivita().getId();
-		if (tipo != null)
-			cambioTipoDirect(tipo);
-		else {
-
-			categorieAttivitaItems = new SelectItem[1];
-			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
-		}
-	}
-
-	public void cambioTipoDirect(Long tipo) {
-		logger.info("getCategorieByTipoItems: Tipo: " + tipo);
-		CategoriaAttivita categoriaAttivita = new CategoriaAttivita();
-		categoriaAttivita.getTipoAttivita().setId(new Long(tipo));
-		Search<CategoriaAttivita> search = new Search<CategoriaAttivita>(
-				categoriaAttivita);
-		List<CategoriaAttivita> categorie = categorieAttivitaRepository
-				.getList(search, 0, 0);
-		if (categorie != null && categorie.size() > 0) {
-			categorieAttivitaItems = new SelectItem[categorie.size() + 1];
-			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
-			int i = 1;
-			for (CategoriaAttivita c : categorie) {
-				categorieAttivitaItems[i] = new SelectItem(c.getId(),
-						c.getNome());
-				i++;
-
-			}
-		} else {
-			categorieAttivitaItems = new SelectItem[1];
-			categorieAttivitaItems[0] = new SelectItem(null, "categoria");
-		}
-
 	}
 
 	public SelectItem[] getCategorieByTipoItems() {

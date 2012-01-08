@@ -21,6 +21,7 @@ import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.OperazioniLog;
 import by.giava.base.model.Page;
 import by.giava.base.model.Template;
+import by.giava.base.producer.PropertiesHandler;
 import by.giava.base.repository.PageRepository;
 import by.giava.base.repository.TemplateRepository;
 
@@ -34,11 +35,11 @@ public class PageController extends AbstractLazyController<Page> {
 	@BackPage
 	public static String BACK = "/private/amministrazione.xhtml";
 	@ViewPage
-	public static String VIEW = "/private/pagine/scheda-pagina.xhtml";
+	public static String VIEW = "/private/pagine/scheda.xhtml";
 	@ListPage
-	public static String LIST = "/private/pagine/lista-pagine.xhtml";
+	public static String LIST = "/private/pagine/lista.xhtml";
 	@EditPage
-	public static String NEW_OR_EDIT = "/private/pagine/gestione-pagina.xhtml";
+	public static String NEW_OR_EDIT = "/private/pagine/gestione.xhtml";
 
 	// ------------------------------------------------
 

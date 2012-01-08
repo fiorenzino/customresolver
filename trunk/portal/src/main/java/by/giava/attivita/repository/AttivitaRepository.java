@@ -43,11 +43,6 @@ public class AttivitaRepository extends AbstractRepository<Attivita> {
 	}
 
 	@Override
-	protected Class<Attivita> getEntityType() {
-		return Attivita.class;
-	}
-
-	@Override
 	protected Attivita prePersist(Attivita attivita) {
 		String idTitle = PageUtils.createPageId(attivita.getNome());
 		String idFinal = testId(idTitle);
