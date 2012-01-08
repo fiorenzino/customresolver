@@ -1,6 +1,1 @@
-
-<%
-	String redirectURL = getServletContext().getContextPath()
-			+ "/private/tipi-informazione/lista-tipi-informazione.jsf";
-	response.sendRedirect(redirectURL);
-%>
+<jsp:forward page="lista.jsf"></jsp:forward>
