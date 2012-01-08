@@ -54,8 +54,7 @@ public class BaseProducer implements Serializable {
 	@Inject
 	private PageRepository pageRepository;
 
-	@Inject
-	private TipoInformazioniRepository tipoInformazioniRepository;
+	
 
 	@Inject
 	private TipoModuloRepository tipoModuloRepository;
@@ -327,16 +326,6 @@ public class BaseProducer implements Serializable {
 	// ==============================================================================
 	// ==============================================================================
 
-	public SelectItem[] getTipoInformazioneItems() {
-		Search<TipoInformazione> ricerca = new Search<TipoInformazione>(
-				TipoInformazione.class);
-		return checkItems(ricerca, tipoInformazioniRepository, "id", "nome",
-				"nessun tipo disponibile", "seleziona tipo...");
-	}
-
-	public void setTipoInformazioneItems(SelectItem[] tipiItems) {
-		this.items.put(TipoInformazione.class, tipiItems);
-	}
 
 	public SelectItem[] getPageItems() {
 		Search<Page> ricerca = new Search<Page>(Page.class);

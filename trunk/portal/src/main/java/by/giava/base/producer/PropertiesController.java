@@ -18,6 +18,8 @@ import javax.inject.Named;
 
 import by.giava.base.model.Template;
 import by.giava.base.repository.TemplateRepository;
+import by.giava.news.repository.TipoInformazioniRepository;
+import by.giava.notizie.model.type.TipoInformazione;
 
 @Named
 @SessionScoped
@@ -31,6 +33,9 @@ public class PropertiesController implements Serializable {
 
 	@Inject
 	TemplateRepository templateRepository;
+
+	@Inject
+	private TipoInformazioniRepository tipoInformazioniRepository;
 
 	@PostConstruct
 	public void reset() {
@@ -108,6 +113,15 @@ public class PropertiesController implements Serializable {
 			staticoDinamicoItems[2] = new SelectItem(false, "dinamico");
 		}
 		return staticoDinamicoItems;
+	}
+
+	@Produces
+	@Named
+	public SelectItem[] getTipoInformazioneItems() {
+		Search<TipoInformazione> ricerca = new Search<TipoInformazione>(
+				TipoInformazione.class);
+		return JSFUtils.setupItems(ricerca, tipoInformazioniRepository, "id",
+				"nome", "nessun tipo disponibile", "seleziona tipo...");
 	}
 
 }
