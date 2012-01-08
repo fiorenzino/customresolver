@@ -47,7 +47,8 @@ public class PageRepository extends AbstractRepository<Page> {
 		// closeHtmlTags(page);
 		String idTitle = PageUtils.createPageId(page.getTitle());
 		String idFinal = testId(idTitle);
-		Template template = templateRepository.find(page.getTemplate().getId());
+		Template template = templateRepository.find(page.getTemplate()
+				.getTemplate().getId());
 		page.getTemplate().setTemplate(template);
 		page.setId(idFinal);
 		return page;
@@ -55,7 +56,8 @@ public class PageRepository extends AbstractRepository<Page> {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	protected Page preUpdate(Page page) {
-		Template template = templateRepository.find(page.getTemplate().getId());
+		Template template = templateRepository.find(page.getTemplate()
+				.getTemplate().getId());
 		page.getTemplate().setTemplate(template);
 		return page;
 	}

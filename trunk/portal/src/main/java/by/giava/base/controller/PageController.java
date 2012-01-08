@@ -11,11 +11,8 @@ import it.coopservice.commons2.utils.JSFUtils;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.jboss.logging.Logger;
 
 import by.giava.base.controller.util.PageUtils;
 import by.giava.base.model.OperazioniLog;
@@ -40,10 +37,6 @@ public class PageController extends AbstractLazyController<Page> {
 	public static String LIST = "/private/pagine/lista.xhtml";
 	@EditPage
 	public static String NEW_OR_EDIT = "/private/pagine/gestione.xhtml";
-
-	// ------------------------------------------------
-
-	protected Logger logger = Logger.getLogger(getClass());
 
 	// --------------------------------------------------------
 
@@ -92,7 +85,7 @@ public class PageController extends AbstractLazyController<Page> {
 	}
 
 	// -----------------------------------------------------
-
+	@Override
 	public String save() {
 		operazioniLogController.save(OperazioniLog.NEW, JSFUtils.getUserName(),
 				"creazione nuova pagina: " + getElement().getTitle());
@@ -101,30 +94,30 @@ public class PageController extends AbstractLazyController<Page> {
 
 	@Override
 	public String update() {
+		operazioniLogController.save(OperazioniLog.MODIFY,
+				JSFUtils.getUserName(), "modifica pagina: "
+						+ getElement().getTitle());
+		return super.update();
+		// // refresh locale
+		// Page result = pageRepository.fetch(getElement().getId());
+		// if (result != null) {
+		// refreshModel();
+		// // altre dipendenze
+		// propertiesHandler.setPageItems(null);
+		// // vista di destinzione
 
-		super.update();
-		// refresh locale
-		Page result = pageRepository.fetch(getElement().getId());
-		if (result != null) {
-			refreshModel();
-			// altre dipendenze
-			propertiesHandler.setPageItems(null);
-			// vista di destinzione
-			operazioniLogController.save(OperazioniLog.MODIFY,
-					JSFUtils.getUserName(), "modifica pagina: "
-							+ getElement().getTitle());
-			return viewPage();
-		} else {
-			// messaggio di errore
-			FacesContext
-					.getCurrentInstance()
-					.addMessage(
-							"titolo",
-							new FacesMessage(
-									"Attenzione: titolo di pagina non valido o gia' utilizzato!"));
-			// vista di destinzione
-			return null;
-		}
+		// return viewPage();
+		// } else {
+		// // messaggio di errore
+		// FacesContext
+		// .getCurrentInstance()
+		// .addMessage(
+		// "titolo",
+		// new FacesMessage(
+		// "Attenzione: titolo di pagina non valido o gia' utilizzato!"));
+		// // vista di destinzione
+		// return null;
+		// }
 	}
 
 	@Override
@@ -137,7 +130,7 @@ public class PageController extends AbstractLazyController<Page> {
 
 	// -----------------------------------------------------
 
-	public void cambioTemplate(ActionEvent event) {
+	public void cambioTemplate() {
 		// Long id = getElement().getTemplate().getTemplate().getId();
 		Template template = templateRepository.find(getElement().getTemplate()
 				.getTemplate().getId());
