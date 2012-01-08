@@ -85,8 +85,8 @@
 
 						<h:outputLabel value="Tipo informazione(*):" for="tipo" />
 						<h:selectOneMenu id="tipo" style="width: 100%;"
-							value="#{newNotizieController.idTipo}" required="true">
-							<f:selectItems value="#{propertiesHandler.tipoInformazioneItems}" />
+							value="#{newNotizieController.element.tipo.id}" required="true">
+							<f:selectItems value="#{tipoInformazioneItems}" />
 						</h:selectOneMenu>
 
 						<h:outputLabel for="autore" value="Autore:" style="width: 100%;" />
