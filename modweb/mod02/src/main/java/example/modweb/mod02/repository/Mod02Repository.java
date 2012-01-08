@@ -5,11 +5,9 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import example.modweb.annotation.GlobalP;
 import example.modweb.mod02.model.Mod02Model;
 
 @Stateless
