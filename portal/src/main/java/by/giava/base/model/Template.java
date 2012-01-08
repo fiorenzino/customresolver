@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Transient;
@@ -48,7 +49,7 @@ public class Template implements Serializable {
 	// ------------------------------------------------------------------------
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -196,7 +197,7 @@ public class Template implements Serializable {
 	// public String toString() {
 	// return ( this.nome != null ) ? this.nome : super.toString();
 	// }
-	//	
+	//
 	// @Override
 	// public boolean equals(Object o) {
 	// if ( ! ( o instanceof Page ) )
