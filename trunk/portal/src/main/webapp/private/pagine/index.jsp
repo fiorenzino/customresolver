@@ -1,6 +1,1 @@
-
-<%
-	String redirectURL = getServletContext().getContextPath()
-			+ "/private/pagine/lista-pagine.jsf";
-	response.sendRedirect(redirectURL);
-%>
+<jsp:forward page="lista.jsf"></jsp:forward>
