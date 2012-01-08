@@ -19,8 +19,7 @@ import by.giava.moduli.repository.TipoModuloRepository;
 
 @Named
 @RequestScoped
-public class ModuliHandlerRequestController extends
-		AbstractRequestController<Modulo> {
+public class ModuliRequestController extends AbstractRequestController<Modulo> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +30,7 @@ public class ModuliHandlerRequestController extends
 	String tipo;
 
 	@HttpParam("currentpage")
-	String currentpage;
+	String current;
 
 	@HttpParam("id")
 	String idParam;
@@ -46,7 +45,7 @@ public class ModuliHandlerRequestController extends
 	@Inject
 	TipoModuloRepository tipoModuloRepository;
 
-	public ModuliHandlerRequestController() {
+	public ModuliRequestController() {
 	}
 
 	@Override
@@ -87,6 +86,38 @@ public class ModuliHandlerRequestController extends
 							: "") + ">" + tipo.getNome() + "</option>");
 		}
 		return options;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(String current) {
+		this.current = current;
+	}
+
+	public String getIdParam() {
+		return idParam;
+	}
+
+	public void setIdParam(String idParam) {
+		this.idParam = idParam;
 	}
 
 }
