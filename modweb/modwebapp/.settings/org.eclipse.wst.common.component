@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="modwebapp">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/java"/>
+        <dependent-module archiveName="mod01-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mod01/mod01">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="modapi-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/modapi/modapi">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mod02-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mod02/mod02">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="modwebapp"/>
+        <property name="java-output-path" value="/modwebapp/target/classes"/>
+    </wb-module>
+</project-modules>
