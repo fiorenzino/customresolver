@@ -31,7 +31,7 @@ public class PubblicazioniRequestController extends
 	String tipo;
 
 	@HttpParam("currentpage")
-	String currentpage;
+	String current;
 
 	@HttpParam("id")
 	String idParam;
@@ -105,6 +105,30 @@ public class PubblicazioniRequestController extends
 							: "") + ">" + tipo.getNome() + "</option>");
 		}
 		return options;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(String current) {
+		this.current = current;
 	}
 
 }
