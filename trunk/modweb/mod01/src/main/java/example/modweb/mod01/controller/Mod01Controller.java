@@ -1,6 +1,7 @@
 package example.modweb.mod01.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -22,7 +23,7 @@ public class Mod01Controller implements Serializable {
 
 	public void save() {
 		element = mod01Repository.persist(getElement());
-		System.out.println(element.getId());
+		System.out.println("SALVATO ELEMENTO Mod01Model: " + element.getId());
 	}
 
 	public Mod01Model getElement() {
@@ -33,5 +34,9 @@ public class Mod01Controller implements Serializable {
 
 	public void setElement(Mod01Model element) {
 		this.element = element;
+	}
+
+	public List<Mod01Model> getList() {
+		return mod01Repository.getAll();
 	}
 }

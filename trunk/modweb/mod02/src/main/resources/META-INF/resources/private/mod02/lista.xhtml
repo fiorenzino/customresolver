@@ -9,6 +9,18 @@
 
 	<h1>Module 02</h1>
 	<h:form id="reg">
+		<h:dataTable value="#{mod02Controller.list}" var="elem">
+			<h:column>
+				<f:facet name="header">id</f:facet>
+				<h:outputText value="#{elem.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">name</f:facet>
+				<h:outputText value="#{elem.name}" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		<br />
 		<h:commandLink value="aggiungi" action="gestione.xhtml" />
 	</h:form>
 </h:body>
