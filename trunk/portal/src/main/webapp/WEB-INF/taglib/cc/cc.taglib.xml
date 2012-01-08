@@ -1,0 +1,68 @@
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+
+<facelet-taglib xmlns="http://java.sun.com/JSF/Facelet">
+
+	<!--
+		<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+		version="2.0">
+	-->
+
+	<namespace>http://colonnella/taglib</namespace>
+
+	<tag>
+		<tag-name>notizia</tag-name>
+		<source>notizie/notizia.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>notizie</tag-name>
+		<source>notizie/notizie.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>ultimeNotizie</tag-name>
+		<source>notizie/ultimeNotizie.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>notiziaEvidenza</tag-name>
+		<source>notizie/notiziaEvidenza.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>attivita</tag-name>
+		<source>attivita/attivita.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>moduli</tag-name>
+		<source>moduli/moduli.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>pubblicazioni</tag-name>
+		<source>pubblicazioni/pubblicazioni.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>archivioPubblicazioni</tag-name>
+		<source>pubblicazioni/archivioPubblicazioni.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>ultimePubblicazioni</tag-name>
+		<source>pubblicazioni/ultimePubblicazioni.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>menuBox</tag-name>
+		<source>menu/menuBox.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>menuBoxSxBase</tag-name>
+		<source>menu/menuBoxSxBase.xhtml</source>
+	</tag>
+
+	<function>
+		<function-name>showMenu</function-name>
+		<function-class>by.giava.base.controller.util.MenuUtils</function-class>
+		<function-signature>java.lang.Boolean showMenu(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+</facelet-taglib>
