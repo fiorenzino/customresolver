@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>gestione mod01</title>
+</h:head>
+<h:body>
+	<h:form id="reg">
+		<table>
+			<tr>
+				<th style="text-align: right;"><h:outputLabel for="name"
+						value="Name:" /></th>
+				<td><h:inputText id="name"
+						value="#{mod01Controller.element.name}" /></td>
+			</tr>
+		</table>
+		<p>
+			<h:commandButton id="register" action="#{mod01Controller.save}"
+				value="save" />
+			<h:outputText value=" Registered! #{mod01Controller.element.id}"
+				style="color: green;" />
+		</p>
+	</h:form>
+</h:body>
+</html>
